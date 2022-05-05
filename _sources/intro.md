@@ -1,3 +1,9 @@
+---
+layout: page
+title: "PAGE TITLE"
+permalink:
+---
+
 # Grundlagen der Datenbankensysteme
 
 This is a small sample book to give you a feel for how book content is
