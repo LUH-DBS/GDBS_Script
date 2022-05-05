@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4. ER-Modellierung" href="../04/er-modellierung.html" />
+    <link rel="next" title="4. Entity-Relationship-Modell" href="../04/er-modellierung.html" />
     <link rel="prev" title="2. Historie" href="../02/historie.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -116,27 +116,32 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../04/er-modellierung.html">
-   4. ER-Modellierung
+   4. Entity-Relationship-Modell
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05/relationaler_entwurf.html">
+   5. Relationaler Entwurf
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../markdown.html">
-   5. Markdown Files
+   6. Markdown Files
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../notebooks.html">
-   6. Content with notebooks
+   7. Content with notebooks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../markdown-notebooks.html">
-   7. Notebooks with MyST Markdown
+   8. Notebooks with MyST Markdown
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../markdownbsp1.html">
-   8. Hier steht ein Titel
+   9. Hier steht ein Titel
   </a>
  </li>
 </ul>
@@ -252,11 +257,13 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#systemarchitekturen">
    3.2. Systemarchitekturen
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ansi-sparc-architetktur">
-   3.3. ANSI-SPARC-Architetktur
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ansi-sparc-architetktur">
+     3.2.1. ANSI-SPARC-Architetktur
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -287,11 +294,13 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#systemarchitekturen">
    3.2. Systemarchitekturen
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ansi-sparc-architetktur">
-   3.3. ANSI-SPARC-Architetktur
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ansi-sparc-architetktur">
+     3.2.1. ANSI-SPARC-Architetktur
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -304,18 +313,100 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="architektur">
 <h1><span class="section-number">3. </span>Architektur<a class="headerlink" href="#architektur" title="Permalink to this headline">¶</a></h1>
-<p>text</p>
+<p>Einführungstext.</p>
 <div class="section" id="schichtenmodell">
 <h2><span class="section-number">3.1. </span>Schichtenmodell<a class="headerlink" href="#schichtenmodell" title="Permalink to this headline">¶</a></h2>
-<p>text</p>
+<p><img alt="title" src="../_images/schichtenmodell.jpg" /></p>
+<p>■ Interne (physische) Schicht/Sicht
+<br>
+□ Speichermedium (Tape, Festplatte)
+<br>
+□ Speicherort (Zylinder, Block)
+<br>
+Datei(en), Seiten, Blocks
+<br>
+<br>
+■ Konzeptionelle (logische) Schicht/Sicht
+<br>
+□ Unabhängig von physischer Schicht
+<br>
+□ Definiert durch Datenmodell
+<br>
+□ Stabiler Bezugspunkt für interne und externe Schichten
+<br>
+□ Schema: Relationen, Attribute, Typen,
+Integritätsbedingungen
+<br>
+<br>
+■ Externe (logische) Schicht/Sicht
+<br>
+□ Anwendungsprogramme
+<br>
+□ Nur auf die relevanten Daten
+<br>
+□ Enthält möglicherweise Aggregationen und Transformationen
+<br>
+„SQL Views“ (Sichten)
+<br>
+□ Anwendungen
+<br>
+<br></p>
 </div>
 <div class="section" id="systemarchitekturen">
 <h2><span class="section-number">3.2. </span>Systemarchitekturen<a class="headerlink" href="#systemarchitekturen" title="Permalink to this headline">¶</a></h2>
-<p>text</p>
-</div>
+<p>■ Beschreibung der Komponenten eines Datenbanksystems
+<br>
+■ Standardisierung der Schnittstellen zwischen Komponenten</p>
 <div class="section" id="ansi-sparc-architetktur">
-<h2><span class="section-number">3.3. </span>ANSI-SPARC-Architetktur<a class="headerlink" href="#ansi-sparc-architetktur" title="Permalink to this headline">¶</a></h2>
-<p>text</p>
+<h3><span class="section-number">3.2.1. </span>ANSI-SPARC-Architetktur<a class="headerlink" href="#ansi-sparc-architetktur" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/ansi-sparc-architektur.jpg" /></p>
+<p>ANSI-SPARC-Architektur worum gehts allgemein:
+<br>
+<br>
+■ ANSI: American National Standards Institute
+<br>
+■ SPARC: Standards Planning and Requirements Committee
+<br>
+■ DBMS Architekturvorschlag von 1975
+<br>
+■ 3-Schichten-Architektur verfeinert
+<br>
+□ Interne Ebene / Betriebssystem verfeinert
+<br>
+□ Mehrere interaktive und Programmier-Komponenten
+<br>
+□ Schnittstellen bezeichnet und normiert</p>
+<p>ANSI-SPARC-Architektur was für Komponenten gibt es:
+<br>
+■ Definitionskomponenten
+<br>
+□ DDL, Sichten, Dateiorganisation, Indizes
+<br>
+<br>
+■ Programmierkomponenten
+<br>
+□ Entwicklungsumgebung und Programmiersprache
+<br>
+□ Integration von DB-Operationen
+<br>
+<br>
+■ Benutzerkomponenten
+<br>
+□ Anfrageinterface für Experten
+<br>
+□ DB-Anwendungen für Laien
+<br>
+<br>
+■ Transformationskomp.
+<br>
+□ Anfrageausführung und Darstellung der Ergebnisse
+<br>
+<br>
+■ Data Dictionary
+<br>
+□ Metadaten (in relationalen Systemtabelle)</p>
+<p>Notiz: aktuelle Relevanz</p>
+</div>
 </div>
 </div>
 
@@ -354,7 +445,7 @@ const thebe_selector_output = ".output, .cell_output"
     <a class='right-next' id="next-link" href="../04/er-modellierung.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>ER-Modellierung</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Entity-Relationship-Modell</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -116,27 +116,32 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../04/er-modellierung.html">
-   4. ER-Modellierung
+   4. Entity-Relationship-Modell
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05/relationaler_entwurf.html">
+   5. Relationaler Entwurf
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../markdown.html">
-   5. Markdown Files
+   6. Markdown Files
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../notebooks.html">
-   6. Content with notebooks
+   7. Content with notebooks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../markdown-notebooks.html">
-   7. Notebooks with MyST Markdown
+   8. Notebooks with MyST Markdown
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../markdownbsp1.html">
-   8. Hier steht ein Titel
+   9. Hier steht ein Titel
   </a>
  </li>
 </ul>
@@ -249,13 +254,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#aufbau-eines-datenbankensystems">
-   1.2. Aufbau eines Datenbankensystems
+  <a class="reference internal nav-link" href="#aufbau-eines-datenbanksystems">
+   1.2. Aufbau eines Datenbanksystems
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#aufgaben-eines-datenbankensystems-dbms">
-   1.3. Aufgaben eines Datenbankensystems(DBMS)
+  <a class="reference internal nav-link" href="#aufgaben-eines-datenbanksystems-dbms">
+   1.3. Aufgaben eines Datenbanksystems(DBMS)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#anforderungen-an-dbms-nach-codd-1982">
+   1.4. Anforderungen an DBMS nach Codd 1982
   </a>
  </li>
 </ul>
@@ -284,13 +294,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#aufbau-eines-datenbankensystems">
-   1.2. Aufbau eines Datenbankensystems
+  <a class="reference internal nav-link" href="#aufbau-eines-datenbanksystems">
+   1.2. Aufbau eines Datenbanksystems
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#aufgaben-eines-datenbankensystems-dbms">
-   1.3. Aufgaben eines Datenbankensystems(DBMS)
+  <a class="reference internal nav-link" href="#aufgaben-eines-datenbanksystems-dbms">
+   1.3. Aufgaben eines Datenbanksystems(DBMS)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#anforderungen-an-dbms-nach-codd-1982">
+   1.4. Anforderungen an DBMS nach Codd 1982
   </a>
  </li>
 </ul>
@@ -309,15 +324,89 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Daten sind eine digitale Repräsentation von Dingen, Entitäten, Wissen und Informationen aus bzw. in der wirklichen Welt. Um mit Daten zu arbeiten, ergeben sich folgende Kernfragen:
 <br>
 <br>
-Welche Daten speichere ich? Wie speichere ich die Daten? Wie frage ich Daten ab? Wie erledige ich all dies effizient und sicher?</p>
+Welche Daten speichere ich? Wie speichere ich die Daten? Wie frage ich Daten ab? Wie erledige ich all dies effizient und sicher?
+<br>
+<br>
+Notiz: sehr verschiedene Beispiele für Daten, was sind Metadaten ?</p>
 </div>
-<div class="section" id="aufbau-eines-datenbankensystems">
-<h2><span class="section-number">1.2. </span>Aufbau eines Datenbankensystems<a class="headerlink" href="#aufbau-eines-datenbankensystems" title="Permalink to this headline">¶</a></h2>
-<p>text</p>
+<div class="section" id="aufbau-eines-datenbanksystems">
+<h2><span class="section-number">1.2. </span>Aufbau eines Datenbanksystems<a class="headerlink" href="#aufbau-eines-datenbanksystems" title="Permalink to this headline">¶</a></h2>
+<p><img alt="title" src="../_images/dbms_aufbau2.jpg" /></p>
+<p>Ein Datenbanksystem besteht aus der Datenbank und dem Datenbankmanagementsystem(DBMS). Die Datenbak setzt sich aus den Daten selbst und den Metadaten zusammen, die die Daten beschreiben. Das DBMS ist ein Softwarekomoponente die server-basiert arbeitet. Es ermöglicht den Zugriff auf eine oder mehrere Datenbanken.
+<br>
+<br>
+Notiz: Anwendungen</p>
 </div>
-<div class="section" id="aufgaben-eines-datenbankensystems-dbms">
-<h2><span class="section-number">1.3. </span>Aufgaben eines Datenbankensystems(DBMS)<a class="headerlink" href="#aufgaben-eines-datenbankensystems-dbms" title="Permalink to this headline">¶</a></h2>
-<p>text</p>
+<div class="section" id="aufgaben-eines-datenbanksystems-dbms">
+<h2><span class="section-number">1.3. </span>Aufgaben eines Datenbanksystems(DBMS)<a class="headerlink" href="#aufgaben-eines-datenbanksystems-dbms" title="Permalink to this headline">¶</a></h2>
+<p>Die primären Aufgaben eines Datenbanksystems sind …
+<br>Unterstützung des Datenmodells
+<br> Bereitstellung einer Anfragesprache
+<br> Data definition language (DDL)
+<br>Data manipulation language (DML)
+<br> Effiziente Anfragebearbeitung
+<br> Robustheit
+<br> Wahrung der Datenintegrität (Konsistenz etc.)
+<br> Abfangen von Systemfehlern
+<br> Speicherverwaltung (RAM &amp; Disk)
+<br> Transaktionsmanagement
+<br> Auch im Mehr-Benutzer-Betrieb
+<br> Nutzerverwaltung &amp; Zugangskontrolle
+<br>
+<br>
+Notiz: Beispiele für die Aufgaben aus der echten Welt, Wieso diese Aufgaben, ist jede Aufgabe zwingend notwendig bzw. welche</p>
+</div>
+<div class="section" id="anforderungen-an-dbms-nach-codd-1982">
+<h2><span class="section-number">1.4. </span>Anforderungen an DBMS nach Codd 1982<a class="headerlink" href="#anforderungen-an-dbms-nach-codd-1982" title="Permalink to this headline">¶</a></h2>
+<p>■ Integration
+<br>
+□ Einheitliche, nichtredundante Datenverwaltung
+<br>
+<br>
+■ Operationen
+<br>
+□ Definieren, Speichern, Abfragen, Ändern
+<br>
+□ Deklarativ
+<br>
+<br>
+■ Benutzersichten
+<br>
+□ Verschiedene Anwendungen, Zugriffskontrolle, Umstrukturierung
+<br>
+<br>
+■ Integritätssicherung
+<br>
+□ Korrektheit und Konsistenz des Datenbankinhalts
+<br>
+<br>
+■ Transaktionen
+<br>
+□ Mehrere DB-Operationen als Funktionseinheit
+<br>
+<br>
+■ Synchronisation
+<br>
+□ Parallele Transaktionen koordinieren
+<br>
+<br>
+■ Datenschutz
+<br>
+□ Ausschluss nicht-autorisierter Zugriffe
+<br>
+<br>
+■ Datensicherung
+<br>
+□ Wiederherstellung von Daten nach Systemfehlern
+<br>
+□ Persistenz
+<br>
+□ Große Datenmengen, Effizienz
+<br>
+<br>
+■ Katalog
+<br>
+□ Zugriffe auf Datenbankbeschreibungen im Data Dictionary (Metadaten)</p>
 </div>
 </div>
 

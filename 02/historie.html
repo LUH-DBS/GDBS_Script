@@ -116,27 +116,32 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../04/er-modellierung.html">
-   4. ER-Modellierung
+   4. Entity-Relationship-Modell
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05/relationaler_entwurf.html">
+   5. Relationaler Entwurf
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../markdown.html">
-   5. Markdown Files
+   6. Markdown Files
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../notebooks.html">
-   6. Content with notebooks
+   7. Content with notebooks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../markdown-notebooks.html">
-   7. Notebooks with MyST Markdown
+   8. Notebooks with MyST Markdown
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../markdownbsp1.html">
-   8. Hier steht ein Titel
+   9. Hier steht ein Titel
   </a>
  </li>
 </ul>
@@ -268,6 +273,11 @@ const thebe_selector_output = ".output, .cell_output"
    2.5. 2010er Jahre
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   2.6. 2020er Jahre
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -313,6 +323,11 @@ const thebe_selector_output = ".output, .cell_output"
    2.5. 2010er Jahre
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   2.6. 2020er Jahre
+  </a>
+ </li>
 </ul>
 
                         </nav>
@@ -326,23 +341,150 @@ const thebe_selector_output = ".output, .cell_output"
 <h1><span class="section-number">2. </span>Historie<a class="headerlink" href="#historie" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="er-jahre">
 <h2><span class="section-number">2.1. </span>1960er Jahre<a class="headerlink" href="#er-jahre" title="Permalink to this headline">¶</a></h2>
-<p>text</p>
+<p>DBS basierend auf hierarchischem Modell, Netzwerkmodell
+<br>
+□ Zeigerstrukturen zwischen Daten
+<br>
+□ Schwache Trennung interne / konzeptuelle Ebene
+<br>
+□ Navigierende Data Manipulation Language (DML)
+<br>
+elementare Dateien
+<br>
+□ anwendungsspezifische Datenorganisation (geräteabhängig, redundant, inkonsistent)
+<br>
+□ Integrated Data Store (IDS) von General Electric</p>
 </div>
 <div class="section" id="er-bis-1980er-jahre">
 <h2><span class="section-number">2.2. </span>1970er bis 1980er Jahre<a class="headerlink" href="#er-bis-1980er-jahre" title="Permalink to this headline">¶</a></h2>
-<p>text</p>
+<p>Relationale Datenbanksysteme
+<br>
+□ Daten in Tabellenstrukturen
+<br>
+□ 3-Ebenen-Konzept
+<br>
+□ Deklarative DML
+<br>
+<br>
+70er: Datenbanksysteme (Geräte- und Datenunabhängigkeit, redundanzfrei, konsistent)
+<br>
+■ 1970: Ted Codd (IBM)
+<br>
+□ Relationenmodell als konzeptionelle Grundlage relationaler DBS
+<br>
+■ 1974: System R (IBM)
+<br>
+□ erster Prototyp eines RDBMS
+<br>
+□ ca. 80.000 LOC (PL/1, PL/S, Assembler), ca. 1,2 MB Codegröße
+<br>
+□ Anfragesprache SEQUEL (≠ SQL)
+<br>
+□ erste Installation 1977
+<br>
+■ 1975: University of California at Berkeley (UCB)
+<br>
+□ Ingres
+<br>
+□ Anfragesprache QUEL
+<br>
+□ Vorgänger von Postgres, Sybase, …
+<br>
+■ 1979: Oracle Version 2</p>
 </div>
 <div class="section" id="er-bis-1990er-jahre">
 <h2><span class="section-number">2.3. </span>1980er bis 1990er Jahre<a class="headerlink" href="#er-bis-1990er-jahre" title="Permalink to this headline">¶</a></h2>
-<p>text</p>
+<p>immer größer :
+<br>
+□ Gigabyte, Terabyte
+<br>
+□ Große, komplexe (Multimedia-) Objekte
+<br>
+□ Tertiäre Speicher (Magnetbänder, DVDs)
+<br>
+□ Verteilung und Parallelität
+<br>
+Immer kleiner :
+<br>
+□ DBMS auch auf kleinen Rechnern
+<br>
+□ Oft schon teil der Standardinstallation
+<br>
+Objektorientierte Datenbanksysteme
+<br>
+□ Daten in komplexeren Objektstrukturen (Trennung Objekt und seine Daten)
+<br>
+□ Deklarative oder navigierende DML
+<br>
+□ Oft integrierte Datenbankprogrammiersprache
+<br>
+□ Oft keine vollständige Ebenentrennung</p>
 </div>
 <div class="section" id="id1">
 <h2><span class="section-number">2.4. </span>2000er Jahre<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>text</p>
+<p>□ Spezialisierung auf neue Daten-Arten
+<br>
+■ Unterstützung für spezielle Anwendungen
+<br>
+□ Multimediadatenbanken
+<br>
+– Multimediale Objekte (Bilder, Audio, Video)
+<br>
+□ XML-Datenbanken
+<br>
+– Semistrukturierte Daten (XML-Dokumente)
+<br>
+□ Verteilte Datenbanken
+<br>
+– Daten auf verschiedene Rechnerknoten
+<br>
+□ Föderierte Datenbanken, Multidatenbanken, Mediatoren
+<br>
+– Integration von Daten aus heterogenen Quellen (Datenbanken, Dateien, Web-Quellen)
+<br>
+– Informationsintegration
+<br>
+□ Mobile Datenbanken
+<br>
+– Datenverwaltung auf Kleinstgeräten (PDA, Handy, … )
+<br>
+□ Search!</p>
 </div>
 <div class="section" id="id2">
 <h2><span class="section-number">2.5. </span>2010er Jahre<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>text</p>
+<p>Systems for ML
+<br>
+□ Data lake management
+<br>
+■ Web-scale data
+<br>
+□ The Web □ Facebook, Google, Twitter &amp; co.
+<br>
+■ NoSQL (Not only SQL)
+<br>
+□ New, simple DBMS
+<br>
+□ Highly distributed
+<br>
+■ Specialized DBMS
+<br>
+□ One size does not fit all
+<br>
+□ Map Reduce for Analytics
+<br>
+□ Key-value-stores for transactions
+<br>
+■ New Hardware
+<br>
+□ FPGA, GPGPU, SSD, Main-Memory</p>
+</div>
+<div class="section" id="id3">
+<h2><span class="section-number">2.6. </span>2020er Jahre<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>Systems for ML
+<br>
+■ Data lake management
+<br>
+■ Geo-distribution</p>
 </div>
 </div>
 
