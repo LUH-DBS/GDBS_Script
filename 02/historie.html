@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>2. Historie &#8212; Online-Skript Grundlagen der Datenbankensysteme</title>
+    <title>2. Historie &#8212; Online-Skript Grundlagen der Datenbanksysteme</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -83,7 +83,7 @@ const thebe_selector_output = ".output, .cell_output"
       <img src="../_static/DBIS_Kurzlogo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Online-Skript Grundlagen der Datenbankensysteme</h1>
+      <h1 class="site-logo" id="site-title">Online-Skript Grundlagen der Datenbanksysteme</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -94,7 +94,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../intro.html">
-   Grundlagen der Datenbankensysteme
+   Grundlagen der Datenbanksysteme
   </a>
  </li>
 </ul>
@@ -115,33 +115,43 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../04/er-modellierung.html">
-   4. Entity-Relationship-Modell
+  <a class="reference internal" href="../04/phasenmodell_datenbankentwurf.html">
+   4. Phasenmodell für den Datenbankentwurf
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../05/relationaler_entwurf.html">
-   5. Relationaler Entwurf
+  <a class="reference internal" href="../05/er_modellierung.html">
+   5. ER-Modellierung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06/relationaler_entwurf.html">
+   6. Relationaler Entwurf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07/normalisierung.html">
+   7. Normalisierung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08/relationale_algebra.html">
+   8. Relationale Algebra
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../markdown.html">
-   6. Markdown Files
+   9. Markdown Files
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../notebooks.html">
-   7. Content with notebooks
+   10. Content with notebooks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../markdown-notebooks.html">
-   8. Notebooks with MyST Markdown
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../markdownbsp1.html">
-   9. Hier steht ein Titel
+   11. Notebooks with MyST Markdown
   </a>
  </li>
 </ul>
@@ -249,33 +259,43 @@ const thebe_selector_output = ".output, .cell_output"
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fruhe-automatisierte-speichertechnologie">
+   2.1. Frühe automatisierte Speichertechnologie
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#er-jahre">
-   2.1. 1960er Jahre
+   2.2. 1960er Jahre
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#er-bis-1980er-jahre">
-   2.2. 1970er bis 1980er Jahre
+   2.3. 1970er bis 1980er Jahre
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#er-bis-1990er-jahre">
-   2.3. 1980er bis 1990er Jahre
+   2.4. 1980er bis 1990er Jahre
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id1">
-   2.4. 2000er Jahre
+   2.5. 2000er Jahre
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id2">
-   2.5. 2010er Jahre
+   2.6. 2010er Jahre
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id3">
-   2.6. 2020er Jahre
+   2.7. 2020er Jahre
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#historie-von-relationalen-dbms">
+   2.8. Historie von Relationalen DBMS
   </a>
  </li>
 </ul>
@@ -299,33 +319,43 @@ const thebe_selector_output = ".output, .cell_output"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fruhe-automatisierte-speichertechnologie">
+   2.1. Frühe automatisierte Speichertechnologie
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#er-jahre">
-   2.1. 1960er Jahre
+   2.2. 1960er Jahre
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#er-bis-1980er-jahre">
-   2.2. 1970er bis 1980er Jahre
+   2.3. 1970er bis 1980er Jahre
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#er-bis-1990er-jahre">
-   2.3. 1980er bis 1990er Jahre
+   2.4. 1980er bis 1990er Jahre
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id1">
-   2.4. 2000er Jahre
+   2.5. 2000er Jahre
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id2">
-   2.5. 2010er Jahre
+   2.6. 2010er Jahre
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id3">
-   2.6. 2020er Jahre
+   2.7. 2020er Jahre
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#historie-von-relationalen-dbms">
+   2.8. Historie von Relationalen DBMS
   </a>
  </li>
 </ul>
@@ -339,8 +369,30 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="historie">
 <h1><span class="section-number">2. </span>Historie<a class="headerlink" href="#historie" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="fruhe-automatisierte-speichertechnologie">
+<h2><span class="section-number">2.1. </span>Frühe automatisierte Speichertechnologie<a class="headerlink" href="#fruhe-automatisierte-speichertechnologie" title="Permalink to this headline">¶</a></h2>
+<p><img alt="" src="../_images/herman_hollerith.jpg" /></p>
+<p>■ Herman Hollerith (1860 – 1929)
+<br>
+□ Gründete 1896 die Tabulating Machine Company
+<br>
+□ Fusion zur Computing Tabulating Recording Corporation (CTR)
+<br>
+□ 1924 umbenannt: International Business Machines Corporation (IBM)
+<br>
+<br>
+Notiz: Wer war Herman Hollerith und was hat er gemacht</p>
+<p><img alt="title" src="../_images/lochkarte.jpg" /></p>
+<p>□ Hollerith-Lochkartenverfahrens zur Datenverarbeitung
+<br>
+□ Z.B. Volkszählung USA 1890 (2 Jahre, 43 Maschinen, 500 Personen)
+<br>
+<br>
+Notiz: Funktionsweise des Verfahrens, bis wann benutzt</p>
+<p><img alt="title" src="../_images/lochkartenleser.jpg" /></p>
+</div>
 <div class="section" id="er-jahre">
-<h2><span class="section-number">2.1. </span>1960er Jahre<a class="headerlink" href="#er-jahre" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.2. </span>1960er Jahre<a class="headerlink" href="#er-jahre" title="Permalink to this headline">¶</a></h2>
 <p>DBS basierend auf hierarchischem Modell, Netzwerkmodell
 <br>
 □ Zeigerstrukturen zwischen Daten
@@ -356,7 +408,7 @@ elementare Dateien
 □ Integrated Data Store (IDS) von General Electric</p>
 </div>
 <div class="section" id="er-bis-1980er-jahre">
-<h2><span class="section-number">2.2. </span>1970er bis 1980er Jahre<a class="headerlink" href="#er-bis-1980er-jahre" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.3. </span>1970er bis 1980er Jahre<a class="headerlink" href="#er-bis-1980er-jahre" title="Permalink to this headline">¶</a></h2>
 <p>Relationale Datenbanksysteme
 <br>
 □ Daten in Tabellenstrukturen
@@ -393,7 +445,7 @@ elementare Dateien
 ■ 1979: Oracle Version 2</p>
 </div>
 <div class="section" id="er-bis-1990er-jahre">
-<h2><span class="section-number">2.3. </span>1980er bis 1990er Jahre<a class="headerlink" href="#er-bis-1990er-jahre" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.4. </span>1980er bis 1990er Jahre<a class="headerlink" href="#er-bis-1990er-jahre" title="Permalink to this headline">¶</a></h2>
 <p>immer größer :
 <br>
 □ Gigabyte, Terabyte
@@ -421,7 +473,7 @@ Objektorientierte Datenbanksysteme
 □ Oft keine vollständige Ebenentrennung</p>
 </div>
 <div class="section" id="id1">
-<h2><span class="section-number">2.4. </span>2000er Jahre<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.5. </span>2000er Jahre<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>□ Spezialisierung auf neue Daten-Arten
 <br>
 ■ Unterstützung für spezielle Anwendungen
@@ -451,7 +503,7 @@ Objektorientierte Datenbanksysteme
 □ Search!</p>
 </div>
 <div class="section" id="id2">
-<h2><span class="section-number">2.5. </span>2010er Jahre<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.6. </span>2010er Jahre<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>Systems for ML
 <br>
 □ Data lake management
@@ -479,12 +531,47 @@ Objektorientierte Datenbanksysteme
 □ FPGA, GPGPU, SSD, Main-Memory</p>
 </div>
 <div class="section" id="id3">
-<h2><span class="section-number">2.6. </span>2020er Jahre<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.7. </span>2020er Jahre<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>Systems for ML
 <br>
 ■ Data lake management
 <br>
 ■ Geo-distribution</p>
+<p><img alt="title" src="../_images/festplatte_1.jpg" /></p>
+<p><img alt="title" src="../_images/lueftung.jpg" /></p>
+<p><img alt="title" src="../_images/festplatte_2.jpg" /></p>
+</div>
+<div class="section" id="historie-von-relationalen-dbms">
+<h2><span class="section-number">2.8. </span>Historie von Relationalen DBMS<a class="headerlink" href="#historie-von-relationalen-dbms" title="Permalink to this headline">¶</a></h2>
+<p>■ 70er: Datenbanksysteme (Geräte- und Datenunabhängigkeit, redundanzfrei, konsistent)
+<br>
+<br>
+■ 1970: Ted Codd (IBM)
+<br>
+□ Relationenmodell als konzeptionelle Grundlage relationaler DBS
+<br>
+<br>
+■ 1974: System R (IBM)
+<br>
+□ erster Prototyp eines RDBMS
+<br>
+□ ca. 80.000 LOC (PL/1, PL/S, Assembler), ca. 1,2 MB Codegröße
+<br>
+□ Anfragesprache SEQUEL (≠ SQL)
+<br>
+□ erste Installation 1977
+<br>
+<br>
+■ 1975: University of California at Berkeley (UCB)
+<br>
+□ Ingres
+<br>
+□ Anfragesprache QUEL
+<br>
+□ Vorgänger von Postgres, Sybase, …
+<br>
+■ 1979: Oracle Version 2</p>
+<p>NICHT enthalten: S. 4-8, S. 16, S. 23</p>
 </div>
 </div>
 

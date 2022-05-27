@@ -1,0 +1,1279 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5. ER-Modellierung &#8212; Online-Skript Grundlagen der Datenbanksysteme</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. Relationaler Entwurf" href="../06/relationaler_entwurf.html" />
+    <link rel="prev" title="4. Phasenmodell für den Datenbankentwurf" href="../04/phasenmodell_datenbankentwurf.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/DBIS_Kurzlogo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Online-Skript Grundlagen der Datenbanksysteme</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Grundlagen der Datenbanksysteme
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01/einfuehrung.html">
+   1. Einführung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02/historie.html">
+   2. Historie
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03/architektur.html">
+   3. Architektur
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04/phasenmodell_datenbankentwurf.html">
+   4. Phasenmodell für den Datenbankentwurf
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   5. ER-Modellierung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06/relationaler_entwurf.html">
+   6. Relationaler Entwurf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07/normalisierung.html">
+   7. Normalisierung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08/relationale_algebra.html">
+   8. Relationale Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown.html">
+   9. Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks.html">
+   10. Content with notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown-notebooks.html">
+   11. Notebooks with MyST Markdown
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/05/er_modellierung.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F05/er_modellierung.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/05/er_modellierung.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#einfuhrung-das-entity-relationship-modell">
+   5.1. Einführung: Das Entity-Relationship-Modell
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#begriffe-komponenten">
+   5.2. Begriffe (Komponenten)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#instanz-eines-er-diagramms">
+     5.2.1. Instanz eines ER-Diagramms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#kardinalitaten-von-relationships">
+   5.3. Kardinalitäten von Relationships
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#n-relationships">
+     5.3.1. 1:n Relationships
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#relationships">
+     5.3.2. 1:1 Relationships
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#weitere-notationen">
+     5.3.3. Weitere Notationen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rolle-von-relationships">
+   5.4. Rolle von Relationships
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#n-are-relationships">
+     5.4.1. n-äre Relationships
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#konvertierung-in-binare-relationships">
+     5.4.2. Konvertierung in binäre Relationships
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#attribute-an-relationships">
+     5.4.3. Attribute an Relationships
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ist-beziehung">
+   5.5. IST-Beziehung
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ist-beziehung-als-baume">
+     5.5.1. IST-Beziehung als Bäume
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nebenbedingungen-constraints">
+   5.6. Nebenbedingungen(Constraints)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#schlussel">
+   5.7. Schlüssel
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#referentielle-integritat">
+     5.7.1. Referentielle Integrität
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#weitere-nebenbedingungen">
+     5.7.2. Weitere Nebenbedingungen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#schwache-entitytypen">
+   5.8. Schwache Entitytypen
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#motivation">
+     5.8.1. Motivation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     5.8.2. Schwache Entitytypen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schlussel-schwacher-entitytypen">
+     5.8.3. Schlüssel schwacher Entitytypen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#erweitertes-er-modell">
+   5.9. Erweitertes ER-Modell
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#weitere-attributarten">
+     5.9.1. Weitere Attributarten
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spezialisierung-generalisierung">
+     5.9.2. Spezialisierung Generalisierung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aggregation">
+     5.9.3. Aggregation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#designprinzipien">
+   5.10. Designprinzipien
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grundprinzipien">
+     5.10.1. Grundprinzipien
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#anwendungstreue">
+     5.10.2. Anwendungstreue
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#redundanz">
+     5.10.3. Redundanz
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#einfachheit">
+     5.10.4. Einfachheit
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     5.10.5. Relationships
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#attribut-vs-element">
+     5.10.6. Attribut vs. Element
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>ER-Modellierung</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#einfuhrung-das-entity-relationship-modell">
+   5.1. Einführung: Das Entity-Relationship-Modell
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#begriffe-komponenten">
+   5.2. Begriffe (Komponenten)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#instanz-eines-er-diagramms">
+     5.2.1. Instanz eines ER-Diagramms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#kardinalitaten-von-relationships">
+   5.3. Kardinalitäten von Relationships
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#n-relationships">
+     5.3.1. 1:n Relationships
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#relationships">
+     5.3.2. 1:1 Relationships
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#weitere-notationen">
+     5.3.3. Weitere Notationen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rolle-von-relationships">
+   5.4. Rolle von Relationships
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#n-are-relationships">
+     5.4.1. n-äre Relationships
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#konvertierung-in-binare-relationships">
+     5.4.2. Konvertierung in binäre Relationships
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#attribute-an-relationships">
+     5.4.3. Attribute an Relationships
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ist-beziehung">
+   5.5. IST-Beziehung
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ist-beziehung-als-baume">
+     5.5.1. IST-Beziehung als Bäume
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nebenbedingungen-constraints">
+   5.6. Nebenbedingungen(Constraints)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#schlussel">
+   5.7. Schlüssel
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#referentielle-integritat">
+     5.7.1. Referentielle Integrität
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#weitere-nebenbedingungen">
+     5.7.2. Weitere Nebenbedingungen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#schwache-entitytypen">
+   5.8. Schwache Entitytypen
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#motivation">
+     5.8.1. Motivation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     5.8.2. Schwache Entitytypen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schlussel-schwacher-entitytypen">
+     5.8.3. Schlüssel schwacher Entitytypen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#erweitertes-er-modell">
+   5.9. Erweitertes ER-Modell
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#weitere-attributarten">
+     5.9.1. Weitere Attributarten
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spezialisierung-generalisierung">
+     5.9.2. Spezialisierung Generalisierung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aggregation">
+     5.9.3. Aggregation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#designprinzipien">
+   5.10. Designprinzipien
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grundprinzipien">
+     5.10.1. Grundprinzipien
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#anwendungstreue">
+     5.10.2. Anwendungstreue
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#redundanz">
+     5.10.3. Redundanz
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#einfachheit">
+     5.10.4. Einfachheit
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     5.10.5. Relationships
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#attribut-vs-element">
+     5.10.6. Attribut vs. Element
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="er-modellierung">
+<h1><span class="section-number">5. </span>ER-Modellierung<a class="headerlink" href="#er-modellierung" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="einfuhrung-das-entity-relationship-modell">
+<h2><span class="section-number">5.1. </span>Einführung: Das Entity-Relationship-Modell<a class="headerlink" href="#einfuhrung-das-entity-relationship-modell" title="Permalink to this headline">¶</a></h2>
+<p><img alt="title" src="../_images/peter_chen.jpg" /></p>
+<p><img alt="title" src="../_images/peter_chen_paper.jpg" /></p>
+<p>Nach Peter P. Chen 1976
+<br>
+The entity-relationship model – towards a unified view of data. ACM TODS
+<br>
+Standardmodell in der frühen Entwurfsphase
+<br>
+<br>
+<br>
+Instanz eines ER-Diagramms:
+<br>
+<br>
+ER-Diagramme beschreiben Datenbanken, die eine Instanz haben (werden).
+<br>
+Der „Wert“ eines Entitytypen ist die (endliche) Menge der zugehörigen Entities.
+<br>
+Jeder Entity hat bestimmte Werte für seine Attribute.
+<br>
+Die Instanz eines n-ären Relationshiptypen ist eine Menge von Listen der Länge n.
+<br>
+Dies alles ist nur abstrakte Denkhilfe.
+<br>
+Modellierung im relationalen Modell unterscheidet sich.
+<br>
+Speicherung in einem DBMS unterscheidet sich.</p>
+</div>
+<div class="section" id="begriffe-komponenten">
+<h2><span class="section-number">5.2. </span>Begriffe (Komponenten)<a class="headerlink" href="#begriffe-komponenten" title="Permalink to this headline">¶</a></h2>
+<p>Entity
+<br>
+Ein Ding / Objekt der realen oder der Vorstellungswelt
+<br>
+Nicht direkt darstellbar, sondern nur über Eigenschaften beobachtbar
+<br>
+<br>
+Entitytyp (entity set)
+<br>
+Eine Klasse für gleichartige Objekte
+<br>
+<br>
+Relationship
+<br>
+Beschreibt Beziehungen zwischen zwei („konkreten“) Entities
+<br>
+Meist binär
+<br>
+<br>
+Relationshiptyp
+<br>
+Eine Klasse für gleichartige Beziehungen
+<br>
+Attribut
+<br>
+repräsentiert eine Eigenschaft von Entities oder von Relationships
+<br>
+Zunächst nur primitive Datenwerte (String, Integer, …) und Operationen darauf
+<br>
+Später auch komplexe Attribute</p>
+<p><img alt="title" src="../_images/er_diagramm_bsp.jpg" /></p>
+<div class="section" id="instanz-eines-er-diagramms">
+<h3><span class="section-number">5.2.1. </span>Instanz eines ER-Diagramms<a class="headerlink" href="#instanz-eines-er-diagramms" title="Permalink to this headline">¶</a></h3>
+<p>ER-Diagramme beschreiben Datenbanken, die eine Instanz haben (werden).
+<br>
+Der „Wert“ eines Entitytypen ist die (endliche) Menge der zugehörigen Entities.
+<br>
+Jeder Entity hat bestimmte Werte für seine Attribute.
+<br>
+Die Instanz eines n-ären Relationshiptypen ist eine Menge von Listen der Länge n.
+<br>
+Dies alles ist nur abstrakte Denkhilfe.
+<br>
+Modellierung im relationalen Modell unterscheidet sich.
+<br>
+Speicherung in einem DBMS unterscheidet sich.</p>
+<p><img alt="title" src="../_images/instanz_er.jpg" /></p>
+</div>
+</div>
+<div class="section" id="kardinalitaten-von-relationships">
+<h2><span class="section-number">5.3. </span>Kardinalitäten von Relationships<a class="headerlink" href="#kardinalitaten-von-relationships" title="Permalink to this headline">¶</a></h2>
+<p>Allgemein: Eine binäre Relationship kann beliebig viele Entities des einen Typen mit beliebig vielen des anderen Typen verbinden.
+<br>
+Ein Schauspieler kann in mehreren Filmen spielen.
+<br>
+In einem Film spielen mehrere Schauspieler.
+<br>
+„Kann“: D.h. nicht jeder Entity muss mit einem anderen verbunden sein.
+<br>
+In einem Animationsfilm spielen keine Schauspieler.
+<br>
+m:n Beziehung
+<br>
+Einschränkungen („Spezialfälle“)
+<br>
+1:n Beziehung
+<br>
+1:1 Beziehung</p>
+<p><img alt="title" src="../_images/mn_kardinalitaet.jpg" /></p>
+<div class="section" id="n-relationships">
+<h3><span class="section-number">5.3.1. </span>1:n Relationships<a class="headerlink" href="#n-relationships" title="Permalink to this headline">¶</a></h3>
+<p>Ein Entity vom Typ E kann mit beliebig vielen Entities des Typs F verbunden sein.
+<br>
+Ein Entity vom Typ F kann mit höchstens einem Entity des Typs E verbunden sein.
+<br>
+Beispiel
+<br>
+Ein Studio kann die Rechte an mehreren Filmen besitzen.
+<br>
+Ein Film kann nur von einem Studio besessen werden.
+<br>
+„Kann“: D.h. nicht jeder Entity muss mit einem anderen verbunden sein.
+<br>
+Ein neues Studio besitzt noch keinen Film.
+<br>
+Darstellung mittels eines Pfeils zur „1er“ Seite.</p>
+<p><img alt="title" src="../_images/1n_kardinalitaet.jpg" /></p>
+</div>
+<div class="section" id="relationships">
+<h3><span class="section-number">5.3.2. </span>1:1 Relationships<a class="headerlink" href="#relationships" title="Permalink to this headline">¶</a></h3>
+<p>Ein Entity vom Typ E kann mit höchstens einem Entity des Typs F verbunden sein.
+<br>
+Ein Entity vom Typ F kann mit höchstens einem Entity des Typs E verbunden sein.
+<br>
+Beispiel
+<br>
+Ein Studio kann nur von einem Vorsitzenden geleitet werden.
+<br>
+Ein Vorsitzender kann nur ein Studio leiten.
+<br>
+„Kann“: D.h. nicht jeder Entity muss mit einem anderen verbunden sein.
+<br>
+Ein Studio kann (vorübergehend) keinen Vorsitzenden haben.</p>
+<p><img alt="title" src="../_images/11_kardinalitaet.jpg" /></p>
+</div>
+<div class="section" id="weitere-notationen">
+<h3><span class="section-number">5.3.3. </span>Weitere Notationen<a class="headerlink" href="#weitere-notationen" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/kardinalitaeten_notation.jpg" /></p>
+<p>Numerische Notation (Partizipationssemantik)</p>
+</div>
+</div>
+<div class="section" id="rolle-von-relationships">
+<h2><span class="section-number">5.4. </span>Rolle von Relationships<a class="headerlink" href="#rolle-von-relationships" title="Permalink to this headline">¶</a></h2>
+<p><img alt="title" src="../_images/rolle_relationship.jpg" /></p>
+<p>Entitytypen können mehr als einmal in einer Relationship auftauchen.
+<br>
+Entsprechend mehrere Kanten
+<br>
+Jede Kante entspricht einer anderen Rolle.
+<br>Die Kanten werden mit den entsprechenden Rollen annotiert.</p>
+<p><img alt="title" src="../_images/rolle_relationship2.jpg" /></p>
+<p>Stammstudio eines Schauspielers erlaubt einem anderen Studio den Schauspieler für einen bestimmten Film
+auszuleihen
+<br>
+<br>
+Kardinalitäten:
+<br>
+Gegeben Schauspieler, Film und produzierendes Studio, ist das ausleihenden Stammstudio eindeutig (höchstens
+ein Studio ist das ausleihende Stammstudio).
+<br>
+Gegeben Schauspieler, Film und Stammstudio ist das produzierende Studio eindeutig (höchstens ein Studio kann
+einen Film produzieren).
+<br>
+Gegeben Schauspieler, Stammstudio und produzierendes Studio könnte es mehrere Filme geben, die in dieser
+Konstellation gedreht werden.
+<br>
+Gegeben Film, Stammstudio und produzierendes Studio könnte es mehrere Schauspieler geben, die in dieser
+Konstellation ausgeliehen werden.</p>
+<div class="section" id="n-are-relationships">
+<h3><span class="section-number">5.4.1. </span>n-äre Relationships<a class="headerlink" href="#n-are-relationships" title="Permalink to this headline">¶</a></h3>
+<p>Relationships zwischen mehr als zwei Entities
+<br>
+Ein/e Schauspieler*in steht bei einem Studio für eine bestimmten Film unter Vertrag
+<br>
+Instanz der Relationship kann man als Tripel darstellen.
+<br>
+Kardinalitäten: Jede Kombination von Schauspieler und Film kann nur mit einem
+<br>
+Studio in Beziehung stehen.</p>
+<p><img alt="title" src="../_images/n-aer_relationships.jpg" /></p>
+</div>
+<div class="section" id="konvertierung-in-binare-relationships">
+<h3><span class="section-number">5.4.2. </span>Konvertierung in binäre Relationships<a class="headerlink" href="#konvertierung-in-binare-relationships" title="Permalink to this headline">¶</a></h3>
+<p>Umwandlung n-ärer Relationships in binäre Relationships
+<br>
+Erstellung eines neuen, verbindenden Entitytyps
+<br>
+Neue n:1 Relationships zwischen dem neuen Entitytyp und den alten Entitytypen
+<br>
+Falls ein Entitytyp mehrere Rollen spielt, entsteht pro Rolle ein Relationshiptyp.
+<br>
+Attribute des Relationshiptyps werden an den neuen Entitytyp angehängt.</p>
+</div>
+<div class="section" id="attribute-an-relationships">
+<h3><span class="section-number">5.4.3. </span>Attribute an Relationships<a class="headerlink" href="#attribute-an-relationships" title="Permalink to this headline">¶</a></h3>
+<p>In manchen Fällen ist es hilfreich, Relationships Attribute zuzuordnen
+<br>
+Bsp: In dem Drehvertrag wird ein Gehalt festgestellt.
+<br>
+Zuordnung zu Schauspieler? Er könnte für verschiedene Filme unterschiedliche Gehälter bekommen.
+<br>
+Zuordnung zum Film? Verschiedene Schauspieler könnten unterschiedliche Gehälter bekommen.
+<br>
+Zuordnung zum Studio? Es könnte verschiedenen Schauspielern unterschiedliche Gehälter zahlen.</p>
+<p><img alt="title" src="../_images/attribute_relationship.jpg" /></p>
+</div>
+</div>
+<div class="section" id="ist-beziehung">
+<h2><span class="section-number">5.5. </span>IST-Beziehung<a class="headerlink" href="#ist-beziehung" title="Permalink to this headline">¶</a></h2>
+<p>Subklasse
+<br>
+Spezialfall / Spezialisierung
+<br>
+Weniger Entities
+<br>
+Mehr Attribute
+<br>
+Eventl. mehr Relationships
+<br>
+Besonderer Relationshiptyp
+<br>
+IST (is-a)
+<br>
+Darstellung durch Dreieck
+<br>
+Spitze zeigt zur Superklasse
+<br>
+Immer 1:1
+<br>
+Trotzdem keine Pfeile</p>
+<div class="section" id="ist-beziehung-als-baume">
+<h3><span class="section-number">5.5.1. </span>IST-Beziehung als Bäume<a class="headerlink" href="#ist-beziehung-als-baume" title="Permalink to this headline">¶</a></h3>
+<p>IST-Beziehungen nur als Bäume
+<br>
+Keine Mehrfachvererbung
+<br>
+Ein Entity kann aus mehreren Komponenten des IST-Baumes bestehen.
+<br>
+„Krieg der Sterne“ hat vier Attribute.
+<br>
+„Cinderella“ hat vier Attribute und „Stimmen“-Relationships.
+<br>
+„Der dritte Mann“ hat vier Attribute und zusätzlich das Attribut „Waffen“.
+<br>
+„Roger Rabbit“ hat vier Attribute, zusätzlich das Attribut „Waffen“ und „Stimmen“-Relationships.
+<br>
+Anders als objekt-orientierte Modelle
+<br>
+In OO sind Objekte immer in genau einer Klasse; Subklassen erben von Superklasse(n).
+<br>
+In ER sind Entities in allen Subklassen repräsentiert, in die sie gehören.
+<br>
+In ER ist ein Entity in einer Subklasse auch automatisch in den Superklassen repräsentiert.</p>
+</div>
+</div>
+<div class="section" id="nebenbedingungen-constraints">
+<h2><span class="section-number">5.6. </span>Nebenbedingungen(Constraints)<a class="headerlink" href="#nebenbedingungen-constraints" title="Permalink to this headline">¶</a></h2>
+<p>Schlüssel
+<br>
+Ein oder mehrere Attribute
+<br>
+Werte identifizieren eindeutig ein Entity.
+<br>
+Referentielle Integrität
+<br>
+Existenz des referenzierten Entities
+<br>
+Entspricht „dangling pointer“
+<br>
+Domänen
+<br>
+Einschränkung des Wertebereichs
+<br>
+Allgemeine Nebenbedingungen (assertions)
+<br>
+Z.B. nicht mehr als 10 Schauspieler pro Film
+<br>
+Nebenbedingungen sind Teil des Schemas. Sie leiten sich nicht aus den Daten ab!</p>
+</div>
+<div class="section" id="schlussel">
+<h2><span class="section-number">5.7. </span>Schlüssel<a class="headerlink" href="#schlussel" title="Permalink to this headline">¶</a></h2>
+<p>Ein Schlüssel ist eine (minimale) Menge von Attributen eines Entitytyps, für die gilt, dass keine zwei Entities gleiche Werte in allen Schlüsselattributen haben.
+<br>
+Einige Attributwerte können übereinstimmen.
+<br>
+Oft nur ein Attribut
+<br>
+Für jeden Entitytyp muss ein Schlüssel angegeben werden.
+<br>
+Es kann mehr als einen Schlüssel für einen Entitytyp geben.
+<br>
+Üblich: Primärschlüssel auswählen
+<br>
+Bei IST-Beziehungen muss die Wurzel-Superklasse sämtliche Schlüsselattribute enthalten.
+<br>
+Darstellung durch Unterstreichen der Attributnamen</p>
+<div class="section" id="referentielle-integritat">
+<h3><span class="section-number">5.7.1. </span>Referentielle Integrität<a class="headerlink" href="#referentielle-integritat" title="Permalink to this headline">¶</a></h3>
+<p>Schlüssel: Höchstens ein bestimmter Wert für ein Attribut
+<br>
+Bzw. höchstens eine Wertekombination bei mehreren Attributen im Schlüssel
+<br>
+Referentielle Integrität: Genau ein bestimmter Wert
+<br>
+Bsp. n:1 Relationship zwischen „Filme“ und „Studios“
+<br>
+Ein Film kann zu höchsten einem Studio gehören.
+<br>
+Aber ein Film muss zu keinem Studio gehören.
+<br>
+Auch wenn ein Film zu einem Studio gehört, muss dieses nicht in der DB repräsentiert sein.
+<br>
+Referentielle Integrität erzwingt die Existenz und Repräsentation des Studios
+<br>
+„Erzwingen“
+<br>
+Bei Einfügen/Ändern eines Films muss entsprechendes Studio vorhanden sein.
+<br>
+Ein Studio darf nicht gelöscht werden, solange es noch Filme besitzt.
+&lt;br&lt;
+Oder: Wenn ein Studio gelöscht wird, werden auch alle entsprechenden Filme gelöscht.
+<br>
+Verschiedene Einstellungen im DBMS</p>
+<p><img alt="title" src="../_images/referentielle_integritaet.jpg" /></p>
+</div>
+<div class="section" id="weitere-nebenbedingungen">
+<h3><span class="section-number">5.7.2. </span>Weitere Nebenbedingungen<a class="headerlink" href="#weitere-nebenbedingungen" title="Permalink to this headline">¶</a></h3>
+<p>Ohne formale Notation im ER-Diagramm
+<br>
+Datentyp
+<br>
+Integer, String, …
+<br>
+Wertebereich / Domäne
+<br>
+≤ 100, {Krimi,Doku,Zeichentrick}
+<br>
+Länge eines Attributes
+<br>
+Stringlänge &lt; 25
+<br>
+Kardinalität von Relationships
+<br>
+Höchstens 10 Schauspieler pro Film
+<br>
+Oder mittels min/max Notation</p>
+</div>
+</div>
+<div class="section" id="schwache-entitytypen">
+<h2><span class="section-number">5.8. </span>Schwache Entitytypen<a class="headerlink" href="#schwache-entitytypen" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="motivation">
+<h3><span class="section-number">5.8.1. </span>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h3>
+<p>Motivation
+<br>
+In bestimmten Situationen können Entities nicht allein anhand ihrer Attribute identifiziert werden:
+<br></p>
+<ol class="simple">
+<li><p>Falls sie in eine nicht-IST-Hierarchie fallen.
+<br></p></li>
+<li><p>Entities, die zur Eliminierung n-ärer Relationships erschaffen wurden.
+<br>
+Ein Entitytyp ist schwach wenn es zur eindeutigen Identifizierung eines Entities nötig ist, eine oder mehr n:1 Relationships zu folgen und den Schlüssel der verwandten Entities hinzuzunehmen.</p></li>
+</ol>
+<p><img alt="title" src="../_images/schwache_ent_bsp1.jpg" /></p>
+<p>Ein Studio beschäftigt mehrere Filmcrews.
+<br>
+Filmcrews werden mit einer Nummer versehen.
+<br>
+Verschiedene Studios könnten eigene Crews mit gleichen Nummern beschäftigen.
+<br>
+Nummer ist also kein Schlüssel
+<br>
+Nimmt man den Schlüssel der Studios hinzu ist eine eindeutige Identifizierung möglich.</p>
+<p><img alt="title" src="../_images/schwache_ent_bsp2.jpg" /></p>
+<p>Eine Spezies ist definiert durch den Namen der Gattung und des Spezies.
+<br>
+Gattung: homo
+<br>
+Spezies: homo sapiens</p>
+<p><img alt="title" src="../_images/schwache_ent_bsp3.jpg" /></p>
+<p>Fall 2: Auflösung einer ternären Relationship Vertrag hat kein Attribut, das Teil des Schlüssels ist.</p>
+<p><img alt="title" src="../_images/schwache_ent_bsp4.jpg" /></p>
+</div>
+<div class="section" id="id1">
+<h3><span class="section-number">5.8.2. </span>Schwache Entitytypen<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Man scheut sich oft einen Schlüssel zu deklarieren.
+<br>
+Die Folge: Man schwächt ein Entitytyp und macht alle seine Relationships zu unterstützenden Relationships.
+<br>
+In der Realität werden sehr oft künstliche IDs verwendet.
+<br>
+ISBN, SNN, VIN, etc.
+<br>
+Grund für das Fehlen eines solchen Schlüssels: Es gibt keine entsprechende Autorität, die einen solchen Schlüssel vergeben könnte.
+<br>
+Bsp: Es ist unwahrscheinlich, dass jedem Fußballer der Welt eine eindeutige ID zugewiesen wird.</p>
+</div>
+<div class="section" id="schlussel-schwacher-entitytypen">
+<h3><span class="section-number">5.8.3. </span>Schlüssel schwacher Entitytypen<a class="headerlink" href="#schlussel-schwacher-entitytypen" title="Permalink to this headline">¶</a></h3>
+<p>Falls E ein schwacher Entitytyp ist, besteht sein Schlüssel aus…
+<br>
+… null oder mehr eigenen Attributen
+<br>
+… und den Schlüsselattributen von Entitytypen, die über bestimmte n:1
+<br>
+Relationshiptypen, den „unterstützenden Relationshiptypen“ erreicht werden können.
+<br>
+Supporting relationships
+<br>
+Unterstützende Relationshiptypen
+<br>
+n:1 vom schwachen Entitytypen zu einem anderen Entitytypen
+<br>
+Es muss referentielle Integrität gelten.
+<br>
+Falls referenzierter Entitytyp wiederum schwach ist, werden (rekursiv) weitere Schlüsselattribute übernommen.</p>
+</div>
+</div>
+<div class="section" id="erweitertes-er-modell">
+<h2><span class="section-number">5.9. </span>Erweitertes ER-Modell<a class="headerlink" href="#erweitertes-er-modell" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="weitere-attributarten">
+<h3><span class="section-number">5.9.1. </span>Weitere Attributarten<a class="headerlink" href="#weitere-attributarten" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/weitere_attributnamen.jpg" /></p>
+<p>Optionales Attribut
+<br>
+Attributwert nicht für jede Entität vorhanden
+<br>
+Abgeleitetes Attribut
+<br>
+Wert wird anhand einer Berechnungsvorschrift aus nicht-abgeleiteten Attributen errechnet.
+<br>
+Mengenwertiges Attribut
+<br>
+Enthält Menge von Werten
+<br>
+Strukturiertes Attribut
+<br>
+Wird durch weitere Attribute beschrieben
+<br>
+Wert des strukturierten Attributs entspricht Verkettung der Unterattribute.</p>
+</div>
+<div class="section" id="spezialisierung-generalisierung">
+<h3><span class="section-number">5.9.2. </span>Spezialisierung Generalisierung<a class="headerlink" href="#spezialisierung-generalisierung" title="Permalink to this headline">¶</a></h3>
+<p>Spezialisierung
+<br>
+entpricht IST-Beziehung
+<br>
+Drachen sind Spezialisierung von Produkt
+<br>
+Generalisierung
+<br>
+Entities in einen allgemeineren Kontext
+<br>
+Drachen oder Windspiel als Produkt
+<br>
+Partitionierung
+<br>
+mehrere disjunkte Entity-Typen
+<br>
+Spezialfall der Spezialisierung
+<br>
+Partitionierung von Produkten in Zubehör und Drachen</p>
+</div>
+<div class="section" id="aggregation">
+<h3><span class="section-number">5.9.3. </span>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">¶</a></h3>
+<p>Generalisierung (IST): Gleichartige Entitytypen (is-a)
+<br>
+Aggregation: Unterschiedliche Entitytypen
+<br>
+„Teil-von“ (part-of)
+<br>
+Entity aus einzelnen Instanzen anderer Entity-Typen zusammengesetzt.</p>
+<p><img alt="title" src="../_images/aggregation.jpg" /></p>
+</div>
+</div>
+<div class="section" id="designprinzipien">
+<h2><span class="section-number">5.10. </span>Designprinzipien<a class="headerlink" href="#designprinzipien" title="Permalink to this headline">¶</a></h2>
+<p>Einleitungstext.</p>
+<div class="section" id="grundprinzipien">
+<h3><span class="section-number">5.10.1. </span>Grundprinzipien<a class="headerlink" href="#grundprinzipien" title="Permalink to this headline">¶</a></h3>
+<p>Treue zur Anwendung
+<br>
+Vermeidung von Redundanz
+<br>
+Einfachheit
+<br>
+Sparsamer Einsatz von Relationships
+<br>
+Sparsamer Einsatz von Attributen
+<br>
+Sparsamer Einsatz von schwachen Entitytypen</p>
+</div>
+<div class="section" id="anwendungstreue">
+<h3><span class="section-number">5.10.2. </span>Anwendungstreue<a class="headerlink" href="#anwendungstreue" title="Permalink to this headline">¶</a></h3>
+<p>Entitytypen und Attribute sollten Realität widerspiegeln.
+<br>
+Filme haben keine Zylinderkopfanzahl
+<br>
+Relationshiptypen sollen Verhältnisse der Realität widerspiegeln.
+<br>
+Schauspieler und Filme stehen in einer m:n Beziehung
+<br>
+n:1, 1:n oder 1:1 wären inkorrekte Wiedergaben der Realität
+<br>
+Schwierigerer Fall: Kurs und Lehrer – je nach Semantik
+<br>
+Ein Kurs kann nur von einem (verantwortlichen) Lehrer gegeben werden.
+<br>
+Lehrer geben im Team einen Kurs.
+<br>
+Nicht aktuelle Kursvergabe sondern auch Historie</p>
+</div>
+<div class="section" id="redundanz">
+<h3><span class="section-number">5.10.3. </span>Redundanz<a class="headerlink" href="#redundanz" title="Permalink to this headline">¶</a></h3>
+<p>Redundanz tritt auf, wenn der gleiche Sachverhalt auf mehr als eine Weise ausgedrückt wird.
+<br>
+Redundanz verschwendet Platz.
+<br>
+Auf dem Papier
+<br>
+Auf der Festplatte
+<br>
+Redundanz fördert Inkonsistenz.
+<br>
+Veränderung eines Sachverhalts wird nur an einer Stelle repräsentiert.</p>
+<p><img alt="title" src="../_images/redundanz1.jpg" /></p>
+<p><img alt="title" src="../_images/redundanz2.jpg" /></p>
+</div>
+<div class="section" id="einfachheit">
+<h3><span class="section-number">5.10.4. </span>Einfachheit<a class="headerlink" href="#einfachheit" title="Permalink to this headline">¶</a></h3>
+<p>KISS: Keep It Simple, St…
+<br>
+Unnötige Verwendung von Entitytypen vermeiden.
+<br>
+Ein Film wird von einer Holding repräsentiert</p>
+<p><img alt="title" src="../_images/einfachheit.jpg" /></p>
+</div>
+<div class="section" id="id2">
+<h3><span class="section-number">5.10.5. </span>Relationships<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Nicht jede mögliche Beziehung sollte abgebildet werden.
+<br>
+Vermeidung von Redundanz, wenn manche Beziehungen abgeleitet werden können.
+<br>
+Änderungen auf der Datenbank werden komplex
+<br>
+Eine Änderung eines Entities verursacht viele Änderungen in den Relationships.
+<br>
+Fehlergefahr
+<br>
+Vermehrter Aufwand</p>
+<p><img alt="title" src="../_images/relationships1.jpg" /></p>
+<p><img alt="title" src="../_images/relationships2.jpg" /></p>
+</div>
+<div class="section" id="attribut-vs-element">
+<h3><span class="section-number">5.10.6. </span>Attribut vs. Element<a class="headerlink" href="#attribut-vs-element" title="Permalink to this headline">¶</a></h3>
+<p>Attribute sind einfacher zu implementieren als Entities und Relationships.
+<br>
+Ein Entitytyp ist gerechtfertigt falls…
+<br>
+… er mehr als nur den Namen eines Objekts darstellt,
+<br>
+… oder er der n-Teil einer 1:n Relationship ist.</p>
+<p><img alt="title" src="../_images/attributvselement1.jpg" /></p>
+<p>Studio ist nur ein Name
+<br>
+Studio ist nicht der n-Teil der Relationship</p>
+<p><img alt="title" src="../_images/attributvselement2.jpg" /></p>
+<p>besser</p>
+<p><img alt="title" src="../_images/attributvselement3.jpg" /></p>
+<p>NICHT enthalten: S. 20 , S. 34, S. 36, S. 38, S. 43-45</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./05"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../04/phasenmodell_datenbankentwurf.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">4. </span>Phasenmodell für den Datenbankentwurf</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../06/relationaler_entwurf.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Relationaler Entwurf</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Prof. Dr. Ziawasch Abedjan<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

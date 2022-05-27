@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3. Architektur &#8212; Online-Skript Grundlagen der Datenbankensysteme</title>
+    <title>3. Architektur &#8212; Online-Skript Grundlagen der Datenbanksysteme</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4. Entity-Relationship-Modell" href="../04/er-modellierung.html" />
+    <link rel="next" title="4. Phasenmodell für den Datenbankentwurf" href="../04/phasenmodell_datenbankentwurf.html" />
     <link rel="prev" title="2. Historie" href="../02/historie.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -83,7 +83,7 @@ const thebe_selector_output = ".output, .cell_output"
       <img src="../_static/DBIS_Kurzlogo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Online-Skript Grundlagen der Datenbankensysteme</h1>
+      <h1 class="site-logo" id="site-title">Online-Skript Grundlagen der Datenbanksysteme</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -94,7 +94,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../intro.html">
-   Grundlagen der Datenbankensysteme
+   Grundlagen der Datenbanksysteme
   </a>
  </li>
 </ul>
@@ -115,33 +115,43 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../04/er-modellierung.html">
-   4. Entity-Relationship-Modell
+  <a class="reference internal" href="../04/phasenmodell_datenbankentwurf.html">
+   4. Phasenmodell für den Datenbankentwurf
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../05/relationaler_entwurf.html">
-   5. Relationaler Entwurf
+  <a class="reference internal" href="../05/er_modellierung.html">
+   5. ER-Modellierung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06/relationaler_entwurf.html">
+   6. Relationaler Entwurf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07/normalisierung.html">
+   7. Normalisierung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08/relationale_algebra.html">
+   8. Relationale Algebra
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../markdown.html">
-   6. Markdown Files
+   9. Markdown Files
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../notebooks.html">
-   7. Content with notebooks
+   10. Content with notebooks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../markdown-notebooks.html">
-   8. Notebooks with MyST Markdown
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../markdownbsp1.html">
-   9. Hier steht ein Titel
+   11. Notebooks with MyST Markdown
   </a>
  </li>
 </ul>
@@ -265,6 +275,11 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#datenunabhangigkeit">
+   3.3. Datenunabhängigkeit
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -301,6 +316,11 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#datenunabhangigkeit">
+   3.3. Datenunabhängigkeit
+  </a>
  </li>
 </ul>
 
@@ -408,6 +428,38 @@ Integritätsbedingungen
 <p>Notiz: aktuelle Relevanz</p>
 </div>
 </div>
+<div class="section" id="datenunabhangigkeit">
+<h2><span class="section-number">3.3. </span>Datenunabhängigkeit<a class="headerlink" href="#datenunabhangigkeit" title="Permalink to this headline">¶</a></h2>
+<p>■ Entkopplung der jeweiligen Schichten
+<br>
+<br>
+■ Ziele
+<br>
+□ Portierbarkeit
+<br>
+□ Tuning vereinfachen
+<br>
+□ Standardisierte Schnittstellen
+<br>
+□ Stabilität der Benutzer- und Anwendungsschnittstelle gegen Änderungen
+<br>
+<br>
+Physische Datenunabhängigkeit
+<br>
+□ Auch: Implementierungsunabhängigkeit
+<br>
+□ Ziel: Änderungen der Dateiorganisationen und Zugriffspfade haben keinen Einfluss auf das konzeptuelle
+Schema.
+<br>
+<br>
+Logische Datenunabhängigkeit
+<br>
+□ Auch: Anwendungsunabhängigkeit
+<br>
+□ Ziel: Änderungen am konzeptuellen und gewissen externen Schemata haben keine Auswirkungen auf andere
+externe Schemata und Anwendungsprogramme.</p>
+<p>NICHT enthalten: S. 30-32, S. 42-48</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -442,10 +494,10 @@ Integritätsbedingungen
             <p class="prev-next-title"><span class="section-number">2. </span>Historie</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../04/er-modellierung.html" title="next page">
+    <a class='right-next' id="next-link" href="../04/phasenmodell_datenbankentwurf.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Entity-Relationship-Modell</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Phasenmodell für den Datenbankentwurf</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -1,0 +1,1810 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>7. Normalisierung &#8212; Online-Skript Grundlagen der Datenbanksysteme</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8. Relationale Algebra" href="../08/relationale_algebra.html" />
+    <link rel="prev" title="6. Relationaler Entwurf" href="../06/relationaler_entwurf.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/DBIS_Kurzlogo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Online-Skript Grundlagen der Datenbanksysteme</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Grundlagen der Datenbanksysteme
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01/einfuehrung.html">
+   1. Einführung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02/historie.html">
+   2. Historie
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03/architektur.html">
+   3. Architektur
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04/phasenmodell_datenbankentwurf.html">
+   4. Phasenmodell für den Datenbankentwurf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05/er_modellierung.html">
+   5. ER-Modellierung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06/relationaler_entwurf.html">
+   6. Relationaler Entwurf
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   7. Normalisierung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08/relationale_algebra.html">
+   8. Relationale Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown.html">
+   9. Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks.html">
+   10. Content with notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown-notebooks.html">
+   11. Notebooks with MyST Markdown
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/07/normalisierung.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F07/normalisierung.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/07/normalisierung.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#funktionale-abhangigkeiten-fds">
+   7.1. Funktionale Abhängigkeiten (FDs)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#definition-funktionale-abhangigkeit">
+     7.1.1. Definition – Funktionale Abhängigkeit
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dekomposition-und-vereinigung">
+     7.1.2. Dekomposition und Vereinigung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#triviale-fds">
+     7.1.3. Triviale FDs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schema-vs-instanz">
+     7.1.4. Schema vs. Instanz
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schlussel-als-spezialfall-einer-fd">
+     7.1.5. Schlüssel als Spezialfall einer FD
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schlussel-und-superschlussel">
+     7.1.6. Schlüssel und Superschlüssel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wo-kommen-fds-her">
+     7.1.7. Wo kommen FDs her?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schlussel-aus-er-diagrammen">
+     7.1.8. Schlüssel aus ER-Diagrammen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     7.1.9. Schlüssel aus ER-Diagrammen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schlussel-aus-er-diagrammen-n-are-relationshiptypen">
+     7.1.10. Schlüssel aus ER-Diagrammen: n-äre Relationshiptypen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schlussel-aus-er-diagrammen-ist-hierarchien">
+     7.1.11. Schlüssel aus ER-Diagrammen: IST-Hierarchien
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ableitungsregeln-fur-fds">
+   7.2. Ableitungsregeln für FDs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#motivation">
+     7.2.1. Motivation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ableitung-von-fds-beispiel">
+     7.2.2. Ableitung von FDs – Beispiel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fd-mengen">
+     7.2.3. FD-Mengen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hulle">
+     7.2.4. Hülle
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#berechnung-der-hulle">
+     7.2.5. Berechnung der Hülle
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#membership-problem">
+     7.2.6. Membership-Problem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analyse-des-algorithmus-zur-hullenbildung">
+     7.2.7. Analyse des Algorithmus zur Hüllenbildung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transitivitatsregel">
+     7.2.8. Transitivitätsregel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#die-basis">
+     7.2.9. Die „Basis“
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#armstrong-axiome-und-weitere-ableitungsregeln">
+     7.2.10. Armstrong Axiome und weitere Ableitungsregeln
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#armstrong-axiome">
+       7.2.10.1. Armstrong Axiome
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fds-nach-projektionen">
+     7.2.11. FDs nach Projektionen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#normalformen">
+   7.3. Normalformen
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#schema-design-uberblick">
+   7.4. Schema Design – Überblick
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#redundanzen-fuhren-zu-anomalien-im-datenbankdesign">
+     7.4.1. Redundanzen führen zu Anomalien im Datenbankdesign
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ursachen-von-anomalien">
+       7.4.1.1. Ursachen von Anomalien
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#eliminierung-von-anomalien-durch-dekomposition">
+       7.4.1.2. Eliminierung von Anomalien durch Dekomposition
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-einer-dekomposition">
+       7.4.1.3. Beispiel einer Dekomposition
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#boyce-codd-normalform-bcnf">
+     7.4.2. Boyce-Codd-Normalform (BCNF)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-der-bcnf-verletzung">
+       7.4.2.1. Beispiel der BCNF-Verletzung
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#algorithmus-fur-dekomposition-nach-bcnf">
+       7.4.2.2. Algorithmus für Dekomposition nach BCNF
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#bcnf-dekomposition-am-beispiel-1">
+       7.4.2.3. BCNF Dekomposition am Beispiel 1
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wiederherstellbarkeit">
+     7.4.3. Wiederherstellbarkeit
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dekomposition-zu-bcnf-beispiel-2">
+     7.4.4. Dekomposition zu BCNF – Beispiel 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dekomposition-zu-bcnf-beispiel-3">
+     7.4.5. Dekomposition zu BCNF – Beispiel 3
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#weitere-normalformen">
+     7.4.6. Weitere Normalformen
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#normalform">
+       7.4.6.1. 1. Normalform
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       7.4.6.2. 2. Normalform
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       7.4.6.3. 3. Normalform
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#nf-vs-bcnf">
+       7.4.6.4. 3NF vs. BCNF
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#zusammenfassung-normalformen">
+       7.4.6.5. Zusammenfassung – Normalformen
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Normalisierung</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#funktionale-abhangigkeiten-fds">
+   7.1. Funktionale Abhängigkeiten (FDs)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#definition-funktionale-abhangigkeit">
+     7.1.1. Definition – Funktionale Abhängigkeit
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dekomposition-und-vereinigung">
+     7.1.2. Dekomposition und Vereinigung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#triviale-fds">
+     7.1.3. Triviale FDs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schema-vs-instanz">
+     7.1.4. Schema vs. Instanz
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schlussel-als-spezialfall-einer-fd">
+     7.1.5. Schlüssel als Spezialfall einer FD
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schlussel-und-superschlussel">
+     7.1.6. Schlüssel und Superschlüssel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wo-kommen-fds-her">
+     7.1.7. Wo kommen FDs her?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schlussel-aus-er-diagrammen">
+     7.1.8. Schlüssel aus ER-Diagrammen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     7.1.9. Schlüssel aus ER-Diagrammen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schlussel-aus-er-diagrammen-n-are-relationshiptypen">
+     7.1.10. Schlüssel aus ER-Diagrammen: n-äre Relationshiptypen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schlussel-aus-er-diagrammen-ist-hierarchien">
+     7.1.11. Schlüssel aus ER-Diagrammen: IST-Hierarchien
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ableitungsregeln-fur-fds">
+   7.2. Ableitungsregeln für FDs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#motivation">
+     7.2.1. Motivation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ableitung-von-fds-beispiel">
+     7.2.2. Ableitung von FDs – Beispiel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fd-mengen">
+     7.2.3. FD-Mengen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hulle">
+     7.2.4. Hülle
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#berechnung-der-hulle">
+     7.2.5. Berechnung der Hülle
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#membership-problem">
+     7.2.6. Membership-Problem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analyse-des-algorithmus-zur-hullenbildung">
+     7.2.7. Analyse des Algorithmus zur Hüllenbildung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transitivitatsregel">
+     7.2.8. Transitivitätsregel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#die-basis">
+     7.2.9. Die „Basis“
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#armstrong-axiome-und-weitere-ableitungsregeln">
+     7.2.10. Armstrong Axiome und weitere Ableitungsregeln
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#armstrong-axiome">
+       7.2.10.1. Armstrong Axiome
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fds-nach-projektionen">
+     7.2.11. FDs nach Projektionen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#normalformen">
+   7.3. Normalformen
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#schema-design-uberblick">
+   7.4. Schema Design – Überblick
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#redundanzen-fuhren-zu-anomalien-im-datenbankdesign">
+     7.4.1. Redundanzen führen zu Anomalien im Datenbankdesign
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ursachen-von-anomalien">
+       7.4.1.1. Ursachen von Anomalien
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#eliminierung-von-anomalien-durch-dekomposition">
+       7.4.1.2. Eliminierung von Anomalien durch Dekomposition
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-einer-dekomposition">
+       7.4.1.3. Beispiel einer Dekomposition
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#boyce-codd-normalform-bcnf">
+     7.4.2. Boyce-Codd-Normalform (BCNF)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-der-bcnf-verletzung">
+       7.4.2.1. Beispiel der BCNF-Verletzung
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#algorithmus-fur-dekomposition-nach-bcnf">
+       7.4.2.2. Algorithmus für Dekomposition nach BCNF
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#bcnf-dekomposition-am-beispiel-1">
+       7.4.2.3. BCNF Dekomposition am Beispiel 1
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wiederherstellbarkeit">
+     7.4.3. Wiederherstellbarkeit
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dekomposition-zu-bcnf-beispiel-2">
+     7.4.4. Dekomposition zu BCNF – Beispiel 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dekomposition-zu-bcnf-beispiel-3">
+     7.4.5. Dekomposition zu BCNF – Beispiel 3
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#weitere-normalformen">
+     7.4.6. Weitere Normalformen
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#normalform">
+       7.4.6.1. 1. Normalform
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       7.4.6.2. 2. Normalform
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       7.4.6.3. 3. Normalform
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#nf-vs-bcnf">
+       7.4.6.4. 3NF vs. BCNF
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#zusammenfassung-normalformen">
+       7.4.6.5. Zusammenfassung – Normalformen
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="normalisierung">
+<h1><span class="section-number">7. </span>Normalisierung<a class="headerlink" href="#normalisierung" title="Permalink to this headline">¶</a></h1>
+<p>Motivation
+<br>
+■ Bisher: Direkte Übersetzung von ER-Diagrammen in das relationale Modell
+<br><br>
+■ Verbesserungen sind möglich (Verfeinern des logischen Entwurfs)
+<br>
+□ Aufgrund bestimmter Nebenbedingungen
+<br>
+□ Insbesondere: Aufgrund von funktionalen Abhängigkeiten
+<br>
+– FDs: Functional dependencies
+<br><br>
+■ Vermeidung von Redundanzen: Aufspalten von Relationenschemata, ohne gleichzeitig
+<br>
+□ semantische Informationen zu verlieren,
+<br>
+□ die Möglichkeit zur Rekonstruktion der Relationen zu verlieren.
+<br>
+■ Verschiedene Normalformen</p>
+<div class="section" id="funktionale-abhangigkeiten-fds">
+<h2><span class="section-number">7.1. </span>Funktionale Abhängigkeiten (FDs)<a class="headerlink" href="#funktionale-abhangigkeiten-fds" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="definition-funktionale-abhangigkeit">
+<h3><span class="section-number">7.1.1. </span>Definition – Funktionale Abhängigkeit<a class="headerlink" href="#definition-funktionale-abhangigkeit" title="Permalink to this headline">¶</a></h3>
+<p>■ „X → A“ ist eine Aussage über eine Relation R:
+<br>
+Immer wenn zwei Tupel in den Werten der Attributmenge X übereinstimmen, stimmen sie auch im Attributwert
+für A überein.
+<br>
+□ Beispiel
+<br>
+– Titel, Jahr → Länge
+<br>
+□ Notation
+<br>
+– …, X, Y, Z sind Attributmengen
+<br>
+– A, B, C, … sind Attribute
+<br>
+– X → A: „X bestimmt A funktional.“
+<br>
+– Kurzform: ABC statt {A, B, C}
+<br>
+– Kurzform: Falls X → A, X → B, X → C schreiben wir auch X → ABC oder auch X → Y</p>
+<p><img alt="title" src="../_images/funktionen.jpg" /></p>
+</div>
+<div class="section" id="dekomposition-und-vereinigung">
+<h3><span class="section-number">7.1.2. </span>Dekomposition und Vereinigung<a class="headerlink" href="#dekomposition-und-vereinigung" title="Permalink to this headline">¶</a></h3>
+<p>■ Dekompositionsregel □ A1,A2,…An → B1,B2,…,Bm
+<br><br>
+■ Vereinigungsregel
+<br>
+□ A1,A2,…An → Bi für i=1,…,m
+<br>
+□ A1,A2,…An → Bi für i=1,…,m
+<br>
+□ A1,A2,…An → B1,B2,…,Bm
+<br><br>
+■ Beispiel
+<br>
+□ Titel, Jahr → Länge
+<br>
+□ Titel, Jahr → Typ
+<br>
+□ Titel, Jahr → StudioName
+<br>
+□ &lt;=&gt; Titel, Jahr → Länge, Typ, StudioName
+<br><br>
+■ Dekomposition funktioniert nur rechts!
+<br>
+□ Titel, Jahr → Länge – ⇏ Jahr → Länge – ⇏ Titel → Länge</p>
+</div>
+<div class="section" id="triviale-fds">
+<h3><span class="section-number">7.1.3. </span>Triviale FDs<a class="headerlink" href="#triviale-fds" title="Permalink to this headline">¶</a></h3>
+<p>■ Trivial: Attribute rechts sind Teilmenge der Attribute links
+<br>
+□ Titel, Jahr → Titel
+<br>
+□ Es gilt immer für jede triviale FD:
+<br>
+– „Zwei Tupel, die in einer Menge von Attributen übereinstimmen, stimmen auch in einem dieser Attribute überein.“
+<br><br>
+■ Nicht-trivial: Wenigstens ein Attribut rechts kommt links nicht vor.
+<br>
+□ Titel, Jahr → Jahr, Länge
+<br><br>
+■ Völlig nicht-trivial: Die Attribute links und rechts sind disjunkt.
+<br>
+□ Titel, Jahr → Länge
+<br>
+□ Im Weiteren interessieren uns nur diese.
+<br><br>
+■ Formal: Triviale-Abhängigkeitsregel
+<br>
+□ A1,A2,…An → Ai1, …, Aik,B1,B2,…,Bm
+<br>
+&lt;=&gt;
+<br>
+A1,A2,…An → B1,B2,…,Bm</p>
+<p><img alt="title" src="../_images/tabelle.jpg" /></p>
+<p>■ Titel, Jahr → Länge
+<br>
+■ Titel, Jahr → Typ
+<br>
+■ Titel, Jahr → StudioName
+<br>
+■ Titel, Jahr → Länge, Typ, StudioName
+<br>
+■ Wenn zwei Tupel den gleichen Titel und das gleiche Jahr haben, dann haben sie auch gleiche Länge, gleichen Typ und gleichen Studionamen.
+<br>
+□ Klar, denn Titel und Jahr sind Schlüssel für die ursprüngliche Film-Relation: Gegeben Titel und Jahr haben wir einen eindeutigen Film, der wohl auch eine eindeutige Länge und Typ hat.
+<br>
+□ Wegen 1:n Beziehung zwischen Studios und Filmen ist auch zu erwarten, dass das Studio eindeutig ist.
+<br>
+■ Aber Titel, Jahr → SchauspName ist falsch! Warum?</p>
+</div>
+<div class="section" id="schema-vs-instanz">
+<h3><span class="section-number">7.1.4. </span>Schema vs. Instanz<a class="headerlink" href="#schema-vs-instanz" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/tabelle.jpg" /></p>
+<p>FDs sind Aussagen über das Schema, nicht die Instanz!
+<br>
+■ Titel → Typ scheint zu gelten
+<br>
+□ Aber nur zufällig bei dieser Instanz
+<br>
+□ Wenn zwei Filme im Titel übereinstimmen, stimmen sie (hier!) auch im Typ überein.
+<br>
+□ Gegenbeispiel: King Kong von 1924 vs. King Kong von 2005.
+<br>
+■ Titel, Jahr → Typ gilt hingegen</p>
+<p><img alt="title" src="../_images/kingkong.jpg" /></p>
+</div>
+<div class="section" id="schlussel-als-spezialfall-einer-fd">
+<h3><span class="section-number">7.1.5. </span>Schlüssel als Spezialfall einer FD<a class="headerlink" href="#schlussel-als-spezialfall-einer-fd" title="Permalink to this headline">¶</a></h3>
+<p>■ Eine Menge aus einem oder mehr Attributen {A1, A2, …, An} ist Schlüssel der Relation R, falls gilt:
+<br>
+□ Die Attribute bestimmen alle anderen Attribute funktional.
+<br>
+– Anmerkung: Relationen sind Mengen, es kann also keine zwei völlig identischen Tupel geben.
+<br>
+□ Keine echte Teilmenge von {A1, A2, …, An} bestimmt alle anderen Attribute funktional.
+<br>
+– Anmerkung: Ein Schlüssel muss also minimal sein.
+<br><br>
+■ Ziel des Datenbankentwurfs: Normalisierung
+<br>
+□ Alle gegebenen FDs in „Schlüsselabhängigkeiten“ umformen, ohne dabei semantische Information zu verlieren.
+<br>
+□ Umformung durch Dekomposition von Relationen
+<br>
+□ Später, denn zunächst: Bestimmung aller FDs</p>
+<p><img alt="title" src="../_images/tabelle.jpg" /></p>
+<p>{Titel, Jahr, SchauspName} ist ein Schlüssel.
+<br>
+<br>
+■ {Titel, Jahr} bestimmen Länge, Typ und Studioname funktional.
+<br>
+<br>
+■ Deshalb können keine zwei Tupel gleiche Werte für Titel, Jahr und SchauspName haben. Sie
+wären insgesamt identisch.
+<br>
+<br>
+■ Teilmengen?
+<br>
+□ {Titel, Jahr} bestimmen SchauspName nicht funktional
+<br>
+□ {Jahr, SchauspName} bestimmen Titel nicht funktional
+<br>
+□ {Titel, SchauspName} bestimmen Jahr nicht funktional
+<br>
+– Beispiele?</p>
+</div>
+<div class="section" id="schlussel-und-superschlussel">
+<h3><span class="section-number">7.1.6. </span>Schlüssel und Superschlüssel<a class="headerlink" href="#schlussel-und-superschlussel" title="Permalink to this headline">¶</a></h3>
+<p>■ Eine Relation kann mehr als einen Schlüssel besitzen.
+<br>
+□ Wahl eines der Schlüssel als Primärschlüssel
+<br><br>
+■ Eine Attributmenge, die einen Schlüssel enthält, ist ein Superschlüssel.
+<br>
+□ {Titel, Jahr, SchauspName} ist ein Schlüssel und ein Superschlüssel
+<br>
+□ {Titel, Jahr, Länge, SchauspName} ist ein Superschlüssel
+<br>
+– Nicht minimal
+<br>
+■ Minimal vs. kleinster
+<br>
+□ Minimaler Schlüssel: Kein Attribut darf fehlen
+<br>
+– Ist nicht unbedingt kleinster Schlüssel
+<br>
+□ Kleinster Schlüssel: Schlüssel mit wenigsten Attributen
+<br>
+– Ist auch minimal
+<br><br>
+■ Alternative Begriffe:
+<br>
+□ Schlüssel (=Superschlüssel)</p>
+</div>
+<div class="section" id="wo-kommen-fds-her">
+<h3><span class="section-number">7.1.7. </span>Wo kommen FDs her?<a class="headerlink" href="#wo-kommen-fds-her" title="Permalink to this headline">¶</a></h3>
+<p>■ Einfach den Schlüssel K deklarieren.
+<br>
+□ Dann gelten (einzig) die FDs K → A für jedes Attribut A.
+<br><br>
+■ FDs deklarieren.
+<br>
+□ Dann systematisch Schlüssel ableiten.
+<br><br>
+■ FDs aus der Physik
+<br>
+□ Zwei Kurse können nicht zur gleichen Zeit im gleichen Raum stattfinden.
+<br>
+□ Zeit, Raum → Kurs
+<br>
+■ FDs aus dem ER-Diagramm
+<br>
+□ Schlüsselattribute
+<br>
+□ 1:n Beziehungen</p>
+</div>
+<div class="section" id="schlussel-aus-er-diagrammen">
+<h3><span class="section-number">7.1.8. </span>Schlüssel aus ER-Diagrammen<a class="headerlink" href="#schlussel-aus-er-diagrammen" title="Permalink to this headline">¶</a></h3>
+<p>■ Falls die Relation von einem Entitytypen stammt
+<br>
+□ Der Schlüssel der Relation besteht aus den Schlüsselattributen des Entitytypen.
+<br><br>
+■ Falls die Relation von einem Relationshiptypen stammt
+<br>
+□ m:n: Schlüssel besteht aus den Schlüsselattributen der verbundenen Entitytypen.
+<br>
+□ 1:n: Schlüssel besteht aus den Schlüsselattributen des Entitytypen der n-Seite.
+<br>
+□ 1:1: Zwei mögliche Schlüssel
+<br>
+– Schlüssel der beiden beteiligten Entitytypen. Wahl eines der beiden Schlüssel als Primärschlüssel (egal
+welcher).
+<br><br>
+■ Bei n-ären Relationshiptypen
+<br>
+□ Lage ist komplizierter
+<br>
+□ 1-Seite muss nie am Schlüssel beteiligt sein.</p>
+<p><img alt="title" src="../_images/er_diagramm1.jpg" /></p>
+<p>■ <span class="math notranslate nohighlight">\(Filme(\underline{Titel, Jahr}, Länge, Typ)\)</span>
+<br>
+■ <span class="math notranslate nohighlight">\(Schauspieler*in(\underline{Name, Adresse})\)</span>
+<br>
+■ <span class="math notranslate nohighlight">\(Studio(\underline{Name}, Adresse)\)</span>
+<br>
+■ <span class="math notranslate nohighlight">\(besitzt(\underline{Titel, Jahr}, Name)\)</span>
+<br>
+□ -&gt; zusammengefasst mit Filme zu Film <span class="math notranslate nohighlight">\((\underline{Titel, Jahr}, Länge, Typ, StudioName)\)</span>
+<br>
+■ <span class="math notranslate nohighlight">\(spielt_in(\underline{Titel, Jahr, Name, Adresse}, Gehalt)\)</span></p>
+</div>
+<div class="section" id="id1">
+<h3><span class="section-number">7.1.9. </span>Schlüssel aus ER-Diagrammen<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/er_diagramm2.jpg" /></p>
+<p><span class="math notranslate nohighlight">\(Studios(\underline{SName})\)</span>
+<br>
+■ <span class="math notranslate nohighlight">\(Vorsitzende(\underline{VName})\)</span>
+<br>
+■ <span class="math notranslate nohighlight">\(leitet(\underline{SName}, VName)\)</span> oder leitet<span class="math notranslate nohighlight">\((SName, \underline{VName})\)</span>
+<br>
+□ sprich, zwei Schlüssel: SName und VName, ein Schlüssel als Primärschlüssel gewählt
+<br>
+□ -&gt; zusammengefasst zu <span class="math notranslate nohighlight">\(Studios(\underline{SName}, VName)\)</span> oder <span class="math notranslate nohighlight">\(Vorsitzende(\underline{VName}, SName)\)</span></p>
+</div>
+<div class="section" id="schlussel-aus-er-diagrammen-n-are-relationshiptypen">
+<h3><span class="section-number">7.1.10. </span>Schlüssel aus ER-Diagrammen: n-äre Relationshiptypen<a class="headerlink" href="#schlussel-aus-er-diagrammen-n-are-relationshiptypen" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/n-aer_relationshiptypen1.jpg" /></p>
+<p><span class="math notranslate nohighlight">\(Studio (\underline{Name}, Adresse)\)</span>
+<br>
+■<span class="math notranslate nohighlight">\( Schauspieler*in (\underline{Name}, Adresse)\)</span>
+<br>
+■ <span class="math notranslate nohighlight">\(Film (\underline{Titel, Jahr}, Typ, Länge)\)</span>
+<br>
+■ <span class="math notranslate nohighlight">\(ist_unter_Vertrag (\underline{SchauspielerName, Titel, Jahr}, StudioName, Gehalt)\)</span></p>
+<p><img alt="title" src="../_images/n-aer_relationshiptypen2.jpg" /></p>
+<p>■ <span class="math notranslate nohighlight">\(Studio(\underline{Name}, Adresse)\)</span>
+<br>
+■ <span class="math notranslate nohighlight">\(Schauspieler(\underline{Name}, Adresse)\)</span>
+<br>
+■ <span class="math notranslate nohighlight">\(Film(\underline{Titel, Jahr}, Typ, Länge)\)</span>
+<br>
+■ <span class="math notranslate nohighlight">\(Vertrag(\underline{SchauspielerName, StudioName, Titel, Jahr}, Gehalt)\)</span></p>
+</div>
+<div class="section" id="schlussel-aus-er-diagrammen-ist-hierarchien">
+<h3><span class="section-number">7.1.11. </span>Schlüssel aus ER-Diagrammen: IST-Hierarchien<a class="headerlink" href="#schlussel-aus-er-diagrammen-ist-hierarchien" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/IST_hierarchie.jpg" /></p>
+<p>■ ER-Stil
+<br>
+□ <span class="math notranslate nohighlight">\(Film(\underline{Titel, Jahr}, Länge,Typ)\)</span>
+<br>
+□ <span class="math notranslate nohighlight">\(Krimi(\underline{Titel, Jahr}, Waffen)\)</span>
+<br>
+□ <span class="math notranslate nohighlight">\(Zeichentrickfilm(\underline{Titel, Jahr})\)</span>
+<br><br>
+■ OO-Stil
+<br>
+□ <span class="math notranslate nohighlight">\(Film(\underline{Titel, Jahr}, Länge, Typ)\)</span>
+<br>
+□ <span class="math notranslate nohighlight">\(FilmZ(\underline{Titel, Jahr}, Länge, Typ)\)</span>
+<br>
+□ <span class="math notranslate nohighlight">\(FilmK(\underline{Titel, Jahr}, Länge, Typ, Waffen)\)</span>
+<br>
+□ <span class="math notranslate nohighlight">\(FilmZK(\underline{Titel, Jahr}, Länge, Typ, Waffen)\)</span>
+<br><br>
+■ Mit NULL-Werten
+<br>
+□ <span class="math notranslate nohighlight">\(Film(\underline{Titel, Jahr}, Länge, Typ, Waffen)\)</span></p>
+</div>
+</div>
+<div class="section" id="ableitungsregeln-fur-fds">
+<h2><span class="section-number">7.2. </span>Ableitungsregeln für FDs<a class="headerlink" href="#ableitungsregeln-fur-fds" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="motivation">
+<h3><span class="section-number">7.2.1. </span>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h3>
+<p>■ Gegeben eine Menge von FDs, kann man eventuell weitere FDs ableiten.
+<br>
+<br>
+■ Ziel des Datenbankentwurfs:
+<br>
+□ Alle gegebenen und abgeleiteten FDs in „Schlüsselabhängigkeiten“ umformen, ohne dabei semantische Information zu verlieren.
+<br>
+□ Umformung durch Dekomposition von Relationen</p>
+</div>
+<div class="section" id="ableitung-von-fds-beispiel">
+<h3><span class="section-number">7.2.2. </span>Ableitung von FDs – Beispiel<a class="headerlink" href="#ableitung-von-fds-beispiel" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/ableitung_fd1.jpg" /></p>
+<p>■ Es gelte A → B und B → C
+<br>
+<br>
+■ Dann gilt auch: A → C
+<br><br>
+■ Beweis
+<br>
+□ Z.z.: Zwei beliebige Tupel, die in A übereinstimmen, müssen auch in C übereinstimmen.
+<br>
+□ Zwei solche beliebige Tupel, die in A übereinstimmen:
+<br>
+(a, b1, c1) und (a, b2, c2)
+<br>
+□ Da A → B =&gt; (a, b, c1) und (a, b, c2)
+<br>
+□ Da B → C =&gt; (a, b, c) und (a, b, c)
+<br>
+□ QED
+<br><br>
+■ Instanz genügt A→B und B→C
+<br>
+□ Es gilt auch: A→C
+<br>
+□ Nicht ableitbar: C→A, B→A oder C→B</p>
+</div>
+<div class="section" id="fd-mengen">
+<h3><span class="section-number">7.2.3. </span>FD-Mengen<a class="headerlink" href="#fd-mengen" title="Permalink to this headline">¶</a></h3>
+<p>■ Zwei Mengen S und T an FDs heißen äquivalent, falls die Menge der gültigen Instanzen unter S die gleiche wie
+unter T ist.
+<br><br>
+■ Eine Menge S an FDs folgt aus einer Menge T an FDs, falls jede unter T gültige Instanz auch unter S gültig ist.
+<br><br>
+■ Hüllenbildung:
+<br>
+□ Ableitung aller FDs aus einer gegebenen Menge an FDs
+<br>
+□ Gemäß Ableitungsregeln
+<br>
+□ Auch: attribute closure, closure, Attributabschluss</p>
+</div>
+<div class="section" id="hulle">
+<h3><span class="section-number">7.2.4. </span>Hülle<a class="headerlink" href="#hulle" title="Permalink to this headline">¶</a></h3>
+<p>■ Gegeben eine Menge von Attributen A1,A2,…,Ak und eine Menge S von FDs.
+<br>
+■ Die Hülle von A1,A2,…,Ak unter S ist die Menge Y aller Attribute für die gilt, dass für jede unter S gültige Relation auch A1,A2,…,Ak → Y gilt.
+<br>
+□ Menge der funktional ableitbaren Attribute
+<br>
+□ D.h. A1,A2,…Ak → Y folgt aus den FDs in S.
+<br>
+■ Notation: Hülle von A1,A2,…,Ak ist <span class="math notranslate nohighlight">\(\{\)</span>A1,A2,…,Ak<span class="math notranslate nohighlight">\(\}^+\)</span>.
+<br>
+■ Es gilt z.B. Ai <span class="math notranslate nohighlight">\(\in\)</span> <span class="math notranslate nohighlight">\(\{\)</span>A1,A2,…,Ak<span class="math notranslate nohighlight">\(\}^+\)</span> für i=1,…,k
+<br>
+□ Trivialerweise, denn A1,A2,…, Ai, …, Ak→ A</p>
+</div>
+<div class="section" id="berechnung-der-hulle">
+<h3><span class="section-number">7.2.5. </span>Berechnung der Hülle<a class="headerlink" href="#berechnung-der-hulle" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/berechnung_huelle.jpg" /></p>
+<ol class="simple">
+<li><p>Sei X die Menge der Attribute, die später die Hülle wird.
+<br>
+Initialisiere X mit {A1,A2,…Ak}.
+<br></p></li>
+<li><p>Suche wiederholt nach solchen FDs B1,B2,…,Bm→ C, dass B1,B2,…,Bm <span class="math notranslate nohighlight">\(\in\)</span> X aber C <span class="math notranslate nohighlight">\(\notin\)</span> X.
+<br></p></li>
+<li><p>Füge C zu X hinzu.
+<br></p></li>
+<li><p>Wiederhole 2. bis keine Attribute mehr gefunden werden
+<br>
+■ Terminierung: X wächst nur, und Attributmenge ist endlich.
+<br></p></li>
+<li><p>X ist schließlich die Hülle, also <span class="math notranslate nohighlight">\(\{\)</span>A1,A2,…Ak<span class="math notranslate nohighlight">\(\}^+\)</span> = X.</p></li>
+</ol>
+<p>■ Relation mit Attributen A, B, C, D, E, F
+<br>
+<br>
+■ Gegeben FDs
+<br></p>
+<ol class="simple">
+<li><p>AB → C
+<br></p></li>
+<li><p>BC → AD
+<br></p></li>
+<li><p>D → E
+<br></p></li>
+<li><p>CF → B
+<br>
+<br>
+■ Gesucht: Hülle von {A, B}, also {A,B<span class="math notranslate nohighlight">\(\}+\)</span>
+<br>
+□ FD 1: X = {A, B, C}
+<br>
+□ FD 2: X = {A, B, C, D}
+<br>
+□ FD 3: X = {A, B, C, D, E} ( = {A,B<span class="math notranslate nohighlight">\(\}^+\)</span> )</p></li>
+</ol>
+</div>
+<div class="section" id="membership-problem">
+<h3><span class="section-number">7.2.6. </span>Membership-Problem<a class="headerlink" href="#membership-problem" title="Permalink to this headline">¶</a></h3>
+<p>■ Kann eine bestimmte FD X→Y aus der gegebenen FD Menge abgeleitet werden?
+<br><br>
+■ Vorgehen: Berechne Hülle von X und teste ob Y darin enthalten ist.
+<br><br>
+■ Beispiel:
+<br>
+□ AB → C und BC → AD und D → E und CF → B
+<br>
+□ Kann AB → D abgeleitet werden?
+<br>
+– {AB<span class="math notranslate nohighlight">\(\}^+\)</span> = {A, B, C, D, E}
+<br>
+– D <span class="math notranslate nohighlight">\(\in\)</span> {A, B, C, D, E}, also JA!
+<br>
+□ Kann D → A abgeleitet werden?
+<br>
+– {D<span class="math notranslate nohighlight">\(\}^+\)</span> = {D, E}
+<br>
+– A <span class="math notranslate nohighlight">\(\notin\)</span> {D, E}, also NEIN!</p>
+</div>
+<div class="section" id="analyse-des-algorithmus-zur-hullenbildung">
+<h3><span class="section-number">7.2.7. </span>Analyse des Algorithmus zur Hüllenbildung<a class="headerlink" href="#analyse-des-algorithmus-zur-hullenbildung" title="Permalink to this headline">¶</a></h3>
+<p>■ Nur Beweisidee
+<br>
+<br>
+■ Korrektheit: Es werden keine ungültigen FDs erzeugt.
+<br>
+□ Induktion über Anzahl der Operationen
+<br>
+□ Transitivität bzw. Argumentation über die Tupel.
+<br><br>
+■ Vollständigkeit: Es werden alle gültigen FDs erzeugt.
+<br>
+□ Annahme des Gegenteils, d.h. es gebe eine FD X→Y, die nicht gefunden wird.
+<br>
+□ Konstruktion einer Instanz, die für FDs, aber nicht für X→Y gültig ist.</p>
+</div>
+<div class="section" id="transitivitatsregel">
+<h3><span class="section-number">7.2.8. </span>Transitivitätsregel<a class="headerlink" href="#transitivitatsregel" title="Permalink to this headline">¶</a></h3>
+<p>■ Falls A1,A2,…,An → B1,B2,…,Bm und B1,B2,…,Bm → C1,C2,…,Ck
+<br>
+■ =&gt; A1,A2,…,An → C1,C2,…,Ck</p>
+<p><img alt="title" src="../_images/tabelle.jpg" /></p>
+<p>□ Titel, Jahr -&gt; StudioName
+<br>
+– gilt wegen n:1 von besitzt-Beziehung
+<br>
+□ StudioName -&gt; StudioAdresse
+<br>
+– gilt wegen Schlüsseleigenschaft von Studioname
+<br>
+□ Transitivität: Titel, Jahr ® StudioAdresse</p>
+</div>
+<div class="section" id="die-basis">
+<h3><span class="section-number">7.2.9. </span>Die „Basis“<a class="headerlink" href="#die-basis" title="Permalink to this headline">¶</a></h3>
+<p>■ Unterscheidung zwischen gegebenen FDs und abgeleiteten FDs
+<br><br>
+■ Wahl welche FDs zur Repräsentation aller FDs verwendet werden.
+<br>
+□ Eine Menge an FDs, aus der alle anderen FDs abgeleitet werden können, heißt Basis.
+<br>
+□ Falls keine echte Teilmenge der Basis wiederum selbst eine Basis ist, ist die Basis minimal.
+<br><br>
+■ Beispiel
+<br>
+□ R(A, B, C); jedes Attribut bestimme funktional die anderen beiden.
+<br>
+□ Welche FDs gelten?
+<br>
+□ A-&gt;B, A-&gt;C, B-&gt;A, B-&gt;C, C-&gt;A, C-&gt;B
+<br>
+□ Abgeleitet: AB-&gt;C, AC-&gt;B, BC-&gt;A
+<br>
+□ Kurzformen: A-&gt;BC, B-&gt;AC, C-&gt;AB
+<br>
+□ Triviale FDs: A-&gt;A, B-&gt;B, C-&gt;C
+<br>
+□ Nicht-triviale FDs: AB-&gt;BC, AC-&gt;BC, …
+<br>
+□ Minimale Basis: {A-&gt;B, B-&gt;A, B-&gt;C, C-&gt;B}
+<br>
+□ Minimale Basis: {AvB, B-&gt;C, C-&gt;A}</p>
+</div>
+<div class="section" id="armstrong-axiome-und-weitere-ableitungsregeln">
+<h3><span class="section-number">7.2.10. </span>Armstrong Axiome und weitere Ableitungsregeln<a class="headerlink" href="#armstrong-axiome-und-weitere-ableitungsregeln" title="Permalink to this headline">¶</a></h3>
+<p>■ R1 Reflexivität X <span class="math notranslate nohighlight">\(\supseteq\)</span> Y =&gt; X→Y (insbes. X→X)
+<br>
+□ Triviale FDs
+<br><br>
+■ R2 Akkumulation {X→Y} =&gt; XZ→YZ
+<br>
+□ Auch: Augmentation
+<br><br>
+■ R3 Transitivität {X→Y, Y →Z} =&gt; X→Z
+<br><br>
+■ R1-R3 bekannt als Armstrong-Axiome
+<br>
+□ Sound and complete
+<br>
+■ R4 Dekomposition {X→YZ} =&gt; X→Y
+<br><br>
+■ R5 Vereinigung {X→Y, X→Z} =&gt; X→YZ
+<br><br>
+■ R6 Pseudotransitivität {X→Y, WY →Z} =&gt; WX→Z</p>
+<div class="section" id="armstrong-axiome">
+<h4><span class="section-number">7.2.10.1. </span>Armstrong Axiome<a class="headerlink" href="#armstrong-axiome" title="Permalink to this headline">¶</a></h4>
+<p>■ Die Menge der Armstrong-Axiome ist
+<br>
+□ Gültig (sound)
+<br>
+– Es wird nichts nicht-ableitbares abgeleitet.
+<br>
+□ Vollständig (complete)
+<br>
+– Durch diese Regeln können alle ableitbaren FDs abgeleitet werden.
+<br>
+□ Minimal
+<br>
+– Keine Regel kann weggelassen werden.</p>
+</div>
+</div>
+<div class="section" id="fds-nach-projektionen">
+<h3><span class="section-number">7.2.11. </span>FDs nach Projektionen<a class="headerlink" href="#fds-nach-projektionen" title="Permalink to this headline">¶</a></h3>
+<p>Motivation: Normalisierung bricht eine Relation in mehrere Teile.
+<br>
+■ Gegeben eine Relation R mit Menge F an FDs. Sei S das Ergebnis nach Entfernung einiger Attribute aus R („Projektion“).
+<br><br>
+■ Welche FDs gelten noch für S?
+<br>
+□ Alle FDs, die aus F folgen,
+<br>
+□ und die nur Attribute aus S verwenden.
+<br><br>
+■ Beispiel: R(A, B, C, D)
+<br>
+□ FDs: {A-&gt;B, B-&gt;C, C-&gt;D}
+<br>
+□ Projektion von B: S(A, C, D)
+<br><br>
+■ Algorithmus: Berechne Hülle jeder Teilmenge
+<br>
+□ Wie viele gibt es?
+<br>
+□ Trick 1: Hülle der leeren und Hülle der Menge aller Attribute muss nicht gebildet werden.
+<br>
+□ Trick 2: Falls die Hülle von X bereits alle Attribute enthält, müssen die Supermengen von X nicht mehr geprüft werden.
+<br>
+– Deshalb: Beginnen mit kleinsten Teilmengen</p>
+<p>■ Beispiel: R(A, B, C, D)
+<br><br>
+■ Dann gelten FDs X -&gt; E für jedes E <span class="math notranslate nohighlight">\(\in\)</span> {X<span class="math notranslate nohighlight">\(\}^+\)</span> und E <span class="math notranslate nohighlight">\(\in\)</span> S und E <span class="math notranslate nohighlight">\(\notin\)</span> X.
+<br><br>
+■ {A<span class="math notranslate nohighlight">\(\}^+\)</span> = {A, B, C, D}
+<br>
+□ A -&gt; C und A -&gt; D
+<br>
+□ A -&gt; B stimmt zwar auch, aber B nicht in S.
+<br>
+□ Enthält bereits alle Attribute aus S, deshalb werden Supermengen nicht berücksichtigt.
+<br>
+<br>
+■ {C<span class="math notranslate nohighlight">\(\}^+\)</span> = {C, D}
+<br>
+□ C -&gt; D
+<br><br>
+■ {D<span class="math notranslate nohighlight">\(\}^+\)</span> = {D}
+<br><br>
+■ {C,D<span class="math notranslate nohighlight">\(\}^+\)</span>= {C,D}
+<br><br>
+■ Ergebnis: A -&gt; C, A -&gt; D und C -&gt; D</p>
+</div>
+</div>
+<div class="section" id="normalformen">
+<h2><span class="section-number">7.3. </span>Normalformen<a class="headerlink" href="#normalformen" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="schema-design-uberblick">
+<h2><span class="section-number">7.4. </span>Schema Design – Überblick<a class="headerlink" href="#schema-design-uberblick" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Anomalien durch schlechtes Design
+<br></p></li>
+<li><p>Dekomposition (Zerlegung) von Relationen
+<br></p></li>
+<li><p>Boyce-Codd-Normalform (BCNF)
+<br></p></li>
+<li><p>Zerlegung zur Erreichung der BCNF
+<br></p></li>
+<li><p>Andere Normalformen
+<br>
+– Insbesondere 3NF</p></li>
+</ol>
+<div class="section" id="redundanzen-fuhren-zu-anomalien-im-datenbankdesign">
+<h3><span class="section-number">7.4.1. </span>Redundanzen führen zu Anomalien im Datenbankdesign<a class="headerlink" href="#redundanzen-fuhren-zu-anomalien-im-datenbankdesign" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/redundanz11.jpg" /></p>
+<p>Update-Anomalien
+<br>
+Veränderungen müssen an allen Stellen durchgeführt werden (neue Adresse für Herr Meyer)
+<br>
+<br>
+Insert-Anomalien
+<br>
+Hinzufügen von Inkonsistenzen (gleicher Kunde mit neuer Adresse)
+<br>
+<br>
+Delete Anomalien
+<br>
+Mehr Informationen gehen verloren als notwendig (Löschung von Auftrag 1 führt dazu, dass Reifenwechsel im Basic Format nicht mehr als Service in der Liste ist)</p>
+<div class="section" id="ursachen-von-anomalien">
+<h4><span class="section-number">7.4.1.1. </span>Ursachen von Anomalien<a class="headerlink" href="#ursachen-von-anomalien" title="Permalink to this headline">¶</a></h4>
+<p>N zu M Beziehungen: Kunden und Servicekombinationen
+Transitive N zu 1 Beziehungen: Servicekombination und Preis
+AuftragsID à {Service, Umfang}
+{Service, Umfang} à Preis</p>
+</div>
+<div class="section" id="eliminierung-von-anomalien-durch-dekomposition">
+<h4><span class="section-number">7.4.1.2. </span>Eliminierung von Anomalien durch Dekomposition<a class="headerlink" href="#eliminierung-von-anomalien-durch-dekomposition" title="Permalink to this headline">¶</a></h4>
+<p>Dekomposition (Zerlegung)
+<br>
+Aufteilung von Attribute in zwei Teilrelationen
+<br>
+Erzeugung neuer Tupel in den neuen Relationen
+<br>
+R(A1,A2,…,An) kann in S(B1,B2,…,Bm) und T(C1,C2,…,Ck) dekomponiert werden, falls
+<br>
+{A1,A2,…,An} = {B1,B2,…,Bm} <span class="math notranslate nohighlight">\(\cup\)</span> {C1,C2,…,Ck}
+<br>
+Tupel in S sind die Projektion aller Tupel in R auf {B1,B2,…,Bm}
+<br>
+Insbesondere: Duplikate werden entfernt
+<br>
+Dadurch: Verminderung der Redundanz
+<br>
+Tupel in T analog</p>
+</div>
+<div class="section" id="beispiel-einer-dekomposition">
+<h4><span class="section-number">7.4.1.3. </span>Beispiel einer Dekomposition<a class="headerlink" href="#beispiel-einer-dekomposition" title="Permalink to this headline">¶</a></h4>
+<p><img alt="title" src="../_images/dekomposition1.jpg" /></p>
+</div>
+</div>
+<div class="section" id="boyce-codd-normalform-bcnf">
+<h3><span class="section-number">7.4.2. </span>Boyce-Codd-Normalform (BCNF)<a class="headerlink" href="#boyce-codd-normalform-bcnf" title="Permalink to this headline">¶</a></h3>
+<p>BCNF ist eine Bedingung zur Eliminierung der Anomalien
+<br>
+Eine Relation R ist in BCNF genau dann wenn
+<br>
+Für jede nicht-triviale funktionale Abhängigkeit (FD), muss die linke Seite ein Superschlüssel sein
+<br>
+Erinnerung:
+<br>
+Nichttrivial: Wenigstens ein Attribut rechts kommt links nicht vor
+<br>
+Superschlüssel: Supermenge eines Schlüssels
+<br>
+Was darf nicht sein:
+<br>
+Eine FD ohne Superschlüssel auf der linken Seite
+<br>
+Ziel:
+<br>
+FDs zur Schlüsselabhängigkeiten machen</p>
+<div class="section" id="beispiel-der-bcnf-verletzung">
+<h4><span class="section-number">7.4.2.1. </span>Beispiel der BCNF-Verletzung<a class="headerlink" href="#beispiel-der-bcnf-verletzung" title="Permalink to this headline">¶</a></h4>
+<p><img alt="title" src="../_images/redundanz11.jpg" /></p>
+<p>Tabelle ist nicht in BCNF
+<br>
+Schlüssel: {AuftragsID}
+<br>
+Superschlüssel müssen AuftragsID enthalten
+<br>
+Eine FD: {KundenID} à {Kunde, Kundenadresse}
+<br>
+{KundenID} ist kein Superschlüssel
+<br>
+-&gt; à BCNF ist verletzt</p>
+</div>
+<div class="section" id="algorithmus-fur-dekomposition-nach-bcnf">
+<h4><span class="section-number">7.4.2.2. </span>Algorithmus für Dekomposition nach BCNF<a class="headerlink" href="#algorithmus-fur-dekomposition-nach-bcnf" title="Permalink to this headline">¶</a></h4>
+<p>Grundalgorithmus für Relation R:
+<br></p>
+<ol class="simple">
+<li><p>Suche verletzende nichttriviale FD: X → B1, B2, … ,Bn
+<br>
+mit X ⊂ R und B1, B2, … , Bn ∈ R
+<br></p></li>
+<li><p>Füge auf der rechten Seite so viele Attribute hinzu wie möglich
+<br></p></li>
+<li><p>Betrachte Hülle der FD
+<br></p></li>
+<li><p>Erzeuge zwei neue Relationen:
+<br>
+R ∖ (B1, B2, … , Bn)
+<br>
+X ∪ (B1,B2,…,Bn)
+<br>
+Grundsätzlich: Jede Relation mit zwei Attributen ist in BCNF</p></li>
+</ol>
+</div>
+<div class="section" id="bcnf-dekomposition-am-beispiel-1">
+<h4><span class="section-number">7.4.2.3. </span>BCNF Dekomposition am Beispiel 1<a class="headerlink" href="#bcnf-dekomposition-am-beispiel-1" title="Permalink to this headline">¶</a></h4>
+<p>Auftrag(AuftragsID, KundenID, Kunde, Kundenaddresse, Service, Umfang, Preis)
+<br>
+BCNF verletzende FD:
+<br>
+KundenID à Kunde, Kundenadresse
+<br>
+Neue Relationen:
+<br>
+Auftrag1(AuftragsID, KundenID, Service, Umfang, Preis)
+<br>
+Auftrag2(KundenID, Kunde, Kundenadresse)</p>
+<p><img alt="title" src="../_images/dekomposition2.jpg" /></p>
+<p><img alt="title" src="../_images/dekomposition3.jpg" /></p>
+<p>R ∖ (B1, B2, … , Bn)</p>
+<p><img alt="title" src="../_images/dekomposition4.jpg" /></p>
+<p>X ∪ (B1,B2,…,Bn)</p>
+<p>Kunde ist in BCNF
+<br>
+KundenID ist Schlüssel
+<br>
+Kundenadresse ist hier zufällig auch Schlüssel. Ignorieren diesen Fall.
+<br>
+Auftrag1 ist nicht in BCNF
+<br>
+Schlüssel: {AuftragsID}
+<br>
+Verletzende FD: {Service, Umfang}-&gt;{Preis}
+<br>
+-&gt; erneute Dekomposition</p>
+<p>Auftrag2</p>
+<p><img alt="title" src="../_images/dekomposition5.jpg" /></p>
+<p>R ∖ (B1, B2, … , Bn)</p>
+<p>Service</p>
+<p><img alt="title" src="../_images/dekomposition6.jpg" /></p>
+<p>X ∪ (B1,B2,…,Bn)</p>
+<p><img alt="title" src="../_images/dekomposition7.jpg" /></p>
+</div>
+</div>
+<div class="section" id="wiederherstellbarkeit">
+<h3><span class="section-number">7.4.3. </span>Wiederherstellbarkeit<a class="headerlink" href="#wiederherstellbarkeit" title="Permalink to this headline">¶</a></h3>
+<p>Wiederherstellung der Ursprungsrelation durch Join
+<br>
+Korrektheit durch Widerspruchsbeweis:
+<br>
+Seien t(a,b,c) und s(x,b,z) zwei Tupel in R(A,B,C) mit B -&gt; C
+<br>
+Dekomposition mittels Projektion ergibt:
+<br>
+t1(a,b), s1(x,b) in R1 und t2(b,c), s2(b,z) in R2
+<br>
+Join von R1 und R2 ergibt:
+<br>
+Fehler?
+<br>
+Nein, da wegen B-&gt;C gilt c=z</p>
+<p><img alt="title" src="../_images/wiederherstellbarkeit1.jpg" /></p>
+<p>Dekomposition ohne FD (aus Spaß)
+<br>
+■ Angenommen R(A,B,C) ohne B → C
+<br>
+■ Projektionen auf R1(A,B) und R2(B,C)
+<br>
+■ Wiederherstellung durch Join über B</p>
+<p><img alt="title" src="../_images/wiederherstellbarkeit2.jpg" /></p>
+<p><img alt="title" src="../_images/wiederherstellbarkeit3.jpg" /></p>
+</div>
+<div class="section" id="dekomposition-zu-bcnf-beispiel-2">
+<h3><span class="section-number">7.4.4. </span>Dekomposition zu BCNF – Beispiel 2<a class="headerlink" href="#dekomposition-zu-bcnf-beispiel-2" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/tabelle.jpg" /></p>
+<p>■ Titel, Jahr → Länge, Typ, StudioName
+<br>
+■ StudioName → StudioAdresse
+<br>
+■ Transitivität: Titel, Jahr → StudioAdresse
+<br>
+■ =&gt; {Titel, Jahr} ist Schlüssel
+<br>
+■ StudioName → StudioAdresse verletzt also BCNF
+<br>
+■ Zwei neue Relationen
+<br>
+□ Film1(Titel, Jahr, Länge Typ, StudioName)
+<br>
+□ Film2(StudioName, StudioAdresse)</p>
+<p><img alt="title" src="../_images/tabelle1.jpg" /></p>
+<p><img alt="title" src="../_images/tabelle2.jpg" /></p>
+</div>
+<div class="section" id="dekomposition-zu-bcnf-beispiel-3">
+<h3><span class="section-number">7.4.5. </span>Dekomposition zu BCNF – Beispiel 3<a class="headerlink" href="#dekomposition-zu-bcnf-beispiel-3" title="Permalink to this headline">¶</a></h3>
+<p>■ Film(Titel, Jahr, StudioName, Präsident, PräsAdresse)
+<br>
+□ Titel, Jahr → StudioName
+<br>
+□ StudioName → Präsident
+<br>
+□ Präsident → PräsAdresse
+<br>
+□ =&gt; {Titel, Jahr} ist Schlüssel
+<br><br>
+■ Erste Dekomposition anhand von StudioName → Präsident
+<br>
+□ Hinzufügen von möglichst vielen Attributen auf der rechten Seite: StudioName → Präsident,PräsAdresse
+<br>
+□ Film1(Titel, Jahr, StudioName)
+<br>
+□ Film2(StudioName, Präsident, PräsAdresse)
+<br>
+– Hier gilt weiter Präsident → PräsAdresse
+<br>
+– BCNF Verletzung
+<br><br>
+■ Zweite Dekomposition
+<br>
+□ Film2 wird zu Film2(StudioName, Präsident)
+<br>
+□ Film3(Präsident, PräsAdresse)
+<br><br>
+■ Verfahren terminiert: Jede neue Relation wird kleiner und 2er-Relationen sind garantiert in BCNF</p>
+</div>
+<div class="section" id="weitere-normalformen">
+<h3><span class="section-number">7.4.6. </span>Weitere Normalformen<a class="headerlink" href="#weitere-normalformen" title="Permalink to this headline">¶</a></h3>
+<p>■ 1. Normalform (1NF)
+<br>
+□ Nur atomare Werte
+<br>
+■ 2. Normalform (2NF)
+<br>
+□ 1NF und keine Abhängigkeiten von einem Teil eines Schlüssels
+<br>
+■ 3. Normalform (3NF)
+<br>
+□ 2NF und zusätzlich keine transitiven Abhängigkeiten
+<br>
+■ Boyce-Codd Normalform (BCNF)
+<br>
+□ 3NF und keine transitiven Abhängigkeiten auch innerhalb des Schlüssels</p>
+<div class="section" id="normalform">
+<h4><span class="section-number">7.4.6.1. </span>1. Normalform<a class="headerlink" href="#normalform" title="Permalink to this headline">¶</a></h4>
+<p><img alt="title" src="../_images/normalform1.jpg" /></p>
+<p>■ 1NF: Nur atomare Werte
+<br>
+□ Relation nicht in 1NF:
+<br>
+□ Aka: NFNF oder NF2 oder NF²
+<br>
+□ Umgewandelte Relation in 1NF:
+<br>
+□ Andere Umwandlungsmöglichkeit
+<br>
+– R(Vater, Mutter, Kind1, Kind2)
+<br>
+– Nachteile?</p>
+</div>
+<div class="section" id="id2">
+<h4><span class="section-number">7.4.6.2. </span>2. Normalform<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p><img alt="title" src="../_images/normalform2.jpg" /></p>
+<p>■ 1NF und keine Abhängigkeiten eines Nicht-Schlüssel-Attributs von einem Teil eines Schlüssels
+<br>
+■ MatrNr -&gt; Name
+<br>
+□ Aber MatrNr ist nicht vollständiger Schlüssel
+<br>
+■ Abhilfe: Dekomposition
+<br>
+□ <span class="math notranslate nohighlight">\(R1(\underline{MatrNr}, Name)\)</span>
+<br>
+□ <span class="math notranslate nohighlight">\(R2(\underline{MatrNr,VorlNr}, Semester)\)</span></p>
+</div>
+<div class="section" id="id3">
+<h4><span class="section-number">7.4.6.3. </span>3. Normalform<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p><img alt="title" src="../_images/normalform3.jpg" /></p>
+<p>■ Kinoaufführungen
+<br>
+□ R(Titel, Kino, Stadt)
+<br>
+□ FDs
+<br>
+– Kino -&gt; Stadt (ein Kino steht in nur einer Stadt)
+<br>
+– Titel, Stadt -&gt; Kino
+<br>
+(D.h.: Ein Film wird nicht zweifach in der gleichen Stadt aufgeführt)
+<br>
+□ Schlüssel?
+<br>
+– Einzelne Attribute sind nicht Schlüssel
+<br>
+– {Titel, Stadt} ist Schlüssel, da er funktional alle anderen Attribute bestimmt.
+<br>
+– {Kino, Titel} ist auch Schlüssel, da Kino -&gt; Stadt augmentiert werden kann zu Kino, Titel -&gt; Stadt
+<br>
+□ BCNF-Verletzung:
+<br>
+– Kino -&gt; Stadt (da Kino nicht Superschlüssel ist</p>
+<p>Lösung des Problems durch Relaxierung der BCNF
+<br>
+Eine Relation R ist in 3. Normalform genau dann wenn:
+<br>
+Für jede nicht-triviale FD A1A2…An -&gt; B für R ist
+<br>
+{A1, A2, …, An} ein Superschlüssel für R, oder B ist Teil eines Schlüssels für R.
+<br>
+Kurz: Für jede FD ist entweder die linke Seite ein Superschlüssel oder die rechte Seite Teil eines Schlüssels.
+<br>
+Am Beispiel
+<br>
+R(Titel, Kino, Stadt) mit FDs
+<br>
+Kino -&gt; Stadt
+<br>
+Titel, Stadt -&gt; Kino
+<br>
+-&gt;Verletzt nicht 3. Normalform, da Stadt Teil eines Schlüssels ist.</p>
+</div>
+<div class="section" id="nf-vs-bcnf">
+<h4><span class="section-number">7.4.6.4. </span>3NF vs. BCNF<a class="headerlink" href="#nf-vs-bcnf" title="Permalink to this headline">¶</a></h4>
+<p>■ Wichtige Eigenschaften der Dekomposition
+<br></p>
+<ol class="simple">
+<li><p>Wiederherstellbarkeit
+<br>
+– Projektion der ursprünglichen Relation auf die neuen Relationen und dann Rekonstruktion der ursprünglichen Relation (mittels Join).
+<br></p></li>
+<li><p>Bewahrung der FDs
+<br>
+– Prüfbarkeit aller FDs in den neuen Relationen
+<br><br>
+■ BCNF garantiert 1.
+<br><br>
+■ 3NF garantiert 1. und 2.
+<br>
+□ Aber: Es können Anomalien bestehen bleiben.
+<br><br>
+■ Dekomposition zur 3NF
+<br>
+□ Anderer Algorithmus
+<br>
+□ Nicht hier!</p></li>
+</ol>
+</div>
+<div class="section" id="zusammenfassung-normalformen">
+<h4><span class="section-number">7.4.6.5. </span>Zusammenfassung – Normalformen<a class="headerlink" href="#zusammenfassung-normalformen" title="Permalink to this headline">¶</a></h4>
+<p><img alt="title" src="../_images/normalform_zusammenfassung.jpg" /></p>
+<p>5NF ⇒ SKNF ⇒ RFNF ⇒ ETNF ⇒ 4NF
+<br>
+Projection-join normal form (5NF)
+<br>
+Superkey normal form (SKNF)
+<br>
+Redundancy-free normal form (RFNF)
+<br>
+Essential tuple normal form (ETNF)
+<br>
+A Normal Form for Preventing Redundant Tuples in Relational Databases Hugh Darwen, C.J. Date, Ronald Fagin, ICDT 2012
+<br></p>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./07"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../06/relationaler_entwurf.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">6. </span>Relationaler Entwurf</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../08/relationale_algebra.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Relationale Algebra</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Prof. Dr. Ziawasch Abedjan<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

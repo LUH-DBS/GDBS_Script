@@ -1,0 +1,705 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4. Phasenmodell für den Datenbankentwurf &#8212; Online-Skript Grundlagen der Datenbanksysteme</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. ER-Modellierung" href="../05/er_modellierung.html" />
+    <link rel="prev" title="3. Architektur" href="../03/architektur.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/DBIS_Kurzlogo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Online-Skript Grundlagen der Datenbanksysteme</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Grundlagen der Datenbanksysteme
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01/einfuehrung.html">
+   1. Einführung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02/historie.html">
+   2. Historie
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03/architektur.html">
+   3. Architektur
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   4. Phasenmodell für den Datenbankentwurf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05/er_modellierung.html">
+   5. ER-Modellierung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06/relationaler_entwurf.html">
+   6. Relationaler Entwurf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07/normalisierung.html">
+   7. Normalisierung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08/relationale_algebra.html">
+   8. Relationale Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown.html">
+   9. Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks.html">
+   10. Content with notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown-notebooks.html">
+   11. Notebooks with MyST Markdown
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/04/phasenmodell_datenbankentwurf.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F04/phasenmodell_datenbankentwurf.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/04/phasenmodell_datenbankentwurf.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#einfuhrung-entwurfsaufgabe-entwurfsprozess">
+   4.1. Einführung (Entwurfsaufgabe, Entwurfsprozess)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#anforderungsanalyse">
+   4.2. Anforderungsanalyse
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#konzeptioneller-entwurf">
+   4.3. Konzeptioneller Entwurf
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#verteilungsentwurf-partitionierung">
+   4.4. Verteilungsentwurf (Partitionierung)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#logischer-entwurf">
+   4.5. Logischer Entwurf
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#datendefinition">
+   4.6. Datendefinition
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#physischer-entwurf">
+   4.7. Physischer Entwurf
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implementierung-und-wartung">
+   4.8. Implementierung und Wartung
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#integrationskonflikte">
+   4.9. Integrationskonflikte
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Phasenmodell für den Datenbankentwurf</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#einfuhrung-entwurfsaufgabe-entwurfsprozess">
+   4.1. Einführung (Entwurfsaufgabe, Entwurfsprozess)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#anforderungsanalyse">
+   4.2. Anforderungsanalyse
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#konzeptioneller-entwurf">
+   4.3. Konzeptioneller Entwurf
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#verteilungsentwurf-partitionierung">
+   4.4. Verteilungsentwurf (Partitionierung)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#logischer-entwurf">
+   4.5. Logischer Entwurf
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#datendefinition">
+   4.6. Datendefinition
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#physischer-entwurf">
+   4.7. Physischer Entwurf
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implementierung-und-wartung">
+   4.8. Implementierung und Wartung
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#integrationskonflikte">
+   4.9. Integrationskonflikte
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="phasenmodell-fur-den-datenbankentwurf">
+<h1><span class="section-number">4. </span>Phasenmodell für den Datenbankentwurf<a class="headerlink" href="#phasenmodell-fur-den-datenbankentwurf" title="Permalink to this headline">¶</a></h1>
+<p><img alt="title" src="../_images/phasenmodell.jpg" /></p>
+<div class="section" id="einfuhrung-entwurfsaufgabe-entwurfsprozess">
+<h2><span class="section-number">4.1. </span>Einführung (Entwurfsaufgabe, Entwurfsprozess)<a class="headerlink" href="#einfuhrung-entwurfsaufgabe-entwurfsprozess" title="Permalink to this headline">¶</a></h2>
+<p>■ Datenhaltung für mehrere Anwendungssysteme und mehrere Jahre
+<br>
+□ Daher: besondere Bedeutung
+<br>
+<br>
+■ Anforderungen an Entwurf
+<br>
+□ Anwendungsdaten jeder Anwendung sollen aus Daten der Datenbank ableitbar sein.
+<br>
+– Möglichst effizient
+<br>
+□ Nur „vernünftige“ (wirklich benötigte) Daten sollen gespeichert werden.
+<br>
+□ Nicht-redundante Speicherung
+<br>
+<br>
+Abfolge von Entwurfsdokumenten
+<br>
+Von abstrakter Beschreibung…
+<br>
+bis zur tatsächlichen Realisierung in einem DBMS
+<br>
+Verschiedene Beschreibungsformalismen
+<br>
+ER, Relationenmodell, SQL DDL
+<br>
+In jedem Schritt
+<br>
+Informationserhaltung
+<br>
+Konsistenzerhaltung</p>
+</div>
+<div class="section" id="anforderungsanalyse">
+<h2><span class="section-number">4.2. </span>Anforderungsanalyse<a class="headerlink" href="#anforderungsanalyse" title="Permalink to this headline">¶</a></h2>
+<p>Vorgehensweise
+<br>
+□ Sammlung des Informationsbedarfs in den Fachabteilungen
+<br>
+■ Ergebnis
+<br>
+□ Informale Beschreibung des Fachproblems
+<br>
+– Texte, tabellarische Aufstellungen, Formblätter, …
+<br>
+□ Trennen der Information über Daten (Datenanalyse) von den Information über Funktionen (Funktionsanalyse)
+<br>
+<br>
+■ „Klassischer“ DB-Entwurf
+<br>
+□ Nur Datenanalyse und Folgeschritte
+<br>
+<br>
+■ Funktionsentwurf
+<br>
+□ Siehe Methoden des Software-Engineering</p>
+</div>
+<div class="section" id="konzeptioneller-entwurf">
+<h2><span class="section-number">4.3. </span>Konzeptioneller Entwurf<a class="headerlink" href="#konzeptioneller-entwurf" title="Permalink to this headline">¶</a></h2>
+<p>■ Erste formale Beschreibung des Fachproblems
+<br>
+□ Diskurswelt (Universe of Discourse)
+<br>
+<br>
+■ Sprachmittel: semantisches Datenmodell
+<br>
+□ ER-Modell (Entity-Relationship-Modell)
+<br>
+<br>
+■ Vorgehensweise
+<br>
+□ Modellierung von Sichten z.B. für verschiedene Fachabteilungen
+<br>
+□ Analyse der vorliegenden Sichten in Bezug auf Konflikte
+<br>
+– Namenskonflikte (Synonyme, Homonyme)
+<br>
+– Typkonflikte
+<br>
+– Bedingungskonflikte
+<br>
+– Strukturkonflikte
+<br>
+□ Integration der Sichten in ein Gesamtschema
+<br>
+■ Ergebnis: konzeptionelles Gesamtschema, z.B.(E)ER-Diagramm</p>
+</div>
+<div class="section" id="verteilungsentwurf-partitionierung">
+<h2><span class="section-number">4.4. </span>Verteilungsentwurf (Partitionierung)<a class="headerlink" href="#verteilungsentwurf-partitionierung" title="Permalink to this headline">¶</a></h2>
+<p>■ Sollen Daten auf mehreren Rechnern verteilt vorliegen, muss Art und Weise der verteilten Speicherung festgelegt werden.
+<br>
+<br>
+■ Z.B. bei Relation KUNDE (KNr, Name, Adresse, PLZ, Konto)
+<br>
+□ Horizontale Partitionierung
+<br>
+– KUNDE_1 (KNr, Name, Adresse, PLZ, Konto)
+<br>
+where PLZ &lt; 50000
+<br>
+– KUNDE_2 (KNr, Name, Adresse, PLZ, Konto)
+<br>
+where PLZ &gt;= 50000
+<br>
+□ Vertikale Partitionierung (Verbindung über KNr Attribut)
+<br>
+– KUNDE_Adr (KNr, Name, Adresse, PLZ)
+<br>
+– KUNDE_Konto (KNr, Konto)</p>
+</div>
+<div class="section" id="logischer-entwurf">
+<h2><span class="section-number">4.5. </span>Logischer Entwurf<a class="headerlink" href="#logischer-entwurf" title="Permalink to this headline">¶</a></h2>
+<p>■ Sprachmittel: Datenmodell des ausgewählten DBMS
+<br>
+□ z.B. DB2, Oracle, … ® relationales Modell
+<br>
+□ Tamino ® XML
+<br>
+□ Dynamo, Redis ® key-value Modell
+<br>
+□ OO, JSON, RDF, …
+<br>
+<br>
+■ Vorgehensweise
+<br>
+□ (Automatische) Transformation des konzeptionellen Schemas
+<br>
+– z.B. ER in relationales Modell
+<br>
+□ Verbesserung des relationalen Schemas anhand von Gütekriterien
+<br>
+– Normalisierung, Redundanzvermeidung, …
+<br>
+<br>
+■ Ergebnis: logisches Schema, z.B. Sammlung von Relationen-schemata
+<br>
+<br></p>
+</div>
+<div class="section" id="datendefinition">
+<h2><span class="section-number">4.6. </span>Datendefinition<a class="headerlink" href="#datendefinition" title="Permalink to this headline">¶</a></h2>
+<p>■ Umsetzung des logischen Schemas in ein konkretes Schema
+<br>
+<br>
+■ Sprachmittel: SQL
+<br>
+□ DDL (data definition language) und
+<br>
+DML (data manipulation language) eines DBMS
+<br>
+– z.B. Oracle, DB2, SQL Server, …
+<br>
+□ Datenbankdeklaration in der DDL des DBMS
+<br>
+– CREATE TABLE …
+<br>
+□ Realisierung der Integritätssicherung
+<br>
+– Schlüssel, Fremdschlüssel, Nebenbedingungen, Datentypen
+<br>
+□ Definition von Benutzersichten
+<br>
+– CREATE VIEW …</p>
+</div>
+<div class="section" id="physischer-entwurf">
+<h2><span class="section-number">4.7. </span>Physischer Entwurf<a class="headerlink" href="#physischer-entwurf" title="Permalink to this headline">¶</a></h2>
+<p>■ DBMS nimmt automatisiert physischen Entwurf vor.
+<br>
+<br>
+■ Ergänzen um Zugriffsunterstützung zur Effizienzverbesserung
+<br>
+<br>
+□ z.B. Definition von Indizes
+<br>
+□ CREATE INDEX …
+<br>
+■ Index
+<br>
+□ Datenstruktur für effizienten, Suchschlüssel-basierten Zugriff auf
+<br>
+Datensätze
+<br>
+(&lt;Schlüsselattributwert, Tupeladresse&gt;)
+<br>
+□ Meist als Baumstruktur oder Hashtabelle realisiert
+<br>
+<br>
+■ Beispiel
+<br>
+□ Tabelle mit 10 GB Daten
+<br>
+□ Festplattentransferrate ca. 50 MB/s
+<br>
+□ Operation: Suchen einer Bestellung (Selektion)
+<br>
+□ Implementierung: sequentielles Durchsuchen
+<br>
+□ Aufwand: 10.240/50 = 205 sec. = 3,5 min.</p>
+</div>
+<div class="section" id="implementierung-und-wartung">
+<h2><span class="section-number">4.8. </span>Implementierung und Wartung<a class="headerlink" href="#implementierung-und-wartung" title="Permalink to this headline">¶</a></h2>
+<p>■ Wartung des DBMS
+<br>
+□ Parameter, Festplatten, etc.
+<br>
+<br>
+■ Datenbank Tuning
+<br>
+□ Weitere Optimierung der physischen Ebene
+<br>
+<br>
+■ Anpassung an neue Anforderungen
+<br>
+<br>
+■ Anpassung an neue Systemplattformen
+<br>
+<br>
+■ Portierung auf neue Datenbankmanagementsysteme
+<br>
+<br>
+■ Kostenaufwändigste Phase
+<br>
+<br>
+■ Software Engineering</p>
+</div>
+<div class="section" id="integrationskonflikte">
+<h2><span class="section-number">4.9. </span>Integrationskonflikte<a class="headerlink" href="#integrationskonflikte" title="Permalink to this headline">¶</a></h2>
+<p>■ Namenskonflikte
+<br>
+□ Homonyme: Schloss, Kunde
+<br>
+□ Synonyme: Auto, KFZ, Fahrzeug
+<br>
+<br>
+■ Typkonflikte
+<br>
+□ Verschiedene Strukturen für das gleiche Element
+<br>
+□ String vs. int vs. date
+<br>
+<br>
+■ Wertebereichskonflikte
+<br>
+□ Verschiedene Wertebereiche für ein Element
+<br>
+□ KW 1 – 52 vs. Januar, Februar, …, Dezember
+<br>
+<br>
+■ Bedingungskonflikte
+<br>
+□ z.B. verschiedene Schlüssel für ein Element
+<br>
+□ &lt;\ISBN&gt; vs. &lt;Titel, Autor&gt;
+<br>
+<br>
+■ Strukturkonflikte
+<br>
+□ Gleicher Sachverhalt durch unterschiedliche Konstrukte ausgedrückt</p>
+<p>NICHT enthalten: S.10</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./04"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../03/architektur.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">3. </span>Architektur</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../05/er_modellierung.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>ER-Modellierung</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Prof. Dr. Ziawasch Abedjan<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

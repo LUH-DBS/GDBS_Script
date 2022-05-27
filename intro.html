@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Grundlagen der Datenbankensysteme &#8212; Online-Skript Grundlagen der Datenbankensysteme</title>
+    <title>Grundlagen der Datenbanksysteme &#8212; Online-Skript Grundlagen der Datenbanksysteme</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -82,7 +82,7 @@ const thebe_selector_output = ".output, .cell_output"
       <img src="_static/DBIS_Kurzlogo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Online-Skript Grundlagen der Datenbankensysteme</h1>
+      <h1 class="site-logo" id="site-title">Online-Skript Grundlagen der Datenbanksysteme</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
@@ -93,7 +93,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
  <li class="toctree-l1 current">
   <a class="reference internal" href="#">
-   Grundlagen der Datenbankensysteme
+   Grundlagen der Datenbanksysteme
   </a>
  </li>
 </ul>
@@ -114,28 +114,43 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="04/er-modellierung.html">
-   4. Entity-Relationship-Modell
+  <a class="reference internal" href="04/phasenmodell_datenbankentwurf.html">
+   4. Phasenmodell für den Datenbankentwurf
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="05/relationaler_entwurf.html">
-   5. Relationaler Entwurf
+  <a class="reference internal" href="05/er_modellierung.html">
+   5. ER-Modellierung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06/relationaler_entwurf.html">
+   6. Relationaler Entwurf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07/normalisierung.html">
+   7. Normalisierung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08/relationale_algebra.html">
+   8. Relationale Algebra
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markdown.html">
-   6. Markdown Files
+   9. Markdown Files
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="notebooks.html">
-   7. Content with notebooks
+   10. Content with notebooks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markdown-notebooks.html">
-   8. Notebooks with MyST Markdown
+   11. Notebooks with MyST Markdown
   </a>
  </li>
 </ul>
@@ -227,7 +242,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Grundlagen der Datenbankensysteme</h1>
+                <h1>Grundlagen der Datenbanksysteme</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -238,19 +253,22 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="grundlagen-der-datenbankensysteme">
-<h1>Grundlagen der Datenbankensysteme<a class="headerlink" href="#grundlagen-der-datenbankensysteme" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="grundlagen-der-datenbanksysteme">
+<h1>Grundlagen der Datenbanksysteme<a class="headerlink" href="#grundlagen-der-datenbanksysteme" title="Permalink to this headline">¶</a></h1>
 <p>Willkommen auf der Startseite des Online-Skriptes der Vorlesung “Grundlagen der Datenbanksysteme” an der Leibniz Universität Hannover. Dieser Skript wird kontinuierlich aktualisiert.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="01/einfuehrung.html">1. Einführung</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02/historie.html">2. Historie</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03/architektur.html">3. Architektur</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04/er-modellierung.html">4. Entity-Relationship-Modell</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05/relationaler_entwurf.html">5. Relationaler Entwurf</a></li>
-<li class="toctree-l1"><a class="reference internal" href="markdown.html">6. Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks.html">7. Content with notebooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">8. Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04/phasenmodell_datenbankentwurf.html">4. Phasenmodell für den Datenbankentwurf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05/er_modellierung.html">5. ER-Modellierung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06/relationaler_entwurf.html">6. Relationaler Entwurf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07/normalisierung.html">7. Normalisierung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08/relationale_algebra.html">8. Relationale Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">9. Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">10. Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">11. Notebooks with MyST Markdown</a></li>
 </ul>
 </div>
 </div>
