@@ -1,0 +1,1414 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>10. Integrität und Trigger &#8212; Online-Skript Grundlagen der Datenbanksysteme</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="11. Markdown Files" href="../markdown.html" />
+    <link rel="prev" title="9. SQL" href="../09/sql.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/DBIS_Kurzlogo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Online-Skript Grundlagen der Datenbanksysteme</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Grundlagen der Datenbanksysteme
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01/einfuehrung.html">
+   1. Einführung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02/historie.html">
+   2. Historie
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03/architektur.html">
+   3. Architektur
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04/phasenmodell_datenbankentwurf.html">
+   4. Phasenmodell für den Datenbankentwurf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05/er_modellierung.html">
+   5. ER-Modellierung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06/relationaler_entwurf.html">
+   6. Relationaler Entwurf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07/normalisierung.html">
+   7. Normalisierung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08/relationale_algebra.html">
+   8. Relationale Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09/sql.html">
+   9. SQL
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   10. Integrität und Trigger
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown.html">
+   11. Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks.html">
+   12. Content with notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown-notebooks.html">
+   13. Notebooks with MyST Markdown
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/10/integritaet_und_trigger.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F10/integritaet_und_trigger.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/10/integritaet_und_trigger.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivation-aktive-datenbanken">
+   10.1. Motivation – Aktive Datenbanken
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#schlussel-und-fremdschlussel">
+   10.2. Schlüssel und Fremdschlüssel
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schlussel">
+     10.2.1. Schlüssel
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#primarschlussel">
+       10.2.1.1. Primärschlüssel
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sekundarschlussel">
+       10.2.1.2. Sekundärschlüssel
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#schlusselbedingungen-erzwingen">
+       10.2.1.3. Schlüsselbedingungen erzwingen
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fremdschlussel">
+       10.2.1.4. Fremdschlüssel
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-table-beispiel">
+     10.2.2. CREATE TABLE – Beispiel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#referentielle-integritat-erzwingen">
+     10.2.3. Referentielle Integrität erzwingen
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#referentielle-integritat-erzwingen-anderungen-ablehnen">
+       10.2.3.1. Referentielle Integrität erzwingen: Änderungen Ablehnen
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#referentielle-integritat-erzwingen-kaskadierung">
+       10.2.3.2. Referentielle Integrität erzwingen: Kaskadierung
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#referentielle-integritat-erzwingen-auf-null-setzen">
+       10.2.3.3. Referentielle Integrität erzwingen: Auf NULL setzen
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       10.2.3.4. Referentielle Integrität erzwingen
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#integritatschecks-verschieben">
+     10.2.4. Integritätschecks verschieben
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bedingungen-auf-attributen-und-tupel">
+   10.3. Bedingungen auf Attributen und Tupel
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#weitere-arten-der-nebenbedingungen">
+     10.3.1. Weitere Arten der Nebenbedingungen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#not-null">
+     10.3.2. NOT NULL
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#attribut-basierte-check-bedingungen">
+     10.3.3. Attribut-basierte CHECK Bedingungen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tupel-basierte-check-bedingungen">
+     10.3.4. Tupel-basierte CHECK Bedingungen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bedingungen-andern">
+     10.3.5. Bedingungen ändern
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zusicherungen-und-trigger">
+   10.4. Zusicherungen und Trigger
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#motivation">
+     10.4.1. Motivation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assertions">
+     10.4.2. Assertions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#assertions-beispiel">
+       10.4.2.1. Assertions – Beispiel
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unterschiede-der-check-bedingungen">
+     10.4.3. Unterschiede der CHECK Bedingungen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#trigger">
+     10.4.4. Trigger
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#trigger-in-sql">
+     10.4.5. Trigger in SQL
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#trigger-beispiel">
+       10.4.5.1. Trigger – Beispiel
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#trigger-alternative">
+       10.4.5.2. Trigger  –  Alternative
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       10.4.5.3. Trigger - Beispiel
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zusammenfassung">
+   10.5. Zusammenfassung
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Integrität und Trigger</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivation-aktive-datenbanken">
+   10.1. Motivation – Aktive Datenbanken
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#schlussel-und-fremdschlussel">
+   10.2. Schlüssel und Fremdschlüssel
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schlussel">
+     10.2.1. Schlüssel
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#primarschlussel">
+       10.2.1.1. Primärschlüssel
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sekundarschlussel">
+       10.2.1.2. Sekundärschlüssel
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#schlusselbedingungen-erzwingen">
+       10.2.1.3. Schlüsselbedingungen erzwingen
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fremdschlussel">
+       10.2.1.4. Fremdschlüssel
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-table-beispiel">
+     10.2.2. CREATE TABLE – Beispiel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#referentielle-integritat-erzwingen">
+     10.2.3. Referentielle Integrität erzwingen
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#referentielle-integritat-erzwingen-anderungen-ablehnen">
+       10.2.3.1. Referentielle Integrität erzwingen: Änderungen Ablehnen
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#referentielle-integritat-erzwingen-kaskadierung">
+       10.2.3.2. Referentielle Integrität erzwingen: Kaskadierung
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#referentielle-integritat-erzwingen-auf-null-setzen">
+       10.2.3.3. Referentielle Integrität erzwingen: Auf NULL setzen
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       10.2.3.4. Referentielle Integrität erzwingen
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#integritatschecks-verschieben">
+     10.2.4. Integritätschecks verschieben
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bedingungen-auf-attributen-und-tupel">
+   10.3. Bedingungen auf Attributen und Tupel
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#weitere-arten-der-nebenbedingungen">
+     10.3.1. Weitere Arten der Nebenbedingungen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#not-null">
+     10.3.2. NOT NULL
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#attribut-basierte-check-bedingungen">
+     10.3.3. Attribut-basierte CHECK Bedingungen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tupel-basierte-check-bedingungen">
+     10.3.4. Tupel-basierte CHECK Bedingungen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bedingungen-andern">
+     10.3.5. Bedingungen ändern
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zusicherungen-und-trigger">
+   10.4. Zusicherungen und Trigger
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#motivation">
+     10.4.1. Motivation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assertions">
+     10.4.2. Assertions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#assertions-beispiel">
+       10.4.2.1. Assertions – Beispiel
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unterschiede-der-check-bedingungen">
+     10.4.3. Unterschiede der CHECK Bedingungen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#trigger">
+     10.4.4. Trigger
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#trigger-in-sql">
+     10.4.5. Trigger in SQL
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#trigger-beispiel">
+       10.4.5.1. Trigger – Beispiel
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#trigger-alternative">
+       10.4.5.2. Trigger  –  Alternative
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       10.4.5.3. Trigger - Beispiel
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zusammenfassung">
+   10.5. Zusammenfassung
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="integritat-und-trigger">
+<h1><span class="section-number">10. </span>Integrität und Trigger<a class="headerlink" href="#integritat-und-trigger" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="motivation-aktive-datenbanken">
+<h2><span class="section-number">10.1. </span>Motivation – Aktive Datenbanken<a class="headerlink" href="#motivation-aktive-datenbanken" title="Permalink to this headline">¶</a></h2>
+<p>■ Einzufügende Daten können fehlerhaft sein
+<br>
+□ Typographische Fehler, logische Fehler
+<br><br>
+■ Lösung 1: Bessere Anwendung schreiben
+<br>
+□ Aber: Konsistenz und Korrektheit sind schwer zu prüfen (komplexe Bedingungen, abhängig von schon vorhandenen Daten).
+<br><br>
+■ Lösung 2: Aktive Elemente im DBMS
+<br>
+□ Einmal spezifiziert
+<br>
+□ Ausgeführt wenn nötig
+<br>
+□ „Integritätsbedingungen“ (integrity constraints, ICs)</p>
+</div>
+<div class="section" id="schlussel-und-fremdschlussel">
+<h2><span class="section-number">10.2. </span>Schlüssel und Fremdschlüssel<a class="headerlink" href="#schlussel-und-fremdschlussel" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="schlussel">
+<h3><span class="section-number">10.2.1. </span>Schlüssel<a class="headerlink" href="#schlussel" title="Permalink to this headline">¶</a></h3>
+<p>■ Wichtigste Bedingung: Ein oder mehrere Attribute bilden einen Schlüssel.
+<br>
+□ Falls S die Schlüsselmenge ist, müssen sich zwei Tupel in mindestens einem Attributwert der Schlüsselmenge
+unterscheiden.
+<br>
+□ Spezifikation im CREATE TABLE Ausdruck
+<br>
+– Primärschlüssel: PRIMARY KEY
+<br>
+– Schlüssel: UNIQUE oder UNIQUE NOT NULL</p>
+<div class="section" id="primarschlussel">
+<h4><span class="section-number">10.2.1.1. </span>Primärschlüssel<a class="headerlink" href="#primarschlussel" title="Permalink to this headline">¶</a></h4>
+<p>■ Maximal ein Primärschlüssel pro Relation
+<br>
+□ Zwei Tupel müssen sich in mindestens einem Attributwert der Primärschlüsselattribute unterscheiden.
+<br>
+□ Tupel dürfen keinen NULL-Werte in den Primärschlüsselattributen haben.
+Bei einem Attribut: Deklaration direkt in Attributliste</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">SchauspielerIn</span><span class="p">(</span>
+<span class="n">Name</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
+<span class="n">Adresse</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+<span class="n">Geschlecht</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+<span class="n">Geburtstag</span> <span class="n">DATE</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>■ Bei (einem oder) mehreren Attributen: Deklaration nach den Attributen</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">SchauspielerIn</span><span class="p">(</span>
+<span class="n">Name</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+<span class="n">Adresse</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+<span class="n">Geschlecht</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+<span class="n">Geburtstag</span> <span class="n">DATE</span><span class="p">,</span>
+<span class="n">PRIMARY</span> <span class="n">KEY</span> <span class="p">(</span><span class="n">Name</span><span class="p">,</span> <span class="n">Adresse</span><span class="p">)</span> <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sekundarschlussel">
+<h4><span class="section-number">10.2.1.2. </span>Sekundärschlüssel<a class="headerlink" href="#sekundarschlussel" title="Permalink to this headline">¶</a></h4>
+<p>■ Spezifikation mit UNIQUE
+<br>
+□ Syntax wie für PRIMARY KEY
+<br>
+– Direkt beim Attribut
+<br>
+– Als separate Attributliste
+<br><br>
+■ Bedeutung etwas anders:
+<br>
+□ Es darf mehrere UNIQUE Deklarationen geben
+<br>
+□ UNIQUE erlaubt NULL-Werte
+<br>
+– und NULL ≠ NULL (bzw. UNKNOWN)
+<br>
+=&gt; Zwei Tupel können in UNIQUE Attributen übereinstimmen: NULL
+<br>
+– Abhilfe: NOT NULL</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">SchauspielerIn</span><span class="p">(</span>
+<span class="n">Name</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+<span class="n">Adresse</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+<span class="n">Geschlecht</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+<span class="n">Geburtstag</span> <span class="n">DATE</span> <span class="n">UNIQUE</span><span class="p">,</span>
+<span class="n">UNIQUE</span> <span class="p">(</span><span class="n">Name</span><span class="p">,</span> <span class="n">Adresse</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="schlusselbedingungen-erzwingen">
+<h4><span class="section-number">10.2.1.3. </span>Schlüsselbedingungen erzwingen<a class="headerlink" href="#schlusselbedingungen-erzwingen" title="Permalink to this headline">¶</a></h4>
+<p>Schlüsselbedingungen müssen stets gelten.
+<br><br>
+Relevant nur bei INSERT und UPDATE
+<br>
+Bei DELETE kann nichts passieren.
+<br><br>
+Effiziente Prüfung mittels Index
+<br>
+DBMS legen idR automatisch Indizes für Primärschlüsselattribute an.
+<br>
+Optional auch für UNIQUE Attribute
+<br>
+CREATE UNIQUE INDEX JahrIndex ON Filme(Jahr);
+<br>
+Wie CREATE INDEX JahrIndex ON Filme(Jahr), aber mit neuer UNIQUE Bedingung auf Jahr.
+<br>
+Bei Einfügen oder Ändern: Prüfen ob neuer Schlüsselwert bereits vorhanden
+<br><br>
+Ineffiziente Prüfung (falls kein Index vorhanden ist)
+<br>
+Binäre Suche falls Daten sortiert sind
+<br>
+Sequentielle Suche sonst</p>
+</div>
+<div class="section" id="fremdschlussel">
+<h4><span class="section-number">10.2.1.4. </span>Fremdschlüssel<a class="headerlink" href="#fremdschlussel" title="Permalink to this headline">¶</a></h4>
+<p>Werte in bestimmten Attributen sollen „sinnvoll“ sein.
+<br>
+ManagerIn(Name, Adresse, ManagerinID, Gehalt)
+<br>
+Studios(Name, Adresse, VorsitzendeID)
+<br>
+Z.B.: Der Attributwert für VorsitzendeID sollte auf einen bestimmten, vorhandenen Manager verweisen.
+<br>
+Referentielle Integrität – dangling tuples
+<br>
+Ein Attribut oder eine Attributmenge kann als FOREIGN KEY deklariert werden, die eine entsprechende Attributmenge einer zweiten Relation referenziert.
+<br>
+Die referenzierte Attributmenge muss UNIQUE oder PRIMARY KEY sein.
+<br>
+Gemeinsame Werte der Fremdschlüsselattribute müssen als gemeinsame Werte des referenzierten Schlüssels auftauchen.
+<br>
+Ausnahme: Ein Fremdschlüssel darf den Wert NULL annehmen.
+<br>
+Das Schlüsselattribut muss nicht einen NULL-Wert besitzen (und darf es meist auch nicht).
+<br>
+Abhilfe: NOT NULL
+<br><br>
+Syntax
+<br>
+Auf einem Attribut:
+<br>
+REFERENCES Relation(Attribut)
+<br>
+Auf (einem oder) mehreren Attributen:
+<br>
+FOREIGN KEY (Attribute) REFERENCES Relation(Attribute)
+ManagerIn(Name, Adresse, ManagerinID, Gehalt)
+Studios(Name, Adresse, VorsitzendeID)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">Studios</span><span class="p">(</span>
+    <span class="n">Name</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
+    <span class="n">Adresse</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+    <span class="n">VorsitzendeID</span> <span class="n">INT</span> <span class="n">REFERENCES</span> <span class="n">Manager</span><span class="p">(</span><span class="n">ManagerinID</span><span class="p">));</span>
+    
+<span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">Studios</span><span class="p">(</span>
+    <span class="n">Name</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
+    <span class="n">Adresse</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+    <span class="n">VorsitzendeID</span> <span class="n">INT</span><span class="p">,</span>
+    <span class="n">FOREIGN</span> <span class="n">KEY</span> <span class="p">(</span><span class="n">VorsitzendeID</span><span class="p">)</span> <span class="n">REFERENCES</span>
+<span class="n">ManagerIn</span><span class="p">(</span><span class="n">ManagerinID</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="create-table-beispiel">
+<h3><span class="section-number">10.2.2. </span>CREATE TABLE – Beispiel<a class="headerlink" href="#create-table-beispiel" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">Employee</span><span class="p">(</span>
+    <span class="n">FirstName</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+    <span class="n">LastName</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+    <span class="n">City</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="n">NOT</span> <span class="n">NULL</span><span class="p">,</span>
+    <span class="n">ZIP</span> <span class="n">INT</span><span class="p">,</span>
+    <span class="n">Street</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+    <span class="n">ProjectName</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+    <span class="n">ProjectYear</span> <span class="n">INT</span><span class="p">,</span>
+    <span class="n">DepID</span> <span class="n">INT</span> <span class="n">NOT</span> <span class="n">NULL</span><span class="p">,</span>
+    <span class="n">PRIMARY</span> <span class="n">KEY</span> <span class="p">(</span><span class="n">FirstName</span><span class="p">,</span><span class="n">LastName</span><span class="p">),</span>
+    <span class="n">FOREIGN</span> <span class="n">KEY</span> <span class="p">(</span><span class="n">DepID</span><span class="p">)</span> <span class="n">REFERENCES</span> <span class="n">Department</span><span class="p">(</span><span class="n">DepID</span><span class="p">),</span>
+    <span class="n">FOREIGN</span> <span class="n">KEY</span> <span class="p">(</span><span class="n">ProjectName</span><span class="p">,</span><span class="n">ProjectYear</span><span class="p">)</span>
+        <span class="n">REFERENCES</span> <span class="n">Project</span><span class="p">(</span><span class="n">Name</span><span class="p">,</span> <span class="n">Year</span><span class="p">)</span> <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="referentielle-integritat-erzwingen">
+<h3><span class="section-number">10.2.3. </span>Referentielle Integrität erzwingen<a class="headerlink" href="#referentielle-integritat-erzwingen" title="Permalink to this headline">¶</a></h3>
+<p>Drei Varianten
+<br>
+Verletzende Änderungen ablehnen (SQL default)
+<br>
+Kaskadierung
+<br>
+Null-Werte
+<br><br>
+Beispiel
+Manager(Name, Adresse, ManagerID, Gehalt)
+<br>
+Studios(Name, Adresse, VorsitzenderID)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">Studios</span><span class="p">(</span>
+<span class="n">Name</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
+<span class="n">Adresse</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+<span class="n">VorsitzendeID</span> <span class="n">INT</span> <span class="n">REFERENCES</span> <span class="n">ManagerIn</span><span class="p">(</span><span class="n">ManagerinID</span><span class="p">));</span>
+</pre></div>
+</div>
+<div class="section" id="referentielle-integritat-erzwingen-anderungen-ablehnen">
+<h4><span class="section-number">10.2.3.1. </span>Referentielle Integrität erzwingen: Änderungen Ablehnen<a class="headerlink" href="#referentielle-integritat-erzwingen-anderungen-ablehnen" title="Permalink to this headline">¶</a></h4>
+<p>Default: Änderungen ablehnen
+<br><br>
+Für jede VorsitzendeID muss es auch einen ManagerinID geben.
+<br>
+INSERT Studio mit neuer (nicht-NULL) VorsitzendeID, die nicht in Manager gespeichert ist
+<br>
+Abgelehnt
+<br><br>
+UPDATE eines Studios mit einer neuen VorsitzendeID, die nicht in Manager gespeichert ist
+<br>
+Abgelehnt
+<br><br>
+DELETE eines ManagerIn-Tupels, dessen ManagerinID auch eine (oder mehr) VorsitzendeID ist
+<br>
+Abgelehnt
+<br><br>
+UPDATE der ManagerinID eines Manager-Tupels, die auch eine (oder mehr) VorsitzendeID ist
+<br>
+Abgelehnt</p>
+</div>
+<div class="section" id="referentielle-integritat-erzwingen-kaskadierung">
+<h4><span class="section-number">10.2.3.2. </span>Referentielle Integrität erzwingen: Kaskadierung<a class="headerlink" href="#referentielle-integritat-erzwingen-kaskadierung" title="Permalink to this headline">¶</a></h4>
+<p>Idee: Änderungen im Schlüssel werden im Fremdschlüssel nachgezogen.
+<br><br>
+INSERT Studio mit neuer (nicht-NULL) VorsitzendeID, die nicht in Manager gespeichert ist
+<br>
+Abgelehnt
+<br><br>
+UPDATE eines Studios mit einer neuen VorsitzendeID, die nicht in Manager gespeichert ist
+<br>
+Abgelehnt
+<br><br>
+DELETE eines Manager-Tupels, dessen ManagerinID auch eine (oder mehr) VorsitzendeID ist
+<br>
+OK, aber alle abhängigen Studios werden ebenfalls gelöscht.
+<br><br>
+UPDATE der ManagerinID eines Manager-Tupels, die auch eine (oder mehr) VorsitzendeID ist
+<br>
+OK, die VorsitzendeIDs in Studios werden ebenfalls geändert</p>
+</div>
+<div class="section" id="referentielle-integritat-erzwingen-auf-null-setzen">
+<h4><span class="section-number">10.2.3.3. </span>Referentielle Integrität erzwingen: Auf NULL setzen<a class="headerlink" href="#referentielle-integritat-erzwingen-auf-null-setzen" title="Permalink to this headline">¶</a></h4>
+<p>Idee: Bei Änderungen im Schlüssel wird der Wert des Fremdschlüssels auf NULL gesetzt.
+<br><br>
+INSERT Studio mit neuer (nicht-NULL) VorsitzendeID, die nicht in Manager gespeichert ist
+<br>
+Abgelehnt
+<br><br>
+UPDATE eines Studios mit einer neuen VorsitzendeID, die nicht in Manager gespeichert ist
+<br>
+Abgelehnt
+<br><br>
+DELETE eines Manager-Tupels, dessen ManagerinID auch eine (oder mehr) VorsitzendeID ist
+<br>
+OK, aber VorsitzendeID aller abhängigen Studios werden auf NULL gesetzt.
+<br><br>
+UPDATE der ManageID eines ManagerIn-Tupels, die auch eine (oder mehr) VorsitzendeID ist
+<br>
+OK, aber die VorsitzendeIDs in Studios werden auf NULL gesetzt.</p>
+</div>
+<div class="section" id="id1">
+<h4><span class="section-number">10.2.3.4. </span>Referentielle Integrität erzwingen<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>SQL Syntax
+<br>
+Vorgehensweise kann individuell spezifiziert werden</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">Studios</span><span class="p">(</span>
+<span class="n">Name</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
+<span class="n">Adresse</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+<span class="n">VorsitzendeID</span> <span class="n">INT</span> <span class="n">REFERENCES</span> <span class="n">ManagerIn</span><span class="p">(</span><span class="n">ManagerinID</span><span class="p">)</span>
+<span class="n">ON</span> <span class="n">DELETE</span> <span class="n">SET</span> <span class="n">NULL</span>
+<span class="n">ON</span> <span class="n">UPDATE</span> <span class="n">CASCADE</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>„Vorsichtige“ Strategie
+<br>
+Studios werden nicht gelöscht
+<br>
+Studios behalten falls möglich ihren Vorsitzenden.</p>
+</div>
+</div>
+<div class="section" id="integritatschecks-verschieben">
+<h3><span class="section-number">10.2.4. </span>Integritätschecks verschieben<a class="headerlink" href="#integritatschecks-verschieben" title="Permalink to this headline">¶</a></h3>
+<p>Es ist nicht immer möglich, Tupel einzufügen, die der referentiellen Integrität gehorchen.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>INSERT INTO Studios
+VALUES (‘Redlight‘, ‘New York‘, 23456);
+</pre></div>
+</div>
+<p>Problem: ManagerIn 23456 wurde (noch) nicht angelegt</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>INSERT INTO Studios(Name, Adresse)
+VALUES (‘Redlight‘, ‘New York‘);
+</pre></div>
+</div>
+<p>OK, da NULL-Werte nicht auf referentielle Integrität geprüft werden müssen.
+<br>
+Später dann (nach Einfügen des Managertupels):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>UPDATE Studios SET VorsitzendeID = 23456
+WHERE Name = ‘Redlight‘;
+</pre></div>
+</div>
+<p>Bessere Lösung: Erst den Manager, dann das Studio einfügen.
+<br><br>
+Es kann zyklische referentielle Integritätsbedingungen geben.
+<br>
+Manager sind nur Vorsitzende von Studios
+<br>
+ManagerinID ist Fremdschlüssel und referenziert VorsitzendeID.
+<br>
+Es kann nach wie vor kein Studio ohne vorhandenes Managertupel eingefügt werden.
+<br>
+Es kann nun auch kein Manager ohne vorhandenes Studio eingefügt werden.
+<br>
+Catch 22!
+<br>
+Lösung
+<br>
+Mehrere Änderungsoperationen zu einer „Transaktion“ zusammenfassen (mehr später: „Transaktionsmanagement“)
+<br>
+Integritätschecks bis ans Ende der Transaktion verschieben
+<br><br>
+■ Jeder Constraint kann als DEFERRABLE oder NOT DEFERRABLE deklariert werden.
+<br><br>
+■ NOT DEFERRABLE ist default
+<br>
+□ Bei jeder Änderung der Datenbank wird die Bedingung geprüft.
+<br><br>
+■ DEFERRABLE
+<br>
+□ INITIALLY DEFERRED:
+<br>
+– Verschieben ans Ende der Transaktion
+<br>
+– oder bis wir Verschiebung aufheben
+<br>
+□ INITIALLY IMMEDIATE
+<br>
+– Zunächst nichts verschieben, bis wir Verschiebung verlangen.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">Studios</span><span class="p">(</span>
+<span class="n">Name</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
+<span class="n">Adresse</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+<span class="n">VorsitzendeID</span> <span class="n">INT</span> <span class="n">UNIQUE</span> <span class="n">REFERENCES</span> <span class="n">ManagerIn</span><span class="p">(</span><span class="n">ManagerinID</span><span class="p">)</span>
+<span class="n">DEFERRABLE</span> <span class="n">INITIALLY</span> <span class="n">DEFERRED</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="bedingungen-auf-attributen-und-tupel">
+<h2><span class="section-number">10.3. </span>Bedingungen auf Attributen und Tupel<a class="headerlink" href="#bedingungen-auf-attributen-und-tupel" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="weitere-arten-der-nebenbedingungen">
+<h3><span class="section-number">10.3.1. </span>Weitere Arten der Nebenbedingungen<a class="headerlink" href="#weitere-arten-der-nebenbedingungen" title="Permalink to this headline">¶</a></h3>
+<p>■ Verbieten Annahme bestimmter Werte
+<br><br>
+■ Bedingungen auf einzelnen Attributen
+<br>
+□ NOT NULL
+<br>
+□ CHECK
+<br><br>
+■ Bedingungen für ganze Tupel, also auf das Schema
+<br>
+□ CHECK</p>
+</div>
+<div class="section" id="not-null">
+<h3><span class="section-number">10.3.2. </span>NOT NULL<a class="headerlink" href="#not-null" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">Studios</span><span class="p">(</span>
+<span class="n">Name</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
+<span class="n">Adresse</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="n">NOT</span> <span class="n">NULL</span><span class="p">,</span>
+<span class="n">VorsitzendeID</span> <span class="n">INT</span> <span class="n">NOT</span> <span class="n">NULL</span>
+<span class="n">REFERENCES</span> <span class="n">ManagerIn</span><span class="p">(</span><span class="n">ManagerinID</span><span class="p">)</span>
+<span class="n">ON</span> <span class="n">UPDATE</span> <span class="n">CASCADE</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>■ Einfügen eines Studios ohne Manager ist nicht mehr möglich.
+<br><br>
+■ Jedes Studio muss eine Adresse haben.
+<br><br>
+■ Die Null-Werte Strategie beim Löschen von Managern ist nicht mehr möglich.</p>
+</div>
+<div class="section" id="attribut-basierte-check-bedingungen">
+<h3><span class="section-number">10.3.3. </span>Attribut-basierte CHECK Bedingungen<a class="headerlink" href="#attribut-basierte-check-bedingungen" title="Permalink to this headline">¶</a></h3>
+<p>Verfeinerung der erlaubten Werte für ein Attribut durch Spezifikation einer Bedingung.
+<br><br>
+Bedingung beliebig komplex
+<br>
+Wie WHERE Klausel
+<br>
+Oder sogar als SELECT…FROM…WHERE… Anfrage
+<br><br>
+i.d.R. aber eine einfache Einschränkung der Werte
+<br><br>
+CHECK wird geprüft falls ein Attribut einen neuen Wert erhält
+<br>
+INSERT
+<br>
+UPDATE
+<br><br>
+Falls FALSE, scheitert die Änderung</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CREATE TABLE Studios(
+Name CHAR(30) PRIMARY KEY,
+Adresse VARCHAR(255) NOT NULL,
+VorsitzendeID INT REFERENCES ManagerIn(ManagerinID)
+CHECK (VorsitzendeID &gt;= 100000)
+);
+
+CREATE TABLE SchauspielerIn (
+Name CHAR(30),
+Adresse VARCHAR(255),
+Geschlecht CHAR(1) CHECK (Geschlecht IN (‘W‘, ‘M‘, ‘D‘)),
+Geburtstag DATE );
+</pre></div>
+</div>
+<p>CHECK Bedingung darf sich auch auf andere Attribute beziehen.
+<br>
+Nur im Zusammenhang mit einer SQL Anfrage</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">Studios</span><span class="p">(</span>
+<span class="n">Name</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
+<span class="n">Adresse</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="n">NOT</span> <span class="n">NULL</span><span class="p">,</span>
+<span class="n">VorsitzendeID</span> <span class="n">INT</span> <span class="n">CHECK</span> <span class="p">(</span>
+<span class="n">VorsitzendeID</span> <span class="n">IN</span>
+<span class="p">(</span><span class="n">SELECT</span> <span class="n">ManagerinID</span> <span class="n">FROM</span> <span class="n">ManagerIn</span><span class="p">))</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Simuliert referentielle Integrität
+<br>
+Was kann schief gehen?
+<br>
+UPDATE und INSERT auf der Studios Relation
+<br>
+CHECK wird geprüft
+<br>
+DELETE auf der Manager Relation
+<br>
+CHECK wird nicht geprüft; CHECK Bedingung wird ungültig
+<br>
+D.h.: Andere Relationen kennen diese CHECK Bedingung nicht.</p>
+</div>
+<div class="section" id="tupel-basierte-check-bedingungen">
+<h3><span class="section-number">10.3.4. </span>Tupel-basierte CHECK Bedingungen<a class="headerlink" href="#tupel-basierte-check-bedingungen" title="Permalink to this headline">¶</a></h3>
+<p>Bedingungen können auch für ganze Tupel deklariert werden.
+<br>
+Wie Primär- und Fremdschlüsselbedingungen kann auch einen CHECK Bedingung in der Liste der Attribute auftauchen.
+<br>
+Ebenso wie bei Attribut-basierten CHECKs: Beliebige Bedingungen wie eine WHERE Klausel.
+<br>
+Wird geprüft bei jedem INSERT und jedem UPDATE eines Tupels.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CREATE TABLE SchauspielerIn (
+Anrede CHAR(10),
+Name CHAR(30) PRIMARY KEY,
+Adresse VARCHAR(255),
+Geschlecht CHAR(1) CHECK (Geschlecht IN (‘W‘, ‘M‘, ‘D‘)),
+Geburtstag DATE,
+CHECK (Geschlecht = ‚W‘ OR Anrede NOT LIKE ‚Fr%‘ ));
+</pre></div>
+</div>
+<p>Typischer Aufbau einer Bedingung wenn wir mehrere Eigenschaften gemeinsam verbieten wollen (Männlich und Name beginnt mit „Frau…“)
+<br><br>
+Wird nicht geprüft falls eine andere (oder sogar die gleiche) Relation in einer Subanfrage der CHECK
+Bedingung erwähnt wird und diese eine Änderung erfährt.
+<br>
+D.h.: Andere Relationen kennen diese CHECK Bedingung nicht.
+<br>
+Solche Probleme gibt es bei ASSERTIONS (siehe unten) nicht. Deshalb komplexe Bedingungen lieber als ASSERTION deklarieren,
+<br>
+oder (realistischer) in die Anwendungslogik stecken.</p>
+</div>
+<div class="section" id="bedingungen-andern">
+<h3><span class="section-number">10.3.5. </span>Bedingungen ändern<a class="headerlink" href="#bedingungen-andern" title="Permalink to this headline">¶</a></h3>
+<p>Zur Änderung von Bedingungen müssen Namen vergeben werden.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CREATE TABLE SchauspielerIn (
+Anrede CHAR(19),
+Name CHAR(30) CONSTRAINT NamePrimaer PRIMARY KEY,
+Adresse VARCHAR(255),
+Geschlecht CHAR(1) CONSTRAINT NichtGeschlechtslos
+CHECK (Geschlecht IN (‚W‘, ‚M‘)),
+Geburtstag DATE,
+CONSTRAINT AnredeKorrektConstraint
+CHECK (Geschlecht = ‚W‘ OR Anrede NOT LIKE ‚Frau%‘ );
+</pre></div>
+</div>
+<p>Meist vergeben DBMS sowieso interne (aber hässliche) Namen.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SET</span> <span class="n">CONSTRAINT</span> <span class="n">MyConstraint</span> <span class="n">DEFERRED</span><span class="p">;</span>
+
+<span class="n">SET</span> <span class="n">CONSTRAINT</span> <span class="n">MyConstraint</span> <span class="n">IMMEDIATE</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>■ Entfernen</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ALTER</span> <span class="n">TABLE</span> <span class="n">Schauspieler</span> <span class="n">DROP</span> <span class="n">CONSTRAINT</span> <span class="n">NamePrimaer</span><span class="p">;</span>
+<span class="n">ALTER</span> <span class="n">TABLE</span> <span class="n">Schauspieler</span> <span class="n">DROP</span> <span class="n">CONSTRAINT</span> <span class="n">NichtGeschlechtslos</span><span class="p">;</span>
+<span class="n">ALTER</span> <span class="n">TABLE</span> <span class="n">Schauspieler</span> <span class="n">DROP</span> <span class="n">CONSTRAINT</span> <span class="n">AnredeKorrekt</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>■ Hinzufügen</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ALTER TABLE Schauspieler ADD CONSTRAINT NamePrimaer PRIMARY KEY (Name);
+ALTER TABLE Schauspieler ADD CONSTRAINT NichtGeschlechtslos CHECK (Geschlecht IN (‚W‘, ‚M‘));
+ALTER TABLE Schauspieler ADD CONSTRAINT AnredeKorrekt CHECK (Geschlecht = ‚W‘ OR name NOT LIKE ‚Frau%‘ );
+</pre></div>
+</div>
+<p>□ Diese Bedingungen sind nun alle Tupel-basiert.
+<br>
+□ Attribut-basierte Bedingungen können nicht nachträglich eingefügt werden.</p>
+</div>
+</div>
+<div class="section" id="zusicherungen-und-trigger">
+<h2><span class="section-number">10.4. </span>Zusicherungen und Trigger<a class="headerlink" href="#zusicherungen-und-trigger" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="motivation">
+<h3><span class="section-number">10.4.1. </span>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h3>
+<p>Manche Bedingungen sollen sich nicht auf bestimmte Tupel beziehen, sondern auf Schemaebene definiert werden (wie Relationen und Sichten).
+<br><br>
+Assertion (Zusicherungen)
+<br>
+Boole‘scher SQL Ausdruck, der stets wahr sein muss
+<br>
+Einfache Handhabung für Admin
+<br>
+Schwierig, effizient zu implementieren
+<br><br>
+Trigger („Auslöser“)
+<br>
+Aktionen, die bei bestimmten Ereignissen (INSERTs, …) ausgelöst werden
+<br>
+Leichter, effizient zu implementieren</p>
+</div>
+<div class="section" id="assertions">
+<h3><span class="section-number">10.4.2. </span>Assertions<a class="headerlink" href="#assertions" title="Permalink to this headline">¶</a></h3>
+<p>CREATE ASSERTION Name CHECK (Bedingung)
+<br><br>
+Bedingung muss bei Erzeugung der Assertion bereits gelten.
+<br>
+Bedingung muss stets gelten; Änderungen, die die Assertion falsch machen, werden abgewiesen.
+<br>
+CHECK Bedingung können hingegen falsch werden!
+<br><br>
+Zur Formulierung
+<br>
+Kein direkter Bezug zu Relationen, deshalb müssen Attribute und Relationen in einer SQL Anfrage eingeführt werden.
+<br><br>
+Löschen
+<br>
+DROP ASSERTION Name;</p>
+<div class="section" id="assertions-beispiel">
+<h4><span class="section-number">10.4.2.1. </span>Assertions – Beispiel<a class="headerlink" href="#assertions-beispiel" title="Permalink to this headline">¶</a></h4>
+<p>■ ManagerIn(Name, Adresse, ManagerinID, Gehalt) Studios(Name, Adresse, VorsitzendeID)
+<br>
+■ Vorsitzende von Studios müssen mindestens 1.000.000 verdienen.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">ASSERTION</span> <span class="n">ReicheVorsitzende</span> <span class="n">CHECK</span>
+<span class="p">(</span><span class="n">NOT</span> <span class="n">EXISTS</span>
+<span class="p">(</span><span class="n">SELECT</span> <span class="o">*</span>
+<span class="n">FROM</span> <span class="n">Studios</span><span class="p">,</span> <span class="n">ManagerIn</span>
+<span class="n">WHERE</span> <span class="n">ManagerinID</span> <span class="o">=</span> <span class="n">VorsitzendeID</span>
+<span class="n">AND</span> <span class="n">Gehalt</span> <span class="o">&lt;</span> <span class="mi">1000000</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>■ Alternative:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">Studios</span><span class="p">(</span>
+<span class="n">Name</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
+<span class="n">Adresse</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="n">NOT</span> <span class="n">NULL</span><span class="p">,</span>
+<span class="n">VorsitzendeID</span> <span class="n">INT</span> <span class="n">REFERENCES</span> <span class="n">ManagerIn</span><span class="p">(</span><span class="n">ManagerinID</span><span class="p">),</span>
+<span class="n">CHECK</span> <span class="p">(</span> <span class="n">VorsitzendeID</span> <span class="n">NOT</span> <span class="n">IN</span>
+<span class="p">(</span><span class="n">SELECT</span> <span class="n">ManagerinID</span> <span class="n">FROM</span> <span class="n">ManagerIn</span>
+<span class="n">WHERE</span> <span class="n">Gehalt</span> <span class="o">&lt;</span> <span class="mi">1000000</span><span class="p">))</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>■ Was ist der Unterschied?
+<br>
+□ Änderungen der ManagerIn Relation (Gehalt sinkt) werden nicht erkannt.
+<br><br>
+■ Filme(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentID)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">ASSERTION</span> <span class="n">NurGrosseStudios</span> <span class="n">CHECK</span>
+<span class="p">(</span><span class="mi">10000</span> <span class="o">&lt;=</span> <span class="n">ALL</span>
+<span class="p">(</span><span class="n">SELECT</span> <span class="n">SUM</span><span class="p">(</span><span class="n">Länge</span><span class="p">)</span> <span class="n">FROM</span> <span class="n">Filme</span>
+<span class="n">GROUP</span> <span class="n">BY</span> <span class="n">StudioName</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>□ Ein Studio muss mindestens 10,000 Minuten Filmmaterial haben
+<br><br>
+■ Alternative beim Schema für Filme</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>□ CHECK (10000 &lt;= ALL
+(SELECT SUM(Länge) FROM Filme
+GROUP BY StudioName)
+</pre></div>
+</div>
+<p>■ Unterschied?
+<br>
+□ Beim Löschen eines Films wird die Bedingung nicht geprüft.
+<br>
+□ Beim Studiowechsel eines Films wird die Bedingung nicht geprüft.</p>
+</div>
+</div>
+<div class="section" id="unterschiede-der-check-bedingungen">
+<h3><span class="section-number">10.4.3. </span>Unterschiede der CHECK Bedingungen<a class="headerlink" href="#unterschiede-der-check-bedingungen" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/bedingungen_unterschiede.jpg" /></p>
+</div>
+<div class="section" id="trigger">
+<h3><span class="section-number">10.4.4. </span>Trigger<a class="headerlink" href="#trigger" title="Permalink to this headline">¶</a></h3>
+<p>■ Auch: Event-Condition-Action Rules (ECA-Rules)
+<br><br>
+■ Unterschiede zu Zusicherungen
+<br>
+□ Gelten nicht immer, sondern werden bei bestimmten Ereignissen (INSERT, UPDATE, DELETE, Ende einer Transaktion) ausgeführt.
+<br>
+□ Ein Ereignis wird zunächst nicht verhindert, es wird lediglich ein bestimmte Bedingung geprüft.
+<br>
+– Falls falsch, passiert nichts weiter
+<br>
+□ Falls wahr, wird eine Aktion ausgeführt. Die Aktion könnte das Ereignis verhindern oder rückgängig machen.
+<br>
+Oder auch etwas völlig anderes tun.</p>
+</div>
+<div class="section" id="trigger-in-sql">
+<h3><span class="section-number">10.4.5. </span>Trigger in SQL<a class="headerlink" href="#trigger-in-sql" title="Permalink to this headline">¶</a></h3>
+<p>Eigenschaften/Fähigkeiten
+<br>
+Ausführung der Aktion vor oder nach dem Ereignis
+<br>
+Die Aktion kann sich auf alte und/oder neue Werte von Tupeln beziehen, die beim Ereignis eingefügt, verändert oder gelöscht werden.
+<br>
+Mit WHEN können neben dem Ereignis auch weitere Bedingungen angegeben werden, die gelten müssen um die Aktion durchzuführen.
+<br>
+Aktion wird durchgeführt
+<br>
+Einmal für jedes veränderte Tupel oder
+<br>
+einmalig für alle Tupel, die verändert wurden</p>
+<div class="section" id="trigger-beispiel">
+<h4><span class="section-number">10.4.5.1. </span>Trigger – Beispiel<a class="headerlink" href="#trigger-beispiel" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TRIGGER</span> <span class="n">GehaltsTrigger</span> <span class="o">--</span><span class="n">Name</span> <span class="n">des</span> <span class="n">Triggers</span>
+<span class="n">AFTER</span> <span class="n">UPDATE</span> <span class="n">OF</span> <span class="n">Gehalt</span> <span class="n">ON</span> <span class="n">ManagerIn</span> <span class="o">--</span><span class="n">Ereignis</span>
+<span class="n">REFERENCING</span>
+    <span class="n">OLD</span> <span class="n">ROW</span> <span class="n">AS</span> <span class="n">AltesTupel</span><span class="p">,</span>
+    <span class="n">NEW</span> <span class="n">ROW</span> <span class="n">AS</span> <span class="n">NeuesTupel</span>
+<span class="n">FOR</span> <span class="n">EACH</span> <span class="n">ROW</span> <span class="o">--</span><span class="n">Für</span> <span class="n">jedes</span> <span class="n">veränderte</span> <span class="n">Tupel</span> <span class="n">einmal</span> <span class="n">durchführen</span>
+<span class="n">WHEN</span> <span class="p">(</span><span class="n">AltesTupel</span><span class="o">.</span><span class="n">Gehalt</span> <span class="o">&gt;</span> <span class="n">NeuesTupel</span><span class="o">.</span><span class="n">Gehalt</span><span class="p">)</span> <span class="o">--</span><span class="n">Bedingung</span> <span class="p">(</span><span class="n">condition</span><span class="p">)</span>
+    <span class="n">UPDATE</span> <span class="n">ManagerIn</span> <span class="o">--</span><span class="n">Aktion</span>
+    <span class="n">SET</span> <span class="n">Gehalt</span> <span class="o">=</span> <span class="n">AltesTupel</span><span class="o">.</span><span class="n">Gehalt</span>
+    <span class="n">WHERE</span> <span class="n">ManagerinID</span> <span class="o">=</span> <span class="n">NeuesTupel</span><span class="o">.</span><span class="n">ManagerinID</span><span class="p">;</span> <span class="o">--</span><span class="n">Nur</span> <span class="n">betroffenes</span> <span class="n">Tupel</span>
+</pre></div>
+</div>
+<p>■ Was bewirkt der Trigger?
+<br>
+□ Managergehälter werden nicht gesenkt!
+<br>
+□ Rekursionsverhalten ist DBMS-Hersteller-spezifisch.</p>
+</div>
+<div class="section" id="trigger-alternative">
+<h4><span class="section-number">10.4.5.2. </span>Trigger  –  Alternative<a class="headerlink" href="#trigger-alternative" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CREATE TRIGGER GehaltsTrigger                   --BEFORE
+AFTER UPDATE OF Gehalt ON ManagerIn             --INSERT / DELETE (ohne OF…)
+REFERENCING
+    OLD ROW AS AltesTupel,                      --Bei INSERT nicht erlaubt
+    NEW ROW AS NeuesTupel                       --Bei DELETE nicht erlaubt
+FOR EACH ROW                                    --Default: FOR EACH STATEMENT Dann: OLD TABLE / NEW TABLE
+WHEN (AltesTupel.Gehalt &gt; NeuesTupel.Gehalt)    --WHEN ist optional
+    UPDATE ManagerIn                            --Auch mehrere SQL Ausdrücke (BEGIN … END)
+    SET Gehalt = AltesTupel.Gehalt
+    WHERE ManagerinID = NeuesTupel.ManagerinID;
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h4><span class="section-number">10.4.5.3. </span>Trigger - Beispiel<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TRIGGER</span> <span class="n">DurchschnittsgehaltTrigger</span>
+<span class="n">AFTER</span> <span class="n">UPDATE</span> <span class="n">OF</span> <span class="n">Gehalt</span> <span class="n">ON</span> <span class="n">ManagerIn</span>
+<span class="n">REFERENCING</span>
+    <span class="n">OLD</span> <span class="n">TABLE</span> <span class="n">AS</span> <span class="n">AlteTupel</span> <span class="o">--</span><span class="n">Enthält</span> <span class="n">nur</span> <span class="n">die</span> <span class="n">alten</span> <span class="n">bzw</span><span class="o">.</span> <span class="n">neuen</span> <span class="n">Tupel</span><span class="o">.</span>
+    <span class="n">NEW</span> <span class="n">TABLE</span> <span class="n">AS</span> <span class="n">NeueTupel</span>
+<span class="n">FOR</span> <span class="n">EACH</span> <span class="n">STATEMENT</span>  <span class="o">--</span><span class="n">Ausführung</span> <span class="n">nur</span> <span class="n">einmal</span><span class="p">,</span> <span class="n">egal</span> <span class="n">wie</span> <span class="n">viele</span> <span class="n">Tupel</span> <span class="n">betroffen</span><span class="o">.</span>
+<span class="n">WHEN</span> <span class="p">(</span><span class="mi">500000</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">SELECT</span> <span class="n">AVG</span><span class="p">(</span><span class="n">Gehalt</span><span class="p">)</span> <span class="n">FROM</span> <span class="n">ManagerIn</span><span class="p">))</span> <span class="o">--</span><span class="n">Wird</span> <span class="n">nach</span> <span class="n">dem</span> <span class="n">UPDATE</span> <span class="n">geprüft</span><span class="o">.</span>
+<span class="n">BEGIN</span>
+    <span class="n">DELETE</span> <span class="n">FROM</span> <span class="n">ManagerIn</span>
+        <span class="n">WHERE</span> <span class="p">(</span><span class="n">Name</span><span class="p">,</span> <span class="n">Adresse</span><span class="p">,</span> <span class="n">ManagerID</span><span class="p">,</span> <span class="n">Gehalt</span><span class="p">)</span> <span class="n">IN</span> <span class="n">NeueTupel</span><span class="p">;</span> <span class="o">--</span><span class="n">Es</span> <span class="n">werden</span> <span class="n">nur</span> <span class="n">veränderte</span> <span class="n">Tupel</span> <span class="n">entfernt</span> <span class="n">und</span> <span class="n">durch</span> <span class="n">die</span> <span class="n">alten</span> <span class="n">Tupel</span> <span class="n">ersetzt</span><span class="o">.</span>
+    <span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">ManagerIn</span>
+        <span class="p">(</span><span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">AlteTupel</span><span class="p">)</span>
+<span class="n">END</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>■ Was bewirkt dieser Trigger?
+<br>
+□ Das Durchschnittsgehalt von Managern soll nicht unter 500,000 sinken!
+<br>
+□ Je ein Trigger für UPDATE, INSERT und DELETE nötig</p>
+</div>
+</div>
+</div>
+<div class="section" id="zusammenfassung">
+<h2><span class="section-number">10.5. </span>Zusammenfassung<a class="headerlink" href="#zusammenfassung" title="Permalink to this headline">¶</a></h2>
+<p>■ Schlüssel
+<br>
+□ UNIQUE, PRIMARY KEY, NOT NULL
+<br> <br>
+■ Referentielle Integrität
+<br>
+□ REFERENCES, FOREIGN KEY
+<br> <br>
+■ Attribut-basiertes CHECK
+<br> <br>
+■ Tupel-basiertes CHECK
+<br> <br>
+■ Zusicherungen (Datenbank-basiertes CHECK)
+<br>
+□ ASSERTION
+<br> <br>
+■ Trigger</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./10"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../09/sql.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">9. </span>SQL</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../markdown.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">11. </span>Markdown Files</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Prof. Dr. Ziawasch Abedjan<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
