@@ -1,0 +1,3490 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>9. SQL &#8212; Online-Skript Grundlagen der Datenbanksysteme</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10. Markdown Files" href="../markdown.html" />
+    <link rel="prev" title="8. Relationale Algebra" href="../08/relationale_algebra.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/DBIS_Kurzlogo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Online-Skript Grundlagen der Datenbanksysteme</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Grundlagen der Datenbanksysteme
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01/einfuehrung.html">
+   1. Einführung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02/historie.html">
+   2. Historie
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03/architektur.html">
+   3. Architektur
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04/phasenmodell_datenbankentwurf.html">
+   4. Phasenmodell für den Datenbankentwurf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05/er_modellierung.html">
+   5. ER-Modellierung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06/relationaler_entwurf.html">
+   6. Relationaler Entwurf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07/normalisierung.html">
+   7. Normalisierung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08/relationale_algebra.html">
+   8. Relationale Algebra
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   9. SQL
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown.html">
+   10. Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks.html">
+   11. Content with notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown-notebooks.html">
+   12. Notebooks with MyST Markdown
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/09/sql.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F09/sql.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/09/sql.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#einfuhrung">
+   9.1. Einführung
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql-historie">
+     9.1.1. SQL-Historie
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql-standardisierung">
+     9.1.2. SQL – Standardisierung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql-2008-struktur">
+     9.1.3. SQL:2008 Struktur
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#motivation-fur-sql">
+     9.1.4. Motivation für SQL
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#einfach-anfragen">
+   9.2. Einfach Anfragen
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#beispielschema">
+     9.2.1. Beispielschema
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#select-from-where">
+     9.2.2. SELECT … FROM … WHERE …
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grosz-und-kleinschreibung">
+     9.2.3. Groß- und Kleinschreibung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#projektion-in-sql-select-pi">
+     9.2.4. Projektion in SQL (SELECT,
+     <span class="math notranslate nohighlight">
+      \(\pi\)
+     </span>
+     )
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#selektion-in-sql-where-sigma">
+     9.2.5. Selektion in SQL (WHERE,
+     <span class="math notranslate nohighlight">
+      \(\sigma\)
+     </span>
+     )
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#selektion-in-sql">
+     9.2.6. Selektion in SQL
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stringvergleiche">
+     9.2.7. Stringvergleiche
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#string-mustervergleiche-mit-like">
+     9.2.8. String-Mustervergleiche mit LIKE
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#datum-und-uhrzeit">
+     9.2.9. Datum und Uhrzeit
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nullwerte">
+     9.2.10. Nullwerte
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wahrheitswerte">
+     9.2.11. Wahrheitswerte
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sortierung">
+     9.2.12. Sortierung
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#anfragen-uber-mehrere-relationen">
+   9.3. Anfragen über mehrere Relationen
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#motivation">
+     9.3.1. Motivation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kreuzprodukt-und-join">
+     9.3.2. Kreuzprodukt und Join
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uneindeutige-attributnamen">
+     9.3.3. Uneindeutige Attributnamen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tupelvariablen">
+     9.3.4. Tupelvariablen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tupelvariablen-selfjoin">
+     9.3.5. Tupelvariablen-Selfjoin
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpretation-von-anfragen">
+     9.3.6. Interpretation von Anfragen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#joins">
+     9.3.7. Joins
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-tpc-h-schema">
+     9.3.8. The TPC-H Schema
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#tpc-query-2-minimum-cost-supplier">
+       9.3.8.1. TPC Query 2 - Minimum Cost Supplier
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-tpc-h-universal-table">
+       9.3.8.2. The TPC-H Universal Table
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#outer-joins">
+     9.3.9. Outer Joins
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kreuzprodukt">
+     9.3.10. Kreuzprodukt
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mengenoperationen-in-sql">
+     9.3.11. Mengenoperationen in SQL
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#schnittmenge-intersect">
+       9.3.11.1. Schnittmenge: INTERSECT
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#vereinigung-union">
+       9.3.11.2. Vereinigung: UNION
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#differenz-except">
+       9.3.11.3. Differenz: EXCEPT
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#klammerung">
+       9.3.11.4. Klammerung
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zusammenfassung-der-semantik">
+     9.3.12. Zusammenfassung der Semantik
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#geschachtelte-anfragen">
+   9.4. Geschachtelte Anfragen
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     9.4.1. Motivation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#skalare-subanfragen">
+     9.4.2. Skalare Subanfragen
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#skalare-subanfragen-beispiel">
+       9.4.2.1. Skalare Subanfragen – Beispiel
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bedingungen-mit-relationen">
+     9.4.3. Bedingungen mit Relationen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exists-beispiele">
+     9.4.4. EXISTS Beispiele
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#in-beispiele">
+     9.4.5. IN Beispiele
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#all-und-any-beispiele">
+     9.4.6. ALL und ANY Beispiele
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bedingungen-mit-tupeln">
+     9.4.7. Bedingungen mit Tupeln
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#subanfragen-in-from-klausel">
+     9.4.8. Subanfragen in FROM-Klausel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#korrelierte-subanfragen">
+     9.4.9. Korrelierte Subanfragen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#operationen-auf-einer-relation">
+   9.5. Operationen auf einer Relation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#duplikateliminierung">
+     9.5.1. Duplikateliminierung
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#wdh-duplikateliminierung-bei-mengenoperationen">
+       9.5.1.1. Wdh.: Duplikateliminierung bei Mengenoperationen
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aggregation">
+     9.5.2. Aggregation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#aggregation-beispiele">
+       9.5.2.1. Aggregation – Beispiele
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gruppierung-aggregation-und-null">
+     9.5.3. Gruppierung, Aggregation und NULL
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gruppierung">
+     9.5.4. Gruppierung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zusammenfassung-sql">
+     9.5.5. Zusammenfassung SQL
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#datenbearbeitung-dml">
+   9.6. Datenbearbeitung(DML)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uberblick">
+     9.6.1. Überblick
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#einfugen">
+     9.6.2. Einfügen
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#einfugen-per-anfrage">
+       9.6.2.1. Einfügen per Anfrage
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ausfuhrungsreihenfolge-beim-einfugen">
+     9.6.3. Ausführungsreihenfolge beim Einfügen
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#bulk-insert">
+       9.6.3.1. Bulk insert
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loschen">
+     9.6.4. Löschen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#verandern-update">
+     9.6.5. Verändern (update)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#schemata-ddl">
+   9.7. Schemata(DDL)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     9.7.1. Überblick
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#datentypen">
+     9.7.2. Datentypen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uberblick-db2-datentypen">
+     9.7.3. Überblick DB2 Datentypen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tabellen">
+     9.7.4. Tabellen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#default-werte">
+     9.7.5. Default-Werte
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#constraints-und-trigger">
+     9.7.6. Constraints und Trigger
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#indizes">
+     9.7.7. Indizes
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#indexwahl">
+       9.7.7.1. Indexwahl
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#indexwahl-voruberlegungen">
+       9.7.7.2. Indexwahl – Vorüberlegungen
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#indexwahl-beispiel">
+       9.7.7.3. Indexwahl – Beispiel
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       9.7.7.4. Indexwahl – Beispiel
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#verteilung-in-imdb-real-world-daten-stand-ca-2010">
+     9.7.8. Verteilung in IMDB (Real-world Daten, Stand ca. 2010)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sichten">
+   9.8. Sichten
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#virtuelle-relationen">
+     9.8.1. Virtuelle Relationen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sichten-in-sql">
+     9.8.2. Sichten in SQL
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#anfragen-an-sichten">
+     9.8.3. Anfragen an Sichten
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#diskussion">
+     9.8.4. Diskussion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#updates-auf-sichten">
+     9.8.5. Updates auf Sichten
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#einfugen-auf-sichten-beispiel">
+     9.8.6. Einfügen auf Sichten – Beispiel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loschen-und-updates-auf-sichten">
+     9.8.7. Löschen und Updates auf Sichten
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tupelmigration">
+     9.8.8. Tupelmigration
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#anfrageplanung-mit-sichten">
+     9.8.9. Anfrageplanung mit Sichten
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#materialisierte-sichten">
+     9.8.10. Materialisierte Sichten
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mv-themen-und-probleme">
+       9.8.10.1. MV – Themen und Probleme
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#answering-queries-using-views">
+     9.8.11. „Answering Queries using Views“
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zusammenfassung">
+   9.9. Zusammenfassung
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>SQL</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#einfuhrung">
+   9.1. Einführung
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql-historie">
+     9.1.1. SQL-Historie
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql-standardisierung">
+     9.1.2. SQL – Standardisierung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql-2008-struktur">
+     9.1.3. SQL:2008 Struktur
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#motivation-fur-sql">
+     9.1.4. Motivation für SQL
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#einfach-anfragen">
+   9.2. Einfach Anfragen
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#beispielschema">
+     9.2.1. Beispielschema
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#select-from-where">
+     9.2.2. SELECT … FROM … WHERE …
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grosz-und-kleinschreibung">
+     9.2.3. Groß- und Kleinschreibung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#projektion-in-sql-select-pi">
+     9.2.4. Projektion in SQL (SELECT,
+     <span class="math notranslate nohighlight">
+      \(\pi\)
+     </span>
+     )
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#selektion-in-sql-where-sigma">
+     9.2.5. Selektion in SQL (WHERE,
+     <span class="math notranslate nohighlight">
+      \(\sigma\)
+     </span>
+     )
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#selektion-in-sql">
+     9.2.6. Selektion in SQL
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stringvergleiche">
+     9.2.7. Stringvergleiche
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#string-mustervergleiche-mit-like">
+     9.2.8. String-Mustervergleiche mit LIKE
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#datum-und-uhrzeit">
+     9.2.9. Datum und Uhrzeit
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nullwerte">
+     9.2.10. Nullwerte
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wahrheitswerte">
+     9.2.11. Wahrheitswerte
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sortierung">
+     9.2.12. Sortierung
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#anfragen-uber-mehrere-relationen">
+   9.3. Anfragen über mehrere Relationen
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#motivation">
+     9.3.1. Motivation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kreuzprodukt-und-join">
+     9.3.2. Kreuzprodukt und Join
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uneindeutige-attributnamen">
+     9.3.3. Uneindeutige Attributnamen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tupelvariablen">
+     9.3.4. Tupelvariablen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tupelvariablen-selfjoin">
+     9.3.5. Tupelvariablen-Selfjoin
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpretation-von-anfragen">
+     9.3.6. Interpretation von Anfragen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#joins">
+     9.3.7. Joins
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-tpc-h-schema">
+     9.3.8. The TPC-H Schema
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#tpc-query-2-minimum-cost-supplier">
+       9.3.8.1. TPC Query 2 - Minimum Cost Supplier
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-tpc-h-universal-table">
+       9.3.8.2. The TPC-H Universal Table
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#outer-joins">
+     9.3.9. Outer Joins
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kreuzprodukt">
+     9.3.10. Kreuzprodukt
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mengenoperationen-in-sql">
+     9.3.11. Mengenoperationen in SQL
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#schnittmenge-intersect">
+       9.3.11.1. Schnittmenge: INTERSECT
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#vereinigung-union">
+       9.3.11.2. Vereinigung: UNION
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#differenz-except">
+       9.3.11.3. Differenz: EXCEPT
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#klammerung">
+       9.3.11.4. Klammerung
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zusammenfassung-der-semantik">
+     9.3.12. Zusammenfassung der Semantik
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#geschachtelte-anfragen">
+   9.4. Geschachtelte Anfragen
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     9.4.1. Motivation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#skalare-subanfragen">
+     9.4.2. Skalare Subanfragen
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#skalare-subanfragen-beispiel">
+       9.4.2.1. Skalare Subanfragen – Beispiel
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bedingungen-mit-relationen">
+     9.4.3. Bedingungen mit Relationen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exists-beispiele">
+     9.4.4. EXISTS Beispiele
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#in-beispiele">
+     9.4.5. IN Beispiele
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#all-und-any-beispiele">
+     9.4.6. ALL und ANY Beispiele
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bedingungen-mit-tupeln">
+     9.4.7. Bedingungen mit Tupeln
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#subanfragen-in-from-klausel">
+     9.4.8. Subanfragen in FROM-Klausel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#korrelierte-subanfragen">
+     9.4.9. Korrelierte Subanfragen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#operationen-auf-einer-relation">
+   9.5. Operationen auf einer Relation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#duplikateliminierung">
+     9.5.1. Duplikateliminierung
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#wdh-duplikateliminierung-bei-mengenoperationen">
+       9.5.1.1. Wdh.: Duplikateliminierung bei Mengenoperationen
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aggregation">
+     9.5.2. Aggregation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#aggregation-beispiele">
+       9.5.2.1. Aggregation – Beispiele
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gruppierung-aggregation-und-null">
+     9.5.3. Gruppierung, Aggregation und NULL
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gruppierung">
+     9.5.4. Gruppierung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zusammenfassung-sql">
+     9.5.5. Zusammenfassung SQL
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#datenbearbeitung-dml">
+   9.6. Datenbearbeitung(DML)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uberblick">
+     9.6.1. Überblick
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#einfugen">
+     9.6.2. Einfügen
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#einfugen-per-anfrage">
+       9.6.2.1. Einfügen per Anfrage
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ausfuhrungsreihenfolge-beim-einfugen">
+     9.6.3. Ausführungsreihenfolge beim Einfügen
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#bulk-insert">
+       9.6.3.1. Bulk insert
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loschen">
+     9.6.4. Löschen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#verandern-update">
+     9.6.5. Verändern (update)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#schemata-ddl">
+   9.7. Schemata(DDL)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     9.7.1. Überblick
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#datentypen">
+     9.7.2. Datentypen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uberblick-db2-datentypen">
+     9.7.3. Überblick DB2 Datentypen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tabellen">
+     9.7.4. Tabellen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#default-werte">
+     9.7.5. Default-Werte
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#constraints-und-trigger">
+     9.7.6. Constraints und Trigger
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#indizes">
+     9.7.7. Indizes
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#indexwahl">
+       9.7.7.1. Indexwahl
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#indexwahl-voruberlegungen">
+       9.7.7.2. Indexwahl – Vorüberlegungen
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#indexwahl-beispiel">
+       9.7.7.3. Indexwahl – Beispiel
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       9.7.7.4. Indexwahl – Beispiel
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#verteilung-in-imdb-real-world-daten-stand-ca-2010">
+     9.7.8. Verteilung in IMDB (Real-world Daten, Stand ca. 2010)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sichten">
+   9.8. Sichten
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#virtuelle-relationen">
+     9.8.1. Virtuelle Relationen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sichten-in-sql">
+     9.8.2. Sichten in SQL
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#anfragen-an-sichten">
+     9.8.3. Anfragen an Sichten
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#diskussion">
+     9.8.4. Diskussion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#updates-auf-sichten">
+     9.8.5. Updates auf Sichten
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#einfugen-auf-sichten-beispiel">
+     9.8.6. Einfügen auf Sichten – Beispiel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loschen-und-updates-auf-sichten">
+     9.8.7. Löschen und Updates auf Sichten
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tupelmigration">
+     9.8.8. Tupelmigration
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#anfrageplanung-mit-sichten">
+     9.8.9. Anfrageplanung mit Sichten
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#materialisierte-sichten">
+     9.8.10. Materialisierte Sichten
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mv-themen-und-probleme">
+       9.8.10.1. MV – Themen und Probleme
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#answering-queries-using-views">
+     9.8.11. „Answering Queries using Views“
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zusammenfassung">
+   9.9. Zusammenfassung
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="sql">
+<h1><span class="section-number">9. </span>SQL<a class="headerlink" href="#sql" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="einfuhrung">
+<h2><span class="section-number">9.1. </span>Einführung<a class="headerlink" href="#einfuhrung" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="sql-historie">
+<h3><span class="section-number">9.1.1. </span>SQL-Historie<a class="headerlink" href="#sql-historie" title="Permalink to this headline">¶</a></h3>
+<p>■ SEQUEL (1974, IBM Research Labs San Jose)
+<br><br>
+■ SEQUEL2 (1976, IBM Research Labs San Jose)
+<br>
+□ System R
+<br><br>
+■ SQL (1982, IBM)
+<br><br>
+<img alt="title" src="../_images/historie1.jpg" />
+<br>
+<img alt="title" src="../_images/historie2.jpg" />
+<br>
+<img alt="title" src="../_images/historie3.jpg" /></p>
+</div>
+<div class="section" id="sql-standardisierung">
+<h3><span class="section-number">9.1.2. </span>SQL – Standardisierung<a class="headerlink" href="#sql-standardisierung" title="Permalink to this headline">¶</a></h3>
+<p>■ SQL1 von ANSI als Standard verabschiedet (1986)
+<br>
+<br>
+■ SQL1 von der (ISO) als Standard verabschiedet (1987)
+<br>
+□ 1989 nochmals überarbeitet.
+<br> <br>
+■ SQL2 oder SQL-92 von der ISO verabschiedet (1992)
+<br> <br>
+■ SQL3 oder SQL:1999 verabschiedet
+<br>
+□ Trigger, rekursive Anfragen
+<br>
+□ Objektrelationale Erweiterungen
+<br> <br>
+■ SQL:2003 von der ISO verabschiedet
+<br>
+□ XML-Support durch SQL/XML
+<br> <br>
+■ SQL/XML:2006
+<br>
+□ XQuery eingebunden
+<br> <br>
+■ SQL:2008
+<br>
+□ Updates auf Sichten, logisches Löschen (TRUNCATE), …
+<br> <br>
+■ SQL:2011
+<br>
+□ Adds temporal data (PERIOD FOR)
+<br> <br>
+■ SQL:2016
+<br>
+□ Adds row pattern matching, polymorphic table functions, JSON.
+<br><br>
+Trotz Standardisierung: Inkompatibilitäten zwischen Systemen der einzelnen Hersteller</p>
+</div>
+<div class="section" id="sql-2008-struktur">
+<h3><span class="section-number">9.1.3. </span>SQL:2008 Struktur<a class="headerlink" href="#sql-2008-struktur" title="Permalink to this headline">¶</a></h3>
+<p>■ Part 1: Framework (SQL/Framework) – 82 Seiten
+<br>
+□ Überblick
+<br><br>
+■ Part 2: Foundation (SQL/Foundation) – 1316 Seiten
+<br>
+□ Datenmodell, DDL, DML, Abfragen
+<br><br>
+■ Part 3: Call-Level Interface (SQL/CLI) – 389 Seiten
+<br>
+□ Zugriff auf DBMS mittels Funktionsaufrufen aus anderen Programmiersprachen
+<br><br>
+■ Part 4: Persistent Stored Modules (SQL/PSM) – 188 Seiten
+<br>
+□ Prozedurale Erweiterungen
+<br><br>
+■ Part 9: Management of External Data (SQL/MED) – 484 Seiten
+<br>
+□ Neue Datentypen und Funktionen
+<br><br>
+■ Part 10: Object Language Bindings (SQL/OLB) – 396 Seiten
+<br>
+□ Auch (SQLJ); zur Einbettung von SQL in Java
+<br><br>
+■ Part 11: Information and Definition Schemas (SQL/Schemata) – 286 Seiten
+<br>
+□ DBMS werden selbst-beschreibend durch normierten Katalog
+<br><br>
+■ Part 13: SQL Routines and Types (SQL/JRT) – 198 Seiten
+<br>
+□ Externe Java Routinen als „stored procedures“
+<br><br>
+■ Part 14: XML-Related Specifications (SQL/XML) – 438 Seiten
+<br>
+□ XML Datentyp und Erweiterung von SQL um XQuery
+<br><br>
+=&gt; Zusammen: 3777 Seiten</p>
+</div>
+<div class="section" id="motivation-fur-sql">
+<h3><span class="section-number">9.1.4. </span>Motivation für SQL<a class="headerlink" href="#motivation-fur-sql" title="Permalink to this headline">¶</a></h3>
+<p>■ Meist-verbreitete Datenbankanfragesprache
+<br><br>
+■ Ad-hoc und einfach
+<br><br>
+■ Deklarativ
+<br>
+□ Nicht prozedural / imperativ
+<br>
+□ Optimierbar
+<br><br>
+■ Very-High-Level Language
+<br><br>
+■ Anfragen an relationale Algebra angelehnt
+<br>
+□ Hinzu kommt DDL: Data definition language
+<br>
+□ Hinzu kommt DML: Data manipulation language
+<br><br>
+■ Achtung: Syntax kann sich von System zu System leicht unterscheiden.
+<br><br>
+■ Achtung: Funktionalität kann sich von System zu System leicht unterscheiden.</p>
+</div>
+</div>
+<div class="section" id="einfach-anfragen">
+<h2><span class="section-number">9.2. </span>Einfach Anfragen<a class="headerlink" href="#einfach-anfragen" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="beispielschema">
+<h3><span class="section-number">9.2.1. </span>Beispielschema<a class="headerlink" href="#beispielschema" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/beispielschema.jpg" /></p>
+</div>
+<div class="section" id="select-from-where">
+<h3><span class="section-number">9.2.2. </span>SELECT … FROM … WHERE …<a class="headerlink" href="#select-from-where" title="Permalink to this headline">¶</a></h3>
+<p>■</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT *
+FROM Film
+WHERE StudioName = ‘Disney‘ AND Jahr= 1990;
+</pre></div>
+</div>
+<p><br><br>
+■ Lesereihenfolge (und Schreibreihenfolge):
+<br></p>
+<ol class="simple">
+<li><p>FROM: Relation(en) aus denen die Daten stammen
+<br></p></li>
+<li><p>WHERE: Bedingung(en) an die Daten
+<br></p></li>
+<li><p>SELECT: Schema der Ergebnisrelation
+<br>
+– *: Alle Attribute der Inputrelationen
+<br><br>
+■ Ausführung
+<br>
+□ Für jedes Tupel aus „Film“ prüfe die Bedingungen und gebe gültige Tupel aus</p></li>
+</ol>
+</div>
+<div class="section" id="grosz-und-kleinschreibung">
+<h3><span class="section-number">9.2.3. </span>Groß- und Kleinschreibung<a class="headerlink" href="#grosz-und-kleinschreibung" title="Permalink to this headline">¶</a></h3>
+<p>■ In SQL wird Groß- und Kleinschreibung nicht beachtet
+<br></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">From</span> <span class="o">=</span> <span class="n">FROM</span> <span class="o">=</span> <span class="kn">from</span> <span class="o">=</span> <span class="n">FrOm</span>
+</pre></div>
+</div>
+<p><br><br>
+■ Auch bei Attribut- und Relationennamen
+<br></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELect</span> <span class="n">vorNAMe</span> <span class="n">fROm</span> <span class="n">fiLM</span>
+</pre></div>
+</div>
+<br>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">vorname</span> <span class="n">FROM</span> <span class="n">film</span>
+</pre></div>
+</div>
+<p><br><br>
+■ Natürlich nicht bei Konstanten:
+<br></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>‘FROM‘ ≠ ‘from‘ ≠ from = FROM
+</pre></div>
+</div>
+<p><br><br>
+■ Konvention zur Lesbarkeit
+<br>
+□ Schlüsselworte großschreiben
+<br>
+□ Schemaelemente kleinschreiben</p>
+</div>
+<div class="section" id="projektion-in-sql-select-pi">
+<h3><span class="section-number">9.2.4. </span>Projektion in SQL (SELECT, <span class="math notranslate nohighlight">\(\pi\)</span>)<a class="headerlink" href="#projektion-in-sql-select-pi" title="Permalink to this headline">¶</a></h3>
+<p>■ Spezifikation in der SELECT Klausel</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">Film</span>
+</pre></div>
+</div>
+<p>– Alle Attribute</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Titel</span><span class="p">,</span> <span class="n">Jahr</span><span class="p">,</span> <span class="n">inFarbe</span> <span class="n">FROM</span> <span class="n">Film</span>
+</pre></div>
+</div>
+<p>– Projektion auf die drei Attribute
+<br><br>
+■ Erweiterte Projektion
+<br>
+□ Umbenennung:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Titel</span> <span class="n">AS</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Jahr</span> <span class="n">AS</span> <span class="n">Zeit</span> <span class="n">FROM</span> <span class="n">Film</span>
+</pre></div>
+</div>
+<p>□ Arithmetischer Ausdruck:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Titel</span><span class="p">,</span> <span class="n">Länge</span> <span class="o">*</span> <span class="mf">0.016667</span> <span class="n">AS</span> <span class="n">Stunden</span> <span class="n">FROM</span> <span class="n">Film</span>
+</pre></div>
+</div>
+<p>□ Konstanten:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT Titel, Länge * 0.016667 AS Stunden,
+‘std.‘ AS inStunden FROM Film
+</pre></div>
+</div>
+</div>
+<div class="section" id="selektion-in-sql-where-sigma">
+<h3><span class="section-number">9.2.5. </span>Selektion in SQL (WHERE, <span class="math notranslate nohighlight">\(\sigma\)</span>)<a class="headerlink" href="#selektion-in-sql-where-sigma" title="Permalink to this headline">¶</a></h3>
+<p>■ Spezifikation in der WHERE Klausel
+<br>
+□ Bedingungen wie in einer Programmiersprache
+<br>
+□ Sechs Vergleichsoperatoren
+<br>
+– =, &lt;&gt;, &lt;, &gt;, &lt;=, &gt;=
+<br>
+– &lt;&gt;, &lt;=, &gt;= entspricht ≠, <span class="math notranslate nohighlight">\(\geq, \leq\)</span>
+<br>
+□ Operanden
+<br>
+– Konstanten und Attributnamen
+<br>
+– Auch Attribute, die nicht in der SELECT Klausel genannt werden.
+<br>
+□ Arithmetische Ausdrücke für numerische Attribute
+<br>
+– Z.B.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Jahr</span> <span class="o">-</span> <span class="mi">1930</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">Jahr</span> <span class="o">-</span> <span class="mi">1930</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">100</span>
+</pre></div>
+</div>
+<p>□ Konkatenation für Strings</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>‘Star‘ || ‘Wars‘ 
+</pre></div>
+</div>
+<p>entspricht</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>‘StarWars‘
+</pre></div>
+</div>
+<p>– Vorname || ` ` || Nachname = `Luke Skywalker`</p>
+</div>
+<div class="section" id="selektion-in-sql">
+<h3><span class="section-number">9.2.6. </span>Selektion in SQL<a class="headerlink" href="#selektion-in-sql" title="Permalink to this headline">¶</a></h3>
+<p>■ Ergebnis ist stets Boole‘scher Wert
+<br>
+□ TRUE oder FALSE
+<br>
+□ Können mit AND, OR und NOT verknüpft werden.
+<br>
+– Klammerungen sind erlaubt.
+<br>
+□ Nur wenn insgesamt auf TRUE evaluiert wird, erscheint das entsprechende Tupel im Ergebnis.
+<br>
+<br>
+■ Beispiele</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Titel</span>
+<span class="n">FROM</span> <span class="n">Film</span>
+<span class="n">WHERE</span> <span class="n">Jahr</span> <span class="o">&gt;</span> <span class="mi">1970</span> <span class="n">AND</span> <span class="n">NOT</span> <span class="n">inFarbe</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT Titel
+FROM Film
+WHERE (Jahr &gt; 1970 OR Länge &lt; 90) AND StudioName = ‘MGM‘;
+</pre></div>
+</div>
+</div>
+<div class="section" id="stringvergleiche">
+<h3><span class="section-number">9.2.7. </span>Stringvergleiche<a class="headerlink" href="#stringvergleiche" title="Permalink to this headline">¶</a></h3>
+<p>■ Datentypen
+<br>
+□ Array fester Länge, Buchstabenliste variabler Länge, Konstanten
+<br>
+□ SQL erlaubt viele Vergleiche über Datentypen hinweg
+<br><br>
+■ foo _ _ _ _ _ = foo = ‘foo‘
+<br><br>
+■ Vergleiche mit =, &lt;, &gt;, &lt;=, &gt;=, &lt;&gt;
+<br>
+□ Lexikographischer Vergleich
+<br>
+□ ‘fodder‘ &lt; ‘foo‘; ‘bar‘ &lt; ‘bargain‘;
+<br>
+□ Sortierreihenfolge upper-case/lower-case usw. je nach DBMS
+<br>
+□ Achtung: Auch nicht immer identisch zur Reihenfolge in Programmiersprachen</p>
+</div>
+<div class="section" id="string-mustervergleiche-mit-like">
+<h3><span class="section-number">9.2.8. </span>String-Mustervergleiche mit LIKE<a class="headerlink" href="#string-mustervergleiche-mit-like" title="Permalink to this headline">¶</a></h3>
+<p>■ string LIKE pattern
+<br>
+□ bzw. string NOT LIKE pattern
+<br><br>
+■ Pattern hat spezielle Zeichen
+<br>
+□ ‘%‘: Beliebige Sequenz von 0 oder mehr Zeichen
+<br>
+□ ‘_‘: Ein beliebiges Zeichen
+<br><br></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT Titel FROM Film
+WHERE Titel LIKE ‘Star _ _ _ _‘;
+</pre></div>
+</div>
+<p>□ Star Wars und Star Trek</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT Titel FROM Film WHERE Titel LIKE ‘%War%‘;
+</pre></div>
+</div>
+</div>
+<div class="section" id="datum-und-uhrzeit">
+<h3><span class="section-number">9.2.9. </span>Datum und Uhrzeit<a class="headerlink" href="#datum-und-uhrzeit" title="Permalink to this headline">¶</a></h3>
+<p>■ Spezielle Datentypen und Repräsentationen
+<br>
+□ Datumskonstante:
+<br>
+– DATE ‘YYYY-MM-DD‘
+<br>
+– DATE ‘1948-05-14‘
+<br><br>
+□ Zeitkonstante
+<br>
+– TIME ‘HH:MM:SS.S‘
+<br>
+– TIME ‘15:00:02.5‘
+<br><br>
+□ Zeitstempel
+<br>
+– TIMESTAMP ‘1948-05-14 15:00:02.5‘
+<br><br>
+□ Zeitvergleiche
+<br>
+– TIME ‘15:00:02.5‘ &lt; TIME ‘15:02:02.5‘ ergibt TRUE
+<br>
+– Selektion: ERSCHEINUNGSTAG &gt;= DATE ‘1949-11-12‘</p>
+</div>
+<div class="section" id="nullwerte">
+<h3><span class="section-number">9.2.10. </span>Nullwerte<a class="headerlink" href="#nullwerte" title="Permalink to this headline">¶</a></h3>
+<p>Darstellung: NULL bzw. ⊥
+<br>
+<br>
+Mögliche Interpretationen
+<br>
+Unbekannter Wert
+<br>
+-&gt; Geburtstag einer/s Schauspieler*in
+<br>
+Wert unzulässig
+<br>
+-&gt; Ehegatte eines unverheirateten Schauspielers
+<br>
+Wert unterdrückt
+<br>
+-&gt; Geheime Telefonnummer
+<br>
+<br>
+Regeln für Umgang mit Nullwerten
+<br>
+Arithmetische Operationen mit NULL ergeben NULL
+<br>
+Vergleich mit NULL ergibt Wahrheitswert UNKNOWN
+<br>
+NULL ist keine Konstante, sondern erscheint nur als Attributwert
+<br><br>
+Beispiel (sei der Wert von x NULL):
+<br>
+x+3 ergibt NULL.
+<br>
+NULL+3 ist kein zulässiger Ausdruck.
+<br>
+x = 3 ergibt UNKNOWN.
+<br><br>
+Prüfen von Nullwerten in WHERE Klausel
+<br>
+Geburtstag IS NULL bzw. Geburtstag IS NOT NULL</p>
+</div>
+<div class="section" id="wahrheitswerte">
+<h3><span class="section-number">9.2.11. </span>Wahrheitswerte<a class="headerlink" href="#wahrheitswerte" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/wahrheitswerte1.jpg" />
+<br>
+■ Rechenregeln
+<br>
+□ TRUE = 1
+<br>
+FALSE = 0
+<br>
+UNKNOWN = ½
+<br>
+□ AND: Minimum der beiden Werte
+<br>
+□ OR: Maximum der beiden Werte
+<br>
+□ NOT: 1 – Wert
+<br><br>
+□ Beispiel
+<br>
+– TRUE AND (FALSE OR NOT(UNKNOWN))
+<br>
+= MIN(1, MAX(0, (1 - ½ )))
+<br>
+= MIN(1, MAX(0, ½ )
+<br>
+= MIN(1, ½ ) = ½.
+<br><br>
+<img alt="title" src="../_images/wahrheitswerte2.jpg" />
+<br>
+Überraschendes Verhalten
+<br></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="o">*</span>
+<span class="n">FROM</span> <span class="n">Film</span>
+<span class="n">WHERE</span> <span class="n">Länge</span> <span class="o">&lt;=</span> <span class="mi">90</span> <span class="n">OR</span> <span class="n">Länge</span> <span class="o">&gt;</span> <span class="mi">90</span><span class="p">;</span> <span class="o">--</span><span class="n">Länge</span> <span class="o">&lt;=</span> <span class="mi">90</span> <span class="o">==</span> <span class="n">UNKNOWN</span> <span class="n">und</span> <span class="n">Länge</span> <span class="o">&gt;</span> <span class="mi">90</span>
+</pre></div>
+</div>
+<p>□ Tupel erscheint nicht im Ergebnis.
+<br><br>
+■ Ausführungspriorität: NOT vor AND vor OR</p>
+</div>
+<div class="section" id="sortierung">
+<h3><span class="section-number">9.2.12. </span>Sortierung<a class="headerlink" href="#sortierung" title="Permalink to this headline">¶</a></h3>
+<p>■ ORDER BY Klausel ans Ende der Anfrage
+<br>
+□ ORDER BY &lt;Attributliste&gt; DESC/ASC
+<br>
+□ ASC (aufsteigend) ist default
+<br></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT *
+FROM Film
+WHERE StudioName = ‘Disney‘ AND Jahr = 1990
+ORDER BY Länge, Titel;
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT *
+FROM Film
+WHERE StudioName = ‘Disney‘ AND Jahr = 1990
+ORDER BY Länge ASC, Titel DESC;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="anfragen-uber-mehrere-relationen">
+<h2><span class="section-number">9.3. </span>Anfragen über mehrere Relationen<a class="headerlink" href="#anfragen-uber-mehrere-relationen" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="motivation">
+<h3><span class="section-number">9.3.1. </span>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h3>
+<p>■ Hauptstärke der Relationalen Algebra ist die Kombination von Relationen
+<br><br>
+■ Erst mit mehreren Relationen sind viele interessante Anfragen möglich.
+<br><br>
+■ Nennung der beteiligten Relationen in der FROM Klausel</p>
+</div>
+<div class="section" id="kreuzprodukt-und-join">
+<h3><span class="section-number">9.3.2. </span>Kreuzprodukt und Join<a class="headerlink" href="#kreuzprodukt-und-join" title="Permalink to this headline">¶</a></h3>
+<p>■ Film(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentinID)
+<br>
+■ Manager*in(Name, Adresse, ManagerinID, Gehalt)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT Name
+FROM Film, ManagerIn --Kreuzprodukt
+WHERE Titel = ‘Star Wars‘ --Selektionsbedingung
+AND ProduzentinID = ManagerinID; --Joinbedingung
+</pre></div>
+</div>
+<p>■ Semantik
+<br>
+□ Betrachte jedes Tupelpaar der Relationen Film und Manager.
+□ Wende Bedingung der WHERE Klausel auf jedes Tupelpaar an
+<br>
+□ Falls Bedingung erfüllt, produziere ein Ergebnistupel.
+<br><br>
+■ Kreuzprodukt gefolgt von Selektion: Join
+<br><br>
+■ Reihenfolge der WHERE Bedingungen egal</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT Name FROM Film, ManagerIn
+WHERE ProduzentinID = ManagerinID
+AND Titel = ‘Star Wars‘;
+</pre></div>
+</div>
+</div>
+<div class="section" id="uneindeutige-attributnamen">
+<h3><span class="section-number">9.3.3. </span>Uneindeutige Attributnamen<a class="headerlink" href="#uneindeutige-attributnamen" title="Permalink to this headline">¶</a></h3>
+<p>■ SchauspielerIn(Name, Adresse, Geschlecht, Geburtstag)
+<br><br>
+■ ManagerIn(Name, Adresse, ManagerinID, Gehalt)
+<br><br>
+■ Bei gleichen Attributnamen aus mehreren beteiligten Relationen:
+<br>
+□ Relationenname als Präfix:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">SchauspielerIn</span><span class="o">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">ManagerIn</span><span class="o">.</span><span class="n">Name</span>
+<span class="n">FROM</span> <span class="n">SchauspielerIn</span><span class="p">,</span> <span class="n">Manager</span>
+<span class="n">WHERE</span> <span class="n">SchauspielerIn</span><span class="o">.</span><span class="n">Adresse</span> <span class="o">=</span> <span class="n">ManagerIn</span><span class="o">.</span><span class="n">Adresse</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>□ Präfix ist auch erlaubt wenn Attributname eindeutig ist.
+<br>
+– Erleichtert das Lesen von SQL Anfragen</p>
+</div>
+<div class="section" id="tupelvariablen">
+<h3><span class="section-number">9.3.4. </span>Tupelvariablen<a class="headerlink" href="#tupelvariablen" title="Permalink to this headline">¶</a></h3>
+<p>■ Zur eindeutigen Kennzeichnung von Tupeln beteiligter Relationen
+<br>
+□ „Alias“ einer Relation
+<br>
+□ Insbesondere: Bei der mehrfachen Verwendung einer Relation in einer Anfrage
+<br><br>
+■ Gesucht: Schauspieler, die zusammen leben</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Star1</span><span class="o">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">Star2</span><span class="o">.</span><span class="n">Name</span>
+<span class="n">FROM</span> <span class="n">SchauspielerIn</span> <span class="n">Star1</span><span class="p">,</span> <span class="n">SchauspielerIn</span> <span class="n">Star2</span>
+<span class="n">WHERE</span> <span class="n">Star1</span><span class="o">.</span><span class="n">Adresse</span> <span class="o">=</span> <span class="n">Star2</span><span class="o">.</span><span class="n">Adresse</span>
+</pre></div>
+</div>
+<p>□ Äquivalent zu Schauspieler AS Star2
+<br><br>
+■ Auch sinnvoll als abkürzenden Schreibweise</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">S</span><span class="o">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">M</span><span class="o">.</span><span class="n">Name</span>
+<span class="n">FROM</span> <span class="n">SchauspielerIn</span> <span class="n">S</span><span class="p">,</span> <span class="n">ManagerIn</span> <span class="n">M</span>
+<span class="n">WHERE</span> <span class="n">S</span><span class="o">.</span><span class="n">Adresse</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">Adresse</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>■ Ohne explizites Angeben einer Tupelvariablen wird der Relationenname als Tupelvariable verwendet.</p>
+</div>
+<div class="section" id="tupelvariablen-selfjoin">
+<h3><span class="section-number">9.3.5. </span>Tupelvariablen-Selfjoin<a class="headerlink" href="#tupelvariablen-selfjoin" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/selfjoin1.jpg" /></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Star1</span><span class="o">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">Star2</span><span class="o">.</span><span class="n">Name</span>
+<span class="n">FROM</span> <span class="n">SchauspielerIn</span> <span class="n">Star1</span><span class="p">,</span> <span class="n">SchauspielerIn</span> <span class="n">Star2</span>
+<span class="n">WHERE</span> <span class="n">Star1</span><span class="o">.</span><span class="n">Adresse</span> <span class="o">=</span> <span class="n">Star2</span><span class="o">.</span><span class="n">Adresse</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><img alt="title" src="../_images/selfjoin2.jpg" /></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Star1</span><span class="o">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">Star2</span><span class="o">.</span><span class="n">Name</span>
+<span class="n">FROM</span> <span class="n">SchauspielerIn</span> <span class="n">Star1</span><span class="p">,</span> <span class="n">SchauspielerIn</span> <span class="n">Star2</span>
+<span class="n">WHERE</span> <span class="n">Star1</span><span class="o">.</span><span class="n">Adresse</span> <span class="o">=</span> <span class="n">Star2</span><span class="o">.</span><span class="n">Adresse</span>
+<span class="n">AND</span> <span class="n">Star1</span><span class="o">.</span><span class="n">Name</span> <span class="o">&lt;&gt;</span> <span class="n">Star2</span><span class="o">.</span><span class="n">Name</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><img alt="title" src="../_images/selfjoin3.jpg" /></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Star1</span><span class="o">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">Star2</span><span class="o">.</span><span class="n">Name</span>
+<span class="n">FROM</span> <span class="n">SchauspielerIn</span> <span class="n">Star1</span><span class="p">,</span> <span class="n">SchauspielerIn</span> <span class="n">Star2</span>
+<span class="n">WHERE</span> <span class="n">Star1</span><span class="o">.</span><span class="n">Adresse</span> <span class="o">=</span> <span class="n">Star2</span><span class="o">.</span><span class="n">Adresse</span>
+<span class="n">AND</span> <span class="n">Star1</span><span class="o">.</span><span class="n">Name</span> <span class="o">&lt;</span> <span class="n">Star2</span><span class="o">.</span><span class="n">Name</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><img alt="title" src="../_images/selfjoin4.jpg" /></p>
+</div>
+<div class="section" id="interpretation-von-anfragen">
+<h3><span class="section-number">9.3.6. </span>Interpretation von Anfragen<a class="headerlink" href="#interpretation-von-anfragen" title="Permalink to this headline">¶</a></h3>
+<p>■ Drei Interpretationsvarianten für Anfragen mit mehreren Relationen
+<br>
+□ Nested Loops (geschachtelte Schleifen)
+<br>
+– Bei mehreren Tupelvariablen: Eine geschachtelte Schleife für jede Variable
+<br>
+□ Parallele Zuordnung
+<br>
+– Alle Kombinationen werden parallel bezüglich der Bedingungen geprüft.
+<br>
+□ Relationale Algebra
+<br>
+– Bilde Kreuzprodukt
+<br>
+– Wende Selektionsbedingungen auf jedes Resultat-Tupel an
+<br><br></p>
+<p>■ Gegeben drei Relationen: R(A), S(A) und T(A)
+<br><br>
+■ Gesucht: R <span class="math notranslate nohighlight">\(\cap\)</span> (S <span class="math notranslate nohighlight">\(\cup\)</span> T) (= (R <span class="math notranslate nohighlight">\(\cap\)</span> S) <span class="math notranslate nohighlight">\(\cup\)</span> (R <span class="math notranslate nohighlight">\(\cap\)</span> T) )</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">R</span><span class="o">.</span><span class="n">A</span>
+<span class="n">FROM</span> <span class="n">R</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">T</span>
+<span class="n">WHERE</span> <span class="n">R</span><span class="o">.</span><span class="n">A</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">A</span>
+<span class="n">OR</span> <span class="n">R</span><span class="o">.</span><span class="n">A</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">A</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="o">*</span>
+<span class="n">FROM</span>
+<span class="p">(</span>
+    <span class="p">(</span><span class="n">SELECT</span> <span class="n">A</span> <span class="n">FROM</span> <span class="n">R</span><span class="p">)</span>
+     <span class="n">INTERSECT</span>
+    <span class="p">(</span><span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span>
+     <span class="p">(</span><span class="n">SELECT</span> <span class="n">A</span> <span class="n">FROM</span> <span class="n">S</span><span class="p">)</span>
+      <span class="n">UNION</span>
+    <span class="p">(</span><span class="n">SELECT</span> <span class="n">A</span> <span class="n">FROM</span> <span class="n">T</span><span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>■ Problemfall: T ist leer, hat also kein Tupel
+<br><br>
+■ Vermeintliches Resultat: R <span class="math notranslate nohighlight">\(\cap\)</span> S
+<br><br>
+■ Tatsächliches Resultat: leere Menge
+<br>
+□ Ausführung als drei geschachtelte Schleifen</p>
+</div>
+<div class="section" id="joins">
+<h3><span class="section-number">9.3.7. </span>Joins<a class="headerlink" href="#joins" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/joins.jpg" /></p>
+<p>Man kann Joins auch auf andere Weise ausdrücken.
+<br>
+□ Geschmacksfrage
+<br>
+□ Film CROSS JOIN spielt_in
+<br>
+– Kreuzprodukt
+<br>
+– Doppelte Attributnamen werden mit Präfix der Relation aufgelöst</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Film JOIN spielt_in ON Titel = FilmTitel AND Jahr = FilmJahr
+– Theta-Join
+– SELECT Titel, Jahr, Länge, inFarbe, StudioName,
+ProduzentinID, SchauspielerName FROM Film JOIN spielt_in ON Titel = FilmTitel
+AND Jahr = FilmJahr;
+</pre></div>
+</div>
+<p>– Eliminiert redundante Attribute FilmTitel und FilmJahr</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT Titel, Jahr
+FROM Film JOIN spielt_in ON Titel = FilmTitel AND Jahr = FilmJahr
+JOIN SchauspielerIn ON spielt_in.Name = SchauspielerIn.Name WHERE Geschlecht = ‘w‘;
+</pre></div>
+</div>
+<p>□ Schauspieler NATURAL JOIN Manager
+<br>
+– Natural Join; Eliminiert redundante Attribute</p>
+</div>
+<div class="section" id="the-tpc-h-schema">
+<h3><span class="section-number">9.3.8. </span>The TPC-H Schema<a class="headerlink" href="#the-tpc-h-schema" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/tpc-h_schema.jpg" /></p>
+<div class="section" id="tpc-query-2-minimum-cost-supplier">
+<h4><span class="section-number">9.3.8.1. </span>TPC Query 2 - Minimum Cost Supplier<a class="headerlink" href="#tpc-query-2-minimum-cost-supplier" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">s_acctbal</span><span class="p">,</span> <span class="n">s_name</span><span class="p">,</span> <span class="n">n_name</span><span class="p">,</span> <span class="n">p_partkey</span><span class="p">,</span> <span class="n">p_mfgr</span><span class="p">,</span> <span class="n">s_address</span><span class="p">,</span> <span class="n">s_phone</span><span class="p">,</span>
+<span class="n">s_comment</span>
+<span class="n">FROM</span> <span class="n">part</span><span class="p">,</span> <span class="n">supplier</span><span class="p">,</span> <span class="n">partsupp</span><span class="p">,</span> <span class="n">nation</span><span class="p">,</span> <span class="n">region</span>
+<span class="n">WHERE</span> <span class="n">p_partkey</span> <span class="o">=</span> <span class="n">ps_partkey</span> <span class="n">AND</span> <span class="n">s_suppkey</span> <span class="o">=</span> <span class="n">ps_suppkey</span>
+<span class="n">AND</span> <span class="n">p_size</span> <span class="o">=</span> <span class="p">[</span><span class="n">SIZE</span><span class="p">]</span> <span class="n">AND</span> <span class="n">p_type</span> <span class="n">like</span> <span class="s1">&#39;%[TYPE]&#39;</span>
+<span class="n">AND</span> <span class="n">s_nationkey</span> <span class="o">=</span> <span class="n">n_nationkey</span> <span class="n">AND</span> <span class="n">n_regionkey</span> <span class="o">=</span> <span class="n">r_regionkey</span>
+<span class="n">AND</span> <span class="n">r_name</span> <span class="o">=</span> <span class="s1">&#39;[REGION]&#39;</span>
+<span class="n">AND</span> <span class="n">ps_supplycost</span> <span class="o">=</span>
+<span class="p">(</span><span class="n">SELECT</span> <span class="nb">min</span><span class="p">(</span><span class="n">ps_supplycost</span><span class="p">)</span>
+<span class="n">FROM</span> <span class="n">partsupp</span><span class="p">,</span> <span class="n">supplier</span><span class="p">,</span> <span class="n">nation</span><span class="p">,</span> <span class="n">region</span>
+<span class="n">WHERE</span> <span class="n">p_partkey</span> <span class="o">=</span> <span class="n">ps_partkey</span> <span class="n">AND</span> <span class="n">s_suppkey</span> <span class="o">=</span> <span class="n">ps_suppkey</span>
+<span class="n">AND</span> <span class="n">s_nationkey</span> <span class="o">=</span> <span class="n">n_nationkey</span> <span class="n">AND</span> <span class="n">n_regionkey</span> <span class="o">=</span> <span class="n">r_regionkey</span>
+<span class="n">AND</span> <span class="n">r_name</span> <span class="o">=</span> <span class="s1">&#39;[REGION]&#39;</span> <span class="p">)</span>
+<span class="n">ORDER</span> <span class="n">BY</span> <span class="n">s_acctbal</span> <span class="n">desc</span><span class="p">,</span> <span class="n">n_name</span><span class="p">,</span> <span class="n">s_name</span><span class="p">,</span> <span class="n">p_partkey</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>SIZE is randomly selected within [1. 50];
+<br>
+TYPE is randomly selected within the list Syllable 3 defined for Types
+<br>
+REGION is randomly selected within the list of values defined for R_NAME</p>
+</div>
+<div class="section" id="the-tpc-h-universal-table">
+<h4><span class="section-number">9.3.8.2. </span>The TPC-H Universal Table<a class="headerlink" href="#the-tpc-h-universal-table" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">l_linenumber</span><span class="p">,</span> <span class="n">l_quantity</span><span class="p">,</span> <span class="n">l_extendedprice</span><span class="p">,</span> <span class="n">l_discount</span><span class="p">,</span> <span class="n">l_tax</span><span class="p">,</span> <span class="n">l_returnflag</span><span class="p">,</span> <span class="n">l_linestatus</span><span class="p">,</span> <span class="n">l_shipdate</span><span class="p">,</span> <span class="n">l_commitdate</span><span class="p">,</span> <span class="n">l_receiptdate</span><span class="p">,</span> <span class="n">l_shipinstruct</span><span class="p">,</span> <span class="n">l_shipmode</span><span class="p">,</span> <span class="n">l_comment</span><span class="p">,</span> <span class="n">o_orderkey</span><span class="p">,</span> <span class="n">o_orderstatus</span><span class="p">,</span> <span class="n">o_totalprice</span><span class="p">,</span> <span class="n">o_orderdate</span><span class="p">,</span> <span class="n">o_orderpriority</span><span class="p">,</span> <span class="n">o_clerk</span><span class="p">,</span> <span class="n">o_shippriority</span><span class="p">,</span> <span class="n">o_comment</span><span class="p">,</span> <span class="n">ps_availqty</span><span class="p">,</span> <span class="n">ps_supplycost</span><span class="p">,</span> <span class="n">ps_comment</span><span class="p">,</span> <span class="n">p_partkey</span><span class="p">,</span> <span class="n">p_name</span><span class="p">,</span> <span class="n">p_mfgr</span><span class="p">,</span> <span class="n">p_brand</span><span class="p">,</span> <span class="n">p_type</span><span class="p">,</span> <span class="n">p_size</span><span class="p">,</span> <span class="n">p_container</span><span class="p">,</span> <span class="n">p_retailprice</span><span class="p">,</span> <span class="n">p_comment</span><span class="p">,</span> <span class="n">c_custkey</span><span class="p">,</span> <span class="n">c_name</span><span class="p">,</span> <span class="n">c_address</span><span class="p">,</span> <span class="n">c_phone</span><span class="p">,</span> <span class="n">c_acctbal</span><span class="p">,</span> <span class="n">c_mktsegment</span><span class="p">,</span> <span class="n">c_comment</span><span class="p">,</span> <span class="n">s_suppkey</span><span class="p">,</span> <span class="n">s_name</span><span class="p">,</span> <span class="n">s_address</span><span class="p">,</span> <span class="n">s_phone</span><span class="p">,</span> <span class="n">s_acctbal</span><span class="p">,</span> <span class="n">s_comment</span><span class="p">,</span> <span class="n">n_nationkey</span><span class="p">,</span> <span class="n">n_name</span><span class="p">,</span> <span class="n">n_comment</span><span class="p">,</span> <span class="n">r_regionkey</span><span class="p">,</span> <span class="n">r_name</span><span class="p">,</span> <span class="n">r_comment</span>
+
+<span class="n">FROM</span> <span class="n">lineitem</span><span class="p">,</span> <span class="n">orders</span><span class="p">,</span> <span class="n">partsupp</span><span class="p">,</span> <span class="n">part</span><span class="p">,</span> <span class="n">customer</span><span class="p">,</span> <span class="n">supplier</span><span class="p">,</span> <span class="n">nation</span><span class="p">,</span> <span class="n">region</span>
+
+<span class="n">WHERE</span> <span class="n">p_partkey</span> <span class="o">=</span> <span class="n">ps_partkey</span>
+
+<span class="n">AND</span> <span class="n">s_suppkey</span> <span class="o">=</span> <span class="n">ps_suppkey</span>
+
+<span class="n">AND</span> <span class="n">n_nationkey</span> <span class="o">=</span> <span class="n">s_nationkey</span>
+
+<span class="n">AND</span> <span class="n">r_regionkey</span> <span class="o">=</span> <span class="n">n_regionkey</span>
+
+<span class="n">AND</span> <span class="n">c_custkey</span> <span class="o">=</span> <span class="n">o_custkey</span>
+
+<span class="n">AND</span> <span class="n">ps_partkey</span> <span class="o">=</span> <span class="n">l_partkey</span>
+
+<span class="n">AND</span> <span class="n">ps_suppkey</span> <span class="o">=</span> <span class="n">l_suppkey</span>
+
+<span class="n">AND</span> <span class="n">o_orderkey</span> <span class="o">=</span> <span class="n">l_orderkey</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="outer-joins">
+<h3><span class="section-number">9.3.9. </span>Outer Joins<a class="headerlink" href="#outer-joins" title="Permalink to this headline">¶</a></h3>
+<p>■ SchauspielerIn(Name, Adresse, Geschlecht, Geburtstag)
+<br><br>
+■ ManagerIn(Name, Adresse, ManagerinID, Gehalt)
+<br><br>
+■ Schauspieler<em>innen, die zugleich Manager</em>in sind</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Adresse</span><span class="p">,</span> <span class="n">Geburtstag</span><span class="p">,</span> <span class="n">Gehalt</span>
+<span class="n">FROM</span> <span class="n">Schauspieler</span> <span class="n">NATURAL</span> <span class="n">INNER</span> <span class="n">JOIN</span> <span class="n">Manager</span>
+</pre></div>
+</div>
+<p>■ SchauspielerIn und gegebenenfalls ihre ManagerIninfo</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>…FROM SchauspielerIn NATURAL LEFT OUTER JOIN ManagerIn
+</pre></div>
+</div>
+<p>□ Gehalt bleibt gegebenenfalls NULL</p>
+<p>■ ManagerIn und gegebenenfalls ihre Schauspielerinfo</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>…FROM SchauspielerIn NATURAL RIGHT OUTER JOIN ManagerIn
+</pre></div>
+</div>
+<p>□ Geburtstag bleibt gegebenenfalls NULL</p>
+<p>■ Alle Schauspieler<em>innen und Manager</em>innen</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>…FROM SchauspielerIn NATURAL FULL OUTER JOIN ManagerIn
+</pre></div>
+</div>
+<p>□ Geburtstag oder Gehalt bleiben gegebenenfalls leer</p>
+<p>□ Unterschied zu UNION: Nur eine Zeile pro Person</p>
+<p><img alt="title" src="../_images/outerjoins.jpg" /></p>
+</div>
+<div class="section" id="kreuzprodukt">
+<h3><span class="section-number">9.3.10. </span>Kreuzprodukt<a class="headerlink" href="#kreuzprodukt" title="Permalink to this headline">¶</a></h3>
+<p>■ Alle Paare aus Tupeln der beteiligten Relationen</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="o">*</span>
+<span class="n">FROM</span> <span class="n">SchauspielerIn</span> <span class="n">CROSS</span> <span class="n">JOIN</span> <span class="n">Film</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="o">*</span>
+<span class="n">FROM</span> <span class="n">SchauspielerIn</span><span class="p">,</span> <span class="n">Film</span>
+</pre></div>
+</div>
+<p>■ Selten verwendet
+<br>
+■ Grundbaustein für Joins</p>
+</div>
+<div class="section" id="mengenoperationen-in-sql">
+<h3><span class="section-number">9.3.11. </span>Mengenoperationen in SQL<a class="headerlink" href="#mengenoperationen-in-sql" title="Permalink to this headline">¶</a></h3>
+<p>Vereinigung: UNION
+<br><br>
+■ Schnittmenge: INTERSECT
+<br><br>
+■ Differenz: EXCEPT / MINUS
+<br><br>
+■ Mengenoperationen nur zwischen geklammerten Anfrageergebnissen
+<br><br>
+■ Mengenoperationen haben implizit eine Mengensemantik
+<br>
+□ Wandeln Input-Relationen in Mengen um
+<br>
+□ Wandeln Output in Menge um
+<br><br>
+■ Input-Relationen müssen gleiche Schemata haben
+<br>
+□ Gleiche Attributnamen
+<br>
+□ Gleiche Datentypen
+<br>
+■ SchauspielerIn(Name, Adresse, Geschlecht, Geburtstag)
+<br><br>
+■ ManagerIn(Name, Adresse, ManagerinID, Gehalt)</p>
+<div class="section" id="schnittmenge-intersect">
+<h4><span class="section-number">9.3.11.1. </span>Schnittmenge: INTERSECT<a class="headerlink" href="#schnittmenge-intersect" title="Permalink to this headline">¶</a></h4>
+<p>■ Entspricht dem logischen „und“</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">SELECT</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Adresse</span> <span class="n">FROM</span> <span class="n">SchauspielerIn</span><span class="p">)</span>
+<span class="n">INTERSECT</span>
+<span class="p">(</span><span class="n">SELECT</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Adresse</span> <span class="n">FROM</span> <span class="n">ManagerIn</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(SELECT Name, Adresse
+ FROM SchauspielerIn
+ WHERE Geschlecht = ‘F‘)
+           INTERSECT
+(SELECT Name, Adresse
+ FROM ManagerIn
+ WHERE Gehalt &gt; 1000000)
+</pre></div>
+</div>
+<p>■ Multimengen-Semantik: INTERSECT ALL</p>
+</div>
+<div class="section" id="vereinigung-union">
+<h4><span class="section-number">9.3.11.2. </span>Vereinigung: UNION<a class="headerlink" href="#vereinigung-union" title="Permalink to this headline">¶</a></h4>
+<p>■ Entspricht dem logischen „oder“</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">SELECT</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Adresse</span> <span class="n">FROM</span> <span class="n">SchauspielerIn</span><span class="p">)</span>
+           <span class="n">UNION</span>
+<span class="p">(</span><span class="n">SELECT</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Adresse</span> <span class="n">FROM</span> <span class="n">ManagerIn</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>■ Multimenge: UNION ALL
+<br>
+□ Beliebt, da schnell
+<br>
+□ Verwenden falls
+<br>
+– Semantik egal
+<br>
+– Multimengensemantik erwünscht
+<br>
+– Mengeneigenschaft von Input und Output bereits bekannt</p>
+</div>
+<div class="section" id="differenz-except">
+<h4><span class="section-number">9.3.11.3. </span>Differenz: EXCEPT<a class="headerlink" href="#differenz-except" title="Permalink to this headline">¶</a></h4>
+<p>■ Auch MINUS</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">SELECT</span> <span class="n">Titel</span><span class="p">,</span> <span class="n">Jahr</span>
+ <span class="n">FROM</span> <span class="n">Film</span><span class="p">)</span>
+         <span class="n">EXCEPT</span>
+<span class="p">(</span><span class="n">SELECT</span> <span class="n">FilmTitel</span> <span class="n">AS</span> <span class="n">Titel</span><span class="p">,</span> <span class="n">FilmJahr</span> <span class="n">AS</span> <span class="n">Jahr</span>
+ <span class="n">FROM</span> <span class="n">spielt_in</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>■ Multimenge: EXCEPT ALL</p>
+</div>
+<div class="section" id="klammerung">
+<h4><span class="section-number">9.3.11.4. </span>Klammerung<a class="headerlink" href="#klammerung" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>■ SELECT * 
+■ FROM 
+■ ( 
+■  (SELECT A FROM R) 
+■    INTERSECT 
+■   (SELECT * FROM 
+■    (SELECT A FROM S) 
+■     UNION 
+■    (SELECT A FROM T) 
+■    ) 
+■ )
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="zusammenfassung-der-semantik">
+<h3><span class="section-number">9.3.12. </span>Zusammenfassung der Semantik<a class="headerlink" href="#zusammenfassung-der-semantik" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/zusammenfassung_semantik.jpg" /></p>
+</div>
+</div>
+<div class="section" id="geschachtelte-anfragen">
+<h2><span class="section-number">9.4. </span>Geschachtelte Anfragen<a class="headerlink" href="#geschachtelte-anfragen" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3><span class="section-number">9.4.1. </span>Motivation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>■ Eine Anfrage kann Teil einer anderen Anfrage sein.
+<br>
+□ Theoretisch beliebig tiefe Schachtelung
+<br><br>
+■ Drei Varianten
+<br></p>
+<ol class="simple">
+<li><p>Subanfrage erzeugt einen einzigen Wert, der in der WHERE-Klausel mit einem anderen Wert verglichen
+werden kann.
+<br></p></li>
+<li><p>Subanfrage erzeugt eine Relation, die auf verschiedene Weise in WHERE-Klausel verwendet werden kann.
+<br></p></li>
+<li><p>Subanfrage erzeugt eine Relation, die in der FROM Klausel verwendet werden kann.
+<br>
+– Wie jede normale Relation</p></li>
+</ol>
+</div>
+<div class="section" id="skalare-subanfragen">
+<h3><span class="section-number">9.4.2. </span>Skalare Subanfragen<a class="headerlink" href="#skalare-subanfragen" title="Permalink to this headline">¶</a></h3>
+<p>■ Allgemeine Anfragen produzieren Relationen.
+<br>
+□ Mit mehreren Attributen
+<br>
+– Zugriff auf ein bestimmtes Attribut ist möglich
+<br>
+□ i.A. mit mehreren Tupeln
+<br>
+□ Manchmal (garantiert) nur maximal ein Tupel und Projektion auf nur ein Attribut
+<br>
+– „Skalare Anfrage“
+<br>
+– Verwendung wie eine Konstante möglich
+<br>
+– Falls keine Zeile: null
+<br>
+<img alt="title" src="../_images/skalare_subanfragen.jpg" />
+<br>
+■ ManagerIn(Name, Adresse, ManagerinID, Gehalt)
+<br>
+■ Film(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentinID)
+<br>
+■ Gesucht: Produzent von Star Wars</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT Name
+FROM Film, ManagerIn WHERE Titel = ‘Star Wars‘ AND Jahr = ‘1977‘
+AND ProduzentinID = ManagerinID;
+</pre></div>
+</div>
+<p>■ Oder aber</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT Name
+FROM ManagerIn
+WHERE ManagerinID =
+( SELECT ProduzentinID
+FROM Film
+WHERE Titel = ‘Star Wars‘ AND Jahr = ‘1977‘ );
+</pre></div>
+</div>
+<p>■ DBMS erwartet maximal ein Tupel als Ergebnis der Teilanfrage
+<br>
+□ Falls kein Tupel: null
+<br>
+□ Falls mehr als ein Tupel: Laufzeitfehler</p>
+<div class="section" id="skalare-subanfragen-beispiel">
+<h4><span class="section-number">9.4.2.1. </span>Skalare Subanfragen – Beispiel<a class="headerlink" href="#skalare-subanfragen-beispiel" title="Permalink to this headline">¶</a></h4>
+<p>■ Abteilungen, deren durchschnittliche Bonuszahlungen höher sind als deren durchschnittliches Gehalt.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">a</span><span class="o">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">Standort</span>
+<span class="n">FROM</span> <span class="n">Abteilung</span> <span class="n">a</span>
+<span class="n">WHERE</span> <span class="p">(</span><span class="n">SELECT</span> <span class="n">AVG</span><span class="p">(</span><span class="n">bonus</span><span class="p">)</span>
+       <span class="n">FROM</span> <span class="n">personal</span> <span class="n">p</span>
+       <span class="n">WHERE</span> <span class="n">a</span><span class="o">.</span><span class="n">AbtID</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">AbtID</span><span class="p">)</span>
+              <span class="o">&gt;</span>
+      <span class="p">(</span><span class="n">SELECT</span> <span class="n">AVG</span><span class="p">(</span><span class="n">gehalt</span><span class="p">)</span>
+       <span class="n">FROM</span> <span class="n">personal</span> <span class="n">p</span>
+       <span class="n">WHERE</span> <span class="n">a</span><span class="o">.</span><span class="n">AbtID</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">AbtID</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>■ Alle Potsdamer Abteilungen mit ihrem Maximalgehalt.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT a.AbtID, a.Name,
+           (SELECT MAX(Gehalt)
+                FROM Personal p
+            WHERE a.AbtID = p.AbtID) AS maxGehalt
+FROM Abteilung a
+WHERE a.Ort = ‘Potsdam‘
+</pre></div>
+</div>
+<p>■ Anmerkung: Auch Abteilungen ohne Mitarbeiter erscheinen im Ergebnis.
+<br><br>
+■ Nicht so in der folgenden Anfrage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT a.AbtID, a.Name, MAX(p.Gehalt) AS maxGehalt
+FROM Abteilung a, Personal p
+WHERE a.Ort = ‘Potsdam‘
+AND a.AbtID = p.AbtID
+GROUP BY a.AbtID, a.Name
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="bedingungen-mit-relationen">
+<h3><span class="section-number">9.4.3. </span>Bedingungen mit Relationen<a class="headerlink" href="#bedingungen-mit-relationen" title="Permalink to this headline">¶</a></h3>
+<p>■ Bestimmte SQL Operatoren auf Relationen erzeugen Boole‘sche Werte
+<br>
+□ EXISTS R
+<br>
+– TRUE, falls R nicht leer
+<br>
+□ x IN R
+<br>
+– TRUE falls x gleich einem Wert in R ist (R hat nur ein Attribut)
+<br>
+– Verallgemeinerung auf Tupel später
+<br>
+– x NOT IN R: TRUE falls x keinem Wert in R gleicht
+<br>
+□ x &gt; ALL R
+<br>
+– TRUE falls x größer als jeder Wert in R ist (R hat nur ein Attribut)
+<br>
+– Alternativ: &lt;, &gt;, &lt;=, &gt;=, &lt;&gt;, =
+<br>
+– x &lt;&gt; ALL R: Entspricht x NOT IN R bzw. auch NOT(x in R)
+<br>
+□ x &gt; ANY R
+<br>
+– TRUE falls x größer als mindestens ein Wert in R ist (R hat nur ein Attribut)
+<br>
+– Alternativ: &lt;, &gt;, &lt;=, &gt;=, &lt;&gt;, =
+<br>
+– x = ANY R: Entspricht x IN R
+<br>
+– Alternativer Befehl: SOME
+<br>
+□ Negation mit NOT(…) ist immer möglich.</p>
+</div>
+<div class="section" id="exists-beispiele">
+<h3><span class="section-number">9.4.4. </span>EXISTS Beispiele<a class="headerlink" href="#exists-beispiele" title="Permalink to this headline">¶</a></h3>
+<p>■ ISBNs aller ausgeliehenen Bücher</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">ISBN</span>
+<span class="n">FROM</span> <span class="n">BuchExemplar</span>
+<span class="n">WHERE</span> <span class="n">EXISTS</span>
+     <span class="p">(</span><span class="n">SELECT</span> <span class="o">*</span>
+      <span class="n">FROM</span> <span class="n">Ausleihe</span>
+      <span class="n">WHERE</span> <span class="n">Ausleihe</span><span class="o">.</span><span class="n">Inventarnr</span> <span class="o">=</span> <span class="n">BuchExemplar</span><span class="o">.</span><span class="n">Inventarnr</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>■ Lehrstuhlbezeichnungen der Professor<em>innen, die alle von ihnen gelesenen Vorlesungen auch schon einmal
+geprüft haben.
+<br><br>
+■ bzw. Lehrstuhlbezeichnungen von Professor</em>innen, so dass keine von diesem gelesene Vorlesung existiert, die von
+ihm nicht geprüft wurde.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Lehrstuhlbezeichnung</span>
+<span class="n">FROM</span> <span class="n">Prof</span>
+<span class="n">WHERE</span> <span class="n">NOT</span> <span class="n">EXISTS</span>
+      <span class="p">(</span><span class="n">SELECT</span> <span class="o">*</span>
+       <span class="n">FROM</span> <span class="n">Liest</span>
+       <span class="n">WHERE</span> <span class="n">Liest</span><span class="o">.</span><span class="n">PANr</span> <span class="o">=</span> <span class="n">Prof</span><span class="o">.</span><span class="n">PANr</span>
+       <span class="n">AND</span> <span class="n">NOT</span> <span class="n">EXISTS</span> <span class="p">(</span><span class="n">SELECT</span> <span class="o">*</span>
+                   <span class="n">FROM</span> <span class="n">Prüft</span>
+                   <span class="n">WHERE</span> <span class="n">Prüft</span><span class="o">.</span><span class="n">PANr</span> <span class="o">=</span> <span class="n">Prof</span><span class="o">.</span><span class="n">PANr</span>
+                   <span class="n">AND</span> <span class="n">Prüft</span><span class="o">.</span><span class="n">VL_NR</span> <span class="o">=</span> <span class="n">Liest</span><span class="o">.</span><span class="n">VL_NR</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="in-beispiele">
+<h3><span class="section-number">9.4.5. </span>IN Beispiele<a class="headerlink" href="#in-beispiele" title="Permalink to this headline">¶</a></h3>
+<p>■ Eine Auswahl an Büchern</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT Titel
+FROM Bücher
+WHERE ISBN IN (‘3898644006‘, ‘1608452204‘, ‘0130319953‘)
+</pre></div>
+</div>
+<p>■ Matrikel der Studenten, die zumindest einen Prüfer gemeinsam mit dem Studenten der Matrikel ‚123456‘ haben</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT DISTINCT Matrikel
+FROM Prüft
+WHERE Prüfer IN ( SELECT Prüfer
+                  FROM Prüft
+                  WHERE Matrikel = ‘123456‘)
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT DISTINCT P1.Matrikel
+FROM Prüft P1, Prüft P2
+WHERE P2.Matrikel = `123456`
+AND P1.Prüfer = P2.Prüfer
+</pre></div>
+</div>
+<p>■ Nachnamen aller Professor*innen, die schon einmal eine 1,0 vergeben haben.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Nachname</span>
+<span class="n">FROM</span> <span class="n">Prof</span>
+<span class="n">WHERE</span> <span class="mf">1.0</span> <span class="n">IN</span> <span class="p">(</span> <span class="n">SELECT</span> <span class="n">Note</span>
+<span class="n">FROM</span> <span class="n">Prüft</span>
+<span class="n">WHERE</span> <span class="n">Prüfer</span> <span class="o">=</span> <span class="n">Prof</span><span class="o">.</span><span class="n">ID</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>■ Achtung: Korrelierte Subanfrage</p>
+</div>
+<div class="section" id="all-und-any-beispiele">
+<h3><span class="section-number">9.4.6. </span>ALL und ANY Beispiele<a class="headerlink" href="#all-und-any-beispiele" title="Permalink to this headline">¶</a></h3>
+<p>■ Die schlechteste Note des Studenten mit Matrikel 123456</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT Note
+FROM Prüft
+WHERE Matrikel = ‘123456‘
+AND Note &gt;= ALL (SELECT Note
+                 FROM Prüft
+                 WHERE Matrikel = ‘123456‘)
+</pre></div>
+</div>
+<p>■ Alle Studenten, die mindestens eine Prüfung absolvierten</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Matrikel</span>
+<span class="n">FROM</span> <span class="n">Student</span>
+<span class="n">WHERE</span> <span class="n">Matrikel</span> <span class="o">=</span> <span class="n">ANY</span> <span class="p">(</span><span class="n">SELECT</span> <span class="n">Matrikel</span>
+                      <span class="n">FROM</span> <span class="n">Prüft</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="bedingungen-mit-tupeln">
+<h3><span class="section-number">9.4.7. </span>Bedingungen mit Tupeln<a class="headerlink" href="#bedingungen-mit-tupeln" title="Permalink to this headline">¶</a></h3>
+<p>■ Verallgemeinerung von IN, ALL und ANY auf Tupel
+<br>
+□ t IN R
+<br>
+– TRUE falls t ein Tupel in R ist (mehr als ein Attribut möglich)
+<br>
+– Setzt gleiche Schemata voraus
+<br>
+– Setzt gleiche Reihenfolge der Attribute voraus
+<br>
+□ t &gt; ALL R
+<br>
+– TRUE falls t größer als jedes Tupel in R ist
+<br>
+– Vergleiche in Standardreihenfolge der Attribute
+<br>
+□ t &lt;&gt; ANY R
+<br>
+– TRUE falls R mindestens ein Tupel hat, das ungleich t ist
+<br>
+<br>
+■ Namen von Produzenten von Filmen mit Harrison Ford</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT Name
+FROM Manager
+WHERE ManagerinID IN
+    ( SELECT ProduzentinID
+      FROM Film
+      WHERE (Titel, Jahr) IN
+           ( SELECT FilmTitel AS Titel, FilmJahr AS Jahr
+             FROM spielt_in
+             WHERE SchauspielerName = ‘Harrison Ford‘
+    ));
+</pre></div>
+</div>
+<p>■ Analyse am besten von innen nach außen
+<br><br>
+■ Alternative Formulierung</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT Name
+FROM Manager, Film, spielt_in
+WHERE ManagerinID = ProduzentinID
+AND Titel = FilmTitel
+AND Jahr = FilmJahr
+AND SchauspielerName = ‘Harrison Ford‘;
+</pre></div>
+</div>
+</div>
+<div class="section" id="subanfragen-in-from-klausel">
+<h3><span class="section-number">9.4.8. </span>Subanfragen in FROM-Klausel<a class="headerlink" href="#subanfragen-in-from-klausel" title="Permalink to this headline">¶</a></h3>
+<p>■ Bisher: Nur Subanfragen in WHERE-Klausel
+<br>
+□ Anstelle einfacher Relation steht eine geklammerte Subanfrage
+<br>
+□ Es muss ein Alias vergeben werden.
+<br></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT M.Name
+FROM ManagerIn M, (SELECT ProduzentinID AS ID
+                  FROM Film, spielt_in
+                  WHERE Titel = FilmTitel
+                  AND Jahr = FilmJahr
+                  AND SchauspielerIn = ‘Harrison Ford‘) ProduzentIn
+WHERE M.ManagerinID = ProduzentIn.ID;
+</pre></div>
+</div>
+</div>
+<div class="section" id="korrelierte-subanfragen">
+<h3><span class="section-number">9.4.9. </span>Korrelierte Subanfragen<a class="headerlink" href="#korrelierte-subanfragen" title="Permalink to this headline">¶</a></h3>
+<p>■ Unkorreliert: Subanfragen einmalig ausführen und das Ergebnis weiterverwenden
+<br><br>
+■ Korrelierte Subanfragen werden mehrfach ausgeführt, einmal pro Bindung der korrelierten Variable der äußeren
+Anfrage
+<br><br>
+■ Alle mehrfachen Filme mit Ausnahme der jeweils jüngsten Ausgabe</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Titel</span><span class="p">,</span> <span class="n">Jahr</span>
+<span class="n">FROM</span> <span class="n">Film</span> <span class="n">Alt</span>
+<span class="n">WHERE</span> <span class="n">Jahr</span> <span class="o">&lt;</span> <span class="n">ANY</span>
+    <span class="p">(</span> <span class="n">SELECT</span> <span class="n">Jahr</span>
+    <span class="n">FROM</span> <span class="n">Film</span>
+    <span class="n">WHERE</span> <span class="n">Titel</span> <span class="o">=</span> <span class="n">Alt</span><span class="o">.</span><span class="n">Titel</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>□ Ausführung der Subanfrage für jedes Tupel in Filme</p>
+<p>Scope: Attributnamen gehören zunächst zur Tupelvariablen der aktuellen Anfrage. Sonst: Suche von innen nach außen.</p>
+<p>Unkorreliert:
+<br>
+Name und Gehalt aller Mitarbeiter in Potsdam</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT Name, Gehalt
+FROM Personal p
+WHERE AbtID IN
+    (SELECT AbtID
+    FROM Abteilung
+    WHERE Ort =
+‘Potsdam‘)
+</pre></div>
+</div>
+<p>Korreliert:
+<br>
+Name und Gehalt aller Mitarbeiter, deren Gehalt höher als 10% des Abteilungsbudgets ist.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Gehalt</span>
+<span class="n">FROM</span> <span class="n">Personal</span> <span class="n">p</span>
+<span class="n">WHERE</span> <span class="n">Gehalt</span> <span class="o">&gt;</span>
+    <span class="p">(</span><span class="n">SELECT</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">Budget</span>
+    <span class="n">FROM</span> <span class="n">Abteilung</span> <span class="n">a</span>
+    <span class="n">WHERE</span> <span class="n">a</span><span class="o">.</span><span class="n">AbtID</span> <span class="o">=</span>
+<span class="n">p</span><span class="o">.</span><span class="n">AbtID</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="operationen-auf-einer-relation">
+<h2><span class="section-number">9.5. </span>Operationen auf einer Relation<a class="headerlink" href="#operationen-auf-einer-relation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="duplikateliminierung">
+<h3><span class="section-number">9.5.1. </span>Duplikateliminierung<a class="headerlink" href="#duplikateliminierung" title="Permalink to this headline">¶</a></h3>
+<p>Relationale DBMS verwenden i.d.R. Multimengensemantik, nicht Mengensemantik.
+<br>
+□ Duplikate entstehen durch
+<br>
+– Einfügen von Duplikaten in Basisrelation
+<br>
+– Veränderung von Tupeln in Basisrelation
+<br>
+– Projektion in Anfragen
+<br>
+– Durch Subanfragen (UNION ALL)
+<br>
+– Vermehrung von Duplikaten durch Kreuzprodukt
+<br> <br>
+■ Duplikateliminierung
+<br>
+□ SELECT DISTINCT Attributnamen
+<br>
+□ Kosten sind hoch: Sortierung oder hashing
+<br>
+■ Alle Filme, in denen mindestens ein Schauspieler mitspielt</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">DISTINCT</span> <span class="n">Titel</span><span class="p">,</span> <span class="n">Jahr</span>
+<span class="n">FROM</span> <span class="n">spielt_in</span>
+</pre></div>
+</div>
+<p><img alt="title" src="../_images/duplikateliminierung.jpg" /></p>
+<div class="section" id="wdh-duplikateliminierung-bei-mengenoperationen">
+<h4><span class="section-number">9.5.1.1. </span>Wdh.: Duplikateliminierung bei Mengenoperationen<a class="headerlink" href="#wdh-duplikateliminierung-bei-mengenoperationen" title="Permalink to this headline">¶</a></h4>
+<p>■ Mengenoperationen in SQL entfernen Duplikate
+<br>
+□ UNION, INTERSECT, EXCEPT
+<br>
+□ wandeln Multimengen in Mengen um und verwenden Mengensemantik
+<br>
+□ Solche Duplikateliminierung verhindern durch ALL
+<br></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">SELECT</span> <span class="n">Titel</span><span class="p">,</span> <span class="n">Jahr</span><span class="p">,</span> <span class="n">FROM</span> <span class="n">Film</span><span class="p">)</span>
+    <span class="n">UNION</span> <span class="n">ALL</span>
+<span class="p">(</span><span class="n">SELECT</span> <span class="n">FilmTitel</span> <span class="n">AS</span> <span class="n">Titel</span><span class="p">,</span> <span class="n">FilmJahr</span> <span class="n">AS</span> <span class="n">Jahr</span> <span class="n">FROM</span> <span class="n">spielt_in</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>– Film mit drei Schauspielern erscheint also 4 Mal im Ergebnis
+<br>
+□ R INTERSECT ALL S
+<br>
+□ R EXCEPT ALL S</p>
+</div>
+</div>
+<div class="section" id="aggregation">
+<h3><span class="section-number">9.5.2. </span>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">¶</a></h3>
+<p>■ Standardaggregationsoperatoren
+<br>
+□ SUM, AVG, MIN, MAX, COUNT
+<br>
+□ Angewendet auf einzelne Attribute in der SELECT-Klausel
+<br><br>
+■ Typische weitere Aggregationsoperatoren
+<br>
+□ VAR, STDDEV
+<br><br>
+■ COUNT(*) zählt Anzahl der Tupel
+<br>
+□ in der Relation, die durch die FROM und WHERE Klauseln definiert wird.
+<br><br>
+■ Kombination mit DISTINCT
+<br>
+□ COUNT(DISTINCT Jahr)
+<br>
+□ SUM(DISTINCT Gehalt)</p>
+<div class="section" id="aggregation-beispiele">
+<h4><span class="section-number">9.5.2.1. </span>Aggregation – Beispiele<a class="headerlink" href="#aggregation-beispiele" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">AVG</span><span class="p">(</span><span class="n">Gehalt</span><span class="p">)</span>
+<span class="n">FROM</span> <span class="n">Manager</span><span class="p">;</span>
+
+<span class="n">SELECT</span> <span class="n">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="n">FROM</span> <span class="n">spielt_in</span><span class="p">;</span>
+
+<span class="n">SELECT</span> <span class="n">COUNT</span><span class="p">(</span><span class="n">Schauspieler</span><span class="p">)</span>
+<span class="n">FROM</span> <span class="n">spielt_in</span><span class="p">;</span>
+
+<span class="n">SELECT</span> <span class="n">COUNT</span><span class="p">(</span><span class="n">DISTINCT</span> <span class="n">Schauspieler</span><span class="p">)</span>
+<span class="n">FROM</span> <span class="n">spielt_in</span>
+<span class="n">WHERE</span> <span class="n">Jahr</span> <span class="o">=</span> <span class="mi">1990</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="gruppierung-aggregation-und-null">
+<h3><span class="section-number">9.5.3. </span>Gruppierung, Aggregation und NULL<a class="headerlink" href="#gruppierung-aggregation-und-null" title="Permalink to this headline">¶</a></h3>
+<p>■ NULL wird bei Aggregation ignoriert.
+<br>
+□ Trägt also nicht zu SUM, AVG oder COUNT bei.
+<br>
+□ Ist nicht MIN oder MAX
+<br>
+□ Anzahl Tupel: SELECT COUNT(*) FROM spielt_in;
+<br>
+□ Anzahl nicht-NULL Werte: SELECT COUNT(Länge) FROM Film;
+<br><br>
+■ NULL ist ein eigener Gruppierungswert
+<br>
+□ Es gibt also z.B. die NULL-Gruppe
+<br>
+□ SELECT A, COUNT(B) FROM R GROUP BY A;
+<br>
+– Ergebnis: (NULL, 0)
+<br>
+□ SELECT A, SUM(B) FROM R GROUP BY A;
+<br>
+– Ergebnis: (NULL, NULL)
+<br>
+<img alt="title" src="../_images/null_bsp.jpg" /></p>
+</div>
+<div class="section" id="gruppierung">
+<h3><span class="section-number">9.5.4. </span>Gruppierung<a class="headerlink" href="#gruppierung" title="Permalink to this headline">¶</a></h3>
+<p>■ Gruppierung mittels GROUP BY nach der WHERE-Klausel</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">StudioName</span><span class="p">,</span> <span class="n">SUM</span><span class="p">(</span><span class="n">Länge</span><span class="p">)</span>
+<span class="n">FROM</span> <span class="n">Film</span>
+<span class="n">GROUP</span> <span class="n">BY</span> <span class="n">StudioName</span>
+</pre></div>
+</div>
+<p>■ In SELECT-Klausel zwei „Sorten“ von Attributen
+<br></p>
+<ol class="simple">
+<li><p>Gruppierungsattribute
+<br></p></li>
+<li><p>Aggregierte Attribute
+<br>
+□ Nicht-aggregierte Werte der SELECT-Klausel müssen in der GROUP BY-Klausel erscheinen.
+<br>
+□ Keine der beiden Sorten muss erscheinen.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">StudioName</span>
+<span class="n">FROM</span> <span class="n">Film</span>
+<span class="n">GROUP</span> <span class="n">BY</span> <span class="n">StudioName</span>
+
+<span class="n">SELECT</span> <span class="n">SUM</span><span class="p">(</span><span class="n">Länge</span><span class="p">)</span>
+<span class="n">FROM</span> <span class="n">Film</span>
+<span class="n">GROUP</span> <span class="n">BY</span> <span class="n">StudioName</span>
+</pre></div>
+</div>
+<p>■ Gruppierung bei Verwendung mehrerer Relationen wird am Schluss durchgeführt.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Name</span><span class="p">,</span> <span class="n">SUM</span><span class="p">(</span><span class="n">Länge</span><span class="p">)</span>
+<span class="n">FROM</span> <span class="n">Manager</span><span class="p">,</span> <span class="n">Film</span>
+<span class="n">WHERE</span> <span class="n">ManagerinID</span> <span class="o">=</span> <span class="n">ProduzentinID</span>
+<span class="n">GROUP</span> <span class="n">BY</span> <span class="n">Name</span>
+</pre></div>
+</div>
+<p>■ Reihenfolge der Ausführung (und des Lesens)
+<br></p>
+<ol class="simple">
+<li><p>FROM-Klausel
+<br></p></li>
+<li><p>WHERE-Klausel
+<br></p></li>
+<li><p>GROUP BY-Klausel
+<br></p></li>
+<li><p>SELECT-Klausel
+<br>
+<br>
+■ Einschränkung der Ergebnismenge nach der Gruppierung durch HAVING</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Name</span><span class="p">,</span> <span class="n">SUM</span><span class="p">(</span><span class="n">Länge</span><span class="p">)</span>
+<span class="n">FROM</span> <span class="n">Manager</span><span class="p">,</span> <span class="n">Film</span>
+<span class="n">WHERE</span> <span class="n">ManagerinID</span> <span class="o">=</span> <span class="n">ProduzentinID</span>
+<span class="n">AND</span> <span class="n">Gehalt</span> <span class="o">&gt;</span> <span class="mi">1000000</span>
+<span class="n">GROUP</span> <span class="n">BY</span> <span class="n">Name</span>
+
+<span class="n">SELECT</span> <span class="n">Name</span><span class="p">,</span> <span class="n">SUM</span><span class="p">(</span><span class="n">Länge</span><span class="p">)</span>
+<span class="n">FROM</span> <span class="n">Manager</span><span class="p">,</span> <span class="n">Film</span>
+<span class="n">WHERE</span> <span class="n">ManagerinID</span> <span class="o">=</span> <span class="n">ProduzentinID</span>
+<span class="n">GROUP</span> <span class="n">BY</span> <span class="n">Name</span>
+<span class="n">HAVING</span> <span class="n">SUM</span><span class="p">(</span><span class="n">Länge</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1000</span>
+
+<span class="n">SELECT</span> <span class="n">Name</span>
+<span class="n">FROM</span> <span class="n">Manager</span><span class="p">,</span> <span class="n">Film</span>
+<span class="n">WHERE</span> <span class="n">ManagerinID</span> <span class="o">=</span> <span class="n">ProduzentinID</span>
+<span class="n">GROUP</span> <span class="n">BY</span> <span class="n">Name</span>
+<span class="n">HAVING</span> <span class="n">SUM</span><span class="p">(</span><span class="n">Länge</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1000</span>
+</pre></div>
+</div>
+<p>■ Aggregationen in HAVING-Klausel beziehen sich nur auf aktuelle Gruppe.
+<br>
+■ Nur Gruppierungsattribute dürfen un-aggregiert in HAVING Klausel erscheinen (wie bei
+SELECT-Klausel).</p>
+</div>
+<div class="section" id="zusammenfassung-sql">
+<h3><span class="section-number">9.5.5. </span>Zusammenfassung SQL<a class="headerlink" href="#zusammenfassung-sql" title="Permalink to this headline">¶</a></h3>
+<p>Grundbausteine einer SQL Anfrage (mit empfohlener Lesereihenfolge)
+<br>
+□ 6. SELECT
+<br>
+□ 1. FROM
+<br>
+□ 2. WHERE
+<br>
+□ 3. GROUP BY
+<br>
+□ 4. HAVING
+<br>
+□ 5. ORDER BY
+<br><br>
+■ SELECT … FROM … sind Pflicht.
+<br>
+□ Ausnahme: z.B. SELECT 7 + 3
+<br><br>
+■ HAVING darf nur in Kombination mit GROUP BY erscheinen.</p>
+</div>
+</div>
+<div class="section" id="datenbearbeitung-dml">
+<h2><span class="section-number">9.6. </span>Datenbearbeitung(DML)<a class="headerlink" href="#datenbearbeitung-dml" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="uberblick">
+<h3><span class="section-number">9.6.1. </span>Überblick<a class="headerlink" href="#uberblick" title="Permalink to this headline">¶</a></h3>
+<p>■  CRUD: Create, Read, Update, Delete
+<br><br>
+■ Einfügen
+<br>
+□ INSERT INTO … VALUES…
+<br><br>
+■ Löschen
+<br>
+□ DELETE FROM … WHERE …
+<br><br>
+■ Ändern
+<br>
+□ UPDATE … SET … WHERE …</p>
+</div>
+<div class="section" id="einfugen">
+<h3><span class="section-number">9.6.2. </span>Einfügen<a class="headerlink" href="#einfugen" title="Permalink to this headline">¶</a></h3>
+<p>■ Grundbaustein
+<br>
+□ INSERT INTO R(A1, …, An) VALUES (v1,…,vn);
+<br>
+□ Bei fehlenden Attributen
+<br>
+– Default-Wert aus Tabellendefinition (NULL, falls nicht anders angegeben)
+<br>
+□ Beispiel</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>INSERT INTO spielt_in(FilmTitel, FilmJahr, Schauspieler)
+VALUES (‘Star Wars‘, 1977, ‘Alec Guinness‘);
+</pre></div>
+</div>
+<p>– Reihenfolge der Werte und Attribute wird beachtet.</p>
+<p>□ Falls alle Attribute gesetzt werden, kann Attributliste fehlen:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>INSERT INTO spielt_in
+VALUES (‘Star Wars‘, 1977, ‘Alec Guinness‘);
+</pre></div>
+</div>
+<p>– Reihenfolge entsprechend der Spezifikation des Schemas
+(CREATE TABLE …)</p>
+<div class="section" id="einfugen-per-anfrage">
+<h4><span class="section-number">9.6.2.1. </span>Einfügen per Anfrage<a class="headerlink" href="#einfugen-per-anfrage" title="Permalink to this headline">¶</a></h4>
+<p>Füge in Studio-Tabelle alle Studios der Filme-Relation ein
+<br>
+□ Film(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentinID)
+<br>
+□ Studio(Name, Adresse, VorsitzendeID)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">Studio</span><span class="p">(</span><span class="n">Name</span><span class="p">)</span>
+<span class="n">SELECT</span> <span class="n">DISTINCT</span> <span class="n">StudioName</span>
+<span class="n">FROM</span> <span class="n">Film</span>
+<span class="n">WHERE</span> <span class="n">StudioName</span> <span class="n">NOT</span> <span class="n">IN</span>
+    <span class="p">(</span><span class="n">SELECT</span> <span class="n">Name</span>
+    <span class="n">FROM</span> <span class="n">Studio</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Adresse und VorsitzendeIDbleiben NULL.
+<br>
+□ Erzeugt im Allgemeinen Redundanz und sollte vermieden werden.</p>
+</div>
+</div>
+<div class="section" id="ausfuhrungsreihenfolge-beim-einfugen">
+<h3><span class="section-number">9.6.3. </span>Ausführungsreihenfolge beim Einfügen<a class="headerlink" href="#ausfuhrungsreihenfolge-beim-einfugen" title="Permalink to this headline">¶</a></h3>
+<p>Wann wird eingefügt?
+<br>
+Nach vollständiger Ausführung der SELECT FROM WHERE Anfrage?
+<br>
+Sofort?
+<br>
+Schnellere Implementation
+<br>
+Was passiert jeweils bei Anfrage 1?
+<br>
+Was passiert jeweils bei Anfrage 2?
+<br>
+SQL Standard: Erst gesamte Anfrage ausführen</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">Studio</span><span class="p">(</span><span class="n">Name</span><span class="p">)</span>
+<span class="n">SELECT</span> <span class="n">DISTINCT</span> <span class="n">StudioName</span>
+<span class="n">FROM</span> <span class="n">Film</span>
+<span class="n">WHERE</span> <span class="n">StudioName</span> <span class="n">NOT</span> <span class="n">IN</span>
+    <span class="p">(</span><span class="n">SELECT</span> <span class="n">Name</span>
+    <span class="n">FROM</span> <span class="n">Studio</span><span class="p">);</span>
+
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">Studio</span><span class="p">(</span><span class="n">Name</span><span class="p">)</span>
+<span class="n">SELECT</span> <span class="n">StudioName</span>
+<span class="n">FROM</span> <span class="n">Film</span>
+<span class="n">WHERE</span> <span class="n">StudioName</span> <span class="n">NOT</span> <span class="n">IN</span>
+    <span class="p">(</span><span class="n">SELECT</span> <span class="n">Name</span>
+    <span class="n">FROM</span> <span class="n">Studio</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="bulk-insert">
+<h4><span class="section-number">9.6.3.1. </span>Bulk insert<a class="headerlink" href="#bulk-insert" title="Permalink to this headline">¶</a></h4>
+<p>■ INSERT
+<br>
+□ Zeilenbasiertes Einfügen aus SQL statements
+<br><br>
+■ IMPORT
+<br>
+□ Zeilen-basiertes Einfügen aus Datei
+<br>
+□ Trigger und Nebenbedingungen bleiben aktiv
+<br>
+□ Indizes werden laufend aktualisiert
+<br><br>
+■ LOAD
+<br>
+□ Seiten-basiertes Einfügen aus Datei
+<br>
+□ Trigger und Nebenbedingungen werden deaktiviert
+<br>
+□ Deutlich effizienter
+<br>
+□ Indizes werden am Ende neu generiert
+<br><br>
+■ Syntax ist jeweils DBMS-spezifisch.
+<br>
+□ Viele Parameter</p>
+</div>
+</div>
+<div class="section" id="loschen">
+<h3><span class="section-number">9.6.4. </span>Löschen<a class="headerlink" href="#loschen" title="Permalink to this headline">¶</a></h3>
+<p>■ Grundbaustein
+<br>
+□ DELETE FROM R WHERE …
+<br>
+□ Lösche alle Tupel in R, für die die Bedingung wahr ist.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>DELETE FROM spielt_in
+WHERE FilmTitel = ‘The Maltese Falcon‘
+AND FilmJahr = 1942
+AND Schauspieler = ‘Sydney Greenstreet‘;
+</pre></div>
+</div>
+<p>■ Tupel können im Gegensatz zum Einfügen nicht direkt angegeben werden, sondern müssen umschrieben werden.
+<br></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="n">FROM</span> <span class="n">Manager</span>
+<span class="n">WHERE</span> <span class="n">Gehalt</span> <span class="o">&lt;</span> <span class="mi">10000000</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>■ Alle Manager-Tupel löschen: DELETE FROM Manager;</p>
+</div>
+<div class="section" id="verandern-update">
+<h3><span class="section-number">9.6.5. </span>Verändern (update)<a class="headerlink" href="#verandern-update" title="Permalink to this headline">¶</a></h3>
+<p>■ Grundbaustein
+<br>
+□ UPDATE R SET … WHERE …
+<br>
+□ SET Klausel
+<br>
+– Wertzuweisungen
+<br>
+– Komma-separiert
+<br></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>UPDATE Manager
+SET Name = ‘Präs. ‘ || Name
+WHERE ManagerinID IN
+(SELECT PräsidentID FROM Studios);
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="schemata-ddl">
+<h2><span class="section-number">9.7. </span>Schemata(DDL)<a class="headerlink" href="#schemata-ddl" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3><span class="section-number">9.7.1. </span>Überblick<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>■ Datentypen
+<br>
+■ Tabellen
+<br>
+■ Default-Werte
+<br>
+■ Indizes</p>
+</div>
+<div class="section" id="datentypen">
+<h3><span class="section-number">9.7.2. </span>Datentypen<a class="headerlink" href="#datentypen" title="Permalink to this headline">¶</a></h3>
+<p>■ Jedes Attribut muss einen Datentyp haben.
+<br>
+□ CHAR(n) – String fester Länge (n Zeichen)
+<br>
+□ VARCHAR(n) – String variabler Länge, maximal n Zeichen
+<br>
+□ BIT(n) bzw. BIT VARYING(n) – Wie CHAR, aber Bits
+<br>
+□ BOOLEAN – TRUE, FALSE oder UNKNOWN
+<br>
+□ INT / INTEGER bzw. SHORTINT – 8 bzw. 4 Byte
+<br>
+□ FLOAT / REAL bzw. DOUBLE PRECISION
+<br>
+□ DECIMAL (n,d) – Z.B. Gehalt DECIMAL(7,2) – 7 Stellen, davon 2 Nachkommastellen
+<br>
+□ CLOB und BLOB</p>
+</div>
+<div class="section" id="uberblick-db2-datentypen">
+<h3><span class="section-number">9.7.3. </span>Überblick DB2 Datentypen<a class="headerlink" href="#uberblick-db2-datentypen" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/db2_datentypen.jpg" /></p>
+</div>
+<div class="section" id="tabellen">
+<h3><span class="section-number">9.7.4. </span>Tabellen<a class="headerlink" href="#tabellen" title="Permalink to this headline">¶</a></h3>
+<p>■ Grundbaustein zum Erzeugen</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CREATE TABLE R …
+CREATE TABLE Schauspieler (
+Name CHAR(30),
+Adresse VARCHAR(255),
+Geschlecht CHAR(1),
+Geburtstag DATE );
+</pre></div>
+</div>
+<p>■ Löschen
+<br>
+□ DROP TABLE Schauspieler;
+<br><br>
+■ Verändern
+<br>
+□ ALTER TABLE Schauspieler ADD Telefon CHAR(6);
+<br>
+– Nullwerte entstehen
+<br>
+□ ALTER TABLE Schauspieler DROP Geburtstag;
+<br>
+□ ALTER TABLE Schauspieler MODIFY Telefon CHAR(10);</p>
+</div>
+<div class="section" id="default-werte">
+<h3><span class="section-number">9.7.5. </span>Default-Werte<a class="headerlink" href="#default-werte" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CREATE TABLE Schauspieler (
+Name CHAR(30),
+Adresse VARCHAR(255),
+Geschlecht CHAR(1) DEFAULT ‚?‘,
+Geburtstag DATE DEFAULT DATE ‚0000-00-00‘);
+
+ALTER TABLE Schauspieler
+ADD Telefon CHAR(16) DEFAULT ‚unbekannt‘;
+</pre></div>
+</div>
+</div>
+<div class="section" id="constraints-und-trigger">
+<h3><span class="section-number">9.7.6. </span>Constraints und Trigger<a class="headerlink" href="#constraints-und-trigger" title="Permalink to this headline">¶</a></h3>
+<p>Weitere Optionen für Tabellen
+<br>
+□ PRIMARY KEY
+<br>
+□ UNIQUE
+<br>
+□ FOREIGN KEY … REFERENCES …
+<br>
+□ NOT NULL
+<br>
+□ CHECK
+<br>
+□ CREATE ASSERTION
+<br>
+□ CREATE TRIGGER
+<br>
+■ Siehe separater Foliensatz</p>
+</div>
+<div class="section" id="indizes">
+<h3><span class="section-number">9.7.7. </span>Indizes<a class="headerlink" href="#indizes" title="Permalink to this headline">¶</a></h3>
+<p>■ Ein Index auf einem Attribut ist eine Datenstruktur, die es dem DBMS erleichtert, Tupel mit einem bekannten Wert des Attributs zu finden.
+<br>
+□ Nicht SQL-Standard, aber in (fast) jedem DBMS verfügbar.
+<br><br>
+■ Motivation</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT *
+FROM Film
+WHERE StudioName = ‘Disney‘ AND Jahr = ‘1990‘;
+</pre></div>
+</div>
+<p>□ Variante 1: Alle 100.000 Tupel durchsuchen und WHERE Bedingung prüfen
+<br>
+□ Variante 2: Direkt alle 2000 Filme aus 1990 betrachten und auf ‚Disney‘ prüfen.
+<br>
+– CREATE INDEX JahrIndex ON Film(Jahr);
+<br>
+□ Variante 3: Direkt alle 100 Filme aus 1990 von ‘Disney‘ holen.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">INDEX</span> <span class="n">JahrStudioIndex</span>
+<span class="n">ON</span> <span class="n">Film</span><span class="p">(</span><span class="n">Jahr</span><span class="p">,</span> <span class="n">Studioname</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>■ Indizes auf einzelnen Attributen
+<br>
+□ CREATE INDEX JahrIndex ON Film(Jahr);
+<br><br>
+■ Indizes auf mehreren Attributen</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">INDEX</span> <span class="n">JahrStudioIndex</span>
+<span class="n">ON</span> <span class="n">Film</span><span class="p">(</span><span class="n">Jahr</span><span class="p">,</span> <span class="n">Studioname</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>□ Reihenfolge wichtig! Warum?
+<br><br>
+■ Löschen
+<br>
+□ DROP INDEX JahrIndex;</p>
+<div class="section" id="indexwahl">
+<h4><span class="section-number">9.7.7.1. </span>Indexwahl<a class="headerlink" href="#indexwahl" title="Permalink to this headline">¶</a></h4>
+<p>■ Abwägung
+<br>
+□ Index beschleunigt Punkt- (und Bereichs-) Anfragen und Join-Anfragen erheblich.
+<br>
+□ Index verlangsamt das Einfügen, Löschen und Verändern von Tupeln der Relation.
+<br>
+– Index muss jeweils zusätzlich aktualisiert werden.
+<br>
+□ Indizes benötigen Speicherplatz.
+<br><br>
+■ Wahl der besten Indizes ist eine der schwierigsten Aufgaben des Datenbankdesigns.
+<br>
+□ Vorhersage der query workload und update-Frequenz
+<br>
+□ Wahl der Attribute
+<br>
+– Häufiger Vergleich mit Konstanten
+<br>
+– Häufiges Joinattribut</p>
+</div>
+<div class="section" id="indexwahl-voruberlegungen">
+<h4><span class="section-number">9.7.7.2. </span>Indexwahl – Vorüberlegungen<a class="headerlink" href="#indexwahl-voruberlegungen" title="Permalink to this headline">¶</a></h4>
+<p>■ Relationen sind typischerweise über mehrere Diskblöcke gespeichert.
+<br>
+□ Wichtigste Datenbankkosten sind die Anzahl der Diskblöcke, die in den Hauptspeicher gelesen werden müssen.
+<br>
+□ Bei Punktanfragen mit Index müssen statt aller Blöcke nur ein Block gelesen werden.
+<br>
+□ Aber Index selbst muss ebenfalls gespeichert und gelesen werden.
+<br>
+– IdR viel mehr Tupel pro Block repräsentiert: Nur Schlüsselwert und Speicheradresse, keine Daten
+<br>
+□ Updates kosten sogar doppelt: Lesen und Schreiben auch der Index-Blöcke</p>
+</div>
+<div class="section" id="indexwahl-beispiel">
+<h4><span class="section-number">9.7.7.3. </span>Indexwahl – Beispiel<a class="headerlink" href="#indexwahl-beispiel" title="Permalink to this headline">¶</a></h4>
+<p>■ spielt_in(FilmTitel, FilmJahr, Schauspieler)
+<br><br>
+■ Drei typische Anfragen</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">FilmTitel</span><span class="p">,</span> <span class="n">FilmJahr</span> <span class="n">FROM</span> <span class="n">spielt_in</span>
+<span class="n">WHERE</span> <span class="n">Schauspieler</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span>
+
+<span class="n">SELECT</span> <span class="n">Schauspieler</span> <span class="n">FROM</span> <span class="n">spielt_in</span>
+<span class="n">WHERE</span> <span class="n">FilmTitel</span> <span class="o">=</span> <span class="n">t</span> <span class="n">AND</span> <span class="n">FilmJahr</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">spielt_in</span> <span class="n">VALUES</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>■ Annahmen
+<br>
+□ spielt_in ist auf 10 Disk-Blöcke verteilt.
+<br>
+□ Durchschnittlich habe jeder Film 3 Schauspieler.
+<br>
+□ Durchschnittlich spiele jeder Schauspieler in 3 Filmen.
+<br>
+□ Annahme des Schlimmsten: 3 Tupel sind auf 3 Blöcke verteilt
+<br>
+□ Index ist auf 1 Block gespeichert.
+<br>
+□ Lesen und Schreiben kostet 1.
+<br>
+□ Update und Insert kosten jeweils 2.</p>
+</div>
+<div class="section" id="id3">
+<h4><span class="section-number">9.7.7.4. </span>Indexwahl – Beispiel<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p><img alt="title" src="../_images/indexwahl.jpg" />
+<br>
+■ p1: Anteil Anfrage 1
+<br>
+■ p2: Anteil Anfrage 2
+<br>
+■ 1‒p1‒p2: Anteil Anfrage 3
+<br></p>
+</div>
+</div>
+<div class="section" id="verteilung-in-imdb-real-world-daten-stand-ca-2010">
+<h3><span class="section-number">9.7.8. </span>Verteilung in IMDB (Real-world Daten, Stand ca. 2010)<a class="headerlink" href="#verteilung-in-imdb-real-world-daten-stand-ca-2010" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/imdb.jpg" /></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">WITH</span>
+<span class="n">m</span> <span class="n">AS</span> <span class="p">(</span><span class="n">SELECT</span> <span class="n">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">AS</span> <span class="n">ZahlMovies</span> <span class="n">FROM</span> <span class="n">imdb</span><span class="o">.</span><span class="n">movie</span><span class="p">),</span>
+<span class="n">actress</span> <span class="n">AS</span> <span class="p">(</span><span class="n">SELECT</span> <span class="n">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">AS</span> <span class="n">ZahlActress</span> <span class="n">FROM</span> <span class="n">imdb</span><span class="o">.</span><span class="n">actress</span><span class="p">),</span>
+<span class="n">actor</span> <span class="n">AS</span> <span class="p">(</span><span class="n">SELECT</span> <span class="n">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">AS</span> <span class="n">ZahlActor</span> <span class="n">FROM</span> <span class="n">imdb</span><span class="o">.</span><span class="n">actor</span><span class="p">),</span>
+<span class="n">actors</span> <span class="n">AS</span> <span class="p">(</span><span class="n">SELECT</span> <span class="p">(</span><span class="n">ZahlActress</span> <span class="o">+</span> <span class="n">ZahlActor</span><span class="p">)</span> <span class="n">AS</span> <span class="n">GesamtActors</span>
+<span class="n">FROM</span> <span class="n">actress</span><span class="p">,</span> <span class="n">actor</span><span class="p">)</span>
+<span class="n">SELECT</span> <span class="n">DOUBLE</span><span class="p">(</span><span class="n">actors</span><span class="o">.</span><span class="n">GesamtActors</span><span class="p">)</span> <span class="o">/</span> <span class="n">DOUBLE</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">ZahlMovies</span><span class="p">)</span>
+<span class="n">FROM</span> <span class="n">m</span><span class="p">,</span> <span class="n">actors</span>
+</pre></div>
+</div>
+<p>Schauspieler*in pro Spielfilm: 8,7</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">WITH</span>
+<span class="n">actors</span> <span class="n">AS</span> <span class="p">(</span><span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">imdb</span><span class="o">.</span><span class="n">actor</span> <span class="n">UNION</span>
+<span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">imdb</span><span class="o">.</span><span class="n">actress</span><span class="p">),</span>
+<span class="n">counts</span> <span class="n">AS</span> <span class="p">(</span><span class="n">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">count</span><span class="p">(</span><span class="n">movie_id</span><span class="p">)</span> <span class="n">AS</span> <span class="n">m</span>
+<span class="n">FROM</span> <span class="n">actors</span> <span class="n">GROUP</span> <span class="n">BY</span> <span class="n">name</span><span class="p">)</span>
+<span class="n">SELECT</span> <span class="n">AVG</span><span class="p">(</span><span class="n">DOUBLE</span><span class="p">(</span><span class="n">m</span><span class="p">))</span> <span class="n">FROM</span> <span class="n">counts</span>
+</pre></div>
+</div>
+<p>Spielfilme pro Schauspieler: 4,2</p>
+</div>
+</div>
+<div class="section" id="sichten">
+<h2><span class="section-number">9.8. </span>Sichten<a class="headerlink" href="#sichten" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="virtuelle-relationen">
+<h3><span class="section-number">9.8.1. </span>Virtuelle Relationen<a class="headerlink" href="#virtuelle-relationen" title="Permalink to this headline">¶</a></h3>
+<p>■ Relationen aus CREATE TABLE Ausdrücken existieren tatsächlich (materialisiert, physisch) in der Datenbank.
+<br>
+□ Persistenz
+<br>
+□ Updates sind möglich
+<br><br>
+■ Die Daten aus Sichten (views) existieren nur virtuell.
+<br>
+□ Sichten entsprechen Anfragen, denen man einen Namen gibt. Sie wirken wie physische Relationen.
+<br>
+□ Updates sind nur manchmal möglich.
+<br>
+<br>
+<img alt="title" src="../_images/stonebraker1.jpg" />
+<br>
+<img alt="title" src="../_images/stonebraker2.jpg" />
+<br>
+Michael Stonebraker: Implementation of Integrity Constraints and Views by Query Modification. SIGMOD Conference 1975: 65-78</p>
+</div>
+<div class="section" id="sichten-in-sql">
+<h3><span class="section-number">9.8.2. </span>Sichten in SQL<a class="headerlink" href="#sichten-in-sql" title="Permalink to this headline">¶</a></h3>
+<p>■ CREATE VIEW Name AS Anfrage</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CREATE VIEW ParamountFilme AS
+SELECT Titel, Jahr
+FROM Film
+WHERE StudioName = ‘Paramount‘;
+</pre></div>
+</div>
+<p>□ Auch mehr als eine Relation möglich!
+<br><br>
+■ Bedeutung einer Anfrage an die Sicht
+<br></p>
+<ol class="simple">
+<li><p>Ausführung der Anfrage aus der Sichdefinition
+<br></p></li>
+<li><p>Die ursprüngliche Anfrage verwendet dann das Ergebnis als Relation.
+<br><br>
+■ Daten der Sicht ändern sich mit der Änderung der zugrundeliegenden Relationen.
+<br>
+■ Entfernen der Sicht: DROP VIEW ParamountFilme
+<br>
+□ Basisdaten bleiben unverändert.</p></li>
+</ol>
+</div>
+<div class="section" id="anfragen-an-sichten">
+<h3><span class="section-number">9.8.3. </span>Anfragen an Sichten<a class="headerlink" href="#anfragen-an-sichten" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CREATE VIEW ParamountFilme AS
+SELECT Titel, Jahr
+FROM Film
+WHERE StudioName = ‘Paramount‘;
+
+SELECT Titel
+FROM ParamountFilme
+WHERE Jahr = 1979;
+</pre></div>
+</div>
+<p>■ Umwandlung der ursprünglichen Anfrage in eine Anfrage an Basisrelationen</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT Titel
+FROM Film
+WHERE StudioName = ‘Paramount‘ AND Jahr = 1979;
+</pre></div>
+</div>
+<p>□ Übersetzung durch DBMS
+<br>
+■ Anfrage zugleich an Sichten und Basisrelationen möglich</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">DISTINCT</span> <span class="n">SchauspielerIn</span>
+<span class="n">FROM</span> <span class="n">ParamountFilme</span><span class="p">,</span> <span class="n">spielt_in</span>
+<span class="n">WHERE</span> <span class="n">Titel</span> <span class="o">=</span> <span class="n">FilmTitel</span> <span class="n">AND</span> <span class="n">Jahr</span> <span class="o">=</span> <span class="n">FilmJahr</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>■ Film(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentinID)
+■ Manager(Name, Adresse, ManagerinID, Gehalt)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">VIEW</span> <span class="n">FilmeProduzenten</span> <span class="n">AS</span>
+    <span class="n">SELECT</span> <span class="n">Titel</span><span class="p">,</span> <span class="n">Name</span>
+    <span class="n">FROM</span> <span class="n">Film</span><span class="p">,</span> <span class="n">Manager</span>
+    <span class="n">WHERE</span> <span class="n">ProduzentinID</span> <span class="o">=</span> <span class="n">ManagerinID</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>■ Anfrage</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT Name
+FROM FilmeProduzenten
+WHERE Titel = ‘Gone with the Wind‘
+</pre></div>
+</div>
+<p>■ Bedeutung</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT Name
+FROM Film, Manager
+WHERE ProduzentinID = ManagerinID
+AND Titel = ‘Gone with the Wind‘;
+</pre></div>
+</div>
+<p>■ Nebenbei: Umbenennung von Attributen</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">VIEW</span> <span class="n">FilmeProduzenten</span><span class="p">(</span><span class="n">FilmTitel</span><span class="p">,</span> <span class="n">Produzentenname</span><span class="p">)</span> <span class="n">AS</span>
+<span class="n">SELECT</span> <span class="n">Titel</span><span class="p">,</span> <span class="n">Name</span>
+<span class="n">FROM</span> <span class="n">Film</span><span class="p">,</span> <span class="n">ManagerIn</span>
+<span class="n">WHERE</span> <span class="n">ProduzentinID</span> <span class="o">=</span> <span class="n">ManagerinID</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>■ Oder auch: Sicht einfach nur zur Umbenennung</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">VIEW</span> <span class="n">Movie</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">inColor</span><span class="p">,</span> <span class="n">studio</span><span class="p">,</span> <span class="n">producerID</span><span class="p">)</span> <span class="n">AS</span>
+<span class="n">SELECT</span> <span class="o">*</span>
+<span class="n">FROM</span> <span class="n">Film</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="diskussion">
+<h3><span class="section-number">9.8.4. </span>Diskussion<a class="headerlink" href="#diskussion" title="Permalink to this headline">¶</a></h3>
+<p>■ Vorteile
+<br>
+□ Vereinfachung von Anfragen
+<br>
+□ Strukturierung der Datenbank
+<br>
+□ Logische Datenunabhängigkeit
+<br>
+– Sichten stabil bei Änderungen der Datenbankstruktur
+<br>
+– Sichtdefinitionen müssen gegebenenfalls angepasst werden
+<br>
+– Stabilität nicht bei jeder Änderung
+<br>
+□ Beschränkung von Zugriffen (Datenschutz)
+<br>
+□ Optimierung durch materialisierte Sichten
+<br><br>
+■ Probleme
+<br>
+□ Automatische Anfragetransformation schwierig
+<br>
+□ Änderungen auf Sichten
+<br>
+□ Updatepropagierung für materialisierte Sichten</p>
+</div>
+<div class="section" id="updates-auf-sichten">
+<h3><span class="section-number">9.8.5. </span>Updates auf Sichten<a class="headerlink" href="#updates-auf-sichten" title="Permalink to this headline">¶</a></h3>
+<p>■ In einigen Fällen ist es möglich, Einfüge-, Lösch- oder Updateoperationen auf Sichten durchzuführen.
+<br>
+□ Wo speichern?
+<br>
+□ Welche Relation?
+<br>
+□ Zuordnung der Änderung zur Sicht?
+<br><br>
+■ Übersetzung der Update-Operation auf eine Update-Operation der zugrunde liegenden Basisrelationen
+<br>
+□ Nur bei einer Relation
+<br>
+– Keine Subanfragen mit Selbstbezug
+<br>
+□ Nur bei normalem SELECT
+<br>
+– Kein DISTINCT
+<br>
+□ Nur falls genug Attribute verwendet werden, so dass alle anderen Attribute mit NULL oder dem Default-Wert gefüllt werden können.</p>
+</div>
+<div class="section" id="einfugen-auf-sichten-beispiel">
+<h3><span class="section-number">9.8.6. </span>Einfügen auf Sichten – Beispiel<a class="headerlink" href="#einfugen-auf-sichten-beispiel" title="Permalink to this headline">¶</a></h3>
+<p>■ Filme(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentinID)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CREATE VIEW ParamountFilme AS
+    SELECT Titel, Jahr
+    FROM Filme
+    WHERE StudioName = ‚Paramount‘;
+
+INSERT INTO ParamountFilme
+VALUES (‚Star Trek‘, 1979);
+</pre></div>
+</div>
+<p>□ Wert für Studioname?
+□ Einfügen also nicht erlaubt.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CREATE VIEW ParamountFilme AS
+    SELECT Titel, Jahr, StudioName
+    FROM Filme
+    WHERE StudioName = ‚Paramount‘;
+
+INSERT INTO ParamountFilme
+VALUES (‚Star Trek‘, 1979, ‚Paramount‘);
+</pre></div>
+</div>
+<p>Dies muss Paramount sein. Ein anderes Studio entspricht nicht der View.
+<br><br>
+■ Neues Tupel (‚Star Trek‘, 1979, 0, NULL, ‚Paramount‘, NULL)</p>
+</div>
+<div class="section" id="loschen-und-updates-auf-sichten">
+<h3><span class="section-number">9.8.7. </span>Löschen und Updates auf Sichten<a class="headerlink" href="#loschen-und-updates-auf-sichten" title="Permalink to this headline">¶</a></h3>
+<p>■ Löschen</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>DELETE FROM ParamountFilme
+WHERE Titel LIKE ‚%Trek%‘;
+</pre></div>
+</div>
+<p>■ Wird umgeschrieben zu</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>DELETE FROM Filme
+WHERE Titel LIKE ‚%Trek%‘ AND StudioName = ‚Paramount‘;
+</pre></div>
+</div>
+<p>■ Update</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>UPDATE ParamountFilme
+SET Jahr = 1979
+WHERE Titel = ‚Star Trek the Movie‘;
+</pre></div>
+</div>
+<p>■ Wird zu</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>UPDATE Filme
+SET Jahr = 1979
+WHERE Titel = ‚Star Trek the Movie‘ AND StudioName = ‚Paramount‘;
+</pre></div>
+</div>
+</div>
+<div class="section" id="tupelmigration">
+<h3><span class="section-number">9.8.8. </span>Tupelmigration<a class="headerlink" href="#tupelmigration" title="Permalink to this headline">¶</a></h3>
+<p>■ Manager(Name, Adresse, ManagerinID, Gehalt)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">VIEW</span> <span class="n">Reiche</span> <span class="n">AS</span>
+    <span class="n">SELECT</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Gehalt</span><span class="p">,</span> <span class="n">ManagerinID</span>
+    <span class="n">FROM</span> <span class="n">ManagerIn</span>
+    <span class="n">WHERE</span> <span class="n">Gehalt</span> <span class="o">&gt;</span> <span class="mi">2000000</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>■ Tupelmigration:
+<br>
+□ Ein Tupel (‚Eisner`, ‚Hollywood‘, 25, 3000000) wird aus der Sicht „herausbewegt“.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UPDATE</span> <span class="n">Reiche</span> <span class="n">SET</span> <span class="n">Gehalt</span> <span class="o">=</span> <span class="mi">1500000</span>
+<span class="n">WHERE</span> <span class="n">ManagerinID</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>■ Vorsicht bei der Implementierung, oder explizite Verhinderung:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">VIEW</span> <span class="n">Reiche</span> <span class="n">AS</span>
+<span class="n">SELECT</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Gehalt</span>
+<span class="n">FROM</span> <span class="n">ManagerIn</span>
+<span class="n">WHERE</span> <span class="n">Gehalt</span> <span class="o">&gt;</span> <span class="mi">2000000</span>
+<span class="n">WITH</span> <span class="n">CHECK</span> <span class="n">OPTION</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>□ Verhindert Tupelmigration durch Ablehnung problematischer Updates.</p>
+</div>
+<div class="section" id="anfrageplanung-mit-sichten">
+<h3><span class="section-number">9.8.9. </span>Anfrageplanung mit Sichten<a class="headerlink" href="#anfrageplanung-mit-sichten" title="Permalink to this headline">¶</a></h3>
+<p>■ Baumdarstellung von Anfragen
+<br>
+□ Blätter repräsentieren Relationen
+<br>
+– Basisrelationen
+<br>
+– Sichten
+<br>
+□ Ersetzung der Sichten durch die Sichtdefinition
+<br>
+– Als Subanfrage
+<br>
+<img alt="title" src="../_images/anfrageplanung1.jpg" />
+<br><br>
+■ Sicht</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CREATE VIEW ParamountFilme AS
+SELECT Titel, Jahr
+FROM Filme
+WHERE StudioName = ‚Paramount‘;
+</pre></div>
+</div>
+<p>■ Anfrage</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Titel</span>
+<span class="n">FROM</span> <span class="n">ParamountFilme</span>
+<span class="n">WHERE</span> <span class="n">Jahr</span> <span class="o">=</span> <span class="mi">1979</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><img alt="title" src="../_images/anfrageplanung2.jpg" />
+<br>
+<img alt="title" src="../_images/anfrageplanung3.jpg" />
+<br>
+<img alt="title" src="../_images/anfrageplanung4.jpg" /></p>
+</div>
+<div class="section" id="materialisierte-sichten">
+<h3><span class="section-number">9.8.10. </span>Materialisierte Sichten<a class="headerlink" href="#materialisierte-sichten" title="Permalink to this headline">¶</a></h3>
+<p>■ Viele Anfragen an eine Datenbank wiederholen sich häufig
+<br>
+□ Business Reports, Bilanzen, Umsätze
+<br>
+□ Bestellungsplanung, Produktionsplanung
+<br>
+□ Kennzahlenberechnung
+<br><br>
+■ Viele Anfragen sind Variationen mit gemeinsamem Kern
+<br><br>
+■ Idee: Einmaliges Berechnen der Anfrage als Sicht
+<br>
+□ Automatische, transparente Verwendung in folgenden Anfragen
+<br>
+□ Materialisierte Sicht (materialized view, MV)
+<br>
+Drei Folien nach Prof. Ulf Leser, HU Berlin</p>
+<div class="section" id="mv-themen-und-probleme">
+<h4><span class="section-number">9.8.10.1. </span>MV – Themen und Probleme<a class="headerlink" href="#mv-themen-und-probleme" title="Permalink to this headline">¶</a></h4>
+<p>■ Wahl von Views zur Materialisierung
+<br>
+□ MVs kosten: Platz und Aktualisierungsaufwand
+<br>
+□ Wahl der optimalen MVs hängt von Workload ab
+<br>
+□ Auswahl der „optimalen“ Menge von MVs
+<br><br>
+■ Automatische Aktualisierung von MVs
+<br>
+□ Aktualisierung bei Änderungen der Basisrelationen
+<br>
+□ U.U. schwierig: Aggregate, Joins, Outer-Joins, …
+<br>
+□ Algorithmen zur inkrementellen Aktualisierung
+<br><br>
+■ Automatische Verwendung von MV
+<br>
+□ „Answering Queries using Views“
+<br>
+□ Umschreiben der Anfrage notwendig
+<br>
+□ Schwierigkeit hängt von Komplexität der Anfrage / Views ab
+<br>
+□ Algorithmen zur transparenten und kostenoptimalen Verwendung der materialisierten Sichten</p>
+</div>
+</div>
+<div class="section" id="answering-queries-using-views">
+<h3><span class="section-number">9.8.11. </span>„Answering Queries using Views“<a class="headerlink" href="#answering-queries-using-views" title="Permalink to this headline">¶</a></h3>
+<p>■ Gegeben
+<br>
+□ Eine Anfrage Q
+<br>
+□ Eine Menge V (materialisierten) von Sichten
+<br><br>
+■ Fragen
+<br>
+□ Kann man Q überhaupt unter Verwendung von V beantworten?
+<br>
+□ Kann man Q nur mit V beantworten?
+<br>
+□ Kann man Q mit V vollständig beantworten?
+<br>
+□ Ist es günstig, Sichten aus V zur Beantwortung von Q zu verwenden? Welche?</p>
+</div>
+</div>
+<div class="section" id="zusammenfassung">
+<h2><span class="section-number">9.9. </span>Zusammenfassung<a class="headerlink" href="#zusammenfassung" title="Permalink to this headline">¶</a></h2>
+<p>Die Anfragesprache SQL
+<br>
+Der SFW Block
+<br>
+Subanfragen
+<br>
+In FROM und WHERE
+<br>
+EXISTS, IN, ALL, ANY
+<br>
+Mengenoperationen
+<br>
+UNION, INTERSECT, EXCEPT
+<br>
+Joins und Outerjoins
+<br>
+Nullwerte
+<br>
+Mengen vs. Multimengen
+<br>
+DISTINCT, ALL
+<br>
+Gruppierung und Aggregation
+<br>
+MIN, MAX, COUNT
+<br>
+GROUP BY, HAVING
+<br>
+Datenbankveränderungen
+<br>
+INSERT, UPDATE, DELETE
+<br>
+Schemata und Datentypen
+<br>
+CREATE TABLE
+<br>
+ALTER TABLE
+<br>
+Indizes
+<br>
+Sichten
+<br>
+Anfragen (und updates)
+<br>
+Materialisierte Sichten</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./09"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../08/relationale_algebra.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">8. </span>Relationale Algebra</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../markdown.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Markdown Files</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Prof. Dr. Ziawasch Abedjan<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
