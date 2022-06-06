@@ -286,23 +286,23 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#triviale-fds">
-     7.2.2. Triviale FDs
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#schema-vs-instanz">
-     7.2.3. Schema vs. Instanz
+    <a class="reference internal nav-link" href="#typen-von-fds">
+     7.2.2. Typen von FDs
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#schlussel-als-spezialfall-einer-fd">
-     7.2.4. Schlüssel als Spezialfall einer FD
+     7.2.3. Schlüssel als Spezialfall einer FD
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#schlussel-und-superschlussel">
-     7.2.5. Schlüssel und Superschlüssel
+     7.2.4. Schlüssel und Superschlüssel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schema-vs-instanz">
+     7.2.5. Schema vs. Instanz
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -540,23 +540,23 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#triviale-fds">
-     7.2.2. Triviale FDs
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#schema-vs-instanz">
-     7.2.3. Schema vs. Instanz
+    <a class="reference internal nav-link" href="#typen-von-fds">
+     7.2.2. Typen von FDs
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#schlussel-als-spezialfall-einer-fd">
-     7.2.4. Schlüssel als Spezialfall einer FD
+     7.2.3. Schlüssel als Spezialfall einer FD
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#schlussel-und-superschlussel">
-     7.2.5. Schlüssel und Superschlüssel
+     7.2.4. Schlüssel und Superschlüssel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schema-vs-instanz">
+     7.2.5. Schema vs. Instanz
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -897,68 +897,25 @@ Die Vereinigungsregel zeigt, dass die Umkehrung der Dekomposition möglich ist. 
 <p>■ Beide zuvor genannte Regeln funktionieren nur für die rechte Seite von FDs. Wir können nicht die linke Seite wie im folgenden Beispiel gezeigt dekomponieren.</p>
 <p>Titel, Jahr → Länge <span class="math notranslate nohighlight">\(\not\Rightarrow\)</span> Titel → Länge <span class="math notranslate nohighlight">\(\vee\)</span> Jahr → Länge</p>
 </div>
-<div class="section" id="triviale-fds">
-<h3><span class="section-number">7.2.2. </span>Triviale FDs<a class="headerlink" href="#triviale-fds" title="Permalink to this headline">¶</a></h3>
-<p>■ Trivial: Attribute rechts sind Teilmenge der Attribute links
+<div class="section" id="typen-von-fds">
+<h3><span class="section-number">7.2.2. </span>Typen von FDs<a class="headerlink" href="#typen-von-fds" title="Permalink to this headline">¶</a></h3>
+<p>Unter den verschiedenen funktionalen Abhängigkeiten gibt es verschiedene Kategorien, die unterschiedlich interessant sind. Es gibt triviale FDs, minimale FDs und andere Spezialfälle wie Schlüssel.</p>
+<p><strong>Trivial</strong>: Bei trivialen FDs sind die Attribute rechts eine Teilmenge der Attribute links. Diese FDs gelten als trivial, da natürlich jedes Attribut sich selbst funktional bestimmt. Genauso bestimmt jede Attributkombination jede ihrer Teilmengen funktional. Anders ausgedrückt gilt: „Zwei Tupel, die in einer Menge von Attributen übereinstimmen, stimmen auch in einem dieser Attribute überein.“</p>
+<p>Beispiel: Titel, Jahr → Titel
+<br></p>
+<p><br><br>
+<strong>Nicht-trivial</strong>: Wenigstens ein Attribut rechts kommt links nicht vor.
 <br>
-□ Titel, Jahr → Titel
-<br>
-□ Es gilt immer für jede triviale FD:
-<br>
-– „Zwei Tupel, die in einer Menge von Attributen übereinstimmen, stimmen auch in einem dieser Attribute überein.“
+□ Beispiel: Titel, Jahr → Jahr, Länge
 <br><br>
-■ Nicht-trivial: Wenigstens ein Attribut rechts kommt links nicht vor.
+<strong>Völlig nicht-trivial</strong>: Die Attribute links und rechts sind disjunkt.
 <br>
-□ Titel, Jahr → Jahr, Länge
-<br><br>
-■ Völlig nicht-trivial: Die Attribute links und rechts sind disjunkt.
-<br>
-□ Titel, Jahr → Länge
-<br>
-□ Im Weiteren interessieren uns nur diese.
-<br><br>
-■ Formal: Triviale-Abhängigkeitsregel
-<br>
-□ A1,A2,…An → Ai1, …, Aik,B1,B2,…,Bm
-<br>
-&lt;=&gt;
-<br>
-A1,A2,…An → B1,B2,…,Bm</p>
-<p><img alt="title" src="../_images/tabelle.jpg" /></p>
-<p>■ Titel, Jahr → Länge
-<br>
-■ Titel, Jahr → Typ
-<br>
-■ Titel, Jahr → StudioName
-<br>
-■ Titel, Jahr → Länge, Typ, StudioName
-<br>
-■ Wenn zwei Tupel den gleichen Titel und das gleiche Jahr haben, dann haben sie auch gleiche Länge, gleichen Typ und gleichen Studionamen.
-<br>
-□ Klar, denn Titel und Jahr sind Schlüssel für die ursprüngliche Film-Relation: Gegeben Titel und Jahr haben wir einen eindeutigen Film, der wohl auch eine eindeutige Länge und Typ hat.
-<br>
-□ Wegen 1:n Beziehung zwischen Studios und Filmen ist auch zu erwarten, dass das Studio eindeutig ist.
-<br>
-■ Aber Titel, Jahr → SchauspName ist falsch! Warum?</p>
-</div>
-<div class="section" id="schema-vs-instanz">
-<h3><span class="section-number">7.2.3. </span>Schema vs. Instanz<a class="headerlink" href="#schema-vs-instanz" title="Permalink to this headline">¶</a></h3>
-<p><img alt="title" src="../_images/tabelle.jpg" /></p>
-<p>FDs sind Aussagen über das Schema, nicht die Instanz!
-<br>
-■ Titel → Typ scheint zu gelten
-<br>
-□ Aber nur zufällig bei dieser Instanz
-<br>
-□ Wenn zwei Filme im Titel übereinstimmen, stimmen sie (hier!) auch im Typ überein.
-<br>
-□ Gegenbeispiel: King Kong von 1924 vs. King Kong von 2005.
-<br>
-■ Titel, Jahr → Typ gilt hingegen</p>
-<p><img alt="title" src="../_images/kingkong.jpg" /></p>
+Beispiel: Titel, Jahr → Länge
+<br></p>
+<p>Für die meisten Probleme, die wir betrachten interessieren wir uns immer nur für die völlig nicht-trivialen FDs. Insbesodnere können wir durch die Dekompositionsregel leicht triviale Komponenten einer FD entfernen.</p>
 </div>
 <div class="section" id="schlussel-als-spezialfall-einer-fd">
-<h3><span class="section-number">7.2.4. </span>Schlüssel als Spezialfall einer FD<a class="headerlink" href="#schlussel-als-spezialfall-einer-fd" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">7.2.3. </span>Schlüssel als Spezialfall einer FD<a class="headerlink" href="#schlussel-als-spezialfall-einer-fd" title="Permalink to this headline">¶</a></h3>
 <p>■ Eine Menge aus einem oder mehr Attributen {A1, A2, …, An} ist Schlüssel der Relation R, falls gilt:
 <br>
 □ Die Attribute bestimmen alle anderen Attribute funktional.
@@ -998,7 +955,7 @@ wären insgesamt identisch.
 – Beispiele?</p>
 </div>
 <div class="section" id="schlussel-und-superschlussel">
-<h3><span class="section-number">7.2.5. </span>Schlüssel und Superschlüssel<a class="headerlink" href="#schlussel-und-superschlussel" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">7.2.4. </span>Schlüssel und Superschlüssel<a class="headerlink" href="#schlussel-und-superschlussel" title="Permalink to this headline">¶</a></h3>
 <p>■ Eine Relation kann mehr als einen Schlüssel besitzen.
 <br>
 □ Wahl eines der Schlüssel als Primärschlüssel
@@ -1024,6 +981,38 @@ wären insgesamt identisch.
 ■ Alternative Begriffe:
 <br>
 □ Schlüssel (=Superschlüssel)</p>
+</div>
+<div class="section" id="schema-vs-instanz">
+<h3><span class="section-number">7.2.5. </span>Schema vs. Instanz<a class="headerlink" href="#schema-vs-instanz" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/tabelle.jpg" /></p>
+<p>■ Titel, Jahr → Länge
+<br>
+■ Titel, Jahr → Typ
+<br>
+■ Titel, Jahr → StudioName
+<br>
+■ Titel, Jahr → Länge, Typ, StudioName
+<br>
+■ Wenn zwei Tupel den gleichen Titel und das gleiche Jahr haben, dann haben sie auch gleiche Länge, gleichen Typ und gleichen Studionamen.
+<br>
+□ Klar, denn Titel und Jahr sind Schlüssel für die ursprüngliche Film-Relation: Gegeben Titel und Jahr haben wir einen eindeutigen Film, der wohl auch eine eindeutige Länge und Typ hat.
+<br>
+□ Wegen 1:n Beziehung zwischen Studios und Filmen ist auch zu erwarten, dass das Studio eindeutig ist.
+<br>
+■ Aber Titel, Jahr → SchauspName ist falsch! Warum?</p>
+<p><img alt="title" src="../_images/tabelle.jpg" /></p>
+<p>FDs sind Aussagen über das Schema, nicht die Instanz!
+<br>
+■ Titel → Typ scheint zu gelten
+<br>
+□ Aber nur zufällig bei dieser Instanz
+<br>
+□ Wenn zwei Filme im Titel übereinstimmen, stimmen sie (hier!) auch im Typ überein.
+<br>
+□ Gegenbeispiel: King Kong von 1924 vs. King Kong von 2005.
+<br>
+■ Titel, Jahr → Typ gilt hingegen</p>
+<p><img alt="title" src="../_images/kingkong.jpg" /></p>
 </div>
 <div class="section" id="wo-kommen-fds-her">
 <h3><span class="section-number">7.2.6. </span>Wo kommen FDs her?<a class="headerlink" href="#wo-kommen-fds-her" title="Permalink to this headline">¶</a></h3>
