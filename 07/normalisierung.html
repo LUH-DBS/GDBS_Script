@@ -51,8 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="8. Relationale Algebra" href="../08/relationale_algebra.html" />
@@ -152,18 +152,23 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../11/transaktionen.html">
+   11. Transaktionsmanagement
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../markdown.html">
-   11. Markdown Files
+   12. Markdown Files
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../notebooks.html">
-   12. Content with notebooks
+   13. Content with notebooks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../markdown-notebooks.html">
-   13. Notebooks with MyST Markdown
+   14. Notebooks with MyST Markdown
   </a>
  </li>
 </ul>
@@ -812,7 +817,8 @@ Die folgende Darstellung weist dieses Problem nicht mehr auf.</p>
 <div class="section" id="funktionale-abhangigkeiten-fds">
 <h2><span class="section-number">7.1. </span>Funktionale Abhängigkeiten (FDs)<a class="headerlink" href="#funktionale-abhangigkeiten-fds" title="Permalink to this headline">¶</a></h2>
 <p>Funktionen kennen Sie aus der Mathematik. Funktionen sind Abbildungen von Elementen einer Menge (Definitionsbereich) auf Elemente einer anderen Menge (Wertebereich), wobei jedem Element des Definitionsbereiches genau ein Element aus dem Werte Bereich zugeordnet wird. Die linke Abbildung unten zeigt den Graphen einer mathematischen Funktion. Die rechte Abbildung stellt jedoch keine Funktion dar, da einem X-Wert mehrere A-Werte zugeordnet wurden. Funktionale Abhängigkeiten folgen einer analogen Definition wie folgt.</p>
-<img src="funktionen.jpg" alt="Funktionen" width="500"/><p><strong>Definition – Funktionale Abhängigkeit</strong> Gegeben eine Relation mit einer Attributmenge <span class="math notranslate nohighlight">\(X \subset R\)</span> und einem Attribut <span class="math notranslate nohighlight">\(A \in R\)</span>, dann ist <span class="math notranslate nohighlight">\(X \rightarrow A\)</span> eine funktionale Abhängigkeit wenn gilt, dass immer wenn zwei Tupel in den Werten der Attributmenge X übereinstimmen, stimmen sie auch im Attributwert
+<a class="reference internal image-reference" href="../_images/funktionen.jpg"><img alt="Funktionen" src="../_images/funktionen.jpg" style="width: 500px;" /></a>
+<p><strong>Definition – Funktionale Abhängigkeit</strong> Gegeben eine Relation mit einer Attributmenge <span class="math notranslate nohighlight">\(X \subset R\)</span> und einem Attribut <span class="math notranslate nohighlight">\(A \in R\)</span>, dann ist <span class="math notranslate nohighlight">\(X \rightarrow A\)</span> eine funktionale Abhängigkeit wenn gilt, dass immer wenn zwei Tupel in den Werten der Attributmenge X übereinstimmen, stimmen sie auch im Attributwert
 für A überein.</p>
 <p><strong>Notation:</strong></p>
 <ul class="simple">
@@ -926,7 +932,7 @@ Theoretisch wäre es möglich Titel und Jahr gemeinsam als Schlüssel zu betrach
 <h3><span class="section-number">7.1.4. </span>Superschlüssel<a class="headerlink" href="#superschlussel" title="Permalink to this headline">¶</a></h3>
 <p>Eine Relation kann mehr als einen Schlüssel besitzen. Es gilt jedoch immer genau einen Primärschlüssel zu spezifizieren.
 Hierbei gilt es zu erkennen, dass jede Attributmenge, die alle Attribute eines Schlüssels enthält auch die Schlüsseleigenschaft aufweist. Eine Attributmenge, die einen Schlüssel enthält, nennt man einen Superschlüssel. Es können auch unnötige Attribute in einem Superschlüssel existieren. Ein (Primär)schlüssel ist jedoch grundsätzlich minimal. Das heißt, dass keine Teilmenge des Schlüssels auch die Schlüsseleigenschaft besitzt.</p>
-<img src="wikipediaPrimaryKey.svg.png" alt="wikipediaPrimaryKey" width="500" caption="by PHummel "/> 
+<a class="reference internal image-reference" href="../_images/wikipediaPrimaryKey.svg.png"><img alt="wikipediaPrimaryKey" src="../_images/wikipediaPrimaryKey.svg.png" style="width: 500px;" /></a>
 <p>In der Abbildung oben, sieht man auch, dass es sogenannte Schlüsselkandidaten gibt. Da wir grundsätzlich genau ein Primärschlüssel spezifizieren, sind alle anderen Attributkombinationen die minimal sind und Schlüsseleigesnchaften erfüllen Schlüsselkandidaten. Wir werden oft den Begriff Schlüssel für Schlüsselkandidaten nutzen.</p>
 <p>Beispiele:
 {FilmID} ist ein Schlüssel, ein Schlüsselkandidant und ein Superschlüssel.</p>
@@ -1003,7 +1009,7 @@ Hierbei gilt es zu erkennen, dass jede Attributmenge, die alle Attribute eines S
 <li><p><span class="math notranslate nohighlight">\(ist\_unter\_Vertrag (\underline{SchauspielerName, Titel, Jahr}, StudioName, Gehalt)\)</span>. Studioname ist nicht teil des Schlüssels (Regel 3)</p></li>
 </ul>
 <p><strong>Beispiel 4 (Schwache Entitytypen):</strong></p>
-<img src="schwacheETs.png" alt="schwacheETs" width="500"/> 
+<a class="reference internal image-reference" href="../_images/schwacheETs.jpg"><img alt="schwacheETs" src="../_images/schwacheETs.jpg" style="width: 500px;" /></a>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(Studio(\underline{Name}, Adresse)\)</span> (Regel 1)</p></li>
 <li><p><span class="math notranslate nohighlight">\(Schauspieler(\underline{Name}, Adresse)\)</span> (Regel 1)</p></li>
@@ -1014,7 +1020,7 @@ Hierbei gilt es zu erkennen, dass jede Attributmenge, die alle Attribute eines S
 <div class="section" id="schlussel-aus-er-diagrammen-ist-hierarchien">
 <h3><span class="section-number">7.1.7. </span>Schlüssel aus ER-Diagrammen: IST-Hierarchien<a class="headerlink" href="#schlussel-aus-er-diagrammen-ist-hierarchien" title="Permalink to this headline">¶</a></h3>
 <p><strong>Beispiel 5 (IST-Hierarchien):</strong></p>
-<img src="IST_hierarchie.png" alt="ist_Hierarchie" width="400"/> 
+<a class="reference internal image-reference" href="../_images/IST_hierarchie.png"><img alt="ist_Hierarchie" src="../_images/IST_hierarchie.png" style="width: 400px;" /></a>
 <p>Bei IST-Hierarchien müssen die Schlüsselattribute in allen Relationen mit übernommen werden.</p>
 <ul class="simple">
 <li><p>ER-Stil: Im ER-Still muss sichergestellt werden, dass der selbe Schlüssel in der Basisrelation das selbe Objekt in der Unterklasse repräsentiert.</p>
@@ -1134,7 +1140,7 @@ Hierunter versteht man genau die Ableitung aller FDs aus einer gegebenen Menge a
 <p>Gegeben eine Menge von Attributen <span class="math notranslate nohighlight">\(A_1,A_2,…,A_k\)</span> einer Relation und eine Menge S von FDs, die Hülle der Menge A1,A2,…,Ak unter S ist die Menge Y aller Attribute für die gilt, dass für jede unter S gültige Relation auch <span class="math notranslate nohighlight">\(A_1,A_2,…,A_k \rightarrow Y\)</span> gilt. Dies entspricht der Menge der funktional ableitbaren Attribute. Das heißt <span class="math notranslate nohighlight">\(A_1,A_2,…,A_k \rightarrow Y\)</span> folgt aus den FDs in S.
 <br></p>
 <ul class="simple">
-<li><p>Notation: Die Hülle von <span class="math notranslate nohighlight">\(A_1,A_2,…,A_k\)</span> wird in Form von <span class="math notranslate nohighlight">\(\{\)</span>A_1,A_2,…,A_k<span class="math notranslate nohighlight">\(\}^+\)</span> ausgedrückt.</p></li>
+<li><p>Notation: Die Hülle von <span class="math notranslate nohighlight">\(A_1,A_2,…,A_k\)</span> wird in Form von <span class="math notranslate nohighlight">\(\{A_1,A_2,…,A_k\}^+\)</span> ausgedrückt.</p></li>
 <li><p>Es gilt trivialerweise und folgend aus dem Reflexivitätsaxiom: <span class="math notranslate nohighlight">\(A_i \in \{A_1,A_2,…,A_k\}^+\)</span> für i=1,…,k</p></li>
 </ul>
 </div>
