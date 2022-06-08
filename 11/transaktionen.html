@@ -1,0 +1,1848 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>11. Transaktionsmanagement &#8212; Online-Skript Grundlagen der Datenbanksysteme</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12. Markdown Files" href="../markdown.html" />
+    <link rel="prev" title="10. Integrität und Trigger" href="../10/integritaet_und_trigger.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/DBIS_Kurzlogo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Online-Skript Grundlagen der Datenbanksysteme</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Grundlagen der Datenbanksysteme
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01/einfuehrung.html">
+   1. Einführung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02/historie.html">
+   2. Historie
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03/architektur.html">
+   3. Architektur
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04/phasenmodell_datenbankentwurf.html">
+   4. Phasenmodell für den Datenbankentwurf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05/er_modellierung.html">
+   5. ER-Modellierung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06/relationaler_entwurf.html">
+   6. Relationaler Entwurf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07/normalisierung.html">
+   7. Normalisierung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08/relationale_algebra.html">
+   8. Relationale Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09/sql.html">
+   9. SQL
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../10/integritaet_und_trigger.html">
+   10. Integrität und Trigger
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   11. Transaktionsmanagement
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown.html">
+   12. Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks.html">
+   13. Content with notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown-notebooks.html">
+   14. Notebooks with MyST Markdown
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/11/transaktionen.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F11/transaktionen.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/11/transaktionen.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transaktionen">
+   11.1. Transaktionen
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#die-transaktion">
+     11.1.1. Die Transaktion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transaktionen-historie">
+     11.1.2. Transaktionen – Historie
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#acid">
+     11.1.3. ACID
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#beispielszenarien">
+     11.1.4. Beispielszenarien
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#beispiel-serialisierbarkeit">
+     11.1.5. Beispiel – Serialisierbarkeit
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     11.1.6. Beispiel – Serialisierbarkeit
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#beispiel-atomizitat">
+     11.1.7. Beispiel - Atomizität
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#probleme-im-mehrbenutzerbetrieb">
+     11.1.8. Probleme im Mehrbenutzerbetrieb
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dirty-read">
+     11.1.9. Dirty Read
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nonrepeatable-read">
+     11.1.10. Nonrepeatable Read
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#das-phantom-problem">
+     11.1.11. Das Phantom-Problem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lost-update">
+     11.1.12. Lost Update
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transaktionen-in-sql">
+     11.1.13. Transaktionen in SQL
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#isolationsebenen">
+     11.1.14. Isolationsebenen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bedeutung-der-isolationsebenen">
+     11.1.15. Bedeutung der Isolationsebenen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#isolationsebenen-ubersicht">
+     11.1.16. Isolationsebenen – Übersicht
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#serialisierbarkeit">
+   11.2. Serialisierbarkeit
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#seriell-vs-parallel">
+     11.2.1. Seriell vs. Parallel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schedules">
+     11.2.2. Schedules
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       11.2.2.1. Serialisierbarkeit
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-1">
+       11.2.2.2. Beispiel 1
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-2">
+       11.2.2.3. Beispiel 2
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-3">
+       11.2.2.4. Beispiel 3
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-4">
+       11.2.2.5. Beispiel 4
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-5">
+       11.2.2.6. Beispiel 5
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-6">
+       11.2.2.7. Beispiel 6
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-7">
+       11.2.2.8. Beispiel 7
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-8">
+       11.2.2.9. Beispiel 8
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-9">
+       11.2.2.10. Beispiel 9
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#konfliktserialisierbarkeit">
+   11.3. Konfliktserialisierbarkeit
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#konflikte">
+     11.3.1. Konflikte
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     11.3.2. Konfliktserialisierbarkeit
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#konflikt-konfligieren">
+       11.3.2.1. Konflikt – konfligieren
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#konfliktserialisierbarkeit-vs-serialisierbarkeit">
+       11.3.2.2. Konfliktserialisierbarkeit vs. Serialisierbarkeit
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#graphbasierter-test">
+       11.3.2.3. Graphbasierter Test
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       11.3.2.4. Schedules
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id5">
+         11.3.2.4.1. Beispiel 1
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id6">
+         11.3.2.4.2. Beispiel 2
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id7">
+         11.3.2.4.3. Beispiel 3
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beweis">
+       11.3.2.5. Beweis
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sperrkontrolle">
+   11.4. Sperrkontrolle
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scheduler">
+     11.4.1. Scheduler
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sperren">
+     11.4.2. Sperren
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schedules-mit-sperren">
+     11.4.3. Schedules mit Sperren
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#freigabe-durch-scheduler">
+     11.4.4. Freigabe durch Scheduler
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     11.4.5. Schedules mit Sperren
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#phasen-sperrprotokoll">
+     11.4.6. 2-Phasen Sperrprotokoll
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#phasen-sperrprotokoll-beispiel">
+       11.4.6.1. 2-Phasen Sperrprotokoll – Beispiel
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#deadlocks-unter-2pl-moglich">
+       11.4.6.2. Deadlocks unter 2PL möglich
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pl-intuition">
+       11.4.6.3. 2PL – Intuition
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pl-beweis">
+       11.4.6.4. 2PL – Beweis
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   11.5. Sperren
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mehrere-sperrmodi">
+     11.5.1. Mehrere Sperrmodi
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bedingungen">
+     11.5.2. Bedingungen
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel">
+       11.5.2.1. Beispiel
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#weitere-sperrarten">
+     11.5.3. Weitere Sperrarten
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Transaktionsmanagement</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transaktionen">
+   11.1. Transaktionen
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#die-transaktion">
+     11.1.1. Die Transaktion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transaktionen-historie">
+     11.1.2. Transaktionen – Historie
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#acid">
+     11.1.3. ACID
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#beispielszenarien">
+     11.1.4. Beispielszenarien
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#beispiel-serialisierbarkeit">
+     11.1.5. Beispiel – Serialisierbarkeit
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     11.1.6. Beispiel – Serialisierbarkeit
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#beispiel-atomizitat">
+     11.1.7. Beispiel - Atomizität
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#probleme-im-mehrbenutzerbetrieb">
+     11.1.8. Probleme im Mehrbenutzerbetrieb
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dirty-read">
+     11.1.9. Dirty Read
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nonrepeatable-read">
+     11.1.10. Nonrepeatable Read
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#das-phantom-problem">
+     11.1.11. Das Phantom-Problem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lost-update">
+     11.1.12. Lost Update
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transaktionen-in-sql">
+     11.1.13. Transaktionen in SQL
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#isolationsebenen">
+     11.1.14. Isolationsebenen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bedeutung-der-isolationsebenen">
+     11.1.15. Bedeutung der Isolationsebenen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#isolationsebenen-ubersicht">
+     11.1.16. Isolationsebenen – Übersicht
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#serialisierbarkeit">
+   11.2. Serialisierbarkeit
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#seriell-vs-parallel">
+     11.2.1. Seriell vs. Parallel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schedules">
+     11.2.2. Schedules
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       11.2.2.1. Serialisierbarkeit
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-1">
+       11.2.2.2. Beispiel 1
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-2">
+       11.2.2.3. Beispiel 2
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-3">
+       11.2.2.4. Beispiel 3
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-4">
+       11.2.2.5. Beispiel 4
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-5">
+       11.2.2.6. Beispiel 5
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-6">
+       11.2.2.7. Beispiel 6
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-7">
+       11.2.2.8. Beispiel 7
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-8">
+       11.2.2.9. Beispiel 8
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-9">
+       11.2.2.10. Beispiel 9
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#konfliktserialisierbarkeit">
+   11.3. Konfliktserialisierbarkeit
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#konflikte">
+     11.3.1. Konflikte
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     11.3.2. Konfliktserialisierbarkeit
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#konflikt-konfligieren">
+       11.3.2.1. Konflikt – konfligieren
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#konfliktserialisierbarkeit-vs-serialisierbarkeit">
+       11.3.2.2. Konfliktserialisierbarkeit vs. Serialisierbarkeit
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#graphbasierter-test">
+       11.3.2.3. Graphbasierter Test
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       11.3.2.4. Schedules
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id5">
+         11.3.2.4.1. Beispiel 1
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id6">
+         11.3.2.4.2. Beispiel 2
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id7">
+         11.3.2.4.3. Beispiel 3
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beweis">
+       11.3.2.5. Beweis
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sperrkontrolle">
+   11.4. Sperrkontrolle
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scheduler">
+     11.4.1. Scheduler
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sperren">
+     11.4.2. Sperren
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schedules-mit-sperren">
+     11.4.3. Schedules mit Sperren
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#freigabe-durch-scheduler">
+     11.4.4. Freigabe durch Scheduler
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     11.4.5. Schedules mit Sperren
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#phasen-sperrprotokoll">
+     11.4.6. 2-Phasen Sperrprotokoll
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#phasen-sperrprotokoll-beispiel">
+       11.4.6.1. 2-Phasen Sperrprotokoll – Beispiel
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#deadlocks-unter-2pl-moglich">
+       11.4.6.2. Deadlocks unter 2PL möglich
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pl-intuition">
+       11.4.6.3. 2PL – Intuition
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pl-beweis">
+       11.4.6.4. 2PL – Beweis
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   11.5. Sperren
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mehrere-sperrmodi">
+     11.5.1. Mehrere Sperrmodi
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bedingungen">
+     11.5.2. Bedingungen
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel">
+       11.5.2.1. Beispiel
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#weitere-sperrarten">
+     11.5.3. Weitere Sperrarten
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="transaktionsmanagement">
+<h1><span class="section-number">11. </span>Transaktionsmanagement<a class="headerlink" href="#transaktionsmanagement" title="Permalink to this headline">¶</a></h1>
+<p><img alt="title" src="../_images/cartoon.jpg" /></p>
+<p>Motivation - Transaktionsmanagement
+<br><br>
+■ Annahmen bisher
+<br>
+□ Isolation: Nur ein Nutzer greift auf die Datenbank zu
+<br>
+– Lesend
+<br>
+– Schreibend
+<br>
+□ In Wahrheit: Viele Nutzer und Anwendungen lesen und schreiben gleichzeitig.
+<br>
+□ Atomizität
+<br>
+– Anfragen und Updates bestehen aus einer einzigen, atomaren Aktion. DBMS können nicht mitten in dieser Aktion ausfallen.
+<br>
+– In Wahrheit: Auch einfache Anfragen bestehen oft aus mehreren Teilschritten.
+<br><br>
+Motivierendes Beispiel
+<img alt="title" src="../_images/motivierendes_bsp.jpg" /></p>
+<div class="section" id="transaktionen">
+<h2><span class="section-number">11.1. </span>Transaktionen<a class="headerlink" href="#transaktionen" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="die-transaktion">
+<h3><span class="section-number">11.1.1. </span>Die Transaktion<a class="headerlink" href="#die-transaktion" title="Permalink to this headline">¶</a></h3>
+<p>Eine Transaktion ist eine Folge von Operationen (Aktionen), die die Datenbank von einem konsistenten Zustand in einen konsistenten (eventuell veränderten) Zustand überführt, wobei das ACID-Prinzip eingehalten werden muss.</p>
+</div>
+<div class="section" id="transaktionen-historie">
+<h3><span class="section-number">11.1.2. </span>Transaktionen – Historie<a class="headerlink" href="#transaktionen-historie" title="Permalink to this headline">¶</a></h3>
+<p>■ In alten DBMS kein Formalismus über Transaktionen
+<br>
+□ Nur Tricks
+<br><br>
+■ Erster Formalismus in den 80ern
+<br>
+□ System R mit Jim Gray
+<br>
+□ Erste (ineffiziente) Implementierung
+<br>
+□ ACM Turing Award
+<br>
+– For seminal contributions to database and transaction processing research and technical leadership in system implementation from research prototypes to commercial products.
+<br><br>
+■ ARIES Project (IBM Research)
+<br>
+□ Algorithms for Recovery and Isolation Exploiting Semantics
+<br>
+□ Effiziente Implementierungen
+<br>
+□ C. Mohan
+<br><br>
+■ Transaktionen auch in verteilten Anwendungen und Services
+<br>
+<img alt="title" src="../_images/jim_gray.jpg" />
+<br>
+<img alt="title" src="../_images/c_mohan.jpg" /></p>
+</div>
+<div class="section" id="acid">
+<h3><span class="section-number">11.1.3. </span>ACID<a class="headerlink" href="#acid" title="Permalink to this headline">¶</a></h3>
+<p>■ Atomicity (Atomarität)
+<br>
+□ Transaktion wird entweder ganz oder gar nicht ausgeführt.
+<br><br>
+■ Consistency (Konsistenz oder auch Integritätserhaltung)
+<br>
+□ Datenbank ist vor Beginn und nach Beendigung einer Transaktion jeweils in einem konsistenten Zustand.
+<br><br>
+■ Isolation (Isolation)
+<br>
+□ Transaktion, die auf einer Datenbank arbeitet, sollte den „Eindruck“ haben, dass sie allein auf dieser Datenbank arbeitet.
+<br><br>
+■ Durability (Dauerhaftigkeit / Persistenz)
+<br>
+□ Nach erfolgreichem Abschluss einer Transaktion muss das Ergebnis dieser Transaktion „dauerhaft“ in der Datenbank gespeichert werden.</p>
+</div>
+<div class="section" id="beispielszenarien">
+<h3><span class="section-number">11.1.4. </span>Beispielszenarien<a class="headerlink" href="#beispielszenarien" title="Permalink to this headline">¶</a></h3>
+<p>■ Platzreservierung für Flüge gleichzeitig aus vielen Reisebüros
+<br>
+□ Platz könnte mehrfach verkauft werden, wenn mehrere Reisebüros den Platz als verfügbar identifizieren.
+<br><br>
+■ Überschneidende Konto-Operationen einer Bank
+<br>
+□ Beispiele später
+<br><br>
+■ Statistische Datenbankoperationen
+<br>
+□ Ergebnisse sind verfälscht, wenn während der Berechnung Daten geändert werden.</p>
+</div>
+<div class="section" id="beispiel-serialisierbarkeit">
+<h3><span class="section-number">11.1.5. </span>Beispiel – Serialisierbarkeit<a class="headerlink" href="#beispiel-serialisierbarkeit" title="Permalink to this headline">¶</a></h3>
+<p>■ Fluege(Flugnummer, Datum, Sitz, besetzt)
+<br>
+■ chooseSeat() sucht nach freiem Platz und besetzt ihn gegebenenfalls</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>EXEC SQL BEGIN DECLARE SECTION;
+    int flug;
+    char date[10];
+    char seat[3];
+    int occ;
+EXEC SQL END DECLARE SECTION;
+void chooseSeat() {
+/* Nutzer nach Flug, Datum und Sitz fragen */
+    EXEC SQL SELECT besetzt INTO :occ FROM Fluege
+        WHERE Flugnummer=:flug
+        AND Datum=:date AND Sitz=:seat;
+if(!occ) {
+        EXEC SQL UPDATE Fluege SET besetzt=TRUE
+    WHERE Flugnummer=:flight AND Datum=:date AND Sitz=:seat;
+        }
+    else …
+}
+</pre></div>
+</div>
+<p>-&gt;Embedded SQL</p>
+</div>
+<div class="section" id="id1">
+<h3><span class="section-number">11.1.6. </span>Beispiel – Serialisierbarkeit<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>■ Problem: Funktion wird von mehreren Usern zugleich aufgerufen
+<br>
+<img alt="title" src="../_images/serialisierbarkeit_bsp.jpg" />
+■ Beide User glauben den Platz reserviert zu haben.
+<br><br>
+■ Lösung gleich
+<br>
+□ Serielle Schedules
+<br>
+□ Serialisierbare Schedules</p>
+</div>
+<div class="section" id="beispiel-atomizitat">
+<h3><span class="section-number">11.1.7. </span>Beispiel - Atomizität<a class="headerlink" href="#beispiel-atomizitat" title="Permalink to this headline">¶</a></h3>
+<p>■ Problem: Eine Transaktion kann Datenbank in inkonsistenten Zustand hinterlassen.
+<br>
+□ Softwarefehler / Hardwarefehler</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">EXEC</span> <span class="n">SQL</span> <span class="n">BEGIN</span> <span class="n">SECTION</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">konto1</span><span class="p">,</span> <span class="n">konto2</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">kontostand</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">betrag</span><span class="p">;</span>
+<span class="n">EXEC</span> <span class="n">SQL</span> <span class="n">END</span> <span class="n">DECLARE</span> <span class="n">SECTION</span><span class="p">;</span>
+<span class="n">void</span> <span class="n">transfer</span><span class="p">()</span> <span class="p">{</span>
+<span class="o">/*</span> <span class="n">User</span> <span class="n">nach</span> <span class="n">Konto1</span><span class="p">,</span> <span class="n">Konto2</span> <span class="n">und</span> <span class="n">Betrag</span> <span class="n">fragen</span> <span class="o">*/</span>
+    <span class="n">EXEC</span> <span class="n">SQL</span> <span class="n">SELECT</span> <span class="n">Stand</span> <span class="n">INTO</span> <span class="p">:</span><span class="n">kontostand</span> <span class="n">FROM</span> <span class="n">Konten</span>
+        <span class="n">WHERE</span> <span class="n">KontoNR</span><span class="o">=</span><span class="p">:</span><span class="n">konto1</span><span class="p">;</span>
+        <span class="n">If</span> <span class="p">(</span><span class="n">kontostand</span> <span class="o">&gt;=</span> <span class="n">betrag</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">EXEC</span> <span class="n">SQL</span> <span class="n">UPDATE</span> <span class="n">Konten</span>
+        <span class="n">SET</span> <span class="n">Stand</span><span class="o">=</span><span class="n">Stand</span><span class="o">+</span><span class="p">:</span><span class="n">betrag</span>
+        <span class="n">WHERE</span> <span class="n">KontoNR</span><span class="o">=</span><span class="p">:</span><span class="n">konto2</span><span class="p">;</span>
+    <span class="n">EXEC</span> <span class="n">SQL</span> <span class="n">UPDATE</span> <span class="n">Konten</span>
+        <span class="n">SET</span> <span class="n">Stand</span><span class="o">=</span><span class="n">Stand</span><span class="o">-</span><span class="p">:</span><span class="n">betrag</span>
+        <span class="n">WHERE</span> <span class="n">KontoNR</span><span class="o">=</span><span class="p">:</span><span class="n">konto1</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="o">/*</span> <span class="n">Fehlermeldung</span> <span class="o">*/</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>-&gt;Problem: Systemabsturz hier
+<br>
+-&gt;Lösung: Atomizität</p>
+</div>
+<div class="section" id="probleme-im-mehrbenutzerbetrieb">
+<h3><span class="section-number">11.1.8. </span>Probleme im Mehrbenutzerbetrieb<a class="headerlink" href="#probleme-im-mehrbenutzerbetrieb" title="Permalink to this headline">¶</a></h3>
+<p>■ Abhängigkeiten von nicht freigegebenen Daten: Dirty Read
+<br><br>
+■ Inkonsistentes Lesen: Nonrepeatable Read
+<br><br>
+■ Berechnungen auf unvollständigen Daten: Phantom-Problem
+<br><br>
+■ Verlorengegangenes Ändern: Lost Update</p>
+</div>
+<div class="section" id="dirty-read">
+<h3><span class="section-number">11.1.9. </span>Dirty Read<a class="headerlink" href="#dirty-read" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/dirty_read_bsp.jpg" />
+<br>
+Problem: T2 liest den veränderten A-Wert, diese Änderung ist aber nicht endgültig, sondern sogar ungültig.
+<br>
+Folie nach Kai-Uwe Sattler (TU Ilmenau)</p>
+</div>
+<div class="section" id="nonrepeatable-read">
+<h3><span class="section-number">11.1.10. </span>Nonrepeatable Read<a class="headerlink" href="#nonrepeatable-read" title="Permalink to this headline">¶</a></h3>
+<p>■ Nicht-wiederholbares Lesen
+<br><br>
+■ Beispiel:
+<br>
+□ Zusicherung: x = A + B + C am Ende der Transaktion T1
+<br>
+□ x, y, z seien lokale Variablen
+<br>
+<img alt="title" src="../_images/nonrepeatable_read_bsp.jpg" />
+<br>
+Problem: A hat sich im Laufe der Transaktion geändert.
+<br>
+x = A + B + C gilt nicht mehr
+<br>
+Beispiel nach Kai-Uwe Sattler (TU Ilmenau)</p>
+</div>
+<div class="section" id="das-phantom-problem">
+<h3><span class="section-number">11.1.11. </span>Das Phantom-Problem<a class="headerlink" href="#das-phantom-problem" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/phantom_problem_bsp.jpg" />
+<br>
+Problem: Meier geht nicht in die Gehaltsberechnung ein. Meier ist das Phantom.
+<br>
+<img alt="title" src="../_images/phantom.jpg" />
+<br>
+Beispiel nach Kai-Uwe Sattler (TU Ilmenau)</p>
+</div>
+<div class="section" id="lost-update">
+<h3><span class="section-number">11.1.12. </span>Lost Update<a class="headerlink" href="#lost-update" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/lost_update_bsp.jpg" />
+<br>
+Problem: Die Erhöhung von T1 wird nicht berücksichtigt.
+<br>
+Folie nach Kai-Uwe Sattler (TU Ilmenau)</p>
+</div>
+<div class="section" id="transaktionen-in-sql">
+<h3><span class="section-number">11.1.13. </span>Transaktionen in SQL<a class="headerlink" href="#transaktionen-in-sql" title="Permalink to this headline">¶</a></h3>
+<p>■ Idee: Gruppierung mehrerer Operationen / Anfragen in eine Transaktion
+<br>
+□ Ausführung atomar (per Definition)
+<br>
+□ Ausführung serialisierbar (per SQL Standard)
+<br>
+– Kann aufgeweicht werden (Isolationsstufen)
+<br><br>
+■ Ein SQL Befehl entspricht einer Transaktion
+<br>
+□ Ausgelöste TRIGGER werden ebenfalls innerhalb der Transaktion ausgeführt.
+<br><br>
+■ Beginn einer Transaktion: START TRANSACTION
+<br><br>
+■ Ende einer Transaktion (falls mit START TRANSACTION gestartet)
+<br>
+□ COMMIT signalisiert erfolgreiches Ende der Transaktion
+<br>
+□ ROLLBACK oder ABORT signalisiert Scheitern der Transaktion
+<br>
+– Erfolgte Änderungen werden rückgängig gemacht.
+<br>
+– Kann auch durch das DBMS ausgelöst werden: Anwendung muss entsprechende Fehlermeldung erkennen.</p>
+</div>
+<div class="section" id="isolationsebenen">
+<h3><span class="section-number">11.1.14. </span>Isolationsebenen<a class="headerlink" href="#isolationsebenen" title="Permalink to this headline">¶</a></h3>
+<p>Aufweichung von ACID in SQL-92: Isolationsebenen</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="n">transaction</span>
+<span class="p">[</span> <span class="p">{</span> <span class="n">read</span> <span class="n">only</span> <span class="o">|</span> <span class="n">read</span> <span class="n">write</span> <span class="p">},</span> <span class="p">]</span>
+<span class="p">[</span><span class="n">isolation</span> <span class="n">level</span> <span class="p">{</span>
+    <span class="n">read</span> <span class="n">uncommitted</span> <span class="o">|</span>
+    <span class="n">read</span> <span class="n">committed</span> <span class="o">|</span>
+    <span class="n">repeatable</span> <span class="n">read</span> <span class="o">|</span>
+    <span class="n">serializable</span> <span class="p">},</span> <span class="p">]</span>
+<span class="p">[</span> <span class="n">diagnostics</span> <span class="n">size</span> <span class="o">...</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>■ Kann pro Transaktion angegeben werden
+<br><br>
+■ Standardeinstellung:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="n">transaction</span> <span class="n">read</span> <span class="n">write</span><span class="p">,</span>
+<span class="n">isolation</span> <span class="n">level</span> <span class="n">serializable</span>
+</pre></div>
+</div>
+<p>■ Andere Ebenen als Hilfestellung für das DBMS zur Effizienzsteigerung</p>
+</div>
+<div class="section" id="bedeutung-der-isolationsebenen">
+<h3><span class="section-number">11.1.15. </span>Bedeutung der Isolationsebenen<a class="headerlink" href="#bedeutung-der-isolationsebenen" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">read</span> <span class="n">uncommitted</span>
+</pre></div>
+</div>
+<p>□ Schwächste Stufe: Zugriff auf nicht geschriebene Daten
+<br>
+□ Falls man schreiben will: read write angeben (default ist hier ausnahmsweise read only)
+<br>
+□ Statistische und ähnliche Transaktionen (ungefährer Überblick, nicht korrekte Werte)
+<br>
+□ Keine Sperren: Effizient ausführbar, keine anderen Transaktionen werden behindert</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">read</span> <span class="n">committed</span>
+</pre></div>
+</div>
+<p>□ Nur Lesen endgültig geschriebener Werte, aber nonrepeatable read möglich</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">repeatable</span> <span class="n">read</span>
+</pre></div>
+</div>
+<p>□ Kein nonrepeatable read, aber Phantomproblem kann auftreten</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">serializable</span>
+</pre></div>
+</div>
+<p>□ Garantierte Serialisierbarkeit (default)
+<br>
+□ Transaktion sieht nur Änderungen, die zu Beginn der Transaktion committed waren (und eigene Änderungen).</p>
+</div>
+<div class="section" id="isolationsebenen-ubersicht">
+<h3><span class="section-number">11.1.16. </span>Isolationsebenen – Übersicht<a class="headerlink" href="#isolationsebenen-ubersicht" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/isolationsebenen_uebersicht.jpg" /></p>
+</div>
+</div>
+<div class="section" id="serialisierbarkeit">
+<h2><span class="section-number">11.2. </span>Serialisierbarkeit<a class="headerlink" href="#serialisierbarkeit" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="seriell-vs-parallel">
+<h3><span class="section-number">11.2.1. </span>Seriell vs. Parallel<a class="headerlink" href="#seriell-vs-parallel" title="Permalink to this headline">¶</a></h3>
+<p>■ Grundannahme: Korrektheit
+<br>
+□ Jede Transaktion, isoliert ausgeführt auf einem konsistenten Zustand der Datenbank, hinterlässt die Datenbank
+wiederum in einem konsistenten Zustand.
+<br><br>
+■ Einfache Lösung aller obigen Probleme:
+<br>
+□ Alle Transaktionen seriell ausführen.
+<br><br>
+■ Aber: Parallele Ausführung bietet Effizienzvorteile
+<br>
+□ „Long-Transactions“ über mehrere Stunden hinweg
+<br>
+□ Cache ausnutzen
+<br><br>
+■ Deshalb: Korrekte parallele Pläne (Schedules) finden
+<br>
+□ Korrekt = Serialisierbar</p>
+</div>
+<div class="section" id="schedules">
+<h3><span class="section-number">11.2.2. </span>Schedules<a class="headerlink" href="#schedules" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/bsp1.jpg" />
+<br>
+■ Ein Schedule ist eine geordnete Abfolge wichtiger Aktionen, die von einer oder mehreren Transaktionen durchgeführt werden.
+<br>
+□ Wichtige Aktionen: READ und WRITE eines Elements
+<br>
+□ „Ablaufplan“ für Transaktion, bestehend aus Abfolge von Transaktionsoperationen</p>
+<div class="section" id="id2">
+<h4><span class="section-number">11.2.2.1. </span>Serialisierbarkeit<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p>■ Schedule
+<br>
+□ „Ablaufplan“ für Transaktionen, bestehend aus Abfolge von Transaktionsoperationen
+<br><br>
+■ Serieller Schedule
+<br>
+□ Schedule in dem Transaktionen hintereinander ausgeführt werden
+<br><br>
+■ Serialisierbarer Schedule
+<br>
+□ Es existiert ein serieller Schedule mit identischem Effekt.</p>
+</div>
+<div class="section" id="beispiel-1">
+<h4><span class="section-number">11.2.2.2. </span>Beispiel 1<a class="headerlink" href="#beispiel-1" title="Permalink to this headline">¶</a></h4>
+<p>Serieller Schedule
+<br>
+<img alt="title" src="../_images/bsp2.jpg" />
+<br><br>
+Serialisierbarer Schedule
+<br>
+<img alt="title" src="../_images/bsp3.jpg" />
+<br><br></p>
+</div>
+<div class="section" id="beispiel-2">
+<h4><span class="section-number">11.2.2.3. </span>Beispiel 2<a class="headerlink" href="#beispiel-2" title="Permalink to this headline">¶</a></h4>
+<p>Serialisierbar?
+<br>
+<img alt="title" src="../_images/bsp4.jpg" /></p>
+</div>
+<div class="section" id="beispiel-3">
+<h4><span class="section-number">11.2.2.4. </span>Beispiel 3<a class="headerlink" href="#beispiel-3" title="Permalink to this headline">¶</a></h4>
+<p>Aufgabe: Suche äquivalenten seriellen Schedule.
+<br>
+<img alt="title" src="../_images/bsp5.jpg" />
+<br>
+Effekt: A = A − 150, B = B + 150
+<br>
+<br>
+<img alt="title" src="../_images/bsp6.jpg" />
+<br>
+Effekt: A = A − 150, B = B + 150</p>
+</div>
+<div class="section" id="beispiel-4">
+<h4><span class="section-number">11.2.2.5. </span>Beispiel 4<a class="headerlink" href="#beispiel-4" title="Permalink to this headline">¶</a></h4>
+<p><img alt="title" src="../_images/bsp7.jpg" />
+<br></p>
+<ol class="simple">
+<li><p>Effekt: A = (A − 50) * 1.03
+<br></p></li>
+<li><p>Effekt B = B * 1.03 + 50</p></li>
+</ol>
+</div>
+<div class="section" id="beispiel-5">
+<h4><span class="section-number">11.2.2.6. </span>Beispiel 5<a class="headerlink" href="#beispiel-5" title="Permalink to this headline">¶</a></h4>
+<p><img alt="title" src="../_images/bsp8.jpg" />
+<br></p>
+<ol class="simple">
+<li><p>Effekt: A = (A − 50) * 1.03
+<br></p></li>
+<li><p>Effekt: B = (B + 50) * 1.03</p></li>
+</ol>
+</div>
+<div class="section" id="beispiel-6">
+<h4><span class="section-number">11.2.2.7. </span>Beispiel 6<a class="headerlink" href="#beispiel-6" title="Permalink to this headline">¶</a></h4>
+<p><img alt="title" src="../_images/bsp9.jpg" />
+<br></p>
+<ol class="simple">
+<li><p>Effekt: A = (A − 50) * 1.03
+<br></p></li>
+<li><p>Effekt: B = B * 1.03 + 50</p></li>
+</ol>
+</div>
+<div class="section" id="beispiel-7">
+<h4><span class="section-number">11.2.2.8. </span>Beispiel 7<a class="headerlink" href="#beispiel-7" title="Permalink to this headline">¶</a></h4>
+<p><img alt="title" src="../_images/bsp10.jpg" />
+<br></p>
+<ol class="simple">
+<li><p>Effekt: A = A * 1.03 − 50
+<br></p></li>
+<li><p>Effekt: B = B * 1.03 + 50</p></li>
+</ol>
+</div>
+<div class="section" id="beispiel-8">
+<h4><span class="section-number">11.2.2.9. </span>Beispiel 8<a class="headerlink" href="#beispiel-8" title="Permalink to this headline">¶</a></h4>
+<p><img alt="title" src="../_images/bsp11.jpg" />
+<br>
+Serialisierbar?
+Nein, denn Effekt entspricht weder dem seriellen Schedule T1T3 noch dem seriellen Schedule T3T1
+<br>
+Nein,
+obwohl es konkrete Beispiele solcher Transaktionen gibt, für die es einen äquivalenten seriellen Schedule gibt. Man nimmt immer das Schlimmste an.</p>
+</div>
+<div class="section" id="beispiel-9">
+<h4><span class="section-number">11.2.2.10. </span>Beispiel 9<a class="headerlink" href="#beispiel-9" title="Permalink to this headline">¶</a></h4>
+<p>Nochmal die beiden seriellen Schedules. Ist Ihnen etwas aufgefallen?
+<br>
+<img alt="title" src="../_images/bsp12.jpg" />
+<br>
+T1T3 ≠ T3T1
+<br>
+Ist das schlimm?</p>
+</div>
+</div>
+</div>
+<div class="section" id="konfliktserialisierbarkeit">
+<h2><span class="section-number">11.3. </span>Konfliktserialisierbarkeit<a class="headerlink" href="#konfliktserialisierbarkeit" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="konflikte">
+<h3><span class="section-number">11.3.1. </span>Konflikte<a class="headerlink" href="#konflikte" title="Permalink to this headline">¶</a></h3>
+<p>■ Bedingung für Serialisierbarkeit: „Konfliktserialisierbarkeit“
+<br><br>
+■ Konfliktserialisierbarkeit wird von den meisten DBMS verlangt (und hergestellt)
+<br><br>
+■ Konflikt herrscht zwischen zwei Aktionen eines Schedules falls die Änderung ihrer Reihenfolge das Ergebnis verändern kann.
+<br>
+□ „Kann“ - nicht muss.
+<br><br>
+■ Neue Notation: Aktion ri(X) bzw. wi(X)
+<br>
+□ read bzw. write
+<br>
+□ TransaktionsID i
+<br>
+□ Datenbankelement X
+<br><br>
+■ Transaktion ist eine Sequenz solcher Aktionen
+<br>
+□ r1(A)w1(A)r1(B)w1(B)
+<br><br>
+■ Schedule einer Menge von Transaktionen ist eine Sequenz von Aktionen
+<br>
+□ Alle Aktionen aller Transaktionen müssen enthalten sein
+<br>
+□ Aktionen einer Transaktion erscheinen in gleicher Reihenfolge im Schedule
+<br><br>
+■ Gegeben Transaktionen Ti und Tk
+<br>
+□ ri(X) und rk(X) stehen nicht in Konflikt
+<br>
+□ ri(X) und wk(Y) stehen nicht in Konflikt (falls X ≠ Y)
+<br>
+□ wi(X) und rk(Y) stehen nicht in Konflikt (falls X ≠ Y)
+<br>
+□ wi(X) und wk(Y) stehen nicht in Konflikt (falls X ≠ Y)
+<br>
+□ ri(X) und wk(X) stehen in Konflikt
+<br>
+□ wi(X) und rk(X) stehen in Konflikt
+<br>
+□ wi(X) und wk(X) stehen in Konflikt
+<br>
+– „No coincidences“: Man nimmt immer das schlimmste an. Die konkrete Ausprägung der write-Operationen ist egal.
+<br><br>
+■ Zusammengefasst: Konflikt herrscht falls zwei Aktionen
+<br>
+□ das gleiche Datenbankelement betreffen,
+<br>
+□ und mindestens eine der beiden Aktionen ein write ist.</p>
+</div>
+<div class="section" id="id3">
+<h3><span class="section-number">11.3.2. </span>Konfliktserialisierbarkeit<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>■ Idee: So lange nicht-konfligierende Aktionen tauschen bis aus einem Schedule ein serieller Schedule wird.
+<br>
+□ Falls das klappt, ist der Schedule serialisierbar.
+<br><br>
+■ Zwei Schedules S und S‘ heißen konfliktäquivalent, wenn die Reihenfolge aller Paare von konfligierenden Aktionen in beiden Schedules gleich ist.
+<br><br>
+■ Ein Schedule S ist genau dann konfliktserialisierbar, wenn S konfliktäquivalent zu einem seriellen Schedule ist.<br><br>
+■ Schedule:
+<br>
+r1(A) w1(A) r2(A) w2(A) r2(B) w2(B) r1(B) w1(B)
+<br><br>
+■ Serieller Schedule T1T2:
+<br>
+r1(A) w1(A) r1(B) w1(B) r2(A) w2(A) r2(B) w2(B)
+<br><br>
+■ Serieller Schedule T2T1:
+<br>
+r2(A) w2(A) r2(B) w2(B) r1(A) w1(A) r1(B) w1(B)</p>
+<div class="section" id="konflikt-konfligieren">
+<h4><span class="section-number">11.3.2.1. </span>Konflikt – konfligieren<a class="headerlink" href="#konflikt-konfligieren" title="Permalink to this headline">¶</a></h4>
+<p><img alt="title" src="../_images/def_konfligieren.jpg" /></p>
+</div>
+<div class="section" id="konfliktserialisierbarkeit-vs-serialisierbarkeit">
+<h4><span class="section-number">11.3.2.2. </span>Konfliktserialisierbarkeit vs. Serialisierbarkeit<a class="headerlink" href="#konfliktserialisierbarkeit-vs-serialisierbarkeit" title="Permalink to this headline">¶</a></h4>
+<p>■ Konfliktserialisierbarkeit =&gt; Serialisierbarkeit
+<br>
+□ Beispiel zuvor: Serialisierbarkeit war „zufällig“ aufgrund spezieller Ausprägungen der Aktionen möglich.
+<br>
+□ S1: w1(Y) w1(X) w2(Y) w2(X) w3(X)
+<br>
+– Ist seriell
+<br>
+□ S2: w1(Y) w2(Y) w2(X) w1(X) w3(X)
+<br>
+– Hat (zufällig) gleichen Effekt wie S1, ist also serialisierbar.
+<br>
+– Aber: Es müssten konfligierende Aktionen getauscht werden. Welche?
+<br>
+– S2 ist also nicht konfliktserialisierbar
+<br><br>
+■ Was fällt auf?
+<br>
+□ T3 überschreibt X sowieso -&gt; Sichtserialisierbarkeit (nicht hier)</p>
+</div>
+<div class="section" id="graphbasierter-test">
+<h4><span class="section-number">11.3.2.3. </span>Graphbasierter Test<a class="headerlink" href="#graphbasierter-test" title="Permalink to this headline">¶</a></h4>
+<p>■ Konfliktgraph G(S) = (V,E) von Schedule S:
+<br>
+□ Knotenmenge V enthält alle in S vorkommende Transaktionen.
+<br>
+□ Kantenmenge E enthält alle gerichteten Kanten zwischen zwei konfligierenden Transaktionen.
+<br>
+– Kantenrichtung entspricht zeitlichem Ablauf im Schedule.
+<br><br>
+■ Eigenschaften
+<br>
+□ S ist ein konfliktserialisierbarer Schedule gdw. der vorliegende Konfliktgraph ein azyklischer Graph ist.
+<br>
+□ Für jeden azyklischen Graphen G(S) lässt sich ein serieller Schedule S‘ konstruieren, so dass S konfliktäquivalent zu S‘ ist.
+<br>
+– D.h. S ist konfliktserialisierbar
+<br>
+– Z.B. topologisches Sortieren
+<br>
+□ Enthält der Graph Zyklen, ist der zugehörige Schedule nicht konfliktserialisierbar.</p>
+</div>
+<div class="section" id="id4">
+<h4><span class="section-number">11.3.2.4. </span>Schedules<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id5">
+<h5><span class="section-number">11.3.2.4.1. </span>Beispiel 1<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h5>
+<p>Konfliktserialisierbar ?</p>
+<p><img alt="title" src="../_images/schedule_bsp1.jpg" /></p>
+</div>
+<div class="section" id="id6">
+<h5><span class="section-number">11.3.2.4.2. </span>Beispiel 2<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h5>
+<p><img alt="title" src="../_images/schedule_bsp2.jpg" />
+<br>
+S = r1(y) r3(u) r2(y) w1(y) w1(x) w2(x) w2(z) w3(x)</p>
+</div>
+<div class="section" id="id7">
+<h5><span class="section-number">11.3.2.4.3. </span>Beispiel 3<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h5>
+<p>Serialisierbarer Schedule
+<br>
+<img alt="title" src="../_images/schedule_bsp3_1.jpg" />
+<br>
+<img alt="title" src="../_images/schedule_bsp3_2.jpg" /></p>
+</div>
+</div>
+<div class="section" id="beweis">
+<h4><span class="section-number">11.3.2.5. </span>Beweis<a class="headerlink" href="#beweis" title="Permalink to this headline">¶</a></h4>
+<p>Konfliktgraph ist zykelfrei &lt;=&gt; Schedule ist konfliktserialisierbar
+<br>
+Konfliktgraph ist zykelfrei &lt;=&gt; Schedule ist konfliktserialisierbar
+<br>
+Leicht: Konfliktgraph hat Zykel =&gt; Schedule ist nicht konfliktserialisierbar
+<br>
+Bzw. Gegenbeispiel: T1 -&gt; T2 -&gt; … -&gt; Tn -&gt; T1
+<br>
+Konfliktgraph ist zykelfrei Þ Schedule ist konfliktserialisierbar
+<br>
+Induktion über Anzahl der Transaktionen n
+<br>
+n = 1: Graph und Schedule haben nur eine Transaktion.
+<br>
+n = n + 1:
+<br>
+Graph ist zykelfrei
+<br>
+=&gt; ∃ mindestens ein Knoten Ti ohne eingehende Kante.
+<br>
+=&gt; ∄ Aktion einer anderen Transaktion, die vor einer Aktion in Ti ausgeführt wird und mit dieser Aktion in Konflikt steht.
+<br>
+Alle Aktionen aus Ti können an den Anfang bewegt werden (Reihenfolge innerhalb Ti bleibt erhalten).
+<br>
+Restgraph ist wieder azyklisch (Entfernung von Kanten aus einem azyklischen Graph kann ihn nicht zyklisch machen).
+<br>
+Restgraph hat n-1 Transaktionen</p>
+</div>
+</div>
+</div>
+<div class="section" id="sperrkontrolle">
+<h2><span class="section-number">11.4. </span>Sperrkontrolle<a class="headerlink" href="#sperrkontrolle" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="scheduler">
+<h3><span class="section-number">11.4.1. </span>Scheduler<a class="headerlink" href="#scheduler" title="Permalink to this headline">¶</a></h3>
+<p>■ Der Scheduler in einem DBMS garantiert konfliktserialisierbare (also auch serialisierbare) Schedules bei gleichzeitig laufenden Transaktionen.
+<br>
+□ Komplizierte Variante: Graphbasierter Test
+<br>
+– Inkrementell?
+<br>
+□ Einfachere Variante: Sperren und Sperrprotokolle
+<br>
+– In fast allen DBMS realisiert
+<br>
+□ Idee: Transaktion sperrt Objekte der Datenbank für die Dauer der Bearbeitung
+<br>
+– Andere Transaktionen können nicht auf gesperrte Objekte zugreifen.
+<br>
+BILD</p>
+</div>
+<div class="section" id="sperren">
+<h3><span class="section-number">11.4.2. </span>Sperren<a class="headerlink" href="#sperren" title="Permalink to this headline">¶</a></h3>
+<p>Idee: Transaktionen müssen zusätzlich zu den Aktionen auch Sperren anfordern und freigeben.
+<br>
+Bedingungen
+<br>
+Konsistenz einer Transaktion
+<br>
+Lesen oder Schreiben eines Objektes nur nachdem Sperre angefordert wurde und bevor die Sperre wieder freigegeben wurde.
+<br>
+Nach dem Sperren eines Objektes muss später dessen Freigabe erfolgen.
+<br>
+Legalität des Schedules
+<br>
+Zwei Transaktionen dürfen nicht gleichzeitig das gleiche Objekt sperren.
+<br>
+Zwei neue Aktionen
+<br>
+li(X): Transaktion i fordert Sperre für X an (lock).
+<br>
+ui(X): Transaktion i gibt Sperre auf X frei (unlock).
+<br>
+Konsistenz: Vor jedem ri(X) oder wi(X) kommt ein li(X) (mit keinem ui(X) dazwischen) und ein ui(X) danach.
+<br>
+Legalität: Zwischen li(X) und lk(X) kommt immer ein ui(X)</p>
+</div>
+<div class="section" id="schedules-mit-sperren">
+<h3><span class="section-number">11.4.3. </span>Schedules mit Sperren<a class="headerlink" href="#schedules-mit-sperren" title="Permalink to this headline">¶</a></h3>
+<p>■ Zwei Transaktionen
+<br>
+□ r1(A)w1(A)r1(B)w1(B)
+<br>
+□ r2(A)w2(A)r2(B)w2(B)
+<br><br>
+■ Zwei Transaktionen mit Sperren
+<br>
+□ l1(A)r1(A)w1(A)u1(A)l1(B)r1(B)w1(B)u1(B)
+<br>
+□ l2(A)r2(A)w2(A)
+<br><br>
+■ Schedule
+<br>
+<img alt="title" src="../_images/sperre_bsp1.jpg" /></p>
+<p>□ Legal?
+<br>
+□ Konfliktserialisierbar?</p>
+<p><img alt="title" src="../_images/sperre_bsp2.jpg" />
+<br>
+Legal? Serialisierbar? Konfliktserialisierbar?</p>
+</div>
+<div class="section" id="freigabe-durch-scheduler">
+<h3><span class="section-number">11.4.4. </span>Freigabe durch Scheduler<a class="headerlink" href="#freigabe-durch-scheduler" title="Permalink to this headline">¶</a></h3>
+<p>■ Scheduler speichert Sperrinformation in Sperrtabelle
+<br>
+□ Sperren(Element, Transaktion)
+<br>
+□ Anfragen, INSERT, DELETE
+<br>
+□ Vergabe von Sperren nur wenn keine andere Sperre existiert
+<br>
+□ Alte Transaktionen
+<br>
+– l1(A)r1(A)w1(A)u1(A)l1(B)r1(B)w1(B)u1(B)
+<br>
+– l2(A)r2(A)w2(A)u2(A)l2(B)r2(B)w2(B)u2(B)
+<br>
+□ Neue Transaktionen
+<br>
+– l1(A)r1(A)w1(A)l1(B)u1(A)r1(B)w1(B)u1(B)
+<br>
+– l2(A)r2(A)w2(A)l2(B)u2(A)r2(B)w2(B)u2(B)
+<br>
+– Konsistent?</p>
+</div>
+<div class="section" id="id8">
+<h3><span class="section-number">11.4.5. </span>Schedules mit Sperren<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/sperre_bsp3.jpg" /></p>
+<p>Legal? Serialisierbar? Konfliktserialisierbar? Zufall?</p>
+</div>
+<div class="section" id="phasen-sperrprotokoll">
+<h3><span class="section-number">11.4.6. </span>2-Phasen Sperrprotokoll<a class="headerlink" href="#phasen-sperrprotokoll" title="Permalink to this headline">¶</a></h3>
+<p>■ 2-Phase-Locking (2PL): Einfache Bedingung an Transaktionen garantiert Konfliktserialisierbarkeit.
+<br>
+□ Alle Sperranforderungen geschehen vor allen Sperrfreigaben
+<br>
+□ Die Phasen
+<br>
+– Phase 1: Sperrphase
+<br>
+– Phase 2: Freigabephase
+<br>
+□ Wichtig: Bedingung an Transaktionen, nicht an Schedule</p>
+<div class="section" id="phasen-sperrprotokoll-beispiel">
+<h4><span class="section-number">11.4.6.1. </span>2-Phasen Sperrprotokoll – Beispiel<a class="headerlink" href="#phasen-sperrprotokoll-beispiel" title="Permalink to this headline">¶</a></h4>
+<p><img alt="title" src="../_images/2pl_bsp1.jpg" /></p>
+</div>
+<div class="section" id="deadlocks-unter-2pl-moglich">
+<h4><span class="section-number">11.4.6.2. </span>Deadlocks unter 2PL möglich<a class="headerlink" href="#deadlocks-unter-2pl-moglich" title="Permalink to this headline">¶</a></h4>
+<p>■ T1: l(A); r(A); A:=A+100; w(A); l(B); u(A); r(B); B:=B-100; w(B); u(B)
+<br>
+■ T4: l(B); r(B); B:=B<em>2; w(B); l(A); u(B); r(A); A:=A</em>2; w(A); u(A)
+<br>
+<img alt="title" src="../_images/2pl_bsp2.jpg" />
+<br>
+■ Lösung 1: Timeouts
+<br>
+■ Lösung 2: „Waits-for“-Graph zur Vermeidung von deadlocks</p>
+</div>
+<div class="section" id="pl-intuition">
+<h4><span class="section-number">11.4.6.3. </span>2PL – Intuition<a class="headerlink" href="#pl-intuition" title="Permalink to this headline">¶</a></h4>
+<p>■ Jede Transaktion führt sämtliche Aktionen in dem Augenblick aus, zu dem das erste Objekt freigegeben wird.
+<br>
+■ Reihenfolge der Transaktionen des äquivalenten seriellen Schedules: Reihenfolge der ersten Freigaben von
+Sperren
+<br>
+<img alt="title" src="../_images/2pl_intuition.jpg" /></p>
+</div>
+<div class="section" id="pl-beweis">
+<h4><span class="section-number">11.4.6.4. </span>2PL – Beweis<a class="headerlink" href="#pl-beweis" title="Permalink to this headline">¶</a></h4>
+<p>■ Idee: Verfahren zur Konvertierung eines beliebigen, legalen Schedule S aus konsistenten, 2PL Transaktionen in einen konfliktäquivalenten seriellen Schedule
+<br><br>
+■ Induktion über Anzahl der Transaktionen n
+<br><br>
+■ n = 1: Schedule S ist bereits seriell
+<br><br>
+■ n = n + 1:
+<br>
+□ S enthalte Transaktionen T1, T2, …, Tn.
+<br>
+□ Sei Ti die Transaktion mit der ersten Freigabe ui(X).
+<br>
+□ Behauptung: Es ist möglich, alle Aktionen der Transaktion an den Anfang des Schedules zu bewegen, ohne konfligierende Aktionen zu passieren.
+<br>
+□ Angenommen es gibt eine Schreibaktion wi(Y), die man nicht verschieben kann:
+<br>
+– … wk(Y) … uk(Y) … li(Y) … wi(Y) …
+<br>
+□ Da Ti erste freigebenden Transaktion ist, gibt es ein ui(X) vor uk(Y):
+<br>
+– … wk(Y) … ui(X) … uk(Y) … li(Y) … wi(Y) …
+<br>
+□ Analog für eine Leseaktion ri(Y)
+<br>
+□ Ti ist nicht 2PL</p>
+</div>
+</div>
+</div>
+<div class="section" id="id9">
+<h2><span class="section-number">11.5. </span>Sperren<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mehrere-sperrmodi">
+<h3><span class="section-number">11.5.1. </span>Mehrere Sperrmodi<a class="headerlink" href="#mehrere-sperrmodi" title="Permalink to this headline">¶</a></h3>
+<p>■ Idee: Mehrere Arten von Sperren erhöhen die Flexibilität und verringern die Menge der abgewiesenen Sperren.
+<br>
+□ Sperren obwohl nur gelesen wird, ist übertrieben
+<br>
+– Gewisse Sperre ist dennoch nötig
+<br>
+– Aber: Mehrere Transaktionen sollen gleichzeitig lesen können.
+<br>
+□ Schreibsperre
+<br>
+– Exclusive lock: xli(X)
+<br>
+– Erlaubt das Lesen und Schreiben durch Transaktion Ti
+<br>
+– Sperrt Zugriff aller anderen Transaktionen
+<br>
+□ Lesesperre
+<br>
+– Shared lock: sli(X)
+<br>
+– Erlaubt das Lesen für Transaktion Ti
+<br>
+– Sperrt Schreibzugriff für alle anderen Transaktionen
+<br>
+□ Kompatibilität
+<br>
+– Für ein Objekt darf es nur eine Schreibsperre oder mehrere Lesesperren geben.
+<br>
+□ Freigabe
+<br>
+– Unlock: ui(X) gibt alle Arten von Sperren frei</p>
+</div>
+<div class="section" id="bedingungen">
+<h3><span class="section-number">11.5.2. </span>Bedingungen<a class="headerlink" href="#bedingungen" title="Permalink to this headline">¶</a></h3>
+<p>■ Konsistenz von Transaktionen
+<br>
+□ Schreiben ohne Schreibsperre ist nicht erlaubt.
+<br>
+□ Lesen ohne irgendeine Sperre ist nicht erlaubt.
+<br>
+□ Jede Sperre muss irgendwann freigegeben werden.
+<br><br>
+■ 2PL von Transaktionen
+<br>
+□ Wie zuvor: Nach der ersten Freigabe dürfen keine Sperren mehr angefordert werden.
+<br><br>
+■ Legalität von Schedules
+<br>
+□ Auf ein Objekt mit einer Schreibsperre darf es keine andere Sperre einer anderen Transaktion geben.
+<br>
+□ Auf ein Objekt kann es mehrere Lesesperren geben.
+<br>
+<img alt="title" src="../_images/bedingungen.jpg" /></p>
+<div class="section" id="beispiel">
+<h4><span class="section-number">11.5.2.1. </span>Beispiel<a class="headerlink" href="#beispiel" title="Permalink to this headline">¶</a></h4>
+<p>■ T1: sl1(A)r1(A)xl1(B)r1(B)w1(B)u1(A)u1(B)
+<br>
+■ T2: sl2(A)r2(A)sl2(B)r2(B)u2(A)u2(B)
+<br>
+□ Konsistent?
+<br>
+□ 2PL?
+<br>
+<img alt="title" src="../_images/bedingungen_bsp.jpg" />
+<br>
+Legal? Konfliktserialisierbar? 2PL funktioniert auch hier!</p>
+</div>
+</div>
+<div class="section" id="weitere-sperrarten">
+<h3><span class="section-number">11.5.3. </span>Weitere Sperrarten<a class="headerlink" href="#weitere-sperrarten" title="Permalink to this headline">¶</a></h3>
+<p>■ Idee: Upgraden einer Sperre
+<br>
+□ Von Lesesperre zu Schreibsperre
+<br>
+□ Anstatt gleich strenge Schreibsperre zu setzen
+<br><br>
+■ Updatesperren
+<br>
+□ Erlaubt nur lesenden Zugriff
+<br>
+□ Kann aber Upgrade erfahren
+<br>
+□ Lesesperre kann dann keinen Upgrade erfahren
+<br><br>
+■ Inkrementsperre
+<br>
+□ Erlaubt lesenden Zugriff
+<br>
+□ Erlaubt schreibenden Zugriff falls Wert nur inkrementiert (oder dekrementiert) wird.
+<br>
+□ Inkremente sind kommutativ: Vertauschung ist erlaubt</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./11"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../10/integritaet_und_trigger.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">10. </span>Integrität und Trigger</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../markdown.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Markdown Files</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Prof. Dr. Ziawasch Abedjan<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

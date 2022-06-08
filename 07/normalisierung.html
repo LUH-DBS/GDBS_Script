@@ -51,8 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="8. Relationale Algebra" href="../08/relationale_algebra.html" />
@@ -1131,100 +1131,73 @@ Hierunter versteht man genau die Ableitung aller FDs aus einer gegebenen Menge a
 <ul class="simple">
 <li><p>Äquivalente Begriffe sind: attribute closure, closure, Attributabschluss</p></li>
 </ul>
-<p>■ Gegeben eine Menge von Attributen A1,A2,…,Ak und eine Menge S von FDs.
-<br>
-■ Die Hülle von A1,A2,…,Ak unter S ist die Menge Y aller Attribute für die gilt, dass für jede unter S gültige Relation auch A1,A2,…,Ak → Y gilt.
-<br>
-□ Menge der funktional ableitbaren Attribute
-<br>
-□ D.h. A1,A2,…Ak → Y folgt aus den FDs in S.
-<br>
-■ Notation: Hülle von A1,A2,…,Ak ist <span class="math notranslate nohighlight">\(\{\)</span>A1,A2,…,Ak<span class="math notranslate nohighlight">\(\}^+\)</span>.
-<br>
-■ Es gilt z.B. Ai <span class="math notranslate nohighlight">\(\in\)</span> <span class="math notranslate nohighlight">\(\{\)</span>A1,A2,…,Ak<span class="math notranslate nohighlight">\(\}^+\)</span> für i=1,…,k
-<br>
-□ Trivialerweise, denn A1,A2,…, Ai, …, Ak→ A</p>
+<p>Gegeben eine Menge von Attributen <span class="math notranslate nohighlight">\(A_1,A_2,…,A_k\)</span> einer Relation und eine Menge S von FDs, die Hülle der Menge A1,A2,…,Ak unter S ist die Menge Y aller Attribute für die gilt, dass für jede unter S gültige Relation auch <span class="math notranslate nohighlight">\(A_1,A_2,…,A_k \rightarrow Y\)</span> gilt. Dies entspricht der Menge der funktional ableitbaren Attribute. Das heißt <span class="math notranslate nohighlight">\(A_1,A_2,…,A_k \rightarrow Y\)</span> folgt aus den FDs in S.
+<br></p>
+<ul class="simple">
+<li><p>Notation: Die Hülle von <span class="math notranslate nohighlight">\(A_1,A_2,…,A_k\)</span> wird in Form von <span class="math notranslate nohighlight">\(\{\)</span>A_1,A_2,…,A_k<span class="math notranslate nohighlight">\(\}^+\)</span> ausgedrückt.</p></li>
+<li><p>Es gilt trivialerweise und folgend aus dem Reflexivitätsaxiom: <span class="math notranslate nohighlight">\(A_i \in \{A_1,A_2,…,A_k\}^+\)</span> für i=1,…,k</p></li>
+</ul>
 </div>
 <div class="section" id="berechnung-der-hulle">
 <h3><span class="section-number">7.2.5. </span>Berechnung der Hülle<a class="headerlink" href="#berechnung-der-hulle" title="Permalink to this headline">¶</a></h3>
+<p>Zusätzlich zu den trivialen Elementen der Hülle, wollen wir alle weiteren funktional erreichbaren Attribute entdecken. Das Verfahren dazu ist iterativ unter Anwendung aller funktionalen Abhängigkeiten, die bekannt sind oder bereits hergeleitet wurden. Damit wächst die Hülle iterativ mit jeder nicht-trivialen funktionalen Abhängigkeit wie in der Abbildung unten dargestellt. Durch die funktionalen Abhängigkeit <span class="math notranslate nohighlight">\(B_1,B_2,...,B_m \rightarrow C\)</span> wächst die Hülle <span class="math notranslate nohighlight">\(\{B_1,B_2,...,B_m\}^+\)</span> von <span class="math notranslate nohighlight">\(\{B_1,B_2,...,B_m\}\)</span> auf <span class="math notranslate nohighlight">\(\{B_1,B_2,...,B_m,C\}\)</span>.</p>
 <p><img alt="title" src="../_images/berechnung_huelle.jpg" /></p>
+<p>Arbeitsschritte der Hüllebildung von <span class="math notranslate nohighlight">\(\{A_1,A_2,…A_k\}\)</span> unter Anwendung der FDs S:</p>
 <ol class="simple">
-<li><p>Sei X die Menge der Attribute, die später die Hülle wird.
-<br>
-Initialisiere X mit {A1,A2,…Ak}.
-<br></p></li>
-<li><p>Suche wiederholt nach solchen FDs B1,B2,…,Bm→ C, dass B1,B2,…,Bm <span class="math notranslate nohighlight">\(\in\)</span> X aber C <span class="math notranslate nohighlight">\(\notin\)</span> X.
-<br></p></li>
-<li><p>Füge C zu X hinzu.
-<br></p></li>
-<li><p>Wiederhole 2. bis keine Attribute mehr gefunden werden
-<br>
-■ Terminierung: X wächst nur, und Attributmenge ist endlich.
-<br></p></li>
-<li><p>X ist schließlich die Hülle, also <span class="math notranslate nohighlight">\(\{\)</span>A1,A2,…Ak<span class="math notranslate nohighlight">\(\}^+\)</span> = X.</p></li>
+<li><p>Initialisiere die Hülle <span class="math notranslate nohighlight">\(X\)</span> mit <span class="math notranslate nohighlight">\(\{A_1,A_2,…A_k\}\)</span>.</p></li>
+<li><p>Suche wiederholt nach solchen FDs <span class="math notranslate nohighlight">\(B_1,B_2,…,B_m→ C\)</span>, dass <span class="math notranslate nohighlight">\(B_1,B_2,…,B_m \in X \wedge C \notin X\)</span>.</p></li>
+<li><p>Füge <span class="math notranslate nohighlight">\(C\)</span> zu <span class="math notranslate nohighlight">\(X\)</span> hinzu.</p></li>
+<li><p>Wiederhole 2. bis keine Attribute mehr gefunden werden</p>
+<ul class="simple">
+<li><p>Terminierung: X wächst nur, und Attributmenge ist endlich.</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(X\)</span> ist schließlich die Hülle, also <span class="math notranslate nohighlight">\(\{A_1,A_2,…A_k\}^+ = X\)</span>.</p></li>
 </ol>
-<p>■ Relation mit Attributen A, B, C, D, E, F
-<br>
-<br>
-■ Gegeben FDs
+<p><strong>Beispiel (Hüllenbildung):</strong> Gegeben eine Relation mit Attributen A, B, C, D, E, F. Weiterhin seien gegeben FDs</p>
+<ol class="simple">
+<li><p>AB → C</p></li>
+<li><p>BC → AD</p></li>
+<li><p>D → E</p></li>
+<li><p>CF → B</p></li>
+</ol>
+<p>Gesucht ist die Hülle von {A, B}, also <span class="math notranslate nohighlight">\(\{A,B\}^+\)</span>
 <br></p>
-<ol class="simple">
-<li><p>AB → C
+<ul class="simple">
+<li><p>Nach der Anwendung von FD 1 kann C hinzugefügt werden: X = {A, B, C}
 <br></p></li>
-<li><p>BC → AD
+<li><p>Nach der Anwendung von FD 2 kann D hinzugefügt werden: X = {A, B, C, D}
 <br></p></li>
-<li><p>D → E
-<br></p></li>
-<li><p>CF → B
-<br>
-<br>
-■ Gesucht: Hülle von {A, B}, also {A,B<span class="math notranslate nohighlight">\(\}+\)</span>
-<br>
-□ FD 1: X = {A, B, C}
-<br>
-□ FD 2: X = {A, B, C, D}
-<br>
-□ FD 3: X = {A, B, C, D, E} ( = {A,B<span class="math notranslate nohighlight">\(\}^+\)</span> )</p></li>
-</ol>
+<li><p>Nach der Anwendung von FD 3 kann E hinzugefügt werden: X = {A, B, C, D, E}</p></li>
+<li><p>Es können keine weiteren Attribute mehr hinzugefügt werden. Deshalb gilt <span class="math notranslate nohighlight">\(X = \{A, B, C, D, E\}= \{A,B\}^+\)</span></p></li>
+</ul>
 </div>
 <div class="section" id="membership-problem">
 <h3><span class="section-number">7.2.6. </span>Membership-Problem<a class="headerlink" href="#membership-problem" title="Permalink to this headline">¶</a></h3>
-<p>■ Kann eine bestimmte FD X→Y aus der gegebenen FD Menge abgeleitet werden?
-<br><br>
-■ Vorgehen: Berechne Hülle von X und teste ob Y darin enthalten ist.
-<br><br>
-■ Beispiel:
+<p>Bei der Hüllenbildung haben wir nach und nach alle ableitbaren Attribute einer Hülle hinzugefügt. Wir haben aber noch keine konkrete neue FD hergeleitet. Die Frage die wir nun beantworten wollen, ist ob eine bestimmte FD <span class="math notranslate nohighlight">\(X\rightarrow Y\)</span> aus der gegebenen FD Menge abgeleitet werden kann.</p>
+<ul class="simple">
+<li><p>Vorgehen: Berechne erst die Hülle von X und teste ob Y darin enthalten ist.</p></li>
+</ul>
+<p><strong>Beispiel (Membership-Problem):</strong>
+Gegeben AB → C und BC → AD und D → E und CF → B, kann AB → D abgeleitet werden?
+Wir bilden die Hülle <span class="math notranslate nohighlight">\(\{AB\}^+\)</span>
+– <span class="math notranslate nohighlight">\(\{AB\}^+ = \{A, B, C, D, E\}\)</span>
 <br>
-□ AB → C und BC → AD und D → E und CF → B
-<br>
-□ Kann AB → D abgeleitet werden?
-<br>
-– {AB<span class="math notranslate nohighlight">\(\}^+\)</span> = {A, B, C, D, E}
-<br>
-– D <span class="math notranslate nohighlight">\(\in\)</span> {A, B, C, D, E}, also JA!
-<br>
-□ Kann D → A abgeleitet werden?
-<br>
-– {D<span class="math notranslate nohighlight">\(\}^+\)</span> = {D, E}
-<br>
-– A <span class="math notranslate nohighlight">\(\notin\)</span> {D, E}, also NEIN!</p>
+– <span class="math notranslate nohighlight">\(D \in \{A, B, C, D, E\}\)</span>, also JA!</p>
+<p>Kann D → A abgeleitet werden?
+Wir bilden die Hülle <span class="math notranslate nohighlight">\(\{D\}^+\)</span></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\{D\}^+ = \{D, E\}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(A \notin \{D, E\}\)</span>, also NEIN!</p></li>
+</ul>
 </div>
 <div class="section" id="analyse-des-algorithmus-zur-hullenbildung">
 <h3><span class="section-number">7.2.7. </span>Analyse des Algorithmus zur Hüllenbildung<a class="headerlink" href="#analyse-des-algorithmus-zur-hullenbildung" title="Permalink to this headline">¶</a></h3>
-<p>■ Nur Beweisidee
-<br>
-<br>
-■ Korrektheit: Es werden keine ungültigen FDs erzeugt.
-<br>
-□ Induktion über Anzahl der Operationen
-<br>
-□ Transitivität bzw. Argumentation über die Tupel.
-<br><br>
-■ Vollständigkeit: Es werden alle gültigen FDs erzeugt.
-<br>
-□ Annahme des Gegenteils, d.h. es gebe eine FD X→Y, die nicht gefunden wird.
-<br>
-□ Konstruktion einer Instanz, die für FDs, aber nicht für X→Y gültig ist.</p>
+<p>Wir wollen nun kurz diskutieren, inwiefern der Algorithmus zur Hüllenbildung korrekt funktioniert und en vollständiges Ergebnis im Sinne der Hülle liefert. Dies kann man formal nachweisen. Wir begnügen uns jedoch nur mit der Beweisidee.</p>
+<ul class="simple">
+<li><p>Korrektheit: Es ist wichtig nachzuvollziehen, dass der Algorithmus keine ungültigen FDs erzeugt. Dies lässt sich durch die Induktion über die Anzahl der Operationen beweisen. Da in jedem Schritt eine gültige FD für die Erweiterung der Hülle genommen wird, kann kein Element hinzugefügt werden, die nicht auf einer korrekten FD basiert. Mit dieser Intuition kann man auch leicht ein Beweis durch Widerspruch mit Hinzunahme der Transitivität und Tupelvariablen durchführen.</p></li>
+<li><p>Vollständigkeit: Es ist weiterhin wichtig, nachzuvollziehen, dass alle gültigen FDs ausgehend von der Grundmenge erzeugt werden. Die Vollständigkeit lässt sich leicht durch ein Widerspruchsbeweis zeigen, indem man annimmt, dass es eine FD <span class="math notranslate nohighlight">\(X \rightarrow Y\)</span> gibt, die nicht gefunden wird aber ableitbar wäre. Man muss lediglich eine Instanz konstruieren, die für alle FDs, aber nicht für <span class="math notranslate nohighlight">\(X\rightarrow Y\)</span> gültig ist.</p></li>
+</ul>
 </div>
 <div class="section" id="die-basis">
 <h3><span class="section-number">7.2.8. </span>Die „Basis“<a class="headerlink" href="#die-basis" title="Permalink to this headline">¶</a></h3>
