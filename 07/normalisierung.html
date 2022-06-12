@@ -373,99 +373,49 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#normalformen">
    7.3. Normalformen
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#schema-design-uberblick">
-   7.4. Schema Design – Überblick
-  </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#redundanzen-fuhren-zu-anomalien-im-datenbankdesign">
-     7.4.1. Redundanzen führen zu Anomalien im Datenbankdesign
+     7.3.1. Redundanzen führen zu Anomalien im Datenbankdesign
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#ursachen-von-anomalien">
-       7.4.1.1. Ursachen von Anomalien
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#eliminierung-von-anomalien-durch-dekomposition">
-       7.4.1.2. Eliminierung von Anomalien durch Dekomposition
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#beispiel-einer-dekomposition">
-       7.4.1.3. Beispiel einer Dekomposition
+      <a class="reference internal nav-link" href="#dekomposition-zerlegung">
+       7.3.1.1. Dekomposition (Zerlegung)
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#boyce-codd-normalform-bcnf">
-     7.4.2. Boyce-Codd-Normalform (BCNF)
+     7.3.2. Boyce-Codd-Normalform (BCNF)
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#beispiel-der-bcnf-verletzung">
-       7.4.2.1. Beispiel der BCNF-Verletzung
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#algorithmus-fur-dekomposition-nach-bcnf">
-       7.4.2.2. Algorithmus für Dekomposition nach BCNF
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#bcnf-dekomposition-am-beispiel-1">
-       7.4.2.3. BCNF Dekomposition am Beispiel 1
+       7.3.2.1. Algorithmus für Dekomposition nach BCNF
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#wiederherstellbarkeit">
-     7.4.3. Wiederherstellbarkeit
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dekomposition-zu-bcnf-beispiel-2">
-     7.4.4. Dekomposition zu BCNF – Beispiel 2
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dekomposition-zu-bcnf-beispiel-3">
-     7.4.5. Dekomposition zu BCNF – Beispiel 3
+     7.3.3. Wiederherstellbarkeit
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#weitere-normalformen">
-     7.4.6. Weitere Normalformen
+     7.3.4. Weitere Normalformen
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#normalform">
-       7.4.6.1. 1. Normalform
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id1">
-       7.4.6.2. 2. Normalform
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id2">
-       7.4.6.3. 3. Normalform
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#nf-vs-bcnf">
-       7.4.6.4. 3NF vs. BCNF
+       7.3.4.1. 3NF vs. BCNF
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#zusammenfassung-normalformen">
-       7.4.6.5. Zusammenfassung – Normalformen
+       7.3.4.2. Zusammenfassung – Normalformen
       </a>
      </li>
     </ul>
@@ -590,99 +540,49 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#normalformen">
    7.3. Normalformen
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#schema-design-uberblick">
-   7.4. Schema Design – Überblick
-  </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#redundanzen-fuhren-zu-anomalien-im-datenbankdesign">
-     7.4.1. Redundanzen führen zu Anomalien im Datenbankdesign
+     7.3.1. Redundanzen führen zu Anomalien im Datenbankdesign
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#ursachen-von-anomalien">
-       7.4.1.1. Ursachen von Anomalien
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#eliminierung-von-anomalien-durch-dekomposition">
-       7.4.1.2. Eliminierung von Anomalien durch Dekomposition
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#beispiel-einer-dekomposition">
-       7.4.1.3. Beispiel einer Dekomposition
+      <a class="reference internal nav-link" href="#dekomposition-zerlegung">
+       7.3.1.1. Dekomposition (Zerlegung)
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#boyce-codd-normalform-bcnf">
-     7.4.2. Boyce-Codd-Normalform (BCNF)
+     7.3.2. Boyce-Codd-Normalform (BCNF)
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#beispiel-der-bcnf-verletzung">
-       7.4.2.1. Beispiel der BCNF-Verletzung
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#algorithmus-fur-dekomposition-nach-bcnf">
-       7.4.2.2. Algorithmus für Dekomposition nach BCNF
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#bcnf-dekomposition-am-beispiel-1">
-       7.4.2.3. BCNF Dekomposition am Beispiel 1
+       7.3.2.1. Algorithmus für Dekomposition nach BCNF
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#wiederherstellbarkeit">
-     7.4.3. Wiederherstellbarkeit
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dekomposition-zu-bcnf-beispiel-2">
-     7.4.4. Dekomposition zu BCNF – Beispiel 2
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dekomposition-zu-bcnf-beispiel-3">
-     7.4.5. Dekomposition zu BCNF – Beispiel 3
+     7.3.3. Wiederherstellbarkeit
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#weitere-normalformen">
-     7.4.6. Weitere Normalformen
+     7.3.4. Weitere Normalformen
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#normalform">
-       7.4.6.1. 1. Normalform
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id1">
-       7.4.6.2. 2. Normalform
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id2">
-       7.4.6.3. 3. Normalform
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#nf-vs-bcnf">
-       7.4.6.4. 3NF vs. BCNF
+       7.3.4.1. 3NF vs. BCNF
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#zusammenfassung-normalformen">
-       7.4.6.5. Zusammenfassung – Normalformen
+       7.3.4.2. Zusammenfassung – Normalformen
       </a>
      </li>
     </ul>
@@ -1207,466 +1107,382 @@ Wir bilden die Hülle <span class="math notranslate nohighlight">\(\{D\}^+\)</sp
 </div>
 <div class="section" id="die-basis">
 <h3><span class="section-number">7.2.8. </span>Die „Basis“<a class="headerlink" href="#die-basis" title="Permalink to this headline">¶</a></h3>
-<p>■ Unterscheidung zwischen gegebenen FDs und abgeleiteten FDs
-<br><br>
-■ Wahl welche FDs zur Repräsentation aller FDs verwendet werden.
-<br>
-□ Eine Menge an FDs, aus der alle anderen FDs abgeleitet werden können, heißt Basis.
-<br>
-□ Falls keine echte Teilmenge der Basis wiederum selbst eine Basis ist, ist die Basis minimal.
-<br><br>
-■ Beispiel
-<br>
-□ R(A, B, C); jedes Attribut bestimme funktional die anderen beiden.
-<br>
-□ Welche FDs gelten?
-<br>
-□ A-&gt;B, A-&gt;C, B-&gt;A, B-&gt;C, C-&gt;A, C-&gt;B
-<br>
-□ Abgeleitet: AB-&gt;C, AC-&gt;B, BC-&gt;A
-<br>
-□ Kurzformen: A-&gt;BC, B-&gt;AC, C-&gt;AB
-<br>
-□ Triviale FDs: A-&gt;A, B-&gt;B, C-&gt;C
-<br>
-□ Nicht-triviale FDs: AB-&gt;BC, AC-&gt;BC, …
-<br>
-□ Minimale Basis: {A-&gt;B, B-&gt;A, B-&gt;C, C-&gt;B}
-<br>
-□ Minimale Basis: {AvB, B-&gt;C, C-&gt;A}</p>
+<p>Wir haben gesehen, dass es möglich ist anhand von gegebenen FDs weitere FDs herzuleiten. Insbesondere haben wir auch besprochen, dass es äquivalente FD-Mengen geben kann, die jedoch nicht exakt die gleichen FDs jeweils enthalten. Der Vorteil hierbei ist, dass man jeweils eine solche <strong>Basis</strong>menge nehmen kann, um eine Gesamtmenge von FDs zu repräsentieren.</p>
+<ul class="simple">
+<li><p>Eine Menge an FDs, aus der alle anderen FDs abgeleitet werden können, heißt <strong>Basis</strong>.</p></li>
+<li><p>Falls keine echte Teilmenge der Basis wiederum selbst eine Basis ist, ist die Basis <strong>minimal</strong>.</p></li>
+</ul>
+<p><strong>Beispiel (Basis):</strong>
+Gegeben eine Raltion R(A, B, C) wobei jedes Attribut die anderen beiden Attribute funktional bestimmt.
+Damit gelten <span class="math notranslate nohighlight">\(A \rightarrow B, A\rightarrow C, B\rightarrow A, B\rightarrow C, C\rightarrow A, C\rightarrow B\)</span>.
+Für diese Menge von FDs ist die folgende Menge eine minimale Basis: <span class="math notranslate nohighlight">\(B_1=\{A\rightarrow B, B\rightarrow A, B\rightarrow C, C\rightarrow B\}\)</span>. Alle anderen FDs lassen sich hierbei herleiten. Eine weitere minimale Basis ist <span class="math notranslate nohighlight">\(B_2=\{A\rightarrow B, B\rightarrow C, C\rightarrow A\}\)</span>. Diese minimale Basis ist kleiner als <span class="math notranslate nohighlight">\(B_1\)</span>. Dennoch ist auch <span class="math notranslate nohighlight">\(B_1\)</span> eine minimale Basis, da wir keine der dort enthaltenen FDs weglassen können. Bei jeder echten Teilmenge von <span class="math notranslate nohighlight">\(B_1\)</span> wird es geltende FDs geben, die wir nicht mehr ableiten können.</p>
 </div>
 <div class="section" id="fds-nach-projektionen">
 <h3><span class="section-number">7.2.9. </span>FDs nach Projektionen<a class="headerlink" href="#fds-nach-projektionen" title="Permalink to this headline">¶</a></h3>
-<p>Motivation: Normalisierung bricht eine Relation in mehrere Teile.
-<br>
-■ Gegeben eine Relation R mit Menge F an FDs. Sei S das Ergebnis nach Entfernung einiger Attribute aus R („Projektion“).
+<p>Bevor wir nun endlich zu der eigentlichen Aufgabe der Normalisierung übergehen müssen wir nur noch eine letzte Eigenschaft von FDs klären. Da Normalisierung eine Relation in mehrere Relationen dekomponiert, müssen wir klären, was mit den jeweiligen FDs passiert, dessen Attribute nicht mehr in den gleichen Relationen existieren.</p>
+<p>Gegeben eine Relation <span class="math notranslate nohighlight">\(R\)</span> mit Menge <span class="math notranslate nohighlight">\(F\)</span> an FDs. Sei <span class="math notranslate nohighlight">\(S\)</span> das Ergebnis einer Projektion nach Entfernung einiger Attribute aus <span class="math notranslate nohighlight">\(R\)</span>. In <span class="math notranslate nohighlight">\(S\)</span> gelten alle FDs aus <span class="math notranslate nohighlight">\(F\)</span>, die <strong>nur</strong> Attribute aus <span class="math notranslate nohighlight">\(S\)</span> verwenden.</p>
+<p><strong>Beispiel (FDs nach Projektionen):</strong>
+Gegeben eine Relation <span class="math notranslate nohighlight">\(R(A, B, C, D)\)</span> und eine Menge von FDs <span class="math notranslate nohighlight">\(F= \{A\rightarrow B, B\rightarrow C, C\rightarrow D\}\)</span>. Wir führen eine Projektion aus und entfernen das Attribut <span class="math notranslate nohighlight">\(B\)</span>. Das Ergebnis ist <span class="math notranslate nohighlight">\(S(A, C, D)\)</span>
 <br><br>
-■ Welche FDs gelten noch für S?
-<br>
-□ Alle FDs, die aus F folgen,
-<br>
-□ und die nur Attribute aus S verwenden.
-<br><br>
-■ Beispiel: R(A, B, C, D)
-<br>
-□ FDs: {A-&gt;B, B-&gt;C, C-&gt;D}
-<br>
-□ Projektion von B: S(A, C, D)
-<br><br>
-■ Algorithmus: Berechne Hülle jeder Teilmenge
-<br>
-□ Wie viele gibt es?
-<br>
-□ Trick 1: Hülle der leeren und Hülle der Menge aller Attribute muss nicht gebildet werden.
-<br>
-□ Trick 2: Falls die Hülle von X bereits alle Attribute enthält, müssen die Supermengen von X nicht mehr geprüft werden.
-<br>
-– Deshalb: Beginnen mit kleinsten Teilmengen</p>
-<p>■ Beispiel: R(A, B, C, D)
-<br><br>
-■ Dann gelten FDs X -&gt; E für jedes E <span class="math notranslate nohighlight">\(\in\)</span> {X<span class="math notranslate nohighlight">\(\}^+\)</span> und E <span class="math notranslate nohighlight">\(\in\)</span> S und E <span class="math notranslate nohighlight">\(\notin\)</span> X.
-<br><br>
-■ {A<span class="math notranslate nohighlight">\(\}^+\)</span> = {A, B, C, D}
-<br>
-□ A -&gt; C und A -&gt; D
-<br>
-□ A -&gt; B stimmt zwar auch, aber B nicht in S.
-<br>
-□ Enthält bereits alle Attribute aus S, deshalb werden Supermengen nicht berücksichtigt.
-<br>
-<br>
-■ {C<span class="math notranslate nohighlight">\(\}^+\)</span> = {C, D}
-<br>
-□ C -&gt; D
-<br><br>
-■ {D<span class="math notranslate nohighlight">\(\}^+\)</span> = {D}
-<br><br>
-■ {C,D<span class="math notranslate nohighlight">\(\}^+\)</span>= {C,D}
-<br><br>
-■ Ergebnis: A -&gt; C, A -&gt; D und C -&gt; D</p>
+Um nun alle FDs, die in <span class="math notranslate nohighlight">\(S\)</span> gelten abzuleiten bilden wir wieder die Hülle für alle Teilmengen in <span class="math notranslate nohighlight">\(S\)</span> anhand von <span class="math notranslate nohighlight">\(F\)</span> und entfernen alle FDs, die <span class="math notranslate nohighlight">\(B\)</span> enthalten.</p>
+<p>Wir beginnen mit <span class="math notranslate nohighlight">\(A\)</span>: <span class="math notranslate nohighlight">\(\{A\}^+ = \{A, B, C, D\}\)</span>
+Es gilt insbesondere <span class="math notranslate nohighlight">\(A \rightarrow  C\)</span> und <span class="math notranslate nohighlight">\(A\rightarrow  D\)</span>. <span class="math notranslate nohighlight">\(A\rightarrow  B\)</span> stimmt zwar auch, aber <span class="math notranslate nohighlight">\(B\)</span> nicht in <span class="math notranslate nohighlight">\(S\)</span>.
+Da <span class="math notranslate nohighlight">\(\{A\}^+\)</span> bereits alle Attribute aus <span class="math notranslate nohighlight">\(S\)</span> enthält, müssen wir keine Supermengen von <span class="math notranslate nohighlight">\(\{A\}\)</span> berücksichtigen.
+Für <span class="math notranslate nohighlight">\(C\)</span> ist die Hülle analog <span class="math notranslate nohighlight">\(\{C\}^+ = \{C, D\}\)</span> und die einzige nicht triviale minimale FD hierbei ist <span class="math notranslate nohighlight">\(C \rightarrow D\)</span>
+Aus <span class="math notranslate nohighlight">\(D\)</span> lassen sich keine weiteren Attribute funktional ableiten: <span class="math notranslate nohighlight">\(\{D\}^+ = \{D\}\)</span>.
+Als nächstes müssen wir die Übermengen von <span class="math notranslate nohighlight">\(C\)</span> und <span class="math notranslate nohighlight">\(D\)</span> betrachten. Die Kombinationen mit <span class="math notranslate nohighlight">\(A\)</span> sind irrelevant da <span class="math notranslate nohighlight">\(\{A\}^+\)</span> bereits alle Attribute enthält. Es bleibt noch <span class="math notranslate nohighlight">\(\{C,D\}^+= \{C,D\}\)</span> übrig, welche uns keine weiteren FDs mehr liefert.</p>
+<ul class="simple">
+<li><p>Damit ist das Ergebnis für die auf <span class="math notranslate nohighlight">\(S\)</span> gletenden FDs:  <span class="math notranslate nohighlight">\(A \rightarrow C\)</span>, <span class="math notranslate nohighlight">\(A \rightarrow  D\)</span> und <span class="math notranslate nohighlight">\(C \rightarrow  D\)</span></p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="normalformen">
 <h2><span class="section-number">7.3. </span>Normalformen<a class="headerlink" href="#normalformen" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="schema-design-uberblick">
-<h2><span class="section-number">7.4. </span>Schema Design – Überblick<a class="headerlink" href="#schema-design-uberblick" title="Permalink to this headline">¶</a></h2>
-<ol class="simple">
-<li><p>Anomalien durch schlechtes Design
-<br></p></li>
-<li><p>Dekomposition (Zerlegung) von Relationen
-<br></p></li>
-<li><p>Boyce-Codd-Normalform (BCNF)
-<br></p></li>
-<li><p>Zerlegung zur Erreichung der BCNF
-<br></p></li>
-<li><p>Andere Normalformen
-<br>
-– Insbesondere 3NF</p></li>
-</ol>
+<p>Wir haben jetzt das Grundwerkzeug für die Normalisierung von Relationen, nämlich FDs und ihre Ableitbarkeit kennengelernt. Nun werden deren Einsatz zur Herbeiführung sogenannter Normalformen kennen lernen. Es gibt mehrere Normalformen, die jeweils unterschiedlich streng sind. Wir werden zunächst mit der gängigen <strong>Boyce-Codd-Normalform (BCNF)</strong> anfangen und diese motivieren und dann weitere Normalformen im Vergleich kennen lernen.</p>
 <div class="section" id="redundanzen-fuhren-zu-anomalien-im-datenbankdesign">
-<h3><span class="section-number">7.4.1. </span>Redundanzen führen zu Anomalien im Datenbankdesign<a class="headerlink" href="#redundanzen-fuhren-zu-anomalien-im-datenbankdesign" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">7.3.1. </span>Redundanzen führen zu Anomalien im Datenbankdesign<a class="headerlink" href="#redundanzen-fuhren-zu-anomalien-im-datenbankdesign" title="Permalink to this headline">¶</a></h3>
+<p>Wir am Anfang des Kapitels angedeutet, ist das Grundproblem von nicht-normalisierten Schemata Redundanz. Nicht nur weil Redundant Speicherplatz verschwendet sondern auch weil bestimmte Anomalien entstehen können. Betrachten wir hierzu die folgende nicht-normalisierte Tabelle. Es sollte leicht einzusehen sein, dass funktionale Abhängigkeiten hier gelten, bei der linke Seite kein Schlüssel ist. Z.B. KundenID <span class="math notranslate nohighlight">\(\rightarrow\)</span> Kunde, Kundenaddresse. Für die selbe KundenID muss man jedes mal den Kundennamen und die Kundenadresse neu eintragen.<br />
+Man sieht auch dass Service und Umfang funktional den Preis bestimmen.</p>
 <p><img alt="title" src="../_images/redundanz11.jpg" /></p>
-<p>Update-Anomalien
+<p>So eine Struktur mit funktinonalen Abhängigkeiten kann zu signifikanten Problemen führen. Diese werden als Anomalien bezeichnet.</p>
+<ul class="simple">
+<li><p><strong>Update-Anomalien:</strong> Veränderungen müssen an allen Stellen durchgeführt werden. Wenn Herr Meyer eine neue Adresse erhält, muss die Adresse an jeder Stelle in der Tabelle aktualisiert werden.</p></li>
+<li><p><strong>Insert-Anomalien:</strong> Wenn die FD nicht als Integritätsbedingungen erzwungen wird, könnte man durch das Hinzufügen neuer Tupel Inkonsistenzen herbeiführen: Gleicher Kunde mit neuer Adresse.</p></li>
+<li><p><strong>Delete Anomalien:</strong> Beim löschen einer Zeile gehen mehr Informationen verloren als notwendig. Wenn wir zum Beispiel Auftrag 1 löschen, führt das dazu, dass Reifenwechsel im Basic Format nicht mehr als Service in der Datenbank vorhanden ist.</p></li>
+</ul>
+<p>Die Ursachen solcher Anomalien befinden sich in das Zusammenlegen von <span class="math notranslate nohighlight">\(N:M\)</span>-Beziehungen, z.B. Kunden und Servicekombinationen, und transitive <span class="math notranslate nohighlight">\(N:1\)</span>-Beziehungen, z.B. AuftragsID <span class="math notranslate nohighlight">\(\rightarrow\)</span> {Service, Umfang}<span class="math notranslate nohighlight">\(\rightarrow\)</span> Preis.</p>
+<div class="section" id="dekomposition-zerlegung">
+<h4><span class="section-number">7.3.1.1. </span>Dekomposition (Zerlegung)<a class="headerlink" href="#dekomposition-zerlegung" title="Permalink to this headline">¶</a></h4>
+<p>Um die obengenannten Anomalien zu vermeiden müssen wir die Relationen dekomponieren. Im unteren Bild sieht man eine erfolgreiche Dekomponierung, in der alle Anomalien beseitigt wurden.</p>
+<p>Bei einer Dekomposition werden im allgemeinen die Attribute in Teilrelationen aufgeteilt.
+<span class="math notranslate nohighlight">\(R(A_1,A_2,…,A_n)\)</span> kann in <span class="math notranslate nohighlight">\(S(B_1,B_2,…,B_m)\)</span> und <span class="math notranslate nohighlight">\(T(C_1,C_2,…,C_k)\)</span> dekomponiert werden, falls
 <br>
-Veränderungen müssen an allen Stellen durchgeführt werden (neue Adresse für Herr Meyer)
-<br>
-<br>
-Insert-Anomalien
-<br>
-Hinzufügen von Inkonsistenzen (gleicher Kunde mit neuer Adresse)
-<br>
-<br>
-Delete Anomalien
-<br>
-Mehr Informationen gehen verloren als notwendig (Löschung von Auftrag 1 führt dazu, dass Reifenwechsel im Basic Format nicht mehr als Service in der Liste ist)</p>
-<div class="section" id="ursachen-von-anomalien">
-<h4><span class="section-number">7.4.1.1. </span>Ursachen von Anomalien<a class="headerlink" href="#ursachen-von-anomalien" title="Permalink to this headline">¶</a></h4>
-<p>N zu M Beziehungen: Kunden und Servicekombinationen
-Transitive N zu 1 Beziehungen: Servicekombination und Preis
-AuftragsID à {Service, Umfang}
-{Service, Umfang} à Preis</p>
-</div>
-<div class="section" id="eliminierung-von-anomalien-durch-dekomposition">
-<h4><span class="section-number">7.4.1.2. </span>Eliminierung von Anomalien durch Dekomposition<a class="headerlink" href="#eliminierung-von-anomalien-durch-dekomposition" title="Permalink to this headline">¶</a></h4>
-<p>Dekomposition (Zerlegung)
-<br>
-Aufteilung von Attribute in zwei Teilrelationen
-<br>
-Erzeugung neuer Tupel in den neuen Relationen
-<br>
-R(A1,A2,…,An) kann in S(B1,B2,…,Bm) und T(C1,C2,…,Ck) dekomponiert werden, falls
-<br>
-{A1,A2,…,An} = {B1,B2,…,Bm} <span class="math notranslate nohighlight">\(\cup\)</span> {C1,C2,…,Ck}
-<br>
-Tupel in S sind die Projektion aller Tupel in R auf {B1,B2,…,Bm}
-<br>
-Insbesondere: Duplikate werden entfernt
-<br>
-Dadurch: Verminderung der Redundanz
-<br>
-Tupel in T analog</p>
-</div>
-<div class="section" id="beispiel-einer-dekomposition">
-<h4><span class="section-number">7.4.1.3. </span>Beispiel einer Dekomposition<a class="headerlink" href="#beispiel-einer-dekomposition" title="Permalink to this headline">¶</a></h4>
+<span class="math notranslate nohighlight">\(\{A_1,A_2,…,A_n\} = \{B_1,B_2,…,B_m\} \cup \{C_1,C_2,…,C_k\}\)</span>
+<br></p>
+<p>Für jede Relation wird dann entsprechend der Urpsrungsrelation neue Tupel erzeugt.</p>
+<p>Tupel in <span class="math notranslate nohighlight">\(S\)</span> oder <span class="math notranslate nohighlight">\(T\)</span> sind die Projektion aller Tupel in R auf <span class="math notranslate nohighlight">\(\{B_1,B_2,…,B_m\}\)</span> und <span class="math notranslate nohighlight">\(\{C_1,C_2,…,C_k\}\)</span> wobei Duplikate entfernt werden und redundanz vermindert wird.</p>
 <p><img alt="title" src="../_images/dekomposition1.jpg" /></p>
 </div>
 </div>
 <div class="section" id="boyce-codd-normalform-bcnf">
-<h3><span class="section-number">7.4.2. </span>Boyce-Codd-Normalform (BCNF)<a class="headerlink" href="#boyce-codd-normalform-bcnf" title="Permalink to this headline">¶</a></h3>
-<p>BCNF ist eine Bedingung zur Eliminierung der Anomalien
-<br>
-Eine Relation R ist in BCNF genau dann wenn
-<br>
-Für jede nicht-triviale funktionale Abhängigkeit (FD), muss die linke Seite ein Superschlüssel sein
-<br>
-Erinnerung:
-<br>
-Nichttrivial: Wenigstens ein Attribut rechts kommt links nicht vor
-<br>
-Superschlüssel: Supermenge eines Schlüssels
-<br>
-Was darf nicht sein:
-<br>
-Eine FD ohne Superschlüssel auf der linken Seite
-<br>
-Ziel:
-<br>
-FDs zur Schlüsselabhängigkeiten machen</p>
-<div class="section" id="beispiel-der-bcnf-verletzung">
-<h4><span class="section-number">7.4.2.1. </span>Beispiel der BCNF-Verletzung<a class="headerlink" href="#beispiel-der-bcnf-verletzung" title="Permalink to this headline">¶</a></h4>
-<p><img alt="title" src="../_images/redundanz11.jpg" /></p>
-<p>Tabelle ist nicht in BCNF
-<br>
-Schlüssel: {AuftragsID}
-<br>
-Superschlüssel müssen AuftragsID enthalten
-<br>
-Eine FD: {KundenID} à {Kunde, Kundenadresse}
-<br>
-{KundenID} ist kein Superschlüssel
-<br>
--&gt; à BCNF ist verletzt</p>
-</div>
+<h3><span class="section-number">7.3.2. </span>Boyce-Codd-Normalform (BCNF)<a class="headerlink" href="#boyce-codd-normalform-bcnf" title="Permalink to this headline">¶</a></h3>
+<p>Natürlich hilft es nicht eine Relation beliebig zu zerlegen. Um Redundanz effektiv zu beheben werden wir die bekannten funktionalen Abhängigkeiten hierfür nutzen und diese in Schlüssel umwandeln.
+Die BCNF ist eine Bedingung zur Eliminierung von Anomalien und es gibt einen entsprechenden Algorithmus jede Relation in BCNF umzuwandeln.</p>
+<ul class="simple">
+<li><p>Eine Relation <span class="math notranslate nohighlight">\(R\)</span> ist in BCNF genau dann wenn für jede nicht-triviale funktionale Abhängigkeit, die linke Seite ein Superschlüssel ist.
+Zur Erinnerung:
+Nichttrivial bedeutet, dass wenigstens ein Attribut er rechts kommt links nicht vorkommt und ein Superschlüssel ist die Supermenge eines Schlüssels.</p></li>
+</ul>
+<p>Im Umkerhschluss ist es nicht erlaubt, dass eine FD existiert, dessen linke Seite kein Superschlüssel ist.</p>
+<p><strong>Beispiel(BCNF-Verletzung):</strong>
+<img alt="title" src="../_images/redundanz11.jpg" /></p>
+<p>In der Tabelle oben ist AuftragsID der Schlüssel. Das heißt, dass alle Superschlüssel AuftragsID enthalten müssen.
+Gleichzeitig gibt es die FD: {KundenID} <span class="math notranslate nohighlight">\(\rightarrow\)</span> {Kunde, Kundenadresse}. Jedoch ist {KundenID} ist kein Superschlüssel. Damit liegt eine Verletzung der BCNF vor.</p>
 <div class="section" id="algorithmus-fur-dekomposition-nach-bcnf">
-<h4><span class="section-number">7.4.2.2. </span>Algorithmus für Dekomposition nach BCNF<a class="headerlink" href="#algorithmus-fur-dekomposition-nach-bcnf" title="Permalink to this headline">¶</a></h4>
-<p>Grundalgorithmus für Relation R:
-<br></p>
+<h4><span class="section-number">7.3.2.1. </span>Algorithmus für Dekomposition nach BCNF<a class="headerlink" href="#algorithmus-fur-dekomposition-nach-bcnf" title="Permalink to this headline">¶</a></h4>
+<p>Kennt man die BCNF-verletzenden FDs ist die Dekomposition klar definiert. Der Grundalgorithmus ist wie folgt:
+Gegeben eine Relation <span class="math notranslate nohighlight">\(R\)</span>:</p>
 <ol class="simple">
-<li><p>Suche verletzende nichttriviale FD: X → B1, B2, … ,Bn
-<br>
-mit X ⊂ R und B1, B2, … , Bn ∈ R
-<br></p></li>
-<li><p>Füge auf der rechten Seite so viele Attribute hinzu wie möglich
-<br></p></li>
-<li><p>Betrachte Hülle der FD
-<br></p></li>
-<li><p>Erzeuge zwei neue Relationen:
-<br>
-R ∖ (B1, B2, … , Bn)
-<br>
-X ∪ (B1,B2,…,Bn)
-<br>
-Grundsätzlich: Jede Relation mit zwei Attributen ist in BCNF</p></li>
+<li><p>Suche verletzende nichttriviale FD: <span class="math notranslate nohighlight">\(X \rightarrow B_1, B_2, … ,B_n\)</span>
+mit <span class="math notranslate nohighlight">\(X \subset R\)</span> und <span class="math notranslate nohighlight">\(B_1, B_2, … , B_n \in R\)</span></p></li>
+<li><p>Füge auf der rechten Seite so viele Attribute hinzu wie möglich:</p>
+<ol class="simple">
+<li><p>Betrachte alle Attribute die von <span class="math notranslate nohighlight">\(X\)</span> funktional bestimmt werden</p></li>
+<li><p>Betrachte die Hülle von <span class="math notranslate nohighlight">\(X\)</span></p></li>
 </ol>
-</div>
-<div class="section" id="bcnf-dekomposition-am-beispiel-1">
-<h4><span class="section-number">7.4.2.3. </span>BCNF Dekomposition am Beispiel 1<a class="headerlink" href="#bcnf-dekomposition-am-beispiel-1" title="Permalink to this headline">¶</a></h4>
-<p>Auftrag(AuftragsID, KundenID, Kunde, Kundenaddresse, Service, Umfang, Preis)
+</li>
+<li><p>Erzeuge zwei neue Relationen:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(R \backslash \{B_1, B_2, … , B_n\}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(X \cup \{B_1,B_2,…,B_n\}\)</span></p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Beispiel(Dekomposition):</strong> Wir betrachten unsere Auftragstabelle mit der Relation Auftrag(AuftragsID, KundenID, Kunde, Kundenaddresse, Service, Umfang, Preis) und die BCNF-verletzende FD: KundenID <span class="math notranslate nohighlight">\(\rightarrow\)</span> Kunde, Kundenadresse
 <br>
-BCNF verletzende FD:
-<br>
-KundenID à Kunde, Kundenadresse
-<br>
-Neue Relationen:
-<br>
-Auftrag1(AuftragsID, KundenID, Service, Umfang, Preis)
-<br>
-Auftrag2(KundenID, Kunde, Kundenadresse)</p>
-<p><img alt="title" src="../_images/dekomposition2.jpg" /></p>
-<p><img alt="title" src="../_images/dekomposition3.jpg" /></p>
-<p>R ∖ (B1, B2, … , Bn)</p>
-<p><img alt="title" src="../_images/dekomposition4.jpg" /></p>
-<p>X ∪ (B1,B2,…,Bn)</p>
-<p>Kunde ist in BCNF
-<br>
-KundenID ist Schlüssel
-<br>
-Kundenadresse ist hier zufällig auch Schlüssel. Ignorieren diesen Fall.
-<br>
-Auftrag1 ist nicht in BCNF
-<br>
-Schlüssel: {AuftragsID}
-<br>
-Verletzende FD: {Service, Umfang}-&gt;{Preis}
-<br>
--&gt; erneute Dekomposition</p>
-<p>Auftrag2</p>
-<p><img alt="title" src="../_images/dekomposition5.jpg" /></p>
-<p>R ∖ (B1, B2, … , Bn)</p>
-<p>Service</p>
-<p><img alt="title" src="../_images/dekomposition6.jpg" /></p>
-<p>X ∪ (B1,B2,…,Bn)</p>
-<p><img alt="title" src="../_images/dekomposition7.jpg" /></p>
+Nach der Anwendung des obigen Algorithmus ergeben sich folgende Neue Relationen die wir mit Auftrag1 und Auftrag2 bennen:</p>
+<ul class="simple">
+<li><p>Auftrag1(AuftragsID, KundenID, Service, Umfang, Preis)</p></li>
+<li><p>Auftrag2(KundenID, Kunde, Kundenadresse)</p></li>
+</ul>
+<p>Wir sehen im Ergebnis der Dekomposition der Tabellen, dass die Duplikate zu Herr Meyer und Herr Schmidt entfernt wurden.</p>
+<p><strong>Auftrag1 (<span class="math notranslate nohighlight">\(R \backslash \{B_1, B_2, … , B_n\}\)</span>):</strong></p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>AuftragsID</p></th>
+<th class="head"><p>KundenID</p></th>
+<th class="head"><p>Service</p></th>
+<th class="head"><p>Umfang</p></th>
+<th class="head"><p>Preis</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>230</p></td>
+<td><p>Reifenwechsel</p></td>
+<td><p>Basic</p></td>
+<td><p>65 Euro</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>220</p></td>
+<td><p>Reinigung</p></td>
+<td><p>Basic</p></td>
+<td><p>50 Euro</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>220</p></td>
+<td><p>Reifenwechsel</p></td>
+<td><p>Basic</p></td>
+<td><p>100 Euro</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>230</p></td>
+<td><p>Reinigung</p></td>
+<td><p>Basic</p></td>
+<td><p>50 Euro</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>240</p></td>
+<td><p>Reifenwechsel</p></td>
+<td><p>Basic</p></td>
+<td><p>100 Euro</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Auftrag2 (<span class="math notranslate nohighlight">\(X \cup \{B_1,B_2,…,B_n\}\)</span>):</strong></p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>KundenID</p></th>
+<th class="head"><p>Kunde</p></th>
+<th class="head"><p>Kundenadresse</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>230</p></td>
+<td><p>Meyer</p></td>
+<td><p>Schlossstraße 13</p></td>
+</tr>
+<tr class="row-odd"><td><p>220</p></td>
+<td><p>Schmidt</p></td>
+<td><p>Parkstraße 17</p></td>
+</tr>
+<tr class="row-even"><td><p>240</p></td>
+<td><p>Meyer</p></td>
+<td><p>Lindenstraße 17</p></td>
+</tr>
+</tbody>
+</table>
+<p>Auftrag2 ist in BCNF und hat den Schlüssel KundenID. Kundenadresse sieht hier zufällig auch wie ein Schlüssel aus, da jeder Wert nur einmal auftraucht. Aber nach unserer ursprünglichen Liste der Funktionalen Abhöngigkeiten gab es keine funktionale Abhängigkeit von Kundenadresse zu Kunde. Dies wäre auch nicht sinnvoll, da an einer Adresse mehrere Kunden leben könnten.</p>
+<p>In Auftrag1 haben wir eine BCNF-verletzende FD entfernt. Der Schlüssel ist immernoch AuftragsID. Es gibt weiterhin die FD: {Service, Umfang}<span class="math notranslate nohighlight">\(\rightarrow\)</span>{Preis}, die die BCNF-Regel verletzt. Der nächste Schritt ist analog zum vorigen. Das heißt wir dekomponieren wieder und erhalten zwei neue Relationen:</p>
+<ul class="simple">
+<li><p>Auftrag11(AuftragsID,KundenID,Service,Umfang)</p></li>
+<li><p>Auftrag12(Service,Umfang,Preis)</p></li>
+</ul>
+<p>Entsprechend ergeben sich folgende Tabellen:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>AuftragsID</p></th>
+<th class="head"><p>KundenID</p></th>
+<th class="head"><p>Service</p></th>
+<th class="head"><p>Umfang</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>230</p></td>
+<td><p>Reifenwechsel</p></td>
+<td><p>Basic</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>220</p></td>
+<td><p>Reinigung</p></td>
+<td><p>Basic</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>220</p></td>
+<td><p>Reifenwechsel</p></td>
+<td><p>Basic</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>230</p></td>
+<td><p>Reinigung</p></td>
+<td><p>Basic</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>240</p></td>
+<td><p>Reifenwechsel</p></td>
+<td><p>Basic</p></td>
+</tr>
+</tbody>
+</table>
+<p>und</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Service</p></th>
+<th class="head"><p>Umfang</p></th>
+<th class="head"><p>Preis</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Reifenwechsel</p></td>
+<td><p>Basic</p></td>
+<td><p>65 Euro</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reinigung</p></td>
+<td><p>Basic</p></td>
+<td><p>50 Euro</p></td>
+</tr>
+<tr class="row-even"><td><p>Reifenwechsel</p></td>
+<td><p>Basic</p></td>
+<td><p>100 Euro</p></td>
+</tr>
+</tbody>
+</table>
+<p>Beide Tabellen sind in BCNF. In Auftrag12 gibt es den neuen Schlüssel {Service,Umfang}. An dieser Stelle müssen wir nichts mehr dekomponieren. Bei der Dekomposition muss beachtet werden, dass jede zerlegung jeweils auf BCNF geprüft und notfalls dekomponiert werden muss. In unserem Beispiel mussten wir immer nur die Ursprungstabelle mit AuftragsID als Schlüssel dekomponieren. Unser finales Ergebnis besteht aus drei Relationen Auftrag2, Auftrag11 und Auftrag12. Alle Anomalien sind hiermit beseitigt. Aktualisierung einer Adresse kann einmalig in der Auftrag2-Tabelle erfolgen. Beim hinzufügen der selben Person mit einer neuen Adresse wird der alten Eintrag überschrieben, da sonst die Schlüsseleigenschaft von KundenID verletzt sein würde. Egal welche Aufträge wir löschen, wir werden immer die möglichen Services in der Auftrag12-Tabelle behalten.</p>
 </div>
 </div>
 <div class="section" id="wiederherstellbarkeit">
-<h3><span class="section-number">7.4.3. </span>Wiederherstellbarkeit<a class="headerlink" href="#wiederherstellbarkeit" title="Permalink to this headline">¶</a></h3>
-<p>Wiederherstellung der Ursprungsrelation durch Join
+<h3><span class="section-number">7.3.3. </span>Wiederherstellbarkeit<a class="headerlink" href="#wiederherstellbarkeit" title="Permalink to this headline">¶</a></h3>
+<p>Man kann leicht zeigen, dass durch die Zerlegung keine Daten verloren gegangen sein könnten. wir können unsere ursprüngliche Auftrag-Tabelle jeweils durch Anwendung von zwei NATURAL JOINS wieder herstellen.</p>
+<p>Dass dies im allgemeinen funktioniert kann man auch folgendermaßen beweisen:</p>
+<p><strong>Beweis(Wiederherstellbarkeit):</strong> Gegeben eine Relation <span class="math notranslate nohighlight">\(R(A,B,C)\)</span> mit einer BCNF-verletzenden FD <span class="math notranslate nohighlight">\(B \rightarrow C\)</span>.
+Seien weiterin <span class="math notranslate nohighlight">\(t=(a,b,c)\)</span> und <span class="math notranslate nohighlight">\(s=(x,b,z)\)</span> zwei Tupel in <span class="math notranslate nohighlight">\(R(A,B,C)\)</span> mit <span class="math notranslate nohighlight">\(B \rightarrow C\)</span>
 <br>
-Korrektheit durch Widerspruchsbeweis:
-<br>
-Seien t(a,b,c) und s(x,b,z) zwei Tupel in R(A,B,C) mit B -&gt; C
-<br>
-Dekomposition mittels Projektion ergibt:
-<br>
-t1(a,b), s1(x,b) in R1 und t2(b,c), s2(b,z) in R2
-<br>
-Join von R1 und R2 ergibt:
-<br>
-Fehler?
-<br>
-Nein, da wegen B-&gt;C gilt c=z</p>
+Dekomposition mittels Projektion ergibt auf Tupelebene:
+<span class="math notranslate nohighlight">\(t_1=(a,b), s_1=(x,b)\)</span> in <span class="math notranslate nohighlight">\(R_1\)</span> und <span class="math notranslate nohighlight">\(t_2=(b,c), s_2=(b,z)\)</span> in <span class="math notranslate nohighlight">\(R_2\)</span></p>
+<p>Join von <span class="math notranslate nohighlight">\(R_1\)</span> und <span class="math notranslate nohighlight">\(R_2\)</span> ergibt:</p>
 <p><img alt="title" src="../_images/wiederherstellbarkeit1.jpg" /></p>
-<p>Dekomposition ohne FD (aus Spaß)
-<br>
-■ Angenommen R(A,B,C) ohne B → C
-<br>
-■ Projektionen auf R1(A,B) und R2(B,C)
-<br>
-■ Wiederherstellung durch Join über B</p>
-<p><img alt="title" src="../_images/wiederherstellbarkeit2.jpg" /></p>
-<p><img alt="title" src="../_images/wiederherstellbarkeit3.jpg" /></p>
-</div>
-<div class="section" id="dekomposition-zu-bcnf-beispiel-2">
-<h3><span class="section-number">7.4.4. </span>Dekomposition zu BCNF – Beispiel 2<a class="headerlink" href="#dekomposition-zu-bcnf-beispiel-2" title="Permalink to this headline">¶</a></h3>
-<p><img alt="title" src="../_images/tabelle.jpg" /></p>
-<p>■ Titel, Jahr → Länge, Typ, StudioName
-<br>
-■ StudioName → StudioAdresse
-<br>
-■ Transitivität: Titel, Jahr → StudioAdresse
-<br>
-■ =&gt; {Titel, Jahr} ist Schlüssel
-<br>
-■ StudioName → StudioAdresse verletzt also BCNF
-<br>
-■ Zwei neue Relationen
-<br>
-□ Film1(Titel, Jahr, Länge Typ, StudioName)
-<br>
-□ Film2(StudioName, StudioAdresse)</p>
-<p><img alt="title" src="../_images/tabelle1.jpg" /></p>
-<p><img alt="title" src="../_images/tabelle2.jpg" /></p>
-</div>
-<div class="section" id="dekomposition-zu-bcnf-beispiel-3">
-<h3><span class="section-number">7.4.5. </span>Dekomposition zu BCNF – Beispiel 3<a class="headerlink" href="#dekomposition-zu-bcnf-beispiel-3" title="Permalink to this headline">¶</a></h3>
-<p>■ Film(Titel, Jahr, StudioName, Präsident, PräsAdresse)
-<br>
-□ Titel, Jahr → StudioName
-<br>
-□ StudioName → Präsident
-<br>
-□ Präsident → PräsAdresse
-<br>
-□ =&gt; {Titel, Jahr} ist Schlüssel
-<br><br>
-■ Erste Dekomposition anhand von StudioName → Präsident
-<br>
-□ Hinzufügen von möglichst vielen Attributen auf der rechten Seite: StudioName → Präsident,PräsAdresse
-<br>
-□ Film1(Titel, Jahr, StudioName)
-<br>
-□ Film2(StudioName, Präsident, PräsAdresse)
-<br>
-– Hier gilt weiter Präsident → PräsAdresse
-<br>
-– BCNF Verletzung
-<br><br>
-■ Zweite Dekomposition
-<br>
-□ Film2 wird zu Film2(StudioName, Präsident)
-<br>
-□ Film3(Präsident, PräsAdresse)
-<br><br>
-■ Verfahren terminiert: Jede neue Relation wird kleiner und 2er-Relationen sind garantiert in BCNF</p>
+<p>Es entstehen zwei scheinbar neue Tupel <span class="math notranslate nohighlight">\(v=(a,b,z)\)</span> und <span class="math notranslate nohighlight">\(w=(x,b,c)\)</span>. Das würde bedeuten dass <span class="math notranslate nohighlight">\(c\neq z\)</span>. Dies steht aber im Widerspruch zu <span class="math notranslate nohighlight">\(B\rightarrow C\)</span> wonach gilt <span class="math notranslate nohighlight">\(c=z\)</span>. Das heißt alle neuen Tupel sind Duplikate bisher bekannter Tupel. Würde die funktionale Abhängigkeit nicht gelten, könnten wir nicht garantieren, dass neue Tupel durch den Join entstehen.</p>
 </div>
 <div class="section" id="weitere-normalformen">
-<h3><span class="section-number">7.4.6. </span>Weitere Normalformen<a class="headerlink" href="#weitere-normalformen" title="Permalink to this headline">¶</a></h3>
-<p>■ 1. Normalform (1NF)
-<br>
-□ Nur atomare Werte
-<br>
-■ 2. Normalform (2NF)
-<br>
-□ 1NF und keine Abhängigkeiten von einem Teil eines Schlüssels
-<br>
-■ 3. Normalform (3NF)
-<br>
-□ 2NF und zusätzlich keine transitiven Abhängigkeiten
-<br>
-■ Boyce-Codd Normalform (BCNF)
-<br>
-□ 3NF und keine transitiven Abhängigkeiten auch innerhalb des Schlüssels</p>
-<div class="section" id="normalform">
-<h4><span class="section-number">7.4.6.1. </span>1. Normalform<a class="headerlink" href="#normalform" title="Permalink to this headline">¶</a></h4>
-<p><img alt="title" src="../_images/normalform1.jpg" /></p>
-<p>■ 1NF: Nur atomare Werte
-<br>
-□ Relation nicht in 1NF:
-<br>
-□ Aka: NFNF oder NF2 oder NF²
-<br>
-□ Umgewandelte Relation in 1NF:
-<br>
-□ Andere Umwandlungsmöglichkeit
-<br>
-– R(Vater, Mutter, Kind1, Kind2)
-<br>
-– Nachteile?</p>
-</div>
-<div class="section" id="id1">
-<h4><span class="section-number">7.4.6.2. </span>2. Normalform<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
-<p><img alt="title" src="../_images/normalform2.jpg" /></p>
-<p>■ 1NF und keine Abhängigkeiten eines Nicht-Schlüssel-Attributs von einem Teil eines Schlüssels
-<br>
-■ MatrNr -&gt; Name
-<br>
-□ Aber MatrNr ist nicht vollständiger Schlüssel
-<br>
-■ Abhilfe: Dekomposition
-<br>
-□ <span class="math notranslate nohighlight">\(R1(\underline{MatrNr}, Name)\)</span>
-<br>
-□ <span class="math notranslate nohighlight">\(R2(\underline{MatrNr,VorlNr}, Semester)\)</span></p>
-</div>
-<div class="section" id="id2">
-<h4><span class="section-number">7.4.6.3. </span>3. Normalform<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
-<p><img alt="title" src="../_images/normalform3.jpg" /></p>
-<p>■ Kinoaufführungen
-<br>
-□ R(Titel, Kino, Stadt)
-<br>
-□ FDs
-<br>
-– Kino -&gt; Stadt (ein Kino steht in nur einer Stadt)
-<br>
-– Titel, Stadt -&gt; Kino
-<br>
-(D.h.: Ein Film wird nicht zweifach in der gleichen Stadt aufgeführt)
-<br>
-□ Schlüssel?
-<br>
-– Einzelne Attribute sind nicht Schlüssel
-<br>
-– {Titel, Stadt} ist Schlüssel, da er funktional alle anderen Attribute bestimmt.
-<br>
-– {Kino, Titel} ist auch Schlüssel, da Kino -&gt; Stadt augmentiert werden kann zu Kino, Titel -&gt; Stadt
-<br>
-□ BCNF-Verletzung:
-<br>
-– Kino -&gt; Stadt (da Kino nicht Superschlüssel ist</p>
-<p>Lösung des Problems durch Relaxierung der BCNF
-<br>
-Eine Relation R ist in 3. Normalform genau dann wenn:
-<br>
-Für jede nicht-triviale FD A1A2…An -&gt; B für R ist
-<br>
-{A1, A2, …, An} ein Superschlüssel für R, oder B ist Teil eines Schlüssels für R.
-<br>
-Kurz: Für jede FD ist entweder die linke Seite ein Superschlüssel oder die rechte Seite Teil eines Schlüssels.
-<br>
-Am Beispiel
-<br>
-R(Titel, Kino, Stadt) mit FDs
-<br>
-Kino -&gt; Stadt
-<br>
-Titel, Stadt -&gt; Kino
-<br>
--&gt;Verletzt nicht 3. Normalform, da Stadt Teil eines Schlüssels ist.</p>
-</div>
-<div class="section" id="nf-vs-bcnf">
-<h4><span class="section-number">7.4.6.4. </span>3NF vs. BCNF<a class="headerlink" href="#nf-vs-bcnf" title="Permalink to this headline">¶</a></h4>
-<p>■ Wichtige Eigenschaften der Dekomposition
-<br></p>
-<ol class="simple">
-<li><p>Wiederherstellbarkeit
-<br>
-– Projektion der ursprünglichen Relation auf die neuen Relationen und dann Rekonstruktion der ursprünglichen Relation (mittels Join).
+<h3><span class="section-number">7.3.4. </span>Weitere Normalformen<a class="headerlink" href="#weitere-normalformen" title="Permalink to this headline">¶</a></h3>
+<p>Die BCNF ist die bekannteste und anwendungsorientiertste Normalform. Es gibt auch weitere Normalformen, die in Ihrer Strenge jeweils zu nehmen:</p>
+<ul class="simple">
+<li><p><strong>1. Normalform (1NF)</strong>: Nur atomare Werte dürfen Attributwerte sein. Ein Attributwert darf keine Liste oder zusammengesetzter Konstrukt sein.</p></li>
+<li><p><strong>2. Normalform (2NF)</strong>: Die 1NF gilt und zusätzlich darf es keine Abhängigkeiten von einem Teil eines Schlüssels geben, der selbst kein Schlüssel ist.</p></li>
+<li><p><strong>3. Normalform (3NF)</strong>: Die 2NF gilt und zusätzlich dürfen keine transitiven Abhängigkeiten zu Nicht-Schlüsselattribute gelten
 <br></p></li>
-<li><p>Bewahrung der FDs
-<br>
-– Prüfbarkeit aller FDs in den neuen Relationen
-<br><br>
-■ BCNF garantiert 1.
-<br><br>
-■ 3NF garantiert 1. und 2.
-<br>
-□ Aber: Es können Anomalien bestehen bleiben.
-<br><br>
-■ Dekomposition zur 3NF
-<br>
-□ Anderer Algorithmus
-<br>
-□ Nicht hier!</p></li>
+<li><p><strong>Boyce-Codd Normalform (BCNF)</strong>: Die 3NF gilt und es gibt auch keine Abhängigkeiten innerhalb eines Schlüssels</p></li>
+</ul>
+<p><strong>Beispiel (1NF Verletzung):</strong>
+Die folgende Tabelle enthält Mengen als Attributwerte und verletzt die 1NF.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Vater</p></th>
+<th class="head"><p>Mutter</p></th>
+<th class="head"><p>Kinder</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Eddard</p></td>
+<td><p>Catelyn</p></td>
+<td><p>{Arya,Sansa,Robb,Rickon,Brandon}</p></td>
+</tr>
+<tr class="row-odd"><td><p>Robert</p></td>
+<td><p>Cercei</p></td>
+<td><p>{}</p></td>
+</tr>
+<tr class="row-even"><td><p>Stannis</p></td>
+<td><p>Selyse</p></td>
+<td><p>{Shireen}</p></td>
+</tr>
+</tbody>
+</table>
+<p>Die folgende Alternative ist wiederum in 1NF.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Vater</p></th>
+<th class="head"><p>Mutter</p></th>
+<th class="head"><p>Kinder</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Eddard</p></td>
+<td><p>Catelyn</p></td>
+<td><p>Arya</p></td>
+</tr>
+<tr class="row-odd"><td><p>Eddard</p></td>
+<td><p>Catelyn</p></td>
+<td><p>Sansa</p></td>
+</tr>
+<tr class="row-even"><td><p>Eddard</p></td>
+<td><p>Catelyn</p></td>
+<td><p>Robb</p></td>
+</tr>
+<tr class="row-odd"><td><p>Eddard</p></td>
+<td><p>Catelyn</p></td>
+<td><p>Rickon</p></td>
+</tr>
+<tr class="row-even"><td><p>Eddard</p></td>
+<td><p>Catelyn</p></td>
+<td><p>Brandon</p></td>
+</tr>
+<tr class="row-odd"><td><p>Robert</p></td>
+<td><p>Cercei</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Stannis</p></td>
+<td><p>Selyse</p></td>
+<td><p>Shireen</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Beispiel (2NF Verletzung):</strong> Die folgende Tabelle mit dem Schlüssel {MatrNr,VorlNr} ist in 1NF. Jedoch gibt es eine FD von einem Teil des Schlüssels: MatrNr <span class="math notranslate nohighlight">\(\rightarrow\)</span> Name</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>MatrNr</p></th>
+<th class="head"><p>VorlNr</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Semester</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>21620</p></td>
+<td><p>1001</p></td>
+<td><p>Stark</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>22620</p></td>
+<td><p>1001</p></td>
+<td><p>Ulutürk</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p>21620</p></td>
+<td><p>1013</p></td>
+<td><p>Stark</p></td>
+<td><p>11</p></td>
+</tr>
+<tr class="row-odd"><td><p>27453</p></td>
+<td><p>1012</p></td>
+<td><p>Power</p></td>
+<td><p>4</p></td>
+</tr>
+</tbody>
+</table>
+<p>Abhilfe kann man hier erhalten durch Dekomposition wie wir sie kennen:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(R1(\underline{MatrNr}, Name)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(R2(\underline{MatrNr,VorlNr}, Semester)\)</span></p></li>
+</ul>
+<p>Das Ergebnis ist in 2NF und in diesem speziellen Fall sogar in BCNF.</p>
+<p><strong>Beispiel (3NF Verletzung 1):</strong> Unser Ursprungsbeispiel mit der transitiven Beziehung AuftragsID <span class="math notranslate nohighlight">\(\rightarrow\)</span> KundenID <span class="math notranslate nohighlight">\(\rightarrow\)</span> Kunde verletzt auch die 3NF.</p>
+<p>Noch ist der Unterschied zu BCNF nicht genau ersichtlich. Dafür betrachten wir ein weiteres Beispiel wonach 3NF gilt aber nicht BCNF. Wir konstruieren ein Beispiel bei dem die transitive Beziehung zu eine Teilmenge des Schlüssels hinführt</p>
+<p><strong>Beispiel (BCNF Verletzung):</strong> Betrachten wir eine Relation R(Kino,Stadt,Titel) mit dem Schlüssel {Stadt,Titel}. Das heißt, dass jeweils nur ein Kino ein Titel zeigen darf. Zudem gelte die funktionale Beziehung Kino <span class="math notranslate nohighlight">\(\rightarrow\)</span> Stadt. Anhand der Definition ist diese Relation in 3NF, da keine transitiven FDs zu Nichtschlüsselattributen hinführen. Die Relation ist jedoch nicht in BCNF, da Kino kein Superschlüssel ist. Würden wir diese Relation dekomponieren würden wir erhalten: R1(Kino,Stadt) und R2(Kino,Titel). Das Ergebnis wäre zwar in BCNF aber wir würden die Schlüsseleigenschaft {Stadt,Titel} verlieren. Damit könnte nun der gleiche Titel mehrmals in einer Stadt gezeigt werden.</p>
+<div class="section" id="nf-vs-bcnf">
+<h4><span class="section-number">7.3.4.1. </span>3NF vs. BCNF<a class="headerlink" href="#nf-vs-bcnf" title="Permalink to this headline">¶</a></h4>
+<p>Beim Vergleich von 3NF und BCNF kann man zwei Eigenschaften betrachten, die wichtig für eine Dekomposition sind.</p>
+<ol class="simple">
+<li><p>Wiederherstellbarkeit: Die Projektion der ursprünglichen Relation auf die neuen Relationen und dann Rekonstruktion der ursprünglichen Relation (mittels Join) ist immer korrekt.</p></li>
+<li><p>Bewahrung der FDs: Alle FDs und Schlüsselbeziehungen bleiben erhalten</p></li>
 </ol>
+<p>Wir haben bereits gezeigt, dass BCNF die Wiederherstellbarkeit garantiert. Das Beispiel zuvor zeigt jedoch, dass FDs nicht immer bewahrt werden können. Nämlich genau dann wenn die zur Dekomposition ausgewählte FD auf eine Teilmenge eines Schlüssels auf der rechten Seite hat.</p>
+<p>3NF hingegen garantiert sowohl die Widerherstellbarkeit als auch die Bewahrung der FDs. Aber: Es können Redundanzen und somit Anomalien bestehen bleiben. Für die Dekomposition zur 3NF muss man zusätzliche Eigenschaften in Betracht ziehen, die wir hier nicht mehr behandeln.</p>
 </div>
 <div class="section" id="zusammenfassung-normalformen">
-<h4><span class="section-number">7.4.6.5. </span>Zusammenfassung – Normalformen<a class="headerlink" href="#zusammenfassung-normalformen" title="Permalink to this headline">¶</a></h4>
-<p><img alt="title" src="../_images/normalform_zusammenfassung.jpg" /></p>
-<p>5NF ⇒ SKNF ⇒ RFNF ⇒ ETNF ⇒ 4NF
-<br>
-Projection-join normal form (5NF)
-<br>
-Superkey normal form (SKNF)
-<br>
-Redundancy-free normal form (RFNF)
-<br>
-Essential tuple normal form (ETNF)
-<br>
-A Normal Form for Preventing Redundant Tuples in Relational Databases Hugh Darwen, C.J. Date, Ronald Fagin, ICDT 2012
-<br></p>
+<h4><span class="section-number">7.3.4.2. </span>Zusammenfassung – Normalformen<a class="headerlink" href="#zusammenfassung-normalformen" title="Permalink to this headline">¶</a></h4>
+<p>In diesem Kapitel haben wir über Redundanz und dessen systematische Verhinderung durch Dekomposition erfahren. Insbesondere haben wir die BCNF als eine Normalform kennengelernt, die Insert-, Update- und Delteanomalien verhindern kann. Bei der Dekomposition machen wir uns FDs zu Nutze. Wir haben gelernt, wie man durch die Hüllenbildung alle ableitbaren FDs herleiten kann und wie man Mengen von FDs vergleichen kann.</p>
+<p>Es gibt in der Literatur noch weitere strengere Normalformen (5NF <span class="math notranslate nohighlight">\(\Rightarrow\)</span> SKNF <span class="math notranslate nohighlight">\(\Rightarrow\)</span> RFNF <span class="math notranslate nohighlight">\(\Rightarrow\)</span> ETNF <span class="math notranslate nohighlight">\(\Rightarrow\)</span> 4NF), die wir nicht mehr im Rahmen dieser Vorlesung behandeln werden. Hierzu verweisen wir Sie auf das folgende wissenschaftliche Papier:
+<a class="reference external" href="https://dl.acm.org/doi/10.1145/2274576.2274589">A Normal Form for Preventing Redundant Tuples in Relational Databases</a> (Hugh Darwen, C.J. Date, Ronald Fagin, ICDT 2012)</p>
 </div>
 </div>
 </div>
