@@ -344,96 +344,67 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="einfuhrung">
 <h1><span class="section-number">1. </span>Einführung<a class="headerlink" href="#einfuhrung" title="Permalink to this headline">¶</a></h1>
+<p>Bevor wir den Mehrwert von Datenbanksystemen erkennen können müssen wir uns erst einmal über deren Zweck klar werden. Insbesondere wollen wir festhalten was Daten sind und welche digitale Artefake zusammen ein Datenbanksystem bilden.</p>
 <div class="section" id="was-sind-daten">
 <h2><span class="section-number">1.1. </span>Was sind Daten<a class="headerlink" href="#was-sind-daten" title="Permalink to this headline">¶</a></h2>
-<p>Daten sind eine digitale Repräsentation von Dingen, Entitäten, Wissen und Informationen aus bzw. in der wirklichen Welt. Um mit Daten zu arbeiten, ergeben sich folgende Kernfragen:
-<br>
-<br>
-Welche Daten speichere ich? Wie speichere ich die Daten? Wie frage ich Daten ab? Wie erledige ich all dies effizient und sicher?
-<br>
-<br>
-Notiz: sehr verschiedene Beispiele für Daten, was sind Metadaten ?</p>
+<p>Datenbanksysteme beherbergen Daten. Unter Daten verstehen wir digitale Repräsentation von Dingen, Entitäten, Wissen und Informationen aus der wirklichen Welt. Die digitale Repräsentation von Daten kann hierbei unterschiedlich sein. Daten können strukturiert (tabellarisch) oder unstrukturiert (Fließtext) vorliegen. Daten können textuel oder multi-medial sein.</p>
+<p>Um mit Daten zu arbeiten, ergeben sich folgende Kernfragen:</p>
+<ul class="simple">
+<li><p>Welche Daten speichere ich?</p></li>
+<li><p>Wie speichere ich die Daten?</p></li>
+<li><p>Wie frage ich Daten ab?</p></li>
+<li><p>Wie erledige ich all dies effizient und sicher, wenn die Menge der Daten zu groß wird?</p></li>
+</ul>
+<p>Die Antworten auf diese Fragen könnten sich je nach Anwendungsgebiet und Datenlage unterscheiden. Es haben sich aber eine Reihe von Anforderungen so durchgesetzt, dass es möglich ist Datenbankensysteme so zu entwickeln dass viele verschiedene Klassen von Datenverarbeitungsproblemen abzudecken.</p>
 </div>
 <div class="section" id="aufbau-eines-datenbanksystems">
 <h2><span class="section-number">1.2. </span>Aufbau eines Datenbanksystems<a class="headerlink" href="#aufbau-eines-datenbanksystems" title="Permalink to this headline">¶</a></h2>
-<p><img alt="title" src="../_images/dbms_aufbau2.jpg" /></p>
-<p>Ein Datenbanksystem besteht aus der Datenbank und dem Datenbankmanagementsystem(DBMS). Die Datenbak setzt sich aus den Daten selbst und den Metadaten zusammen, die die Daten beschreiben. Das DBMS ist ein Softwarekomoponente die server-basiert arbeitet. Es ermöglicht den Zugriff auf eine oder mehrere Datenbanken.
-<br>
-<br>
-Notiz: Anwendungen</p>
+<p>Bevor wir die Aufgaben eines Datenbanksystems genauer betrachten, wollen wir nochmal die Begriffe: Datenbank, Datenbanksystem und Datenbankmanagementsystm trennen. Ein Datenbanksystem besteht aus der Datenbank und dem Datenbankmanagementsystem(DBMS). Die Datenbak setzt sich aus den Daten selbst und den Metadaten zusammen, die die Daten beschreiben. Das DBMS ist ein Softwarekomoponente die server-basiert arbeitet. Es ermöglicht den Zugriff auf eine oder mehrere Datenbanken. Somit können mehrere Anwendungen und Nutzer als Klienten eine oder mehrere Datenbankserver nutzen</p>
+<a class="reference internal image-reference" href="../_images/dbms_aufbau2.jpg"><img alt="Funktionen" src="../_images/dbms_aufbau2.jpg" style="width: 500px;" /></a>
 </div>
 <div class="section" id="aufgaben-eines-datenbanksystems-dbms">
 <h2><span class="section-number">1.3. </span>Aufgaben eines Datenbanksystems(DBMS)<a class="headerlink" href="#aufgaben-eines-datenbanksystems-dbms" title="Permalink to this headline">¶</a></h2>
-<p>Die primären Aufgaben eines Datenbanksystems sind …
-<br>Unterstützung des Datenmodells
-<br> Bereitstellung einer Anfragesprache
-<br> Data definition language (DDL)
-<br>Data manipulation language (DML)
-<br> Effiziente Anfragebearbeitung
-<br> Robustheit
-<br> Wahrung der Datenintegrität (Konsistenz etc.)
-<br> Abfangen von Systemfehlern
-<br> Speicherverwaltung (RAM &amp; Disk)
-<br> Transaktionsmanagement
-<br> Auch im Mehr-Benutzer-Betrieb
-<br> Nutzerverwaltung &amp; Zugangskontrolle
-<br>
-<br>
-Notiz: Beispiele für die Aufgaben aus der echten Welt, Wieso diese Aufgaben, ist jede Aufgabe zwingend notwendig bzw. welche</p>
+<p>Die primären Anforderungen an einem Datenbanksystem sind …</p>
+<ul class="simple">
+<li><p>Unterstützung des Datenmodells</p></li>
+<li><p>Bereitstellung einer Anfragesprache</p></li>
+<li><p>Data definition language (DDL)</p></li>
+<li><p>Data manipulation language (DML)</p></li>
+<li><p>Effiziente Anfragebearbeitung</p></li>
+<li><p>Robustheit</p></li>
+<li><p>Wahrung der Datenintegrität (Konsistenz etc.)</p></li>
+<li><p>Abfangen von Systemfehlern</p></li>
+<li><p>Speicherverwaltung (RAM &amp; Disk)</p></li>
+<li><p>Transaktionsmanagement</p></li>
+<li><p>Auch im Mehr-Benutzer-Betrieb</p></li>
+<li><p>Nutzerverwaltung &amp; Zugangskontrolle</p></li>
+</ul>
+<p><strong>Beispiel(Netflix):</strong>
+Betrachten Sie die das Architekturbild zu dem Streamingdienst Netflix. In dieser Architektur sehen Sie an vier verschiedenen Stellen den Einsatz von Datenbanksystemen. Zunäcsht sind Nutzergeräte mit mehreren (verteilten) Online transaction processing (OLTP) -Datenbankmanagementsystemen verbunden. Das sind Systeme, auf denen viele Transaktionen pro Sekunde im Parallel laufen können. Das heißt, das hierbei Daten häufig verändert werden müssen, jedoch das Gesamtsystem immer einen konsistenten Zustand beibehalten muss. Dann sehen wir sogenannte Stream-processing Systeme, also Datenbanktechnologien, die sich um die effiziente Abwicklung von Datenströmen kümmern. Daran angedockt sind sogenannte Datawarehouses, die über die Zeit Informationen über den gesamten Streamingprozess für die spätere Analyse anhäufen. Im Unterschied zu den OLTP Datenbankmanagementsystemen sprechen wir hier von Online analytical processing (OLAP)-Systemen, die zwar keine häufigen Datenänderungen erfahren aber sehr komplexe analytische Anfragen effizient beantworten müssen. Das Beispiel zeigt, dass selbst innerhalb eines einzigen Dienstes verschiedene DBS eingesetzt werden müssen wobei sich die Aufgaben dieser Systeme unterscheiden.</p>
+<a class="reference internal image-reference" href="../_images/netflix.jpg"><img alt="../_images/netflix.jpg" src="../_images/netflix.jpg" style="width: 500px;" /></a>
+<p><strong>Beispiel(CSV-Datei):</strong>
+Während der COVID19-Pandemie sind Forschern in Grißbritannien große Datenmengen verloren gegangen, weil diese lediglich als Excelsheets gespeichert waren. Während eine Excel-Datei oder eine CSV-Datei erlaubt übersichtlich tabellarische Informationen abzuspeichern, ist deren Anwendung nur unter bestimmten Situationen sinnvoll. In diesem speziellen Fall, sind Daten beim Laden in dem Tool verloren gegangen, da Excel lediglich 65,000 Zeilen im XLS-Format verarbeiten konnte. Zudem gab es keine sinnvollen Fehlermeldungen oder andere Sicherheitsmechanismen, die diese Probleme aufzeigen hätten können.</p>
+<p>Grundsätzlich ist es nicht ratsam alle Daten als eine Datei abzuspeichern, da punktelle Veränderungen sowohl parallele Bearbeitung der Datenbank zu Konsistenzproblemen führen können. Weitere Punkte wie Zugriffskontrollen müssen vom Betriebssystem übernommen werden.
+<a class="reference internal" href="../_images/excel.jpg"><img alt="../_images/excel.jpg" src="../_images/excel.jpg" style="width: 500px;" /></a></p>
 </div>
 <div class="section" id="anforderungen-an-dbms-nach-codd-1982">
 <h2><span class="section-number">1.4. </span>Anforderungen an DBMS nach Codd 1982<a class="headerlink" href="#anforderungen-an-dbms-nach-codd-1982" title="Permalink to this headline">¶</a></h2>
-<p><img alt="title" src="../_images/anforderungen_nach_codd.jpg" /></p>
-<p>■ Integration
-<br>
-□ Einheitliche, nichtredundante Datenverwaltung
-<br>
-<br>
-■ Operationen
-<br>
-□ Definieren, Speichern, Abfragen, Ändern
-<br>
-□ Deklarativ
-<br>
-<br>
-■ Benutzersichten
-<br>
-□ Verschiedene Anwendungen, Zugriffskontrolle, Umstrukturierung
-<br>
-<br>
-■ Integritätssicherung
-<br>
-□ Korrektheit und Konsistenz des Datenbankinhalts
-<br>
-<br>
-■ Transaktionen
-<br>
-□ Mehrere DB-Operationen als Funktionseinheit
-<br>
-<br>
-■ Synchronisation
-<br>
-□ Parallele Transaktionen koordinieren
-<br>
-<br>
-■ Datenschutz
-<br>
-□ Ausschluss nicht-autorisierter Zugriffe
-<br>
-<br>
-■ Datensicherung
-<br>
-□ Wiederherstellung von Daten nach Systemfehlern
-<br>
-□ Persistenz
-<br>
-□ Große Datenmengen, Effizienz
-<br>
-<br>
-■ Katalog
-<br>
-□ Zugriffe auf Datenbankbeschreibungen im Data Dictionary (Metadaten)</p>
-<p>NICHT enthalten: S.3-5, S. 22-25, S. 28, S. 38-46</p>
+<p>Auch wenn es verschiedene DBMS mit verschiedenen Schwerpunkten gibt, gibt es eine Reihe von Standardanforderungen, die bereits vor über 40 Jahren von Edgar F. Codd formuliert wurden. In dem unten abgebildeten Papier beschreibt Codd (Turing Award Gewinner), den Blueprint für die weitverbreiteten relationalen Datenbanksysteme. In dieser Vorlesung werden wir uns hauptsächlich auf diese Art von Datenbanksysteme beziehen.</p>
+<a class="reference internal image-reference" href="../_images/anforderungen_nach_codd.jpg"><img alt="../_images/anforderungen_nach_codd.jpg" src="../_images/anforderungen_nach_codd.jpg" style="width: 500px;" /></a>
+<p>Codd formuliert die folgenden Grundbausteine für ein sinnvolles und nutzbares Datenbankmanagementsystem (DBMS).</p>
+<ul class="simple">
+<li><p>Integration: Daten sollen einheitlich und frei von Redundanz verwaltet werden. Hierzu wird ein entsprechendes Datenmodell benötigt. In dieser Vorlesung werden wir das relationale Datenmodell kennenlernen.</p></li>
+<li><p>Operationen: Das System soll Grundoperationen zum Definieren, Speichern, Abfragen und Ändern von Daten bereitstellen.</p></li>
+<li><p>Deklarativ: Die Operationen sollten Deklarativ definiert werden können. Man soll direkt beschreiben können, welche Daten man haben will ohne darüber nachdenken zu müssen, wie diese zusammengesetzt werden sollen. Das “Wie” soll das DBMS übernehmen.</p></li>
+<li><p>Benutzersichten: Das System soll verschiedene Anwendungen, Prioritäten mit entsprechenden Zugriffskontrollmechanismen und Umstrukturierungen erlauben.</p></li>
+<li><p>Integritätssicherung: Das System soll Mehtoden und Instrumente für die Wahrung der Integrität der Daten, das heißt dessen Korrektkeit und Konsistenz bereitstellen.</p></li>
+<li><p>Transaktionen: Das System soll Mehrere DB-Operationen als Funktionseinheit betrachten können und Erfolg bzw. Misserfolg einer solchen Einheit bewerten verbuchen können.</p></li>
+<li><p>Synchronisation: Parallele Transaktionen sollen koordiniert werden, sodass die Daten immer in einem konsistenten Zustand sind.</p></li>
+<li><p>Datenschutz: Das System soll Instrumente zum Ausschluss nicht-autorisierter Zugriffe bereitstellen.</p></li>
+<li><p>Datensicherung: Es muss möglich sein Daten nach Systemfehlern wiederherstlelen zu können.</p></li>
+<li><p>Persistenz: Große Datenmengen sollten auf sekundäre und Terziere Speicher geladen und effizient wieder abrufbar gemacht werden.</p></li>
+<li><p>Katalog: Das System sollte Daten über die verwalteten Daten führen. Es soll möglich sein auf diese Metadaten zuzugreifen.</p></li>
+</ul>
 </div>
 </div>
 
