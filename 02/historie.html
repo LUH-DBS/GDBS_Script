@@ -299,18 +299,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   2.6. 2010er Jahre
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   2.7. 2020er Jahre
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#historie-von-relationalen-dbms">
-   2.8. Historie von Relationalen DBMS
+  <a class="reference internal nav-link" href="#er-bis-heute">
+   2.6. 2010er bis heute
   </a>
  </li>
 </ul>
@@ -359,18 +349,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   2.6. 2010er Jahre
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   2.7. 2020er Jahre
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#historie-von-relationalen-dbms">
-   2.8. Historie von Relationalen DBMS
+  <a class="reference internal nav-link" href="#er-bis-heute">
+   2.6. 2010er bis heute
   </a>
  </li>
 </ul>
@@ -384,209 +364,62 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="historie">
 <h1><span class="section-number">2. </span>Historie<a class="headerlink" href="#historie" title="Permalink to this headline">¶</a></h1>
+<p>Die Entwicklung von Datenbanksystemen geht ca. 100 Jahre zurück. Dieses Kapitel hat nicht den Anspruch die Historie in ihrer Gesamtheit vollständig zusammenzufassen. Wir werden lediglich auf bestimmte zeitliche Epochen kurz eingehen, um die Relevanz von Datenbanksysteme und ihren Ursprung besser zu verstehen. Eine gute Übersicht für die verschiedenen Etappen der modernen Datenbankentwicklung bietet, die von Felix Naumann erstellte RDBMS-Geneology-Übersicht, die unten abgebildet ist.</p>
+<img alt="../_images/RDBMS_Genealogy_V6.pg.jpeg" src="../_images/RDBMS_Genealogy_V6.pg.jpeg" />
+<p>Wie man in dieser Übersicht sehen kann, entstanden die ersten modernen Datenbanksysteme in den 70ern und bis heute werden an neuen Systemen zum effizienteren Umgang mit großen Datenmengen und neuen Datenmodellen geforscht. Um diese Datei besser sichten zu können folgen Sie dem Link zu der hochauflösbaren <a class="reference external" href="https://hpi.de/fileadmin/user_upload/fachgebiete/naumann/projekte/RDBMSGenealogy/RDBMS_Genealogy_V6.pdf">PDF-Datei</a>.</p>
 <div class="section" id="fruhe-automatisierte-speichertechnologie">
 <h2><span class="section-number">2.1. </span>Frühe automatisierte Speichertechnologie<a class="headerlink" href="#fruhe-automatisierte-speichertechnologie" title="Permalink to this headline">¶</a></h2>
-<p><img alt="" src="../_images/herman_hollerith.jpg" /></p>
-<p>■ Herman Hollerith (1860 – 1929)
-<br>
-□ Gründete 1896 die Tabulating Machine Company
-<br>
-□ Fusion zur Computing Tabulating Recording Corporation (CTR)
-<br>
-□ 1924 umbenannt: International Business Machines Corporation (IBM)
-<br>
-<br>
-Notiz: Wer war Herman Hollerith und was hat er gemacht</p>
+<p>Bei der Entwicklung von Datenbanksystemen war ein Unternehmen besonders aktiv. Herman Hollerith gründete bereits 1896 die Tabulating Machine Company, die 1924 in International Business Machines Corporation (IBM) umbenannt wurde. In Ihrem Ursprung entwickelte IBM Lochkartensysteme, die Informationen durch physische Löscher auf Karten, abspeichern und ablesen konnten.</p>
+<p><img alt="Herman Hollerith" src="../_images/herman_hollerith.jpg" /></p>
+<p><strong>Herman Hollerith</strong></p>
 <p><img alt="title" src="../_images/lochkarte.jpg" /></p>
-<p>□ Hollerith-Lochkartenverfahrens zur Datenverarbeitung
-<br>
-□ Z.B. Volkszählung USA 1890 (2 Jahre, 43 Maschinen, 500 Personen)
-<br>
-<br>
-Notiz: Funktionsweise des Verfahrens, bis wann benutzt</p>
+<p><strong>Lochkarte</strong></p>
 <p><img alt="title" src="../_images/lochkartenleser.jpg" /></p>
+<p><strong>Lochkartenleser</strong> Bei der Volkszähling in 1890 wurden über 40 solcher Maschinen zum lesen und stanzen von Lochkarten eingesetzt. Lochkartensysteme wurden bis in der 60er Jahre als Speichermedien benutzt bis sie dann von Magnetbänder abgelöst werden konnten.</p>
 </div>
 <div class="section" id="er-jahre">
 <h2><span class="section-number">2.2. </span>1960er Jahre<a class="headerlink" href="#er-jahre" title="Permalink to this headline">¶</a></h2>
-<p>DBS basierend auf hierarchischem Modell, Netzwerkmodell
-<br>
-□ Zeigerstrukturen zwischen Daten
-<br>
-□ Schwache Trennung interne / konzeptuelle Ebene
-<br>
-□ Navigierende Data Manipulation Language (DML)
-<br>
-elementare Dateien
-<br>
-□ anwendungsspezifische Datenorganisation (geräteabhängig, redundant, inkonsistent)
-<br>
-□ Integrated Data Store (IDS) von General Electric</p>
+<p>In den 60er Jahren wurden mit der Entwicklung von neuen Speichermedien neue DBS entwickelt, die durch Zeigerstrukturen navigierende Datenmanipulation erlaubten. Es war auch möglich Daten hinsichtlich ihrer konzeptionellen und internen Darstellung zu abstrahieren. Zu diesen Abstraktionsebenen werden wir im nächsten Kapitel mehr erfahren.
+Die ersten Systeme dieser art waren anwendungsspezifisch und geräteabhängig. Redundanz und Inkonsistenz von Daten konnte man nicht sinnvoll kontrollieren.</p>
 </div>
 <div class="section" id="er-bis-1980er-jahre">
 <h2><span class="section-number">2.3. </span>1970er bis 1980er Jahre<a class="headerlink" href="#er-bis-1980er-jahre" title="Permalink to this headline">¶</a></h2>
-<p>Relationale Datenbanksysteme
-<br>
-□ Daten in Tabellenstrukturen
-<br>
-□ 3-Ebenen-Konzept
-<br>
-□ Deklarative DML
-<br>
-<br>
-70er: Datenbanksysteme (Geräte- und Datenunabhängigkeit, redundanzfrei, konsistent)
-<br>
-■ 1970: Ted Codd (IBM)
-<br>
-□ Relationenmodell als konzeptionelle Grundlage relationaler DBS
-<br>
-■ 1974: System R (IBM)
-<br>
-□ erster Prototyp eines RDBMS
-<br>
-□ ca. 80.000 LOC (PL/1, PL/S, Assembler), ca. 1,2 MB Codegröße
-<br>
-□ Anfragesprache SEQUEL (≠ SQL)
-<br>
-□ erste Installation 1977
-<br>
-■ 1975: University of California at Berkeley (UCB)
-<br>
-□ Ingres
-<br>
-□ Anfragesprache QUEL
-<br>
-□ Vorgänger von Postgres, Sybase, …
-<br>
-■ 1979: Oracle Version 2</p>
+<p>In den 70er Jahren gab es die ersten fundamentalen Theorien zu Relationalen Datenbanksystemen, die die sinnvolle Darstellung von Daten in Tabellenstrukturen erklärten.
+Zudem gab wurde das 3-Ebenen-Konzept für die Abstraktion von Datenspeicherung vorgestellt und der Bedarf an deklarativen Anfragesprachen erörtert.
+Es entstanden die ersten geräte- und datenunabhängigen Datenbanksysteme, die anhand des relationalen Modells von Codd Redundanzfreiheit und Konsistenz ermöglichen konnten. Die parallelen Entwicklungsstränge befanden sich bei IBM mit System R, UC Berkeley mit Ingres, und Oracle</p>
+<ul class="simple">
+<li><p>1970: <a class="reference external" href="https://en.wikipedia.org/wiki/Edgar_F._Codd">Ted Codd</a> (IBM): Relationenmodell als konzeptionelle Grundlage relationaler DBS</p></li>
+<li><p>1974: System R (IBM): Erster Prototyp eines RDBMS</p>
+<ul>
+<li><p>ca. 80.000 LOC (PL/1, PL/S, Assembler), ca. 1,2 MB Codegröße</p></li>
+<li><p>Anfragesprache SEQUEL (≠ SQL)</p></li>
+<li><p>erste Installation 1977</p></li>
+</ul>
+</li>
+<li><p>1975: Ingres (University of California at Berkeley)</p>
+<ul>
+<li><p>Anfragesprache QUEL</p></li>
+<li><p>Vorgänger von Postgres, Sybase, …</p></li>
+</ul>
+</li>
+<li><p>1979: Oracle Version 2</p></li>
+</ul>
 </div>
 <div class="section" id="er-bis-1990er-jahre">
 <h2><span class="section-number">2.4. </span>1980er bis 1990er Jahre<a class="headerlink" href="#er-bis-1990er-jahre" title="Permalink to this headline">¶</a></h2>
-<p>immer größer :
-<br>
-□ Gigabyte, Terabyte
-<br>
-□ Große, komplexe (Multimedia-) Objekte
-<br>
-□ Tertiäre Speicher (Magnetbänder, DVDs)
-<br>
-□ Verteilung und Parallelität
-<br>
-Immer kleiner :
-<br>
-□ DBMS auch auf kleinen Rechnern
-<br>
-□ Oft schon teil der Standardinstallation
-<br>
-Objektorientierte Datenbanksysteme
-<br>
-□ Daten in komplexeren Objektstrukturen (Trennung Objekt und seine Daten)
-<br>
-□ Deklarative oder navigierende DML
-<br>
-□ Oft integrierte Datenbankprogrammiersprache
-<br>
-□ Oft keine vollständige Ebenentrennung</p>
+<p>In den 80er und 90er Jahren wurden die Entwicklung und FOrschung fortwährend fortgesetzt. Datenmengen wurden größer, es gab neue Speichermedien, wie Magnetdisks, CDs, und Festplatten. Zu textuellen Daten kamen mehr komplexe Datenobjekte hinzu. Um die Verarbeitung der Datenmengen zu gewährleisten gab es auch die ersten Ansätze zur parallelen Datenverarbeitung.
+Gleichzeitig konnten die Systeme plattformunabhängig auch auf kleinen Rechnern installiert werden.</p>
 </div>
 <div class="section" id="id1">
 <h2><span class="section-number">2.5. </span>2000er Jahre<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>□ Spezialisierung auf neue Daten-Arten
-<br>
-■ Unterstützung für spezielle Anwendungen
-<br>
-□ Multimediadatenbanken
-<br>
-– Multimediale Objekte (Bilder, Audio, Video)
-<br>
-□ XML-Datenbanken
-<br>
-– Semistrukturierte Daten (XML-Dokumente)
-<br>
-□ Verteilte Datenbanken
-<br>
-– Daten auf verschiedene Rechnerknoten
-<br>
-□ Föderierte Datenbanken, Multidatenbanken, Mediatoren
-<br>
-– Integration von Daten aus heterogenen Quellen (Datenbanken, Dateien, Web-Quellen)
-<br>
-– Informationsintegration
-<br>
-□ Mobile Datenbanken
-<br>
-– Datenverwaltung auf Kleinstgeräten (PDA, Handy, … )
-<br>
-□ Search!</p>
+<p>In den 2000er Jahren und mit der Verbreitung von Internet gab es weitere Entwicklungen zur Verarbeitung von neuen Datenarten, wie zum Beispiel multimodale Objekte und semi-strukturierte Daten. Gleichzeitig gab es neue Programmierparadigma für verteilte Datenverarbeitung, die auch durch die neuen großen Webunternehmen gefördert wurden. Dies heizte auch die Forschung im Bereich paralleler Datenbanksysteme weiter an. Auch von Interesse waren nunmehr integrierte Systeme, bei denen heterogäne Datenbanksysteme anhand von Mediatoren oder in Föderationen benutzt werden konnten.
+Gleichzeitig konnte mit den neuen Trends im Bereich von Mobile Computing an entsprechenden Systemen für Kleinstgeräte geforscht werden.</p>
 </div>
-<div class="section" id="id2">
-<h2><span class="section-number">2.6. </span>2010er Jahre<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>Systems for ML
-<br>
-□ Data lake management
-<br>
-■ Web-scale data
-<br>
-□ The Web □ Facebook, Google, Twitter &amp; co.
-<br>
-■ NoSQL (Not only SQL)
-<br>
-□ New, simple DBMS
-<br>
-□ Highly distributed
-<br>
-■ Specialized DBMS
-<br>
-□ One size does not fit all
-<br>
-□ Map Reduce for Analytics
-<br>
-□ Key-value-stores for transactions
-<br>
-■ New Hardware
-<br>
-□ FPGA, GPGPU, SSD, Main-Memory</p>
-</div>
-<div class="section" id="id3">
-<h2><span class="section-number">2.7. </span>2020er Jahre<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>Systems for ML
-<br>
-■ Data lake management
-<br>
-■ Geo-distribution</p>
-<p><img alt="title" src="../_images/festplatte_1.jpg" /></p>
-<p><img alt="title" src="../_images/lueftung.jpg" /></p>
-<p><img alt="title" src="../_images/festplatte_2.jpg" /></p>
-</div>
-<div class="section" id="historie-von-relationalen-dbms">
-<h2><span class="section-number">2.8. </span>Historie von Relationalen DBMS<a class="headerlink" href="#historie-von-relationalen-dbms" title="Permalink to this headline">¶</a></h2>
-<p>■ 70er: Datenbanksysteme (Geräte- und Datenunabhängigkeit, redundanzfrei, konsistent)
-<br>
-<br>
-■ 1970: Ted Codd (IBM)
-<br>
-□ Relationenmodell als konzeptionelle Grundlage relationaler DBS
-<br>
-<br>
-■ 1974: System R (IBM)
-<br>
-□ erster Prototyp eines RDBMS
-<br>
-□ ca. 80.000 LOC (PL/1, PL/S, Assembler), ca. 1,2 MB Codegröße
-<br>
-□ Anfragesprache SEQUEL (≠ SQL)
-<br>
-□ erste Installation 1977
-<br>
-<br>
-■ 1975: University of California at Berkeley (UCB)
-<br>
-□ Ingres
-<br>
-□ Anfragesprache QUEL
-<br>
-□ Vorgänger von Postgres, Sybase, …
-<br>
-■ 1979: Oracle Version 2</p>
-<p>NICHT enthalten: S. 4-8, S. 16, S. 23</p>
+<div class="section" id="er-bis-heute">
+<h2><span class="section-number">2.6. </span>2010er bis heute<a class="headerlink" href="#er-bis-heute" title="Permalink to this headline">¶</a></h2>
+<p>In 2010 und später sind Verarbeitung von Terabytes von Daten keine fundamentale Herausforderung mehr. Web-scale Datamanagement ist Stand der technik großer Internetriesen, wie Google, Facebook und Twitter.</p>
+<p>Mit den neuen Trends im bereich des Big Data und den Erwartungen an Maschinelles Lernen, wuchs der Markt für sogenannte “Systems for ML” und “Data lake management”. Mehr dazu in den Mastervorlesungen.</p>
+<p>Ein weiterer Forschungsstrang bot neue Entwicklungen aus dem Bereich der Hardware: FPGA, GPGPU, SSD, Main-Memory, Infiniband, die Annahmen über Speicherhierarchien und Kostenmodelle verändern würden.</p>
 </div>
 </div>
 
