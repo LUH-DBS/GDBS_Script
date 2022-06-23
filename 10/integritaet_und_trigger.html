@@ -154,21 +154,6 @@ const thebe_selector_output = ".output, .cell_output"
    11. Transaktionsmanagement
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../markdown.html">
-   12. Markdown Files
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../notebooks.html">
-   13. Content with notebooks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../markdown-notebooks.html">
-   14. Notebooks with MyST Markdown
-  </a>
- </li>
 </ul>
 
     </div>
@@ -1241,7 +1226,32 @@ GROUP BY StudioName)
 </div>
 <div class="section" id="unterschiede-der-check-bedingungen">
 <h3><span class="section-number">10.4.3. </span>Unterschiede der CHECK Bedingungen<a class="headerlink" href="#unterschiede-der-check-bedingungen" title="Permalink to this headline">¶</a></h3>
-<p><img alt="title" src="../_images/bedingungen_unterschiede.jpg" /></p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Constraint-Art</p></th>
+<th class="head"><p>Wo spezifiziert?</p></th>
+<th class="head"><p>Wann geprüft?</p></th>
+<th class="head"><p>Gilt immer?</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Attribut-basiertes</strong></p></td>
+<td><p>CHECK Beim Attribut</p></td>
+<td><p>Bei INSERT in Relation oder UPDATE des Attributs</p></td>
+<td><p>Nein, falls Subanfragen verwendet werden.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Tupel-basiertes CHECK</strong></p></td>
+<td><p>Teil des Relationenschemas</p></td>
+<td><p>Bei INSERT oder UPDATE eines Tupels</p></td>
+<td><p>Nein, falls Subanfragen verwendet werden.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Assertion</strong></p></td>
+<td><p>Teil des Datenbankschemas</p></td>
+<td><p>Beliebige Änderung auf einer erwähnten Relation</p></td>
+<td><p>Ja</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="trigger">
 <h3><span class="section-number">10.4.4. </span>Trigger<a class="headerlink" href="#trigger" title="Permalink to this headline">¶</a></h3>

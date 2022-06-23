@@ -156,21 +156,6 @@ const thebe_selector_output = ".output, .cell_output"
    11. Transaktionsmanagement
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../markdown.html">
-   12. Markdown Files
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../notebooks.html">
-   13. Content with notebooks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../markdown-notebooks.html">
-   14. Notebooks with MyST Markdown
-  </a>
- </li>
 </ul>
 
     </div>
@@ -1679,9 +1664,33 @@ Geburtstag IS NULL bzw. Geburtstag IS NOT NULL</p>
 </div>
 <div class="section" id="wahrheitswerte">
 <h3><span class="section-number">9.2.11. </span>Wahrheitswerte<a class="headerlink" href="#wahrheitswerte" title="Permalink to this headline">¶</a></h3>
-<p><img alt="title" src="../_images/wahrheitswerte1.jpg" />
-<br>
-■ Rechenregeln
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>AND</p></th>
+<th class="head"><p>true</p></th>
+<th class="head"><p>unknown</p></th>
+<th class="head"><p>false</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>true</strong></p></td>
+<td><p>true</p></td>
+<td><p>unknown</p></td>
+<td><p>false</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>unknown</strong></p></td>
+<td><p>unknown</p></td>
+<td><p>unknown</p></td>
+<td><p>false</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>false</strong></p></td>
+<td><p>false</p></td>
+<td><p>false</p></td>
+<td><p>false</p></td>
+</tr>
+</tbody>
+</table>
+<p>■ Rechenregeln
 <br>
 □ TRUE = 1
 <br>
@@ -1703,11 +1712,28 @@ UNKNOWN = ½
 <br>
 = MIN(1, MAX(0, ½ )
 <br>
-= MIN(1, ½ ) = ½.
-<br><br>
-<img alt="title" src="../_images/wahrheitswerte2.jpg" />
-<br>
-Überraschendes Verhalten
+= MIN(1, ½ ) = ½.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Titel</p></th>
+<th class="head"><p>Jahr</p></th>
+<th class="head"><p>Länge</p></th>
+<th class="head"><p>inFarbe</p></th>
+<th class="head"><p>Studio</p></th>
+<th class="head"><p>ProduzentinID</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Total</p></td>
+<td><p>Recall</p></td>
+<td><p>1990</p></td>
+<td><p>NULL</p></td>
+<td><p>True</p></td>
+<td><p>Fox</p></td>
+</tr>
+</tbody>
+</table>
+<p>Überraschendes Verhalten
 <br></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="o">*</span>
 <span class="n">FROM</span> <span class="n">Film</span>
@@ -1821,27 +1847,100 @@ AND Titel = ‘Star Wars‘;
 </div>
 <div class="section" id="tupelvariablen-selfjoin">
 <h3><span class="section-number">9.3.5. </span>Tupelvariablen-Selfjoin<a class="headerlink" href="#tupelvariablen-selfjoin" title="Permalink to this headline">¶</a></h3>
-<p><img alt="title" src="../_images/selfjoin1.jpg" /></p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Adresse</p></th>
+<th class="head"><p>Geschlecht</p></th>
+<th class="head"><p>Geburt</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Carrie Fisher</p></td>
+<td><p>123 Maple St., Hollywood</p></td>
+<td><p>F</p></td>
+<td><p>9/9/99</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mark Hamill</p></td>
+<td><p>456 Oak Rd., Brentwood</p></td>
+<td><p>M</p></td>
+<td><p>8/8/88</p></td>
+</tr>
+<tr class="row-even"><td><p>Brad Pitt</p></td>
+<td><p>123 Maple St., Hollywood</p></td>
+<td><p>M</p></td>
+<td><p>7/7/77</p></td>
+</tr>
+</tbody>
+</table>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Star1</span><span class="o">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">Star2</span><span class="o">.</span><span class="n">Name</span>
 <span class="n">FROM</span> <span class="n">SchauspielerIn</span> <span class="n">Star1</span><span class="p">,</span> <span class="n">SchauspielerIn</span> <span class="n">Star2</span>
 <span class="n">WHERE</span> <span class="n">Star1</span><span class="o">.</span><span class="n">Adresse</span> <span class="o">=</span> <span class="n">Star2</span><span class="o">.</span><span class="n">Adresse</span><span class="p">;</span>
 </pre></div>
 </div>
-<p><img alt="title" src="../_images/selfjoin2.jpg" /></p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><a class="reference external" href="http://Star1.Name">Star1.Name</a></p></th>
+<th class="head"><p><a class="reference external" href="http://Star2.Name">Star2.Name</a></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Carrie Fisher</p></td>
+<td><p>Carrie Fisher</p></td>
+</tr>
+<tr class="row-odd"><td><p>Carrie Fisher</p></td>
+<td><p>Brad Pitt</p></td>
+</tr>
+<tr class="row-even"><td><p>Brad Pitt</p></td>
+<td><p>Carrie Fisher</p></td>
+</tr>
+<tr class="row-odd"><td><p>Brad Pitt</p></td>
+<td><p>Brad Pitt</p></td>
+</tr>
+<tr class="row-even"><td><p>Mark Hamill</p></td>
+<td><p>Mark Hamill</p></td>
+</tr>
+</tbody>
+</table>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Star1</span><span class="o">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">Star2</span><span class="o">.</span><span class="n">Name</span>
 <span class="n">FROM</span> <span class="n">SchauspielerIn</span> <span class="n">Star1</span><span class="p">,</span> <span class="n">SchauspielerIn</span> <span class="n">Star2</span>
 <span class="n">WHERE</span> <span class="n">Star1</span><span class="o">.</span><span class="n">Adresse</span> <span class="o">=</span> <span class="n">Star2</span><span class="o">.</span><span class="n">Adresse</span>
 <span class="n">AND</span> <span class="n">Star1</span><span class="o">.</span><span class="n">Name</span> <span class="o">&lt;&gt;</span> <span class="n">Star2</span><span class="o">.</span><span class="n">Name</span><span class="p">;</span>
 </pre></div>
 </div>
-<p><img alt="title" src="../_images/selfjoin3.jpg" /></p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><a class="reference external" href="http://Star1.Name">Star1.Name</a></p></th>
+<th class="head"><p><a class="reference external" href="http://Star2.Name">Star2.Name</a></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Carrie Fisher</p></td>
+<td><p>Brad Pitt</p></td>
+</tr>
+<tr class="row-odd"><td><p>Brad Pitt</p></td>
+<td><p>Carrie Fisher</p></td>
+</tr>
+</tbody>
+</table>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Star1</span><span class="o">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">Star2</span><span class="o">.</span><span class="n">Name</span>
 <span class="n">FROM</span> <span class="n">SchauspielerIn</span> <span class="n">Star1</span><span class="p">,</span> <span class="n">SchauspielerIn</span> <span class="n">Star2</span>
 <span class="n">WHERE</span> <span class="n">Star1</span><span class="o">.</span><span class="n">Adresse</span> <span class="o">=</span> <span class="n">Star2</span><span class="o">.</span><span class="n">Adresse</span>
 <span class="n">AND</span> <span class="n">Star1</span><span class="o">.</span><span class="n">Name</span> <span class="o">&lt;</span> <span class="n">Star2</span><span class="o">.</span><span class="n">Name</span><span class="p">;</span>
 </pre></div>
 </div>
-<p><img alt="title" src="../_images/selfjoin4.jpg" /></p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><a class="reference external" href="http://Star1.Name">Star1.Name</a></p></th>
+<th class="head"><p><a class="reference external" href="http://Star2.Name">Star2.Name</a></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Brad Pitt</p></td>
+<td><p>Carrie Fisher</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="interpretation-von-anfragen">
 <h3><span class="section-number">9.3.6. </span>Interpretation von Anfragen<a class="headerlink" href="#interpretation-von-anfragen" title="Permalink to this headline">¶</a></h3>
@@ -1999,7 +2098,54 @@ REGION is randomly selected within the list of values defined for R_NAME</p>
 </div>
 <p>□ Geburtstag oder Gehalt bleiben gegebenenfalls leer</p>
 <p>□ Unterschied zu UNION: Nur eine Zeile pro Person</p>
-<p><img alt="title" src="../_images/outerjoins.jpg" /></p>
+<p><img alt="" src="../_images/outerjoins.jpg" /></p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Geburtstag</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Adresse</p></th>
+<th class="head"><p>Gehalt</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1.2.1960</p></td>
+<td><p>Mark Hamill</p></td>
+<td><p>LA</p></td>
+<td><p>NULL</p></td>
+</tr>
+<tr class="row-odd"><td><p>27.5.1969</p></td>
+<td><p>Carrie Fischer</p></td>
+<td><p>New York</p></td>
+<td><p>NULL</p></td>
+</tr>
+<tr class="row-even"><td><p>11.12.1940</p></td>
+<td><p>Alec Guinness</p></td>
+<td><p>London</p></td>
+<td><p>NULL</p></td>
+</tr>
+<tr class="row-odd"><td><p>22.3.1981</p></td>
+<td><p>Ben Affleck</p></td>
+<td><p>Boston</p></td>
+<td><p>5Mio</p></td>
+</tr>
+<tr class="row-even"><td><p>23.8.1973</p></td>
+<td><p>Quentin Tarantino</p></td>
+<td><p>Berlin</p></td>
+<td><p>10Mio</p></td>
+</tr>
+<tr class="row-odd"><td><p>NULL</p></td>
+<td><p>George Lukas</p></td>
+<td><p>San Jose</p></td>
+<td><p>100Mio</p></td>
+</tr>
+<tr class="row-even"><td><p>NULL</p></td>
+<td><p>Steven Spielberg</p></td>
+<td><p>LA</p></td>
+<td><p>500Mio</p></td>
+</tr>
+</tbody>
+</table>
+<p>-&gt;geschweifte Klammern fehlen in md Tabelle</p>
 </div>
 <div class="section" id="kreuzprodukt">
 <h3><span class="section-number">9.3.10. </span>Kreuzprodukt<a class="headerlink" href="#kreuzprodukt" title="Permalink to this headline">¶</a></h3>
@@ -2111,7 +2257,174 @@ REGION is randomly selected within the list of values defined for R_NAME</p>
 </div>
 <div class="section" id="zusammenfassung-der-semantik">
 <h3><span class="section-number">9.3.12. </span>Zusammenfassung der Semantik<a class="headerlink" href="#zusammenfassung-der-semantik" title="Permalink to this headline">¶</a></h3>
-<p><img alt="title" src="../_images/zusammenfassung_semantik.jpg" /></p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>R1</p></th>
+<th class="head"><p>R2</p></th>
+<th class="head"><p>UNION ALL</p></th>
+<th class="head"><p>UNION</p></th>
+<th class="head"><p>EXCEPT ALL</p></th>
+<th class="head"><p>EXCEPT</p></th>
+<th class="head"><p>INTERSECT ALL</p></th>
+<th class="head"><p>INTERSECT</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>2</p></td>
+<td><p>5</p></td>
+<td><p>1</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>3</p></td>
+<td><p>1</p></td>
+<td><p>3</p></td>
+<td><p>2</p></td>
+<td><p>﻿</p></td>
+<td><p>3</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>3</p></td>
+<td><p>1</p></td>
+<td><p>4</p></td>
+<td><p>2</p></td>
+<td><p>﻿</p></td>
+<td><p>4</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>3</p></td>
+<td><p>1</p></td>
+<td><p>5</p></td>
+<td><p>4</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>3</p></td>
+<td><p>2</p></td>
+<td><p>﻿</p></td>
+<td><p>5</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>4</p></td>
+<td><p>2</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>﻿</p></td>
+<td><p>2</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>﻿</p></td>
+<td><p>3</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>﻿</p></td>
+<td><p>3</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>﻿</p></td>
+<td><p>﻿</p></td>
+<td><p>3</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>﻿</p></td>
+<td><p>﻿</p></td>
+<td><p>3</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>﻿</p></td>
+<td><p>﻿</p></td>
+<td><p>3</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>﻿</p></td>
+<td><p>﻿</p></td>
+<td><p>4</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>﻿</p></td>
+<td><p>﻿</p></td>
+<td><p>4</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>﻿</p></td>
+<td><p>﻿</p></td>
+<td><p>4</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>﻿</p></td>
+<td><p>﻿</p></td>
+<td><p>5</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="section" id="geschachtelte-anfragen">
@@ -2555,8 +2868,19 @@ Name und Gehalt aller Mitarbeiter, deren Gehalt höher als 10% des Abteilungsbud
 □ SELECT A, SUM(B) FROM R GROUP BY A;
 <br>
 – Ergebnis: (NULL, NULL)
-<br>
-<img alt="title" src="../_images/null_bsp.jpg" /></p>
+<br></p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>A</p></th>
+<th class="head"><p>B</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>NULL</p></td>
+<td><p>NULL</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="gruppierung">
 <h3><span class="section-number">9.5.4. </span>Gruppierung<a class="headerlink" href="#gruppierung" title="Permalink to this headline">¶</a></h3>
@@ -3013,9 +3337,43 @@ WHERE StudioName = ‘Disney‘ AND Jahr = ‘1990‘;
 </div>
 <div class="section" id="id3">
 <h4><span class="section-number">9.7.7.4. </span>Indexwahl – Beispiel<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
-<p><img alt="title" src="../_images/indexwahl.jpg" />
-<br>
-■ p1: Anteil Anfrage 1
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Anfrage</p></th>
+<th class="head"><p>Kein Index</p></th>
+<th class="head"><p>SchauspielerIndex</p></th>
+<th class="head"><p>FilmIndex</p></th>
+<th class="head"><p>Beide Indizes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Schauspieler = s</strong></p></td>
+<td><p>10</p></td>
+<td><p>4</p></td>
+<td><p>10</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>FilmTitel = t AND FilmJahr = j</strong></p></td>
+<td><p>10</p></td>
+<td><p>10</p></td>
+<td><p>4</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>INSERT INTO spielt_in</strong></p></td>
+<td><p>2</p></td>
+<td><p>4</p></td>
+<td><p>4</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Gesamtkosten</strong></p></td>
+<td><p>2+8<span class="math notranslate nohighlight">\(p_1\)</span>8<span class="math notranslate nohighlight">\(p_2\)</span></p></td>
+<td><p>4+6<span class="math notranslate nohighlight">\(p_2\)</span></p></td>
+<td><p>4+6<span class="math notranslate nohighlight">\(p_1\)</span></p></td>
+<td><p>6-2<span class="math notranslate nohighlight">\(p_1\)</span>-2<span class="math notranslate nohighlight">\(p_2\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>■ p1: Anteil Anfrage 1
 <br>
 ■ p2: Anteil Anfrage 2
 <br>
