@@ -264,13 +264,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#begriffe-komponenten">
-   5.2. Begriffe (Komponenten)
+  <a class="reference internal nav-link" href="#begriffe">
+   5.2. Begriffe
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#komponenten">
+     5.2.1. Komponenten
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#instanz-eines-er-diagramms">
-     5.2.1. Instanz eines ER-Diagramms
+     5.2.2. Instanz eines ER-Diagramms
     </a>
    </li>
   </ul>
@@ -460,13 +465,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#begriffe-komponenten">
-   5.2. Begriffe (Komponenten)
+  <a class="reference internal nav-link" href="#begriffe">
+   5.2. Begriffe
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#komponenten">
+     5.2.1. Komponenten
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#instanz-eines-er-diagramms">
-     5.2.1. Instanz eines ER-Diagramms
+     5.2.2. Instanz eines ER-Diagramms
     </a>
    </li>
   </ul>
@@ -660,8 +670,10 @@ const thebe_selector_output = ".output, .cell_output"
 </table>
 <p>Das Ergebnis einer ER-Modellierung sind ER-Diagramme, die Datenbanken beschreiben, die eine Instanz haben werden. Wir werden jetzt die zentralen Komponenten dieser Modellierungssprache und die Möglichkeiten damit Datenbedingungen und -beziehungen auszudrücken kennen lernen.</p>
 </div>
-<div class="section" id="begriffe-komponenten">
-<h2><span class="section-number">5.2. </span>Begriffe (Komponenten)<a class="headerlink" href="#begriffe-komponenten" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="begriffe">
+<h2><span class="section-number">5.2. </span>Begriffe<a class="headerlink" href="#begriffe" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="komponenten">
+<h3><span class="section-number">5.2.1. </span>Komponenten<a class="headerlink" href="#komponenten" title="Permalink to this headline">¶</a></h3>
 <p>Die zentralen Komponenten der ER-Modellierung sind Entities, Entitytypen Relationships und Relationshiptypen.</p>
 <p><strong>Entity:</strong> Ein Ding / Objekt der realen oder der Vorstellungswelt</p>
 <p><strong>Relationship:</strong> Beschreibt Beziehungen zwischen zwei („konkreten“) Entities</p>
@@ -729,23 +741,81 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 <a class="reference internal image-reference" href="../_images/er_diagramm_bsp.jpg"><img alt="../_images/er_diagramm_bsp.jpg" src="../_images/er_diagramm_bsp.jpg" style="width: 700px;" /></a>
-<div class="section" id="instanz-eines-er-diagramms">
-<h3><span class="section-number">5.2.1. </span>Instanz eines ER-Diagramms<a class="headerlink" href="#instanz-eines-er-diagramms" title="Permalink to this headline">¶</a></h3>
-<p>ER-Diagramme beschreiben Datenbanken, die eine Instanz haben (werden).
-<br>
-Der „Wert“ eines Entitytypen ist die (endliche) Menge der zugehörigen Entities.
-<br>
-Jeder Entity hat bestimmte Werte für seine Attribute.
-<br>
-Die Instanz eines n-ären Relationshiptypen ist eine Menge von Listen der Länge n.
-<br>
-Dies alles ist nur abstrakte Denkhilfe.
-<br>
-Modellierung im relationalen Modell unterscheidet sich.
-<br>
-Speicherung in einem DBMS unterscheidet sich.</p>
-<p><img alt="title" src="../_images/instanz_er.jpg" /></p>
 </div>
+<div class="section" id="instanz-eines-er-diagramms">
+<h3><span class="section-number">5.2.2. </span>Instanz eines ER-Diagramms<a class="headerlink" href="#instanz-eines-er-diagramms" title="Permalink to this headline">¶</a></h3>
+<p>Wie bereits gesagt beschreiben ER-Diagramme Datenbanken, die eine Instanz haben (werden).
+Dabei gilt, dass der „Wert“ eines Entitytypen die (endliche) Menge der zugehörigen Entities ist. Jeder Entity hat bestimmte Werte für seine Attribute, z.B., Baisc Instinct = {Titel=Basic Instinct, Jahr = 1992, Länge = 127, Typ = Farbe}. Die Instanz eines n-ären Relationshiptypen ist eine Menge von n-Tupel, z.B spielt_in_instanz_1= (Basic Instinct, Sharon Stone).
+Dies alles ist an dieser Stelle nur abstrakte Denkhilfe. Die Modellierung im relationalen Modell wird sich nochmal unterscheiden, sodass sich die Abspeicherung durch ein DBMS auch unterscheiden wird.</p>
+<p><strong>Beispiel:</strong> Die Folgenden Tabellen stellen die Instanzen eines Teiles unseres Modells in der finalen Datenbank im <strong>relationalen Modell</strong> (als Tabellen) dar.</p>
+<table>
+<tr><th>Filme</th><th>Schauspieler*in</th><th>spielt_in</th></tr>
+<tr><td>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Titel</p></th>
+<th class="head"><p>Jahr</p></th>
+<th class="head"><p>Länge</p></th>
+<th class="head"><p>Typ</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Basic Instinct</p></td>
+<td><p>1992</p></td>
+<td><p>127</p></td>
+<td><p>Farbe</p></td>
+</tr>
+<tr class="row-odd"><td><p>Schindler’s List</p></td>
+<td><p>1993</p></td>
+<td><p>187</p></td>
+<td><p>S/W</p></td>
+</tr>
+<tr class="row-even"><td><p>Django Unchained</p></td>
+<td><p>2012</p></td>
+<td><p>165</p></td>
+<td><p>Farbe</p></td>
+</tr>
+</tbody>
+</table>
+</td><td>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Adresse</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Sharon Stone</p></td>
+<td><p>Hollywood</p></td>
+</tr>
+<tr class="row-odd"><td><p>Johnny Depp</p></td>
+<td><p>Paris</p></td>
+</tr>
+<tr class="row-even"><td><p>Jaimie Foxx</p></td>
+<td><p>Hidden Valley</p></td>
+</tr>
+</tbody>
+</table>
+</td><td>  
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Titel</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Sharon Stone</p></td>
+<td><p>Baisc Instinct</p></td>
+</tr>
+<tr class="row-odd"><td><p>Johnny Depp</p></td>
+<td><p>Dead Men</p></td>
+</tr>
+<tr class="row-even"><td><p>Jaimie Foxx</p></td>
+<td><p>Django Unchained</p></td>
+</tr>
+</tbody>
+</table>
+</td></tr> </table></div>
 </div>
 <div class="section" id="kardinalitaten-von-relationships">
 <h2><span class="section-number">5.3. </span>Kardinalitäten von Relationships<a class="headerlink" href="#kardinalitaten-von-relationships" title="Permalink to this headline">¶</a></h2>
