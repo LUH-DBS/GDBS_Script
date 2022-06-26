@@ -641,68 +641,94 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="er-modellierung">
 <h1><span class="section-number">5. </span>ER-Modellierung<a class="headerlink" href="#er-modellierung" title="Permalink to this headline">¶</a></h1>
+<p>Beim konzeptionellen Entwurf möchten wir aus einer informellen Beschreibung einer Datenbank eine formelle Beschreibung erstellen in der Mehrdeutigkeiten und jegliche Namen- und Typkonflikte behoben sowie Einschränkungen und Bedingungen sinnvoll ausgedrückt werden können.</p>
+<p>Eine Modellierungssprache für eine solche Modellierung ist das Entity-Relationship-Modell (ER-Modell).</p>
 <div class="section" id="einfuhrung-das-entity-relationship-modell">
 <h2><span class="section-number">5.1. </span>Einführung: Das Entity-Relationship-Modell<a class="headerlink" href="#einfuhrung-das-entity-relationship-modell" title="Permalink to this headline">¶</a></h2>
-<p><img alt="title" src="../_images/peter_chen.jpg" /></p>
-<p><img alt="title" src="../_images/peter_chen_paper.jpg" /></p>
-<p>Nach Peter P. Chen 1976
-<br>
-The entity-relationship model – towards a unified view of data. ACM TODS
-<br>
-Standardmodell in der frühen Entwurfsphase
-<br>
-<br>
-<br>
-Instanz eines ER-Diagramms:
-<br>
-<br>
-ER-Diagramme beschreiben Datenbanken, die eine Instanz haben (werden).
-<br>
-Der „Wert“ eines Entitytypen ist die (endliche) Menge der zugehörigen Entities.
-<br>
-Jeder Entity hat bestimmte Werte für seine Attribute.
-<br>
-Die Instanz eines n-ären Relationshiptypen ist eine Menge von Listen der Länge n.
-<br>
-Dies alles ist nur abstrakte Denkhilfe.
-<br>
-Modellierung im relationalen Modell unterscheidet sich.
-<br>
-Speicherung in einem DBMS unterscheidet sich.</p>
+<p>Die ER-Modellerung wurde 1976 von Peter Chen vorgestellt und wird seitdem als das Standardmodell für die frühe Entwurfsphase des Datenbankentwurfes verwendet.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Original Publikation von 1976</p></th>
+<th class="text-align:center head"><p>Peter Chen</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p><a class="reference internal" href="../_images/peter_chen_paper.jpg"><img alt="../_images/peter_chen_paper.jpg" src="../_images/peter_chen_paper.jpg" style="width: 400px;" /></a></p></td>
+<td class="text-align:center"><p><a class="reference internal" href="../_images/peter_chen.jpg"><img alt="../_images/peter_chen.jpg" src="../_images/peter_chen.jpg" style="width: 400px;" /></a></p></td>
+</tr>
+</tbody>
+</table>
+<p>Das Ergebnis einer ER-Modellierung sind ER-Diagramme, die Datenbanken beschreiben, die eine Instanz haben werden. Wir werden jetzt die zentralen Komponenten dieser Modellierungssprache und die Möglichkeiten damit Datenbedingungen und -beziehungen auszudrücken kennen lernen.</p>
 </div>
 <div class="section" id="begriffe-komponenten">
 <h2><span class="section-number">5.2. </span>Begriffe (Komponenten)<a class="headerlink" href="#begriffe-komponenten" title="Permalink to this headline">¶</a></h2>
-<p>Entity
-<br>
-Ein Ding / Objekt der realen oder der Vorstellungswelt
-<br>
-Nicht direkt darstellbar, sondern nur über Eigenschaften beobachtbar
-<br>
-<br>
-Entitytyp (entity set)
-<br>
-Eine Klasse für gleichartige Objekte
-<br>
-<br>
-Relationship
-<br>
-Beschreibt Beziehungen zwischen zwei („konkreten“) Entities
-<br>
-Meist binär
-<br>
-<br>
-Relationshiptyp
-<br>
-Eine Klasse für gleichartige Beziehungen
-<br>
-Attribut
-<br>
-repräsentiert eine Eigenschaft von Entities oder von Relationships
-<br>
-Zunächst nur primitive Datenwerte (String, Integer, …) und Operationen darauf
-<br>
-Später auch komplexe Attribute</p>
-<p><img alt="title" src="../_images/er_diagramm_bsp.jpg" /></p>
+<p>Die zentralen Komponenten der ER-Modellierung sind Entities, Entitytypen Relationships und Relationshiptypen.</p>
+<p><strong>Entity:</strong> Ein Ding / Objekt der realen oder der Vorstellungswelt</p>
+<p><strong>Relationship:</strong> Beschreibt Beziehungen zwischen zwei („konkreten“) Entities</p>
+<ul class="simple">
+<li><p>Entities und Relationships sind nicht direkt darstellbar und werden nicht explizit im Diagram sichtbar, sondern nur über Eigenschaften ihrer Klassen beobachtbar</p></li>
+</ul>
+<p><strong>Entitytyp (entity set):</strong> Eine Klasse für gleichartige Objekte</p>
+<p><strong>Relationshiptyp:</strong> Eine Klasse für gleichartige Beziehungen</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Komponente</p></th>
+<th class="head"><p>Darstellung</p></th>
+<th class="head"><p>Visuel</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Entitytyp</p></td>
+<td><p>Rechteck</p></td>
+<td><p><img alt="../_images/rechteck.jpg" src="../_images/rechteck.jpg" /></p></td>
+</tr>
+<tr class="row-odd"><td><p>Relationshiptyp</p></td>
+<td><p>Raute</p></td>
+<td><p><img alt="../_images/raute.jpg" src="../_images/raute.jpg" /></p></td>
+</tr>
+<tr class="row-even"><td><p>Attribut</p></td>
+<td><p>Oval</p></td>
+<td><p><img alt="../_images/oval.jpg" src="../_images/oval.jpg" /></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Attribut:</strong> repräsentiert eine Eigenschaft von Entities oder von Relationships</p>
+<ul class="simple">
+<li><p>Es gibt Attribute die nur aus primitiven Datenwerten (String, Integer, …) und Operationen darauf bestehen und auch komplexere zusammengesetzte Attribute, die wir in dieser Vorlesung jedoch nicht detailliert behandeln werden. Komplexe Attribute werden dem Erweiterten ER-Modell zugeordnet.</p></li>
+</ul>
+<p>Attribute an Entitytypen:
+<img alt="../_images/entitytypattribut.jpg" src="../_images/entitytypattribut.jpg" /></p>
+<p>Attribute an Relationshiptypen:
+<img alt="../_images/relationshiptypattribut.jpg" src="../_images/relationshiptypattribut.jpg" /></p>
+<p><strong>Beispiel:</strong> Im folgenden Diagram wollen wir Informationen über Filme, Schauspieler*innen und Studios modellieren.</p>
+<ul class="simple">
+<li><p>Ein Film enthält daten über Titel, Jahr, Länge und Typ.</p>
+<ul>
+<li><p>Dargestellt über einen Entitytypen und vier Attribute</p></li>
+</ul>
+</li>
+<li><p>Über Schauspieler*innen sollen Name und Adresse gespeichert werden</p>
+<ul>
+<li><p>Dargestellt über einen Entitytypen und zwei Attribute</p></li>
+</ul>
+</li>
+<li><p>Über Studios sollen Name und Adressen gespeichert werden.</p>
+<ul>
+<li><p>Dargestellt über einen Entitytypen und zwei Attribute</p></li>
+</ul>
+</li>
+<li><p>Es soll abgebildet werden dass Schauspieler*innen in Filmen mitspielen.</p>
+<ul>
+<li><p>Dargestellt über einen Relatioshiptypen der Filme und Schauspieler*innen verbindet</p></li>
+</ul>
+</li>
+<li><p>Es soll dargestellt werden, dass Studios die Rechte an Filmen besitzen. Insbesondere soll ein Film genau einem Studio gehören.</p>
+<ul>
+<li><p>Dargestellt über einen Relatioshiptypen der Filme und Studios verbindet. Den letzten Punkt über “genau einem Studio” werden wir später im Kontext von Kardinalitäten genauer betrachten.</p></li>
+</ul>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/er_diagramm_bsp.jpg"><img alt="../_images/er_diagramm_bsp.jpg" src="../_images/er_diagramm_bsp.jpg" style="width: 700px;" /></a>
 <div class="section" id="instanz-eines-er-diagramms">
 <h3><span class="section-number">5.2.1. </span>Instanz eines ER-Diagramms<a class="headerlink" href="#instanz-eines-er-diagramms" title="Permalink to this headline">¶</a></h3>
 <p>ER-Diagramme beschreiben Datenbanken, die eine Instanz haben (werden).
