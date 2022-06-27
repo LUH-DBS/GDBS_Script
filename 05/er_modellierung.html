@@ -862,6 +862,7 @@ Dies alles ist an dieser Stelle nur abstrakte Denkhilfe. Die Modellierung im rel
 <ul class="simple">
 <li><p><strong>m:n Beziehungen</strong> sagen aus, dass jede Entity des einen Typen mit keinem oder mehreren Entities des anderen typen verbunden sein kann.</p></li>
 </ul>
+<a class="reference internal image-reference" href="../_images/mn_kardinalitaet.jpg"><img alt="../_images/mn_kardinalitaet.jpg" src="../_images/mn_kardinalitaet.jpg" style="width: 100px;" /></a>
 <ul class="simple">
 <li><p>Beispiele: Filme und Schauspieler<em>innen, Produkte und Kund</em>innen, Studierenden und Vorlesungen</p></li>
 </ul>
@@ -869,8 +870,10 @@ Dies alles ist an dieser Stelle nur abstrakte Denkhilfe. Die Modellierung im rel
 <div class="section" id="n-beziehungen">
 <h3><span class="section-number">5.3.2. </span>1:n Beziehungen<a class="headerlink" href="#n-beziehungen" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p><strong>1:n Beziehungen</strong> sagen aus, dass jede Entity des einen Typen mit maximal einem Entity des anderen Typen verbunden sein <strong>kann</strong>. Diese Beziehung gilt aber nur in eine Richtung.
-</p></li>
+<li><p><strong>1:n Beziehungen</strong> sagen aus, dass jede Entity des einen Typen mit maximal einem Entity des anderen Typen verbunden sein <strong>kann</strong>. Diese Beziehung gilt aber nur in eine Richtung.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/1n_kardinalitaet.jpg"><img alt="../_images/1n_kardinalitaet.jpg" src="../_images/1n_kardinalitaet.jpg" style="width: 100px;" /></a>
+<ul class="simple">
 <li><p>Beispiele: Ein Studio kann die Rechte an mehreren Filmen besitzen. Ein Film kann nur von einem Studio besessen werden.</p></li>
 <li><p>Darstellung mittels eines Pfeils zur „1er“ Seite.</p></li>
 </ul>
@@ -880,9 +883,11 @@ Dies alles ist an dieser Stelle nur abstrakte Denkhilfe. Die Modellierung im rel
 <ul class="simple">
 <li><p><strong>1:1 Beziehung</strong> sagen aus, dass jede Entity des einen Typen mit maximal einem Entity des anderen Typen verbunden sein <strong>kann und umgekehrt</strong>.</p></li>
 </ul>
-<img src="11_kardinalitaet.jpg" width=100/>
-- Beispiel: Ein Studio kann nur von einer Vorsitzenden geleitet werden. Eine Vorsitzende kann nur ein Studio leiten. Auch hier gilt immernoch "kann". Wir werden eine Notation für eine totale Abbildung, d.h., wo die Beziehung stattfinden muss, noch kennen lernen. In unserem Beispiel kann ein Studio theoretisch (vorübergehend) keinen Vorsitzenden haben.
-- Darstellung mittels eines Pfeils zu beiden Seiten.
+<a class="reference internal image-reference" href="../_images/11_kardinalitaet.jpg"><img alt="../_images/11_kardinalitaet.jpg" src="../_images/11_kardinalitaet.jpg" style="width: 100px;" /></a>
+<ul class="simple">
+<li><p>Beispiel: Ein Studio kann nur von einer Vorsitzenden geleitet werden. Eine Vorsitzende kann nur ein Studio leiten. Auch hier gilt immernoch “kann”. Wir werden eine Notation für eine totale Abbildung, d.h., wo die Beziehung stattfinden muss, noch kennen lernen. In unserem Beispiel kann ein Studio theoretisch (vorübergehend) keinen Vorsitzenden haben.</p></li>
+<li><p>Darstellung mittels eines Pfeils zu beiden Seiten.</p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="weitere-notationen-fur-kardinalitaten">
@@ -893,10 +898,12 @@ Im folgenden werden wir noch die Min-Max-Notation und Numerische Notation kennen
 <h3><span class="section-number">5.4.1. </span>Min-Max-Notation (Look-Up-Semantik)<a class="headerlink" href="#min-max-notation-look-up-semantik" title="Permalink to this headline">¶</a></h3>
 <p>Die Min-Max-Notation schränkt die möglichen Teilnahmen von Instanzen der beteiligten Entitytypen an der Beziehung ein. Insbesondere drückt sie aus wie häufig eine Instanz minimal bzw. maxima. an einer Beziehung teilnimmt. Die Notation ist (Min,Max) an der Seite des Entitytypen.</p>
 <p>Im folgenden Beispiel sagt (0,1) an der Seite des Produktes aus, dass ein Produkt entweder in einem oder keinem Regal gelagert wird. Andersherum sagt (0,3) auf der Seite des Regals aus, dass in einem Regal 0 bis 3 unterschiedliche Produkte gelagert werden können.</p>
+<a class="reference internal image-reference" href="../_images/minmax-beispiel.jpg"><img alt="../_images/minmax-beispiel.jpg" src="../_images/minmax-beispiel.jpg" style="width: 500px;" /></a>
 </div>
 <div class="section" id="numerische-notation-partizipationssemantik">
 <h3><span class="section-number">5.4.2. </span>Numerische Notation (Partizipationssemantik)<a class="headerlink" href="#numerische-notation-partizipationssemantik" title="Permalink to this headline">¶</a></h3>
 <p>Die numerische Notation ist eine vereinfachende Form, in der man ausdrück mit wie vielen Instanzen des gegenüberliegenden Typen eine Verbindung aufgebaut wird.</p>
+<a class="reference internal image-reference" href="../_images/numerisch-beispiel.jpg"><img alt="../_images/numerisch-beispiel.jpg" src="../_images/numerisch-beispiel.jpg" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/kardinalitaeten_notation.jpg"><img alt="../_images/kardinalitaeten_notation.jpg" src="../_images/kardinalitaeten_notation.jpg" style="width: 500px;" /></a>
 </div>
 </div>
