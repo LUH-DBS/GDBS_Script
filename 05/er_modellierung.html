@@ -317,6 +317,11 @@ const thebe_selector_output = ".output, .cell_output"
      5.4.2. Numerische Notation (Partizipationssemantik)
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#totale-beziehung">
+     5.4.3. Totale Beziehung
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -533,6 +538,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#numerische-notation-partizipationssemantik">
      5.4.2. Numerische Notation (Partizipationssemantik)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#totale-beziehung">
+     5.4.3. Totale Beziehung
     </a>
    </li>
   </ul>
@@ -902,9 +912,70 @@ Im folgenden werden wir noch die Min-Max-Notation und Numerische Notation kennen
 </div>
 <div class="section" id="numerische-notation-partizipationssemantik">
 <h3><span class="section-number">5.4.2. </span>Numerische Notation (Partizipationssemantik)<a class="headerlink" href="#numerische-notation-partizipationssemantik" title="Permalink to this headline">¶</a></h3>
-<p>Die numerische Notation ist eine vereinfachende Form, in der man ausdrück mit wie vielen Instanzen des gegenüberliegenden Typen eine Verbindung aufgebaut wird.</p>
+<p>Die numerische Notation ist eine vereinfachende Form, in der man ausdrück mit wie vielen Instanzen des gegenüberliegenden Typen eine Verbindung maximal aufgebaut wird.</p>
+<p>Im folgenden Beispiel besagt die Angabe von “n” auf der Seite der Filme, dass bis zu n Filme mit einem Studio verbunden sein können. Die “1” auf der Seite von Studio besagt, dass jeder Film mit maximal einem Studio verbunden sein kann.</p>
 <a class="reference internal image-reference" href="../_images/numerisch-beispiel.jpg"><img alt="../_images/numerisch-beispiel.jpg" src="../_images/numerisch-beispiel.jpg" style="width: 500px;" /></a>
-<a class="reference internal image-reference" href="../_images/kardinalitaeten_notation.jpg"><img alt="../_images/kardinalitaeten_notation.jpg" src="../_images/kardinalitaeten_notation.jpg" style="width: 500px;" /></a>
+<p>In der folgenden Tabelle sind nochmal alle drei Möglichkeiten Kardinalitäten anzugeben gegenübr gestellt.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Beziehungsart</p></th>
+<th class="head"><p>(min,max) links</p></th>
+<th class="head"><p>(min, max) rechts</p></th>
+<th class="head"><p>Numerisch links</p></th>
+<th class="head"><p>Numerisch rechts</p></th>
+<th class="head"><p>Grafische Notation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>many-to-many</p></td>
+<td><p>(0,* )</p></td>
+<td><p>(0,* )</p></td>
+<td><p>n</p></td>
+<td><p>n</p></td>
+<td><p><a class="reference internal" href="../_images/nn_notation.jpg"><img alt="../_images/nn_notation.jpg" src="../_images/nn_notation.jpg" style="width: 300px;" /></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>one-to-many</p></td>
+<td><p>(0,* )</p></td>
+<td><p>(0,1 )</p></td>
+<td><p>1</p></td>
+<td><p>n</p></td>
+<td><p><a class="reference internal" href="../_images/1n_notation.jpg"><img alt="../_images/1n_notation.jpg" src="../_images/1n_notation.jpg" style="width: 300px;" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p>many-to-one</p></td>
+<td><p>(0,1 )</p></td>
+<td><p>(0,* )</p></td>
+<td><p>n</p></td>
+<td><p>1</p></td>
+<td><p><a class="reference internal" href="../_images/n1_notation.jpg"><img alt="../_images/n1_notation.jpg" src="../_images/n1_notation.jpg" style="width: 300px;" /></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>one-to-one</p></td>
+<td><p>(0,1 )</p></td>
+<td><p>(0,1 )</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p><a class="reference internal" href="../_images/11_notation.jpg"><img alt="../_images/11_notation.jpg" src="../_images/11_notation.jpg" style="width: 300px;" /></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="totale-beziehung">
+<h3><span class="section-number">5.4.3. </span>Totale Beziehung<a class="headerlink" href="#totale-beziehung" title="Permalink to this headline">¶</a></h3>
+<p>Bisher haben wir hauptsächlich Beziehungstypen kennen gelernt, die auf “kann” basieren. Lediglich mit der Min-Max-Notation können wir bisher sicherstellen, dass jede Entity eines Types an einer Beziehung teilnehmen muss, in dem wir den Minimalwert auf eine Zahl größer als 0 setzen: (1,* ) bedeutet, dass jede Entity mindestens einmal an einer Beziehung teilnehmen muss. Entsprechend bedeutet (1,1), dass jedes Entity genau einmal an einer Beziehung teilnehmen muss.</p>
+<p>Die totale Abbildung stellt man grafisch entweder durch einen offenen Pfeil auf der Seite der totalen Abbildung dar oder anhand eines Doppelstriches:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Offener Pfeil</p></th>
+<th class="head"><p>Doppelstrich</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="../_images/1n_total_notation1.jpg"><img alt="../_images/1n_total_notation1.jpg" src="../_images/1n_total_notation1.jpg" style="width: 300px;" /></a></p></td>
+<td><p><a class="reference internal" href="../_images/1n_total_notation2.jpg"><img alt="../_images/1n_total_notation2.jpg" src="../_images/1n_total_notation2.jpg" style="width: 300px;" /></a></p></td>
+</tr>
+</tbody>
+</table>
+<p>Analog kann man eine totale 1:1 Beziehung folgender Maßen darstellen:</p>
+<a class="reference internal image-reference" href="../_images/11_total_notation.jpg"><img alt="../_images/11_total_notation.jpg" src="../_images/11_total_notation.jpg" style="width: 300px;" /></a>
 </div>
 </div>
 <div class="section" id="rolle-von-relationships">
