@@ -1,0 +1,1123 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>12. sql test &#8212; Online-Skript Grundlagen der Datenbanksysteme</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="11. Transaktionsmanagement" href="../../11/transaktionen.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/DBIS_Kurzlogo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Online-Skript Grundlagen der Datenbanksysteme</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Grundlagen der Datenbanksysteme
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../01/einfuehrung.html">
+   1. Einführung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../02/historie.html">
+   2. Historie
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../03/architektur.html">
+   3. Architektur
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../04/phasenmodell_datenbankentwurf.html">
+   4. Phasenmodell für den Datenbankentwurf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../05/er_modellierung.html">
+   5. ER-Modellierung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../06/relationaler_entwurf.html">
+   6. Relationaler Entwurf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../07/normalisierung.html">
+   7. Normalisierung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../08/relationale_algebra.html">
+   8. Relationale Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../09/sql.html">
+   9. SQL
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../10/integritaet_und_trigger.html">
+   10. Integrität und Trigger
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../11/transaktionen.html">
+   11. Transaktionsmanagement
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   12. sql test
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/imdb/imdb/Untitled1.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/LUH-DBS/GDBS_Script"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2Fimdb/imdb/Untitled1.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/gh-pages/?urlpath=tree/imdb/imdb/Untitled1.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>sql test</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="sql-test">
+<h1><span class="section-number">12. </span>sql test<a class="headerlink" href="#sql-test" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install <span class="nv">sqlalchemy</span><span class="o">==</span><span class="m">1</span>.3.9
+<span class="o">!</span>pip install ipython-sql
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting sqlalchemy==1.3.9
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading SQLAlchemy-1.3.9.tar.gz (6.0 MB)
+?25l
+     |                                | 10 kB 1.1 MB/s eta 0:00:06
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |                                | 20 kB 807 kB/s eta 0:00:08
+     |▏                               | 30 kB 604 kB/s eta 0:00:10
+     |▏                               | 40 kB 762 kB/s eta 0:00:08
+     |▎                               | 51 kB 699 kB/s eta 0:00:09
+     |▎                               | 61 kB 830 kB/s eta 0:00:08
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |▍                               | 71 kB 879 kB/s eta 0:00:07
+     |▍                               | 81 kB 1.0 MB/s eta 0:00:06
+     |▌                               | 92 kB 1.1 MB/s eta 0:00:06
+     |▌                               | 102 kB 1.1 MB/s eta 0:00:06
+     |▋                               | 112 kB 1.1 MB/s eta 0:00:06
+     |▋                               | 122 kB 1.1 MB/s eta 0:00:06
+     |▊                               | 133 kB 1.1 MB/s eta 0:00:06
+     |▊                               | 143 kB 1.1 MB/s eta 0:00:06
+     |▉                               | 153 kB 1.1 MB/s eta 0:00:06
+     |▉                               | 163 kB 1.1 MB/s eta 0:00:06
+     |█                               | 174 kB 1.1 MB/s eta 0:00:06
+     |█                               | 184 kB 1.1 MB/s eta 0:00:06
+     |█                               | 194 kB 1.1 MB/s eta 0:00:06
+     |█                               | 204 kB 1.1 MB/s eta 0:00:06
+     |█▏                              | 215 kB 1.1 MB/s eta 0:00:06
+     |█▏                              | 225 kB 1.1 MB/s eta 0:00:06
+     |█▎                              | 235 kB 1.1 MB/s eta 0:00:06
+     |█▎                              | 245 kB 1.1 MB/s eta 0:00:06
+     |█▍                              | 256 kB 1.1 MB/s eta 0:00:06
+     |█▍                              | 266 kB 1.1 MB/s eta 0:00:06
+     |█▌                              | 276 kB 1.1 MB/s eta 0:00:06
+     |█▌                              | 286 kB 1.1 MB/s eta 0:00:06
+     |█▋                              | 296 kB 1.1 MB/s eta 0:00:06
+     |█▋                              | 307 kB 1.1 MB/s eta 0:00:06
+     |█▊                              | 317 kB 1.1 MB/s eta 0:00:06
+     |█▊                              | 327 kB 1.1 MB/s eta 0:00:06
+     |█▉                              | 337 kB 1.1 MB/s eta 0:00:06
+     |█▉                              | 348 kB 1.1 MB/s eta 0:00:05
+     |██                              | 358 kB 1.1 MB/s eta 0:00:05
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |██                              | 368 kB 1.1 MB/s eta 0:00:05
+     |██                              | 378 kB 1.1 MB/s eta 0:00:05
+     |██                              | 389 kB 1.1 MB/s eta 0:00:05
+     |██▏                             | 399 kB 1.1 MB/s eta 0:00:05
+     |██▏                             | 409 kB 1.1 MB/s eta 0:00:05
+     |██▎                             | 419 kB 1.1 MB/s eta 0:00:05
+     |██▎                             | 430 kB 1.1 MB/s eta 0:00:05
+     |██▍                             | 440 kB 1.1 MB/s eta 0:00:05
+     |██▍                             | 450 kB 1.1 MB/s eta 0:00:05
+     |██▌                             | 460 kB 1.1 MB/s eta 0:00:05
+     |██▌                             | 471 kB 1.1 MB/s eta 0:00:05
+     |██▋                             | 481 kB 1.1 MB/s eta 0:00:05
+     |██▋                             | 491 kB 1.1 MB/s eta 0:00:05
+     |██▊                             | 501 kB 1.1 MB/s eta 0:00:05
+     |██▊                             | 512 kB 1.1 MB/s eta 0:00:05
+     |██▉                             | 522 kB 1.1 MB/s eta 0:00:05
+     |██▉                             | 532 kB 1.1 MB/s eta 0:00:05
+     |███                             | 542 kB 1.1 MB/s eta 0:00:05
+     |███                             | 552 kB 1.1 MB/s eta 0:00:05
+     |███                             | 563 kB 1.1 MB/s eta 0:00:05
+     |███                             | 573 kB 1.1 MB/s eta 0:00:05
+     |███▏                            | 583 kB 1.1 MB/s eta 0:00:05
+     |███▏                            | 593 kB 1.1 MB/s eta 0:00:05
+     |███▎                            | 604 kB 1.1 MB/s eta 0:00:05
+     |███▎                            | 614 kB 1.1 MB/s eta 0:00:05
+     |███▍                            | 624 kB 1.1 MB/s eta 0:00:05
+     |███▍                            | 634 kB 1.1 MB/s eta 0:00:05
+     |███▌                            | 645 kB 1.1 MB/s eta 0:00:05
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |███▌                            | 655 kB 1.1 MB/s eta 0:00:05
+     |███▋                            | 665 kB 1.1 MB/s eta 0:00:05
+     |███▋                            | 675 kB 1.1 MB/s eta 0:00:05
+     |███▊                            | 686 kB 1.1 MB/s eta 0:00:05
+     |███▊                            | 696 kB 1.1 MB/s eta 0:00:05
+     |███▉                            | 706 kB 1.1 MB/s eta 0:00:05
+     |███▉                            | 716 kB 1.1 MB/s eta 0:00:05
+     |████                            | 727 kB 1.1 MB/s eta 0:00:05
+     |████                            | 737 kB 1.1 MB/s eta 0:00:05
+     |████                            | 747 kB 1.1 MB/s eta 0:00:05
+     |████                            | 757 kB 1.1 MB/s eta 0:00:05
+     |████▏                           | 768 kB 1.1 MB/s eta 0:00:05
+     |████▏                           | 778 kB 1.1 MB/s eta 0:00:05
+     |████▎                           | 788 kB 1.1 MB/s eta 0:00:05
+     |████▎                           | 798 kB 1.1 MB/s eta 0:00:05
+     |████▍                           | 808 kB 1.1 MB/s eta 0:00:05
+     |████▍                           | 819 kB 1.1 MB/s eta 0:00:05
+     |████▌                           | 829 kB 1.1 MB/s eta 0:00:05
+     |████▌                           | 839 kB 1.1 MB/s eta 0:00:05
+     |████▋                           | 849 kB 1.1 MB/s eta 0:00:05
+     |████▋                           | 860 kB 1.1 MB/s eta 0:00:05
+     |████▊                           | 870 kB 1.1 MB/s eta 0:00:05
+     |████▊                           | 880 kB 1.1 MB/s eta 0:00:05
+     |████▉                           | 890 kB 1.1 MB/s eta 0:00:05
+     |████▉                           | 901 kB 1.1 MB/s eta 0:00:05
+     |████▉                           | 911 kB 1.1 MB/s eta 0:00:05
+     |█████                           | 921 kB 1.1 MB/s eta 0:00:05
+     |█████                           | 931 kB 1.1 MB/s eta 0:00:05
+     |█████                           | 942 kB 1.1 MB/s eta 0:00:05
+     |█████                           | 952 kB 1.1 MB/s eta 0:00:05
+     |█████▏                          | 962 kB 1.1 MB/s eta 0:00:05
+     |█████▏                          | 972 kB 1.1 MB/s eta 0:00:05
+     |█████▎                          | 983 kB 1.1 MB/s eta 0:00:05
+     |█████▎                          | 993 kB 1.1 MB/s eta 0:00:05
+     |█████▍                          | 1.0 MB 1.1 MB/s eta 0:00:05
+     |█████▍                          | 1.0 MB 1.1 MB/s eta 0:00:05
+     |█████▌                          | 1.0 MB 1.1 MB/s eta 0:00:05
+     |█████▌                          | 1.0 MB 1.1 MB/s eta 0:00:05
+     |█████▋                          | 1.0 MB 1.1 MB/s eta 0:00:05
+     |█████▋                          | 1.1 MB 1.1 MB/s eta 0:00:05
+     |█████▊                          | 1.1 MB 1.1 MB/s eta 0:00:05
+     |█████▊                          | 1.1 MB 1.1 MB/s eta 0:00:05
+     |█████▉                          | 1.1 MB 1.1 MB/s eta 0:00:05
+     |█████▉                          | 1.1 MB 1.1 MB/s eta 0:00:05
+     |██████                          | 1.1 MB 1.1 MB/s eta 0:00:05
+     |██████                          | 1.1 MB 1.1 MB/s eta 0:00:05
+     |██████                          | 1.1 MB 1.1 MB/s eta 0:00:05
+     |██████                          | 1.1 MB 1.1 MB/s eta 0:00:05
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |██████▏                         | 1.1 MB 1.1 MB/s eta 0:00:05
+     |██████▏                         | 1.2 MB 1.1 MB/s eta 0:00:05
+     |██████▎                         | 1.2 MB 1.1 MB/s eta 0:00:05
+     |██████▎                         | 1.2 MB 1.1 MB/s eta 0:00:05
+     |██████▍                         | 1.2 MB 1.1 MB/s eta 0:00:05
+     |██████▍                         | 1.2 MB 1.1 MB/s eta 0:00:05
+     |██████▌                         | 1.2 MB 1.1 MB/s eta 0:00:05
+     |██████▌                         | 1.2 MB 1.1 MB/s eta 0:00:05
+     |██████▋                         | 1.2 MB 1.1 MB/s eta 0:00:05
+     |██████▋                         | 1.2 MB 1.1 MB/s eta 0:00:05
+     |██████▊                         | 1.2 MB 1.1 MB/s eta 0:00:05
+     |██████▊                         | 1.3 MB 1.1 MB/s eta 0:00:05
+     |██████▉                         | 1.3 MB 1.1 MB/s eta 0:00:05
+     |██████▉                         | 1.3 MB 1.1 MB/s eta 0:00:05
+     |███████                         | 1.3 MB 1.1 MB/s eta 0:00:05
+     |███████                         | 1.3 MB 1.1 MB/s eta 0:00:05
+     |███████                         | 1.3 MB 1.1 MB/s eta 0:00:05
+     |███████                         | 1.3 MB 1.1 MB/s eta 0:00:05
+     |███████▏                        | 1.3 MB 1.1 MB/s eta 0:00:05
+     |███████▏                        | 1.3 MB 1.1 MB/s eta 0:00:05
+     |███████▎                        | 1.4 MB 1.1 MB/s eta 0:00:05
+     |███████▎                        | 1.4 MB 1.1 MB/s eta 0:00:05
+     |███████▍                        | 1.4 MB 1.1 MB/s eta 0:00:05
+     |███████▍                        | 1.4 MB 1.1 MB/s eta 0:00:05
+     |███████▌                        | 1.4 MB 1.1 MB/s eta 0:00:05
+     |███████▌                        | 1.4 MB 1.1 MB/s eta 0:00:05
+     |███████▋                        | 1.4 MB 1.1 MB/s eta 0:00:05
+     |███████▋                        | 1.4 MB 1.1 MB/s eta 0:00:05
+     |███████▊                        | 1.4 MB 1.1 MB/s eta 0:00:05
+     |███████▊                        | 1.4 MB 1.1 MB/s eta 0:00:05
+     |███████▉                        | 1.5 MB 1.1 MB/s eta 0:00:05
+     |███████▉                        | 1.5 MB 1.1 MB/s eta 0:00:04
+     |████████                        | 1.5 MB 1.1 MB/s eta 0:00:04
+     |████████                        | 1.5 MB 1.1 MB/s eta 0:00:04
+     |████████                        | 1.5 MB 1.1 MB/s eta 0:00:04
+     |████████                        | 1.5 MB 1.1 MB/s eta 0:00:04
+     |████████▏                       | 1.5 MB 1.1 MB/s eta 0:00:04
+     |████████▏                       | 1.5 MB 1.1 MB/s eta 0:00:04
+     |████████▎                       | 1.5 MB 1.1 MB/s eta 0:00:04
+     |████████▎                       | 1.5 MB 1.1 MB/s eta 0:00:04
+     |████████▍                       | 1.6 MB 1.1 MB/s eta 0:00:04
+     |████████▍                       | 1.6 MB 1.1 MB/s eta 0:00:04
+     |████████▌                       | 1.6 MB 1.1 MB/s eta 0:00:04
+     |████████▌                       | 1.6 MB 1.1 MB/s eta 0:00:04
+     |████████▋                       | 1.6 MB 1.1 MB/s eta 0:00:04
+     |████████▋                       | 1.6 MB 1.1 MB/s eta 0:00:04
+     |████████▊                       | 1.6 MB 1.1 MB/s eta 0:00:04
+     |████████▊                       | 1.6 MB 1.1 MB/s eta 0:00:04
+     |████████▉                       | 1.6 MB 1.1 MB/s eta 0:00:04
+     |████████▉                       | 1.6 MB 1.1 MB/s eta 0:00:04
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |█████████                       | 1.7 MB 1.1 MB/s eta 0:00:04
+     |█████████                       | 1.7 MB 1.1 MB/s eta 0:00:04
+     |█████████                       | 1.7 MB 1.1 MB/s eta 0:00:04
+     |█████████                       | 1.7 MB 1.1 MB/s eta 0:00:04
+     |█████████▏                      | 1.7 MB 1.1 MB/s eta 0:00:04
+     |█████████▏                      | 1.7 MB 1.1 MB/s eta 0:00:04
+     |█████████▎                      | 1.7 MB 1.1 MB/s eta 0:00:04
+     |█████████▎                      | 1.7 MB 1.1 MB/s eta 0:00:04
+     |█████████▍                      | 1.7 MB 1.1 MB/s eta 0:00:04
+     |█████████▍                      | 1.8 MB 1.1 MB/s eta 0:00:04
+     |█████████▌                      | 1.8 MB 1.1 MB/s eta 0:00:04
+     |█████████▌                      | 1.8 MB 1.1 MB/s eta 0:00:04
+     |█████████▋                      | 1.8 MB 1.1 MB/s eta 0:00:04
+     |█████████▋                      | 1.8 MB 1.1 MB/s eta 0:00:04
+     |█████████▋                      | 1.8 MB 1.1 MB/s eta 0:00:04
+     |█████████▊                      | 1.8 MB 1.1 MB/s eta 0:00:04
+     |█████████▊                      | 1.8 MB 1.1 MB/s eta 0:00:04
+     |█████████▉                      | 1.8 MB 1.1 MB/s eta 0:00:04
+     |█████████▉                      | 1.8 MB 1.1 MB/s eta 0:00:04
+     |██████████                      | 1.9 MB 1.1 MB/s eta 0:00:04
+     |██████████                      | 1.9 MB 1.1 MB/s eta 0:00:04
+     |██████████                      | 1.9 MB 1.1 MB/s eta 0:00:04
+     |██████████                      | 1.9 MB 1.1 MB/s eta 0:00:04
+     |██████████▏                     | 1.9 MB 1.1 MB/s eta 0:00:04
+     |██████████▏                     | 1.9 MB 1.1 MB/s eta 0:00:04
+     |██████████▎                     | 1.9 MB 1.1 MB/s eta 0:00:04
+     |██████████▎                     | 1.9 MB 1.1 MB/s eta 0:00:04
+     |██████████▍                     | 1.9 MB 1.1 MB/s eta 0:00:04
+     |██████████▍                     | 1.9 MB 1.1 MB/s eta 0:00:04
+     |██████████▌                     | 2.0 MB 1.1 MB/s eta 0:00:04
+     |██████████▌                     | 2.0 MB 1.1 MB/s eta 0:00:04
+     |██████████▋                     | 2.0 MB 1.1 MB/s eta 0:00:04
+     |██████████▋                     | 2.0 MB 1.1 MB/s eta 0:00:04
+     |██████████▊                     | 2.0 MB 1.1 MB/s eta 0:00:04
+     |██████████▊                     | 2.0 MB 1.1 MB/s eta 0:00:04
+     |██████████▉                     | 2.0 MB 1.1 MB/s eta 0:00:04
+     |██████████▉                     | 2.0 MB 1.1 MB/s eta 0:00:04
+     |███████████                     | 2.0 MB 1.1 MB/s eta 0:00:04
+     |███████████                     | 2.0 MB 1.1 MB/s eta 0:00:04
+     |███████████                     | 2.1 MB 1.1 MB/s eta 0:00:04
+     |███████████                     | 2.1 MB 1.1 MB/s eta 0:00:04
+     |███████████▏                    | 2.1 MB 1.1 MB/s eta 0:00:04
+     |███████████▏                    | 2.1 MB 1.1 MB/s eta 0:00:04
+     |███████████▎                    | 2.1 MB 1.1 MB/s eta 0:00:04
+     |███████████▎                    | 2.1 MB 1.1 MB/s eta 0:00:04
+     |███████████▍                    | 2.1 MB 1.1 MB/s eta 0:00:04
+     |███████████▍                    | 2.1 MB 1.1 MB/s eta 0:00:04
+     |███████████▌                    | 2.1 MB 1.1 MB/s eta 0:00:04
+     |███████████▌                    | 2.2 MB 1.1 MB/s eta 0:00:04
+     |███████████▋                    | 2.2 MB 1.1 MB/s eta 0:00:04
+     |███████████▋                    | 2.2 MB 1.1 MB/s eta 0:00:04
+     |███████████▊                    | 2.2 MB 1.1 MB/s eta 0:00:04
+     |███████████▊                    | 2.2 MB 1.1 MB/s eta 0:00:04
+     |███████████▉                    | 2.2 MB 1.1 MB/s eta 0:00:04
+     |███████████▉                    | 2.2 MB 1.1 MB/s eta 0:00:04
+     |████████████                    | 2.2 MB 1.1 MB/s eta 0:00:04
+     |████████████                    | 2.2 MB 1.1 MB/s eta 0:00:04
+     |████████████                    | 2.2 MB 1.1 MB/s eta 0:00:04
+     |████████████                    | 2.3 MB 1.1 MB/s eta 0:00:04
+     |████████████▏                   | 2.3 MB 1.1 MB/s eta 0:00:04
+     |████████████▏                   | 2.3 MB 1.1 MB/s eta 0:00:04
+     |████████████▎                   | 2.3 MB 1.1 MB/s eta 0:00:04
+     |████████████▎                   | 2.3 MB 1.1 MB/s eta 0:00:04
+     |████████████▍                   | 2.3 MB 1.1 MB/s eta 0:00:04
+     |████████████▍                   | 2.3 MB 1.1 MB/s eta 0:00:04
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |████████████▌                   | 2.3 MB 1.1 MB/s eta 0:00:04
+     |████████████▌                   | 2.3 MB 1.1 MB/s eta 0:00:04
+     |████████████▋                   | 2.3 MB 1.1 MB/s eta 0:00:04
+     |████████████▋                   | 2.4 MB 1.1 MB/s eta 0:00:04
+     |████████████▊                   | 2.4 MB 1.1 MB/s eta 0:00:04
+     |████████████▊                   | 2.4 MB 1.1 MB/s eta 0:00:04
+     |████████████▉                   | 2.4 MB 1.1 MB/s eta 0:00:04
+     |████████████▉                   | 2.4 MB 1.1 MB/s eta 0:00:04
+     |█████████████                   | 2.4 MB 1.1 MB/s eta 0:00:04
+     |█████████████                   | 2.4 MB 1.1 MB/s eta 0:00:04
+     |█████████████                   | 2.4 MB 1.1 MB/s eta 0:00:04
+     |█████████████                   | 2.4 MB 1.1 MB/s eta 0:00:04
+     |█████████████▏                  | 2.4 MB 1.1 MB/s eta 0:00:04
+     |█████████████▏                  | 2.5 MB 1.1 MB/s eta 0:00:04
+     |█████████████▎                  | 2.5 MB 1.1 MB/s eta 0:00:04
+     |█████████████▎                  | 2.5 MB 1.1 MB/s eta 0:00:04
+     |█████████████▍                  | 2.5 MB 1.1 MB/s eta 0:00:04
+     |█████████████▍                  | 2.5 MB 1.1 MB/s eta 0:00:04
+     |█████████████▌                  | 2.5 MB 1.1 MB/s eta 0:00:04
+     |█████████████▌                  | 2.5 MB 1.1 MB/s eta 0:00:04
+     |█████████████▋                  | 2.5 MB 1.1 MB/s eta 0:00:04
+     |█████████████▋                  | 2.5 MB 1.1 MB/s eta 0:00:04
+     |█████████████▊                  | 2.5 MB 1.1 MB/s eta 0:00:04
+     |█████████████▊                  | 2.6 MB 1.1 MB/s eta 0:00:04
+     |█████████████▉                  | 2.6 MB 1.1 MB/s eta 0:00:04
+     |█████████████▉                  | 2.6 MB 1.1 MB/s eta 0:00:04
+     |██████████████                  | 2.6 MB 1.1 MB/s eta 0:00:03
+     |██████████████                  | 2.6 MB 1.1 MB/s eta 0:00:03
+     |██████████████                  | 2.6 MB 1.1 MB/s eta 0:00:03
+     |██████████████                  | 2.6 MB 1.1 MB/s eta 0:00:03
+     |██████████████▏                 | 2.6 MB 1.1 MB/s eta 0:00:03
+     |██████████████▏                 | 2.6 MB 1.1 MB/s eta 0:00:03
+     |██████████████▎                 | 2.7 MB 1.1 MB/s eta 0:00:03
+     |██████████████▎                 | 2.7 MB 1.1 MB/s eta 0:00:03
+     |██████████████▍                 | 2.7 MB 1.1 MB/s eta 0:00:03
+     |██████████████▍                 | 2.7 MB 1.1 MB/s eta 0:00:03
+     |██████████████▍                 | 2.7 MB 1.1 MB/s eta 0:00:03
+     |██████████████▌                 | 2.7 MB 1.1 MB/s eta 0:00:03
+     |██████████████▌                 | 2.7 MB 1.1 MB/s eta 0:00:03
+     |██████████████▋                 | 2.7 MB 1.1 MB/s eta 0:00:03
+     |██████████████▋                 | 2.7 MB 1.1 MB/s eta 0:00:03
+     |██████████████▊                 | 2.7 MB 1.1 MB/s eta 0:00:03
+     |██████████████▊                 | 2.8 MB 1.1 MB/s eta 0:00:03
+     |██████████████▉                 | 2.8 MB 1.1 MB/s eta 0:00:03
+     |██████████████▉                 | 2.8 MB 1.1 MB/s eta 0:00:03
+     |███████████████                 | 2.8 MB 1.1 MB/s eta 0:00:03
+     |███████████████                 | 2.8 MB 1.1 MB/s eta 0:00:03
+     |███████████████                 | 2.8 MB 1.1 MB/s eta 0:00:03
+     |███████████████                 | 2.8 MB 1.1 MB/s eta 0:00:03
+     |███████████████▏                | 2.8 MB 1.1 MB/s eta 0:00:03
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |███████████████▏                | 2.8 MB 1.1 MB/s eta 0:00:03
+     |███████████████▎                | 2.8 MB 1.1 MB/s eta 0:00:03
+     |███████████████▎                | 2.9 MB 1.1 MB/s eta 0:00:03
+     |███████████████▍                | 2.9 MB 1.1 MB/s eta 0:00:03
+     |███████████████▍                | 2.9 MB 1.1 MB/s eta 0:00:03
+     |███████████████▌                | 2.9 MB 1.1 MB/s eta 0:00:03
+     |███████████████▌                | 2.9 MB 1.1 MB/s eta 0:00:03
+     |███████████████▋                | 2.9 MB 1.1 MB/s eta 0:00:03
+     |███████████████▋                | 2.9 MB 1.1 MB/s eta 0:00:03
+     |███████████████▊                | 2.9 MB 1.1 MB/s eta 0:00:03
+     |███████████████▊                | 2.9 MB 1.1 MB/s eta 0:00:03
+     |███████████████▉                | 2.9 MB 1.1 MB/s eta 0:00:03
+     |███████████████▉                | 3.0 MB 1.1 MB/s eta 0:00:03
+     |████████████████                | 3.0 MB 1.1 MB/s eta 0:00:03
+     |████████████████                | 3.0 MB 1.1 MB/s eta 0:00:03
+     |████████████████                | 3.0 MB 1.1 MB/s eta 0:00:03
+     |████████████████                | 3.0 MB 1.1 MB/s eta 0:00:03
+     |████████████████▏               | 3.0 MB 1.1 MB/s eta 0:00:03
+     |████████████████▏               | 3.0 MB 1.1 MB/s eta 0:00:03
+     |████████████████▎               | 3.0 MB 1.1 MB/s eta 0:00:03
+     |████████████████▎               | 3.0 MB 1.1 MB/s eta 0:00:03
+     |████████████████▍               | 3.1 MB 1.1 MB/s eta 0:00:03
+     |████████████████▍               | 3.1 MB 1.1 MB/s eta 0:00:03
+     |████████████████▌               | 3.1 MB 1.1 MB/s eta 0:00:03
+     |████████████████▌               | 3.1 MB 1.1 MB/s eta 0:00:03
+     |████████████████▋               | 3.1 MB 1.1 MB/s eta 0:00:03
+     |████████████████▋               | 3.1 MB 1.1 MB/s eta 0:00:03
+     |████████████████▊               | 3.1 MB 1.1 MB/s eta 0:00:03
+     |████████████████▊               | 3.1 MB 1.1 MB/s eta 0:00:03
+     |████████████████▉               | 3.1 MB 1.1 MB/s eta 0:00:03
+     |████████████████▉               | 3.1 MB 1.1 MB/s eta 0:00:03
+     |█████████████████               | 3.2 MB 1.1 MB/s eta 0:00:03
+     |█████████████████               | 3.2 MB 1.1 MB/s eta 0:00:03
+     |█████████████████               | 3.2 MB 1.1 MB/s eta 0:00:03
+     |█████████████████               | 3.2 MB 1.1 MB/s eta 0:00:03
+     |█████████████████▏              | 3.2 MB 1.1 MB/s eta 0:00:03
+     |█████████████████▏              | 3.2 MB 1.1 MB/s eta 0:00:03
+     |█████████████████▎              | 3.2 MB 1.1 MB/s eta 0:00:03
+     |█████████████████▎              | 3.2 MB 1.1 MB/s eta 0:00:03
+     |█████████████████▍              | 3.2 MB 1.1 MB/s eta 0:00:03
+     |█████████████████▍              | 3.2 MB 1.1 MB/s eta 0:00:03
+     |█████████████████▌              | 3.3 MB 1.1 MB/s eta 0:00:03
+     |█████████████████▌              | 3.3 MB 1.1 MB/s eta 0:00:03
+     |█████████████████▋              | 3.3 MB 1.1 MB/s eta 0:00:03
+     |█████████████████▋              | 3.3 MB 1.1 MB/s eta 0:00:03
+     |█████████████████▊              | 3.3 MB 1.1 MB/s eta 0:00:03
+     |█████████████████▊              | 3.3 MB 1.1 MB/s eta 0:00:03
+     |█████████████████▉              | 3.3 MB 1.1 MB/s eta 0:00:03
+     |█████████████████▉              | 3.3 MB 1.1 MB/s eta 0:00:03
+     |██████████████████              | 3.3 MB 1.1 MB/s eta 0:00:03
+     |██████████████████              | 3.3 MB 1.1 MB/s eta 0:00:03
+     |██████████████████              | 3.4 MB 1.1 MB/s eta 0:00:03
+     |██████████████████              | 3.4 MB 1.1 MB/s eta 0:00:03
+     |██████████████████▏             | 3.4 MB 1.1 MB/s eta 0:00:03
+     |██████████████████▏             | 3.4 MB 1.1 MB/s eta 0:00:03
+     |██████████████████▎             | 3.4 MB 1.1 MB/s eta 0:00:03
+     |██████████████████▎             | 3.4 MB 1.1 MB/s eta 0:00:03
+     |██████████████████▍             | 3.4 MB 1.1 MB/s eta 0:00:03
+     |██████████████████▍             | 3.4 MB 1.1 MB/s eta 0:00:03
+     |██████████████████▌             | 3.4 MB 1.1 MB/s eta 0:00:03
+     |██████████████████▌             | 3.5 MB 1.1 MB/s eta 0:00:03
+     |██████████████████▋             | 3.5 MB 1.1 MB/s eta 0:00:03
+     |██████████████████▋             | 3.5 MB 1.1 MB/s eta 0:00:03
+     |██████████████████▊             | 3.5 MB 1.1 MB/s eta 0:00:03
+     |██████████████████▊             | 3.5 MB 1.1 MB/s eta 0:00:03
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |██████████████████▉             | 3.5 MB 1.1 MB/s eta 0:00:03
+     |██████████████████▉             | 3.5 MB 1.1 MB/s eta 0:00:03
+     |███████████████████             | 3.5 MB 1.1 MB/s eta 0:00:03
+     |███████████████████             | 3.5 MB 1.1 MB/s eta 0:00:03
+     |███████████████████             | 3.5 MB 1.1 MB/s eta 0:00:03
+     |███████████████████             | 3.6 MB 1.1 MB/s eta 0:00:03
+     |███████████████████▏            | 3.6 MB 1.1 MB/s eta 0:00:03
+     |███████████████████▏            | 3.6 MB 1.1 MB/s eta 0:00:03
+     |███████████████████▏            | 3.6 MB 1.1 MB/s eta 0:00:03
+     |███████████████████▎            | 3.6 MB 1.1 MB/s eta 0:00:03
+     |███████████████████▎            | 3.6 MB 1.1 MB/s eta 0:00:03
+     |███████████████████▍            | 3.6 MB 1.1 MB/s eta 0:00:03
+     |███████████████████▍            | 3.6 MB 1.1 MB/s eta 0:00:03
+     |███████████████████▌            | 3.6 MB 1.1 MB/s eta 0:00:03
+     |███████████████████▌            | 3.6 MB 1.1 MB/s eta 0:00:03
+     |███████████████████▋            | 3.7 MB 1.1 MB/s eta 0:00:03
+     |███████████████████▋            | 3.7 MB 1.1 MB/s eta 0:00:03
+     |███████████████████▊            | 3.7 MB 1.1 MB/s eta 0:00:03
+     |███████████████████▊            | 3.7 MB 1.1 MB/s eta 0:00:03
+     |███████████████████▉            | 3.7 MB 1.1 MB/s eta 0:00:03
+     |███████████████████▉            | 3.7 MB 1.1 MB/s eta 0:00:03
+     |████████████████████            | 3.7 MB 1.1 MB/s eta 0:00:02
+     |████████████████████            | 3.7 MB 1.1 MB/s eta 0:00:02
+     |████████████████████            | 3.7 MB 1.1 MB/s eta 0:00:02
+     |████████████████████            | 3.7 MB 1.1 MB/s eta 0:00:02
+     |████████████████████▏           | 3.8 MB 1.1 MB/s eta 0:00:02
+     |████████████████████▏           | 3.8 MB 1.1 MB/s eta 0:00:02
+     |████████████████████▎           | 3.8 MB 1.1 MB/s eta 0:00:02
+     |████████████████████▎           | 3.8 MB 1.1 MB/s eta 0:00:02
+     |████████████████████▍           | 3.8 MB 1.1 MB/s eta 0:00:02
+     |████████████████████▍           | 3.8 MB 1.1 MB/s eta 0:00:02
+     |████████████████████▌           | 3.8 MB 1.1 MB/s eta 0:00:02
+     |████████████████████▌           | 3.8 MB 1.1 MB/s eta 0:00:02
+     |████████████████████▋           | 3.8 MB 1.1 MB/s eta 0:00:02
+     |████████████████████▋           | 3.9 MB 1.1 MB/s eta 0:00:02
+     |████████████████████▊           | 3.9 MB 1.1 MB/s eta 0:00:02
+     |████████████████████▊           | 3.9 MB 1.1 MB/s eta 0:00:02
+     |████████████████████▉           | 3.9 MB 1.1 MB/s eta 0:00:02
+     |████████████████████▉           | 3.9 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████           | 3.9 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████           | 3.9 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████           | 3.9 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████           | 3.9 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████▏          | 3.9 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████▏          | 4.0 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████▎          | 4.0 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████▎          | 4.0 MB 1.1 MB/s eta 0:00:02
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |█████████████████████▍          | 4.0 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████▍          | 4.0 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████▌          | 4.0 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████▌          | 4.0 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████▋          | 4.0 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████▋          | 4.0 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████▊          | 4.0 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████▊          | 4.1 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████▉          | 4.1 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████▉          | 4.1 MB 1.1 MB/s eta 0:00:02
+     |██████████████████████          | 4.1 MB 1.1 MB/s eta 0:00:02
+     |██████████████████████          | 4.1 MB 1.1 MB/s eta 0:00:02
+     |██████████████████████          | 4.1 MB 1.1 MB/s eta 0:00:02
+     |██████████████████████          | 4.1 MB 1.1 MB/s eta 0:00:02
+     |██████████████████████▏         | 4.1 MB 1.1 MB/s eta 0:00:02
+     |██████████████████████▏         | 4.1 MB 1.1 MB/s eta 0:00:02
+     |██████████████████████▎         | 4.1 MB 1.1 MB/s eta 0:00:02
+     |██████████████████████▎         | 4.2 MB 1.1 MB/s eta 0:00:02
+     |██████████████████████▍         | 4.2 MB 1.1 MB/s eta 0:00:02
+     |██████████████████████▍         | 4.2 MB 1.1 MB/s eta 0:00:02
+     |██████████████████████▌         | 4.2 MB 1.1 MB/s eta 0:00:02
+     |██████████████████████▌         | 4.2 MB 1.1 MB/s eta 0:00:02
+     |██████████████████████▋         | 4.2 MB 1.1 MB/s eta 0:00:02
+     |██████████████████████▋         | 4.2 MB 1.1 MB/s eta 0:00:02
+     |██████████████████████▊         | 4.2 MB 1.1 MB/s eta 0:00:02
+     |██████████████████████▊         | 4.2 MB 1.1 MB/s eta 0:00:02
+     |██████████████████████▉         | 4.2 MB 1.1 MB/s eta 0:00:02
+     |██████████████████████▉         | 4.3 MB 1.1 MB/s eta 0:00:02
+     |███████████████████████         | 4.3 MB 1.1 MB/s eta 0:00:02
+     |███████████████████████         | 4.3 MB 1.1 MB/s eta 0:00:02
+     |███████████████████████         | 4.3 MB 1.1 MB/s eta 0:00:02
+     |███████████████████████         | 4.3 MB 1.1 MB/s eta 0:00:02
+     |███████████████████████▏        | 4.3 MB 1.1 MB/s eta 0:00:02
+     |███████████████████████▏        | 4.3 MB 1.1 MB/s eta 0:00:02
+     |███████████████████████▎        | 4.3 MB 1.1 MB/s eta 0:00:02
+     |███████████████████████▎        | 4.3 MB 1.1 MB/s eta 0:00:02
+     |███████████████████████▍        | 4.4 MB 1.1 MB/s eta 0:00:02
+     |███████████████████████▍        | 4.4 MB 1.1 MB/s eta 0:00:02
+     |███████████████████████▌        | 4.4 MB 1.1 MB/s eta 0:00:02
+     |███████████████████████▌        | 4.4 MB 1.1 MB/s eta 0:00:02
+     |███████████████████████▋        | 4.4 MB 1.1 MB/s eta 0:00:02
+     |███████████████████████▋        | 4.4 MB 1.1 MB/s eta 0:00:02
+     |███████████████████████▊        | 4.4 MB 1.1 MB/s eta 0:00:02
+     |███████████████████████▊        | 4.4 MB 1.1 MB/s eta 0:00:02
+     |███████████████████████▉        | 4.4 MB 1.1 MB/s eta 0:00:02
+     |███████████████████████▉        | 4.4 MB 1.1 MB/s eta 0:00:02
+     |████████████████████████        | 4.5 MB 1.1 MB/s eta 0:00:02
+     |████████████████████████        | 4.5 MB 1.1 MB/s eta 0:00:02
+     |████████████████████████        | 4.5 MB 1.1 MB/s eta 0:00:02
+     |████████████████████████        | 4.5 MB 1.1 MB/s eta 0:00:02
+     |████████████████████████        | 4.5 MB 1.1 MB/s eta 0:00:02
+     |████████████████████████▏       | 4.5 MB 1.1 MB/s eta 0:00:02
+     |████████████████████████▏       | 4.5 MB 1.1 MB/s eta 0:00:02
+     |████████████████████████▎       | 4.5 MB 1.1 MB/s eta 0:00:02
+     |████████████████████████▎       | 4.5 MB 1.1 MB/s eta 0:00:02
+     |████████████████████████▍       | 4.5 MB 1.1 MB/s eta 0:00:02
+     |████████████████████████▍       | 4.6 MB 1.1 MB/s eta 0:00:02
+     |████████████████████████▌       | 4.6 MB 1.1 MB/s eta 0:00:02
+     |████████████████████████▌       | 4.6 MB 1.1 MB/s eta 0:00:02
+     |████████████████████████▋       | 4.6 MB 1.1 MB/s eta 0:00:02
+     |████████████████████████▋       | 4.6 MB 1.1 MB/s eta 0:00:02
+     |████████████████████████▊       | 4.6 MB 1.1 MB/s eta 0:00:02
+     |████████████████████████▊       | 4.6 MB 1.1 MB/s eta 0:00:02
+     |████████████████████████▉       | 4.6 MB 1.1 MB/s eta 0:00:02
+     |████████████████████████▉       | 4.6 MB 1.1 MB/s eta 0:00:02
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |█████████████████████████       | 4.6 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████████       | 4.7 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████████       | 4.7 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████████       | 4.7 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████████▏      | 4.7 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████████▏      | 4.7 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████████▎      | 4.7 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████████▎      | 4.7 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████████▍      | 4.7 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████████▍      | 4.7 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████████▌      | 4.8 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████████▌      | 4.8 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████████▋      | 4.8 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████████▋      | 4.8 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████████▊      | 4.8 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████████▊      | 4.8 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████████▉      | 4.8 MB 1.1 MB/s eta 0:00:02
+     |█████████████████████████▉      | 4.8 MB 1.1 MB/s eta 0:00:02
+     |██████████████████████████      | 4.8 MB 1.1 MB/s eta 0:00:02
+     |██████████████████████████      | 4.8 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████      | 4.9 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████      | 4.9 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████▏     | 4.9 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████▏     | 4.9 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████▎     | 4.9 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████▎     | 4.9 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████▍     | 4.9 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████▍     | 4.9 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████▌     | 4.9 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████▌     | 4.9 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████▋     | 5.0 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████▋     | 5.0 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████▊     | 5.0 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████▊     | 5.0 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████▉     | 5.0 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████▉     | 5.0 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████     | 5.0 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████     | 5.0 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████     | 5.0 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████     | 5.0 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████▏    | 5.1 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████▏    | 5.1 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████▎    | 5.1 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████▎    | 5.1 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████▍    | 5.1 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████▍    | 5.1 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████▌    | 5.1 MB 1.1 MB/s eta 0:00:01
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |███████████████████████████▌    | 5.1 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████▋    | 5.1 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████▋    | 5.2 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████▊    | 5.2 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████▊    | 5.2 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████▉    | 5.2 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████▉    | 5.2 MB 1.1 MB/s eta 0:00:01
+     |████████████████████████████    | 5.2 MB 1.1 MB/s eta 0:00:01
+     |████████████████████████████    | 5.2 MB 1.1 MB/s eta 0:00:01
+     |████████████████████████████    | 5.2 MB 1.1 MB/s eta 0:00:01
+     |████████████████████████████    | 5.2 MB 1.1 MB/s eta 0:00:01
+     |████████████████████████████▏   | 5.2 MB 1.1 MB/s eta 0:00:01
+     |████████████████████████████▏   | 5.3 MB 1.1 MB/s eta 0:00:01
+     |████████████████████████████▎   | 5.3 MB 1.1 MB/s eta 0:00:01
+     |████████████████████████████▎   | 5.3 MB 1.1 MB/s eta 0:00:01
+     |████████████████████████████▍   | 5.3 MB 1.1 MB/s eta 0:00:01
+     |████████████████████████████▍   | 5.3 MB 1.1 MB/s eta 0:00:01
+     |████████████████████████████▌   | 5.3 MB 1.1 MB/s eta 0:00:01
+     |████████████████████████████▌   | 5.3 MB 1.1 MB/s eta 0:00:01
+     |████████████████████████████▋   | 5.3 MB 1.1 MB/s eta 0:00:01
+     |████████████████████████████▋   | 5.3 MB 1.1 MB/s eta 0:00:01
+     |████████████████████████████▊   | 5.3 MB 1.1 MB/s eta 0:00:01
+     |████████████████████████████▊   | 5.4 MB 1.1 MB/s eta 0:00:01
+     |████████████████████████████▉   | 5.4 MB 1.1 MB/s eta 0:00:01
+     |████████████████████████████▉   | 5.4 MB 1.1 MB/s eta 0:00:01
+     |████████████████████████████▉   | 5.4 MB 1.1 MB/s eta 0:00:01
+     |█████████████████████████████   | 5.4 MB 1.1 MB/s eta 0:00:01
+     |█████████████████████████████   | 5.4 MB 1.1 MB/s eta 0:00:01
+     |█████████████████████████████   | 5.4 MB 1.1 MB/s eta 0:00:01
+     |█████████████████████████████   | 5.4 MB 1.1 MB/s eta 0:00:01
+     |█████████████████████████████▏  | 5.4 MB 1.1 MB/s eta 0:00:01
+     |█████████████████████████████▏  | 5.4 MB 1.1 MB/s eta 0:00:01
+     |█████████████████████████████▎  | 5.5 MB 1.1 MB/s eta 0:00:01
+     |█████████████████████████████▎  | 5.5 MB 1.1 MB/s eta 0:00:01
+     |█████████████████████████████▍  | 5.5 MB 1.1 MB/s eta 0:00:01
+     |█████████████████████████████▍  | 5.5 MB 1.1 MB/s eta 0:00:01
+     |█████████████████████████████▌  | 5.5 MB 1.1 MB/s eta 0:00:01
+     |█████████████████████████████▌  | 5.5 MB 1.1 MB/s eta 0:00:01
+     |█████████████████████████████▋  | 5.5 MB 1.1 MB/s eta 0:00:01
+     |█████████████████████████████▋  | 5.5 MB 1.1 MB/s eta 0:00:01
+     |█████████████████████████████▊  | 5.5 MB 1.1 MB/s eta 0:00:01
+     |█████████████████████████████▊  | 5.6 MB 1.1 MB/s eta 0:00:01
+     |█████████████████████████████▉  | 5.6 MB 1.1 MB/s eta 0:00:01
+     |█████████████████████████████▉  | 5.6 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████████  | 5.6 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████████  | 5.6 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████████  | 5.6 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████████  | 5.6 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████████▏ | 5.6 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████████▏ | 5.6 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████████▎ | 5.6 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████████▎ | 5.7 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████████▍ | 5.7 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████████▍ | 5.7 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████████▌ | 5.7 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████████▌ | 5.7 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████████▋ | 5.7 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████████▋ | 5.7 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████████▊ | 5.7 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████████▊ | 5.7 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████████▉ | 5.7 MB 1.1 MB/s eta 0:00:01
+     |██████████████████████████████▉ | 5.8 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████████ | 5.8 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████████ | 5.8 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████████ | 5.8 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████████ | 5.8 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████████▏| 5.8 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████████▏| 5.8 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████████▎| 5.8 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████████▎| 5.8 MB 1.1 MB/s eta 0:00:01
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |███████████████████████████████▍| 5.8 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████████▍| 5.9 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████████▌| 5.9 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████████▌| 5.9 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████████▋| 5.9 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████████▋| 5.9 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████████▊| 5.9 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████████▊| 5.9 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████████▉| 5.9 MB 1.1 MB/s eta 0:00:01
+     |███████████████████████████████▉| 5.9 MB 1.1 MB/s eta 0:00:01
+     |████████████████████████████████| 5.9 MB 1.1 MB/s eta 0:00:01
+     |████████████████████████████████| 6.0 MB 1.1 MB/s eta 0:00:01
+     |████████████████████████████████| 6.0 MB 1.1 MB/s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25hBuilding wheels for collected packages: sqlalchemy
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Building wheel for sqlalchemy (setup.py) ... ?25l-
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> \
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> /
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> -
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> \
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> |
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> /
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> done
+?25h  Created wheel for sqlalchemy: filename=SQLAlchemy-1.3.9-cp39-cp39-macosx_10_9_x86_64.whl size=1153924 sha256=bf60c7491713ba2c21e7add026981961c069931e85b691c998a96a4e96c99318
+  Stored in directory: /Users/abedjan/Library/Caches/pip/wheels/5b/43/0d/de1699809f9e6aaa54a97275298fa07075cb19acc557b18955
+Successfully built sqlalchemy
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: sqlalchemy
+  Attempting uninstall: sqlalchemy
+    Found existing installation: SQLAlchemy 1.4.22
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Uninstalling SQLAlchemy-1.4.22:
+      Successfully uninstalled SQLAlchemy-1.4.22
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">ERROR: pip&#39;s dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.</span>
+<span class=" -Color -Color-Red">jupyter-cache 0.4.3 requires sqlalchemy&lt;1.5,&gt;=1.3.12, but you have sqlalchemy 1.3.9 which is incompatible.</span>
+Successfully installed sqlalchemy-1.3.9
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting ipython-sql
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading ipython_sql-0.4.1-py3-none-any.whl (21 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting prettytable&lt;1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading prettytable-0.7.2.zip (28 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: sqlalchemy&gt;=0.6.7 in /Users/abedjan/opt/anaconda3/lib/python3.9/site-packages (from ipython-sql) (1.3.9)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting sqlparse
+  Downloading sqlparse-0.4.2-py3-none-any.whl (42 kB)
+?25l
+     |███████▊                        | 10 kB 5.4 MB/s eta 0:00:01
+     |███████████████▌                | 20 kB 4.4 MB/s eta 0:00:01
+     |███████████████████████▎        | 30 kB 6.2 MB/s eta 0:00:01
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |███████████████████████████████ | 40 kB 6.1 MB/s eta 0:00:01
+     |████████████████████████████████| 42 kB 2.0 MB/s 
+?25hRequirement already satisfied: ipython&gt;=1.0 in /Users/abedjan/opt/anaconda3/lib/python3.9/site-packages (from ipython-sql) (7.29.0)
+Requirement already satisfied: ipython-genutils&gt;=0.1.0 in /Users/abedjan/opt/anaconda3/lib/python3.9/site-packages (from ipython-sql) (0.2.0)
+Requirement already satisfied: six in /Users/abedjan/opt/anaconda3/lib/python3.9/site-packages (from ipython-sql) (1.16.0)
+Requirement already satisfied: matplotlib-inline in /Users/abedjan/opt/anaconda3/lib/python3.9/site-packages (from ipython&gt;=1.0-&gt;ipython-sql) (0.1.2)
+Requirement already satisfied: jedi&gt;=0.16 in /Users/abedjan/opt/anaconda3/lib/python3.9/site-packages (from ipython&gt;=1.0-&gt;ipython-sql) (0.18.0)
+Requirement already satisfied: backcall in /Users/abedjan/opt/anaconda3/lib/python3.9/site-packages (from ipython&gt;=1.0-&gt;ipython-sql) (0.2.0)
+Requirement already satisfied: traitlets&gt;=4.2 in /Users/abedjan/opt/anaconda3/lib/python3.9/site-packages (from ipython&gt;=1.0-&gt;ipython-sql) (5.1.0)
+Requirement already satisfied: setuptools&gt;=18.5 in /Users/abedjan/opt/anaconda3/lib/python3.9/site-packages (from ipython&gt;=1.0-&gt;ipython-sql) (58.0.4)
+Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,&lt;3.1.0,&gt;=2.0.0 in /Users/abedjan/opt/anaconda3/lib/python3.9/site-packages (from ipython&gt;=1.0-&gt;ipython-sql) (3.0.20)
+Requirement already satisfied: pexpect&gt;4.3 in /Users/abedjan/opt/anaconda3/lib/python3.9/site-packages (from ipython&gt;=1.0-&gt;ipython-sql) (4.8.0)
+Requirement already satisfied: pygments in /Users/abedjan/opt/anaconda3/lib/python3.9/site-packages (from ipython&gt;=1.0-&gt;ipython-sql) (2.10.0)
+Requirement already satisfied: appnope in /Users/abedjan/opt/anaconda3/lib/python3.9/site-packages (from ipython&gt;=1.0-&gt;ipython-sql) (0.1.2)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: decorator in /Users/abedjan/opt/anaconda3/lib/python3.9/site-packages (from ipython&gt;=1.0-&gt;ipython-sql) (5.1.0)
+Requirement already satisfied: pickleshare in /Users/abedjan/opt/anaconda3/lib/python3.9/site-packages (from ipython&gt;=1.0-&gt;ipython-sql) (0.7.5)
+Requirement already satisfied: parso&lt;0.9.0,&gt;=0.8.0 in /Users/abedjan/opt/anaconda3/lib/python3.9/site-packages (from jedi&gt;=0.16-&gt;ipython&gt;=1.0-&gt;ipython-sql) (0.8.2)
+Requirement already satisfied: ptyprocess&gt;=0.5 in /Users/abedjan/opt/anaconda3/lib/python3.9/site-packages (from pexpect&gt;4.3-&gt;ipython&gt;=1.0-&gt;ipython-sql) (0.7.0)
+Requirement already satisfied: wcwidth in /Users/abedjan/opt/anaconda3/lib/python3.9/site-packages (from prompt-toolkit!=3.0.0,!=3.0.1,&lt;3.1.0,&gt;=2.0.0-&gt;ipython&gt;=1.0-&gt;ipython-sql) (0.2.5)
+Building wheels for collected packages: prettytable
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Building wheel for prettytable (setup.py) ... ?25l-
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> \
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> done
+?25h  Created wheel for prettytable: filename=prettytable-0.7.2-py3-none-any.whl size=13714 sha256=6c75ab8e91910d0ea4539e060e4cb918424014ef2d28a419f361471a85d1919b
+  Stored in directory: /Users/abedjan/Library/Caches/pip/wheels/75/f7/28/77a076f1fa8cbeda61aca712815d04d7a32435f04a26a2dd7b
+Successfully built prettytable
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: sqlparse, prettytable, ipython-sql
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed ipython-sql-0.4.1 prettytable-0.7.2 sqlparse-0.4.2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">executable</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/abedjan/opt/anaconda3/bin/python&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> sql
+<span class="o">%</span><span class="k">sql</span> sqlite:///imdb.db
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span> SELECT name FROM actor WHERE name LIKE &#39;%Krug%&#39;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * sqlite:///imdb.db
+Done.
+</pre></div>
+</div>
+<div class="output text_html"><table>
+    <tr>
+        <th>name</th>
+    </tr>
+    <tr>
+        <td>Krug, Manfred</td>
+    </tr>
+    <tr>
+        <td>Krug, Manfred</td>
+    </tr>
+    <tr>
+        <td>Krug, Manfred</td>
+    </tr>
+</table></div></div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "LUH-DBS/GDBS_Script",
+            ref: "gh-pages/",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./imdb/imdb"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../../11/transaktionen.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">11. </span>Transaktionsmanagement</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Prof. Dr. Ziawasch Abedjan<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

@@ -154,6 +154,11 @@ const thebe_selector_output = ".output, .cell_output"
    11. Transaktionsmanagement
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../imdb/imdb/Untitled1.html">
+   12. sql test
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -211,11 +216,11 @@ const thebe_selector_output = ".output, .cell_output"
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/LUH-DBS/GDBS_Script"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F05/er_modellierung.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F05/er_modellierung.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -236,7 +241,7 @@ const thebe_selector_output = ".output, .cell_output"
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/05/er_modellierung.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/gh-pages/?urlpath=tree/05/er_modellierung.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -244,6 +249,9 @@ const thebe_selector_output = ".output, .cell_output"
         
         
         
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -325,8 +333,8 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#rolle-von-relationships">
-   5.5. Rolle von Relationships
+  <a class="reference internal nav-link" href="#entitytypen-und-rollen">
+   5.5. Entitytypen und Rollen
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -548,8 +556,8 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#rolle-von-relationships">
-   5.5. Rolle von Relationships
+  <a class="reference internal nav-link" href="#entitytypen-und-rollen">
+   5.5. Entitytypen und Rollen
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -978,33 +986,16 @@ Im folgenden werden wir noch die Min-Max-Notation und Numerische Notation kennen
 <a class="reference internal image-reference" href="../_images/11_total_notation.jpg"><img alt="../_images/11_total_notation.jpg" src="../_images/11_total_notation.jpg" style="width: 300px;" /></a>
 </div>
 </div>
-<div class="section" id="rolle-von-relationships">
-<h2><span class="section-number">5.5. </span>Rolle von Relationships<a class="headerlink" href="#rolle-von-relationships" title="Permalink to this headline">¶</a></h2>
-<p><img alt="title" src="../_images/rolle_relationship.jpg" /></p>
-<p>Entitytypen können mehr als einmal in einer Relationship auftauchen.
-<br>
-Entsprechend mehrere Kanten
-<br>
-Jede Kante entspricht einer anderen Rolle.
-<br>Die Kanten werden mit den entsprechenden Rollen annotiert.</p>
-<p><img alt="title" src="../_images/rolle_relationship2.jpg" /></p>
-<p>Stammstudio eines Schauspielers erlaubt einem anderen Studio den Schauspieler für einen bestimmten Film
-auszuleihen
-<br>
-<br>
-Kardinalitäten:
-<br>
-Gegeben Schauspieler, Film und produzierendes Studio, ist das ausleihenden Stammstudio eindeutig (höchstens
-ein Studio ist das ausleihende Stammstudio).
-<br>
-Gegeben Schauspieler, Film und Stammstudio ist das produzierende Studio eindeutig (höchstens ein Studio kann
-einen Film produzieren).
-<br>
-Gegeben Schauspieler, Stammstudio und produzierendes Studio könnte es mehrere Filme geben, die in dieser
-Konstellation gedreht werden.
-<br>
-Gegeben Film, Stammstudio und produzierendes Studio könnte es mehrere Schauspieler geben, die in dieser
-Konstellation ausgeliehen werden.</p>
+<div class="section" id="entitytypen-und-rollen">
+<h2><span class="section-number">5.5. </span>Entitytypen und Rollen<a class="headerlink" href="#entitytypen-und-rollen" title="Permalink to this headline">¶</a></h2>
+<p>Entitytypen können mehr als einmal in einer Relationship auftauchen, beziehungsweise kann Entitytyp durch ein Relationshiptyp mit sich selbst verbunden sein. Dabei tauchen Sie jeweils in unterschiedlichen <strong>Rollen</strong> auf. Die ER-Modellierung ermöglicht die explizite Modellierung von Rollen durch Annotation an den Kanten der Relationships.</p>
+<p><strong>Beispiel (Rolle 1):</strong> Im folgenden Beispiel wird modelliert, dass Filme Fortsetzungen von einander sein können. Dabei taucht der Entitytyp Film ein mal in der Rolle des Originals und ein mal in der Rolle der Fortsetzung mit dem Relationshiptypen “ist_Fortsetzung” auf.</p>
+<img alt="../_images/rolle_relationship.jpg" src="../_images/rolle_relationship.jpg" />
+<p><strong>Beispiel (Rolle 2):</strong> Im folgenden Beispiel taucht Studio in zwei Rollen auf: als Stammstudio und als Vertragsstudio.
+<img alt="../_images/rolle_relationship2.jpg" src="../_images/rolle_relationship2.jpg" /></p>
+<p>Diese Modellierung impliziert, dass das Stammstudio eines Schauspielers einem anderen Studio erlaubt den/die Schauspieler*in für einen bestimmten Film
+auszuleihen.</p>
+<p>Mit Hilfe von Rollen vermeidet man unnötig redundante Entitytypen zu modellieren. Theoretisch könnte man jede Rolle als einen Entitytypen modellieren. Dies würde bedeuten, dass wir zwei Entitytypen mit den gleichen Attributen und höchstwahrscheinlich einer großen Überlappung von Entities haben würden.</p>
 <div class="section" id="n-are-relationships">
 <h3><span class="section-number">5.5.1. </span>n-äre Relationships<a class="headerlink" href="#n-are-relationships" title="Permalink to this headline">¶</a></h3>
 <p>Relationships zwischen mehr als zwei Entities
@@ -1415,8 +1406,8 @@ Studio ist nicht der n-Teil der Relationship</p>
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "LUH-DBS/GDBS_Script",
+            ref: "gh-pages/",
         },
         codeMirrorConfig: {
             theme: "abcdef",
