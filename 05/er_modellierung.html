@@ -155,7 +155,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../imdb/imdb/Untitled1.html">
+  <a class="reference internal" href="../imdb/imdb/sql_cell_test.html">
    12. sql test
   </a>
  </li>
@@ -241,7 +241,7 @@ const thebe_selector_output = ".output, .cell_output"
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/gh-pages/?urlpath=tree/05/er_modellierung.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/main/?urlpath=tree/05/er_modellierung.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -997,32 +997,34 @@ auszuleihen.</p>
 <p>Relationshiptypen können auch zwischen mehreren bis zu “n” Entitytypen existieren. Beispielsweise könnte man die Beziehung, dass  ein/e Schauspieler*in  bei einem Studio für eine bestimmten Film unter Vertrag steht als einen ternären Relationshiptypen wie folgt dargestellt modellieren.</p>
 <a class="reference internal image-reference" href="../_images/n-aer_relationships.jpg"><img alt="../_images/n-aer_relationships.jpg" src="../_images/n-aer_relationships.jpg" style="width: 500px;" /></a>
 <p>Die Instanz eines solchen Relationshiptypen kann man dann als Tripel darstellen.</p>
-<p>Normalerweise versucht man n-äre Relationshiptypen zu verhindern, da diese schwer nachzuvollziehen sind. Insbesondere sind Kardinalitäten nicht sofort ersichtlich. In unserem Beispiel muss man genau überlegen, wie der Pfeil am Studio zu interpretieren ist. Aufgrund des Pfeiles kann jede Kombination von Schauspieler<em>in und Film  nur mit einem Studio in Beziehung stehen. Man könnte aber auch rauslesen, dass jede Schauspieler</em>in mit beliebig vielen Filmen aber nur einem Studio in einer Beziehung steht. Analog kann jeder Film nur mit einem Studio aber beliebig vielen Schauspieler*innen in Verbindung stehen. Um solche Mehrdeutigkeiten zu verhindern, sollte man sich bei der Modellierung auf binäre Relationshiptypen einschränken.</p>
+<p>Normalerweise versucht man n-äre Relationshiptypen zu vermeiden, da diese schwer nachzuvollziehen sind. Insbesondere sind Kardinalitäten nicht sofort ersichtlich. In unserem Beispiel muss man genau überlegen, wie der Pfeil am Studio zu interpretieren ist. Eine mögliche Interpretation ist des Pfeiles ist, dass jede Kombination von Schauspieler<em>in und Film mit nur einem Studio in Beziehung stehen. Man könnte aber auch rauslesen, dass jede Schauspieler</em>in mit beliebig vielen Filmen aber nur einem Studio in einer Beziehung steht. Analog kann jeder Film nur mit einem Studio aber beliebig vielen Schauspieler*innen in Verbindung stehen. Um solche Mehrdeutigkeiten zu verhindern, sollte man sich bei der Modellierung auf binäre Relationshiptypen einschränken.</p>
 </div>
 <div class="section" id="konvertierung-in-binare-relationships">
 <h3><span class="section-number">5.4.6. </span>Konvertierung in binäre Relationships<a class="headerlink" href="#konvertierung-in-binare-relationships" title="Permalink to this headline">¶</a></h3>
-<p>Umwandlung n-ärer Relationships in binäre Relationships
-<br>
-Erstellung eines neuen, verbindenden Entitytyps
-<br>
-Neue n:1 Relationships zwischen dem neuen Entitytyp und den alten Entitytypen
-<br>
-Falls ein Entitytyp mehrere Rollen spielt, entsteht pro Rolle ein Relationshiptyp.
-<br>
+<p>Manchmal bietet sich im Modellierungsprozess an zunächst komplexe Relationshiptypen als n-äre Relationshiptypen zu modellieren und diese erst dann in binäre Relationshiptypen umzuwandeln. Bei dieser Konvertierung entsteht ein neuer Entitytyp welches durch binäre N:1 Relationshiptypen alle anderen Entitytypen verbindet.</p>
+<p>Falls ein Entitytyp mehrere Rollen spielt, entsteht pro Rolle ein Relationshiptyp.
 Attribute des Relationshiptyps werden an den neuen Entitytyp angehängt.</p>
+<p><strong>Beispiel (Konvertierung in binäre Relationshiptypen):</strong> Im folgenden haben wir unser Modell mit dem 4-ären Relationshiptypen ist_unter_vertrag von <strong>Beispiel (Rolle 2)</strong> in ein Modell mit nur binären Relationshiptypen umgewandelt.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>n-äre Relationshiptypen</p></th>
+<th class="head"><p>konvertiert zu binären Relationshiptypen</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="../_images/rolle_relationship2.jpg"><img alt="../_images/rolle_relationship2.jpg" src="../_images/rolle_relationship2.jpg" style="width: 500px;" /></a></p></td>
+<td><p><a class="reference internal" href="../_images/n-aer_relationships_konvertiert.jpg"><img alt="../_images/n-aer_relationships_konvertiert.jpg" src="../_images/n-aer_relationships_konvertiert.jpg" style="width: 500px;" /></a></p></td>
+</tr>
+</tbody>
+</table>
+<p>Wir haben einen neuen Entitypen “Vertrag” definiert welche in N:1 Beziehung die ursprünglichen Beziehungen darstellt. Die Modellierung ist nicht vollständig äquivalent. Theoretisch könnte es nun mehrere Verträge mit der gleichen Kombination von  Studios, Schauspiler*innen und Filmen existieren. Das wären dann Vertragsduplikate. In der ursprünglichen Modellierung könnte das nicht passieren, da der Vertrag als Relationshiptyp mit entsprechenden Kardinalitäten eingeschränkt ist.</p>
 </div>
 <div class="section" id="attribute-an-relationships">
 <h3><span class="section-number">5.4.7. </span>Attribute an Relationships<a class="headerlink" href="#attribute-an-relationships" title="Permalink to this headline">¶</a></h3>
-<p>In manchen Fällen ist es hilfreich, Relationships Attribute zuzuordnen
-<br>
-Bsp: In dem Drehvertrag wird ein Gehalt festgestellt.
-<br>
-Zuordnung zu Schauspieler? Er könnte für verschiedene Filme unterschiedliche Gehälter bekommen.
-<br>
-Zuordnung zum Film? Verschiedene Schauspieler könnten unterschiedliche Gehälter bekommen.
-<br>
-Zuordnung zum Studio? Es könnte verschiedenen Schauspielern unterschiedliche Gehälter zahlen.</p>
-<p><img alt="title" src="../_images/attribute_relationship.jpg" /></p>
+<p>In manchen Fällen ist es hilfreich, Relationships Attribute zuzuordnen. Damit stellt man sicher, dass das Attribut nur gesetzt ist, wenn eine Beziehung zwischen zwei Entitytypen existiert.</p>
+<p><strong>Beispiel:</strong> Im folgenden Modell wird modelliert, dass in einem Vetrag ein Gehalt festgestellt wird. Eine Zuordnuung an Schauspieler<em>in, Film oder Studio ist hier nicht sinnvoll
+Eine Schauspieler</em>in könnte für verschiedene Filme unterschiedliche Gehälter bekommen. Verschiedene Schauspieler<em>innen könnten für den selben Film unterschiedliche Gehälter bekommen. Ein Studio könnte verschiedenen Schauspieler</em>innen unterschiedliche Gehälter zahlen.</p>
+<a class="reference internal image-reference" href="../_images/attribute_relationship.jpg"><img alt="../_images/attribute_relationship.jpg" src="../_images/attribute_relationship.jpg" style="width: 500px;" /></a>
 </div>
 </div>
 <div class="section" id="ist-beziehung">
@@ -1397,7 +1399,7 @@ Studio ist nicht der n-Teil der Relationship</p>
         requestKernel: true,
         binderOptions: {
             repo: "LUH-DBS/GDBS_Script",
-            ref: "gh-pages/",
+            ref: "main/",
         },
         codeMirrorConfig: {
             theme: "abcdef",
