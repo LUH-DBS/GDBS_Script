@@ -353,16 +353,9 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ist-beziehung">
-   5.5. IST-Beziehung
+  <a class="reference internal nav-link" href="#spezielle-relationshiptypen-ist-beziehung">
+   5.5. Spezielle Relationshiptypen: IST-Beziehung
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ist-beziehung-als-baume">
-     5.5.1. IST-Beziehung als Bäume
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#nebenbedingungen-constraints">
@@ -574,16 +567,9 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ist-beziehung">
-   5.5. IST-Beziehung
+  <a class="reference internal nav-link" href="#spezielle-relationshiptypen-ist-beziehung">
+   5.5. Spezielle Relationshiptypen: IST-Beziehung
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ist-beziehung-als-baume">
-     5.5.1. IST-Beziehung als Bäume
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#nebenbedingungen-constraints">
@@ -1027,53 +1013,24 @@ Eine Schauspieler</em>in könnte für verschiedene Filme unterschiedliche Gehäl
 <a class="reference internal image-reference" href="../_images/attribute_relationship.jpg"><img alt="../_images/attribute_relationship.jpg" src="../_images/attribute_relationship.jpg" style="width: 500px;" /></a>
 </div>
 </div>
-<div class="section" id="ist-beziehung">
-<h2><span class="section-number">5.5. </span>IST-Beziehung<a class="headerlink" href="#ist-beziehung" title="Permalink to this headline">¶</a></h2>
-<p>Subklasse
-<br>
-Spezialfall / Spezialisierung
-<br>
-Weniger Entities
-<br>
-Mehr Attribute
-<br>
-Eventl. mehr Relationships
-<br>
-Besonderer Relationshiptyp
-<br>
-IST (is-a)
-<br>
-Darstellung durch Dreieck
-<br>
-Spitze zeigt zur Superklasse
-<br>
-Immer 1:1
-<br>
-Trotzdem keine Pfeile</p>
-<div class="section" id="ist-beziehung-als-baume">
-<h3><span class="section-number">5.5.1. </span>IST-Beziehung als Bäume<a class="headerlink" href="#ist-beziehung-als-baume" title="Permalink to this headline">¶</a></h3>
-<p>IST-Beziehungen nur als Bäume
-<br>
-Keine Mehrfachvererbung
-<br>
-Ein Entity kann aus mehreren Komponenten des IST-Baumes bestehen.
-<br>
-„Krieg der Sterne“ hat vier Attribute.
-<br>
-„Cinderella“ hat vier Attribute und „Stimmen“-Relationships.
-<br>
-„Der dritte Mann“ hat vier Attribute und zusätzlich das Attribut „Waffen“.
-<br>
-„Roger Rabbit“ hat vier Attribute, zusätzlich das Attribut „Waffen“ und „Stimmen“-Relationships.
-<br>
-Anders als objekt-orientierte Modelle
-<br>
-In OO sind Objekte immer in genau einer Klasse; Subklassen erben von Superklasse(n).
-<br>
+<div class="section" id="spezielle-relationshiptypen-ist-beziehung">
+<h2><span class="section-number">5.5. </span>Spezielle Relationshiptypen: IST-Beziehung<a class="headerlink" href="#spezielle-relationshiptypen-ist-beziehung" title="Permalink to this headline">¶</a></h2>
+<p>Das ER-Modell erlaubt spezielle Beziehungen, wie Subklassenbeziehungen explizit zu modellieren. Dabei wird modelliert, dass ein Entitytyp in einer Subklassenbeziehung zu einem anderen Entitytypen steht. Dabei ist die Subklasse jeweils eine Spezialisierung der oberen Klasse. Somit gibt könnte es weniger Entitäten in der Subklasse geben, die jedoch mehr spezialisiere Attribute haben und in weiteren speziellen Relationshiptypen auftauchen.
+Im ER-Modell gibt es hierzu den Relationshiptypen IST oder is-a. Zudem wird der Relationshiptyp als Dreieck dargestellt wobei die Spitze des Dreiecks zur Superklasse zeigt. IST-Relationshiptypen haben immer eine 1:1 Kardinalität: Ein Entity der Subklasse ist auch immer Entity der Superklasse. Pfeile sind bei dieser Darstellung nicht notwendig.
+Das ist anders als bei objekt-orientierte (OO) Modelle
+In OO sind Objekte immer einer Klassezugehörig und Subklassen erben von Superklasse.
 In ER sind Entities in allen Subklassen repräsentiert, in die sie gehören.
 <br>
 In ER ist ein Entity in einer Subklasse auch automatisch in den Superklassen repräsentiert.</p>
-</div>
+<p><strong>Beispiel (ist-relationship):</strong> In folgenden Beispiel wurde modelliert, dass jede Filmentität entweder der Subklasse Krimi oder Zeichentrickfilm beiden oder keinem angehören kann. Die Entität muss dann entsprechend in den jeweiligen Entitytypen auftauchen.</p>
+<a class="reference internal image-reference" href="../_images/ist_relationship.jpg"><img alt="../_images/ist_relationship.jpg" src="../_images/ist_relationship.jpg" style="width: 500px;" /></a>
+<p>Beispielfilme:</p>
+<ul class="simple">
+<li><p>„Krieg der Sterne“ ist weder ein Zeichentrickfilm noch ein Krimi und hat somit vier Attribute.</p></li>
+<li><p>„Prinzessin Mononoke“ ist ein Zeichentrickfilm und hat somit vier Attribute und „Stimmen“-Relationships.</p></li>
+<li><p>„Prisoner“ hat vier Attribute und zusätzlich das Attribut „Waffen“.</p></li>
+<li><p>„Roger Rabbit“ ist sowohl ein Krimi als auch ein Zeichentrickfilm und hat somit die vier Filmattribute, zusätzlich das Attribut „Waffen“ und „Stimmen“-Relationships.</p></li>
+</ul>
 </div>
 <div class="section" id="nebenbedingungen-constraints">
 <h2><span class="section-number">5.6. </span>Nebenbedingungen(Constraints)<a class="headerlink" href="#nebenbedingungen-constraints" title="Permalink to this headline">¶</a></h2>
