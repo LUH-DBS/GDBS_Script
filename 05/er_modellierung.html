@@ -154,11 +154,6 @@ const thebe_selector_output = ".output, .cell_output"
    11. Transaktionsmanagement
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../imdb/imdb/sql_cell_test.html">
-   12. sql test
-  </a>
- </li>
 </ul>
 
     </div>
@@ -361,101 +356,81 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#nebenbedingungen-constraints">
    5.6. Nebenbedingungen(Constraints)
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#schlussel">
-   5.7. Schlüssel
-  </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schlussel">
+     5.6.1. Schlüssel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#referentielle-integritat">
-     5.7.1. Referentielle Integrität
+     5.6.2. Referentielle Integrität
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#weitere-nebenbedingungen">
-     5.7.2. Weitere Nebenbedingungen
+     5.6.3. Weitere Nebenbedingungen
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#schwache-entitytypen">
-   5.8. Schwache Entitytypen
+   5.7. Schwache Entitytypen
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#motivation">
-     5.8.1. Motivation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     5.8.2. Schwache Entitytypen
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#schlussel-schwacher-entitytypen">
-     5.8.3. Schlüssel schwacher Entitytypen
+    <a class="reference internal nav-link" href="#kann-man-schwache-entitytypen-vermeiden">
+     5.7.1. Kann man schwache Entitytypen vermeiden?
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#erweitertes-er-modell">
-   5.9. Erweitertes ER-Modell
+  <a class="reference internal nav-link" href="#erweitertes-er-modell-eer">
+   5.8. Erweitertes ER-Modell (EER)
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#weitere-attributarten">
-     5.9.1. Weitere Attributarten
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#spezialisierung-generalisierung">
-     5.9.2. Spezialisierung Generalisierung
+     5.8.1. Weitere Attributarten
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#aggregation">
-     5.9.3. Aggregation
+     5.8.2. Aggregation
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#designprinzipien">
-   5.10. Designprinzipien
+   5.9. Designprinzipien
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#grundprinzipien">
-     5.10.1. Grundprinzipien
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#anwendungstreue">
-     5.10.2. Anwendungstreue
+     5.9.1. Anwendungstreue
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#redundanz">
-     5.10.3. Redundanz
+     5.9.2. Redundanz
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#einfachheit">
-     5.10.4. Einfachheit
+     5.9.3. Einfachheit
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#relationships">
-     5.10.5. Relationships
+     5.9.4. Relationships
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#attribut-vs-element">
-     5.10.6. Attribut vs. Element
+     5.9.5. Attribut vs. Element
     </a>
    </li>
   </ul>
@@ -575,101 +550,81 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#nebenbedingungen-constraints">
    5.6. Nebenbedingungen(Constraints)
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#schlussel">
-   5.7. Schlüssel
-  </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schlussel">
+     5.6.1. Schlüssel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#referentielle-integritat">
-     5.7.1. Referentielle Integrität
+     5.6.2. Referentielle Integrität
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#weitere-nebenbedingungen">
-     5.7.2. Weitere Nebenbedingungen
+     5.6.3. Weitere Nebenbedingungen
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#schwache-entitytypen">
-   5.8. Schwache Entitytypen
+   5.7. Schwache Entitytypen
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#motivation">
-     5.8.1. Motivation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     5.8.2. Schwache Entitytypen
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#schlussel-schwacher-entitytypen">
-     5.8.3. Schlüssel schwacher Entitytypen
+    <a class="reference internal nav-link" href="#kann-man-schwache-entitytypen-vermeiden">
+     5.7.1. Kann man schwache Entitytypen vermeiden?
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#erweitertes-er-modell">
-   5.9. Erweitertes ER-Modell
+  <a class="reference internal nav-link" href="#erweitertes-er-modell-eer">
+   5.8. Erweitertes ER-Modell (EER)
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#weitere-attributarten">
-     5.9.1. Weitere Attributarten
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#spezialisierung-generalisierung">
-     5.9.2. Spezialisierung Generalisierung
+     5.8.1. Weitere Attributarten
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#aggregation">
-     5.9.3. Aggregation
+     5.8.2. Aggregation
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#designprinzipien">
-   5.10. Designprinzipien
+   5.9. Designprinzipien
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#grundprinzipien">
-     5.10.1. Grundprinzipien
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#anwendungstreue">
-     5.10.2. Anwendungstreue
+     5.9.1. Anwendungstreue
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#redundanz">
-     5.10.3. Redundanz
+     5.9.2. Redundanz
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#einfachheit">
-     5.10.4. Einfachheit
+     5.9.3. Einfachheit
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#relationships">
-     5.10.5. Relationships
+     5.9.4. Relationships
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#attribut-vs-element">
-     5.10.6. Attribut vs. Element
+     5.9.5. Attribut vs. Element
     </a>
    </li>
   </ul>
@@ -1019,9 +974,7 @@ Eine Schauspieler</em>in könnte für verschiedene Filme unterschiedliche Gehäl
 Im ER-Modell gibt es hierzu den Relationshiptypen IST oder is-a. Zudem wird der Relationshiptyp als Dreieck dargestellt wobei die Spitze des Dreiecks zur Superklasse zeigt. IST-Relationshiptypen haben immer eine 1:1 Kardinalität: Ein Entity der Subklasse ist auch immer Entity der Superklasse. Pfeile sind bei dieser Darstellung nicht notwendig.
 Das ist anders als bei objekt-orientierte (OO) Modelle
 In OO sind Objekte immer einer Klassezugehörig und Subklassen erben von Superklasse.
-In ER sind Entities in allen Subklassen repräsentiert, in die sie gehören.
-<br>
-In ER ist ein Entity in einer Subklasse auch automatisch in den Superklassen repräsentiert.</p>
+In ER sind Entities in allen Subklassen repräsentiert, in die sie gehören, und der jeweiligen Superklasse.</p>
 <p><strong>Beispiel (ist-relationship):</strong> In folgenden Beispiel wurde modelliert, dass jede Filmentität entweder der Subklasse Krimi oder Zeichentrickfilm beiden oder keinem angehören kann. Die Entität muss dann entsprechend in den jeweiligen Entitytypen auftauchen.</p>
 <a class="reference internal image-reference" href="../_images/ist_relationship.jpg"><img alt="../_images/ist_relationship.jpg" src="../_images/ist_relationship.jpg" style="width: 500px;" /></a>
 <p>Beispielfilme:</p>
@@ -1034,279 +987,115 @@ In ER ist ein Entity in einer Subklasse auch automatisch in den Superklassen rep
 </div>
 <div class="section" id="nebenbedingungen-constraints">
 <h2><span class="section-number">5.6. </span>Nebenbedingungen(Constraints)<a class="headerlink" href="#nebenbedingungen-constraints" title="Permalink to this headline">¶</a></h2>
-<p>Schlüssel
-<br>
-Ein oder mehrere Attribute
-<br>
-Werte identifizieren eindeutig ein Entity.
-<br>
-Referentielle Integrität
-<br>
-Existenz des referenzierten Entities
-<br>
-Entspricht „dangling pointer“
-<br>
-Domänen
-<br>
-Einschränkung des Wertebereichs
-<br>
-Allgemeine Nebenbedingungen (assertions)
-<br>
-Z.B. nicht mehr als 10 Schauspieler pro Film
-<br>
-Nebenbedingungen sind Teil des Schemas. Sie leiten sich nicht aus den Daten ab!</p>
-</div>
+<p>Daten unterliegen häufig bestimmten Einschränkungen und Nebenbedingungen. Nebenbedingungen dienen oft dazu Entitytypen und Relatioshiptypen eindeutig identifizieren oder einschränken zu können.
+Zu den gebräuchlichen Nebenbedingungen gehören unter anderem Schlüssel und Fremdschlüssel. Schlüssel sind Attributkombinationen die Entities eindeutig identifizierbar machen. Fremdschlüssel andererseits stellen referenzielle Integrität her. Damit wird die Existenz von bestimmten Entitytypen von anderen abhängig. Andere Einschränkungen betreffen Wertebereiche von Attribute und Kardinalitäten. Wir werden im Folgenden die wichtigsten Nebenbedingungen, die man im Rahmen der ER-Modellierung verwendet genauer betrachten. Wichtig ist bei der Bewertung von Nebenbedingung, dass diese als Teil des konzeptionellen Entwurfes allgemeingültig definiert werden. Zufällig existierende Beziehungen in konkreten Daten können nicht automatisch zur Nebenbedingung qualifiziert werden.</p>
 <div class="section" id="schlussel">
-<h2><span class="section-number">5.7. </span>Schlüssel<a class="headerlink" href="#schlussel" title="Permalink to this headline">¶</a></h2>
-<p>Ein Schlüssel ist eine (minimale) Menge von Attributen eines Entitytyps, für die gilt, dass keine zwei Entities gleiche Werte in allen Schlüsselattributen haben.
-<br>
-Einige Attributwerte können übereinstimmen.
-<br>
-Oft nur ein Attribut
-<br>
-Für jeden Entitytyp muss ein Schlüssel angegeben werden.
-<br>
-Es kann mehr als einen Schlüssel für einen Entitytyp geben.
-<br>
-Üblich: Primärschlüssel auswählen
-<br>
-Bei IST-Beziehungen muss die Wurzel-Superklasse sämtliche Schlüsselattribute enthalten.
-<br>
-Darstellung durch Unterstreichen der Attributnamen</p>
+<h3><span class="section-number">5.6.1. </span>Schlüssel<a class="headerlink" href="#schlussel" title="Permalink to this headline">¶</a></h3>
+<p>Ein Schlüssel ist eine (minimale) Menge von Attributen eines Entitytyps, für die gilt, dass keine zwei Entities gleiche Werte in allen Schlüsselattributen haben. Beispielsweise könnte für unseren Entitytypen Filem die Kombination aus Film und Jahr als Schlüssel fungieren. Die Wahl eines solchen Schlüssels muss mit Bedacht geschehen. Die Unterscheidbarkeit von Entities in der realen Welt muss durch die Schlüsseleigenschaften gewährleistet sein. Anderenfalls wird man ähnliche Entities nicht zeitgleich im Modell aufnehmen und von einander unterscheiden können. Würde man beispielsweise, nur den Titel eines Films als den Schlüssel auswählen, könnte man nicht mehr unterschiedliche Filme mit dem gleichen Titel von einander unterscheiden. Dabei gibt es oft Wiederverfilmungen der gleichen Geschichte mit dem gleichen Titel, wie z.B. “Hamlet”, “King Kong”. Die Kombination {Titel, Jahr} ist hier wahrscheinlich sinnvoller.</p>
+<p>Generell muss bei der ER-Modellierung für jeden Entitytypen ein Schlüssel angegeben werden. Manchmal gibt es mehrere Möglichkeiten einen Schlüssel zu definieren. Beispielsweise wird in Deutschland jede Person durch die Personalausweisnummer sowie der Steuernummer eindeutig identifiziert. Bei Modellierung von Entitytypen ist es jedoch üblich einen Primärschlüssel auszuwählen. Bei IST-Beziehungen muss die Wurzel-Superklasse sämtliche Schlüsselattribute enthalten.</p>
+<p>Schlüsselattribute werden im ER-Modell durch Unterstreichen der Attributnamen dargestellt.</p>
+<p><strong>Beispiel:</strong> Im folgenden Beispiel haben wir für jeden Entitytypen Schlüsselattribute angegeben. Filme werden durch {Titel, Jahr} , Schauspieler*innen durch {Name, Adresse} und Studios durch {Name} jeweils eindeutig identifziert.</p>
+<a class="reference internal image-reference" href="../_images/schluesselbeispiel_film.jpg"><img alt="../_images/schluesselbeispiel_film.jpg" src="../_images/schluesselbeispiel_film.jpg" style="width: 500px;" /></a>
+</div>
 <div class="section" id="referentielle-integritat">
-<h3><span class="section-number">5.7.1. </span>Referentielle Integrität<a class="headerlink" href="#referentielle-integritat" title="Permalink to this headline">¶</a></h3>
-<p>Schlüssel: Höchstens ein bestimmter Wert für ein Attribut
-<br>
-Bzw. höchstens eine Wertekombination bei mehreren Attributen im Schlüssel
-<br>
-Referentielle Integrität: Genau ein bestimmter Wert
-<br>
-Bsp. n:1 Relationship zwischen „Filme“ und „Studios“
-<br>
-Ein Film kann zu höchsten einem Studio gehören.
-<br>
-Aber ein Film muss zu keinem Studio gehören.
-<br>
-Auch wenn ein Film zu einem Studio gehört, muss dieses nicht in der DB repräsentiert sein.
-<br>
-Referentielle Integrität erzwingt die Existenz und Repräsentation des Studios
-<br>
-„Erzwingen“
-<br>
-Bei Einfügen/Ändern eines Films muss entsprechendes Studio vorhanden sein.
-<br>
-Ein Studio darf nicht gelöscht werden, solange es noch Filme besitzt.
-&lt;br&lt;
-Oder: Wenn ein Studio gelöscht wird, werden auch alle entsprechenden Filme gelöscht.
-<br>
-Verschiedene Einstellungen im DBMS</p>
-<p><img alt="title" src="../_images/referentielle_integritaet.jpg" /></p>
+<h3><span class="section-number">5.6.2. </span>Referentielle Integrität<a class="headerlink" href="#referentielle-integritat" title="Permalink to this headline">¶</a></h3>
+<p>Referentielle Integrität erzwingt die Zuordnung von Entities zu einem Entity eines anderen Entitytypen. Bisher haben wir N:1-Relationshiptypen betrachtet, bei denen gilt, dass eine Beziehung zwischen einem Entity der n-Seite mit höchstens einem Entitytypen der 1-Seite existiert. Aber in diese Modellierung kann ein Entity der n-Seite auch mit keinem Entity der 1-Seite in Verbingung stehen. Beispiesweise kann in unserem Film-Beispiel ein Film zu höchstens einem Studio gehören. Ein Film kann auch ohne ein Studio existieren.
+Referentielle Integrität erzwingt die Existenz und Repräsentation des Studios. Damit stellt man sicher, dass nur Filme in der Datenbank aufgenommen werden, die auch wirklich einem Studio zugehören.
+Das heißtl, dass das Datenbanksystem beim Einfügen/Ändern eines Films muss prüfen muss, dass ein entsprechendes Studio vorhanden ist. Weiterhin wird sicher gestellt, dass ein Studio nicht gelöscht werden darf, solange es noch Filme besitzt.</p>
+<p>Die Darstellung von referenzieller Integrität erfolgt im ER-Modell anhand eines offenen Pfeiles. Diese Darstellung haben wir für die Modellierung von totalen Beziehungen kennen gelernt. Eine referenzielle Integrität beschreibt tatsächlich eine totale Abbildung eines Entitytypen auf einen anderen Entitytypen.</p>
+<p><strong>Beispiel:</strong> Im folgenden Beispiel wird an zwei Stellen referenzielle Integrität erzwungen. Zunächst wird erzwungen, dass jeder Film genau einem Studio zugeordnet werden muss. Weiterhin leitet jede/r Vorsitzend/e genau ein Studio. Vorsitzende können nicht ohne Studios existieren. Ein Studio kann jedoch ohne Vorsitzende existieren.</p>
+<a class="reference internal image-reference" href="../_images/referentielle_integritaet.jpg"><img alt="../_images/referentielle_integritaet.jpg" src="../_images/referentielle_integritaet.jpg" style="width: 500px;" /></a>
 </div>
 <div class="section" id="weitere-nebenbedingungen">
-<h3><span class="section-number">5.7.2. </span>Weitere Nebenbedingungen<a class="headerlink" href="#weitere-nebenbedingungen" title="Permalink to this headline">¶</a></h3>
-<p>Ohne formale Notation im ER-Diagramm
-<br>
-Datentyp
-<br>
-Integer, String, …
-<br>
-Wertebereich / Domäne
-<br>
-≤ 100, {Krimi,Doku,Zeichentrick}
-<br>
-Länge eines Attributes
-<br>
-Stringlänge &lt; 25
-<br>
-Kardinalität von Relationships
-<br>
-Höchstens 10 Schauspieler pro Film
-<br>
-Oder mittels min/max Notation</p>
+<h3><span class="section-number">5.6.3. </span>Weitere Nebenbedingungen<a class="headerlink" href="#weitere-nebenbedingungen" title="Permalink to this headline">¶</a></h3>
+<p>Es gibt weitere Nebenbedingungen, die man informell mitmodellieren kann. Beispielsweise könnte man Datentypen, und Wertebereiche von Attribute modellieren. Grundsätzlich ist an dieser Stelle, dieser Detailgrad vermutlich nicht sinnvoll, da Datentypen oft Datenbankabhängig sind.
+Was man jedoch möglicherweise bereits modellieren möchte, sind alle Einschränkungen hinsichtlich Kardinalitäten. Hierzu haben wir die min/max und die numerische Notation kennen gelernt, die uns erlauben die Anzahl der Beziehungen, die ein Entity eingehen kann genauer zu spezifizieren und zu erzwingen.</p>
 </div>
 </div>
 <div class="section" id="schwache-entitytypen">
-<h2><span class="section-number">5.8. </span>Schwache Entitytypen<a class="headerlink" href="#schwache-entitytypen" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="motivation">
-<h3><span class="section-number">5.8.1. </span>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h3>
-<p>Motivation
-<br>
-In bestimmten Situationen können Entities nicht allein anhand ihrer Attribute identifiziert werden:
+<h2><span class="section-number">5.7. </span>Schwache Entitytypen<a class="headerlink" href="#schwache-entitytypen" title="Permalink to this headline">¶</a></h2>
+<p>In bestimmten Situationen können Entities nicht allein anhand ihrer Attribute identifiziert werden:
 <br></p>
 <ol class="simple">
-<li><p>Falls sie in eine nicht-IST-Hierarchie fallen.
+<li><p>Falls sie in eine Teil-Von-Hierarchie fallen. Zum Beispiel sind Geschäftszweige Untergruppen eines Unternehmens und benötigen zur weiteren Identifizierung auch die Bezeichnung des Unternehmens. Dies ist anders in der IST-Hierarchie, in der Subklassen Spezialisierungen aber nicht Bausteine der generalisierenden Entitytypen sind.<br />
 <br></p></li>
 <li><p>Entities, die zur Eliminierung n-ärer Relationships erschaffen wurden.
-<br>
-Ein Entitytyp ist schwach wenn es zur eindeutigen Identifizierung eines Entities nötig ist, eine oder mehr n:1 Relationships zu folgen und den Schlüssel der verwandten Entities hinzuzunehmen.</p></li>
+<br></p></li>
 </ol>
-<p><img alt="title" src="../_images/schwache_ent_bsp1.jpg" /></p>
-<p>Ein Studio beschäftigt mehrere Filmcrews.
-<br>
-Filmcrews werden mit einer Nummer versehen.
-<br>
-Verschiedene Studios könnten eigene Crews mit gleichen Nummern beschäftigen.
-<br>
-Nummer ist also kein Schlüssel
-<br>
-Nimmt man den Schlüssel der Studios hinzu ist eine eindeutige Identifizierung möglich.</p>
-<p><img alt="title" src="../_images/schwache_ent_bsp2.jpg" /></p>
-<p>Eine Spezies ist definiert durch den Namen der Gattung und des Spezies.
-<br>
-Gattung: homo
-<br>
-Spezies: homo sapiens</p>
-<p><img alt="title" src="../_images/schwache_ent_bsp3.jpg" /></p>
-<p>Fall 2: Auflösung einer ternären Relationship Vertrag hat kein Attribut, das Teil des Schlüssels ist.</p>
-<p><img alt="title" src="../_images/schwache_ent_bsp4.jpg" /></p>
-</div>
-<div class="section" id="id2">
-<h3><span class="section-number">5.8.2. </span>Schwache Entitytypen<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<p>Man scheut sich oft einen Schlüssel zu deklarieren.
-<br>
-Die Folge: Man schwächt ein Entitytyp und macht alle seine Relationships zu unterstützenden Relationships.
-<br>
-In der Realität werden sehr oft künstliche IDs verwendet.
-<br>
-ISBN, SNN, VIN, etc.
-<br>
-Grund für das Fehlen eines solchen Schlüssels: Es gibt keine entsprechende Autorität, die einen solchen Schlüssel vergeben könnte.
-<br>
-Bsp: Es ist unwahrscheinlich, dass jedem Fußballer der Welt eine eindeutige ID zugewiesen wird.</p>
-</div>
-<div class="section" id="schlussel-schwacher-entitytypen">
-<h3><span class="section-number">5.8.3. </span>Schlüssel schwacher Entitytypen<a class="headerlink" href="#schlussel-schwacher-entitytypen" title="Permalink to this headline">¶</a></h3>
-<p>Falls E ein schwacher Entitytyp ist, besteht sein Schlüssel aus…
-<br>
-… null oder mehr eigenen Attributen
-<br>
-… und den Schlüsselattributen von Entitytypen, die über bestimmte n:1
-<br>
-Relationshiptypen, den „unterstützenden Relationshiptypen“ erreicht werden können.
-<br>
-Supporting relationships
-<br>
-Unterstützende Relationshiptypen
-<br>
-n:1 vom schwachen Entitytypen zu einem anderen Entitytypen
-<br>
-Es muss referentielle Integrität gelten.
-<br>
+<p>Solche Entitytypen werden als schwache Entitytypen bezeichnet.
+Ein Entitytyp ist schwach, wenn es zur eindeutigen Identifizierung dessen Entities, n:1 Relationshiptypen zu anderen Entities hinzugezogen werden müssen um Schlüssel der verwandten Entities hinzuzunehmen. Die Darstellung eines schachen Entitytypen erfolft durch eine doppelte Umrandung des Entitytypen. Zudem werden alle unterstützenden N:1 Relationshiptypen doppelt umrandet. Man kann hier zur besseren Verdeutlichung auch den pfeil der totalen Beziehung nutzen.</p>
+<p>Falls E ein schwacher Entitytyp ist, besteht sein Schlüssel aus…</p>
+<ul class="simple">
+<li><p>… null oder mehr eigenen Attributen</p></li>
+<li><p>… und den Schlüsselattributen von Entitytypen, die über „unterstützenden Relationshiptypen“ n:1 erreicht werden können.
+<br></p></li>
+</ul>
+<p>Unterstützende Relationshiptypen bilden n:1 vom schwachen Entitytypen zu einem anderen Entitytypen ab.
+Es muss hierbei referentielle Integrität gelten, das heißt, dass die Abbildung total sein muss.
 Falls referenzierter Entitytyp wiederum schwach ist, werden (rekursiv) weitere Schlüsselattribute übernommen.</p>
+<p><strong>Beispiel(Nicht-IST-Hierarchie 1):</strong>
+Im folgenden Beispiel sieht man die Modellierung von Crews und Studios. Es ist davon auszugehen, dass jedes Studio mehrere Crews hat. Das heißt, dass eine strukturelle Hierarchie hier herrscht. Jede Crew hat zwar eine Nummer als Schlüssel, es ist jedoch unwahrscheinlich, dass Crews verschiedener Studios immer unterschiedliche Nummern haben. Vermutlich fängt die Numerierung in jedem Studio bei 1 an. Deshalb ist zu der Idenzifizierung einer Crew, in einer Datenbank auch der Schlüssel des jeweiligen Studios notwendig. Damit ist Crew ein schwacher Entitytyp.</p>
+<a class="reference internal image-reference" href="../_images/schwache_ent_bsp1.jpg"><img alt="../_images/schwache_ent_bsp1.jpg" src="../_images/schwache_ent_bsp1.jpg" style="width: 500px;" /></a>
+<p><strong>Beispiel (Auflösung n-ärer Relationshiptypen):</strong> Der Entitytyp-vetrag wurde als Verbindungsentityp eingeführt um den 3-ären Relationshiptypen ist_unter_Vertrag durch mehrere binäre Relationshiptypen zu ersetzen. Beachten Sie, dass all jene Relationshiptypen N:1 sind. Es sollte nicht möglich sein, dass ein Vetrag ohne Zuordnung zu allen Parteien, wie Schauspieler*in und Studio sowie dem eigentlichen Film als Gegenstand des Vertrages existiert. Damit ist Vetrag ein schwacher Entitytyp und kann nur durch die Aufzählung der Schlüssel aller anderen in Beziehung stehenden Entitytypen eindeutig identifiziert werden.</p>
+<a class="reference internal image-reference" href="../_images/schwache_ent_bsp3.jpg"><img alt="../_images/schwache_ent_bsp3.jpg" src="../_images/schwache_ent_bsp3.jpg" style="width: 500px;" /></a>
+<div class="section" id="kann-man-schwache-entitytypen-vermeiden">
+<h3><span class="section-number">5.7.1. </span>Kann man schwache Entitytypen vermeiden?<a class="headerlink" href="#kann-man-schwache-entitytypen-vermeiden" title="Permalink to this headline">¶</a></h3>
+<p>Eine der Ursachen für die Entstehung von schwachen Entitytypen ist, dass es nicht möglich ist einen allgemeingültigen Schlüssel zu deklarieren.
+In der Realität werden sehr oft künstliche IDs verwendet.</p>
+<ul class="simple">
+<li><p>ISBN, SNN, VIN, etc.</p></li>
+</ul>
+<p>Für unser Vertragsbeispiel hätten wir theoretisch auch eine Vertragsnummer definieren können. Zwar hätten wir immernoch die totale Beziehung zu den Vertragsgegenständen und Parteien, jedoch wäre jeder Vertrag als solches eindeutig identifizierbar.</p>
+<p>Um ein solches künstliches Schlüssel zu definieren bedarf es einer anerkannten Autorität.</p>
 </div>
 </div>
-<div class="section" id="erweitertes-er-modell">
-<h2><span class="section-number">5.9. </span>Erweitertes ER-Modell<a class="headerlink" href="#erweitertes-er-modell" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="erweitertes-er-modell-eer">
+<h2><span class="section-number">5.8. </span>Erweitertes ER-Modell (EER)<a class="headerlink" href="#erweitertes-er-modell-eer" title="Permalink to this headline">¶</a></h2>
+<p>Bisher haben wir die Kernkonzepte der ER-Modellierung kennen gelernt. Die ER-Modellierungssprache beinhaltet auch weitere Erweiterungen, die es ermöglichen, Konzepte konkreter zu modellieren. In dieser Vorlesung stellen wir lediglich einige dieser Möglichkeiten vor.</p>
 <div class="section" id="weitere-attributarten">
-<h3><span class="section-number">5.9.1. </span>Weitere Attributarten<a class="headerlink" href="#weitere-attributarten" title="Permalink to this headline">¶</a></h3>
-<p><img alt="title" src="../_images/weitere_attributnamen.jpg" /></p>
-<p>Optionales Attribut
-<br>
-Attributwert nicht für jede Entität vorhanden
-<br>
-Abgeleitetes Attribut
-<br>
-Wert wird anhand einer Berechnungsvorschrift aus nicht-abgeleiteten Attributen errechnet.
-<br>
-Mengenwertiges Attribut
-<br>
-Enthält Menge von Werten
-<br>
-Strukturiertes Attribut
-<br>
-Wird durch weitere Attribute beschrieben
-<br>
-Wert des strukturierten Attributs entspricht Verkettung der Unterattribute.</p>
-</div>
-<div class="section" id="spezialisierung-generalisierung">
-<h3><span class="section-number">5.9.2. </span>Spezialisierung Generalisierung<a class="headerlink" href="#spezialisierung-generalisierung" title="Permalink to this headline">¶</a></h3>
-<p>Spezialisierung
-<br>
-entpricht IST-Beziehung
-<br>
-Drachen sind Spezialisierung von Produkt
-<br>
-Generalisierung
-<br>
-Entities in einen allgemeineren Kontext
-<br>
-Drachen oder Windspiel als Produkt
-<br>
-Partitionierung
-<br>
-mehrere disjunkte Entity-Typen
-<br>
-Spezialfall der Spezialisierung
-<br>
-Partitionierung von Produkten in Zubehör und Drachen</p>
+<h3><span class="section-number">5.8.1. </span>Weitere Attributarten<a class="headerlink" href="#weitere-attributarten" title="Permalink to this headline">¶</a></h3>
+<p>Die erste Erweiterung im EER sind weiter Spezifikationen von Attribute. Wie in den dargestellten Beispielen zu sehen ist ist es möglich verschiedene Nebenbedingungen zu modellieren.</p>
+<img alt="../_images/weitere_attributnamen.jpg" src="../_images/weitere_attributnamen.jpg" />
+<p><strong>Optionales Attribut</strong>  ist ein Attribut, bei dem der Attributwert nicht für jede Entität vorhanden sein muss. Dies wird durch ein O auf der Verbindungskante gezeigt. Beispielsweise, handelt es sich bei Telefon um ein Optionales Attribut.</p>
+<p><strong>Abgeleitetes Attribut</strong> ist ein Attribut, dessen Wert von anderen Attributen hergeleitet werden kann. Beispielsweise kann der Bruttopreis aus dem Nettopreis und dem Steuersatz berechnet werden.</p>
+<p><strong>Mengenwertiges Attribut</strong> enthält eine Menge von Werten. Beispielsweise kann ein Kunde mehrere Vornamen haben.</p>
+<p><strong>Strukturiertes Attribut</strong> ist ein Attribut welches sich aus anderen Attributen zusammensetzt. Beispielsweise setzt sich eine Adresse aus drei unterschiedlichen Komponenten zusammen: Straßenname, Postleitzahl und Ort.</p>
 </div>
 <div class="section" id="aggregation">
-<h3><span class="section-number">5.9.3. </span>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">¶</a></h3>
-<p>Generalisierung (IST): Gleichartige Entitytypen (is-a)
-<br>
-Aggregation: Unterschiedliche Entitytypen
-<br>
-„Teil-von“ (part-of)
-<br>
-Entity aus einzelnen Instanzen anderer Entity-Typen zusammengesetzt.</p>
-<p><img alt="title" src="../_images/aggregation.jpg" /></p>
+<h3><span class="section-number">5.8.2. </span>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">¶</a></h3>
+<p>Wir haben bereits die IST-Beziehung kennen gelernt. Wir haben auch über Teil-von-Beziehungen im Rahmen von schwachen Entitytypen gesprochen. Im EER werden letztere als Aggregationen dargestellt und ermöglichen eine entsprechende Visualisierung, die man durch hierarchie Darstellung der Zusammensetzung wie unten im Fahrradbeispiel zu sehen ist, modellieren kann.<br />
+Ohne EER-Semantik müsste man die Kardinalitäten zusätzlich modellieren. In der Darstellung unten, erwartet man, dass diese Kardinalitäten implizit vorhanden sind.</p>
+<img alt="../_images/aggregation.jpg" src="../_images/aggregation.jpg" />
 </div>
 </div>
 <div class="section" id="designprinzipien">
-<h2><span class="section-number">5.10. </span>Designprinzipien<a class="headerlink" href="#designprinzipien" title="Permalink to this headline">¶</a></h2>
-<p>Einleitungstext.</p>
-<div class="section" id="grundprinzipien">
-<h3><span class="section-number">5.10.1. </span>Grundprinzipien<a class="headerlink" href="#grundprinzipien" title="Permalink to this headline">¶</a></h3>
-<p>Treue zur Anwendung
-<br>
-Vermeidung von Redundanz
-<br>
-Einfachheit
-<br>
-Sparsamer Einsatz von Relationships
-<br>
-Sparsamer Einsatz von Attributen
-<br>
-Sparsamer Einsatz von schwachen Entitytypen</p>
-</div>
+<h2><span class="section-number">5.9. </span>Designprinzipien<a class="headerlink" href="#designprinzipien" title="Permalink to this headline">¶</a></h2>
+<p>Jetzt wo wir die wichtigsten Modellierungselemente der ER-Sprache kennen, wären wir in der Lage beliebige Informationen zu modellieren. Wir haben jedoch noch nicht darüber gesprochen, mit welchem Ansatz man jeweils diese Modellierungselemente wählen sollte. Es ist häufig so, dass man den selben Sachverhalt auf unterschiedlicher Weise modellieren kann. Jedoch ist nicht jede Modellierung sinnvoll. Im folgenden wollen wir drei Grundprinzipien kennen lernen, die uns helfen eine sinnvolle Darstellung für eine informelle Beschreibung auszuwählen:</p>
+<ul class="simple">
+<li><p>Treue zur Anwendung</p></li>
+<li><p>Vermeidung von Redundanz</p></li>
+<li><p>Einfachheit</p>
+<ul>
+<li><p>Sparsamer Einsatz von Relationships</p></li>
+<li><p>Sparsamer Einsatz von Attributen</p></li>
+<li><p>Sparsamer Einsatz von schwachen Entitytypen</p></li>
+</ul>
+</li>
+</ul>
 <div class="section" id="anwendungstreue">
-<h3><span class="section-number">5.10.2. </span>Anwendungstreue<a class="headerlink" href="#anwendungstreue" title="Permalink to this headline">¶</a></h3>
-<p>Entitytypen und Attribute sollten Realität widerspiegeln.
-<br>
-Filme haben keine Zylinderkopfanzahl
-<br>
-Relationshiptypen sollen Verhältnisse der Realität widerspiegeln.
-<br>
-Schauspieler und Filme stehen in einer m:n Beziehung
-<br>
-n:1, 1:n oder 1:1 wären inkorrekte Wiedergaben der Realität
-<br>
-Schwierigerer Fall: Kurs und Lehrer – je nach Semantik
-<br>
-Ein Kurs kann nur von einem (verantwortlichen) Lehrer gegeben werden.
-<br>
-Lehrer geben im Team einen Kurs.
-<br>
-Nicht aktuelle Kursvergabe sondern auch Historie</p>
+<h3><span class="section-number">5.9.1. </span>Anwendungstreue<a class="headerlink" href="#anwendungstreue" title="Permalink to this headline">¶</a></h3>
+<p>Die Anwendungstreue ist zunächst die offensichtlichste Anforderung.
+Entitytypen und Attribute sollten natürlich die Realität widerspiegeln. Entitytypen sollten Attribute führen, die spezifiziert werden können. Relationshiptypen sollen Verhältnisse der Realität widerspiegeln. Dazu gehören reelle Kardinalitätsbeziehungen und Abbildungen.</p>
+<p><strong>Beispiel:</strong> Schauspieler und Filme stehen in einer m:n Beziehung. n:1, 1:n oder 1:1 wären inkorrekte Wiedergaben der Realität</p>
 </div>
 <div class="section" id="redundanz">
-<h3><span class="section-number">5.10.3. </span>Redundanz<a class="headerlink" href="#redundanz" title="Permalink to this headline">¶</a></h3>
-<p>Redundanz tritt auf, wenn der gleiche Sachverhalt auf mehr als eine Weise ausgedrückt wird.
-<br>
-Redundanz verschwendet Platz.
-<br>
-Auf dem Papier
-<br>
-Auf der Festplatte
-<br>
-Redundanz fördert Inkonsistenz.
-<br>
-Veränderung eines Sachverhalts wird nur an einer Stelle repräsentiert.</p>
-<p><img alt="title" src="../_images/redundanz1.jpg" /></p>
-<p><img alt="title" src="../_images/redundanz2.jpg" /></p>
+<h3><span class="section-number">5.9.2. </span>Redundanz<a class="headerlink" href="#redundanz" title="Permalink to this headline">¶</a></h3>
+<p>Redundanz tritt auf, wenn der gleiche Sachverhalt auf mehr als eine Weise ausgedrückt wird. Dies kann durch ungeschickte Modellierung passieren. In der Datenbankwelt möchte man nach möglichkeit <strong>unbeabsichtigte</strong> Redundanz verhindern, da Redundanz nicht nur Platzverschwendet sondern auch Situationen hervorrufen kann, dass Daten nicht mehr konsistent vorliegen. Man muss bei Änderung von Daten an allen redundanten Stellen die Daten ändern.</p>
+<p><strong>Beispiel (Redundanz):</strong> Im folgenden Beispiel sehen wir drei Möglichkeiten um Studios zu modellieren. Alle drei Varianten sind anwendungstreu. Die Modellierung in der oberen Zeile ist eine sinnvolle Modellierung. In der mittleren Zeile, haben wir für jedes Film den Studionamen zusätzlich als Attribut modelliert. Damit taucht der Name redundant auf. Dies ist ein offensichtliches Beispiel für redundante Modellierung, da zu jedem Film der Studioname zwei mal gespeichert wird. Die Modellierung in der unteren Zeile modelliert Studio nur als Attribute von Film. Hier gibt es zwar keine Dopplung pro Film, jedoch besteht weiterhin Redundanz. Wenn wir davon ausgehen, dass ein Studio mehrere Filme besitzt, speichern wir den Namen und die Adresse jedes Studios mehrmals, nämlich ein mal pro Film. Bei unserer Modllierung in der obersten Zeile speichern wir jedes Studio nur einmal und Film sind durch die besitzt Beziehung jeweils mit dem gleichen Studioentity verbunden.</p>
+<img alt="../_images/redundanz1.jpg" src="../_images/redundanz1.jpg" />
 </div>
 <div class="section" id="einfachheit">
-<h3><span class="section-number">5.10.4. </span>Einfachheit<a class="headerlink" href="#einfachheit" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.9.3. </span>Einfachheit<a class="headerlink" href="#einfachheit" title="Permalink to this headline">¶</a></h3>
 <p>KISS: Keep It Simple, St…
 <br>
 Unnötige Verwendung von Entitytypen vermeiden.
@@ -1315,7 +1104,7 @@ Ein Film wird von einer Holding repräsentiert</p>
 <p><img alt="title" src="../_images/einfachheit.jpg" /></p>
 </div>
 <div class="section" id="relationships">
-<h3><span class="section-number">5.10.5. </span>Relationships<a class="headerlink" href="#relationships" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.9.4. </span>Relationships<a class="headerlink" href="#relationships" title="Permalink to this headline">¶</a></h3>
 <p>Nicht jede mögliche Beziehung sollte abgebildet werden.
 <br>
 Vermeidung von Redundanz, wenn manche Beziehungen abgeleitet werden können.
@@ -1331,7 +1120,7 @@ Vermehrter Aufwand</p>
 <p><img alt="title" src="../_images/relationships2.jpg" /></p>
 </div>
 <div class="section" id="attribut-vs-element">
-<h3><span class="section-number">5.10.6. </span>Attribut vs. Element<a class="headerlink" href="#attribut-vs-element" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.9.5. </span>Attribut vs. Element<a class="headerlink" href="#attribut-vs-element" title="Permalink to this headline">¶</a></h3>
 <p>Attribute sind einfacher zu implementieren als Entities und Relationships.
 <br>
 Ein Entitytyp ist gerechtfertigt falls…
@@ -1346,7 +1135,6 @@ Studio ist nicht der n-Teil der Relationship</p>
 <p><img alt="title" src="../_images/attributvselement2.jpg" /></p>
 <p>besser</p>
 <p><img alt="title" src="../_images/attributvselement3.jpg" /></p>
-<p>NICHT enthalten: S. 20 , S. 34, S. 36, S. 38, S. 43-45</p>
 </div>
 </div>
 </div>
