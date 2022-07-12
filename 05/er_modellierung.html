@@ -422,18 +422,25 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal nav-link" href="#einfachheit">
      5.9.3. Einfachheit
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#relationships">
-     5.9.4. Relationships
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#attribut-vs-element">
-     5.9.5. Attribut vs. Element
-    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#relationships">
+       5.9.3.1. Relationships
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#attribut-vs-element">
+       5.9.3.2. Attribut vs. Element
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zusammenfassung-er-modellierung">
+   5.10. Zusammenfassung ER-Modellierung
+  </a>
  </li>
 </ul>
 
@@ -616,18 +623,25 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal nav-link" href="#einfachheit">
      5.9.3. Einfachheit
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#relationships">
-     5.9.4. Relationships
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#attribut-vs-element">
-     5.9.5. Attribut vs. Element
-    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#relationships">
+       5.9.3.1. Relationships
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#attribut-vs-element">
+       5.9.3.2. Attribut vs. Element
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zusammenfassung-er-modellierung">
+   5.10. Zusammenfassung ER-Modellierung
+  </a>
  </li>
 </ul>
 
@@ -1096,46 +1110,36 @@ Entitytypen und Attribute sollten natürlich die Realität widerspiegeln. Entity
 </div>
 <div class="section" id="einfachheit">
 <h3><span class="section-number">5.9.3. </span>Einfachheit<a class="headerlink" href="#einfachheit" title="Permalink to this headline">¶</a></h3>
-<p>KISS: Keep It Simple, St…
-<br>
-Unnötige Verwendung von Entitytypen vermeiden.
-<br>
-Ein Film wird von einer Holding repräsentiert</p>
-<p><img alt="title" src="../_images/einfachheit.jpg" /></p>
-</div>
+<p>Eine Anforderung an Informationsmodellierung ist, dass Konzepte möglichst einfach modelliert werden. Einfachfachheit bezieht sich hierbei darauf, dass man versucht die gleiche Information mit weniger Strukturelemente zu modellieren. Insbesondere geht es darum unnötige Entitytypen und Relationshiptypen zu vermeiden. Dies gilt insbeondere für ableitbare Relationshiptypen.</p>
+<p><strong>Beispiel:</strong> Das folgende Beispiel zeigt eine semantisch korrekte Modellierung der Informationen zu Filmen, Holdings und Studios. Man hätte jedoch die 1:1 beziehung zwischen Holding und Studio wesentlich einfacher durch Attributbeziehungen modellieren können.</p>
+<a class="reference internal image-reference" href="../_images/einfachheit.jpg"><img alt="../_images/einfachheit.jpg" src="../_images/einfachheit.jpg" style="width: 700px;" /></a>
 <div class="section" id="relationships">
-<h3><span class="section-number">5.9.4. </span>Relationships<a class="headerlink" href="#relationships" title="Permalink to this headline">¶</a></h3>
-<p>Nicht jede mögliche Beziehung sollte abgebildet werden.
-<br>
-Vermeidung von Redundanz, wenn manche Beziehungen abgeleitet werden können.
-<br>
-Änderungen auf der Datenbank werden komplex
-<br>
-Eine Änderung eines Entities verursacht viele Änderungen in den Relationships.
-<br>
-Fehlergefahr
-<br>
-Vermehrter Aufwand</p>
-<p><img alt="title" src="../_images/relationships1.jpg" /></p>
-<p><img alt="title" src="../_images/relationships2.jpg" /></p>
+<h4><span class="section-number">5.9.3.1. </span>Relationships<a class="headerlink" href="#relationships" title="Permalink to this headline">¶</a></h4>
+<p>Nicht jede mögliche Beziehung sollte abgebildet werden. Die Darstellung von ableitbaren Bezieheungen führt zu Redundanz und unnötige Komplexität. Dies erschwert nachträgliche Änderungen in einer Datenbank.
+Änderungen auf der Datenbank werden komplex, was Aufwand und Fehleranfälligkeit erhöht.</p>
+<p><strong>Beispiel:</strong> Im folgenden Beispiel werden zusätzlich zu der ternären Beziehung <em>ist_unter_Vertrag</em> auch zwei weitere Beziehungen <em>spield_in</em> und <em>besitzt</em> modelliert. Beide Beziehungen gelten jedoch immer nur dann wenn eine Schauspieler*in mit einem Studio zu einem Film im Vertrag steht. Damit sind beide Beziehungen ableitbar. Jede Änderung oder Löschung der <em>ist_unter_Vertra</em>g Beziehung muss dazuführen, dass auch entsprechende Relationships in <em>spielt_in</em> und <em>besitzt</em> geändert bzw. gelöscht werden müssen.</p>
+<a class="reference internal image-reference" href="../_images/relationships1.jpg"><img alt="../_images/relationships1.jpg" src="../_images/relationships1.jpg" style="width: 700px;" /></a>
 </div>
 <div class="section" id="attribut-vs-element">
-<h3><span class="section-number">5.9.5. </span>Attribut vs. Element<a class="headerlink" href="#attribut-vs-element" title="Permalink to this headline">¶</a></h3>
-<p>Attribute sind einfacher zu implementieren als Entities und Relationships.
-<br>
-Ein Entitytyp ist gerechtfertigt falls…
-<br>
-… er mehr als nur den Namen eines Objekts darstellt,
-<br>
-… oder er der n-Teil einer 1:n Relationship ist.</p>
-<p><img alt="title" src="../_images/attributvselement1.jpg" /></p>
-<p>Studio ist nur ein Name
-<br>
-Studio ist nicht der n-Teil der Relationship</p>
-<p><img alt="title" src="../_images/attributvselement2.jpg" /></p>
-<p>besser</p>
-<p><img alt="title" src="../_images/attributvselement3.jpg" /></p>
+<h4><span class="section-number">5.9.3.2. </span>Attribut vs. Element<a class="headerlink" href="#attribut-vs-element" title="Permalink to this headline">¶</a></h4>
+<p>Eine weitere Möglichkeit Modelle zu vereinfachen besteht, darin wenn möglich Attribteue statt Entitytypen und Relationshiptypen zu nutzen. Dies sind auch einfacher zu implementieren.</p>
+<p>Grundsätzlich ist ein Entitytyp gerechtfertigt falls…</p>
+<ul class="simple">
+<li><p>er mehr als nur den Namen eines Objekts darstellt,</p></li>
+<li><p>oder er der n-Teil einer 1:n Relationship ist.</p></li>
+</ul>
+<p><strong>Beispiel:</strong> Im folgenden Beispiel sind beide Entitytypen <em>Filme</em> und <em>Studios</em> gerechtfertigt. <em>Filme</em> ist der n-Teil des <em>besitzt</em> Relationshiptypen und <em>Studios</em> hat mehr als ein Attribut.</p>
+<img alt="../_images/attributvselement1.jpg" src="../_images/attributvselement1.jpg" />
+<p>Beim folgenden Beispiel könnte man argumentieren, dass Studios einfach als Attributname von Filme modelliert werden könnte.</p>
+<img alt="../_images/attributvselement2.jpg" src="../_images/attributvselement2.jpg" />
+<p>Tatsächlich ist das folgende Modell deutlich einfacher und modelliert den selben Sachverhalt. Jedoch aus der Diskussion zu Redundanz wissen wir, dass die folgende Modellierung zur redundanten Speicherung des gleichen <em>Studios</em> für unterschiedliche <em>Filme</em> führen kann. Tatsächlich können die Anforderungen Einfachheit und Redundanzfreiheit manchmal im Widerspruch stehen.</p>
+<img alt="../_images/attributvselement3.jpg" src="../_images/attributvselement3.jpg" />
 </div>
+</div>
+</div>
+<div class="section" id="zusammenfassung-er-modellierung">
+<h2><span class="section-number">5.10. </span>Zusammenfassung ER-Modellierung<a class="headerlink" href="#zusammenfassung-er-modellierung" title="Permalink to this headline">¶</a></h2>
+<p>In diesem Kapitel haben wir die ER-Modellierungssprache kennen gelernt, die uns erlaubt aus informellen Informationsbeschreibungen visuelle und formalisierte Informationen anhand von Entitytypen, Relationshiptypen und Attributen zu modellieren. In der ER-Modellierung können wir auch bereits Nebenbedingungen wie Kardinalitäten und Schlüsselbeziehungen modellieren. Schließlich haben wir Anforderungen für eine sinnvolle Modllierung diskutiert. Im nächsten Kapitel werden wir den nächsten Schritt im Datenbankentwurf besprechen. Es soll nun darum gehen, wie man aus einem ER-Modell ein relationales Modell herleiten kann, welches dann direkt in Datenbankmanagementsysteme abgebildet werden kann.</p>
 </div>
 </div>
 
