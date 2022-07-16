@@ -269,33 +269,28 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#die-relation-in-der-mathematik">
-     6.1.1. Die Relation in der Mathematik
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#die-relation">
-     6.1.2. Die Relation
+     6.1.1. Die Relation
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#elemente-des-relationalen-modells">
-     6.1.3. Elemente des Relationalen Modells
+     6.1.2. Elemente des Relationalen Modells
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#formal">
-     6.1.4. Formal
+     6.1.3. Formal
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#edgar-f-codd">
-     6.1.5. Edgar F. Codd
+     6.1.4. Edgar F. Codd
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#beitrage-von-codd">
-       6.1.5.1. Beiträge von Codd
+       6.1.4.1. Beiträge von Codd
       </a>
      </li>
     </ul>
@@ -417,33 +412,28 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#die-relation-in-der-mathematik">
-     6.1.1. Die Relation in der Mathematik
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#die-relation">
-     6.1.2. Die Relation
+     6.1.1. Die Relation
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#elemente-des-relationalen-modells">
-     6.1.3. Elemente des Relationalen Modells
+     6.1.2. Elemente des Relationalen Modells
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#formal">
-     6.1.4. Formal
+     6.1.3. Formal
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#edgar-f-codd">
-     6.1.5. Edgar F. Codd
+     6.1.4. Edgar F. Codd
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#beitrage-von-codd">
-       6.1.5.1. Beiträge von Codd
+       6.1.4.1. Beiträge von Codd
       </a>
      </li>
     </ul>
@@ -550,88 +540,42 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="relationaler-entwurf">
 <h1><span class="section-number">6. </span>Relationaler Entwurf<a class="headerlink" href="#relationaler-entwurf" title="Permalink to this headline">¶</a></h1>
+<p>Die meisten kommerziellen Datenbanken unterstützen das relationale Datenmodell.
+In diesem Kapitel lernen wir das relationale Modell kennen und diskutieren Methoden zur Überführung von Datenspezifikationen aus dem ER-Modell ins relationale Modell.</p>
 <div class="section" id="das-relationale-modell">
 <h2><span class="section-number">6.1. </span>Das Relationale Modell<a class="headerlink" href="#das-relationale-modell" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="die-relation-in-der-mathematik">
-<h3><span class="section-number">6.1.1. </span>Die Relation in der Mathematik<a class="headerlink" href="#die-relation-in-der-mathematik" title="Permalink to this headline">¶</a></h3>
-<p>■ Eine Relation R ist eine Menge von n-Tupeln.
-<br>
-<br>
-■ Dinge, die in der Relation R zueinander stehen, bilden ein n-Tupel, das Element von R ist.
-<br>
-<br>
-■ Teilmenge des Kartesischen Produkts
-<br>
-□ R <span class="math notranslate nohighlight">\(\subseteq\)</span> A1 ×… × An
-<br>
-□ A1 ×… × An := {(a1,…, an) | a1<span class="math notranslate nohighlight">\(\subseteq\)</span>A1<span class="math notranslate nohighlight">\(\in\)</span> … <span class="math notranslate nohighlight">\(\in\)</span>an <span class="math notranslate nohighlight">\(\subseteq\)</span>An}
-<br>
-■ Für Datenbanken:
-<br>
-□ Mengen A1,…, An sind Domänen (Wertebereiche)
-<br>
-– Z.B.: Integer, String, String, Boolean, usw.
-<br>
-– Entspricht Spalten einer Tabelle
-<br>
-□ Tupel (a1,…, an) sind die Datenwerte
-<br>
-– Z.B. (4, Abedjan, Berlin, m)
-<br>
-– Entspricht Zeilen einer Tabelle</p>
-</div>
+<p>Im folgenden werden wir ähnlich zum ER-Modell die grundlegenden Bausteine des relationalen Modells kennen lernen. Zentrale Grundbegriffe des relationalen Modells sind Relationen und Tupel.</p>
+<p>In der Mathematik ist eine Relation <span class="math notranslate nohighlight">\(R\)</span> eine Teilmenge des Kreuzproduktes von <span class="math notranslate nohighlight">\(n\)</span> Mengen: <span class="math notranslate nohighlight">\(R\subset A_1 \times A_2 \times \cdots \times A_n\)</span>. Ein Element der Relation ist ein n-Tupel: <span class="math notranslate nohighlight">\(\forall t \in R. t=(a_1,a_2,\cdots, a_n) \wedge a_i \in A_i\)</span></p>
+<p>Für Datenbanken gelten die aus der Mathematik bekannten Beziehungen mit folgenden zusätzlichen semantischen Erweiterungen.
+Die Mengen <span class="math notranslate nohighlight">\(A_i\)</span> sind im Datenkontext Domänen bzw. Wertebereiche. Diese Wertebereiche können im allgemeinen Standarddatentypen wie Integer, String, Boolean, usw. sein oder konkrete Wertebereiche, die durch Attribute definiert werden, wie zum Beispiel ID, Name, Alter, Geschlecht. Prinzipiell entspricht eine solche Menge der Spalte einer Tabelle.</p>
+<p>Analog bilden die Einträge der Tupel <span class="math notranslate nohighlight">\((a_1,\cdots, a_n)\)</span> die Datenwerten einer Tabelle, z.B. (4, Abedjan, 36, m). Ein Tupel entspricht eine Zeile einer Tabelle.</p>
 <div class="section" id="die-relation">
-<h3><span class="section-number">6.1.2. </span>Die Relation<a class="headerlink" href="#die-relation" title="Permalink to this headline">¶</a></h3>
-<p>■ Konzeptuell ist eine Datenbank eine Menge von Tabellen.
-<br>
-□ Relation zwischen Werten der Attributdomänen
-<br>
-□ Tabellen = Relationen
-<br>
-<br>
-■ Die Relation ist das einzige Konstrukt des relationalen Modells
-<br>
-□ Sehr einfach
-<br>
-□ Einfach in einer DB abzubilden (zwei-dimensional)
-<br>
-□ Relationen können nicht nur Entities sondern auch Relationships darstellen.
-<br>
-□ Entspricht oft unserer Vorstellung der Daten
-<br>
-□ Ist das abstrakte Modell hinter SQL</p>
+<h3><span class="section-number">6.1.1. </span>Die Relation<a class="headerlink" href="#die-relation" title="Permalink to this headline">¶</a></h3>
+<p>Konzeptuell ist eine Datenbank eine Menge von Tabellen. Jede Tabelle stellt die Daten einer Relation dar. Eine Tabelle besteht aus Spalten, die in Relation zu einander stehen. Damit beinhaltet jede Zeile Datenwerte aus den jeweiligen Domänen, die in Relation zu einander stehen. Wir werden oft Tabellen und Relationen alternierend nutzen, obwohl diese konzeptionell unterschiedliche Konzepte sind. Eie Relation ist ein mathematisches Konzept, welches aus Mengen und Tupeln zusammensetzt, während eine Tabelle ein zweidimensionales Feld bestehend aus Spalten und Zeilen ist. Es ist jedoch leicht einzusehen, dass jede Relation als Tabelle darstellbar ist.</p>
+<p>Rückführend auf den ersten Satz dieses Unterabschnitt stellen wir also fest, dass die Relation das einzige Konstrukt des relationalen Modells ist und folgende Vorteile sich dadurch ergeben:</p>
+<ul class="simple">
+<li><p>Leicht beschreibbar. Entspricht oft unserer Vorstellung der Daten.</p></li>
+<li><p>Einfach in einer DB abzubilden (zwei-dimensionales Array, Liste von Arrays, usw. )</p></li>
+<li><p>Relationen bilden sowohl Entitytypen als auch Relationshiptypen ab.</p></li>
+<li><p>Ist das abstrakte Modell hinter SQL</p></li>
+</ul>
 </div>
 <div class="section" id="elemente-des-relationalen-modells">
-<h3><span class="section-number">6.1.3. </span>Elemente des Relationalen Modells<a class="headerlink" href="#elemente-des-relationalen-modells" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.1.2. </span>Elemente des Relationalen Modells<a class="headerlink" href="#elemente-des-relationalen-modells" title="Permalink to this headline">¶</a></h3>
+<p>Zentrale Elemente des relationalen Modells sind Attribute, Tupel und Schema.</p>
+<ul class="simple">
+<li><p>Datenbankschema: Im groben beschreibt jedes relationale Modell ein Datenbankschema, welche aus einem oder mehreren Relationenschemata besteht.</p></li>
+<li><p>Relationenschema: Jede Relation wird durch ihr Schema identifiziert. Das Relationenschema besteht aus dem Namen der Relation und der Liste der Attribute und ihrer Domänen. In einer Tabelle entspricht die Kopfzeile dem Relationenschema. Alle weiteren (Daten-)Einträge in der Tabelle bilden die „Relation“</p></li>
+<li><p>Die Relation besteht aus keinem oder mehr Tupeln. Im relationalen Modell bilden Tupel einer Relation immer eine Menge. Das heißt, dass kein Tupel in seiner gesamten Ausprägung doppelt auftauchen kann. Diese Annahme gilt in echten Datenbanksystemen nur dann, wenn ein Schlüssel vorhanden ist.</p></li>
+<li><p>Attribute entsprechen den Bezeichnern der zu einander in Relation stehenden Domänenmengen. In Tabellen entsprechen Attribute den Spaltenbezeichnern ( Überschriften). In einem Relationenschema kann ein Attribut nicht doppelt vorkommen. Das Relationenschema ist somit eine Menge.</p></li>
+<li><p>Attributwert: Jeder Dateneintrag in einem Tupel entspricht dem Attributwert der jeweiligen Spalte. Attributwerte sind atomar und stammen aus einer elementaren Domäne.</p></li>
+<li><p>Ein Tupel entspricht aus einer vollständigen Kombination von Attributwerten.</p></li>
+</ul>
+<p>In der Abbildung unten sind die jeweiligen Elemente nochmal visuell dargestellt. Wir haben Primärschlüssel und Fremdschlüssel auch bereits dargestellt. Diese sind wie bekannt aus dem ER-Modell, Attribute die referenzielle Integrität gewährleisten. Hierauf werden wir später in diesem Kapitel genauer eingehen.</p>
 <p><img alt="title" src="../_images/elemente_rm.jpg" /></p>
-<p>Datenbankschema
-<br>
-Besteht aus einem oder mehreren Relationenschemata.
-<br>
-Relationenschema
-<br>
-Name der Relations sowie Liste der Attribute mit Domäne
-<br>
-Weitere Einträge in der Tabelle: Die „Relation“
-<br>
-Besteht aus keinem oder mehr Tupeln.
-<br>
-Eine Zeile der Tabelle: Tupel
-<br>
-Die Tupel bilden eine Menge (nicht eine Liste).
-<br>
-Eine Spaltenüberschrift: Attribut
-<br>
-Attribute bilden eine Menge (nicht eine Liste).
-<br>
-Ein Eintrag: Attributwert
-<br>
-Atomar
-<br>
-Stammt aus einer elementaren Domäne (Integer, String, …)</p>
 </div>
 <div class="section" id="formal">
-<h3><span class="section-number">6.1.4. </span>Formal<a class="headerlink" href="#formal" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.1.3. </span>Formal<a class="headerlink" href="#formal" title="Permalink to this headline">¶</a></h3>
 <p>■ Domänen D1, …, Dn
 <br>
 <br>
@@ -647,7 +591,7 @@ Stammt aus einer elementaren Domäne (Integer, String, …)</p>
 □ Tupel: (Star Wars, 1977, 124, farbig)</p>
 </div>
 <div class="section" id="edgar-f-codd">
-<h3><span class="section-number">6.1.5. </span>Edgar F. Codd<a class="headerlink" href="#edgar-f-codd" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.1.4. </span>Edgar F. Codd<a class="headerlink" href="#edgar-f-codd" title="Permalink to this headline">¶</a></h3>
 <p>Promotion an der University of Michigan Ann Arbor
 <br>
 Entwicklung des Relationalen Modells bei IBM (Almaden)
@@ -666,7 +610,7 @@ Chris J. Date
 <br>
 ISBN: 0-201-61294-1 (9.99 EUR)</p>
 <div class="section" id="beitrage-von-codd">
-<h4><span class="section-number">6.1.5.1. </span>Beiträge von Codd<a class="headerlink" href="#beitrage-von-codd" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">6.1.4.1. </span>Beiträge von Codd<a class="headerlink" href="#beitrage-von-codd" title="Permalink to this headline">¶</a></h4>
 <p>■ Transformation des Datenmanagement zu einer Wissenschaft
 <br>
 □ Entsprechende Klarheit und Strenge
