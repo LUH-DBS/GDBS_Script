@@ -335,7 +335,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Bevor wir den Mehrwert von Datenbanksystemen erkennen können müssen wir uns erst einmal über deren Zweck klar werden. Insbesondere wollen wir festhalten was Daten sind und welche digitale Artefake zusammen ein Datenbanksystem bilden.</p>
 <div class="section" id="was-sind-daten">
 <h2><span class="section-number">1.1. </span>Was sind Daten<a class="headerlink" href="#was-sind-daten" title="Permalink to this headline">¶</a></h2>
-<p>Datenbanksysteme beherbergen Daten. Unter Daten verstehen wir digitale Repräsentation von Dingen, Entitäten, Wissen und Informationen aus der wirklichen Welt. Die digitale Repräsentation von Daten kann hierbei unterschiedlich sein. Daten können strukturiert (tabellarisch) oder unstrukturiert (Fließtext) vorliegen. Daten können textuel oder multi-medial sein.</p>
+<p>Datenbanksysteme beherbergen Daten. Unter Daten verstehen wir digitale Repräsentationen von Dingen, Entitäten, Wissen und Informationen aus der wirklichen Welt. Die digitale Repräsentation von Daten kann hierbei unterschiedlich sein. Daten können strukturiert (tabellarisch) oder unstrukturiert (Fließtext) vorliegen. Daten können textuell oder multi-medial sein.</p>
 <p>Um mit Daten zu arbeiten, ergeben sich folgende Kernfragen:</p>
 <ul class="simple">
 <li><p>Welche Daten speichere ich?</p></li>
@@ -343,7 +343,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Wie frage ich Daten ab?</p></li>
 <li><p>Wie erledige ich all dies effizient und sicher, wenn die Menge der Daten zu groß wird?</p></li>
 </ul>
-<p>Die Antworten auf diese Fragen könnten sich je nach Anwendungsgebiet und Datenlage unterscheiden. Es haben sich aber eine Reihe von Anforderungen so durchgesetzt, dass es möglich ist Datenbankensysteme so zu entwickeln dass viele verschiedene Klassen von Datenverarbeitungsproblemen abzudecken.</p>
+<p>Die Antworten auf diese Fragen könnten sich je nach Anwendungsgebiet und Datenlage unterscheiden. Es haben sich aber eine Reihe von Anforderungen so durchgesetzt, dass es möglich ist Datenbankensysteme so zu entwickeln dass viele verschiedene Klassen von Datenverarbeitungsproblemen abgedeckt werden.</p>
 </div>
 <div class="section" id="aufbau-eines-datenbanksystems">
 <h2><span class="section-number">1.2. </span>Aufbau eines Datenbanksystems<a class="headerlink" href="#aufbau-eines-datenbanksystems" title="Permalink to this headline">¶</a></h2>
@@ -368,10 +368,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Nutzerverwaltung &amp; Zugangskontrolle</p></li>
 </ul>
 <p><strong>Beispiel(Netflix):</strong>
-Betrachten Sie die das Architekturbild zu dem Streamingdienst Netflix. In dieser Architektur sehen Sie an vier verschiedenen Stellen den Einsatz von Datenbanksystemen. Zunäcsht sind Nutzergeräte mit mehreren (verteilten) Online transaction processing (OLTP) -Datenbankmanagementsystemen verbunden. Das sind Systeme, auf denen viele Transaktionen pro Sekunde im Parallel laufen können. Das heißt, das hierbei Daten häufig verändert werden müssen, jedoch das Gesamtsystem immer einen konsistenten Zustand beibehalten muss. Dann sehen wir sogenannte Stream-processing Systeme, also Datenbanktechnologien, die sich um die effiziente Abwicklung von Datenströmen kümmern. Daran angedockt sind sogenannte Datawarehouses, die über die Zeit Informationen über den gesamten Streamingprozess für die spätere Analyse anhäufen. Im Unterschied zu den OLTP Datenbankmanagementsystemen sprechen wir hier von Online analytical processing (OLAP)-Systemen, die zwar keine häufigen Datenänderungen erfahren aber sehr komplexe analytische Anfragen effizient beantworten müssen. Das Beispiel zeigt, dass selbst innerhalb eines einzigen Dienstes verschiedene DBS eingesetzt werden müssen wobei sich die Aufgaben dieser Systeme unterscheiden.</p>
+Betrachten Sie das Architekturbild zu dem Streamingdienst Netflix. In dieser Architektur sehen Sie an vier verschiedenen Stellen den Einsatz von Datenbanksystemen. Zunächst sind Nutzergeräte mit mehreren (verteilten) Online transaction processing (OLTP) -Datenbankmanagementsystemen verbunden. Das sind Systeme, auf denen viele Transaktionen pro Sekunde parallel laufen können. Das heißt, dass hierbei Daten häufig verändert werden müssen, jedoch das Gesamtsystem immer einen konsistenten Zustand beibehalten muss. Dann sehen wir sogenannte Stream-processing Systeme, also Datenbanktechnologien, die sich um die effiziente Abwicklung von Datenströmen kümmern. Daran angedockt sind sogenannte Datawarehouses, die über die Zeit Informationen über den gesamten Streamingprozess für die spätere Analyse anhäufen. Im Unterschied zu den OLTP Datenbankmanagementsystemen sprechen wir hier von Online analytical processing (OLAP)-Systemen, die zwar keine häufigen Datenänderungen erfahren aber sehr komplexe analytische Anfragen effizient beantworten müssen. Das Beispiel zeigt, dass selbst innerhalb eines einzigen Dienstes verschiedene DBS eingesetzt werden müssen, wobei sich die Aufgaben dieser Systeme unterscheiden.</p>
 <a class="reference internal image-reference" href="../_images/netflix.jpg"><img alt="../_images/netflix.jpg" src="../_images/netflix.jpg" style="width: 500px;" /></a>
 <p><strong>Beispiel(CSV-Datei):</strong>
-Während der COVID19-Pandemie sind Forschern in Grißbritannien große Datenmengen verloren gegangen, weil diese lediglich als Excelsheets gespeichert waren. Während eine Excel-Datei oder eine CSV-Datei erlaubt übersichtlich tabellarische Informationen abzuspeichern, ist deren Anwendung nur unter bestimmten Situationen sinnvoll. In diesem speziellen Fall, sind Daten beim Laden in dem Tool verloren gegangen, da Excel lediglich 65,000 Zeilen im XLS-Format verarbeiten konnte. Zudem gab es keine sinnvollen Fehlermeldungen oder andere Sicherheitsmechanismen, die diese Probleme aufzeigen hätten können.</p>
+Während der COVID19-Pandemie sind Forscher:innen in Großbritannien große Datenmengen verloren gegangen, weil diese lediglich als Excelsheets gespeichert waren. Während eine Excel-Datei oder eine CSV-Datei erlaubt übersichtlich tabellarische Informationen abzuspeichern, ist deren Anwendung nur unter bestimmten Situationen sinnvoll. In diesem speziellen Fall, sind Daten beim Laden in dem Tool verloren gegangen, da Excel lediglich 65,000 Zeilen im XLS-Format verarbeiten konnte. Zudem gab es keine sinnvollen Fehlermeldungen oder andere Sicherheitsmechanismen, die diese Probleme aufzeigen hätten können.</p>
 <p>Grundsätzlich ist es nicht ratsam alle Daten als eine Datei abzuspeichern, da punktelle Veränderungen sowohl parallele Bearbeitung der Datenbank zu Konsistenzproblemen führen können. Weitere Punkte wie Zugriffskontrollen müssen vom Betriebssystem übernommen werden.
 <a class="reference internal" href="../_images/excel.jpg"><img alt="../_images/excel.jpg" src="../_images/excel.jpg" style="width: 500px;" /></a></p>
 </div>
@@ -385,12 +385,12 @@ Während der COVID19-Pandemie sind Forschern in Grißbritannien große Datenmeng
 <li><p>Operationen: Das System soll Grundoperationen zum Definieren, Speichern, Abfragen und Ändern von Daten bereitstellen.</p></li>
 <li><p>Deklarativ: Die Operationen sollten Deklarativ definiert werden können. Man soll direkt beschreiben können, welche Daten man haben will ohne darüber nachdenken zu müssen, wie diese zusammengesetzt werden sollen. Das “Wie” soll das DBMS übernehmen.</p></li>
 <li><p>Benutzersichten: Das System soll verschiedene Anwendungen, Prioritäten mit entsprechenden Zugriffskontrollmechanismen und Umstrukturierungen erlauben.</p></li>
-<li><p>Integritätssicherung: Das System soll Mehtoden und Instrumente für die Wahrung der Integrität der Daten, das heißt dessen Korrektkeit und Konsistenz bereitstellen.</p></li>
-<li><p>Transaktionen: Das System soll Mehrere DB-Operationen als Funktionseinheit betrachten können und Erfolg bzw. Misserfolg einer solchen Einheit bewerten verbuchen können.</p></li>
+<li><p>Integritätssicherung: Das System soll Methoden und Instrumente für die Wahrung der Integrität der Daten, das heißt dessen Korrektkeit und Konsistenz bereitstellen.</p></li>
+<li><p>Transaktionen: Das System soll mehrere DB-Operationen als Funktionseinheit betrachten können und Erfolg bzw. Misserfolg einer solchen Einheit bewerten verbuchen können.</p></li>
 <li><p>Synchronisation: Parallele Transaktionen sollen koordiniert werden, sodass die Daten immer in einem konsistenten Zustand sind.</p></li>
-<li><p>Datenschutz: Das System soll Instrumente zum Ausschluss nicht-autorisierter Zugriffe bereitstellen.</p></li>
+<li><p>Datenschutz: Das System soll Instrumente zum Ausschluss nicht-authorisierter Zugriffe bereitstellen.</p></li>
 <li><p>Datensicherung: Es muss möglich sein Daten nach Systemfehlern wiederherstlelen zu können.</p></li>
-<li><p>Persistenz: Große Datenmengen sollten auf sekundäre und Terziere Speicher geladen und effizient wieder abrufbar gemacht werden.</p></li>
+<li><p>Persistenz: Große Datenmengen sollten auf sekundäre und terziere Speicher geladen und effizient wieder abrufbar gemacht werden.</p></li>
 <li><p>Katalog: Das System sollte Daten über die verwalteten Daten führen. Es soll möglich sein auf diese Metadaten zuzugreifen.</p></li>
 </ul>
 </div>
