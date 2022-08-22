@@ -17,29 +17,19 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-#SELECT Titel, Laenge * 0.016667 AS Stunden, ‘std.‘ AS inStunden FROM Film
-
-__SQL__ = "SELECT Titel, Laenge * 0.016667 AS Stunden, ‘std.‘ AS inStunden FROM Film"
+import pandas as pd
 conn = sqlite3.connect("filme/filme.db")
-cur = conn.cursor()
-cur.execute(__SQL__)
-rows = cur.fetchall()
-
-for row in rows:
-    for col in row:
-        print(col,end=' ')
-    print()
+df = pd.read_sql_query("SELECT * FROM Film", conn)
+df
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mOperationalError[0m                          Traceback (most recent call last)
-Input [0;32mIn [8][0m, in [0;36m<cell line: 6>[0;34m()[0m
-[1;32m      4[0m conn [38;5;241m=[39m sqlite3[38;5;241m.[39mconnect([38;5;124m"[39m[38;5;124mfilme/filme.db[39m[38;5;124m"[39m)
-[1;32m      5[0m cur [38;5;241m=[39m conn[38;5;241m.[39mcursor()
-[0;32m----> 6[0m [43mcur[49m[38;5;241;43m.[39;49m[43mexecute[49m[43m([49m[43m__SQL__[49m[43m)[49m
-[1;32m      7[0m rows [38;5;241m=[39m cur[38;5;241m.[39mfetchall()
-[1;32m      9[0m [38;5;28;01mfor[39;00m row [38;5;129;01min[39;00m rows:
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Input [0;32mIn [2][0m, in [0;36m<cell line: 1>[0;34m()[0m
+[0;32m----> 1[0m [38;5;28;01mimport[39;00m [38;5;21;01mpandas[39;00m [38;5;28;01mas[39;00m [38;5;21;01mpd[39;00m
+[1;32m      2[0m conn [38;5;241m=[39m sqlite3[38;5;241m.[39mconnect([38;5;124m"[39m[38;5;124mfilme/filme.db[39m[38;5;124m"[39m)
+[1;32m      3[0m df [38;5;241m=[39m pd[38;5;241m.[39mread_sql_query([38;5;124m"[39m[38;5;124mSELECT * FROM Film[39m[38;5;124m"[39m, conn)
 
-[0;31mOperationalError[0m: no such column: ‘std.‘
-OperationalError: no such column: ‘std.‘
+[0;31mModuleNotFoundError[0m: No module named 'pandas'
+ModuleNotFoundError: No module named 'pandas'
 
