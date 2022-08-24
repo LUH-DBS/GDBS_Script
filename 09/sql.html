@@ -1291,32 +1291,25 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="o">%</span><span class="k">load_ext</span> sql
 <span class="o">%</span><span class="k">sql</span> sqlite:///filme/filme.db
 <span class="o">%</span><span class="k">sql</span> sqlite:///abteilung/abteilung.db
 <span class="o">%</span><span class="k">sql</span> sqlite:///buecher/buecher.db
+<span class="o">%</span><span class="k">sql</span> sqlite:///lehre/lehre.db
 <span class="o">%</span><span class="k">sql</span> sqlite:///rst/rst.db
 <span class="o">%</span><span class="k">sql</span> sqlite:///salesDB/salesDB.db
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM Film&quot;</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
-<span class="n">df</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="nn">Input In [2],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM Film&quot;</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="s1">&#39;load_ext&#39;</span><span class="p">,</span> <span class="s1">&#39;sql&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="s1">&#39;sql&#39;</span><span class="p">,</span> <span class="s1">&#39;sqlite:///filme/filme.db&#39;</span><span class="p">)</span>
 
 <span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
 </pre></div>
@@ -6239,7 +6232,76 @@ REGION is randomly selected within the list of values defined for R_NAME</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#…FROM SchauspielerIn NATURAL RIGHT OUTER JOIN ManagerIn</span>
 
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Name, Adresse, Geburtstag, Gehalt FROM ManagerIn NATURAL LEFT OUTER JOIN SchauspielerIn&quot;</span>
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Name, Adresse, Geburtstag, Gehalt FROM ManagerIn NATURAL RIGHT OUTER JOIN SchauspielerIn&quot;</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">OperationalError</span><span class="g g-Whitespace">                          </span>Traceback (most recent call last)
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py:2020,</span> in <span class="ni">SQLiteDatabase.execute</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2019</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2020</span>     <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2021</span>     <span class="k">return</span> <span class="n">cur</span>
+
+<span class="ne">OperationalError</span>: RIGHT and FULL OUTER JOINs are not currently supported
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">DatabaseError</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
+<span class="nn">Input In [9],</span> in <span class="ni">&lt;cell line: 5&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Name, Adresse, Geburtstag, Gehalt FROM ManagerIn NATURAL RIGHT OUTER JOIN SchauspielerIn&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">df</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py:399,</span> in <span class="ni">read_sql_query</span><span class="nt">(sql, con, index_col, coerce_float, params, parse_dates, chunksize, dtype)</span>
+<span class="g g-Whitespace">    </span><span class="mi">341</span> <span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">342</span><span class="sd"> Read SQL query into a DataFrame.</span>
+<span class="g g-Whitespace">    </span><span class="mi">343</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">396</span><span class="sd"> parameter will be converted to UTC.</span>
+<span class="g g-Whitespace">    </span><span class="mi">397</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">398</span> <span class="n">pandas_sql</span> <span class="o">=</span> <span class="n">pandasSQL_builder</span><span class="p">(</span><span class="n">con</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">399</span> <span class="k">return</span> <span class="n">pandas_sql</span><span class="o">.</span><span class="n">read_query</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">400</span>     <span class="n">sql</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">401</span>     <span class="n">index_col</span><span class="o">=</span><span class="n">index_col</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">402</span>     <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">403</span>     <span class="n">coerce_float</span><span class="o">=</span><span class="n">coerce_float</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">404</span>     <span class="n">parse_dates</span><span class="o">=</span><span class="n">parse_dates</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">405</span>     <span class="n">chunksize</span><span class="o">=</span><span class="n">chunksize</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">406</span>     <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">407</span> <span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py:2080,</span> in <span class="ni">SQLiteDatabase.read_query</span><span class="nt">(self, sql, index_col, coerce_float, params, parse_dates, chunksize, dtype)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2068</span> <span class="k">def</span> <span class="nf">read_query</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2069</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2070</span>     <span class="n">sql</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2076</span>     <span class="n">dtype</span><span class="p">:</span> <span class="n">DtypeArg</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2077</span> <span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">2079</span>     <span class="n">args</span> <span class="o">=</span> <span class="n">_convert_params</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2080</span>     <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2081</span>     <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">col_desc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">col_desc</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">description</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">2083</span>     <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py:2032,</span> in <span class="ni">SQLiteDatabase.execute</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2029</span>     <span class="k">raise</span> <span class="n">ex</span> <span class="kn">from</span> <span class="nn">inner_exc</span>
+<span class="g g-Whitespace">   </span><span class="mi">2031</span> <span class="n">ex</span> <span class="o">=</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Execution failed on sql &#39;</span><span class="si">{</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2032</span> <span class="k">raise</span> <span class="n">ex</span> <span class="kn">from</span> <span class="nn">exc</span>
+
+<span class="ne">DatabaseError</span>: Execution failed on sql &#39;SELECT Name, Adresse, Geburtstag, Gehalt FROM ManagerIn NATURAL RIGHT OUTER JOIN SchauspielerIn&#39;: RIGHT and FULL OUTER JOINs are not currently supported
+</pre></div>
+</div>
+</div>
+</div>
+<p>RIGHT OUTER JOINS sind in sqlite3 nicht direkt möglich, da dieser Operator in sqlite3 nicht unterstützt wird. Man kann aber dennoch durch Vertauschen der Reihenfolge der Tabellen, die gewünschte Ausgabe mit LEFT OUTER JOINS erzeugen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Name, Adresse, Geburtstag, Gehalt FROM ManagerIn NATURAL LEFT OUTER JOIN SchauspielerIn&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -6385,9 +6447,78 @@ REGION is randomly selected within the list of values defined for R_NAME</p>
 <p>■ Alle Schauspieler<em>innen und Manager</em>innen</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#…FROM SchauspielerIn NATURAL FULL OUTER JOIN ManagerIn</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#…FROM SchauspielerIn NATURAL RIGHT OUTER JOIN ManagerIn</span>
 
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Name, Adresse, Geburtstag, Gehalt FROM SchauspielerIn NATURAL LEFT OUTER JOIN ManagerIn UNION SELECT Name, Adresse, Geburtstag, Gehalt FROM ManagerIn NATURAL LEFT OUTER JOIN SchauspielerIn&quot;</span>
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Name, Adresse, Geburtstag, Gehalt FROM SchauspielerIn NATURAL FULL OUTER JOIN ManagerIn&quot;</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">OperationalError</span><span class="g g-Whitespace">                          </span>Traceback (most recent call last)
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py:2020,</span> in <span class="ni">SQLiteDatabase.execute</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2019</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2020</span>     <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2021</span>     <span class="k">return</span> <span class="n">cur</span>
+
+<span class="ne">OperationalError</span>: RIGHT and FULL OUTER JOINs are not currently supported
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">DatabaseError</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
+<span class="nn">Input In [10],</span> in <span class="ni">&lt;cell line: 5&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Name, Adresse, Geburtstag, Gehalt FROM SchauspielerIn NATURAL FULL OUTER JOIN ManagerIn&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">df</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py:399,</span> in <span class="ni">read_sql_query</span><span class="nt">(sql, con, index_col, coerce_float, params, parse_dates, chunksize, dtype)</span>
+<span class="g g-Whitespace">    </span><span class="mi">341</span> <span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">342</span><span class="sd"> Read SQL query into a DataFrame.</span>
+<span class="g g-Whitespace">    </span><span class="mi">343</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">396</span><span class="sd"> parameter will be converted to UTC.</span>
+<span class="g g-Whitespace">    </span><span class="mi">397</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">398</span> <span class="n">pandas_sql</span> <span class="o">=</span> <span class="n">pandasSQL_builder</span><span class="p">(</span><span class="n">con</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">399</span> <span class="k">return</span> <span class="n">pandas_sql</span><span class="o">.</span><span class="n">read_query</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">400</span>     <span class="n">sql</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">401</span>     <span class="n">index_col</span><span class="o">=</span><span class="n">index_col</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">402</span>     <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">403</span>     <span class="n">coerce_float</span><span class="o">=</span><span class="n">coerce_float</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">404</span>     <span class="n">parse_dates</span><span class="o">=</span><span class="n">parse_dates</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">405</span>     <span class="n">chunksize</span><span class="o">=</span><span class="n">chunksize</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">406</span>     <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">407</span> <span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py:2080,</span> in <span class="ni">SQLiteDatabase.read_query</span><span class="nt">(self, sql, index_col, coerce_float, params, parse_dates, chunksize, dtype)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2068</span> <span class="k">def</span> <span class="nf">read_query</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2069</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2070</span>     <span class="n">sql</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2076</span>     <span class="n">dtype</span><span class="p">:</span> <span class="n">DtypeArg</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2077</span> <span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">2079</span>     <span class="n">args</span> <span class="o">=</span> <span class="n">_convert_params</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2080</span>     <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2081</span>     <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">col_desc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">col_desc</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">description</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">2083</span>     <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py:2032,</span> in <span class="ni">SQLiteDatabase.execute</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2029</span>     <span class="k">raise</span> <span class="n">ex</span> <span class="kn">from</span> <span class="nn">inner_exc</span>
+<span class="g g-Whitespace">   </span><span class="mi">2031</span> <span class="n">ex</span> <span class="o">=</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Execution failed on sql &#39;</span><span class="si">{</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2032</span> <span class="k">raise</span> <span class="n">ex</span> <span class="kn">from</span> <span class="nn">exc</span>
+
+<span class="ne">DatabaseError</span>: Execution failed on sql &#39;SELECT Name, Adresse, Geburtstag, Gehalt FROM SchauspielerIn NATURAL FULL OUTER JOIN ManagerIn&#39;: RIGHT and FULL OUTER JOINs are not currently supported
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ebenso werden FULL OUTER JOINS in sqlite3 nicht unterstützt. Eine alternative Anfrage mit äquivalenter Ausgabe, die nur LEFT OUTER JOINS verwendet ist möglich. Ein FULL OUTER JOIN ist die Vereinigung von dem LEFT und RIGHT OUTER JOIN zweier Tabellen. Wie im vorherigen Beispiel gezeigt, können wir RIGHT OUTER JOINS mithilfe von LEFT OUTER JOINS erzeugen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Name, Adresse, Geburtstag, Gehalt FROM SchauspielerIn NATURAL LEFT OUTER JOIN ManagerIn UNION SELECT Name, Adresse, Geburtstag, Gehalt FROM ManagerIn NATURAL LEFT OUTER JOIN SchauspielerIn&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -7609,7 +7740,7 @@ REGION is randomly selected within the list of values defined for R_NAME</p>
 <p>■ Auch MINUS</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%sql (SELECT Titel, Jahr FROM Film) EXCEPT (SELECT FilmTitel AS Titel, FilmJahr AS Jahr FROM spielt_in) </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#(SELECT Titel, Jahr FROM Film) EXCEPT (SELECT FilmTitel AS Titel, FilmJahr AS Jahr FROM spielt_in) </span>
 
 <span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Titel, Jahr FROM Film EXCEPT SELECT FilmTitel AS Titel, FilmJahr AS Jahr FROM spielt_in&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
@@ -7682,10 +7813,67 @@ REGION is randomly selected within the list of values defined for R_NAME</p>
 <h4><span class="section-number">9.3.11.4. </span>Klammerung<a class="headerlink" href="#klammerung" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span> SELECT * FROM ((SELECT A FROM R)INTERSECT(SELECT * FROM (SELECT A FROM S) UNION (SELECT A FROM T)))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT *</span>
+<span class="c1">#FROM</span>
+<span class="c1">#(</span>
+<span class="c1">#    (SELECT A FROM R)</span>
+<span class="c1">#     INTERSECT</span>
+<span class="c1">#    (SELECT * FROM</span>
+<span class="c1">#     (SELECT A FROM S)</span>
+<span class="c1">#      UNION</span>
+<span class="c1">#    (SELECT A FROM T)</span>
+<span class="c1">#   )</span>
+<span class="c1">#)</span>
+
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM (SELECT A FROM R INTERSECT SELECT * FROM (SELECT A FROM S) UNION SELECT A FROM T)&quot;</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;rst/rst.db&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+<span class="n">df</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </div>
 </div>
@@ -8347,21 +8535,63 @@ geprüft haben.
 ihm nicht geprüft wurde.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
-<span class="n">SELECT</span> <span class="n">Lehrstuhlbezeichnung</span>
-<span class="n">FROM</span> <span class="n">Prof</span>
-<span class="n">WHERE</span> <span class="n">NOT</span> <span class="n">EXISTS</span>
-      <span class="p">(</span><span class="n">SELECT</span> <span class="o">*</span>
-       <span class="n">FROM</span> <span class="n">Liest</span>
-       <span class="n">WHERE</span> <span class="n">Liest</span><span class="o">.</span><span class="n">PANr</span> <span class="o">=</span> <span class="n">Prof</span><span class="o">.</span><span class="n">PANr</span>
-       <span class="n">AND</span> <span class="n">NOT</span> <span class="n">EXISTS</span> <span class="p">(</span><span class="n">SELECT</span> <span class="o">*</span>
-                   <span class="n">FROM</span> <span class="n">Prüft</span>
-                   <span class="n">WHERE</span> <span class="n">Prüft</span><span class="o">.</span><span class="n">PANr</span> <span class="o">=</span> <span class="n">Prof</span><span class="o">.</span><span class="n">PANr</span>
-                   <span class="n">AND</span> <span class="n">Prüft</span><span class="o">.</span><span class="n">VL_NR</span> <span class="o">=</span> <span class="n">Liest</span><span class="o">.</span><span class="n">VL_NR</span><span class="p">)</span>
-<span class="p">)</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Lehrstuhlbezeichnung</span>
+<span class="c1">#FROM Prof</span>
+<span class="c1">#WHERE NOT EXISTS</span>
+<span class="c1">#      (SELECT *</span>
+<span class="c1">#       FROM Liest</span>
+<span class="c1">#       WHERE Liest.PANr = Prof.PANr</span>
+<span class="c1">#       AND NOT EXISTS (SELECT *</span>
+<span class="c1">#                   FROM Prueft</span>
+<span class="c1">#                   WHERE Prueft.PANr = Prof.PANr</span>
+<span class="c1">#                   AND Prüft.VL_NR = Liest.VL_NR)</span>
+<span class="c1">#) </span>
+
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Lehrstuhlbezeichnung FROM Prof WHERE NOT EXISTS (SELECT * FROM Liest WHERE Liest.PA_Nr = Prof.PA_Nr AND NOT EXISTS (SELECT * FROM Prueft WHERE Prueft.PA_Nr = Prof.PA_Nr AND Prueft.VL_NR = Liest.VL_NR)) &quot;</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;lehre/lehre.db&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+<span class="n">df</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Lehrstuhlbezeichnung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Märchen</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Getreidemuehlen</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Kräuterkunde</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </div>
 <div class="section" id="in-beispiele">
@@ -8422,39 +8652,177 @@ ihm nicht geprüft wurde.</p>
 <p>■ Matrikel der Studenten, die zumindest einen Prüfer gemeinsam mit dem Studenten der Matrikel ‚123456‘ haben</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%sql
-SELECT DISTINCT Matrikel
-FROM Prüft
-WHERE Prüfer IN ( SELECT Prüfer
-                  FROM Prüft
-                  WHERE Matrikel = ‘123456‘)``` 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT DISTINCT Matrikel</span>
+<span class="c1">#FROM Prüft</span>
+<span class="c1">#WHERE Prüfer IN ( SELECT Prüfer</span>
+<span class="c1">#                  FROM Prüft</span>
+<span class="c1">#                  WHERE Matrikel = 123456) </span>
+
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT DISTINCT Matrikel FROM Prueft WHERE Pruefer IN ( SELECT Pruefer FROM Prueft WHERE Matrikel = 123456) &quot;</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;lehre/lehre.db&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+<span class="n">df</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Matrikel</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>123456</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4852</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4757</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>8294</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>11233</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>55940</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%sql
-SELECT DISTINCT P1.Matrikel
-FROM Prüft P1, Prüft P2
-WHERE P2.Matrikel = `123456`
-AND P1.Prüfer = P2.Prüfer
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT DISTINCT P1.Matrikel</span>
+<span class="c1">#FROM Prueft P1, Prueft P2</span>
+<span class="c1">#WHERE P2.Matrikel = 123456</span>
+<span class="c1">#AND P1.Pruefer = P2.Pruefer</span>
+
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT DISTINCT P1.Matrikel FROM Prueft P1, Prueft P2 WHERE P2.Matrikel = 123456 AND P1.Pruefer = P2.Pruefer&quot;</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;lehre/lehre.db&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+<span class="n">df</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Matrikel</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>4757</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4852</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>123456</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>8294</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>11233</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>55940</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>■ Nachnamen aller Professor*innen, die schon einmal eine 1,0 vergeben haben.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
-<span class="n">SELECT</span> <span class="n">Nachname</span>
-<span class="n">FROM</span> <span class="n">Prof</span>
-<span class="n">WHERE</span> <span class="mf">1.0</span> <span class="n">IN</span> <span class="p">(</span> <span class="n">SELECT</span> <span class="n">Note</span>
-<span class="n">FROM</span> <span class="n">Prüft</span>
-<span class="n">WHERE</span> <span class="n">Prüfer</span> <span class="o">=</span> <span class="n">Prof</span><span class="o">.</span><span class="n">ID</span> <span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Nachname</span>
+<span class="c1">#FROM Prof</span>
+<span class="c1">#WHERE 1.0 IN ( SELECT Note</span>
+<span class="c1">#FROM Prüft</span>
+<span class="c1">#WHERE Prüfer = Prof.ID )</span>
+
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Nachname FROM Prof WHERE 1.0 IN ( SELECT Note FROM Prueft WHERE Pruefer = ProfID )&quot;</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;lehre/lehre.db&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+<span class="n">df</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Nachname</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>■ Achtung: Korrelierte Subanfrage</p>
 </div>
@@ -8463,8 +8831,7 @@ AND P1.Prüfer = P2.Prüfer
 <p>■ Die schlechteste Note des Studenten mit Matrikel 123456</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%sql
-SELECT Note
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>SELECT Note
 FROM Prüft
 WHERE Matrikel = ‘123456‘
 AND Note &gt;= ALL (SELECT Note
@@ -8474,26 +8841,51 @@ AND Note &gt;= ALL (SELECT Note
 </div>
 </div>
 </div>
+<p>Der Operator ALL wird nicht von sqlite3 unterstützt. Stattdessen kann man eine äquivalente Anfrage mithilfe MAX() formulieren.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#äquivalent ohne ALL
-
-%sql
-SELECT Note
-FROM Prüft
-WHERE Matrikel = ‘123456‘
-AND Note &gt;=  (SELECT MIN(Note)
-                 FROM Prüft
-                 WHERE Matrikel = ‘123456‘)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Note FROM Prueft WHERE Matrikel = 123456 AND Note &gt;= (SELECT MAX(Note) FROM Prueft WHERE Matrikel = 123456)&quot;</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;lehre/lehre.db&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+<span class="n">df</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3,0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>■ Alle Studenten, die mindestens eine Prüfung absolvierten</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span> 
-<span class="n">SELECT</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Matrikel</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Matrikel</span>
 <span class="n">FROM</span> <span class="n">Student</span>
 <span class="n">WHERE</span> <span class="n">Matrikel</span> <span class="o">=</span> <span class="n">ANY</span> <span class="p">(</span><span class="n">SELECT</span> <span class="n">Matrikel</span>
                       <span class="n">FROM</span> <span class="n">Prüft</span><span class="p">)</span>
@@ -8501,13 +8893,11 @@ AND Note &gt;=  (SELECT MIN(Note)
 </div>
 </div>
 </div>
+<p>Der Operator ANY wird nicht von sqlite3 unterstützt. Stattdessen kann man eine äquivalente Anfrage mithilfe IN formulieren.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Alternative zum Bsp oben</span>
-<span class="c1">#Name und Geburtstag der Schauspieler*Innen, die in spielt_in auftauchen</span>
-
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Name, Geburtstag FROM SchauspielerIn WHERE Name IN (SELECT Name FROM spielt_in)&quot;</span>
-<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Name, Matrikel FROM Student WHERE Matrikel IN (SELECT Matrikel FROM Prueft)&quot;</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;lehre/lehre.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
 </pre></div>
@@ -8533,154 +8923,39 @@ AND Note &gt;=  (SELECT MIN(Note)
     <tr style="text-align: right;">
       <th></th>
       <th>Name</th>
-      <th>Geburtstag</th>
+      <th>Matrikel</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Adam Driver</td>
-      <td>1983-11-19</td>
+      <td>Anna Kraft</td>
+      <td>4757</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Alan Young</td>
-      <td>1919-11-19</td>
+      <td>Hans Meyer</td>
+      <td>4852</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Arnold Schwarzenegger</td>
-      <td>1947-07-30</td>
+      <td>Guenther Goethe</td>
+      <td>8294</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Carrie Fisher</td>
-      <td>1956-10-21</td>
+      <td>Svenja Krug</td>
+      <td>11233</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Christoph Waltz</td>
-      <td>1956-10-04</td>
+      <td>Clara Hund</td>
+      <td>55940</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>Daniel Craig</td>
-      <td>1968-03-02</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Emile Hirsch</td>
-      <td>1985-03-13</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>Emma Stone</td>
-      <td>1988-11-06</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>Harrison Ford</td>
-      <td>1942-07-13</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>Heath Ledger</td>
-      <td>1979-04-04</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Jake Gyllenhaal</td>
-      <td>1980-12-19</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>Jared Leto</td>
-      <td>1971-12-26</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Kirsten Dunst</td>
-      <td>1982-04-30</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Lady Gaga</td>
-      <td>1986-03-20</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Leonardo DiCaprio</td>
-      <td>1974-11-11</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Léa Seydoux</td>
-      <td>1985-07-01</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>Mahershala Ali</td>
-      <td>1974-02-16</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Mark Hamill</td>
-      <td>1951-09-25</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>Meryl Streep</td>
-      <td>1949-06-22</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Phyllis Smith</td>
-      <td>1951-07-10</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>Robert Pattinson</td>
-      <td>1986-05-13</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>Ryan Gosling</td>
-      <td>1980-11-12</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>Samuel L. Jackson</td>
-      <td>1948-12-21</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>Sharon Stone</td>
-      <td>1958-03-10</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>Tobey Maguire</td>
-      <td>1975-06-27</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>Tom Hanks</td>
-      <td>1956-07-09</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>Vincent Cassel</td>
-      <td>1966-11-23</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>Willem Dafoe</td>
-      <td>1995-07-22</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>William Shatner</td>
-      <td>1931-03-22</td>
+      <td>Max Mustermann</td>
+      <td>123456</td>
     </tr>
   </tbody>
 </table>
@@ -10884,7 +11159,7 @@ CREATE TABLE Schauspieler (
 Name CHAR(30),
 Adresse VARCHAR(255),
 Geschlecht CHAR(1) DEFAULT ‚?‘,
-Geburtstag DATE DEFAULT DATE ‚0000-00-00‘);
+Geburtstag DATE DEFAULT DATE ‚&#39;0000-00-00&#39;);
 
 ALTER TABLE Schauspieler
 ADD Telefon CHAR(16) DEFAULT ‚unbekannt‘;
@@ -11071,10 +11346,11 @@ ADD Telefon CHAR(16) DEFAULT ‚unbekannt‘;
 ■ Drei typische Anfragen</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%sql SELECT FilmTitel, FilmJahr </span>
-<span class="c1">#FROM spielt_in WHERE Name = s;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT FilmTitel, FilmJahr </span>
+<span class="c1">#FROM spielt_in </span>
+<span class="c1">#WHERE Name = s;</span>
 
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT FilmTitel, FilmJahr FROM spielt_in WHERE Name = s&quot;</span>
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT FilmTitel, FilmJahr FROM spielt_in WHERE Name = &#39;s&#39;&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -11082,63 +11358,32 @@ ADD Telefon CHAR(16) DEFAULT ‚unbekannt‘;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">OperationalError</span><span class="g g-Whitespace">                          </span>Traceback (most recent call last)
-<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py:2020,</span> in <span class="ni">SQLiteDatabase.execute</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2019</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">2020</span>     <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2021</span>     <span class="k">return</span> <span class="n">cur</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="ne">OperationalError</span>: no such column: s
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
-
-<span class="ne">DatabaseError</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
-<span class="nn">Input In [80],</span> in <span class="ni">&lt;cell line: 6&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT FilmTitel, FilmJahr FROM spielt_in WHERE Name = s&quot;</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">df</span>
-
-<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py:399,</span> in <span class="ni">read_sql_query</span><span class="nt">(sql, con, index_col, coerce_float, params, parse_dates, chunksize, dtype)</span>
-<span class="g g-Whitespace">    </span><span class="mi">341</span> <span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">342</span><span class="sd"> Read SQL query into a DataFrame.</span>
-<span class="g g-Whitespace">    </span><span class="mi">343</span><span class="sd"> </span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">396</span><span class="sd"> parameter will be converted to UTC.</span>
-<span class="g g-Whitespace">    </span><span class="mi">397</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">398</span> <span class="n">pandas_sql</span> <span class="o">=</span> <span class="n">pandasSQL_builder</span><span class="p">(</span><span class="n">con</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">399</span> <span class="k">return</span> <span class="n">pandas_sql</span><span class="o">.</span><span class="n">read_query</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">400</span>     <span class="n">sql</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">401</span>     <span class="n">index_col</span><span class="o">=</span><span class="n">index_col</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">402</span>     <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">403</span>     <span class="n">coerce_float</span><span class="o">=</span><span class="n">coerce_float</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">404</span>     <span class="n">parse_dates</span><span class="o">=</span><span class="n">parse_dates</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">405</span>     <span class="n">chunksize</span><span class="o">=</span><span class="n">chunksize</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">406</span>     <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">407</span> <span class="p">)</span>
-
-<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py:2080,</span> in <span class="ni">SQLiteDatabase.read_query</span><span class="nt">(self, sql, index_col, coerce_float, params, parse_dates, chunksize, dtype)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2068</span> <span class="k">def</span> <span class="nf">read_query</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2069</span>     <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2070</span>     <span class="n">sql</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2076</span>     <span class="n">dtype</span><span class="p">:</span> <span class="n">DtypeArg</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2077</span> <span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">2079</span>     <span class="n">args</span> <span class="o">=</span> <span class="n">_convert_params</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">2080</span>     <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2081</span>     <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">col_desc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">col_desc</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">description</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">2083</span>     <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py:2032,</span> in <span class="ni">SQLiteDatabase.execute</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2029</span>     <span class="k">raise</span> <span class="n">ex</span> <span class="kn">from</span> <span class="nn">inner_exc</span>
-<span class="g g-Whitespace">   </span><span class="mi">2031</span> <span class="n">ex</span> <span class="o">=</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Execution failed on sql &#39;</span><span class="si">{</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">2032</span> <span class="k">raise</span> <span class="n">ex</span> <span class="kn">from</span> <span class="nn">exc</span>
-
-<span class="ne">DatabaseError</span>: Execution failed on sql &#39;SELECT FilmTitel, FilmJahr FROM spielt_in WHERE Name = s&#39;: no such column: s
-</pre></div>
-</div>
-</div>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FilmTitel</th>
+      <th>FilmJahr</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
