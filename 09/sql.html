@@ -296,13 +296,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#beispielschema">
-     9.2.1. Beispielschema
+    <a class="reference internal nav-link" href="#select-from-where">
+     9.2.1. SELECT … FROM … WHERE …
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#select-from-where">
-     9.2.2. SELECT … FROM … WHERE …
+    <a class="reference internal nav-link" href="#beispielschema">
+     9.2.2. Beispielschema
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -813,13 +813,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#beispielschema">
-     9.2.1. Beispielschema
+    <a class="reference internal nav-link" href="#select-from-where">
+     9.2.1. SELECT … FROM … WHERE …
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#select-from-where">
-     9.2.2. SELECT … FROM … WHERE …
+    <a class="reference internal nav-link" href="#beispielschema">
+     9.2.2. Beispielschema
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -1316,286 +1316,14 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM Film&quot;</span>
-<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
-<span class="n">df</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Titel</th>
-      <th>Jahr</th>
-      <th>Laenge</th>
-      <th>inFarbe</th>
-      <th>StudioName</th>
-      <th>ProduzentinID</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Inside Out</td>
-      <td>2015</td>
-      <td>95</td>
-      <td>TRUE</td>
-      <td>Disney</td>
-      <td>1234</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Toy Story</td>
-      <td>1999</td>
-      <td>81</td>
-      <td>TRUE</td>
-      <td>Disney</td>
-      <td>1234</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Up</td>
-      <td>2009</td>
-      <td>96</td>
-      <td>TRUE</td>
-      <td>Pixar</td>
-      <td>4567</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Ratatouille</td>
-      <td>2007</td>
-      <td>111</td>
-      <td>TRUE</td>
-      <td>Pixar</td>
-      <td>4567</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Star Wars</td>
-      <td>1977</td>
-      <td>121</td>
-      <td>TRUE</td>
-      <td>Pinewood</td>
-      <td>78910</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Star Trek</td>
-      <td>1979</td>
-      <td>132</td>
-      <td>TRUE</td>
-      <td>Paramount</td>
-      <td>6789</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Lady Bird</td>
-      <td>2017</td>
-      <td>95</td>
-      <td>TRUE</td>
-      <td>Scott Rudin Productions</td>
-      <td>3456</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>Into the Wild</td>
-      <td>2007</td>
-      <td>148</td>
-      <td>TRUE</td>
-      <td>Paramount</td>
-      <td>6789</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>Brokeback Mountain</td>
-      <td>2005</td>
-      <td>134</td>
-      <td>TRUE</td>
-      <td>River Road</td>
-      <td>4712</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>The Lighthouse</td>
-      <td>2019</td>
-      <td>109</td>
-      <td>FALSE</td>
-      <td>A24</td>
-      <td>1748</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Roma</td>
-      <td>2018</td>
-      <td>135</td>
-      <td>FALSE</td>
-      <td>Participant</td>
-      <td>5123</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>La Heine</td>
-      <td>1995</td>
-      <td>98</td>
-      <td>FALSE</td>
-      <td>NULL</td>
-      <td>2212</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Total Recall</td>
-      <td>1990</td>
-      <td>113</td>
-      <td>TRUE</td>
-      <td>Fox</td>
-      <td>3310</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Mamma Mia!</td>
-      <td>2008</td>
-      <td>108</td>
-      <td>TRUE</td>
-      <td>Littlestar Productions</td>
-      <td>8871</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>The Dark Knight</td>
-      <td>2008</td>
-      <td>152</td>
-      <td>TRUE</td>
-      <td>Warner Bros.</td>
-      <td>6035</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Pulp Fiction</td>
-      <td>1994</td>
-      <td>154</td>
-      <td>TRUE</td>
-      <td>A Band Apart</td>
-      <td>7654</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>The Great Gatsby</td>
-      <td>2013</td>
-      <td>142</td>
-      <td>TRUE</td>
-      <td>Village Roadshows</td>
-      <td>8634</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Spider-Man</td>
-      <td>2002</td>
-      <td>121</td>
-      <td>TRUE</td>
-      <td>Marvel Enterprises</td>
-      <td>6362</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>La La Land</td>
-      <td>2016</td>
-      <td>128</td>
-      <td>TRUE</td>
-      <td>Summit Entertainment</td>
-      <td>5123</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Moonlight</td>
-      <td>2016</td>
-      <td>124</td>
-      <td>TRUE</td>
-      <td>A24</td>
-      <td>1748</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>Ducktales the Movie: Treasure of the Lost Lamp</td>
-      <td>1990</td>
-      <td>74</td>
-      <td>TRUE</td>
-      <td>Disney</td>
-      <td>1234</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>House of Gucci</td>
-      <td>2021</td>
-      <td>158</td>
-      <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>James Bond 007: Spectre</td>
-      <td>2015</td>
-      <td>148</td>
-      <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>Shipwrecked</td>
-      <td>1990</td>
-      <td>92</td>
-      <td>TRUE</td>
-      <td>Disney</td>
-      <td>1234</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>The Rescuers Down Under</td>
-      <td>1990</td>
-      <td>77</td>
-      <td>TRUE</td>
-      <td>Disney</td>
-      <td>1234</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>Gone with the Wind</td>
-      <td>1939</td>
-      <td>221</td>
-      <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
 <div class="section" id="einfuhrung">
 <h2><span class="section-number">9.1. </span>Einführung<a class="headerlink" href="#einfuhrung" title="Permalink to this headline">¶</a></h2>
+<p>Aus den vorherigen Kapiteln haben wir gelernt wie wir eine Datenbank auf Papier entwerfen, nun schauen wir uns die in der Realität benutzten technischen Mitteln an, insbesondere die Datenbankanfragesprache SQL.</p>
 <div class="section" id="sql-historie">
 <h3><span class="section-number">9.1.1. </span>SQL-Historie<a class="headerlink" href="#sql-historie" title="Permalink to this headline">¶</a></h3>
-<p>■ SEQUEL (1974, IBM Research Labs San Jose)
+<p>SQL entstand durch die Ursprungssprache SEQUEL(1976, IBM Research Labs San Jose). Später entwickelte sich SEQUEL zu SEQUEL2(1976, IBM Research Labs San Jose), welche auf einer der Vorreitern von Datenbanksystemen “System R” benutzt wurde.
+<br><br>
+■ SEQUEL (1974, IBM Research Labs San Jose)
 <br><br>
 ■ SEQUEL2 (1976, IBM Research Labs San Jose)
 <br>
@@ -1715,12 +1443,14 @@ Trotz Standardisierung: Inkompatibilitäten zwischen Systemen der einzelnen Hers
 </div>
 <div class="section" id="einfach-anfragen">
 <h2><span class="section-number">9.2. </span>Einfach Anfragen<a class="headerlink" href="#einfach-anfragen" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="beispielschema">
-<h3><span class="section-number">9.2.1. </span>Beispielschema<a class="headerlink" href="#beispielschema" title="Permalink to this headline">¶</a></h3>
-<p><img alt="title" src="../_images/beispielschema.jpg" /></p>
-</div>
 <div class="section" id="select-from-where">
-<h3><span class="section-number">9.2.2. </span>SELECT … FROM … WHERE …<a class="headerlink" href="#select-from-where" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">9.2.1. </span>SELECT … FROM … WHERE …<a class="headerlink" href="#select-from-where" title="Permalink to this headline">¶</a></h3>
+<p>SQL-Anfragen folgen meist einer Drei-Zeilen-Struktur aus SELECT, FROM, WHERE, wobei SELECT und FROM in jeder SQL-Anfrage enthalten sein müssen. Das Schlüsselwort SELECT entspricht dem Projektionsoperator <span class="math notranslate nohighlight">\(\pi\)</span>, den wir aus dem Kapitel Relationale Algebra schon kennengelernt haben. Die FROM-Zeile gibt an von welchen Tabellen die Daten stammen sollen. WHERE entspricht gewissermaßen dem Selektionsoperator <span class="math notranslate nohighlight">\(\sigma\)</span>, hier werden also Bedingungen an  die Tupel gestellt die diese erfüllen sollen.</p>
+<p>Betrachten wir folgendes Beispielschema für Filme, welches aus den vorherigen Kapiteln bekannt sein sollte. Wir möchten nun eine Anfrage formulieren, die uns alle Filme ausgibt, welche von Disney produziert und im Jahre 1990 erschienen sind.</p>
+</div>
+<div class="section" id="beispielschema">
+<h3><span class="section-number">9.2.2. </span>Beispielschema<a class="headerlink" href="#beispielschema" title="Permalink to this headline">¶</a></h3>
+<p><img alt="title" src="../_images/beispielschema.jpg" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT * </span>
@@ -1793,6 +1523,7 @@ Trotz Standardisierung: Inkompatibilitäten zwischen Systemen der einzelnen Hers
 </table>
 </div></div></div>
 </div>
+<p>Wir benutzen SELECT *, wodurch uns alle Attribute der ausgewählten Tabelle ausgibt, alternativ kann man auch SELECT Titel, Jahr, Laenge… machen. Da wir alle Filme ausgeben wollen, schreiben wir FROM Film, da wir Tupel aus der Tabelle Film wollen. Zuletzt selektieren wir die Tupel, die StudioName = “Disney” und Jahr = 1990 erfüllen.</p>
 <p>■ Lesereihenfolge (und Schreibreihenfolge):
 <br></p>
 <ol class="simple">
