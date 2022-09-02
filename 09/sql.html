@@ -1523,7 +1523,29 @@ Trotz Standardisierung: Inkompatibilitäten zwischen Systemen der einzelnen Hers
 </table>
 </div></div></div>
 </div>
-<p>Wir benutzen SELECT *, wodurch uns alle Attribute der ausgewählten Tabelle ausgibt, alternativ kann man auch SELECT Titel, Jahr, Laenge… machen. Da wir alle Filme ausgeben wollen, schreiben wir FROM Film, da wir Tupel aus der Tabelle Film wollen. Zuletzt selektieren wir die Tupel, die StudioName = “Disney” und Jahr = 1990 erfüllen.</p>
+<p>Wir benutzen SELECT *, wodurch uns alle Attribute der ausgewählten Tabelle ausgegeben werden, alternativ kann man auch SELECT Titel, Jahr, Laenge… machen. Da wir alle Filme ausgeben wollen, schreiben wir FROM Film, da wir Tupel aus der Tabelle Film wollen. Zuletzt selektieren wir die Tupel, die StudioName = “Disney” und Jahr = 1990 erfüllen.</p>
+<p>In SQL wird Groß- und Kleinschreibung nicht beachtet, sowohl bei Schlüsselwörtern wie SELECT, FROM, WHERE usw., als auch bei Attribut- und Relationen.
+<br><br>
+D.h es gilt also:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">From</span> <span class="o">=</span> <span class="n">FROM</span> <span class="o">=</span> <span class="kn">from</span> <span class="o">=</span> <span class="n">FrOm</span>
+</pre></div>
+</div>
+<br>
+Und die folgenden Anfragen sind äquivalent:
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELect</span> <span class="n">vorNAMe</span> <span class="n">fROm</span> <span class="n">fiLM</span>
+</pre></div>
+</div>
+<br>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">vorname</span> <span class="n">FROM</span> <span class="n">film</span>
+</pre></div>
+</div>
+<p><br><br>
+Anders ist es natürlich bei Konstanten:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>‘FROM‘ ≠ ‘from‘ ≠ from = FROM
+</pre></div>
+</div>
+<p><br><br>
+Trotzdem gilt als Konvention zur Lesbarkeit, dass Schlüsselwörter großgeschrieben werden und Schemaelemente klein.</p>
 <p>■ Lesereihenfolge (und Schreibreihenfolge):
 <br></p>
 <ol class="simple">
@@ -1572,7 +1594,11 @@ Trotz Standardisierung: Inkompatibilitäten zwischen Systemen der einzelnen Hers
 </div>
 <div class="section" id="projektion-in-sql-select-pi">
 <h3><span class="section-number">9.2.4. </span>Projektion in SQL (SELECT, <span class="math notranslate nohighlight">\(\pi\)</span>)<a class="headerlink" href="#projektion-in-sql-select-pi" title="Permalink to this headline">¶</a></h3>
-<p>■ Spezifikation in der SELECT Klausel</p>
+<p>Wir betrachten nun die einzelnen Schlüsselwörter etwas genauer und starten mit der Projektion. In der SELECT Klausel werden Attribute von Relationen aufgelistet, die herausprojeziert werden sollen.
+<br><br>
+Im folgenden Beipiel wollen wir alle Attribute bzw. Spalten aus der Filmrelation ausgeben, der Stern “*” ist hier eine kürzere Schreibweise für alle Attribute.
+<br><br>
+■ Spezifikation in der SELECT Klausel</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT * </span>
@@ -1851,7 +1877,7 @@ Trotz Standardisierung: Inkompatibilitäten zwischen Systemen der einzelnen Hers
 </table>
 </div></div></div>
 </div>
-<p>– Alle Attribute</p>
+<p>Es ist auch möglich konkret die Attributsnamen aufzulisten, die ausgegeben sollen werden. Im unteren Beispiel, geben wir nur die Spalten Titel, Jahr und inFarbe von der Filmrelation aus.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Titel, Jahr, inFarbe </span>
@@ -2054,6 +2080,7 @@ Trotz Standardisierung: Inkompatibilitäten zwischen Systemen der einzelnen Hers
 ■ Erweiterte Projektion
 <br>
 □ Umbenennung:</p>
+<p>In der SELECT Klausel ist es auch möglich die Attributsnamen in der Ausgabetabelle umzubenennen. Die Ausgabe einer SQL-Anfrage ist immer eine Tabelle. Im unteren Beispiel projezieren wir die Attribute Titel, Jahr aus der Filmrelation und benennen die Attribute in unserer Ausgabetabelle zu Name,Zeit um.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Titel AS Name, Jahr AS Zeit </span>
