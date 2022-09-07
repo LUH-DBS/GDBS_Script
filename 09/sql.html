@@ -51,8 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="10. Integrität und Trigger" href="../10/integritaet_und_trigger.html" />
@@ -1302,6 +1302,19 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="s1">&#39;load_ext&#39;</span><span class="p">,</span> <span class="s1">&#39;sql&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="s1">&#39;sql&#39;</span><span class="p">,</span> <span class="s1">&#39;sqlite:///filme/filme.db&#39;</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="einfuhrung">
 <h2><span class="section-number">9.1. </span>Einführung<a class="headerlink" href="#einfuhrung" title="Permalink to this headline">¶</a></h2>
@@ -2239,6 +2252,7 @@ Im folgenden Beipiel wollen wir alle Attribute bzw. Spalten aus der Filmrelation
 </div></div></div>
 </div>
 <p>□ Arithmetischer Ausdruck:</p>
+<p>In der SELECT-Klausel ist es auch möglich arithmetische Ausdrücke zu benutzen. Im folgenden Beispiel werden Titel und Laenge der Filme herausprojeziert, wobei die Laenge direkt mit einer Konstanten multipliziert wird. Daher wird in der Ausgabetabelle die Laenge in Stunden und nicht in Minuten angegeben. Dementsprechend haben wir auch das Attribut Laenge in Stunden mit dem Umbenennungsoperator AS umbenannt.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Titel, Laenge * 0.016667 AS Stunden </span>
@@ -2410,11 +2424,13 @@ Im folgenden Beipiel wollen wir alle Attribute bzw. Spalten aus der Filmrelation
 </div></div></div>
 </div>
 <p>□ Konstanten:</p>
+<p>Zudem ist es auch möglich, sich spezielle Konstanten ausgeben zu lassen. Im unteren Beispiel fügen wir der Ausgabetabelle eine neue Spalte hinzu, mit dem Namen inStunden, in der der String ‘std.’ steht</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Titel, Laenge * 0.016667 AS Stunden, ‘std.‘ AS inStunden FROM Film</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Titel, Laenge * 0.016667 AS Stunden, ‘std.‘ AS inStunden </span>
+<span class="c1">#FROM Film</span>
 
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Titel, Laenge * 0.016667 AS Stunden FROM Film&quot;</span>
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Titel, Laenge * 0.016667 AS Stunden, &#39;std.&#39; AS inStunden FROM Film&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -2442,6 +2458,7 @@ Im folgenden Beipiel wollen wir alle Attribute bzw. Spalten aus der Filmrelation
       <th></th>
       <th>Titel</th>
       <th>Stunden</th>
+      <th>inStunden</th>
     </tr>
   </thead>
   <tbody>
@@ -2449,131 +2466,157 @@ Im folgenden Beipiel wollen wir alle Attribute bzw. Spalten aus der Filmrelation
       <th>0</th>
       <td>Inside Out</td>
       <td>1.583365</td>
+      <td>std.</td>
     </tr>
     <tr>
       <th>1</th>
       <td>Toy Story</td>
       <td>1.350027</td>
+      <td>std.</td>
     </tr>
     <tr>
       <th>2</th>
       <td>Up</td>
       <td>1.600032</td>
+      <td>std.</td>
     </tr>
     <tr>
       <th>3</th>
       <td>Ratatouille</td>
       <td>1.850037</td>
+      <td>std.</td>
     </tr>
     <tr>
       <th>4</th>
       <td>Star Wars</td>
       <td>2.016707</td>
+      <td>std.</td>
     </tr>
     <tr>
       <th>5</th>
       <td>Star Trek</td>
       <td>2.200044</td>
+      <td>std.</td>
     </tr>
     <tr>
       <th>6</th>
       <td>Lady Bird</td>
       <td>1.583365</td>
+      <td>std.</td>
     </tr>
     <tr>
       <th>7</th>
       <td>Into the Wild</td>
       <td>2.466716</td>
+      <td>std.</td>
     </tr>
     <tr>
       <th>8</th>
       <td>Brokeback Mountain</td>
       <td>2.233378</td>
+      <td>std.</td>
     </tr>
     <tr>
       <th>9</th>
       <td>The Lighthouse</td>
       <td>1.816703</td>
+      <td>std.</td>
     </tr>
     <tr>
       <th>10</th>
       <td>Roma</td>
       <td>2.250045</td>
+      <td>std.</td>
     </tr>
     <tr>
       <th>11</th>
       <td>La Heine</td>
       <td>1.633366</td>
+      <td>std.</td>
     </tr>
     <tr>
       <th>12</th>
       <td>Total Recall</td>
       <td>1.883371</td>
+      <td>std.</td>
     </tr>
     <tr>
       <th>13</th>
       <td>Mamma Mia!</td>
       <td>1.800036</td>
+      <td>std.</td>
     </tr>
     <tr>
       <th>14</th>
       <td>The Dark Knight</td>
       <td>2.533384</td>
+      <td>std.</td>
     </tr>
     <tr>
       <th>15</th>
       <td>Pulp Fiction</td>
       <td>2.566718</td>
+      <td>std.</td>
     </tr>
     <tr>
       <th>16</th>
       <td>The Great Gatsby</td>
       <td>2.366714</td>
+      <td>std.</td>
     </tr>
     <tr>
       <th>17</th>
       <td>Spider-Man</td>
       <td>2.016707</td>
+      <td>std.</td>
     </tr>
     <tr>
       <th>18</th>
       <td>La La Land</td>
       <td>2.133376</td>
+      <td>std.</td>
     </tr>
     <tr>
       <th>19</th>
       <td>Moonlight</td>
       <td>2.066708</td>
+      <td>std.</td>
     </tr>
     <tr>
       <th>20</th>
       <td>Ducktales the Movie: Treasure of the Lost Lamp</td>
       <td>1.233358</td>
+      <td>std.</td>
     </tr>
     <tr>
       <th>21</th>
       <td>House of Gucci</td>
       <td>2.633386</td>
+      <td>std.</td>
     </tr>
     <tr>
       <th>22</th>
       <td>James Bond 007: Spectre</td>
       <td>2.466716</td>
+      <td>std.</td>
     </tr>
     <tr>
       <th>23</th>
       <td>Shipwrecked</td>
       <td>1.533364</td>
+      <td>std.</td>
     </tr>
     <tr>
       <th>24</th>
       <td>The Rescuers Down Under</td>
       <td>1.283359</td>
+      <td>std.</td>
     </tr>
     <tr>
       <th>25</th>
       <td>Gone with the Wind</td>
       <td>3.683407</td>
+      <td>std.</td>
     </tr>
   </tbody>
 </table>
@@ -2628,6 +2671,30 @@ Im folgenden Beipiel wollen wir alle Attribute bzw. Spalten aus der Filmrelation
 <br>
 <br>
 ■ Beispiele</p>
+<p>Die Selektion die wir aus der relationalen Algebra kennen wird in SQL mit dem Schlüsselwort WHERE ausgedrückt, nicht mit dem Schlüsselwort SELECT. Wie aus anderen Programmiersprachen bekannt, kann man in der WHERE-Klausel Bedinungen aufstellen.
+<br><br>
+Es gibt sechs Vergleichsoperatoren =, &lt;&gt;, &lt;, &gt;, &lt;=, &gt;=(gleich, ungleich, kleiner, größer, kleiner gleich, größer gleich), hier können Sie links und rechts der Vergleichsoperatoren Konstanten und Attribute einsetzen. Insbesondere ist es auch möglich Attribute in der WHERE-Klausel zu vergleichen, die nicht in der SELECT- Klausel herausprojeziert werden. Auch im WHERE kann man arithmetische Ausdrücke in die Bedinung einbauen wie in diesem Beispiel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Jahr</span> <span class="o">-</span> <span class="mi">1930</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">Jahr</span> <span class="o">-</span> <span class="mi">1930</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">100</span>
+</pre></div>
+</div>
+<p>Und Konstanten und auch Variablen konkatenieren:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>‘Star‘ || ‘Wars‘ 
+</pre></div>
+</div>
+<p>entspricht</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>‘StarWars‘
+</pre></div>
+</div>
+<p>oder ein Beispiel mit Variablen:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Vorname</span> <span class="o">||</span> <span class="s1">&#39; &#39;</span> <span class="o">||</span> <span class="n">Nachname</span> <span class="o">=</span> <span class="s1">&#39;Luke Skywalker&#39;</span>
+</pre></div>
+</div>
+<p>Hier werden die Variablen Vorname und Nachname mit einer Leerstelle konkateniert und verglichen, ob der String ‘Luke Skywalker’ entspricht.
+<br><br>
+Das Ergebnis der Vergleichsoperation in SQL ist dann ein Bool’escher Wert, als TRUE oder FALSE. Dementsprechend können mehrere Vergleichsoperatoren mit AND, OR und NOT verknüpft werden, wobei die Klammerungen auch den bekannten Regeln der Logik entsprechen.
+<br><br>
+Nur wenn die gesamte WHERE-Klausel zu TRUE evaluiert wird, werden die entsprechenden Tupel ausgegeben.</p>
+<p>Im unteren Beispiel wollen wir jene Titel aus der Relation Film ausgeben, die nach dem Jahr 1970 erschienen und schwarz-weiß sind</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Titel </span>
@@ -2768,6 +2835,7 @@ Im folgenden Beipiel wollen wir alle Attribute bzw. Spalten aus der Filmrelation
 </table>
 </div></div></div>
 </div>
+<p>In diesem Beispiel möchten wir wieder alle Filmtitel ausgeben, hier aber alle Filme die von MGM produziert wurden sind und nach dem Jahr 1970 erschienen sind oder kürzer als 90 min sind.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Titel </span>
@@ -2849,6 +2917,18 @@ Im folgenden Beipiel wollen wir alle Attribute bzw. Spalten aus der Filmrelation
 <br>
 □ ‘_‘: Ein beliebiges Zeichen
 <br><br></p>
+<p>In SQL gibt es Datentypen unteranderem die Datentypen Array fester Länge, Buchstabenliste variabler Länge und Konstanten. Es sind viele Vergleiche über Datentypen hinweg erlaubt. In diesem Beispiel vergleichen wir eine Variable mit einer weiteren Variable und einer Stringkonstanten:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>foo _ _ _ _ _ = foo = ‘foo‘
+</pre></div>
+</div>
+<p>Ebenfalls sind Lexikographischer Vergleich mit den schon bekannten Vergleichsoperatoren =, &lt;, &gt;, &lt;=, &gt;=, &lt;&gt; möglich. Je nach verwendeter DBMS werden Sortierreihenfolge mit upper-case/lower-case andere behandelt</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;fodder&#39;</span> <span class="o">&lt;</span> <span class="s1">&#39;foo&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;bar&#39;</span> <span class="o">&lt;</span> <span class="s1">&#39;bargain&#39;</span>
+</pre></div>
+</div>
+<p>Mit dem LIKE Operator können Sie Stringteile miteinander vergleichen, also ob ein String einem gewissen Stringmuster folgt. Hierfür gibt es zwei spezielle Zeichen, einmal ‘%’, welches eine beliebige Sequenz von 0 oder mehr Zeichen entspricht und ‘_’, welches ein einzelnes beliebiges Zeichen steht. Hierfür ein Beispiel: Wir suchen jene Titel aus der Filmrelation, wo der Titel mit ‘Star’ beginnt, ein Leerzeichen folgt und 4 beliebige Zeichen folgen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Titel </span>
@@ -2896,7 +2976,7 @@ Im folgenden Beipiel wollen wir alle Attribute bzw. Spalten aus der Filmrelation
 </table>
 </div></div></div>
 </div>
-<p>□ Star Wars und Star Trek</p>
+<p>Hier suchen wir alle Titel, wo das Wort ‘War’ vorkommen muss. Sowohl vor dem ‘War’ als auch nachdem ‘War’ sind beliebige Zeichensequenzen erlaubt.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Titel </span>
@@ -3080,6 +3160,24 @@ UNKNOWN = ½
 </tbody>
 </table>
 <p>Überraschendes Verhalten</p>
+<p>In SQL gibt es auch Datentypen um Daten und Zeiten darzustellen: Der Datentyp DATE stellt ein Datumskonstante dar:
+<br>
+– DATE ‘YYYY-MM-DD‘
+<br>
+– DATE ‘1948-05-14‘
+<br><br>
+Zeitkonstanten werden mit dem Datentyp TIME dargestellt:
+– TIME ‘HH:MM:SS.S‘
+<br>
+– TIME ‘15:00:02.5‘
+<br><br>
+Zeitstempel, also eine Kombination aus Datum und Zeit, werden mit dem Datentyp TIMESTAMP dargestellt:
+– TIMESTAMP ‘1948-05-14 15:00:02.5‘
+<br><br>
+Auch dieses Datentypen können wieder miteinander ,in Form von Variablen und Konstanten, verglichen werden;
+– TIME ‘15:00:02.5‘ &lt; TIME ‘15:02:02.5‘ ergibt TRUE
+<br><br>
+– ERSCHEINUNGSTAG &gt;= DATE ‘1949-11-12‘</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT * </span>
@@ -5529,7 +5627,7 @@ UNKNOWN = ½
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;/var/folders/0l/c_g762xn62j70jfzwrym3g740000gn/T/ipykernel_53412/3890019320.py&quot;</span><span class="gt">, line </span><span class="mi">2</span>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">28</span><span class="p">]</span>
     <span class="n">SELECT</span> <span class="n">s_acctbal</span><span class="p">,</span> <span class="n">s_name</span><span class="p">,</span> <span class="n">n_name</span><span class="p">,</span> <span class="n">p_partkey</span><span class="p">,</span> <span class="n">p_mfgr</span><span class="p">,</span> <span class="n">s_address</span><span class="p">,</span> <span class="n">s_phone</span><span class="p">,</span>
            <span class="o">^</span>
 <span class="ne">SyntaxError</span>: invalid syntax
