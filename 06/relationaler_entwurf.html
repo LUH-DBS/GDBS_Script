@@ -567,7 +567,7 @@ Die Mengen <span class="math notranslate nohighlight">\(A_i\)</span> sind im Dat
 <li><p>Datenbankschema: Im Groben beschreibt jedes relationale Modell ein Datenbankschema, welche aus einem oder mehreren Relationenschemata besteht.</p></li>
 <li><p>Relationenschema: Jede Relation wird durch ihr Schema identifiziert. Das Relationenschema besteht aus dem Namen der Relation und der Liste der Attribute und ihrer Domänen. In einer Tabelle entspricht die Kopfzeile dem Relationenschema. Alle weiteren (Daten-)Einträge in der Tabelle bilden die „Relation“</p></li>
 <li><p>Die Relation besteht aus keinem oder mehr Tupeln. Im relationalen Modell bilden Tupel einer Relation immer eine Menge. Das heißt, dass kein Tupel in seiner gesamten Ausprägung doppelt auftauchen kann. Diese Annahme gilt in echten Datenbanksystemen nur dann, wenn ein Schlüssel vorhanden ist.</p></li>
-<li><p>Attribute entsprechen den Bezeichnern der zu einander in Relation stehenden Domänenmengen. In Tabellen entsprechen Attribute den Spaltenbezeichnern ( Überschriften). In einem Relationenschema kann ein Attribut nicht doppelt vorkommen. Das Relationenschema ist somit eine Menge.</p></li>
+<li><p>Attribute entsprechen den Bezeichnern der zu einander in Relation stehenden Domänenmengen. In Tabellen entsprechen Attribute den Spaltenbezeichnern (Überschriften). In einem Relationenschema kann ein Attribut nicht doppelt vorkommen. Das Relationenschema ist somit eine Menge.</p></li>
 <li><p>Attributwert: Jeder Dateneintrag in einem Tupel entspricht dem Attributwert der jeweiligen Spalte. Attributwerte sind atomar und stammen aus einer elementaren Domäne.</p></li>
 <li><p>Ein Tupel entspricht aus einer vollständigen Kombination von Attributwerten.</p></li>
 </ul>
@@ -576,19 +576,17 @@ Die Mengen <span class="math notranslate nohighlight">\(A_i\)</span> sind im Dat
 </div>
 <div class="section" id="formal">
 <h3><span class="section-number">6.1.3. </span>Formal<a class="headerlink" href="#formal" title="Permalink to this headline">¶</a></h3>
-<p>■ Domänen D1, …, Dn
-<br>
-<br>
-■ Relation R <span class="math notranslate nohighlight">\(\subseteq\)</span> D1 x … x Dn
-<br>
-<br>
-■ Beispiel
-<br>
-□ Relationenschema: Film(Titel, Jahr, Länge, Typ)
-<br>
-□ Domänen: String, Integer, Integer, String
-<br>
-□ Tupel: (Star Wars, 1977, 124, farbig)</p>
+<p>Formal betrachtet können wir die mathematische Definition von Relationen etwas spezieller auf Relationen in Datenbanken anwenden. Ausgangspunkt sind <span class="math notranslate nohighlight">\(n\)</span> Domänen <span class="math notranslate nohighlight">\(D_1, D_2, \dots, D_n\)</span>. Jede Domäne entspricht einer endlichen oder unendlichen Menge von gleichartigen Ausdrücken. Domänen können auch ganz allgemein als Datentypen wie String oder Integer aufgefasst werden.
+Eine Relation im Sinne des relationalen Modells ist die Teilmenge des Kreuzproduktes von <span class="math notranslate nohighlight">\(n\)</span> Domänen: <span class="math notranslate nohighlight">\(R \subseteq D_1 \times D_2 \times \dots \times D_n \)</span>. Daraus Ergibt sich, dass es für jede Domäne <span class="math notranslate nohighlight">\(D_n\)</span> eine Menge <span class="math notranslate nohighlight">\(A_n \subset D_n\)</span> gibt die alle Werte, die in der Zieltabelle vorkommen abbilden. Zum Beispiel könnte <span class="math notranslate nohighlight">\(A_n\)</span> die Menge aller Adressen eines Unternehmens sein. Im folgenden Beispiel wird das Nochmal verdeutlicht. Formal gibt es für jede Attributwertmenge <span class="math notranslate nohighlight">\(A_n\)</span> auch ein Label <span class="math notranslate nohighlight">\(a_n\)</span> welches die Menge bezeichnet. Hier: <span class="math notranslate nohighlight">\(a_n=\)</span> “Adressen”. Oft wird <span class="math notranslate nohighlight">\(A_n\)</span> auch Synonym (unsauber) als Bezeichner verwendet.</p>
+<ul class="simple">
+<li><p>Beispiel</p>
+<ul>
+<li><p>Relationenschema: <span class="math notranslate nohighlight">\(R(a_1,a_2,a_3,a_4)\)</span> <span class="math notranslate nohighlight">\(\equiv\)</span> Film(Titel, Jahr, Länge, Typ)</p></li>
+<li><p>Domänen: String, Integer, Integer, String</p></li>
+<li><p>Tupel: (Star Wars, 1977, 124, farbig)</p></li>
+</ul>
+</li>
+</ul>
 </div>
 <div class="section" id="edgar-f-codd">
 <h3><span class="section-number">6.1.4. </span>Edgar F. Codd<a class="headerlink" href="#edgar-f-codd" title="Permalink to this headline">¶</a></h3>
@@ -633,10 +631,6 @@ ISBN: 0-201-61294-1 (9.99 EUR)</p>
 ■ Normalformen
 <br>
 □ Erste bis dritte Normalform</p>
-<p><img alt="title" src="../_images/codd1.jpg" /></p>
-<p><img alt="title" src="../_images/codd2.jpg" /></p>
-<p><img alt="title" src="../_images/codd3.jpg" /></p>
-<p><img alt="title" src="../_images/codd4.jpg" /></p>
 </div>
 </div>
 </div>
