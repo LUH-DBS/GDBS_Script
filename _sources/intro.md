@@ -6,7 +6,7 @@ Willkommen auf der Startseite des Online-Skriptes der Vorlesung "Grundlagen der 
 An diesem Online-Skript haben mitgewirkt: **Prof. Dr. Ziawasch Abedjan, Jenny Wu**
 <br>
 <br>
-Die Inhalte sind inspiriert von der Vorlesung Datenbanksysteme 1 von Prof. Felix Naumann (HPI).
+Die Inhalte sind inspiriert von der Vorlesung Datenbanksysteme 1 von Prof. Dr. Felix Naumann (HPI).
 
 ```{tableofcontents}
 ```
