@@ -505,8 +505,8 @@ const thebe_selector_output = ".output, .cell_output"
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#differenz-except">
-       9.4.15.3. Differenz: EXCEPT
+      <a class="reference internal nav-link" href="#differenz-except-minus">
+       9.4.15.3. Differenz: EXCEPT/MINUS
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
@@ -1079,8 +1079,8 @@ const thebe_selector_output = ".output, .cell_output"
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#differenz-except">
-       9.4.15.3. Differenz: EXCEPT
+      <a class="reference internal nav-link" href="#differenz-except-minus">
+       9.4.15.3. Differenz: EXCEPT/MINUS
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
@@ -6044,6 +6044,7 @@ REGION is randomly selected within the list of values defined for R_NAME</p>
 ■ ManagerIn(Name, Adresse, ManagerinID, Gehalt)
 <br><br>
 ■ Schauspieler<em>innen, die zugleich Manager</em>in sind</p>
+<p>Haben wir erneut die Relationen SchauspielerIn(Name, Adresse, Geschlecht, Geburtstag) und ManagerIn(Name, Adresse, ManagerinID, Gehalt) gegeben. Wir suchen nun alle Schauspieler*Innen, die zugleich auch Manger*Innen sind.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Name, Adresse, Geburtstag, Gehalt </span>
@@ -6087,7 +6088,7 @@ REGION is randomly selected within the list of values defined for R_NAME</p>
 </table>
 </div></div></div>
 </div>
-<p>■ SchauspielerIn und gegebenenfalls ihre ManagerIninfo</p>
+<p>Nun suchen wir alle Schauspieler*Innen und ihre Manager*Inneninfo, falls diese vorhanden ist.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#…FROM SchauspielerIn NATURAL LEFT OUTER JOIN ManagerIn</span>
@@ -6360,8 +6361,8 @@ REGION is randomly selected within the list of values defined for R_NAME</p>
 </table>
 </div></div></div>
 </div>
-<p>□ Gehalt bleibt gegebenenfalls NULL</p>
-<p>■ ManagerIn und gegebenenfalls ihre Schauspielerinfo</p>
+<p>Falls keine Manager*Ininfo vorhanden ist bleibt Gehalt NULL.</p>
+<p>Im Folgenden suchen wir Manager*Innen und gegebenenfalls ihre Schauspieler*Inneninfo</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#…FROM SchauspielerIn NATURAL RIGHT OUTER JOIN ManagerIn</span>
@@ -6432,7 +6433,7 @@ REGION is randomly selected within the list of values defined for R_NAME</p>
 </div>
 </div>
 </div>
-<p>RIGHT OUTER JOINS sind in sqlite3 nicht direkt möglich, da dieser Operator in sqlite3 nicht unterstützt wird. Man kann aber dennoch durch Vertauschen der Reihenfolge der Tabellen, die gewünschte Ausgabe mit LEFT OUTER JOINS erzeugen.</p>
+<p>Wir sehen, dass RIGHT OUTER JOINS in sqlite3 nicht direkt möglich sind, da dieser Operator in sqlite3 nicht unterstützt wird. Man kann aber dennoch durch Vertauschen der Reihenfolge der Tabellen, die gewünschte Ausgabe mit LEFT OUTER JOINS erzeugen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Name, Adresse, Geburtstag, Gehalt FROM ManagerIn NATURAL LEFT OUTER JOIN SchauspielerIn&quot;</span>
@@ -6577,8 +6578,8 @@ REGION is randomly selected within the list of values defined for R_NAME</p>
 </table>
 </div></div></div>
 </div>
-<p>□ Geburtstag bleibt gegebenenfalls NULL</p>
-<p>■ Alle Schauspieler<em>innen und Manager</em>innen</p>
+<p>Falls die Schauspieler*Inneninfo nicht vorhanden ist bleibt Geburtstag NULL.</p>
+<p>Nun suchen wir alle Schauspieler*innen und Manager*innen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#…FROM SchauspielerIn NATURAL RIGHT OUTER JOIN ManagerIn</span>
@@ -7025,60 +7026,12 @@ REGION is randomly selected within the list of values defined for R_NAME</p>
 </table>
 </div></div></div>
 </div>
-<p>□ Geburtstag oder Gehalt bleiben gegebenenfalls leer</p>
-<p>□ Unterschied zu UNION: Nur eine Zeile pro Person</p>
-<p><img alt="" src="../_images/outerjoins.jpg" /></p>
-<table class="colwidths-auto table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Geburtstag</p></th>
-<th class="head"><p>Name</p></th>
-<th class="head"><p>Adresse</p></th>
-<th class="head"><p>Gehalt</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>1.2.1960</p></td>
-<td><p>Mark Hamill</p></td>
-<td><p>LA</p></td>
-<td><p>NULL</p></td>
-</tr>
-<tr class="row-odd"><td><p>27.5.1969</p></td>
-<td><p>Carrie Fischer</p></td>
-<td><p>New York</p></td>
-<td><p>NULL</p></td>
-</tr>
-<tr class="row-even"><td><p>11.12.1940</p></td>
-<td><p>Alec Guinness</p></td>
-<td><p>London</p></td>
-<td><p>NULL</p></td>
-</tr>
-<tr class="row-odd"><td><p>22.3.1981</p></td>
-<td><p>Ben Affleck</p></td>
-<td><p>Boston</p></td>
-<td><p>5Mio</p></td>
-</tr>
-<tr class="row-even"><td><p>23.8.1973</p></td>
-<td><p>Quentin Tarantino</p></td>
-<td><p>Berlin</p></td>
-<td><p>10Mio</p></td>
-</tr>
-<tr class="row-odd"><td><p>NULL</p></td>
-<td><p>George Lukas</p></td>
-<td><p>San Jose</p></td>
-<td><p>100Mio</p></td>
-</tr>
-<tr class="row-even"><td><p>NULL</p></td>
-<td><p>Steven Spielberg</p></td>
-<td><p>LA</p></td>
-<td><p>500Mio</p></td>
-</tr>
-</tbody>
-</table>
-<p>-&gt;geschweifte Klammern fehlen in md Tabelle</p>
+<p>Falls zu den Schauspieler*Innen die Manager*Inneninfo bzw. Manager*Innen die Schauspieler*Inneninfo fehlt, bleiben Geburtstag oder Gehalt gegebenenfalls leer.</p>
+<p>Der Unterschied von FULL OUTER JOINS zu UNION ist, dass nur eine Zeile pro Person ausgegeben wird.</p>
 </div>
 <div class="section" id="kreuzprodukt">
 <h3><span class="section-number">9.4.14. </span>Kreuzprodukt<a class="headerlink" href="#kreuzprodukt" title="Permalink to this headline">¶</a></h3>
-<p>■ Alle Paare aus Tupeln der beteiligten Relationen</p>
+<p>Wie aus der Relationalen Algebra bekannt bildet das Kreuzprodukt lle Paare aus Tupeln den beteiligten Relationen. In SQL können Kreuzprodukte mit CROSS JOIN gebildet werden, wie unten gezeigt oder auch mit Komma zwischen den beteiligten Relationen in der FROM-Klausel, wie ein Beispielt weiter gezeigt wird. Kreuzprodukte werden in der Regel selten verwendet, sie sind aber der Grundbaustein für Joins.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT * </span>
@@ -7492,9 +7445,10 @@ REGION is randomly selected within the list of values defined for R_NAME</p>
 ■ SchauspielerIn(Name, Adresse, Geschlecht, Geburtstag)
 <br><br>
 ■ ManagerIn(Name, Adresse, ManagerinID, Gehalt)</p>
+<p>Die Mengenoperationen UNION(Vereinigung), INTERSECT(Schnittmenge) und EXCEPT/MINUS(Differenz) können nur zwischen geklammertern Anfrageergebnissen benutzt werden, die das selbe Schema besitzen. Sobald einer dieser Operationen verwendet wird, wird implizit Mengensemantik verwendet. Möchte man Multimengensemantik haben, so müssen die Operatoren UNION ALL, INTERSECT ALL und EXCEPT/MINUS ALL verwendet werden. Das bietet sich an, wenn die Semantik egal ist oder die Mengeneigenschaft von Input und Output bereits bekannt ist.</p>
 <div class="section" id="schnittmenge-intersect">
 <h4><span class="section-number">9.4.15.1. </span>Schnittmenge: INTERSECT<a class="headerlink" href="#schnittmenge-intersect" title="Permalink to this headline">¶</a></h4>
-<p>■ Entspricht dem logischen „und“</p>
+<p>INTERSECT entspricht dem logischen „und“. Im Folgenden suchen wir die Schnittmenge zwischen den Namen und Adressen der Schauspieler*Innen und den Mangager*Innen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#(SELECT Name, Adresse FROM SchauspielerIn) INTERSECT (SELECT Name, Adresse FROM ManagerIn);</span>
@@ -7534,6 +7488,7 @@ REGION is randomly selected within the list of values defined for R_NAME</p>
 </table>
 </div></div></div>
 </div>
+<p>In diesem Beispiel suchen wir die Schnittmenge zwischen den Namen und Adressen der  weiblichen Schauspieler*Innen und den Mangager*Innen, die ein Gehalt größer als 1000000 haben.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%sql (SELECT Name, Adresse FROM SchauspielerIn WHERE Geschlecht = &quot;f&quot;) INTERSECT (SELECT Name, Adresse FROM ManagerIn WHERE Gehalt &gt; 1000000)</span>
@@ -7573,11 +7528,10 @@ REGION is randomly selected within the list of values defined for R_NAME</p>
 </table>
 </div></div></div>
 </div>
-<p>■ Multimengen-Semantik: INTERSECT ALL</p>
 </div>
 <div class="section" id="vereinigung-union">
 <h4><span class="section-number">9.4.15.2. </span>Vereinigung: UNION<a class="headerlink" href="#vereinigung-union" title="Permalink to this headline">¶</a></h4>
-<p>■ Entspricht dem logischen „oder“</p>
+<p>UNION entspricht dem logischen „oder“. Im unteren Beispiel geben wir alle Namen und Adressen der Schauspieler*Innen und den Mangager*Innen aus.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#(SELECT Name, Adresse FROM SchauspielerIn) UNION (SELECT Name, Adresse FROM ManagerIn);</span>
@@ -7869,9 +7823,9 @@ REGION is randomly selected within the list of values defined for R_NAME</p>
 <br>
 – Mengeneigenschaft von Input und Output bereits bekannt</p>
 </div>
-<div class="section" id="differenz-except">
-<h4><span class="section-number">9.4.15.3. </span>Differenz: EXCEPT<a class="headerlink" href="#differenz-except" title="Permalink to this headline">¶</a></h4>
-<p>■ Auch MINUS</p>
+<div class="section" id="differenz-except-minus">
+<h4><span class="section-number">9.4.15.3. </span>Differenz: EXCEPT/MINUS<a class="headerlink" href="#differenz-except-minus" title="Permalink to this headline">¶</a></h4>
+<p>Im unteren Beispiel suchen wir den Titel und das Jahr jener Filme die in der Film-Relation vorkommen, aber nicht in der spielt_in-Relation. Damit diese Anfrage funktioniert, muss Umbenennung benutzt werden, da die beiden Mengen sonst nicht das selbe Schema besitzten.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#(SELECT Titel, Jahr FROM Film) EXCEPT (SELECT FilmTitel AS Titel, FilmJahr AS Jahr FROM spielt_in) </span>
@@ -7941,7 +7895,6 @@ REGION is randomly selected within the list of values defined for R_NAME</p>
 </table>
 </div></div></div>
 </div>
-<p>■ Multimenge: EXCEPT ALL</p>
 </div>
 <div class="section" id="klammerung">
 <h4><span class="section-number">9.4.15.4. </span>Klammerung<a class="headerlink" href="#klammerung" title="Permalink to this headline">¶</a></h4>
