@@ -269,23 +269,23 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#motivation-fur-sql">
+     9.1.1. Motivation für SQL
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#sql-historie">
-     9.1.1. SQL-Historie
+     9.1.2. SQL-Historie
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#sql-standardisierung">
-     9.1.2. SQL – Standardisierung
+     9.1.3. SQL – Standardisierung
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#sql-2008-struktur">
-     9.1.3. SQL:2008 Struktur
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#motivation-fur-sql">
-     9.1.4. Motivation für SQL
+     9.1.4. SQL:2008 Struktur
     </a>
    </li>
   </ul>
@@ -401,8 +401,8 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#tpc-query-2-minimum-cost-supplier">
-       9.3.8.1. TPC Query 2 - Minimum Cost Supplier
+      <a class="reference internal nav-link" href="#tpc-query-minimum-cost-supplier">
+       9.3.8.1. TPC Query - Minimum Cost Supplier
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
@@ -776,23 +776,23 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#motivation-fur-sql">
+     9.1.1. Motivation für SQL
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#sql-historie">
-     9.1.1. SQL-Historie
+     9.1.2. SQL-Historie
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#sql-standardisierung">
-     9.1.2. SQL – Standardisierung
+     9.1.3. SQL – Standardisierung
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#sql-2008-struktur">
-     9.1.3. SQL:2008 Struktur
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#motivation-fur-sql">
-     9.1.4. Motivation für SQL
+     9.1.4. SQL:2008 Struktur
     </a>
    </li>
   </ul>
@@ -908,8 +908,8 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#tpc-query-2-minimum-cost-supplier">
-       9.3.8.1. TPC Query 2 - Minimum Cost Supplier
+      <a class="reference internal nav-link" href="#tpc-query-minimum-cost-supplier">
+       9.3.8.1. TPC Query - Minimum Cost Supplier
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
@@ -1286,65 +1286,60 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="einfuhrung">
 <h2><span class="section-number">9.1. </span>Einführung<a class="headerlink" href="#einfuhrung" title="Permalink to this headline">¶</a></h2>
 <p>Aus den vorherigen Kapiteln haben wir gelernt wie wir eine Datenbank auf Papier entwerfen, nun schauen wir uns die in der Realität benutzten technischen Mitteln an, insbesondere die Datenbankanfragesprache SQL.</p>
+<div class="section" id="motivation-fur-sql">
+<h3><span class="section-number">9.1.1. </span>Motivation für SQL<a class="headerlink" href="#motivation-fur-sql" title="Permalink to this headline">¶</a></h3>
+<p>SQL ist die meist-verbreiteste Datenbankanfragesprache. Es handelt sich hierbei um eine Very-High-Level Language, die Ad-hoc, deklarativ und nicht prozedural / imperativ ist. SQL-Anfragen sich an die relationale Algebra angelehnt. Zusätzlich sind Data definition(DDL) und Data manipulation(DML) mit SQL möglich. Wichtig zu beachten ist noch, dass sowohl Syntax, als auch Funktionalität sich von System zu System leicht unterscheiden können.</p>
+</div>
 <div class="section" id="sql-historie">
-<h3><span class="section-number">9.1.1. </span>SQL-Historie<a class="headerlink" href="#sql-historie" title="Permalink to this headline">¶</a></h3>
-<p>SQL entstand durch die Ursprungssprache SEQUEL(1976, IBM Research Labs San Jose). Später entwickelte sich SEQUEL zu SEQUEL2(1976, IBM Research Labs San Jose), welche auf einer der Vorreitern von Datenbanksystemen “System R” benutzt wurde.
-<br><br>
-■ SEQUEL (1974, IBM Research Labs San Jose)
-<br><br>
-■ SEQUEL2 (1976, IBM Research Labs San Jose)
-<br>
-□ System R
-<br><br>
-■ SQL (1982, IBM)
-<br><br>
-<img alt="title" src="../_images/historie1.jpg" />
+<h3><span class="section-number">9.1.2. </span>SQL-Historie<a class="headerlink" href="#sql-historie" title="Permalink to this headline">¶</a></h3>
+<p>SQL(1982, IBM) entstand durch die Ursprungssprache SEQUEL(1976, IBM Research Labs San Jose). Später entwickelte sich SEQUEL zu SEQUEL2(1976, IBM Research Labs San Jose), welche auf einer der Vorreitern von Datenbanksystemen “System R” benutzt wurde.</p>
+<p><img alt="title" src="../_images/historie1.jpg" />
 <br>
 <img alt="title" src="../_images/historie2.jpg" />
 <br>
 <img alt="title" src="../_images/historie3.jpg" /></p>
 </div>
 <div class="section" id="sql-standardisierung">
-<h3><span class="section-number">9.1.2. </span>SQL – Standardisierung<a class="headerlink" href="#sql-standardisierung" title="Permalink to this headline">¶</a></h3>
-<p>■ SQL1 von ANSI als Standard verabschiedet (1986)
-<br>
-<br>
-■ SQL1 von der (ISO) als Standard verabschiedet (1987)
-<br>
-□ 1989 nochmals überarbeitet.
-<br> <br>
-■ SQL2 oder SQL-92 von der ISO verabschiedet (1992)
-<br> <br>
-■ SQL3 oder SQL:1999 verabschiedet
-<br>
-□ Trigger, rekursive Anfragen
-<br>
-□ Objektrelationale Erweiterungen
-<br> <br>
-■ SQL:2003 von der ISO verabschiedet
-<br>
-□ XML-Support durch SQL/XML
-<br> <br>
-■ SQL/XML:2006
-<br>
-□ XQuery eingebunden
-<br> <br>
-■ SQL:2008
-<br>
-□ Updates auf Sichten, logisches Löschen (TRUNCATE), …
-<br> <br>
-■ SQL:2011
-<br>
-□ Adds temporal data (PERIOD FOR)
-<br> <br>
-■ SQL:2016
-<br>
-□ Adds row pattern matching, polymorphic table functions, JSON.
-<br><br>
-Trotz Standardisierung: Inkompatibilitäten zwischen Systemen der einzelnen Hersteller</p>
+<h3><span class="section-number">9.1.3. </span>SQL – Standardisierung<a class="headerlink" href="#sql-standardisierung" title="Permalink to this headline">¶</a></h3>
+<p>Im Laufe der Zeit durchlief SQL verschiedene Standardisierungen, die Sie aus der folgenden Auflistung entnehmen können. Trotz der Standardisierung sind Inkompatibilitäten zwischen Systemen der einzelnen Hersteller noch möglich.</p>
+<ul class="simple">
+<li><p>SQL1 von ANSI als Standard verabschiedet (1986)
+<br><br></p></li>
+<li><p>SQL1 von der (ISO) als Standard verabschiedet (1987)
+<br></p></li>
+<li><p>1989 nochmals überarbeitet.
+<br> <br></p></li>
+<li><p>SQL2 oder SQL-92 von der ISO verabschiedet (1992)
+<br> <br></p></li>
+<li><p>SQL3 oder SQL:1999 verabschiedet
+<br></p></li>
+<li><p>Trigger, rekursive Anfragen
+<br></p></li>
+<li><p>Objektrelationale Erweiterungen
+<br> <br></p></li>
+<li><p>SQL:2003 von der ISO verabschiedet
+<br></p></li>
+<li><p>XML-Support durch SQL/XML
+<br> <br></p></li>
+<li><p>SQL/XML:2006
+<br></p></li>
+<li><p>XQuery eingebunden
+<br> <br></p></li>
+<li><p>SQL:2008
+<br></p></li>
+<li><p>Updates auf Sichten, logisches Löschen (TRUNCATE), …
+<br> <br></p></li>
+<li><p>SQL:2011
+<br></p></li>
+<li><p>Adds temporal data (PERIOD FOR)
+<br> <br></p></li>
+<li><p>SQL:2016
+<br></p></li>
+<li><p>Adds row pattern matching, polymorphic table functions, JSON.</p></li>
+</ul>
 </div>
 <div class="section" id="sql-2008-struktur">
-<h3><span class="section-number">9.1.3. </span>SQL:2008 Struktur<a class="headerlink" href="#sql-2008-struktur" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">9.1.4. </span>SQL:2008 Struktur<a class="headerlink" href="#sql-2008-struktur" title="Permalink to this headline">¶</a></h3>
 <p>■ Part 1: Framework (SQL/Framework) – 82 Seiten
 <br>
 □ Überblick
@@ -1382,30 +1377,6 @@ Trotz Standardisierung: Inkompatibilitäten zwischen Systemen der einzelnen Hers
 □ XML Datentyp und Erweiterung von SQL um XQuery
 <br><br>
 =&gt; Zusammen: 3777 Seiten</p>
-</div>
-<div class="section" id="motivation-fur-sql">
-<h3><span class="section-number">9.1.4. </span>Motivation für SQL<a class="headerlink" href="#motivation-fur-sql" title="Permalink to this headline">¶</a></h3>
-<p>■ Meist-verbreitete Datenbankanfragesprache
-<br><br>
-■ Ad-hoc und einfach
-<br><br>
-■ Deklarativ
-<br>
-□ Nicht prozedural / imperativ
-<br>
-□ Optimierbar
-<br><br>
-■ Very-High-Level Language
-<br><br>
-■ Anfragen an relationale Algebra angelehnt
-<br>
-□ Hinzu kommt DDL: Data definition language
-<br>
-□ Hinzu kommt DML: Data manipulation language
-<br><br>
-■ Achtung: Syntax kann sich von System zu System leicht unterscheiden.
-<br><br>
-■ Achtung: Funktionalität kann sich von System zu System leicht unterscheiden.</p>
 </div>
 </div>
 <div class="section" id="einfach-anfragen">
@@ -5277,47 +5248,35 @@ Ein Beispiel für ein Theta-Join finden wir unten.</p>
 <div class="section" id="the-tpc-h-schema">
 <h3><span class="section-number">9.3.8. </span>The TPC-H Schema<a class="headerlink" href="#the-tpc-h-schema" title="Permalink to this headline">¶</a></h3>
 <p><img alt="title" src="../_images/tpc-h_schema.jpg" /></p>
-<div class="section" id="tpc-query-2-minimum-cost-supplier">
-<h4><span class="section-number">9.3.8.1. </span>TPC Query 2 - Minimum Cost Supplier<a class="headerlink" href="#tpc-query-2-minimum-cost-supplier" title="Permalink to this headline">¶</a></h4>
+<p>Das TPC-H ist ein Benchmark, dessen Datensätze zufällig generiert werden. Die Daten sind an Unternehmen und ihren Handelsketten orientiert. Datenbankentwickler*\Innen benutzen TPC-H ,um neu entwickelte Systeme zu testen.<br />
+<br><br>
+Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
+<div class="section" id="tpc-query-minimum-cost-supplier">
+<h4><span class="section-number">9.3.8.1. </span>TPC Query - Minimum Cost Supplier<a class="headerlink" href="#tpc-query-minimum-cost-supplier" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
-<span class="n">SELECT</span> <span class="n">s_acctbal</span><span class="p">,</span> <span class="n">s_name</span><span class="p">,</span> <span class="n">n_name</span><span class="p">,</span> <span class="n">p_partkey</span><span class="p">,</span> <span class="n">p_mfgr</span><span class="p">,</span> <span class="n">s_address</span><span class="p">,</span> <span class="n">s_phone</span><span class="p">,</span>
-<span class="n">s_comment</span>
-<span class="n">FROM</span> <span class="n">part</span><span class="p">,</span> <span class="n">supplier</span><span class="p">,</span> <span class="n">partsupp</span><span class="p">,</span> <span class="n">nation</span><span class="p">,</span> <span class="n">region</span>
-<span class="n">WHERE</span> <span class="n">p_partkey</span> <span class="o">=</span> <span class="n">ps_partkey</span> <span class="n">AND</span> <span class="n">s_suppkey</span> <span class="o">=</span> <span class="n">ps_suppkey</span>
-<span class="n">AND</span> <span class="n">p_size</span> <span class="o">=</span> <span class="p">[</span><span class="n">SIZE</span><span class="p">]</span> <span class="n">AND</span> <span class="n">p_type</span> <span class="n">like</span> <span class="s1">&#39;%[TYPE]&#39;</span>
-<span class="n">AND</span> <span class="n">s_nationkey</span> <span class="o">=</span> <span class="n">n_nationkey</span> <span class="n">AND</span> <span class="n">n_regionkey</span> <span class="o">=</span> <span class="n">r_regionkey</span>
-<span class="n">AND</span> <span class="n">r_name</span> <span class="o">=</span> <span class="s1">&#39;[REGION]&#39;</span>
-<span class="n">AND</span> <span class="n">ps_supplycost</span> <span class="o">=</span>
-<span class="p">(</span><span class="n">SELECT</span> <span class="nb">min</span><span class="p">(</span><span class="n">ps_supplycost</span><span class="p">)</span>
-<span class="n">FROM</span> <span class="n">partsupp</span><span class="p">,</span> <span class="n">supplier</span><span class="p">,</span> <span class="n">nation</span><span class="p">,</span> <span class="n">region</span>
-<span class="n">WHERE</span> <span class="n">p_partkey</span> <span class="o">=</span> <span class="n">ps_partkey</span> <span class="n">AND</span> <span class="n">s_suppkey</span> <span class="o">=</span> <span class="n">ps_suppkey</span>
-<span class="n">AND</span> <span class="n">s_nationkey</span> <span class="o">=</span> <span class="n">n_nationkey</span> <span class="n">AND</span> <span class="n">n_regionkey</span> <span class="o">=</span> <span class="n">r_regionkey</span>
-<span class="n">AND</span> <span class="n">r_name</span> <span class="o">=</span> <span class="s1">&#39;[REGION]&#39;</span> <span class="p">)</span>
-<span class="n">ORDER</span> <span class="n">BY</span> <span class="n">s_acctbal</span> <span class="n">desc</span><span class="p">,</span> <span class="n">n_name</span><span class="p">,</span> <span class="n">s_name</span><span class="p">,</span> <span class="n">p_partkey</span><span class="p">;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">28</span><span class="p">]</span>
-    <span class="n">SELECT</span> <span class="n">s_acctbal</span><span class="p">,</span> <span class="n">s_name</span><span class="p">,</span> <span class="n">n_name</span><span class="p">,</span> <span class="n">p_partkey</span><span class="p">,</span> <span class="n">p_mfgr</span><span class="p">,</span> <span class="n">s_address</span><span class="p">,</span> <span class="n">s_phone</span><span class="p">,</span>
-           <span class="o">^</span>
-<span class="ne">SyntaxError</span>: invalid syntax
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%sql</span>
+<span class="c1">#SELECT s_acctbal, s_name, n_name, p_partkey, p_mfgr, s_address, s_phone,</span>
+<span class="c1">#s_comment</span>
+<span class="c1">#FROM part, supplier, partsupp, nation, region</span>
+<span class="c1">#WHERE p_partkey = ps_partkey AND s_suppkey = ps_suppkey</span>
+<span class="c1">#AND p_size = 2 AND p_type like &#39;PROMO PLATED TIN&#39;</span>
+<span class="c1">#AND s_nationkey = n_nationkey AND n_regionkey = r_regionkey</span>
+<span class="c1">#AND r_name = &#39;EUROPE&#39;</span>
+<span class="c1">#AND ps_supplycost =</span>
+<span class="c1">#(SELECT min(ps_supplycost)</span>
+<span class="c1">#FROM partsupp, supplier, nation, region</span>
+<span class="c1">#WHERE p_partkey = ps_partkey AND s_suppkey = ps_suppkey</span>
+<span class="c1">#AND s_nationkey = n_nationkey AND n_regionkey = r_regionkey</span>
+<span class="c1">#AND r_name = &#39;EUROPE&#39; )</span>
+<span class="c1">#ORDER BY s_acctbal desc, n_name, s_name, p_partkey;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">s_acctbal</span><span class="p">,</span> <span class="n">s_name</span><span class="p">,</span> <span class="n">n_name</span><span class="p">,</span> <span class="n">p_partkey</span><span class="p">,</span> <span class="n">p_mfgr</span><span class="p">,</span> <span class="n">s_address</span><span class="p">,</span> <span class="n">s_phone</span><span class="p">,</span> <span class="n">s_comment</span> <span class="n">FROM</span> <span class="n">part</span><span class="p">,</span> <span class="n">supplier</span><span class="p">,</span> <span class="n">partsupp</span><span class="p">,</span> <span class="n">nation</span><span class="p">,</span> <span class="n">region</span> <span class="n">WHERE</span> <span class="n">p_partkey</span> <span class="o">=</span> <span class="n">ps_partkey</span> <span class="n">AND</span> <span class="n">s_suppkey</span> <span class="o">=</span> <span class="n">ps_suppkey</span> <span class="n">AND</span> <span class="n">p_size</span> <span class="o">=</span> <span class="p">[</span><span class="n">SIZE</span><span class="p">]</span> <span class="n">AND</span> <span class="n">p_type</span> <span class="n">like</span> <span class="s1">&#39;%[TYPE]&#39;</span> <span class="n">AND</span> <span class="n">s_nationkey</span> <span class="o">=</span> <span class="n">n_nationkey</span> <span class="n">AND</span> <span class="n">n_regionkey</span> <span class="o">=</span> <span class="n">r_regionkey</span> <span class="n">AND</span> <span class="n">r_name</span> <span class="o">=</span> <span class="s1">&#39;[REGION]&#39;</span> <span class="n">AND</span> <span class="n">ps_supplycost</span> <span class="o">=</span> <span class="p">(</span><span class="n">SELECT</span> <span class="nb">min</span><span class="p">(</span><span class="n">ps_supplycost</span><span class="p">)</span> <span class="n">FROM</span> <span class="n">partsupp</span><span class="p">,</span> <span class="n">supplier</span><span class="p">,</span> <span class="n">nation</span><span class="p">,</span> <span class="n">region</span> <span class="n">WHERE</span> <span class="n">p_partkey</span> <span class="o">=</span> <span class="n">ps_partkey</span> <span class="n">AND</span> <span class="n">s_suppkey</span> <span class="o">=</span> <span class="n">ps_suppkey</span> <span class="n">AND</span> <span class="n">s_nationkey</span> <span class="o">=</span> <span class="n">n_nationkey</span> <span class="n">AND</span> <span class="n">n_regionkey</span> <span class="o">=</span> <span class="n">r_regionkey</span> <span class="n">AND</span> <span class="n">r_name</span> <span class="o">=</span> <span class="s1">&#39;[REGION]&#39;</span> <span class="p">)</span> <span class="n">ORDER</span> <span class="n">BY</span> <span class="n">s_acctbal</span> <span class="n">desc</span><span class="p">,</span> <span class="n">n_name</span><span class="p">,</span> <span class="n">s_name</span><span class="p">,</span> <span class="n">p_partkey</span><span class="p">;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT s_acctbal, s_name, n_name, p_partkey, p_mfgr, s_address, s_phone, s_comment FROM part, supplier, partsupp, nation, region WHERE p_partkey = ps_partkey AND s_suppkey = ps_suppkey AND p_size = [SIZE] AND p_type like &#39;%[TYPE]&#39; AND s_nationkey = n_nationkey AND n_regionkey = r_regionkey AND r_name = &#39;[REGION]&#39; AND ps_supplycost = (SELECT min(ps_supplycost) FROM partsupp, supplier, nation, region WHERE p_partkey = ps_partkey AND s_suppkey = ps_suppkey AND s_nationkey = n_nationkey AND n_regionkey = r_regionkey AND r_name = &#39;[REGION]&#39; ) ORDER BY s_acctbal desc, n_name, s_name, p_partkey;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT s_acctbal, s_name, n_name, p_partkey, p_mfgr, s_address, s_phone, s_comment FROM part, supplier, partsupp, nation, region WHERE p_partkey = ps_partkey AND s_suppkey = ps_suppkey AND p_size = 2 AND p_type like &#39;PROMO PLATED TIN&#39; AND s_nationkey = n_nationkey AND n_regionkey = r_regionkey AND r_name = &#39;EUROPE&#39; AND ps_supplycost = (SELECT min(ps_supplycost) FROM partsupp, supplier, nation, region WHERE p_partkey = ps_partkey AND s_suppkey = ps_suppkey AND s_nationkey = n_nationkey AND n_regionkey = r_regionkey AND r_name = &#39;EUROPE&#39; ) ORDER BY s_acctbal desc, n_name, s_name, p_partkey;&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;salesDB/salesDB&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -5325,107 +5284,394 @@ Ein Beispiel für ein Theta-Join finden wir unten.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">OperationalError</span><span class="g g-Whitespace">                          </span>Traceback (most recent call last)
-<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py:2020,</span> in <span class="ni">SQLiteDatabase.execute</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2019</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">2020</span>     <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2021</span>     <span class="k">return</span> <span class="n">cur</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="ne">OperationalError</span>: no such column: SIZE
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
-
-<span class="ne">DatabaseError</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
-<span class="nn">Input In [30],</span> in <span class="ni">&lt;cell line: 3&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT s_acctbal, s_name, n_name, p_partkey, p_mfgr, s_address, s_phone, s_comment FROM part, supplier, partsupp, nation, region WHERE p_partkey = ps_partkey AND s_suppkey = ps_suppkey AND p_size = [SIZE] AND p_type like &#39;%[TYPE]&#39; AND s_nationkey = n_nationkey AND n_regionkey = r_regionkey AND r_name = &#39;[REGION]&#39; AND ps_supplycost = (SELECT min(ps_supplycost) FROM partsupp, supplier, nation, region WHERE p_partkey = ps_partkey AND s_suppkey = ps_suppkey AND s_nationkey = n_nationkey AND n_regionkey = r_regionkey AND r_name = &#39;[REGION]&#39; ) ORDER BY s_acctbal desc, n_name, s_name, p_partkey;&quot;</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;salesDB/salesDB&quot;</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">df</span>
-
-<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py:399,</span> in <span class="ni">read_sql_query</span><span class="nt">(sql, con, index_col, coerce_float, params, parse_dates, chunksize, dtype)</span>
-<span class="g g-Whitespace">    </span><span class="mi">341</span> <span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">342</span><span class="sd"> Read SQL query into a DataFrame.</span>
-<span class="g g-Whitespace">    </span><span class="mi">343</span><span class="sd"> </span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">396</span><span class="sd"> parameter will be converted to UTC.</span>
-<span class="g g-Whitespace">    </span><span class="mi">397</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">398</span> <span class="n">pandas_sql</span> <span class="o">=</span> <span class="n">pandasSQL_builder</span><span class="p">(</span><span class="n">con</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">399</span> <span class="k">return</span> <span class="n">pandas_sql</span><span class="o">.</span><span class="n">read_query</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">400</span>     <span class="n">sql</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">401</span>     <span class="n">index_col</span><span class="o">=</span><span class="n">index_col</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">402</span>     <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">403</span>     <span class="n">coerce_float</span><span class="o">=</span><span class="n">coerce_float</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">404</span>     <span class="n">parse_dates</span><span class="o">=</span><span class="n">parse_dates</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">405</span>     <span class="n">chunksize</span><span class="o">=</span><span class="n">chunksize</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">406</span>     <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">407</span> <span class="p">)</span>
-
-<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py:2080,</span> in <span class="ni">SQLiteDatabase.read_query</span><span class="nt">(self, sql, index_col, coerce_float, params, parse_dates, chunksize, dtype)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2068</span> <span class="k">def</span> <span class="nf">read_query</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2069</span>     <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2070</span>     <span class="n">sql</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2076</span>     <span class="n">dtype</span><span class="p">:</span> <span class="n">DtypeArg</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2077</span> <span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">2079</span>     <span class="n">args</span> <span class="o">=</span> <span class="n">_convert_params</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">2080</span>     <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2081</span>     <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">col_desc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">col_desc</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">description</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">2083</span>     <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py:2032,</span> in <span class="ni">SQLiteDatabase.execute</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2029</span>     <span class="k">raise</span> <span class="n">ex</span> <span class="kn">from</span> <span class="nn">inner_exc</span>
-<span class="g g-Whitespace">   </span><span class="mi">2031</span> <span class="n">ex</span> <span class="o">=</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Execution failed on sql &#39;</span><span class="si">{</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">2032</span> <span class="k">raise</span> <span class="n">ex</span> <span class="kn">from</span> <span class="nn">exc</span>
-
-<span class="ne">DatabaseError</span>: Execution failed on sql &#39;SELECT s_acctbal, s_name, n_name, p_partkey, p_mfgr, s_address, s_phone, s_comment FROM part, supplier, partsupp, nation, region WHERE p_partkey = ps_partkey AND s_suppkey = ps_suppkey AND p_size = [SIZE] AND p_type like &#39;%[TYPE]&#39; AND s_nationkey = n_nationkey AND n_regionkey = r_regionkey AND r_name = &#39;[REGION]&#39; AND ps_supplycost = (SELECT min(ps_supplycost) FROM partsupp, supplier, nation, region WHERE p_partkey = ps_partkey AND s_suppkey = ps_suppkey AND s_nationkey = n_nationkey AND n_regionkey = r_regionkey AND r_name = &#39;[REGION]&#39; ) ORDER BY s_acctbal desc, n_name, s_name, p_partkey;&#39;: no such column: SIZE
-</pre></div>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>S_ACCTBAL</th>
+      <th>S_NAME</th>
+      <th>N_NAME</th>
+      <th>P_PARTKEY</th>
+      <th>P_MFGR</th>
+      <th>S_ADDRESS</th>
+      <th>S_PHONE</th>
+      <th>S_COMMENT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1687.81</td>
+      <td>Supplier#000000017</td>
+      <td>ROMANIA</td>
+      <td>16</td>
+      <td>Manufacturer#3</td>
+      <td>c2d,ESHRSkK3WYnxpgw6aOqN0q</td>
+      <td>29-601-884-9219</td>
+      <td>eep against the furiously bold ideas. fluffily...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
-</div>
-</div>
-<p>SIZE is randomly selected within [1. 50];
-<br>
-TYPE is randomly selected within the list Syllable 3 defined for Types
-<br>
-REGION is randomly selected within the list of values defined for R_NAME</p>
 </div>
 <div class="section" id="the-tpc-h-universal-table">
 <h4><span class="section-number">9.3.8.2. </span>The TPC-H Universal Table<a class="headerlink" href="#the-tpc-h-universal-table" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
-<span class="n">SELECT</span> <span class="n">l_linenumber</span><span class="p">,</span> <span class="n">l_quantity</span><span class="p">,</span> <span class="n">l_extendedprice</span><span class="p">,</span> <span class="n">l_discount</span><span class="p">,</span> <span class="n">l_tax</span><span class="p">,</span> <span class="n">l_returnflag</span><span class="p">,</span> <span class="n">l_linestatus</span><span class="p">,</span> <span class="n">l_shipdate</span><span class="p">,</span> <span class="n">l_commitdate</span><span class="p">,</span> <span class="n">l_receiptdate</span><span class="p">,</span> <span class="n">l_shipinstruct</span><span class="p">,</span> <span class="n">l_shipmode</span><span class="p">,</span> <span class="n">l_comment</span><span class="p">,</span> <span class="n">o_orderkey</span><span class="p">,</span> <span class="n">o_orderstatus</span><span class="p">,</span> <span class="n">o_totalprice</span><span class="p">,</span> <span class="n">o_orderdate</span><span class="p">,</span> <span class="n">o_orderpriority</span><span class="p">,</span> <span class="n">o_clerk</span><span class="p">,</span> <span class="n">o_shippriority</span><span class="p">,</span> <span class="n">o_comment</span><span class="p">,</span> <span class="n">ps_availqty</span><span class="p">,</span> <span class="n">ps_supplycost</span><span class="p">,</span> <span class="n">ps_comment</span><span class="p">,</span> <span class="n">p_partkey</span><span class="p">,</span> <span class="n">p_name</span><span class="p">,</span> <span class="n">p_mfgr</span><span class="p">,</span> <span class="n">p_brand</span><span class="p">,</span> <span class="n">p_type</span><span class="p">,</span> <span class="n">p_size</span><span class="p">,</span> <span class="n">p_container</span><span class="p">,</span> <span class="n">p_retailprice</span><span class="p">,</span> <span class="n">p_comment</span><span class="p">,</span> <span class="n">c_custkey</span><span class="p">,</span> <span class="n">c_name</span><span class="p">,</span> <span class="n">c_address</span><span class="p">,</span> <span class="n">c_phone</span><span class="p">,</span> <span class="n">c_acctbal</span><span class="p">,</span> <span class="n">c_mktsegment</span><span class="p">,</span> <span class="n">c_comment</span><span class="p">,</span> <span class="n">s_suppkey</span><span class="p">,</span> <span class="n">s_name</span><span class="p">,</span> <span class="n">s_address</span><span class="p">,</span> <span class="n">s_phone</span><span class="p">,</span> <span class="n">s_acctbal</span><span class="p">,</span> <span class="n">s_comment</span><span class="p">,</span> <span class="n">n_nationkey</span><span class="p">,</span> <span class="n">n_name</span><span class="p">,</span> <span class="n">n_comment</span><span class="p">,</span> <span class="n">r_regionkey</span><span class="p">,</span> <span class="n">r_name</span><span class="p">,</span> <span class="n">r_comment</span>
-
-<span class="n">FROM</span> <span class="n">lineitem</span><span class="p">,</span> <span class="n">orders</span><span class="p">,</span> <span class="n">partsupp</span><span class="p">,</span> <span class="n">part</span><span class="p">,</span> <span class="n">customer</span><span class="p">,</span> <span class="n">supplier</span><span class="p">,</span> <span class="n">nation</span><span class="p">,</span> <span class="n">region</span>
-
-<span class="n">WHERE</span> <span class="n">p_partkey</span> <span class="o">=</span> <span class="n">ps_partkey</span>
-
-<span class="n">AND</span> <span class="n">s_suppkey</span> <span class="o">=</span> <span class="n">ps_suppkey</span>
-
-<span class="n">AND</span> <span class="n">n_nationkey</span> <span class="o">=</span> <span class="n">s_nationkey</span>
-
-<span class="n">AND</span> <span class="n">r_regionkey</span> <span class="o">=</span> <span class="n">n_regionkey</span>
-
-<span class="n">AND</span> <span class="n">c_custkey</span> <span class="o">=</span> <span class="n">o_custkey</span>
-
-<span class="n">AND</span> <span class="n">ps_partkey</span> <span class="o">=</span> <span class="n">l_partkey</span>
-
-<span class="n">AND</span> <span class="n">ps_suppkey</span> <span class="o">=</span> <span class="n">l_suppkey</span>
-
-<span class="n">AND</span> <span class="n">o_orderkey</span> <span class="o">=</span> <span class="n">l_orderkey</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%sql</span>
+<span class="c1">#SELECT l_linenumber, l_quantity, l_extendedprice, l_discount, l_tax, l_returnflag, l_linestatus, l_shipdate, l_commitdate, l_receiptdate, l_shipinstruct, l_shipmode, l_comment, o_orderkey, o_orderstatus, o_totalprice, o_orderdate, o_orderpriority, o_clerk, o_shippriority, o_comment, ps_availqty, ps_supplycost, ps_comment, p_partkey, p_name, p_mfgr, p_brand, p_type, p_size, p_container, p_retailprice, p_comment, c_custkey, c_name, c_address, c_phone, c_acctbal, c_mktsegment, c_comment, s_suppkey, s_name, s_address, s_phone, s_acctbal, s_comment, n_nationkey, n_name, n_comment, r_regionkey, r_name, r_comment</span>
+<span class="c1">#FROM lineitem, orders, partsupp, part, customer, supplier, nation, region</span>
+<span class="c1">#WHERE p_partkey = ps_partkey</span>
+<span class="c1">#AND s_suppkey = ps_suppkey</span>
+<span class="c1">#AND n_nationkey = s_nationkey</span>
+<span class="c1">#AND r_regionkey = n_regionkey</span>
+<span class="c1">#AND c_custkey = o_custkey</span>
+<span class="c1">#AND ps_partkey = l_partkey</span>
+<span class="c1">#AND ps_suppkey = l_suppkey</span>
+<span class="c1">#AND o_orderkey = l_orderkey</span>
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT l_linenumber, l_quantity, l_extendedprice, l_discount, l_tax, l_returnflag, l_linestatus, l_shipdate, l_commitdate, l_receiptdate, l_shipinstruct, l_shipmode, l_comment, o_orderkey, o_orderstatus, o_totalprice, o_orderdate, o_orderpriority, o_clerk, o_shippriority, o_comment, ps_availqty, ps_supplycost, ps_comment, p_partkey, p_name, p_mfgr, p_brand, p_type, p_size, p_container, p_retailprice, p_comment, c_custkey, c_name, c_address, c_phone, c_acctbal, c_mktsegment, c_comment, s_suppkey, s_name, s_address, s_phone, s_acctbal, s_comment, n_nationkey, n_name, n_comment, r_regionkey, r_name, r_comment FROM lineitem, orders, partsupp, part, customer, supplier, nation, region WHERE p_partkey = ps_partkey AND s_suppkey = ps_suppkey AND n_nationkey = s_nationkey AND r_regionkey = n_regionkey AND c_custkey = o_custkey AND ps_partkey = l_partkey AND ps_suppkey = l_suppkey AND o_orderkey = l_orderkey&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>L_LINENUMBER</th>
+      <th>L_QUANTITY</th>
+      <th>L_EXTENDEDPRICE</th>
+      <th>L_DISCOUNT</th>
+      <th>L_TAX</th>
+      <th>L_RETURNFLAG</th>
+      <th>L_LINESTATUS</th>
+      <th>L_SHIPDATE</th>
+      <th>L_COMMITDATE</th>
+      <th>L_RECEIPTDATE</th>
+      <th>...</th>
+      <th>S_ADDRESS</th>
+      <th>S_PHONE</th>
+      <th>S_ACCTBAL</th>
+      <th>S_COMMENT</th>
+      <th>N_NATIONKEY</th>
+      <th>N_NAME</th>
+      <th>N_COMMENT</th>
+      <th>R_REGIONKEY</th>
+      <th>R_NAME</th>
+      <th>R_COMMENT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>17</td>
+      <td>24710.35</td>
+      <td>0.04</td>
+      <td>0.02</td>
+      <td>N</td>
+      <td>O</td>
+      <td>1996-03-13</td>
+      <td>1996-02-12</td>
+      <td>1996-03-22</td>
+      <td>...</td>
+      <td>wd1djjKXT,4zBm</td>
+      <td>26-528-528-1157</td>
+      <td>368.76</td>
+      <td>yly final accounts could are carefully. fluffi...</td>
+      <td>16</td>
+      <td>MOZAMBIQUE</td>
+      <td>s. ironic, unusual asymptotes wake blithely r</td>
+      <td>0</td>
+      <td>AFRICA</td>
+      <td>lar deposits. blithely final packages cajole. ...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>36</td>
+      <td>56688.12</td>
+      <td>0.09</td>
+      <td>0.06</td>
+      <td>N</td>
+      <td>O</td>
+      <td>1996-04-12</td>
+      <td>1996-02-28</td>
+      <td>1996-04-20</td>
+      <td>...</td>
+      <td>7f3gN4rP1livII</td>
+      <td>28-716-704-8686</td>
+      <td>-224.84</td>
+      <td>eans. even, silent packages c</td>
+      <td>18</td>
+      <td>CHINA</td>
+      <td>c dependencies. furiously express notornis sle...</td>
+      <td>2</td>
+      <td>ASIA</td>
+      <td>ges. thinly even pinto beans ca</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>8</td>
+      <td>12301.04</td>
+      <td>0.10</td>
+      <td>0.02</td>
+      <td>N</td>
+      <td>O</td>
+      <td>1996-01-29</td>
+      <td>1996-03-05</td>
+      <td>1996-01-31</td>
+      <td>...</td>
+      <td>xEcx45vD0FXHT7c9mvWFY</td>
+      <td>14-361-296-6426</td>
+      <td>2512.41</td>
+      <td>ins. fluffily special accounts haggle slyly af</td>
+      <td>4</td>
+      <td>EGYPT</td>
+      <td>y above the carefully unusual theodolites. fin...</td>
+      <td>4</td>
+      <td>MIDDLE EAST</td>
+      <td>uickly special accounts cajole carefully blith...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>28</td>
+      <td>25816.56</td>
+      <td>0.09</td>
+      <td>0.06</td>
+      <td>N</td>
+      <td>O</td>
+      <td>1996-04-21</td>
+      <td>1996-03-30</td>
+      <td>1996-05-16</td>
+      <td>...</td>
+      <td>jg0U FNPMQDuyuKvTnLXXaLf3Wl6OtONA6mQlWJ</td>
+      <td>24-722-551-9498</td>
+      <td>5630.62</td>
+      <td>xpress instructions affix. fluffily even reque...</td>
+      <td>14</td>
+      <td>KENYA</td>
+      <td>pending excuses haggle furiously deposits. pe...</td>
+      <td>0</td>
+      <td>AFRICA</td>
+      <td>lar deposits. blithely final packages cajole. ...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>24</td>
+      <td>27389.76</td>
+      <td>0.10</td>
+      <td>0.04</td>
+      <td>N</td>
+      <td>O</td>
+      <td>1996-03-30</td>
+      <td>1996-03-14</td>
+      <td>1996-04-01</td>
+      <td>...</td>
+      <td>ssetugTcXc096qlD7 2TL5crEEeS3zk</td>
+      <td>19-559-422-5776</td>
+      <td>5926.41</td>
+      <td>ges could have to are ironic deposits. regular...</td>
+      <td>9</td>
+      <td>INDONESIA</td>
+      <td>slyly express asymptotes. regular deposits ha...</td>
+      <td>2</td>
+      <td>ASIA</td>
+      <td>ges. thinly even pinto beans ca</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>60170</th>
+      <td>2</td>
+      <td>23</td>
+      <td>40131.32</td>
+      <td>0.05</td>
+      <td>0.03</td>
+      <td>N</td>
+      <td>O</td>
+      <td>1995-08-09</td>
+      <td>1995-06-08</td>
+      <td>1995-08-23</td>
+      <td>...</td>
+      <td>kERxlLDnlIZJdN66zAPHklyL</td>
+      <td>17-713-930-5667</td>
+      <td>9759.38</td>
+      <td>x. carefully quiet account</td>
+      <td>7</td>
+      <td>GERMANY</td>
+      <td>l platelets. regular accounts x-ray: unusual, ...</td>
+      <td>3</td>
+      <td>EUROPE</td>
+      <td>ly final courts cajole furiously final excuse</td>
+    </tr>
+    <tr>
+      <th>60171</th>
+      <td>3</td>
+      <td>45</td>
+      <td>43112.25</td>
+      <td>0.02</td>
+      <td>0.02</td>
+      <td>R</td>
+      <td>F</td>
+      <td>1995-05-15</td>
+      <td>1995-05-31</td>
+      <td>1995-06-03</td>
+      <td>...</td>
+      <td>NlV0OQyIoPvPkw5AYuWGomX,hgqm1</td>
+      <td>15-781-401-3047</td>
+      <td>5742.03</td>
+      <td>ar deposits. blithely bold accounts against th...</td>
+      <td>5</td>
+      <td>ETHIOPIA</td>
+      <td>ven packages wake quickly. regu</td>
+      <td>0</td>
+      <td>AFRICA</td>
+      <td>lar deposits. blithely final packages cajole. ...</td>
+    </tr>
+    <tr>
+      <th>60172</th>
+      <td>4</td>
+      <td>29</td>
+      <td>33966.83</td>
+      <td>0.02</td>
+      <td>0.01</td>
+      <td>N</td>
+      <td>O</td>
+      <td>1995-07-25</td>
+      <td>1995-06-07</td>
+      <td>1995-08-17</td>
+      <td>...</td>
+      <td>i9v3 EsYCfLKFU6PIt8iihBOHBB37yR7b3GD7Rt</td>
+      <td>17-886-101-6083</td>
+      <td>6177.35</td>
+      <td>onic, special deposits wake furio</td>
+      <td>7</td>
+      <td>GERMANY</td>
+      <td>l platelets. regular accounts x-ray: unusual, ...</td>
+      <td>3</td>
+      <td>EUROPE</td>
+      <td>ly final courts cajole furiously final excuse</td>
+    </tr>
+    <tr>
+      <th>60173</th>
+      <td>5</td>
+      <td>31</td>
+      <td>46052.98</td>
+      <td>0.00</td>
+      <td>0.05</td>
+      <td>N</td>
+      <td>O</td>
+      <td>1995-08-06</td>
+      <td>1995-07-18</td>
+      <td>1995-08-19</td>
+      <td>...</td>
+      <td>YjP5C55zHDXL7LalK27zfQnwejdpin4AMpvh</td>
+      <td>32-822-502-4215</td>
+      <td>2972.26</td>
+      <td>ously express ideas haggle quickly dugouts? fu</td>
+      <td>22</td>
+      <td>RUSSIA</td>
+      <td>requests against the platelets use never acco...</td>
+      <td>3</td>
+      <td>EUROPE</td>
+      <td>ly final courts cajole furiously final excuse</td>
+    </tr>
+    <tr>
+      <th>60174</th>
+      <td>6</td>
+      <td>45</td>
+      <td>78157.35</td>
+      <td>0.04</td>
+      <td>0.08</td>
+      <td>N</td>
+      <td>O</td>
+      <td>1995-07-23</td>
+      <td>1995-07-17</td>
+      <td>1995-07-24</td>
+      <td>...</td>
+      <td>q1,G3Pj6OjIuUYfUoH18BFTKP5aU9bEV3</td>
+      <td>11-383-516-1199</td>
+      <td>4192.40</td>
+      <td>blithely silent requests after the express dep...</td>
+      <td>1</td>
+      <td>ARGENTINA</td>
+      <td>al foxes promise slyly according to the regula...</td>
+      <td>1</td>
+      <td>AMERICA</td>
+      <td>hs use ironic, even requests. s</td>
+    </tr>
+  </tbody>
+</table>
+<p>60175 rows × 52 columns</p>
+</div></div></div>
 </div>
 </div>
 </div>
 <div class="section" id="outer-joins">
 <h3><span class="section-number">9.3.9. </span>Outer Joins<a class="headerlink" href="#outer-joins" title="Permalink to this headline">¶</a></h3>
-<p>■ SchauspielerIn(Name, Adresse, Geschlecht, Geburtstag)
-<br><br>
-■ ManagerIn(Name, Adresse, ManagerinID, Gehalt)
-<br><br>
-■ Schauspieler<em>innen, die zugleich Manager</em>in sind</p>
 <p>Haben wir erneut die Relationen SchauspielerIn(Name, Adresse, Geschlecht, Geburtstag) und ManagerIn(Name, Adresse, ManagerinID, Gehalt) gegeben. Wir suchen nun alle Schauspieler*Innen, die zugleich auch Manger*Innen sind.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
