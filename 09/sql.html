@@ -8072,29 +8072,37 @@ Wir haben im Folgenden Beispiel die Relationen ManagerIn(Name, Adresse, Manageri
 </div>
 <div class="section" id="bedingungen-mit-relationen">
 <h3><span class="section-number">9.4.3. </span>Bedingungen mit Relationen<a class="headerlink" href="#bedingungen-mit-relationen" title="Permalink to this headline">¶</a></h3>
-<p>■ Bestimmte SQL Operatoren auf Relationen erzeugen Boole‘sche Werte
+<p>Nun betrachten wir weitere SQL Operatoren auf Relationen die Boole‘sche Werte erzeugen:
+<br><br>
+Um zu überprüfen ob eine Relation leer oder nicht ist, kann der EXISTS-Operator benutzt werden:
 <br>
-□ EXISTS R
+Z.B. EXISTS R
 <br>
 – TRUE, falls R nicht leer
+<br><br>
+Um zu überprüfen ob ein Wert in einer Relation mind. einmal vorkommt, kann der IN-Operator benutzt werden:
 <br>
-□ x IN R
+Z.B. x IN R
 <br>
 – TRUE falls x gleich einem Wert in R ist (R hat nur ein Attribut)
-<br>
-– Verallgemeinerung auf Tupel später
+<br><br>
+Um zu überprüfen ob x nicht in R vorkommt, kann NOT IN benutzt werden:
 <br>
 – x NOT IN R: TRUE falls x keinem Wert in R gleicht
+<br><br>
+Um, zu überprüfen ob ein Wert größer als alle Werte in R ist, kann der ALL-Operator benutzt werden:
 <br>
-□ x &gt; ALL R
+Z.B. x &gt; ALL R
 <br>
 – TRUE falls x größer als jeder Wert in R ist (R hat nur ein Attribut)
 <br>
-– Alternativ: &lt;, &gt;, &lt;=, &gt;=, &lt;&gt;, =
-<br>
 – x &lt;&gt; ALL R: Entspricht x NOT IN R bzw. auch NOT(x in R)
 <br>
-□ x &gt; ANY R
+– Alternativ: &lt;, &gt;, &lt;=, &gt;=, &lt;&gt;, =
+<br><br>
+Um zu überprüfen, ob ein Wert größer als mind. ein Wert aus einer Relation ist, kann der ANY-Operator benutzt werden
+<br>
+Z.B. x &gt; ANY R
 <br>
 – TRUE falls x größer als mindestens ein Wert in R ist (R hat nur ein Attribut)
 <br>
@@ -8103,12 +8111,12 @@ Wir haben im Folgenden Beispiel die Relationen ManagerIn(Name, Adresse, Manageri
 – x = ANY R: Entspricht x IN R
 <br>
 – Alternativer Befehl: SOME
-<br>
-□ Negation mit NOT(…) ist immer möglich.</p>
+<br><br>
+Die Negation mit NOT(…) ist immer möglich.</p>
 </div>
 <div class="section" id="exists-beispiele">
 <h3><span class="section-number">9.4.4. </span>EXISTS Beispiele<a class="headerlink" href="#exists-beispiele" title="Permalink to this headline">¶</a></h3>
-<p>■ ISBNs aller ausgeliehenen Bücher</p>
+<p>Im folgendne Beispiel wollen wir die ISBNs aller ausgeliehenen Bücher ausgeben. Hierbei verwenden wir den EXISTS-Operator und geben jene ISBNs aus der Relation BuchExemplar aus, dessen Inventarnr in der Relation Ausleihe existiert.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT ISBN</span>
@@ -8173,11 +8181,7 @@ Wir haben im Folgenden Beispiel die Relationen ManagerIn(Name, Adresse, Manageri
 </table>
 </div></div></div>
 </div>
-<p>■ Lehrstuhlbezeichnungen der Professor<em>innen, die alle von ihnen gelesenen Vorlesungen auch schon einmal
-geprüft haben.
-<br><br>
-■ bzw. Lehrstuhlbezeichnungen von Professor</em>innen, so dass keine von diesem gelesene Vorlesung existiert, die von
-ihm nicht geprüft wurde.</p>
+<p>Im folgenden Beispiel suchen wir die Lehrstuhlbezeichnungen der Professor*innen, die alle von ihnen gelesenen Vorlesungen auch schon einmal geprüft haben bzw. Lehrstuhlbezeichnungen von Professor*innen, wo keine von diesem/er gelesene Vorlesung existiert, die von ihm/ihr nicht geprüft wurde.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Lehrstuhlbezeichnung</span>
@@ -8241,7 +8245,7 @@ ihm nicht geprüft wurde.</p>
 </div>
 <div class="section" id="in-beispiele">
 <h3><span class="section-number">9.4.5. </span>IN Beispiele<a class="headerlink" href="#in-beispiele" title="Permalink to this headline">¶</a></h3>
-<p>■ Eine Auswahl an Büchern</p>
+<p>Im folgenden Beispiel suchen wir eine Auswahl an Büchern mit bestimmter ISBN.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Titel</span>
@@ -8294,7 +8298,7 @@ ihm nicht geprüft wurde.</p>
 </table>
 </div></div></div>
 </div>
-<p>■ Matrikel der Studenten, die zumindest einen Prüfer gemeinsam mit dem Studenten der Matrikel ‚123456‘ haben</p>
+<p>Hier suchen wir die Matrikelnr. der Studierenden, die zumindest einen Prüfer/in gemeinsam mit dem Studierenden mit der Matrikelnr. ‚123456‘ haben.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT DISTINCT Matrikel</span>
@@ -8361,6 +8365,7 @@ ihm nicht geprüft wurde.</p>
 </table>
 </div></div></div>
 </div>
+<p>Eine Alternativanfrage, welche dieselbe Ausgabe erzeugt, aber nicht den IN-Operator benutzt:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT DISTINCT P1.Matrikel</span>
@@ -8426,7 +8431,7 @@ ihm nicht geprüft wurde.</p>
 </table>
 </div></div></div>
 </div>
-<p>■ Nachnamen aller Professor*innen, die schon einmal eine 1,0 vergeben haben.</p>
+<p>In diesem Beispiel geben wir alle Nachnamen aller Professor*innen aus, die schon einmal eine 1,0 vergeben haben.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Nachname</span>
@@ -8469,24 +8474,87 @@ ihm nicht geprüft wurde.</p>
 </table>
 </div></div></div>
 </div>
-<p>■ Achtung: Korrelierte Subanfrage</p>
+<p>Achtung: Korrelierte Subanfrage, die Subanfrag wird für jede ProfID ausgeführt.</p>
 </div>
 <div class="section" id="all-und-any-beispiele">
 <h3><span class="section-number">9.4.6. </span>ALL und ANY Beispiele<a class="headerlink" href="#all-und-any-beispiele" title="Permalink to this headline">¶</a></h3>
-<p>■ Die schlechteste Note des Studenten mit Matrikel 123456</p>
+<p>Im folgenden Beispiel suchen wir die schlechteste Note des Studierenden mit der Matrikelnr. 123456.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>SELECT Note
-FROM Prüft
-WHERE Matrikel = ‘123456‘
-AND Note &gt;= ALL (SELECT Note
-                 FROM Prüft
-                 WHERE Matrikel = ‘123456‘)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Note</span>
+<span class="c1">#FROM Prüft</span>
+<span class="c1">#WHERE Matrikel = ‘123456‘</span>
+<span class="c1">#AND Note &gt;= ALL (SELECT Note</span>
+<span class="c1">#                 FROM Prüft</span>
+<span class="c1">#                 WHERE Matrikel = ‘123456‘)</span>
+
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Note FROM Prueft WHERE Matrikel = ‘123456‘ AND Note &gt;= ALL (SELECT Note FROM Prueft WHERE Matrikel = ‘123456‘)&quot;</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;lehre/lehre.db&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">OperationalError</span><span class="g g-Whitespace">                          </span>Traceback (most recent call last)
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py:2020,</span> in <span class="ni">SQLiteDatabase.execute</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2019</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2020</span>     <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2021</span>     <span class="k">return</span> <span class="n">cur</span>
+
+<span class="ne">OperationalError</span>: near &quot;ALL&quot;: syntax error
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">DatabaseError</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
+<span class="nn">Input In [3],</span> in <span class="ni">&lt;cell line: 10&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Note FROM Prueft WHERE Matrikel = ‘123456‘ AND Note &gt;= ALL (SELECT Note FROM Prueft WHERE Matrikel = ‘123456‘)&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;lehre/lehre.db&quot;</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">10</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">df</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py:399,</span> in <span class="ni">read_sql_query</span><span class="nt">(sql, con, index_col, coerce_float, params, parse_dates, chunksize, dtype)</span>
+<span class="g g-Whitespace">    </span><span class="mi">341</span> <span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">342</span><span class="sd"> Read SQL query into a DataFrame.</span>
+<span class="g g-Whitespace">    </span><span class="mi">343</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">396</span><span class="sd"> parameter will be converted to UTC.</span>
+<span class="g g-Whitespace">    </span><span class="mi">397</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">398</span> <span class="n">pandas_sql</span> <span class="o">=</span> <span class="n">pandasSQL_builder</span><span class="p">(</span><span class="n">con</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">399</span> <span class="k">return</span> <span class="n">pandas_sql</span><span class="o">.</span><span class="n">read_query</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">400</span>     <span class="n">sql</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">401</span>     <span class="n">index_col</span><span class="o">=</span><span class="n">index_col</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">402</span>     <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">403</span>     <span class="n">coerce_float</span><span class="o">=</span><span class="n">coerce_float</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">404</span>     <span class="n">parse_dates</span><span class="o">=</span><span class="n">parse_dates</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">405</span>     <span class="n">chunksize</span><span class="o">=</span><span class="n">chunksize</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">406</span>     <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">407</span> <span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py:2080,</span> in <span class="ni">SQLiteDatabase.read_query</span><span class="nt">(self, sql, index_col, coerce_float, params, parse_dates, chunksize, dtype)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2068</span> <span class="k">def</span> <span class="nf">read_query</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2069</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2070</span>     <span class="n">sql</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2076</span>     <span class="n">dtype</span><span class="p">:</span> <span class="n">DtypeArg</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2077</span> <span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">2079</span>     <span class="n">args</span> <span class="o">=</span> <span class="n">_convert_params</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2080</span>     <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2081</span>     <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">col_desc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">col_desc</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">description</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">2083</span>     <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py:2032,</span> in <span class="ni">SQLiteDatabase.execute</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2029</span>     <span class="k">raise</span> <span class="n">ex</span> <span class="kn">from</span> <span class="nn">inner_exc</span>
+<span class="g g-Whitespace">   </span><span class="mi">2031</span> <span class="n">ex</span> <span class="o">=</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Execution failed on sql &#39;</span><span class="si">{</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2032</span> <span class="k">raise</span> <span class="n">ex</span> <span class="kn">from</span> <span class="nn">exc</span>
+
+<span class="ne">DatabaseError</span>: Execution failed on sql &#39;SELECT Note FROM Prueft WHERE Matrikel = ‘123456‘ AND Note &gt;= ALL (SELECT Note FROM Prueft WHERE Matrikel = ‘123456‘)&#39;: near &quot;ALL&quot;: syntax error
 </pre></div>
 </div>
 </div>
 </div>
-<p>Der Operator ALL wird nicht von sqlite3 unterstützt. Stattdessen kann man eine äquivalente Anfrage mithilfe MAX() formulieren.</p>
+<p>Wie man sehen kann wird der Operator ALL nicht von sqlite3 unterstützt. Stattdessen kann man eine äquivalente Anfrage mithilfe MAX() formulieren.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Note FROM Prueft WHERE Matrikel = 123456 AND Note &gt;= (SELECT MAX(Note) FROM Prueft WHERE Matrikel = 123456)&quot;</span>
@@ -8527,18 +8595,81 @@ AND Note &gt;= ALL (SELECT Note
 </table>
 </div></div></div>
 </div>
-<p>■ Alle Studenten, die mindestens eine Prüfung absolvierten</p>
+<p>Im folgenden Beispiel suchen wir alle Studierenden, die mindestens eine Prüfung absolviert haben.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Matrikel</span>
-<span class="n">FROM</span> <span class="n">Student</span>
-<span class="n">WHERE</span> <span class="n">Matrikel</span> <span class="o">=</span> <span class="n">ANY</span> <span class="p">(</span><span class="n">SELECT</span> <span class="n">Matrikel</span>
-                      <span class="n">FROM</span> <span class="n">Prüft</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Name, Matrikel</span>
+<span class="c1">#FROM Student</span>
+<span class="c1">#WHERE Matrikel = ANY (SELECT Matrikel</span>
+<span class="c1">#                      FROM Prueft)</span>
+
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Name, Matrikel FROM Student WHERE Matrikel = ANY (SELECT Matrikel FROM Prueft)&quot;</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;lehre/lehre.db&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">OperationalError</span><span class="g g-Whitespace">                          </span>Traceback (most recent call last)
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py:2020,</span> in <span class="ni">SQLiteDatabase.execute</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2019</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2020</span>     <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2021</span>     <span class="k">return</span> <span class="n">cur</span>
+
+<span class="ne">OperationalError</span>: near &quot;SELECT&quot;: syntax error
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">DatabaseError</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
+<span class="nn">Input In [4],</span> in <span class="ni">&lt;cell line: 8&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Name, Matrikel FROM Student WHERE Matrikel = ANY (SELECT Matrikel FROM Prueft)&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;lehre/lehre.db&quot;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">8</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">df</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py:399,</span> in <span class="ni">read_sql_query</span><span class="nt">(sql, con, index_col, coerce_float, params, parse_dates, chunksize, dtype)</span>
+<span class="g g-Whitespace">    </span><span class="mi">341</span> <span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">342</span><span class="sd"> Read SQL query into a DataFrame.</span>
+<span class="g g-Whitespace">    </span><span class="mi">343</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">396</span><span class="sd"> parameter will be converted to UTC.</span>
+<span class="g g-Whitespace">    </span><span class="mi">397</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">398</span> <span class="n">pandas_sql</span> <span class="o">=</span> <span class="n">pandasSQL_builder</span><span class="p">(</span><span class="n">con</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">399</span> <span class="k">return</span> <span class="n">pandas_sql</span><span class="o">.</span><span class="n">read_query</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">400</span>     <span class="n">sql</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">401</span>     <span class="n">index_col</span><span class="o">=</span><span class="n">index_col</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">402</span>     <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">403</span>     <span class="n">coerce_float</span><span class="o">=</span><span class="n">coerce_float</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">404</span>     <span class="n">parse_dates</span><span class="o">=</span><span class="n">parse_dates</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">405</span>     <span class="n">chunksize</span><span class="o">=</span><span class="n">chunksize</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">406</span>     <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">407</span> <span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py:2080,</span> in <span class="ni">SQLiteDatabase.read_query</span><span class="nt">(self, sql, index_col, coerce_float, params, parse_dates, chunksize, dtype)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2068</span> <span class="k">def</span> <span class="nf">read_query</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2069</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2070</span>     <span class="n">sql</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2076</span>     <span class="n">dtype</span><span class="p">:</span> <span class="n">DtypeArg</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2077</span> <span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">2079</span>     <span class="n">args</span> <span class="o">=</span> <span class="n">_convert_params</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2080</span>     <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2081</span>     <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">col_desc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">col_desc</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">description</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">2083</span>     <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py:2032,</span> in <span class="ni">SQLiteDatabase.execute</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2029</span>     <span class="k">raise</span> <span class="n">ex</span> <span class="kn">from</span> <span class="nn">inner_exc</span>
+<span class="g g-Whitespace">   </span><span class="mi">2031</span> <span class="n">ex</span> <span class="o">=</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Execution failed on sql &#39;</span><span class="si">{</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2032</span> <span class="k">raise</span> <span class="n">ex</span> <span class="kn">from</span> <span class="nn">exc</span>
+
+<span class="ne">DatabaseError</span>: Execution failed on sql &#39;SELECT Name, Matrikel FROM Student WHERE Matrikel = ANY (SELECT Matrikel FROM Prueft)&#39;: near &quot;SELECT&quot;: syntax error
 </pre></div>
 </div>
 </div>
 </div>
-<p>Der Operator ANY wird nicht von sqlite3 unterstützt. Stattdessen kann man eine äquivalente Anfrage mithilfe IN formulieren.</p>
+<p>Wie man sehen kann wird der Operator ANY nicht von sqlite3 unterstützt. Stattdessen kann man eine äquivalente Anfrage mithilfe IN formulieren.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Name, Matrikel FROM Student WHERE Matrikel IN (SELECT Matrikel FROM Prueft)&quot;</span>
