@@ -8076,47 +8076,39 @@ Wir haben im Folgenden Beispiel die Relationen ManagerIn(Name, Adresse, Manageri
 <br><br>
 Um zu überprüfen ob eine Relation leer oder nicht ist, kann der EXISTS-Operator benutzt werden:
 <br>
-Z.B. EXISTS R
-<br>
-– TRUE, falls R nicht leer
+EXISTS R gibt TRUE zurück, falls R nicht leer ist
 <br><br>
 Um zu überprüfen ob ein Wert in einer Relation mind. einmal vorkommt, kann der IN-Operator benutzt werden:
 <br>
-Z.B. x IN R
-<br>
-– TRUE falls x gleich einem Wert in R ist (R hat nur ein Attribut)
+x IN R gibt TRUE zurück, falls x gleich einem Wert in R ist (R hat nur ein Attribut)
 <br><br>
 Um zu überprüfen ob x nicht in R vorkommt, kann NOT IN benutzt werden:
 <br>
-– x NOT IN R: TRUE falls x keinem Wert in R gleicht
+x NOT IN R gibt TRUE zurück, falls x keinem Wert in R gleicht
 <br><br>
 Um, zu überprüfen ob ein Wert größer als alle Werte in R ist, kann der ALL-Operator benutzt werden:
 <br>
-Z.B. x &gt; ALL R
+x &gt; ALL R gibt TRUE zurück, falls x größer als jeder Wert in R ist (R hat nur ein Attribut)
 <br>
-– TRUE falls x größer als jeder Wert in R ist (R hat nur ein Attribut)
+x &lt;&gt; ALL R entspricht x NOT IN R bzw. auch NOT(x in R)
 <br>
-– x &lt;&gt; ALL R: Entspricht x NOT IN R bzw. auch NOT(x in R)
-<br>
-– Alternativ: &lt;, &gt;, &lt;=, &gt;=, &lt;&gt;, =
+Natürlich kann man alternativ auch die anderen Vergleichsoperatoren verwenden: &lt;, &gt;, &lt;=, &gt;=, &lt;&gt;, =
 <br><br>
 Um zu überprüfen, ob ein Wert größer als mind. ein Wert aus einer Relation ist, kann der ANY-Operator benutzt werden
 <br>
-Z.B. x &gt; ANY R
+x &gt; ANY R gibt TRUE zurück, falls x größer als mindestens ein Wert in R ist (R hat nur ein Attribut)
 <br>
-– TRUE falls x größer als mindestens ein Wert in R ist (R hat nur ein Attribut)
+Auch hier kann man natürlich auch alternativ die anderen Vergleichsoperatoren verwenden: &lt;, &gt;, &lt;=, &gt;=, &lt;&gt;, =
 <br>
-– Alternativ: &lt;, &gt;, &lt;=, &gt;=, &lt;&gt;, =
+x = ANY R entspricht x IN R
 <br>
-– x = ANY R: Entspricht x IN R
-<br>
-– Alternativer Befehl: SOME
+Ein alternativer Befehl für ANY ist SOME
 <br><br>
 Die Negation mit NOT(…) ist immer möglich.</p>
 </div>
 <div class="section" id="exists-beispiele">
 <h3><span class="section-number">9.4.4. </span>EXISTS Beispiele<a class="headerlink" href="#exists-beispiele" title="Permalink to this headline">¶</a></h3>
-<p>Im folgendne Beispiel wollen wir die ISBNs aller ausgeliehenen Bücher ausgeben. Hierbei verwenden wir den EXISTS-Operator und geben jene ISBNs aus der Relation BuchExemplar aus, dessen Inventarnr in der Relation Ausleihe existiert.</p>
+<p>Im folgenden Beispiel wollen wir die ISBNs aller ausgeliehenen Bücher ausgeben. Hierbei verwenden wir den EXISTS-Operator und geben jene ISBNs aus der Relation BuchExemplar aus, dessen Inventarnr in der Relation Ausleihe existiert.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT ISBN</span>
@@ -8740,28 +8732,16 @@ Die Negation mit NOT(…) ist immer möglich.</p>
 </div>
 <div class="section" id="bedingungen-mit-tupeln">
 <h3><span class="section-number">9.4.7. </span>Bedingungen mit Tupeln<a class="headerlink" href="#bedingungen-mit-tupeln" title="Permalink to this headline">¶</a></h3>
-<p>■ Verallgemeinerung von IN, ALL und ANY auf Tupel
-<br>
-□ t IN R
-<br>
-– TRUE falls t ein Tupel in R ist (mehr als ein Attribut möglich)
-<br>
-– Setzt gleiche Schemata voraus
-<br>
-– Setzt gleiche Reihenfolge der Attribute voraus
-<br>
-□ t &gt; ALL R
-<br>
-– TRUE falls t größer als jedes Tupel in R ist
-<br>
-– Vergleiche in Standardreihenfolge der Attribute
-<br>
-□ t &lt;&gt; ANY R
-<br>
-– TRUE falls R mindestens ein Tupel hat, das ungleich t ist
+<p>Verallgemeinerungen von IN, ALL und ANY auf Tupel sind auch möglich.
+<br><br>
+t IN R gibt TRUE zurück, falls t ein Tupel in R ist (mehr als ein Attribut möglich). Hierbei ist vorausgesetzt, dass beide dasselbe Schemata haben und dieselbe Reihenfolge der Attribute.
+<br><br>
+t &gt; ALL R gibt TRUE zurück, falls t größer als jedes Tupel in R ist. Die Vergleiche finden in Standardreihenfolge der Attribute statt.
+<br><br>
+t &lt;&gt; ANY R gibt TRUE zurück, falls R mindestens ein Tupel hat, das ungleich t ist.
 <br>
 <br>
-■ Namen von Produzenten von Filmen mit Harrison Ford</p>
+Im folgenden Beispiel wollen wir alle Namen von Produzenten von Filmen mit Harrison Ford ausgeben. Wir suchen erst Titel und Jahr aller Filme mit Harrison Ford mithilfe einer Subanfrage. Für jene Filme suchen wir dann die ProduzentinIDs und gleichen die mit den ManagerinIDs ab, zuletzt geben wir die Namen der passenden Manager*Innen aus.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Name </span>
@@ -8807,18 +8787,15 @@ Die Negation mit NOT(…) ist immer möglich.</p>
 </table>
 </div></div></div>
 </div>
-<p>■ Analyse am besten von innen nach außen
-<br><br>
-■ Alternative Formulierung</p>
+<p>Es gibt auch eine alternative Formulierung der Anfrage ohne IN. Wir joinen ManagerIn, Film und spielt_in und geben jene Manager*Innamen aus, wo spielt_in.Name Harrison Ford entspricht.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#alte Anfrage</span>
-<span class="c1">#SELECT Name </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT ManagerIn.Name </span>
 <span class="c1">#FROM ManagerIn, Film, spielt_in </span>
 <span class="c1">#WHERE ManagerinID = ProduzentinID </span>
 <span class="c1">#AND Titel = FilmTitel </span>
 <span class="c1">#AND Jahr = FilmJahr </span>
-<span class="c1">#AND SchauspielerIn.Name = &quot;Harrison Ford&quot;;</span>
+<span class="c1">#AND spielt_in.Name = &quot;Harrison Ford&quot;;</span>
 
 <span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT ManagerIn.Name FROM ManagerIn, Film, spielt_in WHERE ManagerinID = ProduzentinID AND Titel = FilmTitel AND Jahr = FilmJahr AND spielt_in.Name = &#39;Harrison Ford&#39;&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
@@ -8861,12 +8838,9 @@ Die Negation mit NOT(…) ist immer möglich.</p>
 </div>
 <div class="section" id="subanfragen-in-from-klausel">
 <h3><span class="section-number">9.4.8. </span>Subanfragen in FROM-Klausel<a class="headerlink" href="#subanfragen-in-from-klausel" title="Permalink to this headline">¶</a></h3>
-<p>■ Bisher: Nur Subanfragen in WHERE-Klausel
-<br>
-□ Anstelle einfacher Relation steht eine geklammerte Subanfrage
-<br>
-□ Es muss ein Alias vergeben werden.
-<br></p>
+<p>Wir können anstelle einer einfachen Relation auch eine geklammerte Subanfrage in der FROM-Klausel schreiben. Der Subanfrage mussein Alias vergeben werden, um auf die Attribute zuzugreifen.
+<br><br>
+Im folgenden Beispiel wollen wir wieder alle Namen von Produzenten von Filmen mit Harrison Ford ausgeben. Wir stellen eine Subanfrage in der FROM-Klausel, die alle ProduzentinIDs zurückgibt, welche in Filmen mit Harrison Ford beteiligt waren. Zum Schluss werden die ProduzentinIDs wieder mit den ManagerinIDs abgeglichen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT M.Name </span>
@@ -8914,15 +8888,12 @@ Die Negation mit NOT(…) ist immer möglich.</p>
 </div>
 <div class="section" id="korrelierte-subanfragen">
 <h3><span class="section-number">9.4.9. </span>Korrelierte Subanfragen<a class="headerlink" href="#korrelierte-subanfragen" title="Permalink to this headline">¶</a></h3>
-<p>■ Unkorreliert: Subanfragen einmalig ausführen und das Ergebnis weiterverwenden
+<p>Wird eine Subanfragen einmalig ausgeführt, so handelt es sich um eine unkorrelierte Subanfrage. Korrelierte Subanfragen werden mehrfach ausgeführt, undzwar einmal pro Bindung der korrelierten Variable der äußeren Anfrage.
 <br><br>
-■ Korrelierte Subanfragen werden mehrfach ausgeführt, einmal pro Bindung der korrelierten Variable der äußeren
-Anfrage
-<br><br>
-■ Alle mehrfachen Filme mit Ausnahme der jeweils jüngsten Ausgabe</p>
+Im folgenden ein Beispiel für eine korrelierte Subanfrage. Wir suchen alle mehrfachen Filme mit Ausnahme der jeweils jüngsten Ausgabe. Die Subanfrage wird für jedes Tupel in Filme ausgeführt.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%sql SELECT Titel, Jahr </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Titel, Jahr </span>
 <span class="c1">#FROM Film Alt </span>
 <span class="c1">#WHERE Jahr &lt; ANY ( SELECT Jahr FROM Film WHERE Titel = Alt.Titel);</span>
 
@@ -8963,11 +8934,9 @@ Anfrage
 </table>
 </div></div></div>
 </div>
-<p>□ Ausführung der Subanfrage für jedes Tupel in Filme</p>
-<p>Scope: Attributnamen gehören zunächst zur Tupelvariablen der aktuellen Anfrage. Sonst: Suche von innen nach außen.</p>
-<p>Unkorreliert:
-<br>
-Name und Gehalt aller Mitarbeiter in Potsdam</p>
+<p>Nun suchen wir die Namen und Gehälter aller Mitarbeiter*Innen in Potsdam, wir formulieren zunächst eine Anfrage mit einer unkorrelierten und dann eine mit einr korrelierte Subanfrage.
+<br><br>
+Unten wird die Subanfrage nur einmal ausgeführt, da wir sofort alle AbtIDs haben. Daher handelt es sich hierbei um eine unkorrelierte Subanfrage.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Name, Gehalt</span>
@@ -9058,9 +9027,7 @@ Name und Gehalt aller Mitarbeiter in Potsdam</p>
 </table>
 </div></div></div>
 </div>
-<p>Korreliert:
-<br>
-Name und Gehalt aller Mitarbeiter, deren Gehalt höher als 10% des Abteilungsbudgets ist.</p>
+<p>Hierbei handelt es sich um eine korrelierte Subanfrage, aufgrund des p.AbtID, da die Subanfrage für jedes Tupel aus Personal p ausgeführt werden muss.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Name, Gehalt</span>
