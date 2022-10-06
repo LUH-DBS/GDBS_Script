@@ -524,13 +524,6 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal nav-link" href="#duplikateliminierung">
      9.5.1. Duplikateliminierung
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#wdh-duplikateliminierung-bei-mengenoperationen">
-       9.5.1.1. Wdh.: Duplikateliminierung bei Mengenoperationen
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#aggregation">
@@ -1031,13 +1024,6 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal nav-link" href="#duplikateliminierung">
      9.5.1. Duplikateliminierung
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#wdh-duplikateliminierung-bei-mengenoperationen">
-       9.5.1.1. Wdh.: Duplikateliminierung bei Mengenoperationen
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#aggregation">
@@ -9094,27 +9080,14 @@ Unten wird die Subanfrage nur einmal ausgeführt, da wir sofort alle AbtIDs habe
 <h2><span class="section-number">9.5. </span>Operationen auf einer Relation<a class="headerlink" href="#operationen-auf-einer-relation" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="duplikateliminierung">
 <h3><span class="section-number">9.5.1. </span>Duplikateliminierung<a class="headerlink" href="#duplikateliminierung" title="Permalink to this headline">¶</a></h3>
-<p>Relationale DBMS verwenden i.d.R. Multimengensemantik, nicht Mengensemantik.
-<br>
-□ Duplikate entstehen durch
-<br>
-– Einfügen von Duplikaten in Basisrelation
-<br>
-– Veränderung von Tupeln in Basisrelation
-<br>
-– Projektion in Anfragen
-<br>
-– Durch Subanfragen (UNION ALL)
-<br>
-– Vermehrung von Duplikaten durch Kreuzprodukt
-<br> <br>
-■ Duplikateliminierung
-<br>
-□ SELECT DISTINCT Attributnamen
-<br>
-□ Kosten sind hoch: Sortierung oder hashing
-<br>
-■ Alle Filme, in denen mindestens ein Schauspieler mitspielt</p>
+<p>Wie aus der Relationalen Algebra bekannt, ist die Duplikateliminierung auch in SQL möglich. Relationale DBMS verwenden i.d.R. Multimengensemantik und nicht Mengensemantik. Durch Operationen, wie das Enfügen von Duplikaten in Basisrelationen, die Veränderung von Tupeln in Basisrelationen, Projektion in Anfragen, Subanfragen mit z.B UNION ALL oder die Vermehrung von Duplikaten durch Kreuzprodukte, entstehen Duplikate.</p>
+<p>Um Duplikate zu eliminieren kann man das DISTINCt-Schlüsselwort benutzen, nach folgendem Schema:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">DISTINCT</span> <span class="n">Attributnamen</span>
+</pre></div>
+</div>
+<p>So wird gewährleistet, dass jedes projezierte Element aus Attributnamen nur einmal in der Ausgabe vorkommt. Zu beachten ist noch, dass DISTINCT eine kostenaufwändige Operation ist, da die Ausgabe einmal auf Duplikate hin durchsucht werden muss, mithilfe Sortierung oder Hashing.
+<br><br>
+Im folgenden Beispiel suchen wir alle Filme, in denen mindestens ein Schauspieler mitspielt. In der Relation spielt_in sind pro Schauspieler Titel und Jahr vorhanden.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT DISTINCT FilmTitel, FilmJahr </span>
@@ -9256,385 +9229,14 @@ Unten wird die Subanfrage nur einmal ausgeführt, da wir sofort alle AbtIDs habe
 </div></div></div>
 </div>
 <p><img alt="title" src="../_images/duplikateliminierung.jpg" /></p>
-<div class="section" id="wdh-duplikateliminierung-bei-mengenoperationen">
-<h4><span class="section-number">9.5.1.1. </span>Wdh.: Duplikateliminierung bei Mengenoperationen<a class="headerlink" href="#wdh-duplikateliminierung-bei-mengenoperationen" title="Permalink to this headline">¶</a></h4>
-<p>■ Mengenoperationen in SQL entfernen Duplikate
-<br>
-□ UNION, INTERSECT, EXCEPT
-<br>
-□ wandeln Multimengen in Mengen um und verwenden Mengensemantik
-<br>
-□ Solche Duplikateliminierung verhindern durch ALL
-<br></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#(SELECT Titel, Jahr, FROM Film) UNION ALL (SELECT FilmTitel AS Titel, FilmJahr AS Jahr FROM spielt_in);</span>
-
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Titel, Jahr FROM Film UNION ALL SELECT FilmTitel AS Titel, FilmJahr AS Jahr FROM spielt_in&quot;</span>
-<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
-<span class="n">df</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Titel</th>
-      <th>Jahr</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Inside Out</td>
-      <td>2015</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Toy Story</td>
-      <td>1999</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Up</td>
-      <td>2009</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Ratatouille</td>
-      <td>2007</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Star Wars</td>
-      <td>1977</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Star Trek</td>
-      <td>1979</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Lady Bird</td>
-      <td>2017</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>Into the Wild</td>
-      <td>2007</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>Brokeback Mountain</td>
-      <td>2005</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>The Lighthouse</td>
-      <td>2019</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Roma</td>
-      <td>2018</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>La Heine</td>
-      <td>1995</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Total Recall</td>
-      <td>1990</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Mamma Mia!</td>
-      <td>2008</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>The Dark Knight</td>
-      <td>2008</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Pulp Fiction</td>
-      <td>1994</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>The Great Gatsby</td>
-      <td>2013</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Spider-Man</td>
-      <td>2002</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>La La Land</td>
-      <td>2016</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Moonlight</td>
-      <td>2016</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>Ducktales the Movie: Treasure of the Lost Lamp</td>
-      <td>1990</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>House of Gucci</td>
-      <td>2021</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>James Bond 007: Spectre</td>
-      <td>2015</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>Shipwrecked</td>
-      <td>1990</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>The Rescuers Down Under</td>
-      <td>1990</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>Gone with the Wind</td>
-      <td>1939</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>Star Wars</td>
-      <td>1977</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>Star Wars</td>
-      <td>1977</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>Star Wars</td>
-      <td>1977</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>Into the Wild</td>
-      <td>2007</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>Brokeback Mountain</td>
-      <td>2005</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>Brokeback Mountain</td>
-      <td>2005</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>The Dark Knight</td>
-      <td>2008</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td>The Lighthouse</td>
-      <td>2019</td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td>The Lighthouse</td>
-      <td>2019</td>
-    </tr>
-    <tr>
-      <th>35</th>
-      <td>The Great Gatsby</td>
-      <td>2013</td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td>The Great Gatsby</td>
-      <td>2013</td>
-    </tr>
-    <tr>
-      <th>37</th>
-      <td>The Great Gatsby</td>
-      <td>2013</td>
-    </tr>
-    <tr>
-      <th>38</th>
-      <td>Lady Bird</td>
-      <td>2017</td>
-    </tr>
-    <tr>
-      <th>39</th>
-      <td>La Heine</td>
-      <td>1995</td>
-    </tr>
-    <tr>
-      <th>40</th>
-      <td>Mamma Mia!</td>
-      <td>2008</td>
-    </tr>
-    <tr>
-      <th>41</th>
-      <td>Inside Out</td>
-      <td>2015</td>
-    </tr>
-    <tr>
-      <th>42</th>
-      <td>Total Recall</td>
-      <td>1990</td>
-    </tr>
-    <tr>
-      <th>43</th>
-      <td>Total Recall</td>
-      <td>1990</td>
-    </tr>
-    <tr>
-      <th>44</th>
-      <td>Pulp Fiction</td>
-      <td>1994</td>
-    </tr>
-    <tr>
-      <th>45</th>
-      <td>Up</td>
-      <td>2009</td>
-    </tr>
-    <tr>
-      <th>46</th>
-      <td>Spider-Man</td>
-      <td>2002</td>
-    </tr>
-    <tr>
-      <th>47</th>
-      <td>Spider-Man</td>
-      <td>2002</td>
-    </tr>
-    <tr>
-      <th>48</th>
-      <td>Spider-Man</td>
-      <td>2002</td>
-    </tr>
-    <tr>
-      <th>49</th>
-      <td>La La Land</td>
-      <td>2016</td>
-    </tr>
-    <tr>
-      <th>50</th>
-      <td>La La Land</td>
-      <td>2016</td>
-    </tr>
-    <tr>
-      <th>51</th>
-      <td>Moonlight</td>
-      <td>2016</td>
-    </tr>
-    <tr>
-      <th>52</th>
-      <td>Star Trek</td>
-      <td>1979</td>
-    </tr>
-    <tr>
-      <th>53</th>
-      <td>Ducktales the Movie: Treasure of the Lost Lamp</td>
-      <td>1990</td>
-    </tr>
-    <tr>
-      <th>54</th>
-      <td>House of Gucci</td>
-      <td>2021</td>
-    </tr>
-    <tr>
-      <th>55</th>
-      <td>House of Gucci</td>
-      <td>2021</td>
-    </tr>
-    <tr>
-      <th>56</th>
-      <td>House of Gucci</td>
-      <td>2021</td>
-    </tr>
-    <tr>
-      <th>57</th>
-      <td>James Bond 007: Spectre</td>
-      <td>2015</td>
-    </tr>
-    <tr>
-      <th>58</th>
-      <td>James Bond 007: Spectre</td>
-      <td>2015</td>
-    </tr>
-    <tr>
-      <th>59</th>
-      <td>James Bond 007: Spectre</td>
-      <td>2015</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<p>– Film mit drei Schauspielern erscheint also 4 Mal im Ergebnis
-<br>
-□ R INTERSECT ALL S
-<br>
-□ R EXCEPT ALL S</p>
-</div>
+<p>Wir erinnern uns zurück an die Anfragen, wo wir die Produzent*Innen von Filmen mit Harrison Ford gesucht haben. Einmal sind wir an das Ergebnis durch Subanfragen gelangt und auf einem anderen Wege mit einem Join. Nun sind beide Anfragen nicht äquivalent, da bei der Anfrage mit dem Join Duplikate möglich sind, welches sich aber mit dem DISTINCT-Schlüsselwort lösen lässt.</p>
 </div>
 <div class="section" id="aggregation">
 <h3><span class="section-number">9.5.2. </span>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">¶</a></h3>
-<p>■ Standardaggregationsoperatoren
-<br>
-□ SUM, AVG, MIN, MAX, COUNT
-<br>
-□ Angewendet auf einzelne Attribute in der SELECT-Klausel
-<br><br>
-■ Typische weitere Aggregationsoperatoren
-<br>
-□ VAR, STDDEV
-<br><br>
-■ COUNT(*) zählt Anzahl der Tupel
-<br>
-□ in der Relation, die durch die FROM und WHERE Klauseln definiert wird.
-<br><br>
-■ Kombination mit DISTINCT
-<br>
-□ COUNT(DISTINCT Jahr)
-<br>
-□ SUM(DISTINCT Gehalt)</p>
+<p>Die aus der Relationalen Algebra bekannte Aggregation ist auch in SQL möglich, die Standardaggregationsoperatoren SUM, AVG, MIN, MAX, COUNT können auf einzelne Attribute in der SELECT-Klausel angewendet werden. Zudem gibt es noch weitere Aggregationsoperatoren wir z.B VAR, STDDEV für die Varianz und Standardabweichung. Es wird auch COUNT(*) häufig benutzt, welches die Anzahl der Tupel in der Relation, die durch die FROM und WHERE Klauseln definiert wird zählt. Auch die Kombination mit DISTINCT wird häufig benutzt wie z.B COUNT(DISTINCT Jahr) SUM(DISTINCT Gehalt)</p>
 <div class="section" id="aggregation-beispiele">
 <h4><span class="section-number">9.5.2.1. </span>Aggregation – Beispiele<a class="headerlink" href="#aggregation-beispiele" title="Permalink to this headline">¶</a></h4>
+<p>Im folgenden Beispiel möchten wir das Durchschnittsgehalt aller Manager*\Innen ausgeben.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT AVG(Gehalt) </span>
@@ -9678,6 +9280,7 @@ Unten wird die Subanfrage nur einmal ausgeführt, da wir sofort alle AbtIDs habe
 </table>
 </div></div></div>
 </div>
+<p>In diesem Beispiel möchten wir alle Einträger der Relation spielt_in zählen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT COUNT(*) </span>
@@ -9721,6 +9324,7 @@ Unten wird die Subanfrage nur einmal ausgeführt, da wir sofort alle AbtIDs habe
 </table>
 </div></div></div>
 </div>
+<p>In diesem Beispiel zählen wir alle Schauspiel in der spielt_in Relation, jedoch wird doppelt gezählt.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT COUNT(Name) </span>
@@ -9764,6 +9368,7 @@ Unten wird die Subanfrage nur einmal ausgeführt, da wir sofort alle AbtIDs habe
 </table>
 </div></div></div>
 </div>
+<p>Mit DISTINCT wird nicht mehr doppelt gezählt.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT COUNT(DISTINCT Name) </span>
@@ -9812,28 +9417,11 @@ Unten wird die Subanfrage nur einmal ausgeführt, da wir sofort alle AbtIDs habe
 </div>
 <div class="section" id="gruppierung-aggregation-und-null">
 <h3><span class="section-number">9.5.3. </span>Gruppierung, Aggregation und NULL<a class="headerlink" href="#gruppierung-aggregation-und-null" title="Permalink to this headline">¶</a></h3>
-<p>■ NULL wird bei Aggregation ignoriert.
-<br>
-□ Trägt also nicht zu SUM, AVG oder COUNT bei.
-<br>
-□ Ist nicht MIN oder MAX
-<br>
-□ Anzahl Tupel: SELECT COUNT(*) FROM spielt_in;
-<br>
-□ Anzahl nicht-NULL Werte: SELECT COUNT(Länge) FROM Film;
-<br><br>
-■ NULL ist ein eigener Gruppierungswert
-<br>
-□ Es gibt also z.B. die NULL-Gruppe
-<br>
-□ SELECT A, COUNT(B) FROM R GROUP BY A;
-<br>
-– Ergebnis: (NULL, 0)
-<br>
-□ SELECT A, SUM(B) FROM R GROUP BY A;
-<br>
-– Ergebnis: (NULL, NULL)
-<br></p>
+<p>NULL wird bei der Aggregation ignoriert und trägt somit nicht zu SUM, AVG oder COUNT bei und wird auch nicht als MIN oder MAX ausgegeben. Um die Anzahl der nicht-NULL Werte zuzählen, kann also folgende Anfrage benutzt werden:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">COUNT</span><span class="p">(</span><span class="n">Länge</span><span class="p">)</span> <span class="n">FROM</span> <span class="n">Film</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Bei der Gruppierung ist NULL ein eigener Gruppierungswert, also gibt es z.B die NULL-Gruppe. Um das zu veranschaulichen betrachten wir die folgende Relation R:</p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>A</p></th>
@@ -9846,6 +9434,13 @@ Unten wird die Subanfrage nur einmal ausgeführt, da wir sofort alle AbtIDs habe
 </tr>
 </tbody>
 </table>
+<p>SELECT A, COUNT(B) FROM R GROUP BY A;
+<br>
+Ergebnis: (NULL, 0)
+<br><br>
+SELECT A, SUM(B) FROM R GROUP BY A;
+<br>
+Ergebnis: (NULL, NULL)</p>
 </div>
 <div class="section" id="gruppierung">
 <h3><span class="section-number">9.5.4. </span>Gruppierung<a class="headerlink" href="#gruppierung" title="Permalink to this headline">¶</a></h3>
