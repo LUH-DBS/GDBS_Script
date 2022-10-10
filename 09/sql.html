@@ -9444,7 +9444,7 @@ Ergebnis: (NULL, NULL)</p>
 </div>
 <div class="section" id="gruppierung">
 <h3><span class="section-number">9.5.4. </span>Gruppierung<a class="headerlink" href="#gruppierung" title="Permalink to this headline">¶</a></h3>
-<p>■ Gruppierung mittels GROUP BY nach der WHERE-Klausel</p>
+<p>Auch die aus der Relationalen Algebra bekannte Gruppierung ist in SLQ möglich mittels GROUP BY nach der WHERE-Klausel. Bei der Gruppierung gibt es in der SELECT-Klausel zwei “Sorten” von Attributen, einmal Gruppierungsattribute und einmal aggregierte Attribute. Nicht-aggregierte Werte der SELECT-Klausel müssen in der GROUP BY-Klausel erscheinen, es müssen jedoch keiner der beiden Sorten erscheinen. Eine Gruppierung mit Aggregation können wir im unteren Beispiel sehen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT StudioName, SUM(Laenge) </span>
@@ -9575,17 +9575,7 @@ Ergebnis: (NULL, NULL)</p>
 </table>
 </div></div></div>
 </div>
-<p>■ In SELECT-Klausel zwei „Sorten“ von Attributen
-<br></p>
-<ol class="simple">
-<li><p>Gruppierungsattribute
-<br></p></li>
-<li><p>Aggregierte Attribute
-<br>
-□ Nicht-aggregierte Werte der SELECT-Klausel müssen in der GROUP BY-Klausel erscheinen.
-<br>
-□ Keine der beiden Sorten muss erscheinen.</p></li>
-</ol>
+<p>In diesem Beispiel lassen wir die Aggregation weg und suchen nur die Studionamen gruppiert bei StudioName.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT StudioName </span>
@@ -9698,6 +9688,7 @@ Ergebnis: (NULL, NULL)</p>
 </table>
 </div></div></div>
 </div>
+<p>In diesem Beispiel suchen wir nur die Gesamtlänge der Studios.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT SUM(Laenge) </span>
@@ -9810,7 +9801,6 @@ Ergebnis: (NULL, NULL)</p>
 </table>
 </div></div></div>
 </div>
-<p>■ Gruppierung bei Verwendung mehrerer Relationen wird am Schluss durchgeführt.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Name, SUM(Laenge) </span>
@@ -9928,7 +9918,7 @@ Ergebnis: (NULL, NULL)</p>
 </table>
 </div></div></div>
 </div>
-<p>■ Reihenfolge der Ausführung (und des Lesens)
+<p>Wenn mehrere Relationen verwendet werden, wie im obigen Beispiel wird die Gruppierung am Schluss durchgeführt. Sie können sich an die folgende Reihenfolge der Ausführung (und des Lesens) richten:
 <br></p>
 <ol class="simple">
 <li><p>FROM-Klausel
@@ -9939,9 +9929,12 @@ Ergebnis: (NULL, NULL)</p>
 <br></p></li>
 <li><p>SELECT-Klausel
 <br>
-<br>
-■ Einschränkung der Ergebnismenge nach der Gruppierung durch HAVING</p></li>
+<br></p></li>
 </ol>
+<p>Möchte man nun die Ergebnismenge nach der Gruppierung einschränken, so geht das nicht durch eine zusätzliche Bedingung in der WHERE-Klausel, sondern es muss das Schlüsselwort HAVING benutzt werden.Benutzt man zusätzlich noch Aggregationen in der HAVING-Klausel, so beziehen sich diese nur auf die aktuelle Gruppe. Wie bei der SELECT-Klausel, dürfen bei der Gruppierung in der HAVING-Klausel nur un-aggregierte Gruppierungsattribute erscheinen.
+<br>
+<br>
+Wir möchten die Summe der Filmlänge von Manager*Innen ausgeben, dessen Gehälter über 1000000 liegt. Das untere Beispiel erfüllt nicht die Anfrage.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Name, SUM(Laenge) </span>
@@ -9957,108 +9950,24 @@ Ergebnis: (NULL, NULL)</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 7&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1">#SELECT Name, SUM(Laenge) </span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="c1">#FROM ManagerIn, Film </span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1">#WHERE ManagerinID = ProduzentinID </span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1">#AND Gehalt &gt; 1000000 GROUP BY Name</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Name, SUM(Laenge) FROM ManagerIn, Film WHERE ManagerinID = ProduzentinID AND Gehalt &gt; 1000000 GROUP BY Name&quot;</span>
+<span class="ne">----&gt; </span><span class="mi">7</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">df</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Name</th>
-      <th>SUM(Laenge)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Alan Bruckner</td>
-      <td>108</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Ann Sarnoff</td>
-      <td>121</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Bill Pohlad</td>
-      <td>280</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Bob Chapek</td>
-      <td>419</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Brian Robbins</td>
-      <td>134</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Daniel Katz</td>
-      <td>233</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Isaac Perlmutter</td>
-      <td>152</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>Jim Berk</td>
-      <td>263</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>Jim Morris</td>
-      <td>207</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>Louis B.Mayer</td>
-      <td>527</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Paul Golding</td>
-      <td>121</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>Quentin Tarantino</td>
-      <td>154</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Robert Kirby</td>
-      <td>142</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Scott Rudin</td>
-      <td>95</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Steve Asbell</td>
-      <td>113</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="ne">NameError</span>: name &#39;sqlite3&#39; is not defined
+</pre></div>
 </div>
+</div>
+</div>
+<p>Wie oben schon genannt muss HAVING benutzt werden, um die Ergebnismenge nach der Gruppierung einzuschränken, wie um unteren Beispiel dargestellt wird.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Name, SUM(Laenge) </span>
@@ -10131,6 +10040,7 @@ Ergebnis: (NULL, NULL)</p>
 </table>
 </div></div></div>
 </div>
+<p>In diesem Beispiel geben wir nur die Namen der Manager*Innen aus und benutzten Aggregation, um diese zu filtern.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Name </span>
@@ -10196,32 +10106,27 @@ Ergebnis: (NULL, NULL)</p>
 </table>
 </div></div></div>
 </div>
-<p>■ Aggregationen in HAVING-Klausel beziehen sich nur auf aktuelle Gruppe.
-<br>
-■ Nur Gruppierungsattribute dürfen un-aggregiert in HAVING Klausel erscheinen (wie bei
-SELECT-Klausel).</p>
 </div>
 <div class="section" id="zusammenfassung-sql">
 <h3><span class="section-number">9.5.5. </span>Zusammenfassung SQL<a class="headerlink" href="#zusammenfassung-sql" title="Permalink to this headline">¶</a></h3>
-<p>Grundbausteine einer SQL Anfrage (mit empfohlener Lesereihenfolge)
+<p>Hier werden nocheinmal die Grundbausteine einer SQL Anfrage (mit empfohlener Lesereihenfolge) aufgelistet.
 <br>
-□ 6. SELECT
 <br>
-□ 1. FROM
-<br>
-□ 2. WHERE
-<br>
-□ 3. GROUP BY
-<br>
-□ 4. HAVING
-<br>
-□ 5. ORDER BY
+6. SELECT
+<br></p>
+<ol class="simple">
+<li><p>FROM
+<br></p></li>
+<li><p>WHERE
+<br></p></li>
+<li><p>GROUP BY
+<br></p></li>
+<li><p>HAVING
+<br></p></li>
+<li><p>ORDER BY
 <br><br>
-■ SELECT … FROM … sind Pflicht.
-<br>
-□ Ausnahme: z.B. SELECT 7 + 3
-<br><br>
-■ HAVING darf nur in Kombination mit GROUP BY erscheinen.</p>
+Bei einer Anfrage die auf eine Datenbank zugreift sins SELECT … FROM … Pflicht. Zuletzt darf HAVING nur in Kombination mit GROUP BY erscheinen.</p></li>
+</ol>
 </div>
 </div>
 <div class="section" id="datenbearbeitung-dml">
