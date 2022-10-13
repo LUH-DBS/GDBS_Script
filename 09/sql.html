@@ -10208,11 +10208,7 @@ Eine deutlich effizientere Weise Daten einzufügen ist mit LOAD, hier wird seite
 </div>
 <div class="section" id="loschen">
 <h3><span class="section-number">9.6.3. </span>Löschen<a class="headerlink" href="#loschen" title="Permalink to this headline">¶</a></h3>
-<p>■ Grundbaustein
-<br>
-□ DELETE FROM R WHERE …
-<br>
-□ Lösche alle Tupel in R, für die die Bedingung wahr ist.</p>
+<p>Der Grundbaustein zum Löschen von Tupeln ist DELETE FROM R WHERE …, wobei R wie beim Einfügen eine Relation ist. Beim Delete werden immer ganze Tupel gelöscht. Im Gegensatz zum Einfügen, können die zu löschenden Tupel nicht direkt angegeben werden, sondern müssen in der WHERE-Klausel umschrieben werden. Um ein konkretes Tupel zu löschen, müssen also alle Werte dieses Tupel oder wenn vorhanden eine ID bekannt sein. Es werden alle Tupel gelöscht für die TRUE in der WHERE-Kausel gilt. Es ist auch möglich die WHERE-Klausel wegzulassen, dann werden alle Tupel der Relation gelöscht. Unten finden Sie einige Beispiele.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%sql
@@ -10224,8 +10220,6 @@ AND Schauspieler = ‘Sydney Greenstreet‘;
 </div>
 </div>
 </div>
-<p>■ Tupel können im Gegensatz zum Einfügen nicht direkt angegeben werden, sondern müssen umschrieben werden.
-<br></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
@@ -10235,20 +10229,18 @@ AND Schauspieler = ‘Sydney Greenstreet‘;
 </div>
 </div>
 </div>
-<p>■ Alle Manager-Tupel löschen: DELETE FROM Manager;</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
+<span class="n">DELETE</span> <span class="n">FROM</span> <span class="n">Manager</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="verandern-update">
 <h3><span class="section-number">9.6.4. </span>Verändern (update)<a class="headerlink" href="#verandern-update" title="Permalink to this headline">¶</a></h3>
-<p>■ Grundbaustein
-<br>
-□ UPDATE R SET … WHERE …
-<br>
-□ SET Klausel
-<br>
-– Wertzuweisungen
-<br>
-– Komma-separiert
-<br></p>
+<p>Der Grundbaustein zum Verändern von Tupeln ist UPDATE R SET … WHERE …, wobei auch hier R eine Relation ist. In der SET-Klausel werden komma-separiert Werte zugewiesen. Im Beispiel unten wird in der Managerrelation vor dem Name jener Manager*Innen eine ‘Präs.’ gesetzt, dessen Manager*InID in den Präsident*InnenIDs vorkommt.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%sql
@@ -10266,7 +10258,8 @@ WHERE ManagerinID IN
 <h2><span class="section-number">9.7. </span>Schemata(DDL)<a class="headerlink" href="#schemata-ddl" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="uberblick">
 <h3><span class="section-number">9.7.1. </span>Überblick<a class="headerlink" href="#uberblick" title="Permalink to this headline">¶</a></h3>
-<p>■ Datentypen
+<p>In diesem Kapitel betrachten wir SQL als Data Definition Language(DDL)
+■ Datentypen
 <br>
 ■ Tabellen
 <br>
