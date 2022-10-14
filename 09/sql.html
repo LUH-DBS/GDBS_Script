@@ -4,13 +4,11 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>9. SQL &#8212; Online-Skript Grundlagen der Datenbanksysteme</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,16 +18,20 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -37,13 +39,12 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -63,21 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
-
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -86,10 +73,9 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -107,15 +93,14 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Grundlagen der Datenbanksysteme
-                </a>
-            </li>
-        </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Grundlagen der Datenbanksysteme
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../01/einfuehrung.html">
    1. Einführung
@@ -174,17 +159,12 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
-    </div>
-    <div id="rtd-footer-container"></div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
 </div>
 
 
@@ -192,209 +172,97 @@ const thebe_selector_output = ".output, .cell_output"
 
 
           
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="header-article row sticky-top noprint">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/main/?urlpath=tree/09/sql.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="headerbtn__text-container">Live Code</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/LUH-DBS/GDBS_Script"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F09/sql.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/09/sql.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/09/sql.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/LUH-DBS/GDBS_Script"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F09/sql.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
     </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/main/?urlpath=tree/09/sql.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#einfuhrung">
    9.1. Einführung
@@ -758,40 +626,35 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#constraints-und-trigger">
-     9.7.6. Constraints und Trigger
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#indizes">
-     9.7.7. Indizes
+     9.7.6. Indizes
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#indexwahl">
-       9.7.7.1. Indexwahl
+       9.7.6.1. Indexwahl
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#indexwahl-voruberlegungen">
-       9.7.7.2. Indexwahl – Vorüberlegungen
+       9.7.6.2. Indexwahl – Vorüberlegungen
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#indexwahl-beispiel">
-       9.7.7.3. Indexwahl – Beispiel
+       9.7.6.3. Indexwahl – Beispiel
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id2">
-       9.7.7.4. Indexwahl – Beispiel
+       9.7.6.4. Indexwahl – Beispiel
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#verteilung-in-imdb-real-world-daten-stand-ca-2010">
-     9.7.8. Verteilung in IMDB (Real-world Daten, Stand ca. 2010)
+     9.7.7. Verteilung in IMDB (Real-world Daten, Stand ca. 2010)
     </a>
    </li>
   </ul>
@@ -872,11 +735,12 @@ title="Print to PDF"
  </li>
 </ul>
 
-    </nav>
-</div>
+            </nav>
+        </div>
     </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>SQL</h1>
@@ -1252,40 +1116,35 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#constraints-und-trigger">
-     9.7.6. Constraints und Trigger
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#indizes">
-     9.7.7. Indizes
+     9.7.6. Indizes
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#indexwahl">
-       9.7.7.1. Indexwahl
+       9.7.6.1. Indexwahl
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#indexwahl-voruberlegungen">
-       9.7.7.2. Indexwahl – Vorüberlegungen
+       9.7.6.2. Indexwahl – Vorüberlegungen
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#indexwahl-beispiel">
-       9.7.7.3. Indexwahl – Beispiel
+       9.7.6.3. Indexwahl – Beispiel
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id2">
-       9.7.7.4. Indexwahl – Beispiel
+       9.7.6.4. Indexwahl – Beispiel
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#verteilung-in-imdb-real-world-daten-stand-ca-2010">
-     9.7.8. Verteilung in IMDB (Real-world Daten, Stand ca. 2010)
+     9.7.7. Verteilung in IMDB (Real-world Daten, Stand ca. 2010)
     </a>
    </li>
   </ul>
@@ -1370,12 +1229,11 @@ title="Print to PDF"
                     </div>
                 </div>
             </div>
-            <main id="main-content" role="main">
-                
+            
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="sql">
-<h1><span class="section-number">9. </span>SQL<a class="headerlink" href="#sql" title="Permalink to this headline">#</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="sql">
+<h1><span class="section-number">9. </span>SQL<a class="headerlink" href="#sql" title="Permalink to this headline">¶</a></h1>
 <div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
@@ -1391,24 +1249,24 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<section id="einfuhrung">
-<h2><span class="section-number">9.1. </span>Einführung<a class="headerlink" href="#einfuhrung" title="Permalink to this headline">#</a></h2>
+<div class="section" id="einfuhrung">
+<h2><span class="section-number">9.1. </span>Einführung<a class="headerlink" href="#einfuhrung" title="Permalink to this headline">¶</a></h2>
 <p>Aus den vorherigen Kapiteln haben wir gelernt wie wir eine Datenbank auf Papier entwerfen, nun schauen wir uns die in der Realität benutzten technischen Mitteln an, insbesondere die Datenbankanfragesprache SQL.</p>
-<section id="motivation-fur-sql">
-<h3><span class="section-number">9.1.1. </span>Motivation für SQL<a class="headerlink" href="#motivation-fur-sql" title="Permalink to this headline">#</a></h3>
+<div class="section" id="motivation-fur-sql">
+<h3><span class="section-number">9.1.1. </span>Motivation für SQL<a class="headerlink" href="#motivation-fur-sql" title="Permalink to this headline">¶</a></h3>
 <p>SQL ist die meist-verbreiteste Datenbankanfragesprache. Es handelt sich hierbei um eine Very-High-Level Language, die Ad-hoc, deklarativ und nicht prozedural / imperativ ist. SQL-Anfragen sich an die relationale Algebra angelehnt. Zusätzlich sind Data definition(DDL) und Data manipulation(DML) mit SQL möglich. Wichtig zu beachten ist noch, dass sowohl Syntax, als auch Funktionalität sich von System zu System leicht unterscheiden können.</p>
-</section>
-<section id="sql-historie">
-<h3><span class="section-number">9.1.2. </span>SQL-Historie<a class="headerlink" href="#sql-historie" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="sql-historie">
+<h3><span class="section-number">9.1.2. </span>SQL-Historie<a class="headerlink" href="#sql-historie" title="Permalink to this headline">¶</a></h3>
 <p>SQL(1982, IBM) entstand durch die Ursprungssprache SEQUEL(1976, IBM Research Labs San Jose). Später entwickelte sich SEQUEL zu SEQUEL2(1976, IBM Research Labs San Jose), welche auf einer der Vorreitern von Datenbanksystemen “System R” benutzt wurde.</p>
 <p><img alt="title" src="../_images/historie1.jpg" />
 <br>
 <img alt="title" src="../_images/historie2.jpg" />
 <br>
 <img alt="title" src="../_images/historie3.jpg" /></p>
-</section>
-<section id="sql-standardisierung">
-<h3><span class="section-number">9.1.3. </span>SQL – Standardisierung<a class="headerlink" href="#sql-standardisierung" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="sql-standardisierung">
+<h3><span class="section-number">9.1.3. </span>SQL – Standardisierung<a class="headerlink" href="#sql-standardisierung" title="Permalink to this headline">¶</a></h3>
 <p>Im Laufe der Zeit durchlief SQL verschiedene Standardisierungen, die Sie aus der folgenden Auflistung entnehmen können. Trotz der Standardisierung sind Inkompatibilitäten zwischen Systemen der einzelnen Hersteller noch möglich.</p>
 <ul class="simple">
 <li><p>SQL1 von ANSI als Standard verabschiedet (1986)
@@ -1445,9 +1303,9 @@ title="Print to PDF"
 <br></p></li>
 <li><p>Adds row pattern matching, polymorphic table functions, JSON.</p></li>
 </ul>
-</section>
-<section id="sql-2008-struktur">
-<h3><span class="section-number">9.1.4. </span>SQL:2008 Struktur<a class="headerlink" href="#sql-2008-struktur" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="sql-2008-struktur">
+<h3><span class="section-number">9.1.4. </span>SQL:2008 Struktur<a class="headerlink" href="#sql-2008-struktur" title="Permalink to this headline">¶</a></h3>
 <p>■ Part 1: Framework (SQL/Framework) – 82 Seiten
 <br>
 □ Überblick
@@ -1485,17 +1343,17 @@ title="Print to PDF"
 □ XML Datentyp und Erweiterung von SQL um XQuery
 <br><br>
 =&gt; Zusammen: 3777 Seiten</p>
-</section>
-</section>
-<section id="einfach-anfragen">
-<h2><span class="section-number">9.2. </span>Einfach Anfragen<a class="headerlink" href="#einfach-anfragen" title="Permalink to this headline">#</a></h2>
-<section id="select-from-where">
-<h3><span class="section-number">9.2.1. </span>SELECT … FROM … WHERE …<a class="headerlink" href="#select-from-where" title="Permalink to this headline">#</a></h3>
+</div>
+</div>
+<div class="section" id="einfach-anfragen">
+<h2><span class="section-number">9.2. </span>Einfach Anfragen<a class="headerlink" href="#einfach-anfragen" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="select-from-where">
+<h3><span class="section-number">9.2.1. </span>SELECT … FROM … WHERE …<a class="headerlink" href="#select-from-where" title="Permalink to this headline">¶</a></h3>
 <p>SQL-Anfragen folgen meist einer Drei-Zeilen-Struktur aus SELECT, FROM, WHERE, wobei SELECT und FROM in jeder SQL-Anfrage enthalten sein müssen. Das Schlüsselwort SELECT entspricht dem Projektionsoperator <span class="math notranslate nohighlight">\(\pi\)</span>, den wir aus dem Kapitel Relationale Algebra schon kennengelernt haben. Die FROM-Zeile gibt an von welchen Tabellen die Daten stammen sollen. WHERE entspricht gewissermaßen dem Selektionsoperator <span class="math notranslate nohighlight">\(\sigma\)</span>, hier werden also Bedingungen an  die Tupel gestellt die diese erfüllen sollen.</p>
 <p>Betrachten wir folgendes Beispielschema für Filme, welches aus den vorherigen Kapiteln bekannt sein sollte. Wir möchten nun eine Anfrage formulieren, die uns alle Filme ausgibt, welche von Disney produziert und im Jahre 1990 erschienen sind.</p>
-</section>
-<section id="beispielschema">
-<h3><span class="section-number">9.2.2. </span>Beispielschema<a class="headerlink" href="#beispielschema" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="beispielschema">
+<h3><span class="section-number">9.2.2. </span>Beispielschema<a class="headerlink" href="#beispielschema" title="Permalink to this headline">¶</a></h3>
 <p><img alt="title" src="../_images/beispielschema.jpg" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1592,9 +1450,9 @@ Anders ist es natürlich bei Konstanten:</p>
 </div>
 <p><br><br>
 Trotzdem gilt als Konvention zur Lesbarkeit, dass Schlüsselwörter großgeschrieben werden und Schemaelemente klein.</p>
-</section>
-<section id="projektion-in-sql-select-pi">
-<h3><span class="section-number">9.2.3. </span>Projektion in SQL (SELECT, <span class="math notranslate nohighlight">\(\pi\)</span>)<a class="headerlink" href="#projektion-in-sql-select-pi" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="projektion-in-sql-select-pi">
+<h3><span class="section-number">9.2.3. </span>Projektion in SQL (SELECT, <span class="math notranslate nohighlight">\(\pi\)</span>)<a class="headerlink" href="#projektion-in-sql-select-pi" title="Permalink to this headline">¶</a></h3>
 <p>Wir betrachten nun die einzelnen Schlüsselwörter etwas genauer und starten mit der Projektion. In der SELECT Klausel werden Attribute von Relationen aufgelistet, die herausprojeziert werden sollen.
 <br><br>
 Im folgenden Beipiel wollen wir alle Attribute bzw. Spalten aus der Filmrelation ausgeben, der Stern “*” ist hier eine kürzere Schreibweise für alle Attribute.</p>
@@ -2614,9 +2472,9 @@ Im folgenden Beipiel wollen wir alle Attribute bzw. Spalten aus der Filmrelation
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="selektion-in-sql-where-sigma">
-<h3><span class="section-number">9.2.4. </span>Selektion in SQL (WHERE, <span class="math notranslate nohighlight">\(\sigma\)</span>)<a class="headerlink" href="#selektion-in-sql-where-sigma" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="selektion-in-sql-where-sigma">
+<h3><span class="section-number">9.2.4. </span>Selektion in SQL (WHERE, <span class="math notranslate nohighlight">\(\sigma\)</span>)<a class="headerlink" href="#selektion-in-sql-where-sigma" title="Permalink to this headline">¶</a></h3>
 <p>Die Selektion die wir aus der relationalen Algebra kennen wird in SQL mit dem Schlüsselwort WHERE ausgedrückt, nicht mit dem Schlüsselwort SELECT. Wie aus anderen Programmiersprachen bekannt, kann man in der WHERE-Klausel Bedinungen aufstellen.
 <br><br>
 Es gibt sechs Vergleichsoperatoren =, &lt;&gt;, &lt;, &gt;, &lt;=, &gt;=(gleich, ungleich, kleiner, größer, kleiner gleich, größer gleich), hier können Sie links und rechts der Vergleichsoperatoren Konstanten und Attribute einsetzen. Insbesondere ist es auch möglich Attribute in der WHERE-Klausel zu vergleichen, die nicht in der SELECT- Klausel herausprojeziert werden. Auch im WHERE kann man arithmetische Ausdrücke in die Bedinung einbauen wie in diesem Beispiel:</p>
@@ -2830,9 +2688,9 @@ Nur wenn die gesamte WHERE-Klausel zu TRUE evaluiert wird, werden die entspreche
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="stringvergleiche">
-<h3><span class="section-number">9.2.5. </span>Stringvergleiche<a class="headerlink" href="#stringvergleiche" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="stringvergleiche">
+<h3><span class="section-number">9.2.5. </span>Stringvergleiche<a class="headerlink" href="#stringvergleiche" title="Permalink to this headline">¶</a></h3>
 <p>In SQL gibt es Datentypen unteranderem die Datentypen Array fester Länge, Buchstabenliste variabler Länge und Konstanten. Es sind viele Vergleiche über Datentypen hinweg erlaubt. In diesem Beispiel vergleichen wir eine Variable mit einer weiteren Variable und einer Stringkonstanten:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>foo _ _ _ _ _ = foo = ‘foo‘
 </pre></div>
@@ -2844,9 +2702,9 @@ Nur wenn die gesamte WHERE-Klausel zu TRUE evaluiert wird, werden die entspreche
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;bar&#39;</span> <span class="o">&lt;</span> <span class="s1">&#39;bargain&#39;</span>
 </pre></div>
 </div>
-</section>
-<section id="string-mustervergleiche-mit-like">
-<h3><span class="section-number">9.2.6. </span>String-Mustervergleiche mit LIKE<a class="headerlink" href="#string-mustervergleiche-mit-like" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="string-mustervergleiche-mit-like">
+<h3><span class="section-number">9.2.6. </span>String-Mustervergleiche mit LIKE<a class="headerlink" href="#string-mustervergleiche-mit-like" title="Permalink to this headline">¶</a></h3>
 <p>Mit dem LIKE Operator können Sie Stringteile miteinander vergleichen, also ob ein String einem gewissen Stringmuster folgt. Hierfür gibt es zwei spezielle Zeichen, einmal ‘%’, welches eine beliebige Sequenz von 0 oder mehr Zeichen entspricht und ‘_’, welches ein einzelnes beliebiges Zeichen steht. Hierfür ein Beispiel: Wir suchen jene Titel aus der Filmrelation, wo der Titel mit ‘Star’ beginnt, ein Leerzeichen folgt und 4 beliebige Zeichen folgen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2940,9 +2798,9 @@ Nur wenn die gesamte WHERE-Klausel zu TRUE evaluiert wird, werden die entspreche
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="datum-und-uhrzeit">
-<h3><span class="section-number">9.2.7. </span>Datum und Uhrzeit<a class="headerlink" href="#datum-und-uhrzeit" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="datum-und-uhrzeit">
+<h3><span class="section-number">9.2.7. </span>Datum und Uhrzeit<a class="headerlink" href="#datum-und-uhrzeit" title="Permalink to this headline">¶</a></h3>
 <p>In SQL gibt es auch Datentypen um Daten und Zeiten darzustellen.Der Datentyp DATE stellt ein Datumskonstante dar:
 <br>
 – DATE ‘YYYY-MM-DD‘
@@ -2963,9 +2821,9 @@ Auch dieses Datentypen können wieder miteinander ,in Form von Variablen und Kon
 – TIME ‘15:00:02.5‘ &lt; TIME ‘15:02:02.5‘ ergibt TRUE
 <br><br>
 – ERSCHEINUNGSTAG &gt;= DATE ‘1949-11-12‘</p>
-</section>
-<section id="nullwerte">
-<h3><span class="section-number">9.2.8. </span>Nullwerte<a class="headerlink" href="#nullwerte" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="nullwerte">
+<h3><span class="section-number">9.2.8. </span>Nullwerte<a class="headerlink" href="#nullwerte" title="Permalink to this headline">¶</a></h3>
 <p>Nullwerte sind spezielle Datentypen, in SQL wird dieser als NULL dargestellt, auf Papier ist auch ⊥ geläufig. Es gibt mehrere Arten einen Nullwert zu interpretieren. Zum einen kann ein Nullwert bedeuten, dass ein Wert unbekannt ist, z.B kann es sein, dass der Geburtstag eines/r Schauspieler*in unbekannt ist. Eine weitere Interpretationsart ist, dass ein Wert eingetragen wurde der unzulässig ist, wie z.B ein Ehegatte eine eines/r Schauspieler*in. Zuletzt  können mit Nullwerten bestimmte Zellen oder Spalten maskiert werden, wie z.B bei einer unterdrückten Telefonnummer.
 <br><br>
 Bei dem Umgang mit Nullwerten gibt es verschiedene Regeln, die beachtet werden müssen. Wird NULL mit arithmetischen Operationen verknüpft, so ergibt sich aus der Verknüpfung wiederum NULL. Bei Vergleichen mit NULL ergibt der Wahrheitswert UNKNOWN und nicht NULL. Man muss auch beachten, dass NULL keine Konstante ist, sondern NULL erscheint als Attributwert, abhängig von dem DBMS gilt NULL = NULL oder NULL <span class="math notranslate nohighlight">\(\neq\)</span> NULL.
@@ -2980,9 +2838,9 @@ Weiterhin kann in der WHERE-Klausel mit IS NULL und IS NOT NULL überprüft werd
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Geburtstag</span> <span class="n">IS</span> <span class="n">NOT</span> <span class="n">NULL</span>
 </pre></div>
 </div>
-</section>
-<section id="wahrheitswerte">
-<h3><span class="section-number">9.2.9. </span>Wahrheitswerte<a class="headerlink" href="#wahrheitswerte" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="wahrheitswerte">
+<h3><span class="section-number">9.2.9. </span>Wahrheitswerte<a class="headerlink" href="#wahrheitswerte" title="Permalink to this headline">¶</a></h3>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>AND</p></th>
@@ -3348,9 +3206,9 @@ Zu beachten bei der Ausführungspriorität: NOT vor AND vor OR</p>
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="sortierung">
-<h3><span class="section-number">9.2.10. </span>Sortierung<a class="headerlink" href="#sortierung" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="sortierung">
+<h3><span class="section-number">9.2.10. </span>Sortierung<a class="headerlink" href="#sortierung" title="Permalink to this headline">¶</a></h3>
 <p>In SQL sind Sortierungen(ASC für aufsteigend bzw. DESC für absteigend) mit der ORDER BY Klausel möglich, welche an das Ende der Anfrage geschrieben wird. ASC wird als default gewählt:
 <br><br>
 ORDER BY &lt;Attributliste&gt; DESC/ASC
@@ -3503,16 +3361,16 @@ Im folgenden Beispiel wollen wir alle Attribute der Filmrelation ausgeben, welch
 </table>
 </div></div></div>
 </div>
-</section>
-</section>
-<section id="anfragen-uber-mehrere-relationen">
-<h2><span class="section-number">9.3. </span>Anfragen über mehrere Relationen<a class="headerlink" href="#anfragen-uber-mehrere-relationen" title="Permalink to this headline">#</a></h2>
-<section id="motivation">
-<h3><span class="section-number">9.3.1. </span>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">#</a></h3>
+</div>
+</div>
+<div class="section" id="anfragen-uber-mehrere-relationen">
+<h2><span class="section-number">9.3. </span>Anfragen über mehrere Relationen<a class="headerlink" href="#anfragen-uber-mehrere-relationen" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="motivation">
+<h3><span class="section-number">9.3.1. </span>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h3>
 <p>Die Hauptstärke der Relationalen Algebra ist die Kombination von Relationen. Erst durch die Kombination mehrerer Relationen sind viele interessante Anfragen möglich. In SQL ist das möglich, indem man die beteiligten Relationen in der FROM-Klausel nennt.</p>
-</section>
-<section id="kreuzprodukt-und-join">
-<h3><span class="section-number">9.3.2. </span>Kreuzprodukt und Join<a class="headerlink" href="#kreuzprodukt-und-join" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="kreuzprodukt-und-join">
+<h3><span class="section-number">9.3.2. </span>Kreuzprodukt und Join<a class="headerlink" href="#kreuzprodukt-und-join" title="Permalink to this headline">¶</a></h3>
 <p>Im folgenden Beispiel haben wir die Relationen Film(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentinID) und
 ManagerIn(Name, Adresse, ManagerinID, Gehalt) gegeben. Wir möchten nun alle Namen der Manager*Innen ausgeben, die einen Star Wars Film produziert haben. Hierfür müssen die Relationen Film und ManagerIn gejoint werden.Zuerst bilden wir das Kruezprodukt der beiden Relationen, indem wir in der FROM-Klausel die Relationen mit einem Komma getrennt nennen , so wird intern das Kreuzprodukt dieser beiden gebildet. Schließlich wenden  wir noch einmal die Selektionsbedingung an, also dass nur ManagerInnen die einen Star Wars Film produziert haben ausgegeben werden. Und zuletzt noch die Joinbedingung, undzwar dass ProduzentinID und ManagerinID im Kreuzprodukt übereinstimmen sollen. Falls die beiden Bedinungen erfüllt sind wird ein Ergebnistupel produziert. Hierbei ist noch zu beachten, dass die Reihenfolge der WHERE-Bedingungen irrelevant ist.</p>
 <div class="cell docutils container">
@@ -3616,9 +3474,9 @@ ManagerIn(Name, Adresse, ManagerinID, Gehalt) gegeben. Wir möchten nun alle Nam
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="uneindeutige-attributnamen">
-<h3><span class="section-number">9.3.3. </span>Uneindeutige Attributnamen<a class="headerlink" href="#uneindeutige-attributnamen" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="uneindeutige-attributnamen">
+<h3><span class="section-number">9.3.3. </span>Uneindeutige Attributnamen<a class="headerlink" href="#uneindeutige-attributnamen" title="Permalink to this headline">¶</a></h3>
 <p>In diesem Beispiel haben wir die Relationen SchauspielerIn(Name, Adresse, Geschlecht, Geburtstag) und ManagerIn(Name, Adresse, ManagerinID, Gehalt) gegeben. Beide Relationen haben ein Attribut namens “Name”. Wir wollen nun die Namen der Schauspieler*Innen und Manager*Innen ausgeben, die die selbe Adresse haben. Wie im vorherigen Beispiel,bilden wir wieder das Kreuzprodukt beider. Da nur der Attributname der Relationen uneindeutig wäre, muss in der Anfrage immer ein Präfix vor das Attribut gesetzt werden. Auch bei keiner Uneindeutigkeit, kann man das Präfix schreiben, was manchmal as Lesen von SQL-Anfragen erleichtert.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3662,9 +3520,9 @@ ManagerIn(Name, Adresse, ManagerinID, Gehalt) gegeben. Wir möchten nun alle Nam
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="tupelvariablen">
-<h3><span class="section-number">9.3.4. </span>Tupelvariablen<a class="headerlink" href="#tupelvariablen" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="tupelvariablen">
+<h3><span class="section-number">9.3.4. </span>Tupelvariablen<a class="headerlink" href="#tupelvariablen" title="Permalink to this headline">¶</a></h3>
 <p>In SQL ist es möglich einen Alias für eine Relation innerhalb einer Anfrage festzulegen. Dies ist sinnvoll, um die Tupeln, der beteiligten Relationen eindeutig zu Kennzeichnen, insbesondere wenn eine Relation mehrfach innerhalb einer Anfrage vorkommt. Umbenennung kann ebenfalls sinnvoll sein, um lange Relationennamen abzukürzen, um bessere Lesbarkeit zu schaffen. Ein Beispiel hierfür ist, z.B der Selfjoin im unteren Beispiel ,wo wir Schauspieler suchen, die zusammenleben. Und das Beispiel danach, wo wir Umbennenung zur Verkürzung der Anfrage benutzen.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SchauspielerIn</span> <span class="n">Star2</span>
 </pre></div>
@@ -3961,9 +3819,9 @@ ManagerIn(Name, Adresse, ManagerinID, Gehalt) gegeben. Wir möchten nun alle Nam
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="tupelvariablen-selfjoin">
-<h3><span class="section-number">9.3.5. </span>Tupelvariablen-Selfjoin<a class="headerlink" href="#tupelvariablen-selfjoin" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="tupelvariablen-selfjoin">
+<h3><span class="section-number">9.3.5. </span>Tupelvariablen-Selfjoin<a class="headerlink" href="#tupelvariablen-selfjoin" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Star1.Name, Star2.Name</span>
@@ -4294,9 +4152,9 @@ ManagerIn(Name, Adresse, ManagerinID, Gehalt) gegeben. Wir möchten nun alle Nam
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="interpretation-von-anfragen">
-<h3><span class="section-number">9.3.6. </span>Interpretation von Anfragen<a class="headerlink" href="#interpretation-von-anfragen" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="interpretation-von-anfragen">
+<h3><span class="section-number">9.3.6. </span>Interpretation von Anfragen<a class="headerlink" href="#interpretation-von-anfragen" title="Permalink to this headline">¶</a></h3>
 <p>Anfragen können auf unterschiedlich Arten und Weisen interpretiert werden. Es gibt drie Interpretationsvarianten für Anfragen mit mehreren Relationen. Mit der Nested Loops(geschachtelte Schleifen) gibt es bei mehreren Tupelvariablen, für jede Variable eine geschachtelte Schleife. Bei der parallelen Zuordnung werden alle Kombinationen parallel bzgl. der Bedingungen geprüft. In der Relationen Algebra wird zuerst das Kreuzprodukt gebildet und dann auf jedes Resulat-Tupel die Selektionsbedingungen angewendet.
 <br>
 <br>
@@ -4419,9 +4277,9 @@ Im folgenden Beispiel sind die Relationen R(A), S(A) und T(A) mit dem selben Att
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="joins">
-<h3><span class="section-number">9.3.7. </span>Joins<a class="headerlink" href="#joins" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="joins">
+<h3><span class="section-number">9.3.7. </span>Joins<a class="headerlink" href="#joins" title="Permalink to this headline">¶</a></h3>
 <p><img alt="title" src="../_images/joins.jpg" /></p>
 <p>Bis hierhin haben wir Joins nur mit Komma zwischen den Relationennamen in der FROM-Klausel und der Joinbedingung in der WHERE-Klausel kennengelernt. Kreuzprodukte können auch mit CROSS JOIN ausgedrückt werden,z.B Film CROSS JOIN spielt_in, hier werden direkt doppelte Attributnamen mit Präfix der Relation schon aufgelöst.
 <br><br>
@@ -5352,15 +5210,15 @@ Ein Beispiel für ein Theta-Join finden wir unten.</p>
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="the-tpc-h-schema">
-<h3><span class="section-number">9.3.8. </span>The TPC-H Schema<a class="headerlink" href="#the-tpc-h-schema" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="the-tpc-h-schema">
+<h3><span class="section-number">9.3.8. </span>The TPC-H Schema<a class="headerlink" href="#the-tpc-h-schema" title="Permalink to this headline">¶</a></h3>
 <p><img alt="title" src="../_images/tpc-h_schema.jpg" /></p>
 <p>Das TPC-H ist ein Benchmark, dessen Datensätze zufällig generiert werden. Die Daten sind an Unternehmen und ihren Handelsketten orientiert. Datenbankentwickler*\Innen benutzen TPC-H ,um neu entwickelte Systeme zu testen.<br />
 <br><br>
 Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
-<section id="tpc-query-minimum-cost-supplier">
-<h4><span class="section-number">9.3.8.1. </span>TPC Query - Minimum Cost Supplier<a class="headerlink" href="#tpc-query-minimum-cost-supplier" title="Permalink to this headline">#</a></h4>
+<div class="section" id="tpc-query-minimum-cost-supplier">
+<h4><span class="section-number">9.3.8.1. </span>TPC Query - Minimum Cost Supplier<a class="headerlink" href="#tpc-query-minimum-cost-supplier" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%sql</span>
@@ -5436,9 +5294,9 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="the-tpc-h-universal-table">
-<h4><span class="section-number">9.3.8.2. </span>The TPC-H Universal Table<a class="headerlink" href="#the-tpc-h-universal-table" title="Permalink to this headline">#</a></h4>
+</div>
+<div class="section" id="the-tpc-h-universal-table">
+<h4><span class="section-number">9.3.8.2. </span>The TPC-H Universal Table<a class="headerlink" href="#the-tpc-h-universal-table" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%sql</span>
@@ -5776,10 +5634,10 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
 <p>60175 rows × 52 columns</p>
 </div></div></div>
 </div>
-</section>
-</section>
-<section id="outer-joins">
-<h3><span class="section-number">9.3.9. </span>Outer Joins<a class="headerlink" href="#outer-joins" title="Permalink to this headline">#</a></h3>
+</div>
+</div>
+<div class="section" id="outer-joins">
+<h3><span class="section-number">9.3.9. </span>Outer Joins<a class="headerlink" href="#outer-joins" title="Permalink to this headline">¶</a></h3>
 <p>Haben wir erneut die Relationen SchauspielerIn(Name, Adresse, Geschlecht, Geburtstag) und ManagerIn(Name, Adresse, ManagerinID, Gehalt) gegeben. Wir suchen nun alle Schauspieler*Innen, die zugleich auch Manger*Innen sind.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -6764,9 +6622,9 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
 </div>
 <p>Falls zu den Schauspieler*Innen die Manager*Inneninfo bzw. Manager*Innen die Schauspieler*Inneninfo fehlt, bleiben Geburtstag oder Gehalt gegebenenfalls leer.</p>
 <p>Der Unterschied von FULL OUTER JOINS zu UNION ist, dass nur eine Zeile pro Person ausgegeben wird.</p>
-</section>
-<section id="kreuzprodukt">
-<h3><span class="section-number">9.3.10. </span>Kreuzprodukt<a class="headerlink" href="#kreuzprodukt" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="kreuzprodukt">
+<h3><span class="section-number">9.3.10. </span>Kreuzprodukt<a class="headerlink" href="#kreuzprodukt" title="Permalink to this headline">¶</a></h3>
 <p>Wie aus der Relationalen Algebra bekannt bildet das Kreuzprodukt lle Paare aus Tupeln den beteiligten Relationen. In SQL können Kreuzprodukte mit CROSS JOIN gebildet werden, wie unten gezeigt oder auch mit Komma zwischen den beteiligten Relationen in der FROM-Klausel, wie ein Beispielt weiter gezeigt wird. Kreuzprodukte werden in der Regel selten verwendet, sie sind aber der Grundbaustein für Joins.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -7152,12 +7010,12 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
 <p>858 rows × 10 columns</p>
 </div></div></div>
 </div>
-</section>
-<section id="mengenoperationen-in-sql">
-<h3><span class="section-number">9.3.11. </span>Mengenoperationen in SQL<a class="headerlink" href="#mengenoperationen-in-sql" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="mengenoperationen-in-sql">
+<h3><span class="section-number">9.3.11. </span>Mengenoperationen in SQL<a class="headerlink" href="#mengenoperationen-in-sql" title="Permalink to this headline">¶</a></h3>
 <p>Die Mengenoperationen UNION(Vereinigung), INTERSECT(Schnittmenge) und EXCEPT/MINUS(Differenz) können nur zwischen geklammertern Anfrageergebnissen benutzt werden, die das selbe Schema besitzen. Sobald einer dieser Operationen verwendet wird, wird implizit Mengensemantik verwendet. Möchte man Multimengensemantik haben, so müssen die Operatoren UNION ALL, INTERSECT ALL und EXCEPT/MINUS ALL verwendet werden. Das bietet sich an, wenn die Semantik egal ist oder die Mengeneigenschaft von Input und Output bereits bekannt ist.</p>
-<section id="schnittmenge-intersect">
-<h4><span class="section-number">9.3.11.1. </span>Schnittmenge: INTERSECT<a class="headerlink" href="#schnittmenge-intersect" title="Permalink to this headline">#</a></h4>
+<div class="section" id="schnittmenge-intersect">
+<h4><span class="section-number">9.3.11.1. </span>Schnittmenge: INTERSECT<a class="headerlink" href="#schnittmenge-intersect" title="Permalink to this headline">¶</a></h4>
 <p>INTERSECT entspricht dem logischen „und“. Im Folgenden suchen wir die Schnittmenge zwischen den Namen und Adressen der Schauspieler*Innen und den Mangager*Innen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -7238,9 +7096,9 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="vereinigung-union">
-<h4><span class="section-number">9.3.11.2. </span>Vereinigung: UNION<a class="headerlink" href="#vereinigung-union" title="Permalink to this headline">#</a></h4>
+</div>
+<div class="section" id="vereinigung-union">
+<h4><span class="section-number">9.3.11.2. </span>Vereinigung: UNION<a class="headerlink" href="#vereinigung-union" title="Permalink to this headline">¶</a></h4>
 <p>UNION entspricht dem logischen „oder“. Im unteren Beispiel geben wir alle Namen und Adressen der Schauspieler*Innen und den Mangager*Innen aus.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -7521,9 +7379,9 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="differenz-except-minus">
-<h4><span class="section-number">9.3.11.3. </span>Differenz: EXCEPT/MINUS<a class="headerlink" href="#differenz-except-minus" title="Permalink to this headline">#</a></h4>
+</div>
+<div class="section" id="differenz-except-minus">
+<h4><span class="section-number">9.3.11.3. </span>Differenz: EXCEPT/MINUS<a class="headerlink" href="#differenz-except-minus" title="Permalink to this headline">¶</a></h4>
 <p>Im unteren Beispiel suchen wir den Titel und das Jahr jener Filme die in der Film-Relation vorkommen, aber nicht in der spielt_in-Relation. Damit diese Anfrage funktioniert, muss Umbenennung benutzt werden, da die beiden Mengen sonst nicht das selbe Schema besitzten.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -7594,9 +7452,9 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="klammerung">
-<h4><span class="section-number">9.3.11.4. </span>Klammerung<a class="headerlink" href="#klammerung" title="Permalink to this headline">#</a></h4>
+</div>
+<div class="section" id="klammerung">
+<h4><span class="section-number">9.3.11.4. </span>Klammerung<a class="headerlink" href="#klammerung" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT *</span>
@@ -7661,10 +7519,10 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
 </table>
 </div></div></div>
 </div>
-</section>
-</section>
-<section id="zusammenfassung-der-semantik">
-<h3><span class="section-number">9.3.12. </span>Zusammenfassung der Semantik<a class="headerlink" href="#zusammenfassung-der-semantik" title="Permalink to this headline">#</a></h3>
+</div>
+</div>
+<div class="section" id="zusammenfassung-der-semantik">
+<h3><span class="section-number">9.3.12. </span>Zusammenfassung der Semantik<a class="headerlink" href="#zusammenfassung-der-semantik" title="Permalink to this headline">¶</a></h3>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>R1</p></th>
@@ -7833,12 +7691,12 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
 </tr>
 </tbody>
 </table>
-</section>
-</section>
-<section id="geschachtelte-anfragen">
-<h2><span class="section-number">9.4. </span>Geschachtelte Anfragen<a class="headerlink" href="#geschachtelte-anfragen" title="Permalink to this headline">#</a></h2>
-<section id="id1">
-<h3><span class="section-number">9.4.1. </span>Motivation<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+</div>
+</div>
+<div class="section" id="geschachtelte-anfragen">
+<h2><span class="section-number">9.4. </span>Geschachtelte Anfragen<a class="headerlink" href="#geschachtelte-anfragen" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3><span class="section-number">9.4.1. </span>Motivation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>In vorherigen Beispielen haben wir schon geschachtelte Anfragen gesehen, nun betrachten wir diese etwas genauer. Eine Anfrage kann Teil einer anderen theoretisch beliebig tief geschachtelten Anfrage sein. Hier gibt es drei verschiedene Varianten:
 <br></p>
 <ol class="simple">
@@ -7846,9 +7704,9 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
 <li><p>Die Subanfrage erzeugt eine Relation, die auf verschiedene Weise in der WHERE-Klausel verwendet werden kann.</p></li>
 <li><p>Die Subanfrage erzeugt eine Relation, die in der FROM Klausel (sozusagen als weitere Datenquelle) verwendet werden kann. – Wie jede andere normale Relation</p></li>
 </ol>
-</section>
-<section id="skalare-subanfragen">
-<h3><span class="section-number">9.4.2. </span>Skalare Subanfragen<a class="headerlink" href="#skalare-subanfragen" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="skalare-subanfragen">
+<h3><span class="section-number">9.4.2. </span>Skalare Subanfragen<a class="headerlink" href="#skalare-subanfragen" title="Permalink to this headline">¶</a></h3>
 <p>Bei der ersten der drei Varianten von geschachtelten Anfrage, handelt es sich um skalare Subanfragen. Allgemeine Anfragen produzieren Relationen, mit mehreren Attributen, wo Zugriff auf ein bestimmtes Attribut auch möglich ist. Bei skalaren Subanfragen wird (garantiert) maximal nur ein Tupel und Projektion auf nur ein Attribut ausgegeben. Das Ergbenis einer skalaren Anfrage ist entweder genau ein Wert, der dann wie eine Konstante verwendet werden kann, oder wenn keine Zeilen gefunden werden, ist das Ergebnis der skalaren Anfrage NULL.
 <br>
 <img alt="title" src="../_images/skalare_subanfragen.jpg" />
@@ -7945,8 +7803,8 @@ Wir haben im Folgenden Beispiel die Relationen ManagerIn(Name, Adresse, Manageri
 </div></div></div>
 </div>
 <p>Das DBMS erwartet maximal ein Tupel als Ergebnis der Teilanfrage, falls kein Tupel in der Subanfrage gefunden wird, ist das Ergebnis NULL, falls mehr als ein Tupel gefunden werden, wird ein Laufzeitfehler ausgegeben.</p>
-<section id="skalare-subanfragen-beispiel">
-<h4><span class="section-number">9.4.2.1. </span>Skalare Subanfragen – Beispiel<a class="headerlink" href="#skalare-subanfragen-beispiel" title="Permalink to this headline">#</a></h4>
+<div class="section" id="skalare-subanfragen-beispiel">
+<h4><span class="section-number">9.4.2.1. </span>Skalare Subanfragen – Beispiel<a class="headerlink" href="#skalare-subanfragen-beispiel" title="Permalink to this headline">¶</a></h4>
 <p>Im folgenden Beispiel suchen wir die Abteilungen, deren durchschnittliche Bonuszahlungen höher sind als deren durchschnittliches Gehalt. Wir verwenden zwei Subanfragen, die einmal die durchschnittliche Bonuszahlung pro Abteilung ausgibt und einmal das durchschnittliche Gehalt pro Abteilung. Zuletzt vergleichen wir diese Werte miteinander und geben nur die aus, wo die durchschnittliche Bonuszahlung höher ist als das jeweilige durchschnittliche Gehalt.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -8176,10 +8034,10 @@ Wir haben im Folgenden Beispiel die Relationen ManagerIn(Name, Adresse, Manageri
 </table>
 </div></div></div>
 </div>
-</section>
-</section>
-<section id="bedingungen-mit-relationen">
-<h3><span class="section-number">9.4.3. </span>Bedingungen mit Relationen<a class="headerlink" href="#bedingungen-mit-relationen" title="Permalink to this headline">#</a></h3>
+</div>
+</div>
+<div class="section" id="bedingungen-mit-relationen">
+<h3><span class="section-number">9.4.3. </span>Bedingungen mit Relationen<a class="headerlink" href="#bedingungen-mit-relationen" title="Permalink to this headline">¶</a></h3>
 <p>Nun betrachten wir weitere SQL Operatoren auf Relationen die Boole‘sche Werte erzeugen:
 <br><br>
 Um zu überprüfen ob eine Relation leer oder nicht ist, kann der EXISTS-Operator benutzt werden:
@@ -8213,9 +8071,9 @@ x = ANY R entspricht x IN R
 Ein alternativer Befehl für ANY ist SOME
 <br><br>
 Die Negation mit NOT(…) ist immer möglich.</p>
-</section>
-<section id="exists-beispiele">
-<h3><span class="section-number">9.4.4. </span>EXISTS Beispiele<a class="headerlink" href="#exists-beispiele" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="exists-beispiele">
+<h3><span class="section-number">9.4.4. </span>EXISTS Beispiele<a class="headerlink" href="#exists-beispiele" title="Permalink to this headline">¶</a></h3>
 <p>Im folgenden Beispiel wollen wir die ISBNs aller ausgeliehenen Bücher ausgeben. Hierbei verwenden wir den EXISTS-Operator und geben jene ISBNs aus der Relation BuchExemplar aus, dessen Inventarnr in der Relation Ausleihe existiert.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -8342,9 +8200,9 @@ Die Negation mit NOT(…) ist immer möglich.</p>
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="in-beispiele">
-<h3><span class="section-number">9.4.5. </span>IN Beispiele<a class="headerlink" href="#in-beispiele" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="in-beispiele">
+<h3><span class="section-number">9.4.5. </span>IN Beispiele<a class="headerlink" href="#in-beispiele" title="Permalink to this headline">¶</a></h3>
 <p>Im folgenden Beispiel suchen wir eine Auswahl an Büchern mit bestimmter ISBN.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -8575,9 +8433,9 @@ Die Negation mit NOT(…) ist immer möglich.</p>
 </div></div></div>
 </div>
 <p>Achtung: Korrelierte Subanfrage, die Subanfrag wird für jede ProfID ausgeführt.</p>
-</section>
-<section id="all-und-any-beispiele">
-<h3><span class="section-number">9.4.6. </span>ALL und ANY Beispiele<a class="headerlink" href="#all-und-any-beispiele" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="all-und-any-beispiele">
+<h3><span class="section-number">9.4.6. </span>ALL und ANY Beispiele<a class="headerlink" href="#all-und-any-beispiele" title="Permalink to this headline">¶</a></h3>
 <p>Im folgenden Beispiel suchen wir die schlechteste Note des Studierenden mit der Matrikelnr. 123456.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -8837,9 +8695,9 @@ Die Negation mit NOT(…) ist immer möglich.</p>
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="bedingungen-mit-tupeln">
-<h3><span class="section-number">9.4.7. </span>Bedingungen mit Tupeln<a class="headerlink" href="#bedingungen-mit-tupeln" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="bedingungen-mit-tupeln">
+<h3><span class="section-number">9.4.7. </span>Bedingungen mit Tupeln<a class="headerlink" href="#bedingungen-mit-tupeln" title="Permalink to this headline">¶</a></h3>
 <p>Verallgemeinerungen von IN, ALL und ANY auf Tupel sind auch möglich.
 <br><br>
 t IN R gibt TRUE zurück, falls t ein Tupel in R ist (mehr als ein Attribut möglich). Hierbei ist vorausgesetzt, dass beide dasselbe Schemata haben und dieselbe Reihenfolge der Attribute.
@@ -8943,9 +8801,9 @@ Im folgenden Beispiel wollen wir alle Namen von Produzenten von Filmen mit Harri
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="subanfragen-in-from-klausel">
-<h3><span class="section-number">9.4.8. </span>Subanfragen in FROM-Klausel<a class="headerlink" href="#subanfragen-in-from-klausel" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="subanfragen-in-from-klausel">
+<h3><span class="section-number">9.4.8. </span>Subanfragen in FROM-Klausel<a class="headerlink" href="#subanfragen-in-from-klausel" title="Permalink to this headline">¶</a></h3>
 <p>Wir können anstelle einer einfachen Relation auch eine geklammerte Subanfrage in der FROM-Klausel schreiben. Der Subanfrage mussein Alias vergeben werden, um auf die Attribute zuzugreifen.
 <br><br>
 Im folgenden Beispiel wollen wir wieder alle Namen von Produzenten von Filmen mit Harrison Ford ausgeben. Wir stellen eine Subanfrage in der FROM-Klausel, die alle ProduzentinIDs zurückgibt, welche in Filmen mit Harrison Ford beteiligt waren. Zum Schluss werden die ProduzentinIDs wieder mit den ManagerinIDs abgeglichen.</p>
@@ -8993,9 +8851,9 @@ Im folgenden Beispiel wollen wir wieder alle Namen von Produzenten von Filmen mi
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="korrelierte-subanfragen">
-<h3><span class="section-number">9.4.9. </span>Korrelierte Subanfragen<a class="headerlink" href="#korrelierte-subanfragen" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="korrelierte-subanfragen">
+<h3><span class="section-number">9.4.9. </span>Korrelierte Subanfragen<a class="headerlink" href="#korrelierte-subanfragen" title="Permalink to this headline">¶</a></h3>
 <p>Wird eine Subanfragen einmalig ausgeführt, so handelt es sich um eine unkorrelierte Subanfrage. Korrelierte Subanfragen werden mehrfach ausgeführt, undzwar einmal pro Bindung der korrelierten Variable der äußeren Anfrage.
 <br><br>
 Im folgenden ein Beispiel für eine korrelierte Subanfrage. Wir suchen alle mehrfachen Filme mit Ausnahme der jeweils jüngsten Ausgabe. Die Subanfrage wird für jedes Tupel in Filme ausgeführt.</p>
@@ -9196,12 +9054,12 @@ Unten wird die Subanfrage nur einmal ausgeführt, da wir sofort alle AbtIDs habe
 </table>
 </div></div></div>
 </div>
-</section>
-</section>
-<section id="operationen-auf-einer-relation">
-<h2><span class="section-number">9.5. </span>Operationen auf einer Relation<a class="headerlink" href="#operationen-auf-einer-relation" title="Permalink to this headline">#</a></h2>
-<section id="duplikateliminierung">
-<h3><span class="section-number">9.5.1. </span>Duplikateliminierung<a class="headerlink" href="#duplikateliminierung" title="Permalink to this headline">#</a></h3>
+</div>
+</div>
+<div class="section" id="operationen-auf-einer-relation">
+<h2><span class="section-number">9.5. </span>Operationen auf einer Relation<a class="headerlink" href="#operationen-auf-einer-relation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="duplikateliminierung">
+<h3><span class="section-number">9.5.1. </span>Duplikateliminierung<a class="headerlink" href="#duplikateliminierung" title="Permalink to this headline">¶</a></h3>
 <p>Wie aus der Relationalen Algebra bekannt, ist die Duplikateliminierung auch in SQL möglich. Relationale DBMS verwenden i.d.R. Multimengensemantik und nicht Mengensemantik. Durch Operationen, wie das Enfügen von Duplikaten in Basisrelationen, die Veränderung von Tupeln in Basisrelationen, Projektion in Anfragen, Subanfragen mit z.B UNION ALL oder die Vermehrung von Duplikaten durch Kreuzprodukte, entstehen Duplikate.</p>
 <p>Um Duplikate zu eliminieren kann man das DISTINCt-Schlüsselwort benutzen, nach folgendem Schema:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">DISTINCT</span> <span class="n">Attributnamen</span>
@@ -9352,12 +9210,12 @@ Im folgenden Beispiel suchen wir alle Filme, in denen mindestens ein Schauspiele
 </div>
 <p><img alt="title" src="../_images/duplikateliminierung.jpg" /></p>
 <p>Wir erinnern uns zurück an die Anfragen, wo wir die Produzent*Innen von Filmen mit Harrison Ford gesucht haben. Einmal sind wir an das Ergebnis durch Subanfragen gelangt und auf einem anderen Wege mit einem Join. Nun sind beide Anfragen nicht äquivalent, da bei der Anfrage mit dem Join Duplikate möglich sind, welches sich aber mit dem DISTINCT-Schlüsselwort lösen lässt.</p>
-</section>
-<section id="aggregation">
-<h3><span class="section-number">9.5.2. </span>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="aggregation">
+<h3><span class="section-number">9.5.2. </span>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">¶</a></h3>
 <p>Die aus der Relationalen Algebra bekannte Aggregation ist auch in SQL möglich, die Standardaggregationsoperatoren SUM, AVG, MIN, MAX, COUNT können auf einzelne Attribute in der SELECT-Klausel angewendet werden. Zudem gibt es noch weitere Aggregationsoperatoren wir z.B VAR, STDDEV für die Varianz und Standardabweichung. Es wird auch COUNT(*) häufig benutzt, welches die Anzahl der Tupel in der Relation, die durch die FROM und WHERE Klauseln definiert wird zählt. Auch die Kombination mit DISTINCT wird häufig benutzt wie z.B COUNT(DISTINCT Jahr) SUM(DISTINCT Gehalt)</p>
-<section id="aggregation-beispiele">
-<h4><span class="section-number">9.5.2.1. </span>Aggregation – Beispiele<a class="headerlink" href="#aggregation-beispiele" title="Permalink to this headline">#</a></h4>
+<div class="section" id="aggregation-beispiele">
+<h4><span class="section-number">9.5.2.1. </span>Aggregation – Beispiele<a class="headerlink" href="#aggregation-beispiele" title="Permalink to this headline">¶</a></h4>
 <p>Im folgenden Beispiel möchten wir das Durchschnittsgehalt aller Manager*\Innen ausgeben.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -9535,10 +9393,10 @@ Im folgenden Beispiel suchen wir alle Filme, in denen mindestens ein Schauspiele
 </table>
 </div></div></div>
 </div>
-</section>
-</section>
-<section id="gruppierung-aggregation-und-null">
-<h3><span class="section-number">9.5.3. </span>Gruppierung, Aggregation und NULL<a class="headerlink" href="#gruppierung-aggregation-und-null" title="Permalink to this headline">#</a></h3>
+</div>
+</div>
+<div class="section" id="gruppierung-aggregation-und-null">
+<h3><span class="section-number">9.5.3. </span>Gruppierung, Aggregation und NULL<a class="headerlink" href="#gruppierung-aggregation-und-null" title="Permalink to this headline">¶</a></h3>
 <p>NULL wird bei der Aggregation ignoriert und trägt somit nicht zu SUM, AVG oder COUNT bei und wird auch nicht als MIN oder MAX ausgegeben. Um die Anzahl der nicht-NULL Werte zuzählen, kann also folgende Anfrage benutzt werden:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">COUNT</span><span class="p">(</span><span class="n">Länge</span><span class="p">)</span> <span class="n">FROM</span> <span class="n">Film</span><span class="p">;</span>
 </pre></div>
@@ -9563,9 +9421,9 @@ Ergebnis: (NULL, 0)
 SELECT A, SUM(B) FROM R GROUP BY A;
 <br>
 Ergebnis: (NULL, NULL)</p>
-</section>
-<section id="gruppierung">
-<h3><span class="section-number">9.5.4. </span>Gruppierung<a class="headerlink" href="#gruppierung" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="gruppierung">
+<h3><span class="section-number">9.5.4. </span>Gruppierung<a class="headerlink" href="#gruppierung" title="Permalink to this headline">¶</a></h3>
 <p>Auch die aus der Relationalen Algebra bekannte Gruppierung ist in SLQ möglich mittels GROUP BY nach der WHERE-Klausel. Bei der Gruppierung gibt es in der SELECT-Klausel zwei “Sorten” von Attributen, einmal Gruppierungsattribute und einmal aggregierte Attribute. Nicht-aggregierte Werte der SELECT-Klausel müssen in der GROUP BY-Klausel erscheinen, es müssen jedoch keiner der beiden Sorten erscheinen. Eine Gruppierung mit Aggregation können wir im unteren Beispiel sehen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -10228,9 +10086,9 @@ Wir möchten die Summe der Filmlänge von Manager*Innen ausgeben, dessen Gehält
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="zusammenfassung-sql">
-<h3><span class="section-number">9.5.5. </span>Zusammenfassung SQL<a class="headerlink" href="#zusammenfassung-sql" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="zusammenfassung-sql">
+<h3><span class="section-number">9.5.5. </span>Zusammenfassung SQL<a class="headerlink" href="#zusammenfassung-sql" title="Permalink to this headline">¶</a></h3>
 <p>Hier werden nocheinmal die Grundbausteine einer SQL Anfrage (mit empfohlener Lesereihenfolge) aufgelistet.</p>
 <p>6. SELECT
 <br>
@@ -10244,14 +10102,14 @@ Wir möchten die Summe der Filmlänge von Manager*Innen ausgeben, dessen Gehält
 <br>
 5. ORDER BY</p>
 <p>Bei einer Anfrage die auf eine Datenbank zugreift sins SELECT … FROM … Pflicht. Zuletzt darf HAVING nur in Kombination mit GROUP BY erscheinen.</p>
-</section>
-</section>
-<section id="datenbearbeitung-dml">
-<h2><span class="section-number">9.6. </span>Datenbearbeitung(DML)<a class="headerlink" href="#datenbearbeitung-dml" title="Permalink to this headline">#</a></h2>
+</div>
+</div>
+<div class="section" id="datenbearbeitung-dml">
+<h2><span class="section-number">9.6. </span>Datenbearbeitung(DML)<a class="headerlink" href="#datenbearbeitung-dml" title="Permalink to this headline">¶</a></h2>
 <p>Zuvor haben wir SQL nur als Anfragesprache betrachtet. In diesem Kapitel betrachten wir SQL nun als DMl(Data Manipulation Language), also das Bearbeiten von Daten. In SQL stehen folgende Funktione zur Verfügung um Daten zu bearbeiten Create, Read, Update und Delete(CRUD). Um einzelne Tupel einzufügen, zu löschen und zu ändern.</p>
-<section id="einfugen">
-<h3><span class="section-number">9.6.1. </span>Einfügen<a class="headerlink" href="#einfugen" title="Permalink to this headline">#</a></h3>
-<p>Als Grundbaustein für das Einfügen in einer Relation R, muss man folgendem Schema folgen INSERT INTO R(A1, …, An) VALUES (v1,…,vn), wobei A1,…,An die Attribute der Relation R sind und v1,…,vn die zu einfügenden Werte. Hierbei muss die Reihenfolge der Werte und Attribute beachtet werden, die Reihenfolge sollte entsprechend der Spezifikation des Schemas (CREATE TABLE …) erfolgen. Falls beim INSERT Attribute fehlen, wird der Default-Wert aus der Tabellendefinition eingesetzt bzw. NULL, falls nicht anders angegeben wurde.
+<div class="section" id="einfugen">
+<h3><span class="section-number">9.6.1. </span>Einfügen<a class="headerlink" href="#einfugen" title="Permalink to this headline">¶</a></h3>
+<p>Als Grundbaustein für das Einfügen in einer Relation R, muss man folgendem Schema folgen INSERT INTO R(<span class="math notranslate nohighlight">\(A_1\)</span>, …, <span class="math notranslate nohighlight">\(A_n\)</span>) VALUES (<span class="math notranslate nohighlight">\(v_1\)</span>,…,<span class="math notranslate nohighlight">\(v_n\)</span>), wobei <span class="math notranslate nohighlight">\(A_1\)</span>,…,<span class="math notranslate nohighlight">\(A_n\)</span> die Attribute der Relation R sind und <span class="math notranslate nohighlight">\(v_1\)</span> ,…,<span class="math notranslate nohighlight">\(v_n\)</span> die zu einfügenden Werte. Hierbei muss die Reihenfolge der Werte und Attribute beachtet werden, die Reihenfolge sollte entsprechend der Spezifikation des Schemas (CREATE TABLE …) erfolgen. Falls beim INSERT Attribute fehlen, wird der Default-Wert aus der Tabellendefinition eingesetzt bzw. NULL, falls nicht anders angegeben wurde.
 <br><br>
 Ein Beispiel für das Einfügen eines Tupels in die spielt_in-Relation ist unten zu finden.</p>
 <div class="cell docutils container">
@@ -10269,8 +10127,8 @@ Ein Beispiel für das Einfügen eines Tupels in die spielt_in-Relation ist unten
 </div>
 </div>
 </div>
-<section id="einfugen-per-anfrage">
-<h4><span class="section-number">9.6.1.1. </span>Einfügen per Anfrage<a class="headerlink" href="#einfugen-per-anfrage" title="Permalink to this headline">#</a></h4>
+<div class="section" id="einfugen-per-anfrage">
+<h4><span class="section-number">9.6.1.1. </span>Einfügen per Anfrage<a class="headerlink" href="#einfugen-per-anfrage" title="Permalink to this headline">¶</a></h4>
 <p>In SQL ist es auch möglich Einfügeoperationen mit Anfragen zu kombinieren.
 <br>
 <br>
@@ -10288,23 +10146,11 @@ Haben wir die beiden Relationen Studio(Name, Adresse, VorsitzendeID) und Film(Ti
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="ausfuhrungsreihenfolge-beim-einfugen">
-<h3><span class="section-number">9.6.2. </span>Ausführungsreihenfolge beim Einfügen<a class="headerlink" href="#ausfuhrungsreihenfolge-beim-einfugen" title="Permalink to this headline">#</a></h3>
-<p>Wann wird eingefügt?
-<br>
-Nach vollständiger Ausführung der SELECT FROM WHERE Anfrage?
-<br>
-Sofort?
-<br>
-Schnellere Implementation
-<br>
-Was passiert jeweils bei Anfrage 1?
-<br>
-Was passiert jeweils bei Anfrage 2?
-<br>
-SQL Standard: Erst gesamte Anfrage ausführen</p>
+</div>
+</div>
+<div class="section" id="ausfuhrungsreihenfolge-beim-einfugen">
+<h3><span class="section-number">9.6.2. </span>Ausführungsreihenfolge beim Einfügen<a class="headerlink" href="#ausfuhrungsreihenfolge-beim-einfugen" title="Permalink to this headline">¶</a></h3>
+<p>Betrachten wir wieder das vorherige Beispiel, einmal mit DISTINCT und einmal ohne. Wir fragen uns, ob jedes mal wenn, ein StudioName gefunden wurde, der noch nicht in der Tabelle enthalten ist, dieser direkt schon in die Tabelle eingefügt wird oder ob zuerst die ganze Anfrage ausgeführt wird. Tatsächlich ist es in SQL Standard so, dass zuerst die gesamte Anfrage ausgeführt wird und dann erst in die Relation eingefügt wird.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
@@ -10331,15 +10177,15 @@ SQL Standard: Erst gesamte Anfrage ausführen</p>
 </div>
 </div>
 </div>
-<section id="bulk-insert">
-<h4><span class="section-number">9.6.2.1. </span>Bulk insert<a class="headerlink" href="#bulk-insert" title="Permalink to this headline">#</a></h4>
+<div class="section" id="bulk-insert">
+<h4><span class="section-number">9.6.2.1. </span>Bulk insert<a class="headerlink" href="#bulk-insert" title="Permalink to this headline">¶</a></h4>
 <p>Beim INSERT werden die Daten zeilenbasiert aus SQL statements eingefügt. Es ist möglich, dass die Daten ,die in eine Datenbank eingefügt werden sollen schon in einer bestimmten Form vorliegen. Da bietet es sich an den Befehl IMPORT zu benutzten, mitdem Daten aus einer Datei Zeilenbasiert eingefügt werden. Hierbei bleiben die gesetzten Trigger und Nebenbedingungen weiterhin aktiv und auch die Indizes werden laufend aktualisiert.
 <br><br>
 Eine deutlich effizientere Weise Daten einzufügen ist mit LOAD, hier wird seitenbasiert aus einer Datei eingefügt, wobei Trigger und Nebenbedingungen nicht berücksichtigt werden und die Indizes am Ende neu generiert werden. Man muss beachten, dass die Syntax von IMPORT und LOAD jeweils DBMS-spezifisch ist, z.B gibt es in sqlite keinen LOAD-Befehl.</p>
-</section>
-</section>
-<section id="loschen">
-<h3><span class="section-number">9.6.3. </span>Löschen<a class="headerlink" href="#loschen" title="Permalink to this headline">#</a></h3>
+</div>
+</div>
+<div class="section" id="loschen">
+<h3><span class="section-number">9.6.3. </span>Löschen<a class="headerlink" href="#loschen" title="Permalink to this headline">¶</a></h3>
 <p>Der Grundbaustein zum Löschen von Tupeln ist DELETE FROM R WHERE …, wobei R wie beim Einfügen eine Relation ist. Beim Delete werden immer ganze Tupel gelöscht. Im Gegensatz zum Einfügen, können die zu löschenden Tupel nicht direkt angegeben werden, sondern müssen in der WHERE-Klausel umschrieben werden. Um ein konkretes Tupel zu löschen, müssen also alle Werte dieses Tupel oder wenn vorhanden eine ID bekannt sein. Es werden alle Tupel gelöscht für die TRUE in der WHERE-Kausel gilt. Es ist auch möglich die WHERE-Klausel wegzulassen, dann werden alle Tupel der Relation gelöscht. Unten finden Sie einige Beispiele.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -10369,9 +10215,9 @@ AND Schauspieler = ‘Sydney Greenstreet‘;
 </div>
 </div>
 </div>
-</section>
-<section id="verandern-update">
-<h3><span class="section-number">9.6.4. </span>Verändern (update)<a class="headerlink" href="#verandern-update" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="verandern-update">
+<h3><span class="section-number">9.6.4. </span>Verändern (update)<a class="headerlink" href="#verandern-update" title="Permalink to this headline">¶</a></h3>
 <p>Der Grundbaustein zum Verändern von Tupeln ist UPDATE R SET … WHERE …, wobei auch hier R eine Relation ist. In der SET-Klausel werden komma-separiert Werte zugewiesen. Im Beispiel unten wird in der Managerrelation vor dem Name jener Manager*Innen eine ‘Präs.’ gesetzt, dessen Manager*InID in den Präsident*InnenIDs vorkommt.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -10384,77 +10230,72 @@ WHERE ManagerinID IN
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="schemata-ddl">
-<h2><span class="section-number">9.7. </span>Schemata(DDL)<a class="headerlink" href="#schemata-ddl" title="Permalink to this headline">#</a></h2>
-<section id="uberblick">
-<h3><span class="section-number">9.7.1. </span>Überblick<a class="headerlink" href="#uberblick" title="Permalink to this headline">#</a></h3>
-<p>In diesem Kapitel betrachten wir SQL als Data Definition Language(DDL)
-■ Datentypen
-<br>
-■ Tabellen
-<br>
-■ Default-Werte
-<br>
-■ Indizes</p>
-</section>
-<section id="datentypen">
-<h3><span class="section-number">9.7.2. </span>Datentypen<a class="headerlink" href="#datentypen" title="Permalink to this headline">#</a></h3>
-<p>■ Jedes Attribut muss einen Datentyp haben.
-<br>
-□ CHAR(n) – String fester Länge (n Zeichen)
-<br>
-□ VARCHAR(n) – String variabler Länge, maximal n Zeichen
-<br>
-□ BIT(n) bzw. BIT VARYING(n) – Wie CHAR, aber Bits
-<br>
-□ BOOLEAN – TRUE, FALSE oder UNKNOWN
-<br>
-□ INT / INTEGER bzw. SHORTINT – 8 bzw. 4 Byte
-<br>
-□ FLOAT / REAL bzw. DOUBLE PRECISION
-<br>
-□ DECIMAL (n,d) – Z.B. Gehalt DECIMAL(7,2) – 7 Stellen, davon 2 Nachkommastellen
-<br>
-□ CLOB und BLOB</p>
-</section>
-<section id="uberblick-db2-datentypen">
-<h3><span class="section-number">9.7.3. </span>Überblick DB2 Datentypen<a class="headerlink" href="#uberblick-db2-datentypen" title="Permalink to this headline">#</a></h3>
+</div>
+</div>
+<div class="section" id="schemata-ddl">
+<h2><span class="section-number">9.7. </span>Schemata(DDL)<a class="headerlink" href="#schemata-ddl" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="uberblick">
+<h3><span class="section-number">9.7.1. </span>Überblick<a class="headerlink" href="#uberblick" title="Permalink to this headline">¶</a></h3>
+<p>In diesem Kapitel betrachten wir SQL als Data Definition Language(DDL). Möchte man eine neue Tabelle anlegen, müssen die verschiedenen Datentypen, Default-Werte, Indizes und damit zusammenhängende Tabellen beachten, welche wir uns in diesem Kapitel genauer anschauen.</p>
+</div>
+<div class="section" id="datentypen">
+<h3><span class="section-number">9.7.2. </span>Datentypen<a class="headerlink" href="#datentypen" title="Permalink to this headline">¶</a></h3>
+<p>Die vorhandenen Datentypen hängen von dem benutzten DBMS ab, wir betrachten die Datentypen von DB2 von IBM. Jedes definierte Attribut muss einen Datentyp haben. Es gibt:
+<br></p>
+<ul class="simple">
+<li><p>CHAR(n) – String fester Länge (n Zeichen)
+<br></p></li>
+<li><p>VARCHAR(n) – String variabler Länge, maximal n Zeichen
+<br></p></li>
+<li><p>BIT(n) bzw. BIT VARYING(n) – Wie CHAR, aber Bits
+<br></p></li>
+<li><p>BOOLEAN – TRUE, FALSE oder UNKNOWN
+<br></p></li>
+<li><p>INT / INTEGER bzw. SHORTINT – 8 bzw. 4 Byte
+<br></p></li>
+<li><p>FLOAT / REAL bzw. DOUBLE PRECISION
+<br></p></li>
+<li><p>DECIMAL (n,d) – Z.B. Gehalt DECIMAL(7,2) – 7 Stellen, davon 2 Nachkommastellen
+<br></p></li>
+<li><p>CLOB und BLOB
+<br><br>
+Unten finden Sie einen Überblick aller DB2 Datentypen.</p></li>
+</ul>
+</div>
+<div class="section" id="uberblick-db2-datentypen">
+<h3><span class="section-number">9.7.3. </span>Überblick DB2 Datentypen<a class="headerlink" href="#uberblick-db2-datentypen" title="Permalink to this headline">¶</a></h3>
 <p><img alt="title" src="../_images/db2_datentypen.jpg" /></p>
-</section>
-<section id="tabellen">
-<h3><span class="section-number">9.7.4. </span>Tabellen<a class="headerlink" href="#tabellen" title="Permalink to this headline">#</a></h3>
-<p>■ Grundbaustein zum Erzeugen</p>
+</div>
+<div class="section" id="tabellen">
+<h3><span class="section-number">9.7.4. </span>Tabellen<a class="headerlink" href="#tabellen" title="Permalink to this headline">¶</a></h3>
+<p>Der Grundbaustein zum Erzeugenvon Tabellen ist CREATE TABLE R …, wobei R der Name der Tabelle ist. In runden Klammern werden kommasepariert die gewünschten Attribute mit den jeweiligen Datentypen genannt.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%sql
-CREATE TABLE R …
-CREATE TABLE Schauspieler (
-Name CHAR(30),
-Adresse VARCHAR(255),
-Geschlecht CHAR(1),
-Geburtstag DATE );
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
+<span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">Schauspieler</span> <span class="p">(</span>
+<span class="n">Name</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+<span class="n">Adresse</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+<span class="n">Geschlecht</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+<span class="n">Geburtstag</span> <span class="n">DATE</span> <span class="p">);</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>■ Löschen
-<br>
-□ DROP TABLE Schauspieler;
+<p>Um eine Tabelle zu löschen wird DROP TABLE R … verwendet.
 <br><br>
-■ Verändern
-<br>
-□ ALTER TABLE Schauspieler ADD Telefon CHAR(6);
-<br>
-– Nullwerte entstehen
-<br>
-□ ALTER TABLE Schauspieler DROP Geburtstag;
-<br>
-□ ALTER TABLE Schauspieler MODIFY Telefon CHAR(10);</p>
-</section>
-<section id="default-werte">
-<h3><span class="section-number">9.7.5. </span>Default-Werte<a class="headerlink" href="#default-werte" title="Permalink to this headline">#</a></h3>
+Auch das Verändern des Tabellenschemas ist möglich, undzwar mit ALTER TABLE R … . Es können neue Attribute hinzugefügt werden, alte gelöscht oder auch Datentypen von bestehenden Attributen verändert werden. Zu beachten ist, dass bei dem Hinzufügen von neuen Attributen Nullwerte entstehen.
+<br></p>
+<ul class="simple">
+<li><p>ALTER TABLE Schauspieler ADD Telefon CHAR(6);
+<br></p></li>
+<li><p>ALTER TABLE Schauspieler DROP Geburtstag;
+<br></p></li>
+<li><p>ALTER TABLE Schauspieler MODIFY Telefon CHAR(10);</p></li>
+</ul>
+</div>
+<div class="section" id="default-werte">
+<h3><span class="section-number">9.7.5. </span>Default-Werte<a class="headerlink" href="#default-werte" title="Permalink to this headline">¶</a></h3>
+<p>Default-Werte können mit dem Schlüsselwort DEFAULT gesetzt werden. In dem Beispiel unten wird für das Attribut Geschlecht der Default-Wert ‘?’ bestimmt und für den Geburtstag das Default-Datum ‘0000-00-00’.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%sql
@@ -10463,41 +10304,26 @@ Name CHAR(30),
 Adresse VARCHAR(255),
 Geschlecht CHAR(1) DEFAULT ‚?‘,
 Geburtstag DATE DEFAULT DATE ‚&#39;0000-00-00&#39;);
-
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ein Default-Wert kann auch nachträglich mit einem ALTER TABLE hinzugefügt werden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%sql
 ALTER TABLE Schauspieler
 ADD Telefon CHAR(16) DEFAULT ‚unbekannt‘;
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="constraints-und-trigger">
-<h3><span class="section-number">9.7.6. </span>Constraints und Trigger<a class="headerlink" href="#constraints-und-trigger" title="Permalink to this headline">#</a></h3>
-<p>Weitere Optionen für Tabellen
-<br>
-□ PRIMARY KEY
-<br>
-□ UNIQUE
-<br>
-□ FOREIGN KEY … REFERENCES …
-<br>
-□ NOT NULL
-<br>
-□ CHECK
-<br>
-□ CREATE ASSERTION
-<br>
-□ CREATE TRIGGER
-<br>
-■ Siehe separater Foliensatz</p>
-</section>
-<section id="indizes">
-<h3><span class="section-number">9.7.7. </span>Indizes<a class="headerlink" href="#indizes" title="Permalink to this headline">#</a></h3>
-<p>■ Ein Index auf einem Attribut ist eine Datenstruktur, die es dem DBMS erleichtert, Tupel mit einem bekannten Wert des Attributs zu finden.
-<br>
-□ Nicht SQL-Standard, aber in (fast) jedem DBMS verfügbar.
+</div>
+<div class="section" id="indizes">
+<h3><span class="section-number">9.7.6. </span>Indizes<a class="headerlink" href="#indizes" title="Permalink to this headline">¶</a></h3>
+<p>Ein Index auf einem Attribut ist eine Datenstruktur, die es dem DBMS erleichtert, Tupel mit einem bekannten Wert des Attributs zu finden. Indizes sind nicht SQL-Standard, aber sind in (fast) jedem DBMS verfügbar.
 <br><br>
-■ Motivation</p>
+Möchten wir z.B alle Disney Filme aus 1990 ausgeben. Wir könnte mit Variante 1 alle Tupel der Filmerelation durchsuchen und die WHERE Bedingung prüfen. Mit Variante 2 erstellen wir einen Index CREATE INDEX JahrIndex ON Film(Jahr) und können direkt alle Filme aus 1990 betrachten und diese auf ‚Disney‘ prüfen, da der Optimizer des DBMS unsern erstellten Inddex sofort zur Filterung der Bedingung Jahr = 1990 benutzen kann. Zuletzt in einer dritten Variante erstellen wir einen multidimensionalen Index CREATE INDEX JahrStudioIndex ON Film(Jahr, Studioname) und holen uns direkt alle Filme aus 1990 von Disney. Welche der Varianten wir letzlich wählen, hängt von zu erwartenden Anfragen ab. Bei dem Anlegen von Indizes muss auch beachtet werden, dass diese Speicher belegen und aktualisiert werden müssen, wenn neue Daten hinzugefügt wurden.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%sql SELECT * </span>
@@ -10571,13 +10397,16 @@ ADD Telefon CHAR(16) DEFAULT ‚unbekannt‘;
 </table>
 </div></div></div>
 </div>
-<p>□ Variante 1: Alle 100.000 Tupel durchsuchen und WHERE Bedingung prüfen
-<br>
-□ Variante 2: Direkt alle 2000 Filme aus 1990 betrachten und auf ‚Disney‘ prüfen.
-<br>
-– CREATE INDEX JahrIndex ON Film(Jahr);
-<br>
-□ Variante 3: Direkt alle 100 Filme aus 1990 von ‘Disney‘ holen.</p>
+<p>Indizes auf einzelnen Attributen:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
+<span class="n">CREATE</span> <span class="n">INDEX</span> <span class="n">JahrIndex</span> <span class="n">ON</span> <span class="n">Film</span><span class="p">(</span><span class="n">Jahr</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Indizes auf mehreren Attributen:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
@@ -10587,27 +10416,19 @@ ADD Telefon CHAR(16) DEFAULT ‚unbekannt‘;
 </div>
 </div>
 </div>
-<p>■ Indizes auf einzelnen Attributen
-<br>
-□ CREATE INDEX JahrIndex ON Film(Jahr);
+<p>Die Reihenfolge der Relationen bei Indizes auf mehreren Attributen ist wichtig! Für unser Beispiel suchen implizit zuerst nach Jahr gefolgt von StudioName.
 <br><br>
-■ Indizes auf mehreren Attributen</p>
+Um einen Index zu löschen kann DROP INDEX … verwendet werden.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
-<span class="n">CREATE</span> <span class="n">INDEX</span> <span class="n">JahrStudioIndex</span>
-<span class="n">ON</span> <span class="n">Film</span><span class="p">(</span><span class="n">Jahr</span><span class="p">,</span> <span class="n">Studioname</span><span class="p">);</span>
+<span class="n">DROP</span> <span class="n">INDEX</span> <span class="n">JahrIndex</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>□ Reihenfolge wichtig! Warum?
-<br><br>
-■ Löschen
-<br>
-□ DROP INDEX JahrIndex;</p>
-<section id="indexwahl">
-<h4><span class="section-number">9.7.7.1. </span>Indexwahl<a class="headerlink" href="#indexwahl" title="Permalink to this headline">#</a></h4>
+<div class="section" id="indexwahl">
+<h4><span class="section-number">9.7.6.1. </span>Indexwahl<a class="headerlink" href="#indexwahl" title="Permalink to this headline">¶</a></h4>
 <p>■ Abwägung
 <br>
 □ Index beschleunigt Punkt- (und Bereichs-) Anfragen und Join-Anfragen erheblich.
@@ -10627,9 +10448,9 @@ ADD Telefon CHAR(16) DEFAULT ‚unbekannt‘;
 – Häufiger Vergleich mit Konstanten
 <br>
 – Häufiges Joinattribut</p>
-</section>
-<section id="indexwahl-voruberlegungen">
-<h4><span class="section-number">9.7.7.2. </span>Indexwahl – Vorüberlegungen<a class="headerlink" href="#indexwahl-voruberlegungen" title="Permalink to this headline">#</a></h4>
+</div>
+<div class="section" id="indexwahl-voruberlegungen">
+<h4><span class="section-number">9.7.6.2. </span>Indexwahl – Vorüberlegungen<a class="headerlink" href="#indexwahl-voruberlegungen" title="Permalink to this headline">¶</a></h4>
 <p>■ Relationen sind typischerweise über mehrere Diskblöcke gespeichert.
 <br>
 □ Wichtigste Datenbankkosten sind die Anzahl der Diskblöcke, die in den Hauptspeicher gelesen werden müssen.
@@ -10641,9 +10462,9 @@ ADD Telefon CHAR(16) DEFAULT ‚unbekannt‘;
 – IdR viel mehr Tupel pro Block repräsentiert: Nur Schlüsselwert und Speicheradresse, keine Daten
 <br>
 □ Updates kosten sogar doppelt: Lesen und Schreiben auch der Index-Blöcke</p>
-</section>
-<section id="indexwahl-beispiel">
-<h4><span class="section-number">9.7.7.3. </span>Indexwahl – Beispiel<a class="headerlink" href="#indexwahl-beispiel" title="Permalink to this headline">#</a></h4>
+</div>
+<div class="section" id="indexwahl-beispiel">
+<h4><span class="section-number">9.7.6.3. </span>Indexwahl – Beispiel<a class="headerlink" href="#indexwahl-beispiel" title="Permalink to this headline">¶</a></h4>
 <p>■ spielt_in(FilmTitel, FilmJahr, Schauspieler)
 <br><br>
 ■ Drei typische Anfragen</p>
@@ -10713,9 +10534,9 @@ ADD Telefon CHAR(16) DEFAULT ‚unbekannt‘;
 □ Lesen und Schreiben kostet 1.
 <br>
 □ Update und Insert kosten jeweils 2.</p>
-</section>
-<section id="id2">
-<h4><span class="section-number">9.7.7.4. </span>Indexwahl – Beispiel<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
+</div>
+<div class="section" id="id2">
+<h4><span class="section-number">9.7.6.4. </span>Indexwahl – Beispiel<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Anfrage</p></th>
@@ -10758,10 +10579,10 @@ ADD Telefon CHAR(16) DEFAULT ‚unbekannt‘;
 <br>
 ■ 1‒p1‒p2: Anteil Anfrage 3
 <br></p>
-</section>
-</section>
-<section id="verteilung-in-imdb-real-world-daten-stand-ca-2010">
-<h3><span class="section-number">9.7.8. </span>Verteilung in IMDB (Real-world Daten, Stand ca. 2010)<a class="headerlink" href="#verteilung-in-imdb-real-world-daten-stand-ca-2010" title="Permalink to this headline">#</a></h3>
+</div>
+</div>
+<div class="section" id="verteilung-in-imdb-real-world-daten-stand-ca-2010">
+<h3><span class="section-number">9.7.7. </span>Verteilung in IMDB (Real-world Daten, Stand ca. 2010)<a class="headerlink" href="#verteilung-in-imdb-real-world-daten-stand-ca-2010" title="Permalink to this headline">¶</a></h3>
 <p><img alt="title" src="../_images/imdb.jpg" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -10793,12 +10614,12 @@ ADD Telefon CHAR(16) DEFAULT ‚unbekannt‘;
 </div>
 </div>
 <p>Spielfilme pro Schauspieler: 4,2</p>
-</section>
-</section>
-<section id="sichten">
-<h2><span class="section-number">9.8. </span>Sichten<a class="headerlink" href="#sichten" title="Permalink to this headline">#</a></h2>
-<section id="virtuelle-relationen">
-<h3><span class="section-number">9.8.1. </span>Virtuelle Relationen<a class="headerlink" href="#virtuelle-relationen" title="Permalink to this headline">#</a></h3>
+</div>
+</div>
+<div class="section" id="sichten">
+<h2><span class="section-number">9.8. </span>Sichten<a class="headerlink" href="#sichten" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="virtuelle-relationen">
+<h3><span class="section-number">9.8.1. </span>Virtuelle Relationen<a class="headerlink" href="#virtuelle-relationen" title="Permalink to this headline">¶</a></h3>
 <p>■ Relationen aus CREATE TABLE Ausdrücken existieren tatsächlich (materialisiert, physisch) in der Datenbank.
 <br>
 □ Persistenz
@@ -10817,9 +10638,9 @@ ADD Telefon CHAR(16) DEFAULT ‚unbekannt‘;
 <img alt="title" src="../_images/stonebraker2.jpg" />
 <br>
 Michael Stonebraker: Implementation of Integrity Constraints and Views by Query Modification. SIGMOD Conference 1975: 65-78</p>
-</section>
-<section id="sichten-in-sql">
-<h3><span class="section-number">9.8.2. </span>Sichten in SQL<a class="headerlink" href="#sichten-in-sql" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="sichten-in-sql">
+<h3><span class="section-number">9.8.2. </span>Sichten in SQL<a class="headerlink" href="#sichten-in-sql" title="Permalink to this headline">¶</a></h3>
 <p>■ CREATE VIEW Name AS Anfrage</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -10847,9 +10668,9 @@ Michael Stonebraker: Implementation of Integrity Constraints and Views by Query 
 <br>
 □ Basisdaten bleiben unverändert.</p></li>
 </ol>
-</section>
-<section id="anfragen-an-sichten">
-<h3><span class="section-number">9.8.3. </span>Anfragen an Sichten<a class="headerlink" href="#anfragen-an-sichten" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="anfragen-an-sichten">
+<h3><span class="section-number">9.8.3. </span>Anfragen an Sichten<a class="headerlink" href="#anfragen-an-sichten" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
@@ -11205,9 +11026,9 @@ Michael Stonebraker: Implementation of Integrity Constraints and Views by Query 
 </div>
 </div>
 </div>
-</section>
-<section id="diskussion">
-<h3><span class="section-number">9.8.4. </span>Diskussion<a class="headerlink" href="#diskussion" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="diskussion">
+<h3><span class="section-number">9.8.4. </span>Diskussion<a class="headerlink" href="#diskussion" title="Permalink to this headline">¶</a></h3>
 <p>■ Vorteile
 <br>
 □ Vereinfachung von Anfragen
@@ -11233,9 +11054,9 @@ Michael Stonebraker: Implementation of Integrity Constraints and Views by Query 
 □ Änderungen auf Sichten
 <br>
 □ Updatepropagierung für materialisierte Sichten</p>
-</section>
-<section id="updates-auf-sichten">
-<h3><span class="section-number">9.8.5. </span>Updates auf Sichten<a class="headerlink" href="#updates-auf-sichten" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="updates-auf-sichten">
+<h3><span class="section-number">9.8.5. </span>Updates auf Sichten<a class="headerlink" href="#updates-auf-sichten" title="Permalink to this headline">¶</a></h3>
 <p>■ In einigen Fällen ist es möglich, Einfüge-, Lösch- oder Updateoperationen auf Sichten durchzuführen.
 <br>
 □ Wo speichern?
@@ -11255,9 +11076,9 @@ Michael Stonebraker: Implementation of Integrity Constraints and Views by Query 
 – Kein DISTINCT
 <br>
 □ Nur falls genug Attribute verwendet werden, so dass alle anderen Attribute mit NULL oder dem Default-Wert gefüllt werden können.</p>
-</section>
-<section id="einfugen-auf-sichten-beispiel">
-<h3><span class="section-number">9.8.6. </span>Einfügen auf Sichten – Beispiel<a class="headerlink" href="#einfugen-auf-sichten-beispiel" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="einfugen-auf-sichten-beispiel">
+<h3><span class="section-number">9.8.6. </span>Einfügen auf Sichten – Beispiel<a class="headerlink" href="#einfugen-auf-sichten-beispiel" title="Permalink to this headline">¶</a></h3>
 <p>■ Filme(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentinID)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -11304,9 +11125,9 @@ VALUES (‚Star Trek‘, 1979, ‚Paramount‘);
 <p>Dies muss Paramount sein. Ein anderes Studio entspricht nicht der View.
 <br><br>
 ■ Neues Tupel (‚Star Trek‘, 1979, 0, NULL, ‚Paramount‘, NULL)</p>
-</section>
-<section id="loschen-und-updates-auf-sichten">
-<h3><span class="section-number">9.8.7. </span>Löschen und Updates auf Sichten<a class="headerlink" href="#loschen-und-updates-auf-sichten" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="loschen-und-updates-auf-sichten">
+<h3><span class="section-number">9.8.7. </span>Löschen und Updates auf Sichten<a class="headerlink" href="#loschen-und-updates-auf-sichten" title="Permalink to this headline">¶</a></h3>
 <p>■ Löschen</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -11349,9 +11170,9 @@ WHERE Titel = ‚Star Trek the Movie‘ AND StudioName = ‚Paramount‘;
 </div>
 </div>
 </div>
-</section>
-<section id="tupelmigration">
-<h3><span class="section-number">9.8.8. </span>Tupelmigration<a class="headerlink" href="#tupelmigration" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="tupelmigration">
+<h3><span class="section-number">9.8.8. </span>Tupelmigration<a class="headerlink" href="#tupelmigration" title="Permalink to this headline">¶</a></h3>
 <p>■ Manager(Name, Adresse, ManagerinID, Gehalt)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -11390,9 +11211,9 @@ WHERE Titel = ‚Star Trek the Movie‘ AND StudioName = ‚Paramount‘;
 </div>
 </div>
 <p>□ Verhindert Tupelmigration durch Ablehnung problematischer Updates.</p>
-</section>
-<section id="anfrageplanung-mit-sichten">
-<h3><span class="section-number">9.8.9. </span>Anfrageplanung mit Sichten<a class="headerlink" href="#anfrageplanung-mit-sichten" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="anfrageplanung-mit-sichten">
+<h3><span class="section-number">9.8.9. </span>Anfrageplanung mit Sichten<a class="headerlink" href="#anfrageplanung-mit-sichten" title="Permalink to this headline">¶</a></h3>
 <p>■ Baumdarstellung von Anfragen
 <br>
 □ Blätter repräsentieren Relationen
@@ -11452,9 +11273,9 @@ WHERE StudioName = ‚Paramount‘;
 <img alt="title" src="../_images/anfrageplanung3.jpg" />
 <br>
 <img alt="title" src="../_images/anfrageplanung4.jpg" /></p>
-</section>
-<section id="materialisierte-sichten">
-<h3><span class="section-number">9.8.10. </span>Materialisierte Sichten<a class="headerlink" href="#materialisierte-sichten" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="materialisierte-sichten">
+<h3><span class="section-number">9.8.10. </span>Materialisierte Sichten<a class="headerlink" href="#materialisierte-sichten" title="Permalink to this headline">¶</a></h3>
 <p>■ Viele Anfragen an eine Datenbank wiederholen sich häufig
 <br>
 □ Business Reports, Bilanzen, Umsätze
@@ -11472,8 +11293,8 @@ WHERE StudioName = ‚Paramount‘;
 □ Materialisierte Sicht (materialized view, MV)
 <br>
 Drei Folien nach Prof. Ulf Leser, HU Berlin</p>
-<section id="mv-themen-und-probleme">
-<h4><span class="section-number">9.8.10.1. </span>MV – Themen und Probleme<a class="headerlink" href="#mv-themen-und-probleme" title="Permalink to this headline">#</a></h4>
+<div class="section" id="mv-themen-und-probleme">
+<h4><span class="section-number">9.8.10.1. </span>MV – Themen und Probleme<a class="headerlink" href="#mv-themen-und-probleme" title="Permalink to this headline">¶</a></h4>
 <p>■ Wahl von Views zur Materialisierung
 <br>
 □ MVs kosten: Platz und Aktualisierungsaufwand
@@ -11499,10 +11320,10 @@ Drei Folien nach Prof. Ulf Leser, HU Berlin</p>
 □ Schwierigkeit hängt von Komplexität der Anfrage / Views ab
 <br>
 □ Algorithmen zur transparenten und kostenoptimalen Verwendung der materialisierten Sichten</p>
-</section>
-</section>
-<section id="answering-queries-using-views">
-<h3><span class="section-number">9.8.11. </span>„Answering Queries using Views“<a class="headerlink" href="#answering-queries-using-views" title="Permalink to this headline">#</a></h3>
+</div>
+</div>
+<div class="section" id="answering-queries-using-views">
+<h3><span class="section-number">9.8.11. </span>„Answering Queries using Views“<a class="headerlink" href="#answering-queries-using-views" title="Permalink to this headline">¶</a></h3>
 <p>■ Gegeben
 <br>
 □ Eine Anfrage Q
@@ -11518,10 +11339,10 @@ Drei Folien nach Prof. Ulf Leser, HU Berlin</p>
 □ Kann man Q mit V vollständig beantworten?
 <br>
 □ Ist es günstig, Sichten aus V zur Beantwortung von Q zu verwenden? Welche?</p>
-</section>
-</section>
-<section id="zusammenfassung">
-<h2><span class="section-number">9.9. </span>Zusammenfassung<a class="headerlink" href="#zusammenfassung" title="Permalink to this headline">#</a></h2>
+</div>
+</div>
+<div class="section" id="zusammenfassung">
+<h2><span class="section-number">9.9. </span>Zusammenfassung<a class="headerlink" href="#zusammenfassung" title="Permalink to this headline">¶</a></h2>
 <p>Die Anfragesprache SQL
 <br>
 Der SFW Block
@@ -11567,8 +11388,8 @@ Sichten
 Anfragen (und updates)
 <br>
 Materialisierte Sichten</p>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -11592,11 +11413,9 @@ Materialisierte Sichten</p>
 
               </div>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="../08/relationale_algebra.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -11612,28 +11431,24 @@ Materialisierte Sichten</p>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            </footer>
+            
         </div>
     </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Prof. Dr. Ziawasch Abedjan<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+    <footer class="footer">
+  <p>
     
-</div>
+      By Prof. Dr. Ziawasch Abedjan<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
 
 
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>
