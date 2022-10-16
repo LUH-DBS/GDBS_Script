@@ -10416,7 +10416,7 @@ Möchten wir z.B alle Disney Filme aus 1990 ausgeben. Wir könnte mit Variante 1
 </div>
 </div>
 </div>
-<p>Die Reihenfolge der Relationen bei Indizes auf mehreren Attributen ist wichtig! Für unser Beispiel suchen implizit zuerst nach Jahr gefolgt von StudioName.
+<p>Die Reihenfolge der Relationen bei Indizes auf mehreren Attributen ist wichtig. Wenn der Index sort-basiert ist, wird nach Jahr sortiert und für jedes Jahr jeweils nach Studioname. Für unser Beispiel wird mplizit zuerst nach Jahr gefolgt von StudioName gesucht.
 <br><br>
 Um einen Index zu löschen kann DROP INDEX … verwendet werden.</p>
 <div class="cell docutils container">
@@ -10429,55 +10429,20 @@ Um einen Index zu löschen kann DROP INDEX … verwendet werden.</p>
 </div>
 <div class="section" id="indexwahl">
 <h4><span class="section-number">9.7.6.1. </span>Indexwahl<a class="headerlink" href="#indexwahl" title="Permalink to this headline">¶</a></h4>
-<p>■ Abwägung
-<br>
-□ Index beschleunigt Punkt- (und Bereichs-) Anfragen und Join-Anfragen erheblich.
-<br>
-□ Index verlangsamt das Einfügen, Löschen und Verändern von Tupeln der Relation.
-<br>
-– Index muss jeweils zusätzlich aktualisiert werden.
-<br>
-□ Indizes benötigen Speicherplatz.
-<br><br>
-■ Wahl der besten Indizes ist eine der schwierigsten Aufgaben des Datenbankdesigns.
-<br>
-□ Vorhersage der query workload und update-Frequenz
-<br>
-□ Wahl der Attribute
-<br>
-– Häufiger Vergleich mit Konstanten
-<br>
-– Häufiges Joinattribut</p>
+<p>Aufgrund der Kosten muss die Indexwahl abgewogen werden. Zum einen beschleunigen Indizes Punkt- (und Bereichs-) Anfragen und Join-Anfragen erheblich, aber das Einfügen, Löschen und Verändern von Tupeln der Relation wird verlangsamt, da der Index immer wieder aktualisiert werden muss. Zudem benötigen Indizes auch noch Speicherplatz.</p>
+<p>Die Wahl der besten Indizes ist eine der schwierigsten Aufgaben des Datenbankdesigns, in welcher auch viel Forschung betrieben wird. Im Idealfall ist die Vorhersage der Query Workload und Update-Frequenz bekannt und es werden Attribute gewählt mit denen häufig Konstanten verglichen werden oder die häufig als Joinattribute fungieren.</p>
 </div>
 <div class="section" id="indexwahl-voruberlegungen">
 <h4><span class="section-number">9.7.6.2. </span>Indexwahl – Vorüberlegungen<a class="headerlink" href="#indexwahl-voruberlegungen" title="Permalink to this headline">¶</a></h4>
-<p>■ Relationen sind typischerweise über mehrere Diskblöcke gespeichert.
-<br>
-□ Wichtigste Datenbankkosten sind die Anzahl der Diskblöcke, die in den Hauptspeicher gelesen werden müssen.
-<br>
-□ Bei Punktanfragen mit Index müssen statt aller Blöcke nur ein Block gelesen werden.
-<br>
-□ Aber Index selbst muss ebenfalls gespeichert und gelesen werden.
-<br>
-– IdR viel mehr Tupel pro Block repräsentiert: Nur Schlüsselwert und Speicheradresse, keine Daten
-<br>
-□ Updates kosten sogar doppelt: Lesen und Schreiben auch der Index-Blöcke</p>
+<p>Bei Vorüberlegungen zur Indexwahl muss ebenso beachtet werden, wie Indizes implementiert sind. Typischerweise sind Relationen über mehrere Diskblöcke gespeichert, wobei sich die wichtigsten Datenbankkosten aus der Anzahl, der in den Hauptspeicher gelesenen Diskblöcke bildet. Anders müssen bei Punktanfragen mit einem Index nur ein Block, statt allen gelesen werden, aber der Index selbst muss auch gespeichert und gelesen werden. In der Regel sind viel mehr Tupel pro Block repräsentiert und es werden häufig nur Schlüsselwerte und Speicheradresse und keine Daten gespeichert. Beim Updaten sind die Kosten sogar doppelt, da die Blöcke für das Lesen und Schriben der Index-Blöcke geladen werden muss.</p>
 </div>
 <div class="section" id="indexwahl-beispiel">
 <h4><span class="section-number">9.7.6.3. </span>Indexwahl – Beispiel<a class="headerlink" href="#indexwahl-beispiel" title="Permalink to this headline">¶</a></h4>
-<p>■ spielt_in(FilmTitel, FilmJahr, Schauspieler)
-<br><br>
-■ Drei typische Anfragen</p>
+<p>Nun schauen wir uns ein Beispiel an. Haben wir die Relation spielt_in(FilmTitel, FilmJahr, SchauspielerName) udn die Variablen s,t,j gegeben und möchten drei typische Anfragen ausführen. Wir suchen einma lden Titel und das Jahr eines bestimmten Filmes s, den Schauspieler der in einem bestimmten Film eines bestimmten Jahres mitgespielt hat und wollen zuletzt in die Relation spielt_in Tupel einfügen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT FilmTitel, FilmJahr </span>
-<span class="c1">#FROM spielt_in </span>
-<span class="c1">#WHERE Name = s;</span>
-
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT FilmTitel, FilmJahr FROM spielt_in WHERE Name = &#39;s&#39;&quot;</span>
-<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
-<span class="n">df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
+<span class="n">SELECT</span> <span class="n">FilmTitel</span><span class="p">,</span> <span class="n">FilmJahr</span> <span class="n">FROM</span> <span class="n">spielt_in</span> <span class="n">WHERE</span> <span class="n">Name</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -10512,31 +10477,25 @@ Um einen Index zu löschen kann DROP INDEX … verwendet werden.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
-<span class="n">SELECT</span> <span class="n">Schauspieler</span> <span class="n">FROM</span> <span class="n">spielt_in</span>
+<span class="n">SELECT</span> <span class="n">SchauspielerName</span> <span class="n">FROM</span> <span class="n">spielt_in</span>
 <span class="n">WHERE</span> <span class="n">FilmTitel</span> <span class="o">=</span> <span class="n">t</span> <span class="n">AND</span> <span class="n">FilmJahr</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
 <span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">spielt_in</span> <span class="n">VALUES</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>■ Annahmen
-<br>
-□ spielt_in ist auf 10 Disk-Blöcke verteilt.
-<br>
-□ Durchschnittlich habe jeder Film 3 Schauspieler.
-<br>
-□ Durchschnittlich spiele jeder Schauspieler in 3 Filmen.
-<br>
-□ Annahme des Schlimmsten: 3 Tupel sind auf 3 Blöcke verteilt
-<br>
-□ Index ist auf 1 Block gespeichert.
-<br>
-□ Lesen und Schreiben kostet 1.
-<br>
-□ Update und Insert kosten jeweils 2.</p>
+<p>Wir nehmen an, dass spielt_in auf 10 Disk-Blöcke verteilt ist. Im Durchschnitt hat jeder Film 3 Schauspiel und jeder Schauspieler spielte in 3 Filmen mit. Im schlimmsten Fall sind 3 Tupel auf 3 Blöcke verteilt und eine Index ist auf einem Block gespeichert. Die Operationen Lesen und Schreiben kosten 1 und Update und Insert kosten jeweils 2.</p>
 </div>
 <div class="section" id="id2">
 <h4><span class="section-number">9.7.6.4. </span>Indexwahl – Beispiel<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p>Im fogenden sind die Kosten der drei Anfragen tabellarisch aufgeführt. Die Variable p1 bildet den Anteil der Anfrage 1, p2 den Anteil der Anfrage 2 und 1-p1-p2 den Anteil der Anfrage 3.</p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Anfrage</p></th>
@@ -10573,17 +10532,13 @@ Um einen Index zu löschen kann DROP INDEX … verwendet werden.</p>
 </tr>
 </tbody>
 </table>
-<p>■ p1: Anteil Anfrage 1
-<br>
-■ p2: Anteil Anfrage 2
-<br>
-■ 1‒p1‒p2: Anteil Anfrage 3
-<br></p>
 </div>
 </div>
 <div class="section" id="verteilung-in-imdb-real-world-daten-stand-ca-2010">
 <h3><span class="section-number">9.7.7. </span>Verteilung in IMDB (Real-world Daten, Stand ca. 2010)<a class="headerlink" href="#verteilung-in-imdb-real-world-daten-stand-ca-2010" title="Permalink to this headline">¶</a></h3>
+<p>Im folgenden betrachten wir eine größere Datenbank, die dem Sternenschema folgt. In der Mitte sehen wir die Relation Movie und daherum viele weitere Relationen die mit der Movie_ID in Verbindung stehen.</p>
 <p><img alt="title" src="../_images/imdb.jpg" /></p>
+<p>Wir wollen nun die Durchschnittliche Anzahl an Schauspieler*Innen pro Film und umgekehrt berechnen und benutzen das Schlüsselwort WITH, um bestimmte Anfragen mit einem Alias vorzudefinieren.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
@@ -10591,8 +10546,8 @@ Um einen Index zu löschen kann DROP INDEX … verwendet werden.</p>
 <span class="n">m</span> <span class="n">AS</span> <span class="p">(</span><span class="n">SELECT</span> <span class="n">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">AS</span> <span class="n">ZahlMovies</span> <span class="n">FROM</span> <span class="n">imdb</span><span class="o">.</span><span class="n">movie</span><span class="p">),</span>
 <span class="n">actress</span> <span class="n">AS</span> <span class="p">(</span><span class="n">SELECT</span> <span class="n">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">AS</span> <span class="n">ZahlActress</span> <span class="n">FROM</span> <span class="n">imdb</span><span class="o">.</span><span class="n">actress</span><span class="p">),</span>
 <span class="n">actor</span> <span class="n">AS</span> <span class="p">(</span><span class="n">SELECT</span> <span class="n">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">AS</span> <span class="n">ZahlActor</span> <span class="n">FROM</span> <span class="n">imdb</span><span class="o">.</span><span class="n">actor</span><span class="p">),</span>
-<span class="n">actors</span> <span class="n">AS</span> <span class="p">(</span><span class="n">SELECT</span> <span class="p">(</span><span class="n">ZahlActress</span> <span class="o">+</span> <span class="n">ZahlActor</span><span class="p">)</span> <span class="n">AS</span> <span class="n">GesamtActors</span>
-<span class="n">FROM</span> <span class="n">actress</span><span class="p">,</span> <span class="n">actor</span><span class="p">)</span>
+<span class="n">actors</span> <span class="n">AS</span> <span class="p">(</span><span class="n">SELECT</span> <span class="p">(</span><span class="n">ZahlActress</span> <span class="o">+</span> <span class="n">ZahlActor</span><span class="p">)</span> <span class="n">AS</span> <span class="n">GesamtActors</span> <span class="n">FROM</span> <span class="n">actress</span><span class="p">,</span> <span class="n">actor</span><span class="p">)</span>
+
 <span class="n">SELECT</span> <span class="n">DOUBLE</span><span class="p">(</span><span class="n">actors</span><span class="o">.</span><span class="n">GesamtActors</span><span class="p">)</span> <span class="o">/</span> <span class="n">DOUBLE</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">ZahlMovies</span><span class="p">)</span>
 <span class="n">FROM</span> <span class="n">m</span><span class="p">,</span> <span class="n">actors</span>
 </pre></div>
@@ -10604,10 +10559,9 @@ Um einen Index zu löschen kann DROP INDEX … verwendet werden.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
 <span class="n">WITH</span>
-<span class="n">actors</span> <span class="n">AS</span> <span class="p">(</span><span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">imdb</span><span class="o">.</span><span class="n">actor</span> <span class="n">UNION</span>
-<span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">imdb</span><span class="o">.</span><span class="n">actress</span><span class="p">),</span>
-<span class="n">counts</span> <span class="n">AS</span> <span class="p">(</span><span class="n">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">count</span><span class="p">(</span><span class="n">movie_id</span><span class="p">)</span> <span class="n">AS</span> <span class="n">m</span>
-<span class="n">FROM</span> <span class="n">actors</span> <span class="n">GROUP</span> <span class="n">BY</span> <span class="n">name</span><span class="p">)</span>
+<span class="n">actors</span> <span class="n">AS</span> <span class="p">(</span><span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">imdb</span><span class="o">.</span><span class="n">actor</span> <span class="n">UNION</span> <span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">imdb</span><span class="o">.</span><span class="n">actress</span><span class="p">),</span>
+<span class="n">counts</span> <span class="n">AS</span> <span class="p">(</span><span class="n">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">count</span><span class="p">(</span><span class="n">movie_id</span><span class="p">)</span> <span class="n">AS</span> <span class="n">m</span> <span class="n">FROM</span> <span class="n">actors</span> <span class="n">GROUP</span> <span class="n">BY</span> <span class="n">name</span><span class="p">)</span>
+
 <span class="n">SELECT</span> <span class="n">AVG</span><span class="p">(</span><span class="n">DOUBLE</span><span class="p">(</span><span class="n">m</span><span class="p">))</span> <span class="n">FROM</span> <span class="n">counts</span>
 </pre></div>
 </div>
@@ -10620,17 +10574,7 @@ Um einen Index zu löschen kann DROP INDEX … verwendet werden.</p>
 <h2><span class="section-number">9.8. </span>Sichten<a class="headerlink" href="#sichten" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="virtuelle-relationen">
 <h3><span class="section-number">9.8.1. </span>Virtuelle Relationen<a class="headerlink" href="#virtuelle-relationen" title="Permalink to this headline">¶</a></h3>
-<p>■ Relationen aus CREATE TABLE Ausdrücken existieren tatsächlich (materialisiert, physisch) in der Datenbank.
-<br>
-□ Persistenz
-<br>
-□ Updates sind möglich
-<br><br>
-■ Die Daten aus Sichten (views) existieren nur virtuell.
-<br>
-□ Sichten entsprechen Anfragen, denen man einen Namen gibt. Sie wirken wie physische Relationen.
-<br>
-□ Updates sind nur manchmal möglich.
+<p>Bisher kennen wir nur Relationen, die aus CREATE TABLE Ausdrücken existieren und tatsächlich (materialisiert, physisch) in der Datenbank vorhanden sind. Dieses sind persistent und auf ihnen können Updates ausgeführt werden. In diesem Kapitel beschäftigen wir uns mit Sichten. Sichten entsprechen Anfragen, denen man einen Namen gibt. Sie wirken wie physische Relationen, jedoch existieren die Daten aus Sichten nur virtuell und Updates darafu sind nur manchmal möglich.
 <br>
 <br>
 <img alt="title" src="../_images/stonebraker1.jpg" />
@@ -10641,7 +10585,9 @@ Michael Stonebraker: Implementation of Integrity Constraints and Views by Query 
 </div>
 <div class="section" id="sichten-in-sql">
 <h3><span class="section-number">9.8.2. </span>Sichten in SQL<a class="headerlink" href="#sichten-in-sql" title="Permalink to this headline">¶</a></h3>
-<p>■ CREATE VIEW Name AS Anfrage</p>
+<p>Der Grundbaustein zum erstellen von Sichten(Views) ist CREATE VIEW Name AS Anfrage. In der Anfrage dürfen Relationen auch gejoint sein.
+<br><br>
+Im folgenden erstellen wir eine View auf alle Filme von Paramount und nennen die View ParamountFilme.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
@@ -10653,9 +10599,7 @@ Michael Stonebraker: Implementation of Integrity Constraints and Views by Query 
 </div>
 </div>
 </div>
-<p>□ Auch mehr als eine Relation möglich!
-<br><br>
-■ Bedeutung einer Anfrage an die Sicht
+<p>■ Bedeutung einer Anfrage an die Sicht
 <br></p>
 <ol class="simple">
 <li><p>Ausführung der Anfrage aus der Sichdefinition
