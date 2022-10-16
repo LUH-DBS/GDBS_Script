@@ -10574,7 +10574,7 @@ Um einen Index zu löschen kann DROP INDEX … verwendet werden.</p>
 <h2><span class="section-number">9.8. </span>Sichten<a class="headerlink" href="#sichten" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="virtuelle-relationen">
 <h3><span class="section-number">9.8.1. </span>Virtuelle Relationen<a class="headerlink" href="#virtuelle-relationen" title="Permalink to this headline">¶</a></h3>
-<p>Bisher kennen wir nur Relationen, die aus CREATE TABLE Ausdrücken existieren und tatsächlich (materialisiert, physisch) in der Datenbank vorhanden sind. Dieses sind persistent und auf ihnen können Updates ausgeführt werden. In diesem Kapitel beschäftigen wir uns mit Sichten. Sichten entsprechen Anfragen, denen man einen Namen gibt. Sie wirken wie physische Relationen, jedoch existieren die Daten aus Sichten nur virtuell und Updates darafu sind nur manchmal möglich.
+<p>Bisher kennen wir nur Relationen, die aus CREATE TABLE Ausdrücken existieren und tatsächlich (materialisiert, physisch) in der Datenbank vorhanden sind. Dieses sind persistent und auf ihnen können Updates ausgeführt werden. In diesem Kapitel beschäftigen wir uns mit Sichten. Sichten entsprechen Anfragen, denen man einen Namen gibt. Sie wirken wie physische Relationen, jedoch existieren die Daten aus Sichten nur virtuell und Updates darauf sind nur manchmal möglich. Views stellen Separation of Concern dar, können Effizienz verbessern und ermöglichen einfachere Anfragen.
 <br>
 <br>
 <img alt="title" src="../_images/stonebraker1.jpg" />
@@ -10599,33 +10599,13 @@ Im folgenden erstellen wir eine View auf alle Filme von Paramount und nennen die
 </div>
 </div>
 </div>
-<p>■ Bedeutung einer Anfrage an die Sicht
-<br></p>
-<ol class="simple">
-<li><p>Ausführung der Anfrage aus der Sichdefinition
-<br></p></li>
-<li><p>Die ursprüngliche Anfrage verwendet dann das Ergebnis als Relation.
+<p>Bei einer Anfrage an eine Sicht, wird die Anfrage aus der Sichtdefinition ausgeführt und die ursprüngliche Anfrage verwendet das Ergebnis dann als Relation. Bei Änderungen der zugrundeliegenden Relationen ändern sich quch die Daten der Sicht.
 <br><br>
-■ Daten der Sicht ändern sich mit der Änderung der zugrundeliegenden Relationen.
-<br>
-■ Entfernen der Sicht: DROP VIEW ParamountFilme
-<br>
-□ Basisdaten bleiben unverändert.</p></li>
-</ol>
+Um eine Sicht zu löschen kann DROP VIEW Name, für unser Beispiel DROP VIEW ParamountFilme, benutzt werden, das Löschen der Sicht hat keinen Einfluss auf die Basisdaten</p>
 </div>
 <div class="section" id="anfragen-an-sichten">
 <h3><span class="section-number">9.8.3. </span>Anfragen an Sichten<a class="headerlink" href="#anfragen-an-sichten" title="Permalink to this headline">¶</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
-<span class="n">CREATE</span> <span class="n">VIEW</span> <span class="n">ParamountFilme</span> <span class="n">AS</span>
-<span class="n">SELECT</span> <span class="n">Titel</span><span class="p">,</span> <span class="n">Jahr</span>
-<span class="n">FROM</span> <span class="n">Film</span>
-<span class="n">WHERE</span> <span class="n">StudioName</span> <span class="o">=</span> <span class="s2">&quot;Paramount&quot;</span><span class="p">;</span>
-</pre></div>
-</div>
-</div>
-</div>
+<p>Wir suchen nun alle Filme von Paramount aus 1979 und tun dies indem wir eine Anfrage an unsere ParamountFilme-Sicht stellen. Ohne Sicht müssten wir die Anfrage in eine Anfrage an die Basisrelation umwandeln wie eine Codezelle weiter zu sehen ist.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
@@ -10636,18 +10616,13 @@ Im folgenden erstellen wir eine View auf alle Filme von Paramount und nennen die
 </div>
 </div>
 </div>
-<p>■ Umwandlung der ursprünglichen Anfrage in eine Anfrage an Basisrelationen</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Titel </span>
-<span class="c1">#FROM Film </span>
-<span class="c1">#WHERE StudioName = &quot;Paramount&quot; </span>
-<span class="c1">#AND Jahr = 1979;</span>
-
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Titel FROM Film WHERE Jahr = 1979 AND StudioName = &#39;Paramount&#39;;&quot;</span>
-<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
-<span class="n">df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
+<span class="n">SELECT</span> <span class="n">Titel</span> 
+<span class="n">FROM</span> <span class="n">Film</span> 
+<span class="n">WHERE</span> <span class="n">StudioName</span> <span class="o">=</span> <span class="s2">&quot;Paramount&quot;</span> 
+<span class="n">AND</span> <span class="n">Jahr</span> <span class="o">=</span> <span class="mi">1979</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -10678,21 +10653,13 @@ Im folgenden erstellen wir eine View auf alle Filme von Paramount und nennen die
 </table>
 </div></div></div>
 </div>
-<p>□ Übersetzung durch DBMS
-<br>
-■ Anfrage zugleich an Sichten und Basisrelationen möglich</p>
+<p>Ebenso sind Anfrage zugleich an Sichten und Basisrelationen möglich, wie unten gezeigt.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Anfrage aus VL Folien</span>
-<span class="c1">#SELECT DISTINCT SchauspielerIn</span>
-<span class="c1">#FROM ParamountFilme, spielt_in</span>
-<span class="c1">#WHERE Titel = FilmTitel AND Jahr = FilmJahr;</span>
-
-<span class="c1">#Anfrage für filme.db</span>
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT DISTINCT Name FROM Film, spielt_in WHERE Titel = FilmTitel AND Jahr = FilmJahr;&quot;</span>
-<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
-<span class="n">df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
+<span class="n">SELECT</span> <span class="n">DISTINCT</span> <span class="n">SchauspielerIn</span>
+<span class="n">FROM</span> <span class="n">ParamountFilme</span><span class="p">,</span> <span class="n">spielt_in</span>
+<span class="n">WHERE</span> <span class="n">Titel</span> <span class="o">=</span> <span class="n">FilmTitel</span> <span class="n">AND</span> <span class="n">Jahr</span> <span class="o">=</span> <span class="n">FilmJahr</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -10847,29 +10814,24 @@ Im folgenden erstellen wir eine View auf alle Filme von Paramount und nennen die
 </table>
 </div></div></div>
 </div>
-<p>■ Film(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentinID)
-■ Manager(Name, Adresse, ManagerinID, Gehalt)</p>
+<p>Im Folgenden nochmal ein weiteres Beispiel. Haben wir die Relationen Film(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentinID) und ManagerIn (Name, Adresse, ManagerinID, Gehalt) gegeben. Wir erstellen eine View von allen Filmproduzent*Innen und suchen mit der Sicht den/die Profuzent*In für den Film Gone with the Wind.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
-<span class="n">CREATE</span> <span class="n">VIEW</span> <span class="n">FilmeProduzenten</span> <span class="n">AS</span>
+<span class="n">CREATE</span> <span class="n">VIEW</span> <span class="n">FilmeProduzentenInnen</span> <span class="n">AS</span>
     <span class="n">SELECT</span> <span class="n">Titel</span><span class="p">,</span> <span class="n">Name</span>
-    <span class="n">FROM</span> <span class="n">Film</span><span class="p">,</span> <span class="n">Manager</span>
+    <span class="n">FROM</span> <span class="n">Film</span><span class="p">,</span> <span class="n">ManagerIn</span>
     <span class="n">WHERE</span> <span class="n">ProduzentinID</span> <span class="o">=</span> <span class="n">ManagerinID</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>■ Anfrage</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#alte Anfrage</span>
-<span class="c1">#SELECT Name FROM FilmeProduzenten WHERE Titel = ‘Gone with the Wind‘</span>
-
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Titel FROM Film WHERE Titel = &#39;Gone with the Wind&#39;&quot;</span>
-<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
-<span class="n">df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%sql
+SELECT Name 
+FROM FilmeProduzenten 
+WHERE Titel = ‘Gone with the Wind‘
 </pre></div>
 </div>
 </div>
@@ -10904,15 +10866,14 @@ Im folgenden erstellen wir eine View auf alle Filme von Paramount und nennen die
 </table>
 </div></div></div>
 </div>
-<p>■ Bedeutung</p>
+<p>Dieselbe Anfrage an die Basisrelation</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%sql SELECT Name FROM Film, ManagerIn WHERE ProduzentinID = ManagerinID AND Titel = &#39;Gone with the Wind&#39;;</span>
-
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Name FROM Film, ManagerIn WHERE ProduzentinID = ManagerinID AND Titel = &#39;Gone with the Wind&#39;;&quot;</span>
-<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
-<span class="n">df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span> 
+<span class="n">SELECT</span> <span class="n">Name</span> 
+<span class="n">FROM</span> <span class="n">Film</span><span class="p">,</span> <span class="n">ManagerIn</span> 
+<span class="n">WHERE</span> <span class="n">ProduzentinID</span> <span class="o">=</span> <span class="n">ManagerinID</span> 
+<span class="n">AND</span> <span class="n">Titel</span> <span class="o">=</span> <span class="s1">&#39;Gone with the Wind&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -10947,7 +10908,7 @@ Im folgenden erstellen wir eine View auf alle Filme von Paramount und nennen die
 </table>
 </div></div></div>
 </div>
-<p>■ Nebenbei: Umbenennung von Attributen</p>
+<p>Es ist auch möglich die Attribute der Basisrelation in der Sicht umzubennen. Im Beispiel unten wird aus Titel FilmTitel und ManagerIn zu Produzentenname in der Sicht.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
@@ -10959,7 +10920,7 @@ Im folgenden erstellen wir eine View auf alle Filme von Paramount und nennen die
 </div>
 </div>
 </div>
-<p>■ Oder auch: Sicht einfach nur zur Umbenennung</p>
+<p>Sichten können auch nur zur Umbennenung dienen, wie unten gezeigt.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
@@ -10973,13 +10934,9 @@ Im folgenden erstellen wir eine View auf alle Filme von Paramount und nennen die
 </div>
 <div class="section" id="diskussion">
 <h3><span class="section-number">9.8.4. </span>Diskussion<a class="headerlink" href="#diskussion" title="Permalink to this headline">¶</a></h3>
-<p>■ Vorteile
-<br>
-□ Vereinfachung von Anfragen
-<br>
-□ Strukturierung der Datenbank
-<br>
-□ Logische Datenunabhängigkeit
+<p>Die Vorteile von Sichten beinhalten die Vereinfachung von Anfragen, sowie die Strukturierung der Datenbank. Es wird ebenfalls eine logische Datenunabhängigkeit geschaffen. Der Zugriff auf die Daten kann beschränkt werden, z.B könnten wir für unser Beispiel nur Paramount-Mitarbeiter*Innen den Zugriff auf die Sicht ParamountFilme erlauben.
+<br></p>
+<p>□ Logische Datenunabhängigkeit
 <br>
 – Sichten stabil bei Änderungen der Datenbankstruktur
 <br>
@@ -10987,11 +10944,9 @@ Im folgenden erstellen wir eine View auf alle Filme von Paramount und nennen die
 <br>
 – Stabilität nicht bei jeder Änderung
 <br>
-□ Beschränkung von Zugriffen (Datenschutz)
-<br>
 □ Optimierung durch materialisierte Sichten
-<br><br>
-■ Probleme
+<br><br></p>
+<p>■ Probleme
 <br>
 □ Automatische Anfragetransformation schwierig
 <br>
