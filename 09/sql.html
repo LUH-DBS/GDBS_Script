@@ -10946,19 +10946,13 @@ WHERE Titel = ‘Gone with the Wind‘
 <br>
 □ Optimierung durch materialisierte Sichten
 <br><br></p>
-<p>■ Probleme
-<br>
-□ Automatische Anfragetransformation schwierig
-<br>
-□ Änderungen auf Sichten
-<br>
-□ Updatepropagierung für materialisierte Sichten</p>
+<p>Weiterhin bleibt die Änderung auf Sichten ein Problembereich, sowie die Updatepropagierung für materialisierte Sichten. Auch die automatische Anfragetransformation gestaltet sich mit Sichten schwieriger.</p>
 </div>
 <div class="section" id="updates-auf-sichten">
 <h3><span class="section-number">9.8.5. </span>Updates auf Sichten<a class="headerlink" href="#updates-auf-sichten" title="Permalink to this headline">¶</a></h3>
 <p>In einigen Fällen ist es möglich, Einfüge-, Lösch- oder Updateoperationen auf Sichten durchzuführen. Hier stellen sich die Fragen: Wo sind die Sichten gespeichert? Welche Relationen sind betroffen? Wie verläuft die Zuordnung der Änderung zur Sicht?
 <br><br>
-In den meisten Fällen die Update-Operation einer Sicht auf eine Update-Operation der zugrunde liegenden Basisrelationen übersetzt. Hierbei darf kein DISTINCT, sondern nur eine normales SELECT verwendet werden. Eine gute Kenntnis der Datenbank muss vorausgesetzt sein, da durch das Vergessen mancher Attribute Inkonsistenzen durch NULL-Werte entstehen können.
+In den meisten Fällen wird die Update-Operation einer Sicht auf eine Update-Operation der zugrunde liegenden Basisrelationen übersetzt. Hierbei darf kein DISTINCT, sondern nur eine normales SELECT verwendet werden. Eine gute Kenntnis der Datenbank muss vorausgesetzt sein, da durch das Vergessen mancher Attribute Inkonsistenzen durch NULL-Werte entstehen können.
 <br><br>
 □ Nur bei einer Relation
 <br>
@@ -11113,6 +11107,7 @@ WHERE Titel = ‚Star Trek the Movie‘ AND StudioName = ‚Paramount‘;
 <br>
 Ein Beispiel hierfür sehen wir in der unteren Abbildung. Die Dreiecke sind die Anfragen und die Kreise Sichten. Wir ersetzen die Sichten v und w durch ihre Sichtdefinitionen und sehen, das w eine weitere Sicht z in Anspruch nimmt.</p>
 <p><img alt="title" src="../_images/anfrageplanung1.jpg" /></p>
+<p>Betrachten wir wieder unsere Beispielsicht ParamountFilme. Wir möchten nun die unten stehende Anfrage ausführen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#Sicht
@@ -11141,83 +11136,52 @@ WHERE StudioName = ‚Paramount‘;
 </div>
 </div>
 <p><img alt="title" src="../_images/anfrageplanung2.jpg" />
-<br>
+<br><br>
+Hier wird die Sichtendefinition der ParamountFilme dargestellt.
+<br><br>
 <img alt="title" src="../_images/anfrageplanung3.jpg" />
-<br>
-<img alt="title" src="../_images/anfrageplanung4.jpg" /></p>
+<br><br>
+Im zweiten Schritt sehen wir die Ausführungsreihenfolge der Anfrage, die direkt auf der Sicht ParamountFilme ausgeführt wird
+<br><br>
+<img alt="title" src="../_images/anfrageplanung4.jpg" />
+<br><br>
+Zuletzt sehen wir, dass ParamountFilme durch die Sichtendefnition ersetzt wurde.</p>
 </div>
 <div class="section" id="materialisierte-sichten">
 <h3><span class="section-number">9.8.10. </span>Materialisierte Sichten<a class="headerlink" href="#materialisierte-sichten" title="Permalink to this headline">¶</a></h3>
-<p>■ Viele Anfragen an eine Datenbank wiederholen sich häufig
-<br>
-□ Business Reports, Bilanzen, Umsätze
-<br>
-□ Bestellungsplanung, Produktionsplanung
-<br>
-□ Kennzahlenberechnung
+<p>In der realen Welt ist es möglich, dass viele Anfragen an eine Datenbank sich häufig wiederholen, wie z.B bei Business Reports, Bilanzen, Umsätze oder Bestellungsplanung, Produktionsplanung oder auch bei der Kennzahlenberechnung. Diese vielen Anfragen sind oft Variationen mit gemeinsamen Kern. Um Ressourcen zu sparen kann eine Anfrage als Sicht einmalig berechnet und dann materialisiert werden. So kann die Sicht automatisch und transparent in folgenden Anfragen wiederbenutzt werden.
 <br><br>
-■ Viele Anfragen sind Variationen mit gemeinsamem Kern
-<br><br>
-■ Idee: Einmaliges Berechnen der Anfrage als Sicht
-<br>
-□ Automatische, transparente Verwendung in folgenden Anfragen
-<br>
-□ Materialisierte Sicht (materialized view, MV)
-<br>
 Drei Folien nach Prof. Ulf Leser, HU Berlin</p>
 <div class="section" id="mv-themen-und-probleme">
 <h4><span class="section-number">9.8.10.1. </span>MV – Themen und Probleme<a class="headerlink" href="#mv-themen-und-probleme" title="Permalink to this headline">¶</a></h4>
-<p>■ Wahl von Views zur Materialisierung
-<br>
-□ MVs kosten: Platz und Aktualisierungsaufwand
-<br>
-□ Wahl der optimalen MVs hängt von Workload ab
-<br>
-□ Auswahl der „optimalen“ Menge von MVs
+<p>Es stellt sich die Frage welche Views nun zur Materialisierung ausgewählt werden, hierbei müssen die Kosten(Platz und Aktualisierungsaufwand) von MV beachtete werden, als auch der Workload und die Menge von MVs, beeinflussen die optimale Wahl.
 <br><br>
-■ Automatische Aktualisierung von MVs
-<br>
-□ Aktualisierung bei Änderungen der Basisrelationen
-<br>
-□ U.U. schwierig: Aggregate, Joins, Outer-Joins, …
-<br>
-□ Algorithmen zur inkrementellen Aktualisierung
+Ein anderes Problemengebiet ist die automatische Aktualisierung von MVs, wie also z.B mit einer Aktualisierung bei Änderungen der Basisrelationen umgegangen wird, v.A. bei Aggregaten, Joins, Outer-Joins usw. . Hierfür bieten sich
+Algorithmen zur inkrementellen Aktualisierung an.
 <br><br>
-■ Automatische Verwendung von MV
-<br>
-□ „Answering Queries using Views“
-<br>
-□ Umschreiben der Anfrage notwendig
-<br>
-□ Schwierigkeit hängt von Komplexität der Anfrage / Views ab
-<br>
-□ Algorithmen zur transparenten und kostenoptimalen Verwendung der materialisierten Sichten</p>
+Weiterhin stellt sich auch die Frage, wie die Verwendung von MVs bei der Ausführung von Anfragen automatisiert wird. Die Schwierigkeit dieser Aufgabe hängt von der Komplexität der Anfragen bzw. Views ab, da das Umschreiben der Anfrage notwendig ist. Demnach werden Algorithmen zur transparenten und kostenoptimalen Verwendung der materialisierten Sichten notwendig.</p>
 </div>
 </div>
 <div class="section" id="answering-queries-using-views">
 <h3><span class="section-number">9.8.11. </span>„Answering Queries using Views“<a class="headerlink" href="#answering-queries-using-views" title="Permalink to this headline">¶</a></h3>
-<p>■ Gegeben
-<br>
-□ Eine Anfrage Q
-<br>
-□ Eine Menge V (materialisierten) von Sichten
-<br><br>
-■ Fragen
-<br>
-□ Kann man Q überhaupt unter Verwendung von V beantworten?
-<br>
-□ Kann man Q nur mit V beantworten?
-<br>
-□ Kann man Q mit V vollständig beantworten?
-<br>
-□ Ist es günstig, Sichten aus V zur Beantwortung von Q zu verwenden? Welche?</p>
+<p>Angenommen wir habene ine Anfrage Q und eine Menge V (materialisierten) von Sichten gegeben. Es stellen sich folgende Fragen:
+<br></p>
+<ul class="simple">
+<li><p>Kann man Q überhaupt unter Verwendung von V beantworten?
+<br></p></li>
+<li><p>Kann man Q nur mit V beantworten?
+<br></p></li>
+<li><p>Kann man Q mit V vollständig beantworten?
+<br></p></li>
+<li><p>Ist es günstig, Sichten aus V zur Beantwortung von Q zu verwenden? Welche?</p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="zusammenfassung">
 <h2><span class="section-number">9.9. </span>Zusammenfassung<a class="headerlink" href="#zusammenfassung" title="Permalink to this headline">¶</a></h2>
-<p>Die Anfragesprache SQL
+<p>In diesem Kapitel haben wir uns mit der Anfragesprache SQL beschäftigt.
 <br>
-Der SFW Block
+SFW Block
 <br>
 Subanfragen
 <br>
