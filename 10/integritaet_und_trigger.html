@@ -630,46 +630,22 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="integritat-und-trigger">
 <h1><span class="section-number">10. </span>Integrität und Trigger<a class="headerlink" href="#integritat-und-trigger" title="Permalink to this headline">¶</a></h1>
+<p>In diesem Kapitel beschäftigen wir uns mit Integritätsbedingungen und Triggern.</p>
 <div class="section" id="motivation-aktive-datenbanken">
 <h2><span class="section-number">10.1. </span>Motivation – Aktive Datenbanken<a class="headerlink" href="#motivation-aktive-datenbanken" title="Permalink to this headline">¶</a></h2>
-<p>■ Einzufügende Daten können fehlerhaft sein
-<br>
-□ Typographische Fehler, logische Fehler
-<br><br>
-■ Lösung 1: Bessere Anwendung schreiben
-<br>
-□ Aber: Konsistenz und Korrektheit sind schwer zu prüfen (komplexe Bedingungen, abhängig von schon vorhandenen Daten).
-<br><br>
-■ Lösung 2: Aktive Elemente im DBMS
-<br>
-□ Einmal spezifiziert
-<br>
-□ Ausgeführt wenn nötig
-<br>
-□ „Integritätsbedingungen“ (integrity constraints, ICs)</p>
+<p>Die Daten, die wir in eine Datenbank einfügen wollen können fehlerhaft sein, es kann sich um typographische Fehler, logische Fehler oder auch Andere handeln. Um den Fehlern entgegenzuwirken wäre eine Möglichkeit , das Schreiben besserer Anwendungen, jedoch ist das Prüfen der Konsistenz und Korrektheit sehr schwer, da z.B komplexe Bedingungen, schon abhängig von vorhandenen Daten sein können. Eine andere Möglichkeit ist das Benutzen von aktiven Elementen im DBMS wie Integritätsbedingungen(integrity constraints, ICs), die einmal spezifiziert werden und wenn nötig dann ausgeführt werden. Integritätsbedingungen “bewachen”, dass nur Daten die der spezifizierten Form entsprechen, zugelassen werden.</p>
 </div>
 <div class="section" id="schlussel-und-fremdschlussel">
 <h2><span class="section-number">10.2. </span>Schlüssel und Fremdschlüssel<a class="headerlink" href="#schlussel-und-fremdschlussel" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="schlussel">
 <h3><span class="section-number">10.2.1. </span>Schlüssel<a class="headerlink" href="#schlussel" title="Permalink to this headline">¶</a></h3>
-<p>■ Wichtigste Bedingung: Ein oder mehrere Attribute bilden einen Schlüssel.
+<p>Die einfachtse und am häufigsten genutzte Bedingung sind Schlüssel. Schlüssel sollten aus den vorherigen Kapiteln bekannt sein, sie bilden sich auch ein oder mehreren Attributen und identifizieren eindeutig ein Tupel. Falls eine Schlüsselmenge S gegeben ist, müssen sich also zwei Tupel einer Relation in mindestens einem Attributwert der Schlüsselmenge unterscheiden.
 <br>
-□ Falls S die Schlüsselmenge ist, müssen sich zwei Tupel in mindestens einem Attributwert der Schlüsselmenge
-unterscheiden.
 <br>
-□ Spezifikation im CREATE TABLE Ausdruck
-<br>
-– Primärschlüssel: PRIMARY KEY
-<br>
-– Schlüssel: UNIQUE oder UNIQUE NOT NULL</p>
+Schlüssel werden im CREATE TABLE Ausdruck spezifiziert. Der Primärschlüssel wird mit dem Schlüsselwort PRIMARY KEY gekennzeichnet und kann nie einen Nullwert enthalten. Es gibt pro Relation maximal einen PRIMARY KEY. Ein weiterer Schlüssel ist UNIQUE, hiervon ist es erlaubt mehrere pro Relation und auch Nullwerte zu haben. Falls UNIQUE ohne Nullwerte benutzt werden soll, ist dies mit UNIQUE NOT NULL möglich.</p>
 <div class="section" id="primarschlussel">
 <h4><span class="section-number">10.2.1.1. </span>Primärschlüssel<a class="headerlink" href="#primarschlussel" title="Permalink to this headline">¶</a></h4>
-<p>■ Maximal ein Primärschlüssel pro Relation
-<br>
-□ Zwei Tupel müssen sich in mindestens einem Attributwert der Primärschlüsselattribute unterscheiden.
-<br>
-□ Tupel dürfen keinen NULL-Werte in den Primärschlüsselattributen haben.
-Bei einem Attribut: Deklaration direkt in Attributliste</p>
+<p>Primaärschlüssel werden im CREATE TABLE Ausdruck spezifiziert. Im Folgenden finden Sie eine Deklaration eines Primärschlüssels bei genau einem Attribut, dort findet die Deklaration dirket in der Attributenliste statt. Es ist auch möglich bei nur einem Attribut die Deklaration nach den Attributen zu nennen.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">SchauspielerIn</span><span class="p">(</span>
 <span class="n">Name</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
 <span class="n">Adresse</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
@@ -677,7 +653,7 @@ Bei einem Attribut: Deklaration direkt in Attributliste</p>
 <span class="n">Geburtstag</span> <span class="n">DATE</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>■ Bei (einem oder) mehreren Attributen: Deklaration nach den Attributen</p>
+<p>Bei mehreren Attributen findet die Deklaration zwingend nach den Attributen statt, wie im Beispiel unten gezeigt.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">SchauspielerIn</span><span class="p">(</span>
 <span class="n">Name</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
 <span class="n">Adresse</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
@@ -689,25 +665,9 @@ Bei einem Attribut: Deklaration direkt in Attributliste</p>
 </div>
 <div class="section" id="sekundarschlussel">
 <h4><span class="section-number">10.2.1.2. </span>Sekundärschlüssel<a class="headerlink" href="#sekundarschlussel" title="Permalink to this headline">¶</a></h4>
-<p>■ Spezifikation mit UNIQUE
-<br>
-□ Syntax wie für PRIMARY KEY
-<br>
-– Direkt beim Attribut
-<br>
-– Als separate Attributliste
+<p>Sekundärschlüssel bzw. Schlüsselkandidaten werden mit dem Schlüsseltwort UNIQUE spezifiziert. Die Sytax ist genau wie bei der Deklaration von einem PRIMARY KEY, also direkt beim Attribut oder als separate Attributliste nach den Attributen.
 <br><br>
-■ Bedeutung etwas anders:
-<br>
-□ Es darf mehrere UNIQUE Deklarationen geben
-<br>
-□ UNIQUE erlaubt NULL-Werte
-<br>
-– und NULL ≠ NULL (bzw. UNKNOWN)
-<br>
-=&gt; Zwei Tupel können in UNIQUE Attributen übereinstimmen: NULL
-<br>
-– Abhilfe: NOT NULL</p>
+Der große Unterschied zu PRIMARY KEY  ist, dass es mehrere UNIQUE Deklarationen geben darf. Standardmäßig erlaubt UNIQUE NULL-Werte, da von NULL ≠ NULL (bzw. UNKNOWN) ausgegangen wird. Bei NULL ist es also möglich, dass zwei Tupel in UNIQUE Attributen übereinstimmen. Um auch Nullwerte zu unterbinden, kann UNIQUE NOT NULL verwendet werden. Ein Beispiel für eine Deklaration eines Sekundärschlüssel befindet sich unten.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">SchauspielerIn</span><span class="p">(</span>
 <span class="n">Name</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
 <span class="n">Adresse</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
@@ -719,29 +679,10 @@ Bei einem Attribut: Deklaration direkt in Attributliste</p>
 </div>
 <div class="section" id="schlusselbedingungen-erzwingen">
 <h4><span class="section-number">10.2.1.3. </span>Schlüsselbedingungen erzwingen<a class="headerlink" href="#schlusselbedingungen-erzwingen" title="Permalink to this headline">¶</a></h4>
-<p>Schlüsselbedingungen müssen stets gelten.
+<p>Die spezifizierten Schlüsselbedingungen müssen stets gelten. Diese sind nur relevant bei INSERT und UPDATE, da bei DELETE keine Verletzung der Bedingungen passieren kann, denn es wurden keine Tupel der Relation hinzugefügt, die nicht den Bedingungen entsprechen. Beim Einfügen oder Ändern wird geprüft der neue Schlüsselwert bereits vorhanden ist.</p>
+<p>Meistens ist die effiziente Prüfung der Bedingungen mittels Index möglich, da DBMS in der Regel automatisch Indizes für Primärschlüsselattribute anlegen. Optional ist es auch möglich manuell für UNIQUE-Attribute Indizes zu erstellen, z.B CREATE UNIQUE INDEX JahrIndex ON Filme(Jahr). Das entspricht CREATE INDEX JahrIndex ON Filme(Jahr), aber mit einer neuen UNIQUE Bedingung auf Jahr.
 <br><br>
-Relevant nur bei INSERT und UPDATE
-<br>
-Bei DELETE kann nichts passieren.
-<br><br>
-Effiziente Prüfung mittels Index
-<br>
-DBMS legen idR automatisch Indizes für Primärschlüsselattribute an.
-<br>
-Optional auch für UNIQUE Attribute
-<br>
-CREATE UNIQUE INDEX JahrIndex ON Filme(Jahr);
-<br>
-Wie CREATE INDEX JahrIndex ON Filme(Jahr), aber mit neuer UNIQUE Bedingung auf Jahr.
-<br>
-Bei Einfügen oder Ändern: Prüfen ob neuer Schlüsselwert bereits vorhanden
-<br><br>
-Ineffiziente Prüfung (falls kein Index vorhanden ist)
-<br>
-Binäre Suche falls Daten sortiert sind
-<br>
-Sequentielle Suche sonst</p>
+Ohne Indizes ist die Überprüfung eher ineffizient, da die gesamte Spalte durchsucht werden muss. Sind die Dtaen sortiert, kann binäre Suche verwendet werden, andernfalls muss sequentielle Suche benutzt werden.</p>
 </div>
 <div class="section" id="fremdschlussel">
 <h4><span class="section-number">10.2.1.4. </span>Fremdschlüssel<a class="headerlink" href="#fremdschlussel" title="Permalink to this headline">¶</a></h4>
