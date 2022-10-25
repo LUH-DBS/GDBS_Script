@@ -2326,3 +2326,20 @@ WHERE Jahr = 1979;
 # <br>
 # <br>
 # Im Weiteren haben wir SQL als DML betrachtet ,um Datenbankveränderungen mit INSERT, UPDATE, DELETE zu schaffen. In Bezug auf SQL als DDL haben wir Schemata und Datentypen kennengelernt, die zur Erstellung und Veränderung von Relationen mit CREATE TABLE und ALTER TABLE nötig sind. Anschließend haben wir die Datenstruktur Index betrachtet, die die Suche nach Tupel erleichtert. Zuletzt haben wir uns mit Sichten und materalisierten Sichten, sowie Anfragen und Updates darauf beschäftigt.
+
+# ### SQL-Trainer
+
+# In[6]:
+
+
+from IPython.display import IFrame
+
+url = "https://eild-nrw.github.io/sql-trainer/#/"
+IFrame(src=url, width='100%', height=800)
+
+
+# In[ ]:
+
+
+
+
