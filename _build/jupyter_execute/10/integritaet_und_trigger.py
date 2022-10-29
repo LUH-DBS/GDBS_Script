@@ -7,9 +7,10 @@
 # Die Daten, die wir in eine Datenbank einfügen wollen können fehlerhaft sein, es kann sich um typographische Fehler, logische Fehler oder auch Andere handeln. Um den Fehlern entgegenzuwirken wäre eine Möglichkeit , das Schreiben besserer Anwendungen, jedoch ist das Prüfen der Konsistenz und Korrektheit sehr schwer, da z.B komplexe Bedingungen, schon abhängig von vorhandenen Daten sein können. Eine andere Möglichkeit ist das Benutzen von aktiven Elementen im DBMS wie Integritätsbedingungen(integrity constraints, ICs), die einmal spezifiziert werden und wenn nötig dann ausgeführt werden. Integritätsbedingungen "bewachen", dass nur Daten die der spezifizierten Form entsprechen, zugelassen werden.
 
 # ## Schlüssel und Fremdschlüssel
+# In diesem Kapitel beschäftigen wir uns mit der am häufigsten genutzten Integritätsbedingung, Schlüssel. Zunächst werden wir die verschiedenen Arten von Schlüsseln(Primär-, Sekundärschlüssel, Fremdschlüssel) kennenlernen und anschließend wie diese Schlüsselbedingungen und referentielle Integrität erzwungen werden.
 # 
 # ### Schlüssel
-# Die einfachtse und am häufigsten genutzte Bedingung sind Schlüssel. Schlüssel sollten aus den vorherigen Kapiteln bekannt sein, sie bilden sich auch ein oder mehreren Attributen und identifizieren eindeutig ein Tupel. Falls eine Schlüsselmenge S gegeben ist, müssen sich also zwei Tupel einer Relation in mindestens einem Attributwert der Schlüsselmenge unterscheiden.
+# Die einfachtse und am häufigsten genutzte Bedingung sind Schlüssel. Schlüssel sollten aus den vorherigen Kapiteln bekannt sein, sie bilden sich aus ein oder mehreren Attributen und identifizieren eindeutig ein Tupel. Falls eine Schlüsselmenge S gegeben ist, müssen sich also zwei Tupel einer Relation in mindestens einem Attributwert der Schlüsselmenge unterscheiden.
 # <br>
 # <br>
 # Schlüssel werden im CREATE TABLE Ausdruck spezifiziert. Der Primärschlüssel wird mit dem Schlüsselwort PRIMARY KEY gekennzeichnet und kann nie einen Nullwert enthalten. Es gibt pro Relation maximal einen PRIMARY KEY. Ein weiterer Schlüssel ist UNIQUE, hiervon ist es erlaubt mehrere pro Relation und auch Nullwerte zu haben. Falls UNIQUE ohne Nullwerte benutzt werden soll, ist dies mit UNIQUE NOT NULL möglich. 
@@ -183,32 +184,12 @@
 # UPDATE Studios SET VorsitzendeID = 23456
 # WHERE Name = ‘Redlight‘;
 # ```
-# Eine schnönere Lösung für dieses Problem wäre, erst den Manager, dann das Studio einzufügen.
+# Eine schönere Lösung für dieses Problem wäre, erst den Manager, dann das Studio einzufügen.
 # <br><br>
-# Es kann zyklische referentielle Integritätsbedingungen geben.
-# <br>
-# Manager sind nur Vorsitzende von Studios
-# <br>
-# ManagerinID ist Fremdschlüssel und referenziert VorsitzendeID.
-# <br>
-# Es kann nach wie vor kein Studio ohne vorhandenes Managertupel eingefügt werden.
-# <br>
-# Es kann nun auch kein Manager ohne vorhandenes Studio eingefügt werden.
-# <br>
-# Catch 22!
-# <br>
-# Lösung
-# <br>
-# Mehrere Änderungsoperationen zu einer „Transaktion“ zusammenfassen (mehr später: „Transaktionsmanagement“)
-# <br>
-# Integritätschecks bis ans Ende der Transaktion verschieben
+# Es kann der Fall auftreten, dass es zyklische referentielle Integritätsbedingungen gibt. Z.B könnten zusätzlich Manager\*Innen nur Vorsitzende von Studios sein, also ist ManagerinID ein Fremdschlüssel und referenziert auf VorsitzendeID. So gilt die Fremdschlüsselbedingung in beide Richtungen.Es kann nach wie vor kein Studio ohne vorhandenes Managertupel eingefügt werden. Es kann nun auch kein Manager\*In ohne vorhandenes Studio eingefügt werden. Die Lösung für dieses Problem ist das Zusammenfassen mehrerer Änderungsoperationen zu einer „Transaktion“ (mehr dazu im Kapitel 11 „Transaktionsmanagement“) und dann das Verschieben der Integritätschecks bis ans Ende der Transaktion.
 # <br><br>
-# ■ Jeder Constraint kann als DEFERRABLE oder NOT DEFERRABLE deklariert werden.
-# <br><br>
-# ■ NOT DEFERRABLE ist default
-# <br>
-# □ Bei jeder Änderung der Datenbank wird die Bedingung geprüft.
-# <br><br>
+# Dieser Constraint kann mit dem Schlüsselwort DEFERRABLE deklariert werden. DEFERRABLE lässt sich einmal in INITIALLY DEFERRED und INITIALLY IMMEDIATE teilen. Bei INITIALLY DEFERRED wird der Integritätscheck an das Ende der Transaktion, die aus mehreren Statements bestehen kann, verschoben. Bei INITIALLY IMMEDIATE wird der Integritätscheck ans Ende des Statements verschoben. NOT DEFERRABLE, also dass die Bedingung bei jeder Änderung der Datenbank geprüft wird, ist default. Ein Beispiel für die Synatx zu DEFERRABLE finden Sie unten.
+# 
 # ■ DEFERRABLE
 # <br>
 # □ INITIALLY DEFERRED:
@@ -220,6 +201,7 @@
 # □ INITIALLY IMMEDIATE
 # <br>
 # – Zunächst nichts verschieben, bis wir Verschiebung verlangen.
+# 
 # ```
 # CREATE TABLE Studios(
 # Name CHAR(30) PRIMARY KEY,
@@ -230,21 +212,11 @@
 # ```
 
 # ## Bedingungen auf Attributen und Tupel
-# 
-# ### Weitere Arten der Nebenbedingungen
-# ■ Verbieten Annahme bestimmter Werte
-# <br><br>
-# ■ Bedingungen auf einzelnen Attributen
-# <br>
-# □ NOT NULL
-# <br>
-# □ CHECK
-# <br><br>
-# ■ Bedingungen für ganze Tupel, also auf das Schema
-# <br>
-# □ CHECK
+# In diesem Kapitel werden weitere Arten der Nebenbedingungen, wie die Annahme bestimmter Werte untersagt wird, betrachtet. Zuerst beschäftigen wir uns mit Bedingungen auf einzelnen Attributen(NOT NULL und CHECK) und anschließend mit Bedingungen für ganze Tupel, also auf das Schema(CHECK). 
 # 
 # ### NOT NULL
+# Wird ein Attribut mit NOT NULL deklariert, so ist es nicht erlaubt für dieses Attribut den Wert NULL einzutragen.
+# 
 # ```
 # CREATE TABLE Studios(
 # Name CHAR(30) PRIMARY KEY,
@@ -254,30 +226,13 @@
 # ON UPDATE CASCADE
 # );
 # ```
-# ■ Einfügen eines Studios ohne Manager ist nicht mehr möglich.
-# <br><br>
-# ■ Jedes Studio muss eine Adresse haben.
-# <br><br>
-# ■ Die Null-Werte Strategie beim Löschen von Managern ist nicht mehr möglich.
+# Für das obige Beispiel gilt mit den NOT-NULL-Bedingungen, dass das Einfügen eines Studios ohne Manager\*In nicht mehr möglich ist und das jedes Studio eine Adresse haben muss. Somit ist die Null-Werte Strategie beim Löschen von Manager\*Innen nicht mehr möglich.
 # 
 # ### Attribut-basierte CHECK Bedingungen
-# Verfeinerung der erlaubten Werte für ein Attribut durch Spezifikation einer Bedingung.
+# Die CHECK-Bedingung verfeinert die erlaubten Werte für ein Attribut durch die Spezifikation einer Bedingung. Die Bedingung wie jedes mal geprüft, falls ein Attribut einen neuen Wert erhält, also bei INSERT und UPDATE. Sie ist ähnlich zur WHERE-Klausel, kann beliebig komplex sein und auch aus einer SELECT…FROM…WHERE… Anfrage bestehen. I.d.R. werden CHECK-Bedingungen benutzt um eine einfache Einschränkung der Werte durchzuführen. Falls die Bedingung nicht erfüllt wird, so scheitert die Änderung.
 # <br><br>
-# Bedingung beliebig komplex
-# <br>
-# Wie WHERE Klausel
-# <br>
-# Oder sogar als SELECT…FROM…WHERE… Anfrage
-# <br><br>
-# i.d.R. aber eine einfache Einschränkung der Werte
-# <br><br>
-# CHECK wird geprüft falls ein Attribut einen neuen Wert erhält
-# <br>
-# INSERT
-# <br>
-# UPDATE
-# <br><br>
-# Falls FALSE, scheitert die Änderung
+# In diesem Beispiel wird gecheckt, ob die VorsitztendeID >= 100000 ist, da kleinere Werte für die VorsitzendeID nicht erlaubt sind.
+# 
 # ```
 # CREATE TABLE Studios(
 # Name CHAR(30) PRIMARY KEY,
@@ -285,16 +240,18 @@
 # VorsitzendeID INT REFERENCES ManagerIn(ManagerinID)
 # CHECK (VorsitzendeID >= 100000)
 # );
+# ```
+# In diesem Beispiel wird gecheckt, ob das Geschlecht entsprechend dem Format (‘W‘, ‘M‘, ‘D‘) definiert ist.
 # 
+# ```
 # CREATE TABLE SchauspielerIn (
 # Name CHAR(30),
 # Adresse VARCHAR(255),
 # Geschlecht CHAR(1) CHECK (Geschlecht IN (‘W‘, ‘M‘, ‘D‘)),
 # Geburtstag DATE );
 # ```
-# CHECK Bedingung darf sich auch auf andere Attribute beziehen.
-# <br>
-# Nur im Zusammenhang mit einer SQL Anfrage
+# Eine CHECK Bedingung darf sich auch auf andere Attribute beziehen, jedoch nur im Zusammenhang mit einer SQL Anfrage, wie im unteren Beispiel gezeigt.
+# 
 # ```
 # CREATE TABLE Studios(
 # Name CHAR(30) PRIMARY KEY,
@@ -304,7 +261,7 @@
 # (SELECT ManagerinID FROM ManagerIn))
 # );
 # ```
-# Simuliert referentielle Integrität
+# Auf diese Weise wird indirekt referentielle Integrität simuliert. 
 # <br>
 # Was kann schief gehen?
 # <br>
@@ -319,13 +276,9 @@
 # D.h.: Andere Relationen kennen diese CHECK Bedingung nicht.
 # 
 # ### Tupel-basierte CHECK Bedingungen
-# Bedingungen können auch für ganze Tupel deklariert werden.
-# <br>
-# Wie Primär- und Fremdschlüsselbedingungen kann auch einen CHECK Bedingung in der Liste der Attribute auftauchen.
-# <br>
-# Ebenso wie bei Attribut-basierten CHECKs: Beliebige Bedingungen wie eine WHERE Klausel.
-# <br>
-# Wird geprüft bei jedem INSERT und jedem UPDATE eines Tupels.
+# Es ist auch möglich Bedingungen für ganze Tupel zu deklarieren. Eine CHECK-Bedingung kann wie Primär- und Fremdschlüsselbezeiehungen in der Liste der Attributen auftauchen und beliebige Bedingungen wie eine WHERE-Klausel haben. Die deklarierten CHECKs werden bei jedem INSERT und UPDATE eines Tupels geprüft.
+# <br><br>
+# Im unteren Beispiel wird geprüft, ob das Geschlecht 'W' ist oder ob die Anrede nicth mit 'Fr' beginnt.
 # ```
 # CREATE TABLE SchauspielerIn (
 # Anrede CHAR(10),
@@ -335,19 +288,12 @@
 # Geburtstag DATE,
 # CHECK (Geschlecht = ‚W‘ OR Anrede NOT LIKE ‚Fr%‘ ));
 # ```
-# Typischer Aufbau einer Bedingung wenn wir mehrere Eigenschaften gemeinsam verbieten wollen (Männlich und Name beginnt mit „Frau…“)
-# <br><br>
-# Wird nicht geprüft falls eine andere (oder sogar die gleiche) Relation in einer Subanfrage der CHECK
-# Bedingung erwähnt wird und diese eine Änderung erfährt.
-# <br>
-# D.h.: Andere Relationen kennen diese CHECK Bedingung nicht.
-# <br>
-# Solche Probleme gibt es bei ASSERTIONS (siehe unten) nicht. Deshalb komplexe Bedingungen lieber als ASSERTION deklarieren,
-# <br>
-# oder (realistischer) in die Anwendungslogik stecken.
+# 
+# Eine CHECK-Bedingung wird nicht geprüft, falls eine andere (oder sogar die gleiche) Relation in einer Subanfrage der CHECK Bedingung erwähnt wird und diese eine Änderung erfährt. D.h. andere Relationen kennen diese CHECK Bedingung nicht. Solche Probleme gibt es bei ASSERTIONS (siehe Kapitel ...) nicht. Deshalb sollten komplexe Bedingungen lieber als ASSERTION deklariert werden, oder (realistischer) in die Anwendungslogik gesteckt werden..
 # 
 # ### Bedingungen ändern
-# Zur Änderung von Bedingungen müssen Namen vergeben werden.
+# Um Bedingungen nachträglich noch zu ändern, müssen diese einen Namen haben. Meistens vergeben DBMS sowieso interne, jedoch hässliche Namen. Beispiele hierfür finden Sie unten.
+# 
 # ```
 # CREATE TABLE SchauspielerIn (
 # Anrede CHAR(19),
@@ -359,28 +305,28 @@
 # CONSTRAINT AnredeKorrektConstraint
 # CHECK (Geschlecht = ‚W‘ OR Anrede NOT LIKE ‚Frau%‘ );
 # ```
-# Meist vergeben DBMS sowieso interne (aber hässliche) Namen.
 # 
 # ```
 # SET CONSTRAINT MyConstraint DEFERRED;
 # 
 # SET CONSTRAINT MyConstraint IMMEDIATE;
 # ```
-# ■ Entfernen
+# Das Entfernen von CONSTRAINTS ist nach dem Scheme ALTER TABLE Relation DROP CONSTRAINT Name; möglich.
+# 
 # ```
 # ALTER TABLE Schauspieler DROP CONSTRAINT NamePrimaer;
 # ALTER TABLE Schauspieler DROP CONSTRAINT NichtGeschlechtslos;
 # ALTER TABLE Schauspieler DROP CONSTRAINT AnredeKorrekt;
 # ```
-# ■ Hinzufügen
+# 
+# Das Hinzufügen ist nach dem Schema ALTER TABLE Relation ADD CONSTRAINT Name ...;
 # ```
 # ALTER TABLE Schauspieler ADD CONSTRAINT NamePrimaer PRIMARY KEY (Name);
 # ALTER TABLE Schauspieler ADD CONSTRAINT NichtGeschlechtslos CHECK (Geschlecht IN (‚W‘, ‚M‘));
 # ALTER TABLE Schauspieler ADD CONSTRAINT AnredeKorrekt CHECK (Geschlecht = ‚W‘ OR name NOT LIKE ‚Frau%‘ );
 # ```
-# □ Diese Bedingungen sind nun alle Tupel-basiert.
-# <br>
-# □ Attribut-basierte Bedingungen können nicht nachträglich eingefügt werden.
+# 
+# Es können nur Tupel-basierte Bedingungen nachträglich hinzugefügt werden, attribut-basierte Bedingungen nicht.
 
 # ## Zusicherungen und Trigger
 # 
