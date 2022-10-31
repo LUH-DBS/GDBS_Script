@@ -328,46 +328,25 @@
 # 
 # Es können nur Tupel-basierte Bedingungen nachträglich hinzugefügt werden, attribut-basierte Bedingungen nicht.
 
-# ## Zusicherungen und Trigger
+# ## Zusicherungen(Assertions) und Trigger
 # 
-# ### Motivation
-# Manche Bedingungen sollen sich nicht auf bestimmte Tupel beziehen, sondern auf Schemaebene definiert werden (wie Relationen und Sichten).
-# <br><br>
-# Assertion (Zusicherungen)
-# <br>
-# Boole‘scher SQL Ausdruck, der stets wahr sein muss
-# <br>
-# Einfache Handhabung für Admin
-# <br>
-# Schwierig, effizient zu implementieren
-# <br><br>
-# Trigger („Auslöser“)
-# <br>
-# Aktionen, die bei bestimmten Ereignissen (INSERTs, …) ausgelöst werden
-# <br>
-# Leichter, effizient zu implementieren
+# Manchmal sollen sich Bedingungen nicht auf bestimmte Tupel beziehen, sondern auf der Schemaebene definiert werden (wie Relationen und Sichten). Solche Bedingungen nennen sich Assertions (Zusicherungen) und Trigger. Eine Assertion ist ein Boole‘scher SQL Ausdruck, der stets wahr sein muss. Die Handhabung von Assertions ist durch einen Admin sehr leicht, jedoch verlangsamen Assertions die Datenbank, da sie schwierig effizient zu implementieren sind.
+# Trigger (Auslöser) sind Aktionen, die bei bestimmten Ereignissen (INSERTs, …) ausgelöst werden, im Vergleich zu Assertions sind Trigger leichter effizient zu implementieren.
 # 
 # ### Assertions
-# CREATE ASSERTION Name CHECK (Bedingung)
-# <br><br>
-# Bedingung muss bei Erzeugung der Assertion bereits gelten.
-# <br>
-# Bedingung muss stets gelten; Änderungen, die die Assertion falsch machen, werden abgewiesen.
-# <br>
-# CHECK Bedingung können hingegen falsch werden!
+# Assertions werden nach dem folgenden Schema deklariert CREATE ASSERTION Name CHECK (Bedingung). Die Bedingung muss stets gelten, auch schon bei der Erzeugung der Assertion. Änderungen die die Assertion verletzen werden abgewiesen.
+# CHECK Bedingungen innerhalb eines CREATE TABLE ... können hingegen falsch werden!
 # <br><br>
 # Zur Formulierung
 # <br>
 # Kein direkter Bezug zu Relationen, deshalb müssen Attribute und Relationen in einer SQL Anfrage eingeführt werden.
 # <br><br>
-# Löschen
-# <br>
-# DROP ASSERTION Name;
+# Um eine Assertion zu löschen wird folgendes Schema benutzt DROP ASSERTION Name.
 # 
 # #### Assertions – Beispiel
-# ■ ManagerIn(Name, Adresse, ManagerinID, Gehalt) Studios(Name, Adresse, VorsitzendeID)
+# Haben wir die Relationen ManagerIn(Name, Adresse, ManagerinID, Gehalt) und Studios(Name, Adresse, VorsitzendeID) gegeben.
 # <br>
-# ■ Vorsitzende von Studios müssen mindestens 1.000.000 verdienen.
+# In diesem Beispiel wurde eine Assertion deklariert die nur Vorsitzende von Studios annimmt, die mindestens 1.000.000 verdienen.
 # ```
 # CREATE ASSERTION ReicheVorsitzende CHECK
 # (NOT EXISTS
@@ -377,7 +356,7 @@
 # AND Gehalt < 1000000)
 # );
 # ```
-# ■ Alternative:
+# Eine Alternative zu dem Beispiel oben, wäre ein CHECK innerhalb eines CREATE TABLE ... .Der Unterschied zu der Assertion oben ist, dass nachträgliche Änderungen an der Relation ManagerIn nicht mehr abgefangen werden können
 # ```
 # CREATE TABLE Studios(
 # Name CHAR(30) PRIMARY KEY,
@@ -388,11 +367,9 @@
 # WHERE Gehalt < 1000000))
 # );
 # ```
-# ■ Was ist der Unterschied?
-# <br>
-# □ Änderungen der ManagerIn Relation (Gehalt sinkt) werden nicht erkannt.
-# <br><br>
-# ■ Filme(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentID)
+# 
+# Haben wir nun die Relation Filme(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentID) gegeben. Wir formulieren eine Assertion, die sicherstellt, dass die Gesamtlänge der von einem Studio produzierten Filme mind. 10000 Minuten beträgt.
+# 
 # ```
 # CREATE ASSERTION NurGrosseStudios CHECK
 # (10000 <= ALL
@@ -400,19 +377,14 @@
 # GROUP BY StudioName)
 # );
 # ```
-# □ Ein Studio muss mindestens 10,000 Minuten Filmmaterial haben
-# <br><br>
-# ■ Alternative beim Schema für Filme
+# Alternativ wäre wieder ein CHECK beim Schema für die Relation Filme möglich.
+# 
 # ```
-# □ CHECK (10000 <= ALL
+# CHECK (10000 <= ALL
 # (SELECT SUM(Länge) FROM Filme
 # GROUP BY StudioName)
 # ```
-# ■ Unterschied?
-# <br>
-# □ Beim Löschen eines Films wird die Bedingung nicht geprüft.
-# <br>
-# □ Beim Studiowechsel eines Films wird die Bedingung nicht geprüft.
+# Der Unterschied im Vergleich zu der Assertion oben ist, dass beim Löschen eines Films die Bedingung nicht geprüft wird. Also ist es möglich, dass nachdem Filme aus der Relation Filme gelöscht wurden, es Studios gibt, die nicht mehr mind. 10000 Minuten Filmmaterial haben und dies nicht überprüft wird. Ebenso kann dies eim Studiowechsel eines Films nicht geprüft werden.
 # 
 # ### Unterschiede der CHECK Bedingungen
 # 
@@ -421,38 +393,15 @@
 # |**Attribut-basiertes**|CHECK Beim Attribut|Bei INSERT in Relation oder UPDATE des Attributs|Nein, falls Subanfragen verwendet werden.|
 # |**Tupel-basiertes CHECK**|Teil des Relationenschemas|Bei INSERT oder UPDATE eines Tupels|Nein, falls Subanfragen verwendet werden.|
 # |**Assertion**|Teil des Datenbankschemas|Beliebige Änderung auf einer erwähnten Relation|Ja|
-# 
+
 # ### Trigger
-# ■ Auch: Event-Condition-Action Rules (ECA-Rules)
-# <br><br>
-# ■ Unterschiede zu Zusicherungen
-# <br>
-# □ Gelten nicht immer, sondern werden bei bestimmten Ereignissen (INSERT, UPDATE, DELETE, Ende einer Transaktion) ausgeführt.
-# <br>
-# □ Ein Ereignis wird zunächst nicht verhindert, es wird lediglich ein bestimmte Bedingung geprüft.
-# <br>
-# – Falls falsch, passiert nichts weiter
-# <br>
-# □ Falls wahr, wird eine Aktion ausgeführt. Die Aktion könnte das Ereignis verhindern oder rückgängig machen.
-# <br>
-# Oder auch etwas völlig anderes tun.
+# Trigger sind so genannte Event-Condition-Action Rules (ECA-Rules). Der Unterschied zu Zusicherungen ist, dass Trigger nicht immer gelten müssen, sondern sie werden nur bei bestimmten Ereignissen (INSERT, UPDATE, DELETE, Ende einer Transaktion) ausgeführt. Ein Ereignis wird zunächst nicht verhindert, sondern es wird lediglich eine bestimmte Bedingung geprüft. Falls die Triggerbedingung falsch ist passiert nichts weiter. Falls sie wahr ist, wird eine Aktion ausgeführt. Die Aktion könnte das Ereignis verhindern oder rückgängig machen oder auch etwas völlig anderes tun.
 # 
 # ### Trigger in SQL
-# Eigenschaften/Fähigkeiten
-# <br>
-# Ausführung der Aktion vor oder nach dem Ereignis
-# <br>
-# Die Aktion kann sich auf alte und/oder neue Werte von Tupeln beziehen, die beim Ereignis eingefügt, verändert oder gelöscht werden.
-# <br>
-# Mit WHEN können neben dem Ereignis auch weitere Bedingungen angegeben werden, die gelten müssen um die Aktion durchzuführen.
-# <br>
-# Aktion wird durchgeführt
-# <br>
-# Einmal für jedes veränderte Tupel oder
-# <br>
-# einmalig für alle Tupel, die verändert wurden
+# Die ausgelöste Aktion durch Trigger kann sowohl vor oder nach dem Ereignis ausgeführt werden. Die Aktion kann sich auf alte und/oder neue Werte von Tupeln beziehen, die beim Ereignis eingefügt, verändert oder gelöscht werden.Mit WHEN können neben dem Ereignis auch weitere Bedingungen angegeben werden, die gelten müssen um die Aktion durchzuführen. Die Aktion kann einmal für jedes veränderte Tupel oder einmalig für alle Tupel, die verändert wurden ausgeführt werden.
 # 
 # #### Trigger – Beispiel
+# Hier finden Sie ein Beispiel für einen Trigger, welcher verhindert, dass Manager\*Innengehälter nicht gesenkt werden. Nach jedem Update von Gehalt der Manager\*In Relation, wird das alte Gehalt mit dem neuen verglichen und wenn das alte größer war, wird das Gehalt des betroffenen Tupels wieder auf das Alte gesetzt. Das Rekursionsverhalten ist DBMS-Hersteller-spezifisch.
 # ```
 # CREATE TRIGGER GehaltsTrigger --Name des Triggers
 # AFTER UPDATE OF Gehalt ON ManagerIn --Ereignis
@@ -465,13 +414,10 @@
 #     SET Gehalt = AltesTupel.Gehalt
 #     WHERE ManagerinID = NeuesTupel.ManagerinID; --Nur betroffenes Tupel
 # ```
-# ■ Was bewirkt der Trigger?
-# <br>
-# □ Managergehälter werden nicht gesenkt!
-# <br>
-# □ Rekursionsverhalten ist DBMS-Hersteller-spezifisch.
+# 
 # 
 # #### Trigger  –  Alternative
+# Anstelle von AFTER kann in einem Trigger BEFORE benutzt werden, ebenso könne die auslösenden Ereignisse INSERT/DELETE auch ohne OF sein. Bei INSERT gibt es kein OLD ROW ... und bei DELETE kein NEW ROW ..., da es keine alten und neue Tupel gibt. Wenn FOR EACH ROW nicht explizit spezifizeirt ist, ist FOR EACH STATEMENT der Default, dann gilt OLD TABLE / NEW TABLE. Die WHEN-Klausel ist optional und es können mehrere SQL-Ausdrücke drin enthalten sein, die mit BEGIN … END umrahmt sind.
 # ```
 # CREATE TRIGGER GehaltsTrigger                   --BEFORE
 # AFTER UPDATE OF Gehalt ON ManagerIn             --INSERT / DELETE (ohne OF…)
@@ -486,6 +432,7 @@
 # ```
 # 
 # #### Trigger - Beispiel
+# In diesem Beispiel sind mehrere SQL-Ausdrücke in der WHEN-Klausel enthalten. Dieser Trigger bewirkt, dass das Durchschnittsgehalt von Manager\*Innen nicht unte 500.000 sinkt. Es sind je ein Trigger für UPDATE, INSERT und DELETE nötig.
 # ```
 # CREATE TRIGGER DurchschnittsgehaltTrigger
 # AFTER UPDATE OF Gehalt ON ManagerIn
@@ -501,11 +448,6 @@
 #         (SELECT * FROM AlteTupel)
 # END;
 # ```
-# ■ Was bewirkt dieser Trigger?
-# <br>
-# □ Das Durchschnittsgehalt von Managern soll nicht unter 500,000 sinken!
-# <br>
-# □ Je ein Trigger für UPDATE, INSERT und DELETE nötig
 # 
 # ## Zusammenfassung
 # ■ Schlüssel
@@ -525,4 +467,3 @@
 # □ ASSERTION
 #  <br> <br>
 # ■ Trigger
-# 
