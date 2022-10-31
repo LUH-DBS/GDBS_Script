@@ -365,55 +365,50 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#zusicherungen-und-trigger">
-   10.4. Zusicherungen und Trigger
+  <a class="reference internal nav-link" href="#zusicherungen-assertions-und-trigger">
+   10.4. Zusicherungen(Assertions) und Trigger
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#motivation">
-     10.4.1. Motivation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#assertions">
-     10.4.2. Assertions
+     10.4.1. Assertions
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#assertions-beispiel">
-       10.4.2.1. Assertions – Beispiel
+       10.4.1.1. Assertions – Beispiel
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#unterschiede-der-check-bedingungen">
-     10.4.3. Unterschiede der CHECK Bedingungen
+     10.4.2. Unterschiede der CHECK Bedingungen
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#trigger">
-     10.4.4. Trigger
+     10.4.3. Trigger
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#trigger-in-sql">
-     10.4.5. Trigger in SQL
+     10.4.4. Trigger in SQL
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#trigger-beispiel">
-       10.4.5.1. Trigger – Beispiel
+       10.4.4.1. Trigger – Beispiel
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#trigger-alternative">
-       10.4.5.2. Trigger  –  Alternative
+       10.4.4.2. Trigger  –  Alternative
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id2">
-       10.4.5.3. Trigger - Beispiel
+       10.4.4.3. Trigger - Beispiel
       </a>
      </li>
     </ul>
@@ -549,55 +544,50 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#zusicherungen-und-trigger">
-   10.4. Zusicherungen und Trigger
+  <a class="reference internal nav-link" href="#zusicherungen-assertions-und-trigger">
+   10.4. Zusicherungen(Assertions) und Trigger
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#motivation">
-     10.4.1. Motivation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#assertions">
-     10.4.2. Assertions
+     10.4.1. Assertions
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#assertions-beispiel">
-       10.4.2.1. Assertions – Beispiel
+       10.4.1.1. Assertions – Beispiel
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#unterschiede-der-check-bedingungen">
-     10.4.3. Unterschiede der CHECK Bedingungen
+     10.4.2. Unterschiede der CHECK Bedingungen
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#trigger">
-     10.4.4. Trigger
+     10.4.3. Trigger
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#trigger-in-sql">
-     10.4.5. Trigger in SQL
+     10.4.4. Trigger in SQL
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#trigger-beispiel">
-       10.4.5.1. Trigger – Beispiel
+       10.4.4.1. Trigger – Beispiel
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#trigger-alternative">
-       10.4.5.2. Trigger  –  Alternative
+       10.4.4.2. Trigger  –  Alternative
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id2">
-       10.4.5.3. Trigger - Beispiel
+       10.4.4.3. Trigger - Beispiel
       </a>
      </li>
     </ul>
@@ -941,48 +931,25 @@ ALTER TABLE Schauspieler ADD CONSTRAINT AnredeKorrekt CHECK (Geschlecht = ‚W�
 <p>Es können nur Tupel-basierte Bedingungen nachträglich hinzugefügt werden, attribut-basierte Bedingungen nicht.</p>
 </div>
 </div>
-<div class="section" id="zusicherungen-und-trigger">
-<h2><span class="section-number">10.4. </span>Zusicherungen und Trigger<a class="headerlink" href="#zusicherungen-und-trigger" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="motivation">
-<h3><span class="section-number">10.4.1. </span>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h3>
-<p>Manche Bedingungen sollen sich nicht auf bestimmte Tupel beziehen, sondern auf Schemaebene definiert werden (wie Relationen und Sichten).
-<br><br>
-Assertion (Zusicherungen)
-<br>
-Boole‘scher SQL Ausdruck, der stets wahr sein muss
-<br>
-Einfache Handhabung für Admin
-<br>
-Schwierig, effizient zu implementieren
-<br><br>
-Trigger („Auslöser“)
-<br>
-Aktionen, die bei bestimmten Ereignissen (INSERTs, …) ausgelöst werden
-<br>
-Leichter, effizient zu implementieren</p>
-</div>
+<div class="section" id="zusicherungen-assertions-und-trigger">
+<h2><span class="section-number">10.4. </span>Zusicherungen(Assertions) und Trigger<a class="headerlink" href="#zusicherungen-assertions-und-trigger" title="Permalink to this headline">¶</a></h2>
+<p>Manchmal sollen sich Bedingungen nicht auf bestimmte Tupel beziehen, sondern auf der Schemaebene definiert werden (wie Relationen und Sichten). Solche Bedingungen nennen sich Assertions (Zusicherungen) und Trigger. Eine Assertion ist ein Boole‘scher SQL Ausdruck, der stets wahr sein muss. Die Handhabung von Assertions ist durch einen Admin sehr leicht, jedoch verlangsamen Assertions die Datenbank, da sie schwierig effizient zu implementieren sind.
+Trigger (Auslöser) sind Aktionen, die bei bestimmten Ereignissen (INSERTs, …) ausgelöst werden, im Vergleich zu Assertions sind Trigger leichter effizient zu implementieren.</p>
 <div class="section" id="assertions">
-<h3><span class="section-number">10.4.2. </span>Assertions<a class="headerlink" href="#assertions" title="Permalink to this headline">¶</a></h3>
-<p>CREATE ASSERTION Name CHECK (Bedingung)
-<br><br>
-Bedingung muss bei Erzeugung der Assertion bereits gelten.
-<br>
-Bedingung muss stets gelten; Änderungen, die die Assertion falsch machen, werden abgewiesen.
-<br>
-CHECK Bedingung können hingegen falsch werden!
+<h3><span class="section-number">10.4.1. </span>Assertions<a class="headerlink" href="#assertions" title="Permalink to this headline">¶</a></h3>
+<p>Assertions werden nach dem folgenden Schema deklariert CREATE ASSERTION Name CHECK (Bedingung). Die Bedingung muss stets gelten, auch schon bei der Erzeugung der Assertion. Änderungen die die Assertion verletzen werden abgewiesen.
+CHECK Bedingungen innerhalb eines CREATE TABLE … können hingegen falsch werden!
 <br><br>
 Zur Formulierung
 <br>
 Kein direkter Bezug zu Relationen, deshalb müssen Attribute und Relationen in einer SQL Anfrage eingeführt werden.
 <br><br>
-Löschen
-<br>
-DROP ASSERTION Name;</p>
+Um eine Assertion zu löschen wird folgendes Schema benutzt DROP ASSERTION Name.</p>
 <div class="section" id="assertions-beispiel">
-<h4><span class="section-number">10.4.2.1. </span>Assertions – Beispiel<a class="headerlink" href="#assertions-beispiel" title="Permalink to this headline">¶</a></h4>
-<p>■ ManagerIn(Name, Adresse, ManagerinID, Gehalt) Studios(Name, Adresse, VorsitzendeID)
+<h4><span class="section-number">10.4.1.1. </span>Assertions – Beispiel<a class="headerlink" href="#assertions-beispiel" title="Permalink to this headline">¶</a></h4>
+<p>Haben wir die Relationen ManagerIn(Name, Adresse, ManagerinID, Gehalt) und Studios(Name, Adresse, VorsitzendeID) gegeben.
 <br>
-■ Vorsitzende von Studios müssen mindestens 1.000.000 verdienen.</p>
+In diesem Beispiel wurde eine Assertion deklariert die nur Vorsitzende von Studios annimmt, die mindestens 1.000.000 verdienen.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">ASSERTION</span> <span class="n">ReicheVorsitzende</span> <span class="n">CHECK</span>
 <span class="p">(</span><span class="n">NOT</span> <span class="n">EXISTS</span>
 <span class="p">(</span><span class="n">SELECT</span> <span class="o">*</span>
@@ -992,7 +959,7 @@ DROP ASSERTION Name;</p>
 <span class="p">);</span>
 </pre></div>
 </div>
-<p>■ Alternative:</p>
+<p>Eine Alternative zu dem Beispiel oben, wäre ein CHECK innerhalb eines CREATE TABLE … .Der Unterschied zu der Assertion oben ist, dass nachträgliche Änderungen an der Relation ManagerIn nicht mehr abgefangen werden können</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">Studios</span><span class="p">(</span>
 <span class="n">Name</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
 <span class="n">Adresse</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="n">NOT</span> <span class="n">NULL</span><span class="p">,</span>
@@ -1003,11 +970,7 @@ DROP ASSERTION Name;</p>
 <span class="p">);</span>
 </pre></div>
 </div>
-<p>■ Was ist der Unterschied?
-<br>
-□ Änderungen der ManagerIn Relation (Gehalt sinkt) werden nicht erkannt.
-<br><br>
-■ Filme(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentID)</p>
+<p>Haben wir nun die Relation Filme(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentID) gegeben. Wir formulieren eine Assertion, die sicherstellt, dass die Gesamtlänge der von einem Studio produzierten Filme mind. 10000 Minuten beträgt.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">ASSERTION</span> <span class="n">NurGrosseStudios</span> <span class="n">CHECK</span>
 <span class="p">(</span><span class="mi">10000</span> <span class="o">&lt;=</span> <span class="n">ALL</span>
 <span class="p">(</span><span class="n">SELECT</span> <span class="n">SUM</span><span class="p">(</span><span class="n">Länge</span><span class="p">)</span> <span class="n">FROM</span> <span class="n">Filme</span>
@@ -1015,23 +978,17 @@ DROP ASSERTION Name;</p>
 <span class="p">);</span>
 </pre></div>
 </div>
-<p>□ Ein Studio muss mindestens 10,000 Minuten Filmmaterial haben
-<br><br>
-■ Alternative beim Schema für Filme</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>□ CHECK (10000 &lt;= ALL
-(SELECT SUM(Länge) FROM Filme
-GROUP BY StudioName)
+<p>Alternativ wäre wieder ein CHECK beim Schema für die Relation Filme möglich.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CHECK</span> <span class="p">(</span><span class="mi">10000</span> <span class="o">&lt;=</span> <span class="n">ALL</span>
+<span class="p">(</span><span class="n">SELECT</span> <span class="n">SUM</span><span class="p">(</span><span class="n">Länge</span><span class="p">)</span> <span class="n">FROM</span> <span class="n">Filme</span>
+<span class="n">GROUP</span> <span class="n">BY</span> <span class="n">StudioName</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>■ Unterschied?
-<br>
-□ Beim Löschen eines Films wird die Bedingung nicht geprüft.
-<br>
-□ Beim Studiowechsel eines Films wird die Bedingung nicht geprüft.</p>
+<p>Der Unterschied im Vergleich zu der Assertion oben ist, dass beim Löschen eines Films die Bedingung nicht geprüft wird. Also ist es möglich, dass nachdem Filme aus der Relation Filme gelöscht wurden, es Studios gibt, die nicht mehr mind. 10000 Minuten Filmmaterial haben und dies nicht überprüft wird. Ebenso kann dies eim Studiowechsel eines Films nicht geprüft werden.</p>
 </div>
 </div>
 <div class="section" id="unterschiede-der-check-bedingungen">
-<h3><span class="section-number">10.4.3. </span>Unterschiede der CHECK Bedingungen<a class="headerlink" href="#unterschiede-der-check-bedingungen" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.4.2. </span>Unterschiede der CHECK Bedingungen<a class="headerlink" href="#unterschiede-der-check-bedingungen" title="Permalink to this headline">¶</a></h3>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Constraint-Art</p></th>
@@ -1060,38 +1017,15 @@ GROUP BY StudioName)
 </table>
 </div>
 <div class="section" id="trigger">
-<h3><span class="section-number">10.4.4. </span>Trigger<a class="headerlink" href="#trigger" title="Permalink to this headline">¶</a></h3>
-<p>■ Auch: Event-Condition-Action Rules (ECA-Rules)
-<br><br>
-■ Unterschiede zu Zusicherungen
-<br>
-□ Gelten nicht immer, sondern werden bei bestimmten Ereignissen (INSERT, UPDATE, DELETE, Ende einer Transaktion) ausgeführt.
-<br>
-□ Ein Ereignis wird zunächst nicht verhindert, es wird lediglich ein bestimmte Bedingung geprüft.
-<br>
-– Falls falsch, passiert nichts weiter
-<br>
-□ Falls wahr, wird eine Aktion ausgeführt. Die Aktion könnte das Ereignis verhindern oder rückgängig machen.
-<br>
-Oder auch etwas völlig anderes tun.</p>
+<h3><span class="section-number">10.4.3. </span>Trigger<a class="headerlink" href="#trigger" title="Permalink to this headline">¶</a></h3>
+<p>Trigger sind so genannte Event-Condition-Action Rules (ECA-Rules). Der Unterschied zu Zusicherungen ist, dass Trigger nicht immer gelten müssen, sondern sie werden nur bei bestimmten Ereignissen (INSERT, UPDATE, DELETE, Ende einer Transaktion) ausgeführt. Ein Ereignis wird zunächst nicht verhindert, sondern es wird lediglich eine bestimmte Bedingung geprüft. Falls die Triggerbedingung falsch ist passiert nichts weiter. Falls sie wahr ist, wird eine Aktion ausgeführt. Die Aktion könnte das Ereignis verhindern oder rückgängig machen oder auch etwas völlig anderes tun.</p>
 </div>
 <div class="section" id="trigger-in-sql">
-<h3><span class="section-number">10.4.5. </span>Trigger in SQL<a class="headerlink" href="#trigger-in-sql" title="Permalink to this headline">¶</a></h3>
-<p>Eigenschaften/Fähigkeiten
-<br>
-Ausführung der Aktion vor oder nach dem Ereignis
-<br>
-Die Aktion kann sich auf alte und/oder neue Werte von Tupeln beziehen, die beim Ereignis eingefügt, verändert oder gelöscht werden.
-<br>
-Mit WHEN können neben dem Ereignis auch weitere Bedingungen angegeben werden, die gelten müssen um die Aktion durchzuführen.
-<br>
-Aktion wird durchgeführt
-<br>
-Einmal für jedes veränderte Tupel oder
-<br>
-einmalig für alle Tupel, die verändert wurden</p>
+<h3><span class="section-number">10.4.4. </span>Trigger in SQL<a class="headerlink" href="#trigger-in-sql" title="Permalink to this headline">¶</a></h3>
+<p>Die ausgelöste Aktion durch Trigger kann sowohl vor oder nach dem Ereignis ausgeführt werden. Die Aktion kann sich auf alte und/oder neue Werte von Tupeln beziehen, die beim Ereignis eingefügt, verändert oder gelöscht werden.Mit WHEN können neben dem Ereignis auch weitere Bedingungen angegeben werden, die gelten müssen um die Aktion durchzuführen. Die Aktion kann einmal für jedes veränderte Tupel oder einmalig für alle Tupel, die verändert wurden ausgeführt werden.</p>
 <div class="section" id="trigger-beispiel">
-<h4><span class="section-number">10.4.5.1. </span>Trigger – Beispiel<a class="headerlink" href="#trigger-beispiel" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">10.4.4.1. </span>Trigger – Beispiel<a class="headerlink" href="#trigger-beispiel" title="Permalink to this headline">¶</a></h4>
+<p>Hier finden Sie ein Beispiel für einen Trigger, welcher verhindert, dass Manager*Innengehälter nicht gesenkt werden. Nach jedem Update von Gehalt der Manager*In Relation, wird das alte Gehalt mit dem neuen verglichen und wenn das alte größer war, wird das Gehalt des betroffenen Tupels wieder auf das Alte gesetzt. Das Rekursionsverhalten ist DBMS-Hersteller-spezifisch.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TRIGGER</span> <span class="n">GehaltsTrigger</span> <span class="o">--</span><span class="n">Name</span> <span class="n">des</span> <span class="n">Triggers</span>
 <span class="n">AFTER</span> <span class="n">UPDATE</span> <span class="n">OF</span> <span class="n">Gehalt</span> <span class="n">ON</span> <span class="n">ManagerIn</span> <span class="o">--</span><span class="n">Ereignis</span>
 <span class="n">REFERENCING</span>
@@ -1104,14 +1038,10 @@ einmalig für alle Tupel, die verändert wurden</p>
     <span class="n">WHERE</span> <span class="n">ManagerinID</span> <span class="o">=</span> <span class="n">NeuesTupel</span><span class="o">.</span><span class="n">ManagerinID</span><span class="p">;</span> <span class="o">--</span><span class="n">Nur</span> <span class="n">betroffenes</span> <span class="n">Tupel</span>
 </pre></div>
 </div>
-<p>■ Was bewirkt der Trigger?
-<br>
-□ Managergehälter werden nicht gesenkt!
-<br>
-□ Rekursionsverhalten ist DBMS-Hersteller-spezifisch.</p>
 </div>
 <div class="section" id="trigger-alternative">
-<h4><span class="section-number">10.4.5.2. </span>Trigger  –  Alternative<a class="headerlink" href="#trigger-alternative" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">10.4.4.2. </span>Trigger  –  Alternative<a class="headerlink" href="#trigger-alternative" title="Permalink to this headline">¶</a></h4>
+<p>Anstelle von AFTER kann in einem Trigger BEFORE benutzt werden, ebenso könne die auslösenden Ereignisse INSERT/DELETE auch ohne OF sein. Bei INSERT gibt es kein OLD ROW … und bei DELETE kein NEW ROW …, da es keine alten und neue Tupel gibt. Wenn FOR EACH ROW nicht explizit spezifizeirt ist, ist FOR EACH STATEMENT der Default, dann gilt OLD TABLE / NEW TABLE. Die WHEN-Klausel ist optional und es können mehrere SQL-Ausdrücke drin enthalten sein, die mit BEGIN … END umrahmt sind.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CREATE TRIGGER GehaltsTrigger                   --BEFORE
 AFTER UPDATE OF Gehalt ON ManagerIn             --INSERT / DELETE (ohne OF…)
 REFERENCING
@@ -1126,7 +1056,8 @@ WHEN (AltesTupel.Gehalt &gt; NeuesTupel.Gehalt)    --WHEN ist optional
 </div>
 </div>
 <div class="section" id="id2">
-<h4><span class="section-number">10.4.5.3. </span>Trigger - Beispiel<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">10.4.4.3. </span>Trigger - Beispiel<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p>In diesem Beispiel sind mehrere SQL-Ausdrücke in der WHEN-Klausel enthalten. Dieser Trigger bewirkt, dass das Durchschnittsgehalt von Manager*Innen nicht unte 500.000 sinkt. Es sind je ein Trigger für UPDATE, INSERT und DELETE nötig.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TRIGGER</span> <span class="n">DurchschnittsgehaltTrigger</span>
 <span class="n">AFTER</span> <span class="n">UPDATE</span> <span class="n">OF</span> <span class="n">Gehalt</span> <span class="n">ON</span> <span class="n">ManagerIn</span>
 <span class="n">REFERENCING</span>
@@ -1142,11 +1073,6 @@ WHEN (AltesTupel.Gehalt &gt; NeuesTupel.Gehalt)    --WHEN ist optional
 <span class="n">END</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>■ Was bewirkt dieser Trigger?
-<br>
-□ Das Durchschnittsgehalt von Managern soll nicht unter 500,000 sinken!
-<br>
-□ Je ein Trigger für UPDATE, INSERT und DELETE nötig</p>
 </div>
 </div>
 </div>
