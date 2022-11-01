@@ -1209,3 +1209,20 @@
 # □ Erlaubt schreibenden Zugriff falls Wert nur inkrementiert (oder dekrementiert) wird.
 # <br>
 # □ Inkremente sind kommutativ: Vertauschung ist erlaubt
+
+# ## Multiple Choice
+
+# In[1]:
+
+
+from IPython.display import IFrame
+
+url = "https://lejuliennn.github.io/mct-trainer/#/quiz/categories/transaktionsmanagement"
+IFrame(src=url, width='100%', height=800)
+
+
+# In[ ]:
+
+
+
+

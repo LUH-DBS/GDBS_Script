@@ -453,3 +453,20 @@
 # - Physische Anfragepläne / Pipelining
 # 
 # ![](ausblick.jpg)
+
+# ## Multiple Choice
+
+# In[1]:
+
+
+from IPython.display import IFrame
+
+url = "https://lejuliennn.github.io/mct-trainer/#/quiz/categories/bearbeitung"
+IFrame(src=url, width='100%', height=800)
+
+
+# In[ ]:
+
+
+
+

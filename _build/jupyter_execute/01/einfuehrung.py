@@ -74,6 +74,17 @@
 # - Persistenz: Große Datenmengen sollten auf sekundäre und terziere Speicher geladen und effizient wieder abrufbar gemacht werden. 
 # - Katalog: Das System sollte Daten über die verwalteten Daten führen. Es soll möglich sein auf diese Metadaten zuzugreifen. 
 
+# ## Multiple Choice
+
+# In[1]:
+
+
+from IPython.display import IFrame
+
+url = "https://lejuliennn.github.io/mct-trainer/#/quiz/categories/einfuehrung"
+IFrame(src=url, width='100%', height=800)
+
+
 # In[ ]:
 
 

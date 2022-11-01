@@ -633,3 +633,20 @@
 # 
 # Es gibt in der Literatur noch weitere strengere Normalformen (5NF $\Rightarrow$ SKNF $\Rightarrow$ RFNF $\Rightarrow$ ETNF $\Rightarrow$ 4NF), die wir nicht mehr im Rahmen dieser Vorlesung behandeln werden. Hierzu verweisen wir Sie auf das folgende wissenschaftliche Papier: 
 # [A Normal Form for Preventing Redundant Tuples in Relational Databases](https://dl.acm.org/doi/10.1145/2274576.2274589) (Hugh Darwen, C.J. Date, Ronald Fagin, ICDT 2012)
+
+# ## Multiple Choice
+
+# In[1]:
+
+
+from IPython.display import IFrame
+
+url = "https://lejuliennn.github.io/mct-trainer/#/quiz/categories/normalisierung"
+IFrame(src=url, width='100%', height=800)
+
+
+# In[ ]:
+
+
+
+

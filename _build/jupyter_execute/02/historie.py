@@ -65,3 +65,20 @@
 # Mit den neuen Trends im Bereich des Big Data und den Erwartungen an maschinelles Lernen, wuchs der Markt für sogenannte "Systems for ML" und "Data lake management". Mehr dazu in den Mastervorlesungen. 
 # 
 # Ein weiterer Forschungsstrang bot neue Entwicklungen aus dem Bereich der Hardware: FPGA, GPGPU, SSD, Main-Memory, Infiniband, die Annahmen über Speicherhierarchien und Kostenmodelle verändern würden.
+
+# ## Multiple Choice
+
+# In[1]:
+
+
+from IPython.display import IFrame
+
+url = "https://lejuliennn.github.io/mct-trainer/#/quiz/categories/historie"
+IFrame(src=url, width='100%', height=800)
+
+
+# In[ ]:
+
+
+
+

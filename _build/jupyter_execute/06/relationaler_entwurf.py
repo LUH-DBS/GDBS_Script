@@ -479,3 +479,20 @@
 # – OO-Stil: Anfrage nur an FilmeZK()
 
 # NICHT enthalten: S.35
+
+# ## Multiple Choice
+
+# In[1]:
+
+
+from IPython.display import IFrame
+
+url = "https://lejuliennn.github.io/mct-trainer/#/quiz/categories/relationalerentwurf"
+IFrame(src=url, width='100%', height=800)
+
+
+# In[ ]:
+
+
+
+

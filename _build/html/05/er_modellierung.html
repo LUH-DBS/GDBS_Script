@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>5. ER-Modellierung &#8212; Online-Skript Grundlagen der Datenbanksysteme</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -62,7 +61,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +84,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -91,14 +105,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Grundlagen der Datenbanksysteme
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Grundlagen der Datenbanksysteme
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../01/einfuehrung.html">
    1. Einführung
@@ -157,110 +172,227 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/05/er_modellierung.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/LUH-DBS/GDBS_Script"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F05/er_modellierung.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/main/?urlpath=tree/05/er_modellierung.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/main/?urlpath=tree/05/er_modellierung.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/LUH-DBS/GDBS_Script"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F05/er_modellierung.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/05/er_modellierung.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#einfuhrung-das-entity-relationship-modell">
    5.1. Einführung: Das Entity-Relationship-Modell
@@ -442,14 +574,18 @@ const thebe_selector_output = ".output, .cell_output"
    5.10. Zusammenfassung ER-Modellierung
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multiple-choice">
+   5.11. Multiple Choice
+  </a>
+ </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>ER-Modellierung</h1>
@@ -643,21 +779,27 @@ const thebe_selector_output = ".output, .cell_output"
    5.10. Zusammenfassung ER-Modellierung
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multiple-choice">
+   5.11. Multiple Choice
+  </a>
+ </li>
 </ul>
 
                         </nav>
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="er-modellierung">
-<h1><span class="section-number">5. </span>ER-Modellierung<a class="headerlink" href="#er-modellierung" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="er-modellierung">
+<h1><span class="section-number">5. </span>ER-Modellierung<a class="headerlink" href="#er-modellierung" title="Permalink to this headline">#</a></h1>
 <p>Beim konzeptionellen Entwurf möchten wir aus einer informellen Beschreibung einer Datenbank eine formelle Beschreibung erstellen, in der Mehrdeutigkeiten und jegliche Namen- und Typkonflikte behoben sowie Einschränkungen und Bedingungen sinnvoll ausgedrückt werden können.</p>
 <p>Eine Modellierungssprache für eine solche Modellierung ist das Entity-Relationship-Modell (ER-Modell).</p>
-<div class="section" id="einfuhrung-das-entity-relationship-modell">
-<h2><span class="section-number">5.1. </span>Einführung: Das Entity-Relationship-Modell<a class="headerlink" href="#einfuhrung-das-entity-relationship-modell" title="Permalink to this headline">¶</a></h2>
+<section id="einfuhrung-das-entity-relationship-modell">
+<h2><span class="section-number">5.1. </span>Einführung: Das Entity-Relationship-Modell<a class="headerlink" href="#einfuhrung-das-entity-relationship-modell" title="Permalink to this headline">#</a></h2>
 <p>Die ER-Modellierung wurde 1976 von Peter Chen vorgestellt und wird seitdem als das Standardmodell für die frühe Entwurfsphase des Datenbankentwurfes verwendet.</p>
 <table class="colwidths-auto table">
 <thead>
@@ -672,11 +814,11 @@ const thebe_selector_output = ".output, .cell_output"
 </tbody>
 </table>
 <p>Das Ergebnis einer ER-Modellierung sind ER-Diagramme, die Datenbanken beschreiben, die eine Instanz haben werden. Wir werden jetzt die zentralen Komponenten dieser Modellierungssprache und die Möglichkeiten damit Datenbedingungen und -beziehungen auszudrücken kennenlernen.</p>
-</div>
-<div class="section" id="begriffe">
-<h2><span class="section-number">5.2. </span>Begriffe<a class="headerlink" href="#begriffe" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="komponenten">
-<h3><span class="section-number">5.2.1. </span>Komponenten<a class="headerlink" href="#komponenten" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="begriffe">
+<h2><span class="section-number">5.2. </span>Begriffe<a class="headerlink" href="#begriffe" title="Permalink to this headline">#</a></h2>
+<section id="komponenten">
+<h3><span class="section-number">5.2.1. </span>Komponenten<a class="headerlink" href="#komponenten" title="Permalink to this headline">#</a></h3>
 <p>Die zentralen Komponenten der ER-Modellierung sind Entities, Entitytypen, Relationships und Relationshiptypen.</p>
 <p><strong>Entity:</strong> Ein Ding / Objekt der realen oder der Vorstellungswelt</p>
 <p><strong>Relationship:</strong> Beschreibt Beziehungen zwischen zwei („konkreten“) Entities</p>
@@ -744,9 +886,9 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 <a class="reference internal image-reference" href="../_images/er_diagramm_bsp.jpg"><img alt="../_images/er_diagramm_bsp.jpg" src="../_images/er_diagramm_bsp.jpg" style="width: 700px;" /></a>
-</div>
-<div class="section" id="instanz-eines-er-diagramms">
-<h3><span class="section-number">5.2.2. </span>Instanz eines ER-Diagramms<a class="headerlink" href="#instanz-eines-er-diagramms" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="instanz-eines-er-diagramms">
+<h3><span class="section-number">5.2.2. </span>Instanz eines ER-Diagramms<a class="headerlink" href="#instanz-eines-er-diagramms" title="Permalink to this headline">#</a></h3>
 <p>Wie bereits gesagt beschreiben ER-Diagramme Datenbanken, die eine Instanz haben (werden).
 Dabei gilt, dass der „Wert“ eines Entitytypen die (endliche) Menge der zugehörigen Entities ist. Jede Entity hat bestimmte Werte für seine Attribute, z.B., Basic Instinct = {Titel=Basic Instinct, Jahr = 1992, Länge = 127, Typ = Farbe}. Die Instanz eines n-ären Relationshiptypen ist eine Menge von n-Tupel, z.B spielt_in_instanz_1= (Basic Instinct, Sharon Stone).
 Dies alles ist an dieser Stelle nur eine abstrakte Denkhilfe. Die Modellierung im relationalen Modell wird sich nochmal unterscheiden, sodass sich die Abspeicherung durch ein DBMS auch unterscheiden wird.</p>
@@ -820,14 +962,14 @@ Dies alles ist an dieser Stelle nur eine abstrakte Denkhilfe. Die Modellierung i
 </tr>
 </tbody>
 </table>
-</td></tr> </table></div>
-</div>
-<div class="section" id="kardinalitaten-von-relationshiptypen">
-<h2><span class="section-number">5.3. </span>Kardinalitäten von Relationshiptypen<a class="headerlink" href="#kardinalitaten-von-relationshiptypen" title="Permalink to this headline">¶</a></h2>
+</td></tr> </table></section>
+</section>
+<section id="kardinalitaten-von-relationshiptypen">
+<h2><span class="section-number">5.3. </span>Kardinalitäten von Relationshiptypen<a class="headerlink" href="#kardinalitaten-von-relationshiptypen" title="Permalink to this headline">#</a></h2>
 <p>Allgemein: Ein binärer Relationshiptyp kann beliebig viele Entities des einen Typen mit beliebig vielen des anderen Typen verbinden. Betrachten wir zum Beispiel unsere Beispieldatenbank über Filme. Hier kann eine Schauspieler*in in mehreren Filmen mitspielen und gleichzeitig mehrere Schauspieler*innen in einem einzigen Film. Hierbei nutzen wir bewusst “kann”, da nicht jede Entity mit einer anderen Entity des jeweiligen Typen verbunden sein muss. Beispielsweise spielen in Animationsfilme keine Schauspieler*innen mit. Anders ist es bei Relationshiptypen, bei denen eine Verbindung erzwungen werden muss. Beispielsweise muss jeder Film von einem Studio produziert werden - in diesem Fall sogar von genau einem Studio.</p>
 <p>Man kann diese Kardinalitäten im ER-Modell genau spezifizieren. Es gibt im Allgemeinen drei häufige Kardinalitäten:</p>
-<div class="section" id="m-n-beziehungen">
-<h3><span class="section-number">5.3.1. </span>m:n Beziehungen<a class="headerlink" href="#m-n-beziehungen" title="Permalink to this headline">¶</a></h3>
+<section id="m-n-beziehungen">
+<h3><span class="section-number">5.3.1. </span>m:n Beziehungen<a class="headerlink" href="#m-n-beziehungen" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><strong>m:n Beziehungen</strong> sagen aus, dass jede Entity des einen Typen mit keinem oder mehreren Entities des anderen Typen verbunden sein kann.</p></li>
 </ul>
@@ -835,9 +977,9 @@ Dies alles ist an dieser Stelle nur eine abstrakte Denkhilfe. Die Modellierung i
 <ul class="simple">
 <li><p>Beispiele: Filme und Schauspieler*innen, Produkte und Kund*innen, Studierenden und Vorlesungen</p></li>
 </ul>
-</div>
-<div class="section" id="n-beziehungen">
-<h3><span class="section-number">5.3.2. </span>1:n Beziehungen<a class="headerlink" href="#n-beziehungen" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="n-beziehungen">
+<h3><span class="section-number">5.3.2. </span>1:n Beziehungen<a class="headerlink" href="#n-beziehungen" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><strong>1:n Beziehungen</strong> sagen aus, dass jede Entity des einen Typen mit maximal einem Entity des anderen Typen verbunden sein <strong>kann</strong>. Diese Beziehung gilt aber nur in eine Richtung.</p></li>
 </ul>
@@ -846,9 +988,9 @@ Dies alles ist an dieser Stelle nur eine abstrakte Denkhilfe. Die Modellierung i
 <li><p>Beispiele: Ein Studio kann die Rechte an mehreren Filmen besitzen. Ein Film kann nur von einem Studio besessen werden.</p></li>
 <li><p>Darstellung mittels eines Pfeils zur „1er“ Seite.</p></li>
 </ul>
-</div>
-<div class="section" id="beziehungen">
-<h3><span class="section-number">5.3.3. </span>1:1 Beziehungen<a class="headerlink" href="#beziehungen" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="beziehungen">
+<h3><span class="section-number">5.3.3. </span>1:1 Beziehungen<a class="headerlink" href="#beziehungen" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><strong>1:1 Beziehung</strong> sagen aus, dass jede Entity des einen Typen mit maximal einem Entity des anderen Typen verbunden sein <strong>kann und umgekehrt</strong>.</p></li>
 </ul>
@@ -857,20 +999,20 @@ Dies alles ist an dieser Stelle nur eine abstrakte Denkhilfe. Die Modellierung i
 <li><p>Beispiel: Ein Studio kann nur von einer Vorsitzenden geleitet werden. Eine Vorsitzende kann nur ein Studio leiten. Auch hier gilt immernoch “kann”. Wir werden eine Notation für eine totale Abbildung, d.h., wo die Beziehung stattfinden muss, noch kennenlernen. In unserem Beispiel kann ein Studio theoretisch (vorübergehend) keinen Vorsitzenden haben.</p></li>
 <li><p>Darstellung mittels eines Pfeils zu beiden Seiten.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="weitere-notationen-fur-kardinalitaten">
-<h2><span class="section-number">5.4. </span>Weitere Notationen für Kardinalitäten<a class="headerlink" href="#weitere-notationen-fur-kardinalitaten" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="weitere-notationen-fur-kardinalitaten">
+<h2><span class="section-number">5.4. </span>Weitere Notationen für Kardinalitäten<a class="headerlink" href="#weitere-notationen-fur-kardinalitaten" title="Permalink to this headline">#</a></h2>
 <p>Sie werden in der Literatur verschiedene Notationen für die Darstellung von Kardinalitäten finden. Diese sind unterschiedlich mächtig. Bisher haben wir lediglich die grafische Notation kennengerlernt, die über Pfeiltypen ausgedrückt wird. Eine Verbindung ohne eine Pfeilspitze, die eine beliebige Anzahl von Verbindungen, also “n”, suggeriert und eine Verbindung mit einer Pfeilspitze, die maximal eine Verbindung, also “1”, darstellt. Diese Notation lässt noch keine Nebenbedingungen hinsichtlich konkreter “n”-Werte zu.
 Im Folgenden werden wir noch die Min-Max-Notation und die numerische Notation kennenlernen.</p>
-<div class="section" id="min-max-notation-look-up-semantik">
-<h3><span class="section-number">5.4.1. </span>Min-Max-Notation (Look-Up-Semantik)<a class="headerlink" href="#min-max-notation-look-up-semantik" title="Permalink to this headline">¶</a></h3>
+<section id="min-max-notation-look-up-semantik">
+<h3><span class="section-number">5.4.1. </span>Min-Max-Notation (Look-Up-Semantik)<a class="headerlink" href="#min-max-notation-look-up-semantik" title="Permalink to this headline">#</a></h3>
 <p>Die Min-Max-Notation schränkt die möglichen Teilnahmen von Instanzen der beteiligten Entitytypen an der Beziehung ein. Insbesondere drückt sie aus, wie häufig eine Instanz minimal bzw. maximal an einer Beziehung teilnimmt. Die Notation ist (Min,Max) an der Seite des Entitytypen.</p>
 <p>Im folgenden Beispiel sagt (0,1) an der Seite des Produktes aus, dass ein Produkt entweder in einem oder keinem Regal gelagert wird. Andersherum sagt (0,3) auf der Seite des Regals aus, dass in einem Regal 0 bis 3 unterschiedliche Produkte gelagert werden können.</p>
 <a class="reference internal image-reference" href="../_images/minmax-beispiel.jpg"><img alt="../_images/minmax-beispiel.jpg" src="../_images/minmax-beispiel.jpg" style="width: 500px;" /></a>
-</div>
-<div class="section" id="numerische-notation-partizipationssemantik">
-<h3><span class="section-number">5.4.2. </span>Numerische Notation (Partizipationssemantik)<a class="headerlink" href="#numerische-notation-partizipationssemantik" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="numerische-notation-partizipationssemantik">
+<h3><span class="section-number">5.4.2. </span>Numerische Notation (Partizipationssemantik)<a class="headerlink" href="#numerische-notation-partizipationssemantik" title="Permalink to this headline">#</a></h3>
 <p>Die numerische Notation ist eine vereinfachende Form, in der man ausdrückt mit wie vielen Instanzen des gegenüberliegenden Typen eine Verbindung maximal aufgebaut wird.</p>
 <p>Im Folgenden Beispiel besagt die Angabe von “n” auf der Seite der Filme, dass bis zu n Filme mit einem Studio verbunden sein können. Die “1” auf der Seite von Studio besagt, dass jeder Film mit maximal einem Studio verbunden sein kann.</p>
 <a class="reference internal image-reference" href="../_images/numerisch-beispiel.jpg"><img alt="../_images/numerisch-beispiel.jpg" src="../_images/numerisch-beispiel.jpg" style="width: 500px;" /></a>
@@ -916,9 +1058,9 @@ Im Folgenden werden wir noch die Min-Max-Notation und die numerische Notation ke
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="totale-beziehung">
-<h3><span class="section-number">5.4.3. </span>Totale Beziehung<a class="headerlink" href="#totale-beziehung" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="totale-beziehung">
+<h3><span class="section-number">5.4.3. </span>Totale Beziehung<a class="headerlink" href="#totale-beziehung" title="Permalink to this headline">#</a></h3>
 <p>Bisher haben wir hauptsächlich Beziehungstypen kennengelernt, die auf “kann” basieren. Lediglich mit der Min-Max-Notation können wir bisher sicherstellen, dass jede Entity eines Typs an einer Beziehung teilnehmen muss, indem wir den Minimalwert auf eine Zahl größer als 0 setzen: (1,* ) bedeutet, dass jede Entity mindestens einmal an einer Beziehung teilnehmen muss. Entsprechend bedeutet (1,1), dass jede Entity genau einmal an einer Beziehung teilnehmen muss.</p>
 <p>Die totale Abbildung stellt man grafisch entweder durch einen offenen Pfeil auf der Seite der totalen Abbildung dar oder anhand eines Doppelstriches:</p>
 <table class="colwidths-auto table">
@@ -935,9 +1077,9 @@ Im Folgenden werden wir noch die Min-Max-Notation und die numerische Notation ke
 </table>
 <p>Analog kann man eine totale 1:1 Beziehung folgendermaßen darstellen:</p>
 <a class="reference internal image-reference" href="../_images/11_total_notation.jpg"><img alt="../_images/11_total_notation.jpg" src="../_images/11_total_notation.jpg" style="width: 300px;" /></a>
-</div>
-<div class="section" id="entitytypen-und-rollen">
-<h3><span class="section-number">5.4.4. </span>Entitytypen und Rollen<a class="headerlink" href="#entitytypen-und-rollen" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="entitytypen-und-rollen">
+<h3><span class="section-number">5.4.4. </span>Entitytypen und Rollen<a class="headerlink" href="#entitytypen-und-rollen" title="Permalink to this headline">#</a></h3>
 <p>Entitytypen können mehr als einmal in einer Relationship auftauchen, beziehungsweise kann ein Entitytyp durch einen Relationshiptyp mit sich selbst verbunden sein. Dabei tauchen sie jeweils in unterschiedlichen <strong>Rollen</strong> auf. Die ER-Modellierung ermöglicht die explizite Modellierung von Rollen durch Annotation an den Kanten der Relationships.</p>
 <p><strong>Beispiel (Rolle 1):</strong> Im folgenden Beispiel wird modelliert, dass Filme Fortsetzungen voneinander sein können. Dabei taucht der Entitytyp Film einmal in der Rolle des Originals und einmal in der Rolle der Fortsetzung mit dem Relationshiptypen “ist_Fortsetzung” auf.</p>
 <img alt="../_images/rolle_relationship.jpg" src="../_images/rolle_relationship.jpg" />
@@ -946,16 +1088,16 @@ Im Folgenden werden wir noch die Min-Max-Notation und die numerische Notation ke
 <p>Diese Modellierung impliziert, dass das Stammstudio eines Schauspielers einem anderen Studio erlaubt den/die Schauspieler*in für einen bestimmten Film
 auszuleihen.</p>
 <p>Mithilfe von Rollen vermeidet man unnötig redundante Entitytypen zu modellieren. Theoretisch könnte man jede Rolle als einen Entitytypen modellieren. Dies würde bedeuten, dass wir zwei Entitytypen mit den gleichen Attributen und höchstwahrscheinlich einer großen Überlappung von Entities haben würden.</p>
-</div>
-<div class="section" id="n-are-relationships">
-<h3><span class="section-number">5.4.5. </span>n-äre Relationships<a class="headerlink" href="#n-are-relationships" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="n-are-relationships">
+<h3><span class="section-number">5.4.5. </span>n-äre Relationships<a class="headerlink" href="#n-are-relationships" title="Permalink to this headline">#</a></h3>
 <p>Relationshiptypen können auch zwischen mehreren bis zu “n” Entitytypen existieren. Beispielsweise könnte man die Beziehung, dass  ein/e Schauspieler*in  bei einem Studio für eine bestimmten Film unter Vertrag steht, als einen ternären Relationshiptypen wie folgt dargestellt modellieren.</p>
 <a class="reference internal image-reference" href="../_images/n-aer_relationships.jpg"><img alt="../_images/n-aer_relationships.jpg" src="../_images/n-aer_relationships.jpg" style="width: 500px;" /></a>
 <p>Die Instanz eines solchen Relationshiptypen kann man dann als Tripel darstellen.</p>
 <p>Normalerweise versucht man n-äre Relationshiptypen zu vermeiden, da diese schwer nachzuvollziehen sind. Insbesondere sind Kardinalitäten nicht sofort ersichtlich. In unserem Beispiel muss man genau überlegen, wie der Pfeil am Studio zu interpretieren ist. Eine mögliche Interpretation des Pfeiles ist, dass jede Kombination von Schauspieler*in und Film mit nur einem Studio in Beziehung steht. Man könnte aber auch rauslesen, dass jede/r Schauspieler*in mit beliebig vielen Filmen, aber nur einem Studio in einer Beziehung steht. Analog kann jeder Film nur mit einem Studio aber beliebig vielen Schauspieler*innen in Verbindung stehen. Um solche Mehrdeutigkeiten zu verhindern, sollte man sich bei der Modellierung auf binäre Relationshiptypen einschränken.</p>
-</div>
-<div class="section" id="konvertierung-in-binare-relationships">
-<h3><span class="section-number">5.4.6. </span>Konvertierung in binäre Relationships<a class="headerlink" href="#konvertierung-in-binare-relationships" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="konvertierung-in-binare-relationships">
+<h3><span class="section-number">5.4.6. </span>Konvertierung in binäre Relationships<a class="headerlink" href="#konvertierung-in-binare-relationships" title="Permalink to this headline">#</a></h3>
 <p>Manchmal bietet sich im Modellierungsprozess an zunächst komplexe Relationshiptypen als n-äre Relationshiptypen zu modellieren und diese erst dann in binäre Relationshiptypen umzuwandeln. Bei dieser Konvertierung entsteht ein neuer Entitytyp, welcher durch binäre N:1 Relationshiptypen alle anderen Entitytypen verbindet.</p>
 <p>Falls ein Entitytyp mehrere Rollen spielt, entsteht pro Rolle ein Relationshiptyp.
 Attribute des Relationshiptyps werden an den neuen Entitytyp angehängt.</p>
@@ -973,17 +1115,17 @@ Attribute des Relationshiptyps werden an den neuen Entitytyp angehängt.</p>
 </tbody>
 </table>
 <p>Wir haben einen neuen Entitypen “Vertrag” definiert ,welcher in N:1 Beziehung die ursprünglichen Beziehungen darstellt. Die Modellierung ist nicht vollständig äquivalent. Theoretisch könnte es nun mehrere Verträge mit der gleichen Kombination von  Studios, Schauspiler*innen und Filmen existieren, das wären dann Vertragsduplikate. In der ursprünglichen Modellierung könnte das nicht passieren, da der Vertrag als Relationshiptyp mit entsprechenden Kardinalitäten eingeschränkt ist.</p>
-</div>
-<div class="section" id="attribute-an-relationships">
-<h3><span class="section-number">5.4.7. </span>Attribute an Relationships<a class="headerlink" href="#attribute-an-relationships" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="attribute-an-relationships">
+<h3><span class="section-number">5.4.7. </span>Attribute an Relationships<a class="headerlink" href="#attribute-an-relationships" title="Permalink to this headline">#</a></h3>
 <p>In manchen Fällen ist es hilfreich, Relationships Attribute zuzuordnen. Damit stellt man sicher, dass das Attribut nur gesetzt ist, wenn eine Beziehung zwischen zwei Entitytypen existiert.</p>
 <p><strong>Beispiel:</strong> Im folgenden Modell wird modelliert, dass in einem Vetrag ein Gehalt festgestellt wird. Eine Zuordnuung an Schauspieler*in, Film oder Studio ist hier nicht sinnvoll
 Eine Schauspieler*in könnte für verschiedene Filme unterschiedliche Gehälter bekommen. Verschiedene Schauspieler*innen könnten für den selben Film unterschiedliche Gehälter bekommen. Ein Studio könnte verschiedenen Schauspieler*innen unterschiedliche Gehälter zahlen.</p>
 <a class="reference internal image-reference" href="../_images/attribute_relationship.jpg"><img alt="../_images/attribute_relationship.jpg" src="../_images/attribute_relationship.jpg" style="width: 500px;" /></a>
-</div>
-</div>
-<div class="section" id="spezielle-relationshiptypen-ist-beziehung">
-<h2><span class="section-number">5.5. </span>Spezielle Relationshiptypen: IST-Beziehung<a class="headerlink" href="#spezielle-relationshiptypen-ist-beziehung" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="spezielle-relationshiptypen-ist-beziehung">
+<h2><span class="section-number">5.5. </span>Spezielle Relationshiptypen: IST-Beziehung<a class="headerlink" href="#spezielle-relationshiptypen-ist-beziehung" title="Permalink to this headline">#</a></h2>
 <p>Das ER-Modell erlaubt spezielle Beziehungen, wie Subklassenbeziehungen explizit zu modellieren. Dabei wird modelliert, dass ein Entitytyp in einer Subklassenbeziehung zu einem anderen Entitytypen steht. Dabei ist die Subklasse jeweils eine Spezialisierung der oberen Klasse. Somit könnte es weniger Entitäten in der Subklasse geben, die jedoch mehr spezialisiere Attribute haben und in weiteren speziellen Relationshiptypen auftauchen.
 Im ER-Modell gibt es hierzu den Relationshiptypen IST oder is-a. Zudem wird der Relationshiptyp als Dreieck dargestellt wobei die Spitze des Dreiecks zur Superklasse zeigt. IST-Relationshiptypen haben immer eine 1:1 Kardinalität: Ein Entity der Subklasse ist auch immer Entity der Superklasse. Pfeile sind bei dieser Darstellung nicht notwendig.
 Das ist anders als bei objekt-orientierten (OO) Modellen
@@ -998,36 +1140,36 @@ In ER sind Entities in allen Subklassen repräsentiert in die sie gehören, und 
 <li><p>„Prisoner“ hat vier Attribute und zusätzlich das Attribut „Waffen“.</p></li>
 <li><p>„Roger Rabbit“ ist sowohl ein Krimi als auch ein Zeichentrickfilm und hat somit die vier Filmattribute, zusätzlich das Attribut „Waffen“ und „Stimmen“-Relationships.</p></li>
 </ul>
-</div>
-<div class="section" id="nebenbedingungen-constraints">
-<h2><span class="section-number">5.6. </span>Nebenbedingungen(Constraints)<a class="headerlink" href="#nebenbedingungen-constraints" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="nebenbedingungen-constraints">
+<h2><span class="section-number">5.6. </span>Nebenbedingungen(Constraints)<a class="headerlink" href="#nebenbedingungen-constraints" title="Permalink to this headline">#</a></h2>
 <p>Daten unterliegen häufig bestimmten Einschränkungen und Nebenbedingungen. Nebenbedingungen dienen oft dazu Entitytypen und Relatioshiptypen eindeutig identifizieren oder einschränken zu können.
 Zu den gebräuchlichen Nebenbedingungen gehören unter anderem Schlüssel und Fremdschlüssel. Schlüssel sind Attributkombinationen die Entities eindeutig identifizierbar machen. Fremdschlüssel andererseits stellen referenzielle Integrität her. Damit wird die Existenz von bestimmten Entitytypen von anderen abhängig. Andere Einschränkungen betreffen Wertebereiche von Attributen und Kardinalitäten. Wir werden im Folgenden die wichtigsten Nebenbedingungen, die man im Rahmen der ER-Modellierung verwendet genauer betrachten. Wichtig ist bei der Bewertung von Nebenbedingungen, dass diese als Teil des konzeptionellen Entwurfes allgemeingültig definiert werden. Zufällig existierende Beziehungen in konkreten Daten können nicht automatisch zur Nebenbedingung qualifiziert werden.</p>
-<div class="section" id="schlussel">
-<h3><span class="section-number">5.6.1. </span>Schlüssel<a class="headerlink" href="#schlussel" title="Permalink to this headline">¶</a></h3>
+<section id="schlussel">
+<h3><span class="section-number">5.6.1. </span>Schlüssel<a class="headerlink" href="#schlussel" title="Permalink to this headline">#</a></h3>
 <p>Ein Schlüssel ist eine (minimale) Menge von Attributen eines Entitytyps, für die gilt, dass keine zwei Entities gleiche Werte in allen Schlüsselattributen haben. Beispielsweise könnte für unseren Entitytypen Filme die Kombination aus Film und Jahr als Schlüssel fungieren. Die Wahl eines solchen Schlüssels muss mit Bedacht geschehen. Die Unterscheidbarkeit von Entities in der realen Welt muss durch die Schlüsseleigenschaften gewährleistet sein. Anderenfalls wird man ähnliche Entities nicht zeitgleich im Modell aufnehmen und von einander unterscheiden können. Würde man beispielsweise, nur den Titel eines Films als den Schlüssel auswählen, könnte man nicht mehr unterschiedliche Filme mit dem gleichen Titel von einander unterscheiden. Dabei gibt es oft Wiederverfilmungen der gleichen Geschichte mit dem gleichen Titel, wie z.B. “Hamlet”, “King Kong”. Die Kombination {Titel, Jahr} ist hier wahrscheinlich sinnvoller.</p>
 <p>Generell muss bei der ER-Modellierung für jeden Entitytypen ein Schlüssel angegeben werden. Manchmal gibt es mehrere Möglichkeiten einen Schlüssel zu definieren. Beispielsweise wird in Deutschland jede Person durch die Personalausweisnummer sowie der Steuernummer eindeutig identifiziert. Bei der Modellierung von Entitytypen ist es jedoch üblich einen Primärschlüssel auszuwählen. Bei IST-Beziehungen muss die Wurzel-Superklasse sämtliche Schlüsselattribute enthalten.</p>
 <p>Schlüsselattribute werden im ER-Modell durch Unterstreichen der Attributnamen dargestellt.</p>
 <p><strong>Beispiel:</strong> Im folgenden Beispiel haben wir für jeden Entitytypen Schlüsselattribute angegeben. Filme werden durch {Titel, Jahr} , Schauspieler*innen durch {Name, Adresse} und Studios durch {Name} jeweils eindeutig identifziert.</p>
 <a class="reference internal image-reference" href="../_images/schluesselbeispiel_film.jpg"><img alt="../_images/schluesselbeispiel_film.jpg" src="../_images/schluesselbeispiel_film.jpg" style="width: 500px;" /></a>
-</div>
-<div class="section" id="referentielle-integritat">
-<h3><span class="section-number">5.6.2. </span>Referentielle Integrität<a class="headerlink" href="#referentielle-integritat" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="referentielle-integritat">
+<h3><span class="section-number">5.6.2. </span>Referentielle Integrität<a class="headerlink" href="#referentielle-integritat" title="Permalink to this headline">#</a></h3>
 <p>Referentielle Integrität erzwingt die Zuordnung von Entities zu einem Entity eines anderen Entitytypen. Bisher haben wir N:1-Relationshiptypen betrachtet, bei denen gilt, dass eine Beziehung zwischen einem Entity der n-Seite mit höchstens einem Entitytypen der 1-Seite existiert. Aber in dieser Modellierung kann ein Entity der n-Seite auch mit keinem Entity der 1-Seite in Verbingung stehen. Beispiesweise kann in unserem Film-Beispiel ein Film zu höchstens einem Studio gehören. Ein Film kann auch ohne ein Studio existieren.
 Referentielle Integrität erzwingt die Existenz und Repräsentation des Studios. Damit stellt man sicher, dass nur Filme in der Datenbank aufgenommen werden, die auch wirklich einem Studio zugehören.
 Das heißt, dass das Datenbanksystem beim Einfügen/Ändern eines Films prüfen muss, dass ein entsprechendes Studio vorhanden ist. Weiterhin wird sicher gestellt, dass ein Studio nicht gelöscht werden darf, solange es noch Filme besitzt.</p>
 <p>Die Darstellung von referenzieller Integrität erfolgt im ER-Modell anhand eines offenen Pfeiles. Diese Darstellung haben wir für die Modellierung von totalen Beziehungen kennengelernt. Eine referenzielle Integrität beschreibt tatsächlich eine totale Abbildung eines Entitytypen auf einen anderen Entitytypen.</p>
 <p><strong>Beispiel:</strong> Im Folgenden Beispiel wird an zwei Stellen referenzielle Integrität erzwungen. Zunächst wird erzwungen, dass jeder Film genau einem Studio zugeordnet werden muss. Weiterhin leitet jede/r Vorsitzend/e genau ein Studio. Vorsitzende können nicht ohne Studios existieren. Ein Studio kann jedoch ohne Vorsitzende existieren.</p>
 <a class="reference internal image-reference" href="../_images/referentielle_integritaet.jpg"><img alt="../_images/referentielle_integritaet.jpg" src="../_images/referentielle_integritaet.jpg" style="width: 500px;" /></a>
-</div>
-<div class="section" id="weitere-nebenbedingungen">
-<h3><span class="section-number">5.6.3. </span>Weitere Nebenbedingungen<a class="headerlink" href="#weitere-nebenbedingungen" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="weitere-nebenbedingungen">
+<h3><span class="section-number">5.6.3. </span>Weitere Nebenbedingungen<a class="headerlink" href="#weitere-nebenbedingungen" title="Permalink to this headline">#</a></h3>
 <p>Es gibt weitere Nebenbedingungen, die man informell mitmodellieren kann. Beispielsweise könnte man Datentypen und Wertebereiche von Attributen modellieren. Grundsätzlich ist an dieser Stelle, dieser Detailgrad vermutlich nicht sinnvoll, da Datentypen oft datenbankabhängig sind.
 Was man jedoch möglicherweise bereits modellieren möchte, sind alle Einschränkungen hinsichtlich Kardinalitäten. Hierzu haben wir die min/max und die numerische Notation kennen gelernt, die uns erlauben die Anzahl der Beziehungen, die eine Entity eingehen kann genauer zu spezifizieren und zu erzwingen.</p>
-</div>
-</div>
-<div class="section" id="schwache-entitytypen">
-<h2><span class="section-number">5.7. </span>Schwache Entitytypen<a class="headerlink" href="#schwache-entitytypen" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="schwache-entitytypen">
+<h2><span class="section-number">5.7. </span>Schwache Entitytypen<a class="headerlink" href="#schwache-entitytypen" title="Permalink to this headline">#</a></h2>
 <p>In bestimmten Situationen können Entities nicht allein anhand ihrer Attribute identifiziert werden:
 <br></p>
 <ol class="simple">
@@ -1052,8 +1194,8 @@ Im folgenden Beispiel sieht man die Modellierung von Crews und Studios. Es ist d
 <a class="reference internal image-reference" href="../_images/schwache_ent_bsp1.jpg"><img alt="../_images/schwache_ent_bsp1.jpg" src="../_images/schwache_ent_bsp1.jpg" style="width: 500px;" /></a>
 <p><strong>Beispiel (Auflösung n-ärer Relationshiptypen):</strong> Der Entitytyp Vetrag wurde als Verbindungsentitytyp eingeführt um den 3-ären Relationshiptypen ist_unter_Vertrag durch mehrere binäre Relationshiptypen zu ersetzen. Beachten Sie, dass all jene Relationshiptypen N:1 sind. Es sollte nicht möglich sein, dass ein Vetrag ohne Zuordnung zu allen Parteien, wie Schauspieler*in und Studio sowie dem eigentlichen Film als Gegenstand des Vertrages existiert. Damit ist Vetrag ein schwacher Entitytyp und kann nur durch die Aufzählung der Schlüssel aller anderen in Beziehung stehenden Entitytypen eindeutig identifiziert werden.</p>
 <a class="reference internal image-reference" href="../_images/schwache_ent_bsp3.jpg"><img alt="../_images/schwache_ent_bsp3.jpg" src="../_images/schwache_ent_bsp3.jpg" style="width: 500px;" /></a>
-<div class="section" id="kann-man-schwache-entitytypen-vermeiden">
-<h3><span class="section-number">5.7.1. </span>Kann man schwache Entitytypen vermeiden?<a class="headerlink" href="#kann-man-schwache-entitytypen-vermeiden" title="Permalink to this headline">¶</a></h3>
+<section id="kann-man-schwache-entitytypen-vermeiden">
+<h3><span class="section-number">5.7.1. </span>Kann man schwache Entitytypen vermeiden?<a class="headerlink" href="#kann-man-schwache-entitytypen-vermeiden" title="Permalink to this headline">#</a></h3>
 <p>Eine der Ursachen für die Entstehung von schwachen Entitytypen ist, dass es nicht möglich ist einen allgemeingültigen Schlüssel zu deklarieren.
 In der Realität werden sehr oft künstliche IDs verwendet.</p>
 <ul class="simple">
@@ -1061,29 +1203,29 @@ In der Realität werden sehr oft künstliche IDs verwendet.</p>
 </ul>
 <p>Für unser Vertragsbeispiel hätten wir theoretisch auch eine Vertragsnummer definieren können. Zwar hätten wir immernoch die totale Beziehung zu den Vertragsgegenständen und Parteien, jedoch wäre jeder Vertrag als solches eindeutig identifizierbar.</p>
 <p>Um solch einen künstlichen Schlüssel zu definieren bedarf es einer anerkannten Autorität.</p>
-</div>
-</div>
-<div class="section" id="erweitertes-er-modell-eer">
-<h2><span class="section-number">5.8. </span>Erweitertes ER-Modell (EER)<a class="headerlink" href="#erweitertes-er-modell-eer" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="erweitertes-er-modell-eer">
+<h2><span class="section-number">5.8. </span>Erweitertes ER-Modell (EER)<a class="headerlink" href="#erweitertes-er-modell-eer" title="Permalink to this headline">#</a></h2>
 <p>Bisher haben wir die Kernkonzepte der ER-Modellierung kennen gelernt. Die ER-Modellierungssprache beinhaltet auch weitere Erweiterungen, die es ermöglichen, Konzepte konkreter zu modellieren. In dieser Vorlesung stellen wir lediglich einige dieser Möglichkeiten vor.</p>
-<div class="section" id="weitere-attributarten">
-<h3><span class="section-number">5.8.1. </span>Weitere Attributarten<a class="headerlink" href="#weitere-attributarten" title="Permalink to this headline">¶</a></h3>
+<section id="weitere-attributarten">
+<h3><span class="section-number">5.8.1. </span>Weitere Attributarten<a class="headerlink" href="#weitere-attributarten" title="Permalink to this headline">#</a></h3>
 <p>Die erste Erweiterung im EER sind weiter Spezifikationen von Attributen. Wie in den dargestellten Beispielen zu sehen ist ist es möglich verschiedene Nebenbedingungen zu modellieren.</p>
 <img alt="../_images/weitere_attributnamen.jpg" src="../_images/weitere_attributnamen.jpg" />
 <p><strong>Optionales Attribut</strong>  ist ein Attribut, bei dem der Attributwert nicht für jede Entität vorhanden sein muss. Dies wird durch ein O auf der Verbindungskante gezeigt. Beispielsweise, handelt es sich bei Telefon um ein Optionales Attribut.</p>
 <p><strong>Abgeleitetes Attribut</strong> ist ein Attribut, dessen Wert von anderen Attributen hergeleitet werden kann. Beispielsweise kann der Bruttopreis aus dem Nettopreis und dem Steuersatz berechnet werden.</p>
 <p><strong>Mengenwertiges Attribut</strong> enthält eine Menge von Werten. Beispielsweise kann ein Kunde mehrere Vornamen haben.</p>
 <p><strong>Strukturiertes Attribut</strong> ist ein Attribut, welches sich aus anderen Attributen zusammensetzt. Beispielsweise setzt sich eine Adresse aus drei unterschiedlichen Komponenten zusammen: Straßenname, Postleitzahl und Ort.</p>
-</div>
-<div class="section" id="aggregation">
-<h3><span class="section-number">5.8.2. </span>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="aggregation">
+<h3><span class="section-number">5.8.2. </span>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">#</a></h3>
 <p>Wir haben bereits die IST-Beziehung kennen gelernt. Wir haben auch über Teil-von-Beziehungen im Rahmen von schwachen Entitytypen gesprochen. Im EER werden letztere als Aggregationen dargestellt und ermöglichen eine entsprechende Visualisierung, die man durch hierarchische Darstellung der Zusammensetzung, wie unten im Fahrradbeispiel zu sehen ist, modellieren kann.<br />
 Ohne EER-Semantik müsste man die Kardinalitäten zusätzlich modellieren. In der Darstellung unten, erwartet man, dass diese Kardinalitäten implizit vorhanden sind.</p>
 <img alt="../_images/aggregation.jpg" src="../_images/aggregation.jpg" />
-</div>
-</div>
-<div class="section" id="designprinzipien">
-<h2><span class="section-number">5.9. </span>Designprinzipien<a class="headerlink" href="#designprinzipien" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="designprinzipien">
+<h2><span class="section-number">5.9. </span>Designprinzipien<a class="headerlink" href="#designprinzipien" title="Permalink to this headline">#</a></h2>
 <p>Jetzt wo wir die wichtigsten Modellierungselemente der ER-Sprache kennen, wären wir in der Lage beliebige Informationen zu modellieren. Wir haben jedoch noch nicht darüber gesprochen, mit welchem Ansatz man jeweils diese Modellierungselemente wählen sollte. Es ist häufig so, dass man den selben Sachverhalt auf unterschiedlicher Weise modellieren kann. Jedoch ist nicht jede Modellierung sinnvoll. Im Folgenden wollen wir drei Grundprinzipien kennenlernen, die uns helfen eine sinnvolle Darstellung für eine informelle Beschreibung auszuwählen:</p>
 <ul class="simple">
 <li><p>Treue zur Anwendung</p></li>
@@ -1096,32 +1238,32 @@ Ohne EER-Semantik müsste man die Kardinalitäten zusätzlich modellieren. In de
 </ul>
 </li>
 </ul>
-<div class="section" id="anwendungstreue">
-<h3><span class="section-number">5.9.1. </span>Anwendungstreue<a class="headerlink" href="#anwendungstreue" title="Permalink to this headline">¶</a></h3>
+<section id="anwendungstreue">
+<h3><span class="section-number">5.9.1. </span>Anwendungstreue<a class="headerlink" href="#anwendungstreue" title="Permalink to this headline">#</a></h3>
 <p>Die Anwendungstreue ist zunächst die offensichtlichste Anforderung.
 Entitytypen und Attribute sollten natürlich die Realität widerspiegeln. Entitytypen sollten Attribute führen, die spezifiziert werden können. Relationshiptypen sollen Verhältnisse der Realität widerspiegeln. Dazu gehören reelle Kardinalitätsbeziehungen und Abbildungen.</p>
 <p><strong>Beispiel:</strong> Schauspieler*in und Filme stehen in einer m:n Beziehung. n:1, 1:n oder 1:1 wären inkorrekte Wiedergaben der Realität</p>
-</div>
-<div class="section" id="redundanz">
-<h3><span class="section-number">5.9.2. </span>Redundanz<a class="headerlink" href="#redundanz" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="redundanz">
+<h3><span class="section-number">5.9.2. </span>Redundanz<a class="headerlink" href="#redundanz" title="Permalink to this headline">#</a></h3>
 <p>Redundanz tritt auf, wenn der gleiche Sachverhalt auf mehr als eine Weise ausgedrückt wird. Dies kann durch ungeschickte Modellierung passieren. In der Datenbankwelt möchte man nach Möglichkeit <strong>unbeabsichtigte</strong> Redundanz verhindern, da Redundanz nicht nur Platz verschwendet ,sondern auch Situationen hervorrufen kann, dass Daten nicht mehr konsistent vorliegen. Man muss bei der Änderung von Daten an allen redundanten Stellen die Daten ändern.</p>
 <p><strong>Beispiel (Redundanz):</strong> Im Folgenden Beispiel sehen wir drei Möglichkeiten um Studios zu modellieren. Alle drei Varianten sind anwendungstreu. Die Modellierung in der oberen Zeile ist eine sinnvolle Modellierung. In der mittleren Zeile, haben wir für jeden Film den Studionamen zusätzlich als Attribut modelliert. Damit taucht der Name redundant auf. Dies ist ein offensichtliches Beispiel für redundante Modellierung, da zu jedem Film der Studioname zweimal gespeichert wird. Die Modellierung in der unteren Zeile modelliert Studio nur als Attribute von Film. Hier gibt es zwar keine Doppelung pro Film, jedoch besteht weiterhin Redundanz. Wenn wir davon ausgehen, dass ein Studio mehrere Filme besitzt, speichern wir den Namen und die Adresse jedes Studios mehrmals, nämlich ein mal pro Film. Bei unserer Modellierung in der obersten Zeile speichern wir jedes Studio nur einmal und Film sind durch die besitzt Beziehung jeweils mit der gleichen Studioentity verbunden.</p>
 <img alt="../_images/redundanz1.jpg" src="../_images/redundanz1.jpg" />
-</div>
-<div class="section" id="einfachheit">
-<h3><span class="section-number">5.9.3. </span>Einfachheit<a class="headerlink" href="#einfachheit" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="einfachheit">
+<h3><span class="section-number">5.9.3. </span>Einfachheit<a class="headerlink" href="#einfachheit" title="Permalink to this headline">#</a></h3>
 <p>Eine Anforderung an der Informationsmodellierung ist, dass Konzepte möglichst einfach modelliert werden sollen. Einfachfachheit bezieht sich hierbei darauf, dass man versucht die gleiche Information mit wenigen Strukturelementen zu modellieren. Insbesondere geht es darum unnötige Entitytypen und Relationshiptypen zu vermeiden. Dies gilt insbesondere für ableitbare Relationshiptypen.</p>
 <p><strong>Beispiel:</strong> Das folgende Beispiel zeigt eine semantisch korrekte Modellierung der Informationen zu Filmen, Holdings und Studios. Man hätte jedoch die 1:1 Beziehung zwischen Holding und Studio wesentlich einfacher durch Attributbeziehungen modellieren können.</p>
 <a class="reference internal image-reference" href="../_images/einfachheit.jpg"><img alt="../_images/einfachheit.jpg" src="../_images/einfachheit.jpg" style="width: 700px;" /></a>
-<div class="section" id="relationships">
-<h4><span class="section-number">5.9.3.1. </span>Relationships<a class="headerlink" href="#relationships" title="Permalink to this headline">¶</a></h4>
+<section id="relationships">
+<h4><span class="section-number">5.9.3.1. </span>Relationships<a class="headerlink" href="#relationships" title="Permalink to this headline">#</a></h4>
 <p>Nicht jede mögliche Beziehung sollte abgebildet werden. Die Darstellung von ableitbaren Bezieheungen führt zu Redundanz und unnötiger Komplexität. Dies erschwert nachträgliche Änderungen in einer Datenbank.
 Änderungen auf der Datenbank werden komplex, was Aufwand und Fehleranfälligkeit erhöht.</p>
 <p><strong>Beispiel:</strong> Im Folgenden Beispiel werden zusätzlich zu der ternären Beziehung <em>ist_unter_Vertrag</em> auch zwei weitere Beziehungen <em>spielt_in</em> und <em>besitzt</em> modelliert. Beide Beziehungen gelten jedoch immer nur dann, wenn eine Schauspieler*in mit einem Studio zu einem Film im Vertrag steht. Damit sind beide Beziehungen ableitbar. Jede Änderung oder Löschung der <em>ist_unter_Vertrag</em> Beziehung muss dazuführen, dass auch entsprechende Relationships in <em>spielt_in</em> und <em>besitzt</em> geändert bzw. gelöscht werden müssen.</p>
 <a class="reference internal image-reference" href="../_images/relationships1.jpg"><img alt="../_images/relationships1.jpg" src="../_images/relationships1.jpg" style="width: 700px;" /></a>
-</div>
-<div class="section" id="attribut-vs-element">
-<h4><span class="section-number">5.9.3.2. </span>Attribut vs. Element<a class="headerlink" href="#attribut-vs-element" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="attribut-vs-element">
+<h4><span class="section-number">5.9.3.2. </span>Attribut vs. Element<a class="headerlink" href="#attribut-vs-element" title="Permalink to this headline">#</a></h4>
 <p>Eine weitere Möglichkeit Modelle zu vereinfachen besteht, darin wenn möglich Attribute statt Entitytypen und Relationshiptypen zu nutzen. Diese sind auch einfacher zu implementieren.</p>
 <p>Grundsätzlich ist ein Entitytyp gerechtfertigt falls…</p>
 <ul class="simple">
@@ -1134,14 +1276,30 @@ Entitytypen und Attribute sollten natürlich die Realität widerspiegeln. Entity
 <img alt="../_images/attributvselement2.jpg" src="../_images/attributvselement2.jpg" />
 <p>Tatsächlich ist das folgende Modell deutlich einfacher und modelliert den selben Sachverhalt. Jedoch aus der Diskussion zur Redundanz wissen wir, dass die folgende Modellierung zur redundanten Speicherung des gleichen <em>Studios</em> für unterschiedliche <em>Filme</em> führen kann. Tatsächlich können die Anforderungen Einfachheit und Redundanzfreiheit manchmal im Widerspruch stehen.</p>
 <img alt="../_images/attributvselement3.jpg" src="../_images/attributvselement3.jpg" />
-</div>
-</div>
-</div>
-<div class="section" id="zusammenfassung-er-modellierung">
-<h2><span class="section-number">5.10. </span>Zusammenfassung ER-Modellierung<a class="headerlink" href="#zusammenfassung-er-modellierung" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+</section>
+<section id="zusammenfassung-er-modellierung">
+<h2><span class="section-number">5.10. </span>Zusammenfassung ER-Modellierung<a class="headerlink" href="#zusammenfassung-er-modellierung" title="Permalink to this headline">#</a></h2>
 <p>In diesem Kapitel haben wir die ER-Modellierungssprache kennen gelernt, die uns erlaubt aus informellen Informationsbeschreibungen visuelle und formalisierte Informationen anhand von Entitytypen, Relationshiptypen und Attributen zu modellieren. In der ER-Modellierung können wir auch bereits Nebenbedingungen wie Kardinalitäten und Schlüsselbeziehungen modellieren. Schließlich haben wir Anforderungen für eine sinnvolle Modellierung diskutiert. Im nächsten Kapitel werden wir den nächsten Schritt im Datenbankentwurf besprechen. Es soll nun darum gehen, wie man aus einem ER-Modell ein relationales Modell herleiten kann, welches dann direkt in Datenbankmanagementsystemen abgebildet werden kann.</p>
+</section>
+<section id="multiple-choice">
+<h2><span class="section-number">5.11. </span>Multiple Choice<a class="headerlink" href="#multiple-choice" title="Permalink to this headline">#</a></h2>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="100%"
+    height="800"
+    src="https://lejuliennn.github.io/mct-trainer/#/quiz/categories/ermodellierung"
+    frameborder="0"
+    allowfullscreen
+
+></iframe>
+</div></div>
 </div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1165,9 +1323,11 @@ Entitytypen und Attribute sollten natürlich die Realität widerspiegeln. Entity
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="../04/phasenmodell_datenbankentwurf.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1183,24 +1343,28 @@ Entitytypen und Attribute sollten natürlich die Realität widerspiegeln. Entity
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Prof. Dr. Ziawasch Abedjan<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Prof. Dr. Ziawasch Abedjan<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

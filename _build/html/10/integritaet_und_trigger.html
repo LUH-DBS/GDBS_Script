@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>10. Integrität und Trigger &#8212; Online-Skript Grundlagen der Datenbanksysteme</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -62,7 +61,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +84,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -91,14 +105,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Grundlagen der Datenbanksysteme
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Grundlagen der Datenbanksysteme
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../01/einfuehrung.html">
    1. Einführung
@@ -157,110 +172,227 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/10/integritaet_und_trigger.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/LUH-DBS/GDBS_Script"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F10/integritaet_und_trigger.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/main/?urlpath=tree/10/integritaet_und_trigger.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/main/?urlpath=tree/10/integritaet_und_trigger.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/LUH-DBS/GDBS_Script"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F10/integritaet_und_trigger.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/10/integritaet_und_trigger.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#motivation-aktive-datenbanken">
    10.1. Motivation – Aktive Datenbanken
@@ -420,14 +552,18 @@ const thebe_selector_output = ".output, .cell_output"
    10.5. Zusammenfassung
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multiple-choice">
+   10.6. Multiple Choice
+  </a>
+ </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Integrität und Trigger</h1>
@@ -599,33 +735,39 @@ const thebe_selector_output = ".output, .cell_output"
    10.5. Zusammenfassung
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multiple-choice">
+   10.6. Multiple Choice
+  </a>
+ </li>
 </ul>
 
                         </nav>
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="integritat-und-trigger">
-<h1><span class="section-number">10. </span>Integrität und Trigger<a class="headerlink" href="#integritat-und-trigger" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="integritat-und-trigger">
+<h1><span class="section-number">10. </span>Integrität und Trigger<a class="headerlink" href="#integritat-und-trigger" title="Permalink to this headline">#</a></h1>
 <p>In diesem Kapitel beschäftigen wir uns mit Integritätsbedingungen und Triggern.</p>
-<div class="section" id="motivation-aktive-datenbanken">
-<h2><span class="section-number">10.1. </span>Motivation – Aktive Datenbanken<a class="headerlink" href="#motivation-aktive-datenbanken" title="Permalink to this headline">¶</a></h2>
+<section id="motivation-aktive-datenbanken">
+<h2><span class="section-number">10.1. </span>Motivation – Aktive Datenbanken<a class="headerlink" href="#motivation-aktive-datenbanken" title="Permalink to this headline">#</a></h2>
 <p>Die Daten, die wir in eine Datenbank einfügen wollen können fehlerhaft sein, es kann sich um typographische Fehler, logische Fehler oder auch Andere handeln. Um den Fehlern entgegenzuwirken wäre eine Möglichkeit , das Schreiben besserer Anwendungen, jedoch ist das Prüfen der Konsistenz und Korrektheit sehr schwer, da z.B komplexe Bedingungen, schon abhängig von vorhandenen Daten sein können. Eine andere Möglichkeit ist das Benutzen von aktiven Elementen im DBMS wie Integritätsbedingungen(integrity constraints, ICs), die einmal spezifiziert werden und wenn nötig dann ausgeführt werden. Integritätsbedingungen “bewachen”, dass nur Daten die der spezifizierten Form entsprechen, zugelassen werden.</p>
-</div>
-<div class="section" id="schlussel-und-fremdschlussel">
-<h2><span class="section-number">10.2. </span>Schlüssel und Fremdschlüssel<a class="headerlink" href="#schlussel-und-fremdschlussel" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="schlussel-und-fremdschlussel">
+<h2><span class="section-number">10.2. </span>Schlüssel und Fremdschlüssel<a class="headerlink" href="#schlussel-und-fremdschlussel" title="Permalink to this headline">#</a></h2>
 <p>In diesem Kapitel beschäftigen wir uns mit der am häufigsten genutzten Integritätsbedingung, Schlüssel. Zunächst werden wir die verschiedenen Arten von Schlüsseln(Primär-, Sekundärschlüssel, Fremdschlüssel) kennenlernen und anschließend wie diese Schlüsselbedingungen und referentielle Integrität erzwungen werden.</p>
-<div class="section" id="schlussel">
-<h3><span class="section-number">10.2.1. </span>Schlüssel<a class="headerlink" href="#schlussel" title="Permalink to this headline">¶</a></h3>
+<section id="schlussel">
+<h3><span class="section-number">10.2.1. </span>Schlüssel<a class="headerlink" href="#schlussel" title="Permalink to this headline">#</a></h3>
 <p>Die einfachtse und am häufigsten genutzte Bedingung sind Schlüssel. Schlüssel sollten aus den vorherigen Kapiteln bekannt sein, sie bilden sich aus ein oder mehreren Attributen und identifizieren eindeutig ein Tupel. Falls eine Schlüsselmenge S gegeben ist, müssen sich also zwei Tupel einer Relation in mindestens einem Attributwert der Schlüsselmenge unterscheiden.
 <br>
 <br>
 Schlüssel werden im CREATE TABLE Ausdruck spezifiziert. Der Primärschlüssel wird mit dem Schlüsselwort PRIMARY KEY gekennzeichnet und kann nie einen Nullwert enthalten. Es gibt pro Relation maximal einen PRIMARY KEY. Ein weiterer Schlüssel ist UNIQUE, hiervon ist es erlaubt mehrere pro Relation und auch Nullwerte zu haben. Falls UNIQUE ohne Nullwerte benutzt werden soll, ist dies mit UNIQUE NOT NULL möglich.</p>
-<div class="section" id="primarschlussel">
-<h4><span class="section-number">10.2.1.1. </span>Primärschlüssel<a class="headerlink" href="#primarschlussel" title="Permalink to this headline">¶</a></h4>
+<section id="primarschlussel">
+<h4><span class="section-number">10.2.1.1. </span>Primärschlüssel<a class="headerlink" href="#primarschlussel" title="Permalink to this headline">#</a></h4>
 <p>Primaärschlüssel werden im CREATE TABLE Ausdruck spezifiziert. Im Folgenden finden Sie eine Deklaration eines Primärschlüssels bei genau einem Attribut, dort findet die Deklaration dirket in der Attributenliste statt. Es ist auch möglich bei nur einem Attribut die Deklaration nach den Attributen zu nennen.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">SchauspielerIn</span><span class="p">(</span>
 <span class="n">Name</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
@@ -643,9 +785,9 @@ Schlüssel werden im CREATE TABLE Ausdruck spezifiziert. Der Primärschlüssel w
 <span class="n">PRIMARY</span> <span class="n">KEY</span> <span class="p">(</span><span class="n">Name</span><span class="p">,</span> <span class="n">Adresse</span><span class="p">)</span> <span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="sekundarschlussel">
-<h4><span class="section-number">10.2.1.2. </span>Sekundärschlüssel<a class="headerlink" href="#sekundarschlussel" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="sekundarschlussel">
+<h4><span class="section-number">10.2.1.2. </span>Sekundärschlüssel<a class="headerlink" href="#sekundarschlussel" title="Permalink to this headline">#</a></h4>
 <p>Sekundärschlüssel bzw. Schlüsselkandidaten werden mit dem Schlüsseltwort UNIQUE spezifiziert. Die Sytax ist genau wie bei der Deklaration von einem PRIMARY KEY, also direkt beim Attribut oder als separate Attributliste nach den Attributen.
 <br><br>
 Der große Unterschied zu PRIMARY KEY  ist, dass es mehrere UNIQUE Deklarationen geben darf. Standardmäßig erlaubt UNIQUE NULL-Werte, da von NULL ≠ NULL (bzw. UNKNOWN) ausgegangen wird. Bei NULL ist es also möglich, dass zwei Tupel in UNIQUE Attributen übereinstimmen. Um auch Nullwerte zu unterbinden, kann UNIQUE NOT NULL verwendet werden. Ein Beispiel für eine Deklaration eines Sekundärschlüssel befindet sich unten.</p>
@@ -657,16 +799,16 @@ Der große Unterschied zu PRIMARY KEY  ist, dass es mehrere UNIQUE Deklarationen
 <span class="n">UNIQUE</span> <span class="p">(</span><span class="n">Name</span><span class="p">,</span> <span class="n">Adresse</span><span class="p">));</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="schlusselbedingungen-erzwingen">
-<h4><span class="section-number">10.2.1.3. </span>Schlüsselbedingungen erzwingen<a class="headerlink" href="#schlusselbedingungen-erzwingen" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="schlusselbedingungen-erzwingen">
+<h4><span class="section-number">10.2.1.3. </span>Schlüsselbedingungen erzwingen<a class="headerlink" href="#schlusselbedingungen-erzwingen" title="Permalink to this headline">#</a></h4>
 <p>Die spezifizierten Schlüsselbedingungen müssen stets gelten. Diese sind nur relevant bei INSERT und UPDATE, da bei DELETE keine Verletzung der Bedingungen passieren kann, denn es wurden keine Tupel der Relation hinzugefügt, die nicht den Bedingungen entsprechen. Beim Einfügen oder Ändern wird geprüft der neue Schlüsselwert bereits vorhanden ist.</p>
 <p>Meistens ist die effiziente Prüfung der Bedingungen mittels Index möglich, da DBMS in der Regel automatisch Indizes für Primärschlüsselattribute anlegen. Optional ist es auch möglich manuell für UNIQUE-Attribute Indizes zu erstellen, z.B CREATE UNIQUE INDEX JahrIndex ON Filme(Jahr). Das entspricht CREATE INDEX JahrIndex ON Filme(Jahr), aber mit einer neuen UNIQUE Bedingung auf Jahr.
 <br><br>
 Ohne Indizes ist die Überprüfung eher ineffizient, da die gesamte Spalte durchsucht werden muss. Sind die Dtaen sortiert, kann binäre Suche verwendet werden, andernfalls muss sequentielle Suche benutzt werden.</p>
-</div>
-<div class="section" id="fremdschlussel">
-<h4><span class="section-number">10.2.1.4. </span>Fremdschlüssel<a class="headerlink" href="#fremdschlussel" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="fremdschlussel">
+<h4><span class="section-number">10.2.1.4. </span>Fremdschlüssel<a class="headerlink" href="#fremdschlussel" title="Permalink to this headline">#</a></h4>
 <p>Ein Attribut oder eine Attributmenge kann als FOREIGN KEY deklariert werden, wenn die Attributmenge eine entsprechende Attributmenge einer zweiten Relation referenziert. So müssen gemeinsame Werte der Fremdschlüsselattribute auch als gemeinsame Werte des referenzierten Schlüssels auftauchen. Die referenzierte Attributmenge muss UNIQUE oder PRIMARY KEY sein. Haben wir z.B die zwei Relationen ManagerIn(Name, Adresse, ManagerinID, Gehalt) und Studios(Name, Adresse, VorsitzendeID), dann wäre es sinnvoll, dass der Attributwert für VorsitzendeID auf einen bestimmten, vorhandenen Manager verweist. Im Vergleich zu normalen Schlüsseln, darf ein Fremdschlüssel den Wert NULL annehmen. Das verwiesende Schlüsselattribut muss jedoch nicht einen NULL-Wert besitzen (und darf es meist auch nicht), hier kann NOT NULL Abhilfe leisten. Bei Fremdschlüsseln muss referentielle Integrität beibehalten werden, da es sonst zu dangling tuples kommen kann. Folgend einige Beispiele für die Syntax von Fremdschlüsseln:
 <br><br>
 Auf einem Attribut:
@@ -694,10 +836,10 @@ Auf (einem oder) mehreren Attributen:
 <span class="n">ManagerIn</span><span class="p">(</span><span class="n">ManagerinID</span><span class="p">));</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="create-table-beispiel">
-<h3><span class="section-number">10.2.2. </span>CREATE TABLE – Beispiel<a class="headerlink" href="#create-table-beispiel" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="create-table-beispiel">
+<h3><span class="section-number">10.2.2. </span>CREATE TABLE – Beispiel<a class="headerlink" href="#create-table-beispiel" title="Permalink to this headline">#</a></h3>
 <p>In diesem Beispiel haben wir eine Mitarbeiterrelation mit verschiedenen Attributen gegeben. Die Schlüsselattribute eines Miitarbeiters sind Vor- und Nachname. Jeder Mitarbeiter muss Teil einer Abteilung sein, weshalb DepID auf eine vorhandene ID aus der Departmentrelation verweisen muss. Genauso müssen ProjectName und ProjectYear auf ein vorhandenes Projekt verweisen.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">Employee</span><span class="p">(</span>
     <span class="n">FirstName</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
@@ -714,9 +856,9 @@ Auf (einem oder) mehreren Attributen:
         <span class="n">REFERENCES</span> <span class="n">Project</span><span class="p">(</span><span class="n">Name</span><span class="p">,</span> <span class="n">Year</span><span class="p">)</span> <span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="referentielle-integritat-erzwingen">
-<h3><span class="section-number">10.2.3. </span>Referentielle Integrität erzwingen<a class="headerlink" href="#referentielle-integritat-erzwingen" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="referentielle-integritat-erzwingen">
+<h3><span class="section-number">10.2.3. </span>Referentielle Integrität erzwingen<a class="headerlink" href="#referentielle-integritat-erzwingen" title="Permalink to this headline">#</a></h3>
 <p>Es gibt drei Varianten um referentielle Integrität zu erzwingen: Ablehnung verletzender Änderungen (SQL default) ,Kaskadierung und Null-Werte.
 <br><br>
 Haben wir wieder die Relationen ManagerIn(Name, Adresse, ManagerinID, Gehalt) und Studios(Name, Adresse, VorsitzenderID) gegeben, wobei VorsitzendeID auf ManagerinID verweist.</p>
@@ -726,8 +868,8 @@ Haben wir wieder die Relationen ManagerIn(Name, Adresse, ManagerinID, Gehalt) un
 <span class="n">VorsitzendeID</span> <span class="n">INT</span> <span class="n">REFERENCES</span> <span class="n">ManagerIn</span><span class="p">(</span><span class="n">ManagerinID</span><span class="p">));</span>
 </pre></div>
 </div>
-<div class="section" id="referentielle-integritat-erzwingen-anderungen-ablehnen">
-<h4><span class="section-number">10.2.3.1. </span>Referentielle Integrität erzwingen: Änderungen Ablehnen<a class="headerlink" href="#referentielle-integritat-erzwingen-anderungen-ablehnen" title="Permalink to this headline">¶</a></h4>
+<section id="referentielle-integritat-erzwingen-anderungen-ablehnen">
+<h4><span class="section-number">10.2.3.1. </span>Referentielle Integrität erzwingen: Änderungen Ablehnen<a class="headerlink" href="#referentielle-integritat-erzwingen-anderungen-ablehnen" title="Permalink to this headline">#</a></h4>
 <p>Durch den von uns festgelegten Fremdschlüssel muss  es für jede VorsitzendeID auch eine ManagerinID geben. SQL lehnt per default Änderungen ab, die Fremdschlüsselbeziehungen verletzen.
 <br>
 Wenn ein INSERT Studio … mit einer neuen (nicht-NULL) VorsitzendeID angefragt wird, die nicht in ManagerIn gespeichert ist, so wird dies abgelehnt.
@@ -737,9 +879,9 @@ Wenn ein UPDATE eines Studios mit einer neuen VorsitzendeID, die nicht in Manage
 Wenn ein DELETE eines ManagerIn-Tupels, dessen ManagerinID auch eine (oder mehrere) VorsitzendeID ist, so wird dieses auch abgelehnt.
 <br><br>
 Wenn ein UPDATE der ManagerinID eines ManagerIn-Tupels angefragt wird, die auch eine (oder mehrere) VorsitzendeID ist, so wird dies auch abgelehnt.</p>
-</div>
-<div class="section" id="referentielle-integritat-erzwingen-kaskadierung">
-<h4><span class="section-number">10.2.3.2. </span>Referentielle Integrität erzwingen: Kaskadierung<a class="headerlink" href="#referentielle-integritat-erzwingen-kaskadierung" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="referentielle-integritat-erzwingen-kaskadierung">
+<h4><span class="section-number">10.2.3.2. </span>Referentielle Integrität erzwingen: Kaskadierung<a class="headerlink" href="#referentielle-integritat-erzwingen-kaskadierung" title="Permalink to this headline">#</a></h4>
 <p>Bei der Kaskadierung ist die Idee, dass Änderungen im Schlüssel im Fremdschlüssel nachgezogen werden. Bei Veränderung in der Schlüsselrelation, verändern sich auch die Werte der Fremdrelation mit.
 <br><br>
 Ein INSERT Studio … mit einer neuen (nicht-NULL) VorsitzendeID, die nicht in ManagerIn gespeichert ist wird weiterhin abgelehnt.
@@ -749,9 +891,9 @@ Ein UPDATE eines Studios mit einer neuen VorsitzendeID, die nicht in Manager ges
 Ein DELETE eines ManagerIn-Tupels, dessen ManagerinID auch auf eine (oder mehrere) VorsitzendeID ist, wird akzeptiert, aber alle abhängigen Studios werden ebenfalls gelöscht.
 <br><br>
 Ein UPDATE der ManagerinID eines ManagerIn-Tupels, die auch eine (oder mehrere) VorsitzendeID ist, wird akzeptiert, aber die VorsitzendeIDs in Studios werden ebenfalls geändert.</p>
-</div>
-<div class="section" id="referentielle-integritat-erzwingen-auf-null-setzen">
-<h4><span class="section-number">10.2.3.3. </span>Referentielle Integrität erzwingen: Auf NULL setzen<a class="headerlink" href="#referentielle-integritat-erzwingen-auf-null-setzen" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="referentielle-integritat-erzwingen-auf-null-setzen">
+<h4><span class="section-number">10.2.3.3. </span>Referentielle Integrität erzwingen: Auf NULL setzen<a class="headerlink" href="#referentielle-integritat-erzwingen-auf-null-setzen" title="Permalink to this headline">#</a></h4>
 <p>Bei der Behandlung mit NULL-Werten ist die Idee, dass bei Änderungen im Schlüssel der Wert des Fremdschlüssels auf NULL gesetzt wird.
 <br><br>
 Ein INSERT Studio mit einer neuen (nicht-NULL) VorsitzendeID, die nicht in Manager gespeichert ist wird abgelehnt.
@@ -761,9 +903,9 @@ Ein UPDATE eines Studios mit einer neuen VorsitzendeID, die nicht in Manager ges
 Ein DELETE eines Manager-Tupels, dessen ManagerinID auch eine (oder mehrere) VorsitzendeID ist wird akzeptier, aber die VorsitzendeID aller abhängigen Studios werden auf NULL gesetzt.
 <br><br>
 Ein UPDATE der ManagerinID eines ManagerIn-Tupels, die auch eine (oder mehrere) VorsitzendeID ist, wird ebenfalls akzeptiert aber die VorsitzendeIDs in Studios werden auf NULL gesetzt.</p>
-</div>
-<div class="section" id="id1">
-<h4><span class="section-number">10.2.3.4. </span>Referentielle Integrität erzwingen<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="id1">
+<h4><span class="section-number">10.2.3.4. </span>Referentielle Integrität erzwingen<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
 <p>In bestimmten DBMS kann die Vorgehensweise individuell spezifiziert werden. Im unteren Beispiel legen wir beim Löschen Behandlung mit NULL-Werten und beim Ändern Kaskadierung fest. Hier wird eine “vorsichtige” Strategie verfolgt, denn die Studios werden nicht gelöscht und behalten falls möglich ihre VorsitzendenID.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">Studios</span><span class="p">(</span>
 <span class="n">Name</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
@@ -774,10 +916,10 @@ Ein UPDATE der ManagerinID eines ManagerIn-Tupels, die auch eine (oder mehrere) 
 <span class="p">);</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="integritatschecks-verschieben">
-<h3><span class="section-number">10.2.4. </span>Integritätschecks verschieben<a class="headerlink" href="#integritatschecks-verschieben" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="integritatschecks-verschieben">
+<h3><span class="section-number">10.2.4. </span>Integritätschecks verschieben<a class="headerlink" href="#integritatschecks-verschieben" title="Permalink to this headline">#</a></h3>
 <p>Es ist nicht immer möglich, Tupel einzufügen, die der referentiellen Integrität gehorchen. Möchten wir beispielsweise ein neues Studio, namens Redlight mit Sitz in New York und mit ManagerinID 23456, in unsere Relation Studios einfügen. Jedoch wurde die ManagerIn mit der ID 23456 noch nicht angelegt.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>INSERT INTO Studios
 VALUES (‘Redlight‘, ‘New York‘, 23456);
@@ -817,13 +959,13 @@ Dieser Constraint kann mit dem Schlüsselwort DEFERRABLE deklariert werden. DEFE
 <span class="p">);</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="bedingungen-auf-attributen-und-tupel">
-<h2><span class="section-number">10.3. </span>Bedingungen auf Attributen und Tupel<a class="headerlink" href="#bedingungen-auf-attributen-und-tupel" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="bedingungen-auf-attributen-und-tupel">
+<h2><span class="section-number">10.3. </span>Bedingungen auf Attributen und Tupel<a class="headerlink" href="#bedingungen-auf-attributen-und-tupel" title="Permalink to this headline">#</a></h2>
 <p>In diesem Kapitel werden weitere Arten der Nebenbedingungen, wie die Annahme bestimmter Werte untersagt wird, betrachtet. Zuerst beschäftigen wir uns mit Bedingungen auf einzelnen Attributen(NOT NULL und CHECK) und anschließend mit Bedingungen für ganze Tupel, also auf das Schema(CHECK).</p>
-<div class="section" id="not-null">
-<h3><span class="section-number">10.3.1. </span>NOT NULL<a class="headerlink" href="#not-null" title="Permalink to this headline">¶</a></h3>
+<section id="not-null">
+<h3><span class="section-number">10.3.1. </span>NOT NULL<a class="headerlink" href="#not-null" title="Permalink to this headline">#</a></h3>
 <p>Wird ein Attribut mit NOT NULL deklariert, so ist es nicht erlaubt für dieses Attribut den Wert NULL einzutragen.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">Studios</span><span class="p">(</span>
 <span class="n">Name</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
@@ -835,9 +977,9 @@ Dieser Constraint kann mit dem Schlüsselwort DEFERRABLE deklariert werden. DEFE
 </pre></div>
 </div>
 <p>Für das obige Beispiel gilt mit den NOT-NULL-Bedingungen, dass das Einfügen eines Studios ohne Manager*In nicht mehr möglich ist und das jedes Studio eine Adresse haben muss. Somit ist die Null-Werte Strategie beim Löschen von Manager*Innen nicht mehr möglich.</p>
-</div>
-<div class="section" id="attribut-basierte-check-bedingungen">
-<h3><span class="section-number">10.3.2. </span>Attribut-basierte CHECK Bedingungen<a class="headerlink" href="#attribut-basierte-check-bedingungen" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="attribut-basierte-check-bedingungen">
+<h3><span class="section-number">10.3.2. </span>Attribut-basierte CHECK Bedingungen<a class="headerlink" href="#attribut-basierte-check-bedingungen" title="Permalink to this headline">#</a></h3>
 <p>Die CHECK-Bedingung verfeinert die erlaubten Werte für ein Attribut durch die Spezifikation einer Bedingung. Die Bedingung wie jedes mal geprüft, falls ein Attribut einen neuen Wert erhält, also bei INSERT und UPDATE. Sie ist ähnlich zur WHERE-Klausel, kann beliebig komplex sein und auch aus einer SELECT…FROM…WHERE… Anfrage bestehen. I.d.R. werden CHECK-Bedingungen benutzt um eine einfache Einschränkung der Werte durchzuführen. Falls die Bedingung nicht erfüllt wird, so scheitert die Änderung.
 <br><br>
 In diesem Beispiel wird gecheckt, ob die VorsitztendeID &gt;= 100000 ist, da kleinere Werte für die VorsitzendeID nicht erlaubt sind.</p>
@@ -880,9 +1022,9 @@ DELETE auf der Manager Relation
 CHECK wird nicht geprüft; CHECK Bedingung wird ungültig
 <br>
 D.h.: Andere Relationen kennen diese CHECK Bedingung nicht.</p>
-</div>
-<div class="section" id="tupel-basierte-check-bedingungen">
-<h3><span class="section-number">10.3.3. </span>Tupel-basierte CHECK Bedingungen<a class="headerlink" href="#tupel-basierte-check-bedingungen" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="tupel-basierte-check-bedingungen">
+<h3><span class="section-number">10.3.3. </span>Tupel-basierte CHECK Bedingungen<a class="headerlink" href="#tupel-basierte-check-bedingungen" title="Permalink to this headline">#</a></h3>
 <p>Es ist auch möglich Bedingungen für ganze Tupel zu deklarieren. Eine CHECK-Bedingung kann wie Primär- und Fremdschlüsselbezeiehungen in der Liste der Attributen auftauchen und beliebige Bedingungen wie eine WHERE-Klausel haben. Die deklarierten CHECKs werden bei jedem INSERT und UPDATE eines Tupels geprüft.
 <br><br>
 Im unteren Beispiel wird geprüft, ob das Geschlecht ‘W’ ist oder ob die Anrede nicth mit ‘Fr’ beginnt.</p>
@@ -896,9 +1038,9 @@ CHECK (Geschlecht = ‚W‘ OR Anrede NOT LIKE ‚Fr%‘ ));
 </pre></div>
 </div>
 <p>Eine CHECK-Bedingung wird nicht geprüft, falls eine andere (oder sogar die gleiche) Relation in einer Subanfrage der CHECK Bedingung erwähnt wird und diese eine Änderung erfährt. D.h. andere Relationen kennen diese CHECK Bedingung nicht. Solche Probleme gibt es bei ASSERTIONS (siehe Kapitel …) nicht. Deshalb sollten komplexe Bedingungen lieber als ASSERTION deklariert werden, oder (realistischer) in die Anwendungslogik gesteckt werden…</p>
-</div>
-<div class="section" id="bedingungen-andern">
-<h3><span class="section-number">10.3.4. </span>Bedingungen ändern<a class="headerlink" href="#bedingungen-andern" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="bedingungen-andern">
+<h3><span class="section-number">10.3.4. </span>Bedingungen ändern<a class="headerlink" href="#bedingungen-andern" title="Permalink to this headline">#</a></h3>
 <p>Um Bedingungen nachträglich noch zu ändern, müssen diese einen Namen haben. Meistens vergeben DBMS sowieso interne, jedoch hässliche Namen. Beispiele hierfür finden Sie unten.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CREATE TABLE SchauspielerIn (
 Anrede CHAR(19),
@@ -929,14 +1071,14 @@ ALTER TABLE Schauspieler ADD CONSTRAINT AnredeKorrekt CHECK (Geschlecht = ‚W�
 </pre></div>
 </div>
 <p>Es können nur Tupel-basierte Bedingungen nachträglich hinzugefügt werden, attribut-basierte Bedingungen nicht.</p>
-</div>
-</div>
-<div class="section" id="zusicherungen-assertions-und-trigger">
-<h2><span class="section-number">10.4. </span>Zusicherungen(Assertions) und Trigger<a class="headerlink" href="#zusicherungen-assertions-und-trigger" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="zusicherungen-assertions-und-trigger">
+<h2><span class="section-number">10.4. </span>Zusicherungen(Assertions) und Trigger<a class="headerlink" href="#zusicherungen-assertions-und-trigger" title="Permalink to this headline">#</a></h2>
 <p>Manchmal sollen sich Bedingungen nicht auf bestimmte Tupel beziehen, sondern auf der Schemaebene definiert werden (wie Relationen und Sichten). Solche Bedingungen nennen sich Assertions (Zusicherungen) und Trigger. Eine Assertion ist ein Boole‘scher SQL Ausdruck, der stets wahr sein muss. Die Handhabung von Assertions ist durch einen Admin sehr leicht, jedoch verlangsamen Assertions die Datenbank, da sie schwierig effizient zu implementieren sind.
 Trigger (Auslöser) sind Aktionen, die bei bestimmten Ereignissen (INSERTs, …) ausgelöst werden, im Vergleich zu Assertions sind Trigger leichter effizient zu implementieren.</p>
-<div class="section" id="assertions">
-<h3><span class="section-number">10.4.1. </span>Assertions<a class="headerlink" href="#assertions" title="Permalink to this headline">¶</a></h3>
+<section id="assertions">
+<h3><span class="section-number">10.4.1. </span>Assertions<a class="headerlink" href="#assertions" title="Permalink to this headline">#</a></h3>
 <p>Assertions werden nach dem folgenden Schema deklariert CREATE ASSERTION Name CHECK (Bedingung). Die Bedingung muss stets gelten, auch schon bei der Erzeugung der Assertion. Änderungen die die Assertion verletzen werden abgewiesen.
 CHECK Bedingungen innerhalb eines CREATE TABLE … können hingegen falsch werden!
 <br><br>
@@ -945,8 +1087,8 @@ Zur Formulierung
 Kein direkter Bezug zu Relationen, deshalb müssen Attribute und Relationen in einer SQL Anfrage eingeführt werden.
 <br><br>
 Um eine Assertion zu löschen wird folgendes Schema benutzt DROP ASSERTION Name.</p>
-<div class="section" id="assertions-beispiel">
-<h4><span class="section-number">10.4.1.1. </span>Assertions – Beispiel<a class="headerlink" href="#assertions-beispiel" title="Permalink to this headline">¶</a></h4>
+<section id="assertions-beispiel">
+<h4><span class="section-number">10.4.1.1. </span>Assertions – Beispiel<a class="headerlink" href="#assertions-beispiel" title="Permalink to this headline">#</a></h4>
 <p>Haben wir die Relationen ManagerIn(Name, Adresse, ManagerinID, Gehalt) und Studios(Name, Adresse, VorsitzendeID) gegeben.
 <br>
 In diesem Beispiel wurde eine Assertion deklariert die nur Vorsitzende von Studios annimmt, die mindestens 1.000.000 verdienen.</p>
@@ -985,10 +1127,10 @@ In diesem Beispiel wurde eine Assertion deklariert die nur Vorsitzende von Studi
 </pre></div>
 </div>
 <p>Der Unterschied im Vergleich zu der Assertion oben ist, dass beim Löschen eines Films die Bedingung nicht geprüft wird. Also ist es möglich, dass nachdem Filme aus der Relation Filme gelöscht wurden, es Studios gibt, die nicht mehr mind. 10000 Minuten Filmmaterial haben und dies nicht überprüft wird. Ebenso kann dies eim Studiowechsel eines Films nicht geprüft werden.</p>
-</div>
-</div>
-<div class="section" id="unterschiede-der-check-bedingungen">
-<h3><span class="section-number">10.4.2. </span>Unterschiede der CHECK Bedingungen<a class="headerlink" href="#unterschiede-der-check-bedingungen" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="unterschiede-der-check-bedingungen">
+<h3><span class="section-number">10.4.2. </span>Unterschiede der CHECK Bedingungen<a class="headerlink" href="#unterschiede-der-check-bedingungen" title="Permalink to this headline">#</a></h3>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Constraint-Art</p></th>
@@ -1015,16 +1157,16 @@ In diesem Beispiel wurde eine Assertion deklariert die nur Vorsitzende von Studi
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="trigger">
-<h3><span class="section-number">10.4.3. </span>Trigger<a class="headerlink" href="#trigger" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="trigger">
+<h3><span class="section-number">10.4.3. </span>Trigger<a class="headerlink" href="#trigger" title="Permalink to this headline">#</a></h3>
 <p>Trigger sind so genannte Event-Condition-Action Rules (ECA-Rules). Der Unterschied zu Zusicherungen ist, dass Trigger nicht immer gelten müssen, sondern sie werden nur bei bestimmten Ereignissen (INSERT, UPDATE, DELETE, Ende einer Transaktion) ausgeführt. Ein Ereignis wird zunächst nicht verhindert, sondern es wird lediglich eine bestimmte Bedingung geprüft. Falls die Triggerbedingung falsch ist passiert nichts weiter. Falls sie wahr ist, wird eine Aktion ausgeführt. Die Aktion könnte das Ereignis verhindern oder rückgängig machen oder auch etwas völlig anderes tun.</p>
-</div>
-<div class="section" id="trigger-in-sql">
-<h3><span class="section-number">10.4.4. </span>Trigger in SQL<a class="headerlink" href="#trigger-in-sql" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="trigger-in-sql">
+<h3><span class="section-number">10.4.4. </span>Trigger in SQL<a class="headerlink" href="#trigger-in-sql" title="Permalink to this headline">#</a></h3>
 <p>Die ausgelöste Aktion durch Trigger kann sowohl vor oder nach dem Ereignis ausgeführt werden. Die Aktion kann sich auf alte und/oder neue Werte von Tupeln beziehen, die beim Ereignis eingefügt, verändert oder gelöscht werden.Mit WHEN können neben dem Ereignis auch weitere Bedingungen angegeben werden, die gelten müssen um die Aktion durchzuführen. Die Aktion kann einmal für jedes veränderte Tupel oder einmalig für alle Tupel, die verändert wurden ausgeführt werden.</p>
-<div class="section" id="trigger-beispiel">
-<h4><span class="section-number">10.4.4.1. </span>Trigger – Beispiel<a class="headerlink" href="#trigger-beispiel" title="Permalink to this headline">¶</a></h4>
+<section id="trigger-beispiel">
+<h4><span class="section-number">10.4.4.1. </span>Trigger – Beispiel<a class="headerlink" href="#trigger-beispiel" title="Permalink to this headline">#</a></h4>
 <p>Hier finden Sie ein Beispiel für einen Trigger, welcher verhindert, dass Manager*Innengehälter nicht gesenkt werden. Nach jedem Update von Gehalt der Manager*In Relation, wird das alte Gehalt mit dem neuen verglichen und wenn das alte größer war, wird das Gehalt des betroffenen Tupels wieder auf das Alte gesetzt. Das Rekursionsverhalten ist DBMS-Hersteller-spezifisch.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TRIGGER</span> <span class="n">GehaltsTrigger</span> <span class="o">--</span><span class="n">Name</span> <span class="n">des</span> <span class="n">Triggers</span>
 <span class="n">AFTER</span> <span class="n">UPDATE</span> <span class="n">OF</span> <span class="n">Gehalt</span> <span class="n">ON</span> <span class="n">ManagerIn</span> <span class="o">--</span><span class="n">Ereignis</span>
@@ -1038,9 +1180,9 @@ In diesem Beispiel wurde eine Assertion deklariert die nur Vorsitzende von Studi
     <span class="n">WHERE</span> <span class="n">ManagerinID</span> <span class="o">=</span> <span class="n">NeuesTupel</span><span class="o">.</span><span class="n">ManagerinID</span><span class="p">;</span> <span class="o">--</span><span class="n">Nur</span> <span class="n">betroffenes</span> <span class="n">Tupel</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="trigger-alternative">
-<h4><span class="section-number">10.4.4.2. </span>Trigger  –  Alternative<a class="headerlink" href="#trigger-alternative" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="trigger-alternative">
+<h4><span class="section-number">10.4.4.2. </span>Trigger  –  Alternative<a class="headerlink" href="#trigger-alternative" title="Permalink to this headline">#</a></h4>
 <p>Anstelle von AFTER kann in einem Trigger BEFORE benutzt werden, ebenso könne die auslösenden Ereignisse INSERT/DELETE auch ohne OF sein. Bei INSERT gibt es kein OLD ROW … und bei DELETE kein NEW ROW …, da es keine alten und neue Tupel gibt. Wenn FOR EACH ROW nicht explizit spezifizeirt ist, ist FOR EACH STATEMENT der Default, dann gilt OLD TABLE / NEW TABLE. Die WHEN-Klausel ist optional und es können mehrere SQL-Ausdrücke drin enthalten sein, die mit BEGIN … END umrahmt sind.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CREATE TRIGGER GehaltsTrigger                   --BEFORE
 AFTER UPDATE OF Gehalt ON ManagerIn             --INSERT / DELETE (ohne OF…)
@@ -1054,9 +1196,9 @@ WHEN (AltesTupel.Gehalt &gt; NeuesTupel.Gehalt)    --WHEN ist optional
     WHERE ManagerinID = NeuesTupel.ManagerinID;
 </pre></div>
 </div>
-</div>
-<div class="section" id="id2">
-<h4><span class="section-number">10.4.4.3. </span>Trigger - Beispiel<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="id2">
+<h4><span class="section-number">10.4.4.3. </span>Trigger - Beispiel<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
 <p>In diesem Beispiel sind mehrere SQL-Ausdrücke in der WHEN-Klausel enthalten. Dieser Trigger bewirkt, dass das Durchschnittsgehalt von Manager*Innen nicht unte 500.000 sinkt. Es sind je ein Trigger für UPDATE, INSERT und DELETE nötig.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TRIGGER</span> <span class="n">DurchschnittsgehaltTrigger</span>
 <span class="n">AFTER</span> <span class="n">UPDATE</span> <span class="n">OF</span> <span class="n">Gehalt</span> <span class="n">ON</span> <span class="n">ManagerIn</span>
@@ -1073,11 +1215,11 @@ WHEN (AltesTupel.Gehalt &gt; NeuesTupel.Gehalt)    --WHEN ist optional
 <span class="n">END</span><span class="p">;</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
-<div class="section" id="zusammenfassung">
-<h2><span class="section-number">10.5. </span>Zusammenfassung<a class="headerlink" href="#zusammenfassung" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+</section>
+<section id="zusammenfassung">
+<h2><span class="section-number">10.5. </span>Zusammenfassung<a class="headerlink" href="#zusammenfassung" title="Permalink to this headline">#</a></h2>
 <p>■ Schlüssel
 <br>
 □ UNIQUE, PRIMARY KEY, NOT NULL
@@ -1095,8 +1237,24 @@ WHEN (AltesTupel.Gehalt &gt; NeuesTupel.Gehalt)    --WHEN ist optional
 □ ASSERTION
 <br> <br>
 ■ Trigger</p>
+</section>
+<section id="multiple-choice">
+<h2><span class="section-number">10.6. </span>Multiple Choice<a class="headerlink" href="#multiple-choice" title="Permalink to this headline">#</a></h2>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="100%"
+    height="800"
+    src="https://lejuliennn.github.io/mct-trainer/#/quiz/categories/integritaetundtrigger"
+    frameborder="0"
+    allowfullscreen
+
+></iframe>
+</div></div>
 </div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1120,9 +1278,11 @@ WHEN (AltesTupel.Gehalt &gt; NeuesTupel.Gehalt)    --WHEN ist optional
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="../09/sql.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1138,24 +1298,28 @@ WHEN (AltesTupel.Gehalt &gt; NeuesTupel.Gehalt)    --WHEN ist optional
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Prof. Dr. Ziawasch Abedjan<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Prof. Dr. Ziawasch Abedjan<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

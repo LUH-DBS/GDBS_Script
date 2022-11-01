@@ -2330,12 +2330,23 @@ WHERE Jahr = 1979;
 # ## SQL-Trainer
 # Mithilfe des SQL-Trainers können sie ihr erlangtes Wissen aus diesem Kapitel vertiefen und praktisch anwenden:
 
-# In[13]:
+# In[5]:
 
 
 from IPython.display import IFrame
 
-url = "https://eild-nrw.github.io/sql-trainer/#/"
+url = "https://lejuliennn.github.io/sql-trainer/"
+IFrame(src=url, width='100%', height=800)
+
+
+# ## Multiple Choice
+
+# In[4]:
+
+
+from IPython.display import IFrame
+
+url = "https://lejuliennn.github.io/mct-trainer/#/quiz/categories/sql"
 IFrame(src=url, width='100%', height=800)
 
 

@@ -31,3 +31,20 @@
 # Wie man in der Abbildung oben sieht, kann man die meisten Systemkomponenten der DBMS-Software in der konzeptionellen Schicht verorten. Dort werden Anfragen verarbeitet, optimiert und ausgeführt. Es gibt natürlich Schnittstellen zu den Anwendungungsprogrammen durch Anfrageschnittstellen und zum Betriebssystem oder der Hardware durch System-APIs und Treiber.
 
 # Auch wenn es sich hierbei um einen Standard handelt, gibt es bei heutigen Datenbanksystemen oft Abweichungen. Beispielsweise haben Anwendungen oft direkten Zugriff auf die konzeptionelle Ebene. 
+
+# ## Multiple Choice
+
+# In[1]:
+
+
+from IPython.display import IFrame
+
+url = "https://lejuliennn.github.io/mct-trainer/#/quiz/categories/architektur"
+IFrame(src=url, width='100%', height=800)
+
+
+# In[ ]:
+
+
+
+
