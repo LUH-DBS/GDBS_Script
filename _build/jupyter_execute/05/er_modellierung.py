@@ -40,8 +40,8 @@
 # Komponente| Darstellung| Visuell|
 # ----------|------------|--------|
 # Entitytyp |Rechteck|<img src="rechteck.jpg" />|
-# Relationshiptyp |Raute|<img src="raute.jpg" />|
-# Attribut | Oval | <img src="oval.jpg" />|
+# Relationshiptyp |Raute|<img src="Raute.jpg" />|
+# Attribut | Oval | <img src="Oval.jpg" />|
 # 
 # **Attribut:** repräsentiert eine Eigenschaft von Entities oder von Relationships
 # - Es gibt Attribute die nur aus primitiven Datenwerten (String, Integer, …) und Operationen darauf bestehen und auch komplexere zusammengesetzte Attribute, die wir in dieser Vorlesung jedoch nicht detailliert behandeln werden. Komplexe Attribute werden dem erweiterten ER-Modell zugeordnet. 
