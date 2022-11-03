@@ -450,23 +450,7 @@
 # ```
 # 
 # ## Zusammenfassung
-# ■ Schlüssel
-#  <br>
-# □ UNIQUE, PRIMARY KEY, NOT NULL 
-#  <br> <br>
-# ■ Referentielle Integrität
-#  <br>
-# □ REFERENCES, FOREIGN KEY
-#  <br> <br>
-# ■ Attribut-basiertes CHECK
-#  <br> <br>
-# ■ Tupel-basiertes CHECK
-#  <br> <br>
-# ■ Zusicherungen (Datenbank-basiertes CHECK)
-#  <br>
-# □ ASSERTION
-#  <br> <br>
-# ■ Trigger
+# In diesem Kapitel haben wir uns mit verschiedenen Schlüsseln, wie UNIQUE(Sekundärschlüssel) und PRIMARY KEY(Primärschlüssel) beschäftigt. Weiterhin haben wir gelernt wie referentielle Integrität erhalten bleibt, mithilfe von Fremdschlüsselbeziehungen, in SQL REFERENCES und FOREIGN KEY. Wir haben auch gesehen wie Attribut-basierte und Tupel-basierte Assertions mit CHECK deklariert werden können. Zuletzt haben wir Triggers kennengelernt, welche nur zu bestimmten Ereignissen wie INSERT,UPDATE usw. ausgeführt werden. 
 
 # ## Multiple Choice
 
