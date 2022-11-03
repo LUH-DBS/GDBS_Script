@@ -453,6 +453,9 @@
 # In diesem Kapitel haben wir uns mit verschiedenen Schlüsseln, wie UNIQUE(Sekundärschlüssel) und PRIMARY KEY(Primärschlüssel) beschäftigt. Weiterhin haben wir gelernt wie referentielle Integrität erhalten bleibt, mithilfe von Fremdschlüsselbeziehungen, in SQL REFERENCES und FOREIGN KEY. Wir haben auch gesehen wie Attribut-basierte und Tupel-basierte Assertions mit CHECK deklariert werden können. Zuletzt haben wir Triggers kennengelernt, welche nur zu bestimmten Ereignissen wie INSERT,UPDATE usw. ausgeführt werden. 
 
 # ## Multiple Choice
+# 
+# - Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird nur in das JupyterBook eingebunden und nicht selbst gehostet. Der Multiple-Choice-Trainer wird durch GitHub-Pages gehostet. 
+# - Alle Fragen und Kategorien befinden sich zurzeit in Überarbeitung und sind nicht final. 
 
 # In[1]:
 

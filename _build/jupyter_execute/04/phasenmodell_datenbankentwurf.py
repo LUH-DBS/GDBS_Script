@@ -83,6 +83,8 @@
 # Diese Phase ist grundsätzlich die kostenaufwendigste.
 
 # ## Multiple Choice
+# - Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird nur in das JupyterBook eingebunden und nicht selbst gehostet. Der Multiple-Choice-Trainer wird durch GitHub-Pages gehostet. 
+# - Alle Fragen und Kategorien befinden sich zurzeit in Überarbeitung und sind nicht final. 
 
 # In[1]:
 

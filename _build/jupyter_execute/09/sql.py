@@ -2328,9 +2328,11 @@ WHERE Jahr = 1979;
 # Im Weiteren haben wir SQL als DML betrachtet ,um Datenbankveränderungen mit INSERT, UPDATE, DELETE zu schaffen. In Bezug auf SQL als DDL haben wir Schemata und Datentypen kennengelernt, die zur Erstellung und Veränderung von Relationen mit CREATE TABLE und ALTER TABLE nötig sind. Anschließend haben wir die Datenstruktur Index betrachtet, die die Suche nach Tupel erleichtert. Zuletzt haben wir uns mit Sichten und materalisierten Sichten, sowie Anfragen und Updates darauf beschäftigt.
 
 # ## SQL-Trainer
-# Mithilfe des SQL-Trainers können sie ihr erlangtes Wissen aus diesem Kapitel vertiefen und praktisch anwenden:
+# 
+# - Mithilfe des SQL-Trainers können sie ihr erlangtes Wissen aus diesem Kapitel vertiefen und praktisch anwenden:
+# - Die hier verwendete Version des SQL-Trainers von EILD.nrw wird nur in das JupyterBook eingebunden und nicht selbst gehostet. Der SQL-Trainer wird durch GitHub-Pages gehostet. 
 
-# In[5]:
+# In[1]:
 
 
 from IPython.display import IFrame
@@ -2340,8 +2342,11 @@ IFrame(src=url, width='100%', height=800)
 
 
 # ## Multiple Choice
+# 
+# - Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird nur in das JupyterBook eingebunden und nicht selbst gehostet. Der Multiple-Choice-Trainer wird durch GitHub-Pages gehostet. 
+# - Alle Fragen und Kategorien befinden sich zurzeit in Überarbeitung und sind nicht final. 
 
-# In[4]:
+# In[2]:
 
 
 from IPython.display import IFrame

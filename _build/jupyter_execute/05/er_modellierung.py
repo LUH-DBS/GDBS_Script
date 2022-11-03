@@ -440,6 +440,9 @@
 # In diesem Kapitel haben wir die ER-Modellierungssprache kennen gelernt, die uns erlaubt aus informellen Informationsbeschreibungen visuelle und formalisierte Informationen anhand von Entitytypen, Relationshiptypen und Attributen zu modellieren. In der ER-Modellierung können wir auch bereits Nebenbedingungen wie Kardinalitäten und Schlüsselbeziehungen modellieren. Schließlich haben wir Anforderungen für eine sinnvolle Modellierung diskutiert. Im nächsten Kapitel werden wir den nächsten Schritt im Datenbankentwurf besprechen. Es soll nun darum gehen, wie man aus einem ER-Modell ein relationales Modell herleiten kann, welches dann direkt in Datenbankmanagementsystemen abgebildet werden kann. 
 
 # ## Multiple Choice
+# 
+# - Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird nur in das JupyterBook eingebunden und nicht selbst gehostet. Der Multiple-Choice-Trainer wird durch GitHub-Pages gehostet. 
+# - Alle Fragen und Kategorien befinden sich zurzeit in Überarbeitung und sind nicht final. 
 
 # In[1]:
 
