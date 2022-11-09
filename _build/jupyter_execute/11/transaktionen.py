@@ -113,15 +113,14 @@
 # ```
 
 # ### Probleme im Mehrbenutzerbetrieb
-# ■ Abhängigkeiten von nicht freigegebenen Daten: Dirty Read
-# <br><br>
-# ■ Inkonsistentes Lesen: Nonrepeatable Read
-# <br><br>
-# ■ Berechnungen auf unvollständigen Daten: Phantom-Problem
-# <br><br>
-# ■ Verlorengegangenes Ändern: Lost Update
+# In diesem Kapitel beschäftigen wir uns mit vier bekannnten Problemen, die im Mehrbenutzerbetrieb auftreten können.
+# - Dirty Read: Abhängigkeiten von nicht freigegebenen Daten 
+# - Nonrepeatable Read: Inkonsistentes Lesen 
+# - Phantom-Problem: Berechnungen auf unvollständigen Daten
+# - Lost Update: Verlorengegangenes Ändern
 # 
 # ### Dirty Read
+# Wir haben zwei Transaktionen T1 und T2 gegeben. Zuerst wird in T1 aus der Tabelle A der Wert ausgelesen und in x gespeichert. Auf x wird dann 100 addiert und der Wert von x wird in die Tabelle A geschrieben. Die Transaktion T1 ist jedoch noch nicht commitet. Währenddessen werd in T2 die Werte aus den Tabellen A und B gelesen und in die Variablen x und y gespeichert. Es wird die Summe aus x und y gebildet, wobei der Wert in x aus T2 den Wert x:=x+100 aus T1 hat. Die Summe wird in T2 in die Tabelle B geschrieben und es wird commitet. Zuletzt findet ein abort in T1 statt, welches den Effekt hat, dass die vorherigen Transaktionsschritte aus T1 verworfen werden. Das Problem ist, dass T2  den veränderten A-Wert liest, diese Änderung aber nicht endgültig ist, sondern sogar ungültig.
 # 
 # |T1|T2|
 # |---|---|
@@ -134,19 +133,12 @@
 # |&#xfeff;|write(y,B)|
 # |&#xfeff;|commit|
 # |abort|&#xfeff;|
-# 
-# Problem: T2 liest den veränderten A-Wert, diese Änderung ist aber nicht endgültig, sondern sogar ungültig.
-# <br>
 # Folie nach Kai-Uwe Sattler (TU Ilmenau)
 
 # ### Nonrepeatable Read
-# ■ Nicht-wiederholbares Lesen
+# Im Folgenden betrachten wir ein Beispiel für Nicht-wiederholbares Lesen. In unserem Beispiel möchten wir die Zusicherung haben, dass x = A + B + C am Ende der Transaktion T1 gilt, wobei x, y, z lokale Variablen seien.
 # <br><br>
-# ■ Beispiel:
-# <br>
-# □ Zusicherung: x = A + B + C am Ende der Transaktion T1
-# <br>
-# □ x, y, z seien lokale Variablen
+# Zuerst wird in T1 der Wert aus A gelesen und in x gespeichert. Danach wird in T2 der Wert von A halbiert und auf den Wert von C wird der neue Wert von A addiert. Die Änderungen aus T2 werden commitet. Anschließend wird in T1 der Wert aus B und C gelesen und auf x addiert. Das Problem ist, dass der Wert x in T1 nicht mehr nachvollzogen werden kann, da A sich im Laufe der Transaktion geändert hat. Zuletzt ist x = A + B + C + A/2.
 # 
 # |T1|T2|
 # |---|---|
@@ -163,14 +155,10 @@
 # |read(C,z)|&#xfeff;|
 # |x:=x+z|&#xfeff;|
 # |commit|&#xfeff;|
-# 
-# Problem: A hat sich im Laufe der Transaktion geändert.
-# <br>
-# x = A + B + C gilt nicht mehr
-# <br>
 # Beispiel nach Kai-Uwe Sattler (TU Ilmenau)
-# 
+
 # ### Das Phantom-Problem
+# In diesem Beispiel haben wir ein Budget von 1000 gegeben und möchten dies gleichmäßig auf die Gehälter aller Mitarbeiter\*Innen aufteilen. In T1 wird zuerst die Anzahl der Mitarbeiter\*Innen in die Variable x gespeichert. Danach wird in T2 ein weiterer Mitarbeiter in die Tabelle eingefügt und commitet. Anschließend wird in T1 das Budget auf die Gehälter aller Mitarbeiter\*Innen verteilt. Jedoch ist der Mitarbeiter Meier nicht in die Gehaltsabrechnung eingegangen. Tatsächlich müsste es SET Gehalt = Gehalt +10000/(X+1) sein. Meier ist das Phantom.
 # 
 # |T1|T2|
 # |---|---|
@@ -179,18 +167,15 @@
 # |&#xfeff;|commit|
 # |UPDATE Mitarbeiter<br>SET Gehalt = Gehalt +10000/X|&#xfeff;|
 # |commit|&#xfeff;|
-# 
-# 
-# UPDATE Mitarbeiter
-# SET Gehalt = Gehalt +10000/X
-# commit
-# Problem: Meier geht nicht in die Gehaltsberechnung ein. Meier ist das Phantom.
-# <br>
-# ![title](transaktionen_img/phantom.jpg)
-# <br>
 # Beispiel nach Kai-Uwe Sattler (TU Ilmenau)
 # 
+# ![title](transaktionen_img/phantom.jpg)
+# <br>
+# 
+
 # ### Lost Update
+# Bei diesem Beispiel für ein Lost Update, lesen T1 und T2 den Wert aus A, welcher 10 ist. T1 addiert Eins dazu und T2 addiert ebenfalls Eins dazu. Beide schreiben den Wert wieder in A. Jedoch wird die Erhöhung von T1 nicht berücksichtigt. In diesem Fall hätte man gerne die Veränderung von T1 vor dem Lesen in T2 erkannt. 
+# 
 # 
 # |T1|T2|A|
 # |---|---|---|
@@ -200,39 +185,16 @@
 # |&#xfeff;|x:=x+1|10|
 # |write(x,A)|&#xfeff;|11|
 # |&#xfeff;|write(x,A)|11|
-# 
-# Problem: Die Erhöhung von T1 wird nicht berücksichtigt.
 # <br>
 # Folie nach Kai-Uwe Sattler (TU Ilmenau)
-# 
+
 # ### Transaktionen in SQL
-# ■ Idee: Gruppierung mehrerer Operationen / Anfragen in eine Transaktion
-# <br>
-# □ Ausführung atomar (per Definition)
-# <br>
-# □ Ausführung serialisierbar (per SQL Standard)
-# <br>
-# – Kann aufgeweicht werden (Isolationsstufen)
-# <br><br>
-# ■ Ein SQL Befehl entspricht einer Transaktion
-# <br>
-# □ Ausgelöste TRIGGER werden ebenfalls innerhalb der Transaktion ausgeführt.
-# <br><br>
-# ■ Beginn einer Transaktion: START TRANSACTION
-# <br><br>
-# ■ Ende einer Transaktion (falls mit START TRANSACTION gestartet)
-# <br>
-# □ COMMIT signalisiert erfolgreiches Ende der Transaktion
-# <br>
-# □ ROLLBACK oder ABORT signalisiert Scheitern der Transaktion
-# <br>
-# – Erfolgte Änderungen werden rückgängig gemacht.
-# <br>
-# – Kann auch durch das DBMS ausgelöst werden: Anwendung muss entsprechende Fehlermeldung erkennen.
+# In SQL werden mehrere Operationen/Anfragen in eine Transaktion gruppiert. Ein SQL Befehl entspricht einer Transaktion. Die Transaktionen werden per Definition atomar und per SQL Standard serialisierbar ausgeführt. Diese Regeln können auch aufgeweicht werden s. Isolationsebenen. Ausgelöste TRIGGER werden ebenfalls innerhalb der Transaktion ausgeführt. Explizit kann der Beginn einer Transaktion mit START TRANSACTION deklariert werden. Das Ende einer Transaktion (falls mit START TRANSACTION gestartet), kann mit COMMIT(erfolgreiches Ende der Transaktion) oder mit ROLLBACK oder ABORT(Scheitern der Transaktion) signalisiert werden. Beim zweiten werden schon erfolgte Änderungen rückgängig gemacht. In nötigen Fällen werden von der DBMS selbst ROLLBACK oder ABORT ausgelöst, die entsprechende Fehlermeldung muss dann von der Anwendung erkannt werden.
 # 
+
 # ### Isolationsebenen
 # 
-#  Aufweichung von ACID in SQL-92: Isolationsebenen
+# Das Aufweichen von ACID in SQL-92 ist mit sogenannten Isolationsebenen möglich. Pro Transaktion können weniger einschränkende Regeln wie z.B read uncommited o.Ä. festgelegt werden. Die weiteren Ebenen dienen als Hilfestellung für das DBSM zu Effizienzsteigerung.
 # ```
 # set transaction
 # [ { read only | read write }, ]
@@ -243,40 +205,23 @@
 #     serializable }, ]
 # [ diagnostics size ...]
 # ```
-# ■ Kann pro Transaktion angegeben werden
-# <br><br>
-# ■ Standardeinstellung:
+# 
+# Die Standardeinstellung ist die strengste Form und sieht wie folgt aus:
 # ```
 # set transaction read write,
 # isolation level serializable
 # ```
-# ■ Andere Ebenen als Hilfestellung für das DBMS zur Effizienzsteigerung
-# 
+
 # ### Bedeutung der Isolationsebenen
-# ```
-# read uncommitted
-# ```
-# □ Schwächste Stufe: Zugriff auf nicht geschriebene Daten
-# <br>
-# □ Falls man schreiben will: read write angeben (default ist hier ausnahmsweise read only)
-# <br>
-# □ Statistische und ähnliche Transaktionen (ungefährer Überblick, nicht korrekte Werte)
-# <br>
-# □ Keine Sperren: Effizient ausführbar, keine anderen Transaktionen werden behindert
-# ```
-# read committed
-# ```
-# □ Nur Lesen endgültig geschriebener Werte, aber nonrepeatable read möglich
-# ```
-# repeatable read
-# ```
-# □ Kein nonrepeatable read, aber Phantomproblem kann auftreten
-# ```
-# serializable
-# ```
-# □ Garantierte Serialisierbarkeit (default)
-# <br>
-# □ Transaktion sieht nur Änderungen, die zu Beginn der Transaktion committed waren (und eigene Änderungen).
+# 
+# - read uncommitted: Diese Isolationsebene ist die schwächste Stufe und erlaubt den Zugriff auf nicht geschriebene Daten. Falls geschrieben werden soll muss read write angegeben werden, da hier ausnahmsweise der default read only ist. Durch das Weglassen von Sperren, wird die Effiezenz gesteigert, da keine Transaktionen behindert werden.
+# <br><br>
+# - read committed: Mit dieser Isolationsebene dürfen nur endgültig geschriebene Werte gelesen werden, jedoh ist  nonrepeatable read immernoch möglich.
+# <br><br>
+# - repeatable read: Bei dieser Isolationsebene sind nonrepeatable reads verhindert, aber das Phantomproblem kann auftreten.
+# <br><br>
+# - serializable: Bei der strengsten Isolationsebene wird Serialisierbarkeit (default) garantiert. Transaktion sehen nur Änderungen, die zu Beginn der Transaktion committed waren (und eigene Änderungen).
+# 
 # 
 # ### Isolationsebenen – Übersicht
 # 
