@@ -3,26 +3,16 @@
 
 # # Transaktionsmanagement
 # ![title](transaktionen_img/cartoon.jpg)
+
+# ## Motivation - Transaktionsmanagement
+# <br><br>
+# Bisher haben wir in unseren Beispielen angenommen, dass nur ein Nutzer auf die Datenbank zugreift(Isolation). In der Realität werden in Betrieb genommene Datenbanken, von vielen Nutzern und Anwendungen gleichzeitig lesend und schreiben genutzt. Weiterhin haben wir angenommen, dass Anfragen und Updates aus einer einzigen atomaren Aktion bestehen, in der die DBMS nicht mitten ausfallen kann(Atomizität). Jedoch bestehen einfache Anfragen in Wahrheit oft aus mehreren Teilschritten.
 # 
-# Motivation - Transaktionsmanagement
+# ### Motivierendes Beispiel
+# Betrachten wir folgendes Beispiel. Zwei Personen Philipp und Sarah teilen sich ein Konto und können dies bearbeiten. Der aktuelle Kontostand beträgt 500. In der Tabelle werden die Bearbeitungen von Philipp und Sarah dargestellt, wobei eine Zeile einen Zeitpunkt darstellt, in der Operationen ausgeführt werden. 
 # <br><br>
-# ■ Annahmen bisher
-# <br>
-# □ Isolation: Nur ein Nutzer greift auf die Datenbank zu
-# <br>
-# – Lesend
-# <br>
-# – Schreibend
-# <br>
-# □ In Wahrheit: Viele Nutzer und Anwendungen lesen und schreiben gleichzeitig.
-# <br>
-# □ Atomizität
-# <br>
-# – Anfragen und Updates bestehen aus einer einzigen, atomaren Aktion. DBMS können nicht mitten in dieser Aktion ausfallen.
-# <br>
-# – In Wahrheit: Auch einfache Anfragen bestehen oft aus mehreren Teilschritten.
-# <br><br>
-# Motivierendes Beispiel
+# Zuerst liest Sarah den Wert des Kontos und speichert diesen in die Variable y. Danach macht Philipp dasselbe und speichert den Wert in x. Philipp zahlt weitere 200 auf den Kontostand und commitet dies. Sarah nimmt danach 100 aus dem Konto, jedoch wird mit dem alten Kontostand 500 weitergerechnet. Der falsche Wert 400 wird commitet, obwohl auf dem Konto 600 sein sollten. Dieses Beispiel stellt einen Non-repeatble Read dar, ein Problem aus einere Reihe von Problemen, die eine DBMS in inkonsiste Zustände führen kann. Die Probleme werden wir in diesem Kapitel kennenlernen.
+# 
 # 
 # |**Kontostand: 500**|&#xfeff;|
 # |---|---|
@@ -36,76 +26,36 @@
 # |&#xfeff;|write(y,K)|
 # |&#xfeff;|commit|
 # |**Kontostand: 400**|&#xfeff;|
-# 
 
 # ## Transaktionen
 # 
-# ### Die Transaktion
 # Eine Transaktion ist eine Folge von Operationen (Aktionen), die die Datenbank von einem konsistenten Zustand in einen konsistenten (eventuell veränderten) Zustand überführt, wobei das ACID-Prinzip eingehalten werden muss.
 # 
 # ### Transaktionen – Historie
-# ■ In alten DBMS kein Formalismus über Transaktionen
-# <br>
-# □ Nur Tricks
-# <br><br>
-# ■ Erster Formalismus in den 80ern
-# <br>
-# □ System R mit Jim Gray
-# <br>
-# □ Erste (ineffiziente) Implementierung
-# <br>
-# □ ACM Turing Award
-# <br>
-# – For seminal contributions to database and transaction processing research and technical leadership in system implementation from research prototypes to commercial products.
-# <br><br>
-# ■ ARIES Project (IBM Research)
-# <br>
-# □ Algorithms for Recovery and Isolation Exploiting Semantics
-# <br>
-# □ Effiziente Implementierungen
-# <br>
-# □ C. Mohan
-# <br><br>
-# ■ Transaktionen auch in verteilten Anwendungen und Services
-# <br>
-# ![title](transaktionen_img/jim_gray.jpg)
-# <br>
-# ![title](transaktionen_img/c_mohan.jpg)
+# In alten DBMS wurde kein Formalismus über Transaktionen implementiert, sondern lediglich nur Tricks benutzt. Die ersten (ineffiziente) Implementierung von Formalismen, wurde in den 80ern von Jim Gray(ACM Turing Award), mit dem System R eingeführt. Eine weitere wichtige Person, ist C. Mohan, der im ARIES Project vom IBM Reasearch, der mit Algorithms for Recovery and Isolation Exploiting Semantics effiziente Implementierungen, insbesondere im Bereich von Transaktionen in verteilten Anwendungen und Services, entwickelt hat.
 # 
+# C. Mohan         |  Jim Gray
+# :-------------------------:|:-------------------------:
+# <img src="transaktionen_img/c_mohan.jpg" width="400" /> | <img src="transaktionen_img/jim_gray.jpg" width="400" />
+
 # ### ACID
-# ■ Atomicity (Atomarität)
-# <br>
-# □ Transaktion wird entweder ganz oder gar nicht ausgeführt.
+# Das ACID-Prinzip stellt die Eigenschaften einer Transaktion, es wird aus folgenden Teilprinzipien zusammengesetzt:
 # <br><br>
-# ■ Consistency (Konsistenz oder auch Integritätserhaltung)
-# <br>
-# □ Datenbank ist vor Beginn und nach Beendigung einer Transaktion jeweils in einem konsistenten Zustand.
+# - Atomicity (Atomarität): Eine Transaktion wird entweder ganz oder gar nicht ausgeführt.
 # <br><br>
-# ■ Isolation (Isolation)
-# <br>
-# □ Transaktion, die auf einer Datenbank arbeitet, sollte den „Eindruck“ haben, dass sie allein auf dieser Datenbank arbeitet.
+# - Consistency (Konsistenz oder auch Integritätserhaltung): Die Datenbank ist vor Beginn und nach Beendigung einer Transaktion jeweils in einem konsistenten Zustand.
 # <br><br>
-# ■ Durability (Dauerhaftigkeit / Persistenz)
-# <br>
-# □ Nach erfolgreichem Abschluss einer Transaktion muss das Ergebnis dieser Transaktion „dauerhaft“ in der Datenbank gespeichert werden.
-# 
+# - Isolation (Isolation): Eine Transaktion, die auf einer Datenbank arbeitet, sollte den „Eindruck“ haben, dass sie allein auf dieser Datenbank arbeitet.
+# <br><br>
+# - Durability (Dauerhaftigkeit / Persistenz): Nach erfolgreichem Abschluss einer Transaktion, muss das Ergebnis dieser Transaktion „dauerhaft“ in der Datenbank gespeichert werden.
+
 # ### Beispielszenarien
-# ■ Platzreservierung für Flüge gleichzeitig aus vielen Reisebüros
-# <br>
-# □ Platz könnte mehrfach verkauft werden, wenn mehrere Reisebüros den Platz als verfügbar identifizieren.
-# <br><br>
-# ■ Überschneidende Konto-Operationen einer Bank
-# <br>
-# □ Beispiele später
-# <br><br>
-# ■ Statistische Datenbankoperationen
-# <br>
-# □ Ergebnisse sind verfälscht, wenn während der Berechnung Daten geändert werden.
-# 
+# Einige Beispieszenarien für Probleme im Transaktionsmanagement sind z.b die Platzreservierung für Flüge aus vielen Reisebüros gelichzeitig. Ein Platz könnte mehrfach verkauft werden, wenn mehrere Reisebüros den Platz als verfügbar identifizieren. Ein weiteres Beispiel sind überschneidende Konto-Operationen einer Bank, wie im ersten Beispiel des Kapitels zu sehen ist. Auch bei statistischen Datenbankoperationen kann es zu Problemen kommen, wenn während der Berechnung Daten geändert werden, s.d. die Ergebnisse verfälscht sind.
+
 # ### Beispiel – Serialisierbarkeit
-# ■ Fluege(Flugnummer, Datum, Sitz, besetzt)
-# <br>
-# ■ chooseSeat() sucht nach freiem Platz und besetzt ihn gegebenenfalls
+# 
+# In diesem Beispiel haben wir die Relation Fluege(Flugnummer, Datum, Sitz, besetzt) gegeben. Zusätzlich haben wir eine Funktion chooseSeat(), die nach einem freiem Platz sucht und ihn gegebenenfalls besetzt. Unten sehen Sie einen Embedded-SQL-Codeausschnitt.
+# 
 # ```
 # EXEC SQL BEGIN DECLARE SECTION;
 #     int flug;
@@ -113,6 +63,7 @@
 #     char seat[3];
 #     int occ;
 # EXEC SQL END DECLARE SECTION;
+# 
 # void chooseSeat() {
 # /* Nutzer nach Flug, Datum und Sitz fragen */
 #     EXEC SQL SELECT besetzt INTO :occ FROM Fluege
@@ -125,10 +76,9 @@
 #     else …
 # }
 # ```
-# ->Embedded SQL
 # 
-# ### Beispiel – Serialisierbarkeit
-# ■ Problem: Funktion wird von mehreren Usern zugleich aufgerufen
+
+# Problematisch wird es, wenn die Funktion chooseSeat() von mehreren Usern zugleich aufgerufen wird. Wir haben User 1 und 2. User 1 findet zuerst einen leeren Platz, aber dieser besetzt ihn noch nicht. User 2 findet denselben leren Platz. Nachdem User 2 denselben leeren Platz, wie User 1 gefunden hat, besetzt User 1 diesen. Zuletzt besetzt auch User 2 diesen. Das Problem ist, dass beide User glauben den Platz reserviert zu haben. Die Lösung für diese Problem, ist das beide Transaktionen (eine Spalte stellt eine Transaktion dar) in serielle oder serialisierbare Schedules umgewandelt werden, wir wir im Weiteren kennenlernen werden.
 # 
 # |Schedule|&#xfeff;|
 # |---|---|
@@ -137,18 +87,10 @@
 # |User 1 besetzt Platz|&#xfeff;|
 # |&#xfeff;|User 2 besetzt Platz|
 # 
-# ■ Beide User glauben den Platz reserviert zu haben.
-# <br><br>
-# ■ Lösung gleich
-# <br>
-# □ Serielle Schedules
-# <br>
-# □ Serialisierbare Schedules
 # 
 # ### Beispiel - Atomizität
-# ■ Problem: Eine Transaktion kann Datenbank in inkonsistenten Zustand hinterlassen.
-# <br>
-# □ Softwarefehler / Hardwarefehler
+# In diesem Beispiel möchten wir einen Betrag von konto1 auf konto2 überweisen. Zuerst wird überprüft, ob konto1 überhaupt genug Geld hat, um den geforderten Betrag zu überweisen. Ist dies der Fall wird der Betrag auf konto2 gutgeschrieben. Nun kann es sein, dass das System in diesem Moment abstürzt. Der Betrag wurde auf konto2 gutgeschrieben, jedoch noch nicht von konto1 abgezogen. Es ist möglich, dass die Datenbank in einen inkonsistenten Zustand hinterlassen wird. Lösung für diese Problem ist Atomizität. In diesem Fall würden die vorherigen Transaktionsschritte verworfen werden, da eine Transaktion nach dem Atomizitäts-Prinzip nur ganz oder garnicht ausgeführt wird.
+# 
 # ```
 # EXEC SQL BEGIN SECTION;
 #     int konto1, konto2;
@@ -169,10 +111,7 @@
 #     } else /* Fehlermeldung */
 # }
 # ```
-# ->Problem: Systemabsturz hier
-# <br>
-# ->Lösung: Atomizität
-# 
+
 # ### Probleme im Mehrbenutzerbetrieb
 # ■ Abhängigkeiten von nicht freigegebenen Daten: Dirty Read
 # <br><br>
@@ -199,7 +138,7 @@
 # Problem: T2 liest den veränderten A-Wert, diese Änderung ist aber nicht endgültig, sondern sogar ungültig.
 # <br>
 # Folie nach Kai-Uwe Sattler (TU Ilmenau)
-# 
+
 # ### Nonrepeatable Read
 # ■ Nicht-wiederholbares Lesen
 # <br><br>

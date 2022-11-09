@@ -188,19 +188,7 @@
 # <br><br>
 # Es kann der Fall auftreten, dass es zyklische referentielle Integritätsbedingungen gibt. Z.B könnten zusätzlich Manager\*Innen nur Vorsitzende von Studios sein, also ist ManagerinID ein Fremdschlüssel und referenziert auf VorsitzendeID. So gilt die Fremdschlüsselbedingung in beide Richtungen.Es kann nach wie vor kein Studio ohne vorhandenes Managertupel eingefügt werden. Es kann nun auch kein Manager\*In ohne vorhandenes Studio eingefügt werden. Die Lösung für dieses Problem ist das Zusammenfassen mehrerer Änderungsoperationen zu einer „Transaktion“ (mehr dazu im Kapitel 11 „Transaktionsmanagement“) und dann das Verschieben der Integritätschecks bis ans Ende der Transaktion.
 # <br><br>
-# Dieser Constraint kann mit dem Schlüsselwort DEFERRABLE deklariert werden. DEFERRABLE lässt sich einmal in INITIALLY DEFERRED und INITIALLY IMMEDIATE teilen. Bei INITIALLY DEFERRED wird der Integritätscheck an das Ende der Transaktion, die aus mehreren Statements bestehen kann, verschoben. Bei INITIALLY IMMEDIATE wird der Integritätscheck ans Ende des Statements verschoben. NOT DEFERRABLE, also dass die Bedingung bei jeder Änderung der Datenbank geprüft wird, ist default. Ein Beispiel für die Synatx zu DEFERRABLE finden Sie unten.
-# 
-# ■ DEFERRABLE
-# <br>
-# □ INITIALLY DEFERRED:
-# <br>
-# – Verschieben ans Ende der Transaktion
-# <br>
-# – oder bis wir Verschiebung aufheben
-# <br>
-# □ INITIALLY IMMEDIATE
-# <br>
-# – Zunächst nichts verschieben, bis wir Verschiebung verlangen.
+# Dieser Constraint kann mit dem Schlüsselwort DEFERRABLE deklariert werden. DEFERRABLE lässt sich einmal in INITIALLY DEFERRED und INITIALLY IMMEDIATE teilen. Bei INITIALLY DEFERRED wird der Integritätscheck an das Ende der Transaktion, die aus mehreren Statements bestehen kann, verschoben. Bei INITIALLY IMMEDIATE wird zunächst nichts verschoben, bis eine Verschiebung des Integritätscheck ans Ende des Statements verlangt wird. NOT DEFERRABLE, also dass die Bedingung bei jeder Änderung der Datenbank geprüft wird, ist default. Ein Beispiel für die Synatx zu DEFERRABLE finden Sie unten.
 # 
 # ```
 # CREATE TABLE Studios(
@@ -261,19 +249,7 @@
 # (SELECT ManagerinID FROM ManagerIn))
 # );
 # ```
-# Auf diese Weise wird indirekt referentielle Integrität simuliert. 
-# <br>
-# Was kann schief gehen?
-# <br>
-# UPDATE und INSERT auf der Studios Relation
-# <br>
-# CHECK wird geprüft
-# <br>
-# DELETE auf der Manager Relation
-# <br>
-# CHECK wird nicht geprüft; CHECK Bedingung wird ungültig
-# <br>
-# D.h.: Andere Relationen kennen diese CHECK Bedingung nicht.
+# Auf diese Weise wird indirekt referentielle Integrität simuliert. Wenn hier ein UPDATE oder INSERT auf der Studios Relation ausgeführt wird, wird der CHECK geprüft. Bei einem DELETE auf der Manager\*In Relation, wird der CHECK nicht geprüft, die CHECK Bedingung kann ungültig werden. D.h. andere Relationen kennen diese CHECK Bedingung nicht.
 # 
 # ### Tupel-basierte CHECK Bedingungen
 # Es ist auch möglich Bedingungen für ganze Tupel zu deklarieren. Eine CHECK-Bedingung kann wie Primär- und Fremdschlüsselbezeiehungen in der Liste der Attributen auftauchen und beliebige Bedingungen wie eine WHERE-Klausel haben. Die deklarierten CHECKs werden bei jedem INSERT und UPDATE eines Tupels geprüft.
