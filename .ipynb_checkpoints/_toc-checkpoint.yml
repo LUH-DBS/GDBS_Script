@@ -1,0 +1,18 @@
+root: intro
+format: jb-article
+options: 
+ numbered: true
+    
+sections:  
+ - file: 01/einfuehrung 
+ - file: 02/historie
+ - file: 03/architektur
+ - file: 04/phasenmodell_datenbankentwurf
+ - file: 05/er_modellierung
+ - file: 06/relationaler_entwurf
+ - file: 07/normalisierung
+ - file: 08/relationale_algebra
+ - file: 09/sql
+ - file: 10/integritaet_und_trigger
+ - file: 11/transaktionen
+ - file: 12/bearbeitung
