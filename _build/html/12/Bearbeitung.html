@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Bearbeitung &#8212; Online-Skript Grundlagen der Datenbanksysteme</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -62,7 +61,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +84,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -91,14 +105,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Grundlagen der Datenbanksysteme
+                </a>
+            </li>
+        </ul>
         <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Grundlagen der Datenbanksysteme
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../01/einfuehrung.html">
    1. Einführung
@@ -157,110 +172,227 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/12/Bearbeitung.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/LUH-DBS/GDBS_Script"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F12/Bearbeitung.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/main/?urlpath=tree/12/Bearbeitung.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/main/?urlpath=tree/12/Bearbeitung.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/LUH-DBS/GDBS_Script"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F12/Bearbeitung.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/12/Bearbeitung.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#parsen-der-anfrage">
    Parsen der Anfrage
@@ -463,12 +595,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Bearbeitung</h1>
@@ -687,122 +818,160 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="bearbeitung">
-<h1>Bearbeitung<a class="headerlink" href="#bearbeitung" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="bearbeitung">
+<h1>Bearbeitung<a class="headerlink" href="#bearbeitung" title="Permalink to this headline">#</a></h1>
+<p>-&gt; dieses Thema (‘Bearbeitung’) ist zurzeit in Bearbeitung</p>
 <p><strong>Anfragebearbeitung – Grundproblem</strong></p>
 <ul class="simple">
-<li><p>Anfragen sind deklarativ.</p></li>
+<li><p>Anfragen sind deklarativ. sagen was wir wollen und nicht wie wir unsere Daten extrahieren. Das würde durch beispielsweise ein Programm das wir schreiben geschehen -&gt; Python Programm geht durch CSV-Datei. Stattdessen sagen wir: Gebe mir alle Filme, die im Jahr 1996 produziert werden. Das Datenbanksystem findet von selbst heraus wie es diese Frage beantwortet. Dafür werden die Anfragen in aus…</p></li>
 <li><p>SQL, Relationale Algebra
 <br><br></p></li>
 <li><p>Anfragen müssen in ausführbare (prozedurale) Form transformiert werden.</p></li>
 <li><p>Ziele</p></li>
-<li><p>„QEP“ – prozeduraler Query Execution Plan</p></li>
+<li><p>Das nennt man „QEP“ – prozeduraler Query Execution Plan</p></li>
+<li><p>Wichtig hierbei ist, dass die Darstellung/das Programm eff…</p></li>
 <li><p>Effizienz</p></li>
 <li><p>Schnell</p></li>
 <li><p>Wenig Ressourcenverbrauch (CPU, I/O, RAM, Bandbreite)</p></li>
-<li><p>Energie</p></li>
+<li><p>Das alles wirkt sich auf den Energieverbrauch aus.</p></li>
 </ul>
-<p><strong>Ablauf der Anfragebearbeitung</strong></p>
-<ol class="simple">
+<p><strong>Ablauf der Anfragebearbeitung</strong>
+Zunächst haben wir unsere Anfrage:
+SELECT * FROM x WHERE …;</p>
+<ol>
 <li><p>Parsing
 <br><br>
 Parsen der Anfrage (Syntax)
 <br>
-Überprüfen der Elemente („Semantik“)
+Überprüfen der Elemente („Semantik“) -&gt; Semantik wird überprüft
 <br>
-Parsebaum
-<br><br></p></li>
-<li><p>Wahl des logischen Anfrageplans
+Parsebaum wird erstellt
 <br><br>
-Baum mit logischen Operatoren
+Vor allem wird hierbei herausgefunden ob diese Anfrage stimmt und auf welche Operationselemente abgebildet wird.</p></li>
+<li><p>Wahl des logischen Anfrageplans -&gt; logischer Anfrageplan wird ausgewählt
+<br><br>
+Dieser ist in der Regel ein Baum mit logischen Operatoren
 <br>
-Potentiell exponentiell viele
+Es gibt Potentiell exponentiell viele Pläne, die man anhand der Elemente, die man in der Anfrage hat, erstellen kann. Natürlich lassen sich bestimme Kombis nicht darstellen. Grundproblem ist auch NP-Vollständig.
 <br>
-Wahl des optimalen Plans – Logische Optimierung – Regelbasierter Optimierer – Kostenbasierter Optimierer
-<br><br></p></li>
+Wahl des optimalen Plans –
+Dabei gibt es verschiedene Optimierungsverfahren:
+Logische Optimierung -&gt; Operatoren werden einfach hin- und hergeschoben</p>
+<p>Regelbasierter Optimierer
+Kostenbasierter Optimierer
+Diese basieren auf den Kosten der jeweiligen Operationen in den Anfragen.
+<br><br></p>
+</li>
 <li><p>Wahl des physischen Anfrageplans
+Für jede Operation, die momentan noch in deklarativer Form ist, muss nun eine Prozedur/ein Programm mit physi… ausgewählt werden
 <br><br>
 Ausführbar
 <br>
-Programm mit physischen Operatoren – Algorithmen – Scan Operatoren
+…Programm mit physischen Operatoren –
+Dies sind unter anderem die Algorithmen, die Scan Operatoren oder auch die JOIN-Implementierungen.
 <br>
 Wahl des optimalen Plans – physische Optimierung
 <br><br></p></li>
 </ol>
 <p><img alt="title" src="../_images/ablauf_anfragebearbeitung.jpg" /></p>
-<div class="section" id="parsen-der-anfrage">
-<h2>Parsen der Anfrage<a class="headerlink" href="#parsen-der-anfrage" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="syntaxanalyse">
-<h3>Syntaxanalyse<a class="headerlink" href="#syntaxanalyse" title="Permalink to this headline">¶</a></h3>
+<section id="parsen-der-anfrage">
+<h2>Parsen der Anfrage<a class="headerlink" href="#parsen-der-anfrage" title="Permalink to this headline">#</a></h2>
+<section id="syntaxanalyse">
+<h3>Syntaxanalyse<a class="headerlink" href="#syntaxanalyse" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Aufgabe: Umwandlung einer SQL Anfrage in einen Parsebaum.</p></li>
-<li><p>Atome (Blätter)</p></li>
+<li><p>Atome (Blätter) sind:</p>
+<ul>
 <li><p>Schlüsselworte</p></li>
 <li><p>Konstanten</p></li>
 <li><p>Namen (Relationen und Attribute)</p></li>
 <li><p>Syntaxzeichen</p></li>
 <li><p>Operatoren
-<br><br></p></li>
+<br><br>
+Man kann auch Teilausdrücke zu Kategorien zusammenfassen. Beispielsweise bei einer VIEW.</p></li>
+</ul>
+</li>
 <li><p>Syntaktische Kategorien</p></li>
 <li><p>Namen für Teilausdrücke einer Anfrage</p></li>
 </ul>
-</div>
-<div class="section" id="eine-grammatik-fur-einen-teil-von-sql">
-<h3>Eine Grammatik für einen Teil von SQL<a class="headerlink" href="#eine-grammatik-fur-einen-teil-von-sql" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="eine-grammatik-fur-einen-teil-von-sql">
+<h3>Eine Grammatik für einen Teil von SQL<a class="headerlink" href="#eine-grammatik-fur-einen-teil-von-sql" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
-<li><p>Anfragen</p></li>
+<li><p>Anfragen bestehehn immer aus einer Struktur.</p></li>
+<li><p>SFW steht für “SELECT FROM WHERE”</p>
+<ul>
 <li><p><Anfrage> :: = &lt;SFW&gt;</p></li>
 <li><p><Anfrage> :: = ( <SFW> )</p></li>
 <li><p>Mengenoperatoren fehlen
+das kann auch eine Menge von Operatoren darstellen.
 <br><br></p></li>
-<li><p>SFWs</p></li>
-<li><p><SFW> ::= SELECT <SelListe> FROM <FromListe> WHERE <Bedingung></p></li>
+</ul>
+</li>
+<li><p>SFWs werden wie folgt aufgebaut:</p></li>
+<li><p><SFW> ::= SELECT <SelListe> FROM <FromListe> WHERE <Bedingung></p>
+<ul>
+<li><p>die SelListe (SelectListe) enthält die Attribute, die herausprojeziert werden.</p></li>
+<li><p>die FromListe enthält die Relationen aus denen wir die Attribute herausholen</p></li>
+<li><p>eine Bedingung…</p></li>
+</ul>
+</li>
 <li><p>Gruppierung, Sortierung etc. fehlen
 <br><br></p></li>
-<li><p>Listen</p></li>
+<li><p>Listen
+Es handelt sich hier um Grammatiken. Diese sind formal festgelegt. Es können keine Anfragen formuliert werden, die nicht der Grammatik entsprechen.
+Dabei ergibt sich eine SelListe aus einem Attribut und einer anderen SelListe bzw. nur aus einem Attribut…</p></li>
 <li><p><SelListe> ::= <Attribut>, <SelListe>
 □ <SelListe> ::= <Attribut>
+Die FromListe ergibt…
 □ <FromListe> ::= <Relation>, <FromListe>
 □ <FromListe> ::= <Relation>
 <br><br>
 ■ Bedingungen (Beispiele)
+Verknüpfung/Kombinationen von Bedingungen mit AND
 □ <Bedingung> ::= <Bedingung> AND <Bedingung>
+Eine Bedingung kann auch eine Anfrage sein, bei der man eine Überprüfung in einer anderen Anfrage anfordert.
 □ <Bedingung> ::= <Tupel> IN <Anfrage>
 □ <Bedingung> ::= <Attribut> = <Attribut>
 □ <Bedingung> ::= <Attribut> LIKE <Muster>
 <br><br>
-■ <Tupel>, <Attribut>, <Relation>, <Muster> nicht durch grammatische Regel definiert
+■ Die Inhalte von Tupeln … <Tupel>, <Attribut>, <Relation>, <Muster> sind nicht durch grammatische Regel definiert. Entweder sie existieren oder sie existieren nicht. Angenommen man wählt eine Relation aus, die nicht existiert, dann wird von der Datenbank zurückgegeben, dass diese es diese Relation nicht gibt.
 <br><br></p></li>
 <li><p>Vollständig z.B. hier: <a class="reference external" href="http://docs.openlinksw.com/virtuoso/GRAMMAR.html">http://docs.openlinksw.com/virtuoso/GRAMMAR.html</a></p></li>
 </ul>
-</div>
-<div class="section" id="parse-baum">
-<h3>Parse-Baum<a class="headerlink" href="#parse-baum" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="parse-baum">
+<h3>Parse-Baum<a class="headerlink" href="#parse-baum" title="Permalink to this headline">#</a></h3>
 <p><img alt="" src="../_images/parsebaum.jpg" /></p>
+<p>In diesem Bild sieht man den Aufbau eines Parsebaums. Dabei besteht die Anfrage aus SFW. Dieses wiederrum kann unterteilt werden in SELECT, &lt;…</p>
+<p>Alle Konstanten und Relationsnamen sind in den Blattstrukturen</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT Titel
 FROM spielt_in, Schauspieler
 WHERE SchauspielerName = Name
 AND Geburtstag LIKE ‘%1960’;
 </pre></div>
 </div>
-</div>
-<div class="section" id="prufung-der-semantik">
-<h3>Prüfung der Semantik<a class="headerlink" href="#prufung-der-semantik" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="prufung-der-semantik">
+<h3>Prüfung der Semantik<a class="headerlink" href="#prufung-der-semantik" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Während der Übersetzung semantische Korrektheit prüfen</p></li>
 <li><p>Existieren die Relationen und Sichten der FROM Klausel?</p></li>
 <li><p>Existieren die Attribute in den genannten Relationen?</p></li>
 <li><p>Sind sie eindeutig?</p></li>
-<li><p>Korrekte Typen für Vergleiche?</p></li>
+<li><p>Korrekte Typen für Vergleiche? (bsp.: Vergleicht man einen Integer mit einem String usw.</p></li>
 <li><p>Aggregation korrekt?</p></li>
 <li><p>…</p></li>
 </ul>
-</div>
-<div class="section" id="vom-parse-baum-zum-operatorbaum">
-<h3>Vom Parse-Baum zum Operatorbaum<a class="headerlink" href="#vom-parse-baum-zum-operatorbaum" title="Permalink to this headline">¶</a></h3>
+<p>Am Ende erhält man einen Parsebaum. Dieser wird im nächsten Schritt in einen Operatorbaum umgewandelt. Dargestellt werden kann der Operatorbaum mittels Relationaler Algebra. Dabei entspricht das SELECT einer Projektion und das WHERE einer Selektion. FROM spielt_in, Schauspieler wird hierbei als Kreuzprodukt der beiden Relationen dargestellt.
+Somit haben wir aus den Schlüsselwörtern konkrete Operatoren bekommen, die nun deutlich besser sichtbar sind. Man weiß nun, dass spielt_in und Schauspieler durch eine Kreuzprodukt kombiniert werden. Diese beiden Relationen sind der Input des Kreuzprodukts. Auf dem Output wird findet dananch eine Selektion statt und auf dessen Output letztendlich wieder eine Projektion.</p>
+</section>
+<section id="vom-parse-baum-zum-operatorbaum">
+<h3>Vom Parse-Baum zum Operatorbaum<a class="headerlink" href="#vom-parse-baum-zum-operatorbaum" title="Permalink to this headline">#</a></h3>
 <p><img alt="" src="../_images/operatorbaum.jpg" /></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT Titel
 FROM spielt_in, Schauspieler
@@ -810,12 +979,12 @@ WHERE SchauspielerName = Name
 AND Geburtstag LIKE ‘%1960’;
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="transformationsregeln-der-ra">
-<h2>Transformationsregeln der RA<a class="headerlink" href="#transformationsregeln-der-ra" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="anfragebearbeitung-transformationsregeln">
-<h3>Anfragebearbeitung – Transformationsregeln<a class="headerlink" href="#anfragebearbeitung-transformationsregeln" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="transformationsregeln-der-ra">
+<h2>Transformationsregeln der RA<a class="headerlink" href="#transformationsregeln-der-ra" title="Permalink to this headline">#</a></h2>
+<section id="anfragebearbeitung-transformationsregeln">
+<h3>Anfragebearbeitung – Transformationsregeln<a class="headerlink" href="#anfragebearbeitung-transformationsregeln" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Transformation der internen Darstellung</p></li>
 <li><p>Ohne Semantik zu verändern</p></li>
@@ -830,14 +999,14 @@ AND Geburtstag LIKE ‘%1960’;
 <br>
 Für jede mögliche Instanz derDatenbank</p></li>
 </ul>
-</div>
-<div class="section" id="anfragebearbeitung-beispiel">
-<h3>Anfragebearbeitung – Beispiel<a class="headerlink" href="#anfragebearbeitung-beispiel" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="anfragebearbeitung-beispiel">
+<h3>Anfragebearbeitung – Beispiel<a class="headerlink" href="#anfragebearbeitung-beispiel" title="Permalink to this headline">#</a></h3>
 <p><img alt="" src="../_images/anfragebearbeitung_bsp1.jpg" /></p>
 <p><img alt="" src="../_images/anfragebearbeitung_bsp2.jpg" /></p>
-</div>
-<div class="section" id="kommutativitat-und-assoziativitat">
-<h3>Kommutativität und Assoziativität<a class="headerlink" href="#kommutativitat-und-assoziativitat" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="kommutativitat-und-assoziativitat">
+<h3>Kommutativität und Assoziativität<a class="headerlink" href="#kommutativitat-und-assoziativitat" title="Permalink to this headline">#</a></h3>
 <p>ist kommutativ und assoziativ
 <br>
 R  S = S  R
@@ -865,9 +1034,9 @@ R ⋈ S = S ⋈ R
 Gilt jeweils für Mengen und Multimengen
 <br><br>
 Ausdrücke können in beide Richtungen verwendet</p>
-</div>
-<div class="section" id="weitere-regeln">
-<h3>Weitere Regeln<a class="headerlink" href="#weitere-regeln" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="weitere-regeln">
+<h3>Weitere Regeln<a class="headerlink" href="#weitere-regeln" title="Permalink to this headline">#</a></h3>
 <p>Selektion</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\sigma_{c1 AND c2}(R ) = \sigma_{c1}(\sigma_{c2} (R))\)</span></p></li>
@@ -886,12 +1055,12 @@ Projektion</p></li>
 <li><p><span class="math notranslate nohighlight">\(\pi_{L}(R \times S) = \pi_{L}(\pi_{M}(R) \times \pi_{N}(S))\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\pi_{L}(\sigma_{C}(R)) = \pi_{L}(\sigma_{C}(\pi_{M}(R)))\)</span></p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="optimierung">
-<h2>Optimierung<a class="headerlink" href="#optimierung" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="anfragebearbeitung-optimierung">
-<h3>Anfragebearbeitung - Optimierung<a class="headerlink" href="#anfragebearbeitung-optimierung" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="optimierung">
+<h2>Optimierung<a class="headerlink" href="#optimierung" title="Permalink to this headline">#</a></h2>
+<section id="anfragebearbeitung-optimierung">
+<h3>Anfragebearbeitung - Optimierung<a class="headerlink" href="#anfragebearbeitung-optimierung" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Regelbasierte Optimierung</p></li>
 <li><p>Fester Regelsatz schreibt Transformationen gemäß der genannten Regeln vor.</p></li>
@@ -906,9 +1075,9 @@ Projektion</p></li>
 <li><p>Im Allgemeinen wird nicht die optimale Auswertungsstrategie gesucht, sondern eine einigermaßen effiziente Variante.</p></li>
 <li><p>Ziel: Avoid the worst case.</p></li>
 </ul>
-</div>
-<div class="section" id="logische-und-physische-optimierung">
-<h3>Logische und physische Optimierung<a class="headerlink" href="#logische-und-physische-optimierung" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="logische-und-physische-optimierung">
+<h3>Logische und physische Optimierung<a class="headerlink" href="#logische-und-physische-optimierung" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Logische Optimierung</p></li>
 <li><p>Jeder Ausdruck kann in viele verschiedene, semantisch äquivalente Ausdrücke umgeschrieben werden.</p></li>
@@ -924,9 +1093,9 @@ Projektion</p></li>
 <br><br></p></li>
 <li><p>Abhängigkeit beider Probleme!</p></li>
 </ul>
-</div>
-<div class="section" id="logische-optimierung-regelbasiert">
-<h3>Logische Optimierung – regelbasiert<a class="headerlink" href="#logische-optimierung-regelbasiert" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="logische-optimierung-regelbasiert">
+<h3>Logische Optimierung – regelbasiert<a class="headerlink" href="#logische-optimierung-regelbasiert" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Grundsätze der logischen Optimierung</p></li>
 <li><p>Selektionen so weit wie möglich im Baum nach unten schieben.</p></li>
@@ -940,9 +1109,9 @@ Projektion</p></li>
 <br><br>
 Folie: Prof. Alfons Kemper, TU München</p></li>
 </ul>
-</div>
-<div class="section" id="anwendung-der-transformationsregeln">
-<h3>Anwendung der Transformationsregeln<a class="headerlink" href="#anwendung-der-transformationsregeln" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="anwendung-der-transformationsregeln">
+<h3>Anwendung der Transformationsregeln<a class="headerlink" href="#anwendung-der-transformationsregeln" title="Permalink to this headline">#</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>select distinct s.Semester
 from Studiernden s, hören h
 Vorlesungen v,
@@ -955,40 +1124,40 @@ and h.MatrNr = s.MatrNr
 </div>
 <p>In welchen Semestern sind die Studierenden, die Vorlesungen bei Sokrates hören?</p>
 <p><img alt="" src="../_images/transformationsregeln.jpg" /></p>
-</div>
-<div class="section" id="aufspalten-der-selektionspradikate">
-<h3>Aufspalten der Selektionsprädikate<a class="headerlink" href="#aufspalten-der-selektionspradikate" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="aufspalten-der-selektionspradikate">
+<h3>Aufspalten der Selektionsprädikate<a class="headerlink" href="#aufspalten-der-selektionspradikate" title="Permalink to this headline">#</a></h3>
 <p><img alt="" src="../_images/aufspalten_selektionspraedikate.jpg" /></p>
-</div>
-<div class="section" id="verschieben-der-selektionspradikate-pushing-selections">
-<h3>Verschieben der Selektionsprädikate „Pushing Selections“<a class="headerlink" href="#verschieben-der-selektionspradikate-pushing-selections" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="verschieben-der-selektionspradikate-pushing-selections">
+<h3>Verschieben der Selektionsprädikate „Pushing Selections“<a class="headerlink" href="#verschieben-der-selektionspradikate-pushing-selections" title="Permalink to this headline">#</a></h3>
 <p><img alt="" src="../_images/verschieben_selektionspraedikate.jpg" /></p>
-</div>
-<div class="section" id="zusammenfassung-von-selektionen-und-kreuzprodukten-zu-joins">
-<h3>Zusammenfassung von Selektionen und Kreuzprodukten zu Joins<a class="headerlink" href="#zusammenfassung-von-selektionen-und-kreuzprodukten-zu-joins" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="zusammenfassung-von-selektionen-und-kreuzprodukten-zu-joins">
+<h3>Zusammenfassung von Selektionen und Kreuzprodukten zu Joins<a class="headerlink" href="#zusammenfassung-von-selektionen-und-kreuzprodukten-zu-joins" title="Permalink to this headline">#</a></h3>
 <p><img alt="" src="../_images/zusammenfassen_selektionspraedikate.jpg" /></p>
-</div>
-<div class="section" id="optimierung-der-joinreihenfolge-kommutativitat-und-assoziativitat-ausnutzen">
-<h3>Optimierung der Joinreihenfolge: Kommutativität und Assoziativität ausnutzen<a class="headerlink" href="#optimierung-der-joinreihenfolge-kommutativitat-und-assoziativitat-ausnutzen" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="optimierung-der-joinreihenfolge-kommutativitat-und-assoziativitat-ausnutzen">
+<h3>Optimierung der Joinreihenfolge: Kommutativität und Assoziativität ausnutzen<a class="headerlink" href="#optimierung-der-joinreihenfolge-kommutativitat-und-assoziativitat-ausnutzen" title="Permalink to this headline">#</a></h3>
 <p><img alt="" src="../_images/joinreihenfolge1.jpg" /></p>
-</div>
-<div class="section" id="was-hat-s-gebracht">
-<h3>Was hat´s gebracht?<a class="headerlink" href="#was-hat-s-gebracht" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="was-hat-s-gebracht">
+<h3>Was hat´s gebracht?<a class="headerlink" href="#was-hat-s-gebracht" title="Permalink to this headline">#</a></h3>
 <p><img alt="" src="../_images/joinreihenfolge2.jpg" /></p>
-</div>
-<div class="section" id="einfugen-von-projektionen">
-<h3>Einfügen von Projektionen<a class="headerlink" href="#einfugen-von-projektionen" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="einfugen-von-projektionen">
+<h3>Einfügen von Projektionen<a class="headerlink" href="#einfugen-von-projektionen" title="Permalink to this headline">#</a></h3>
 <p><img alt="" src="../_images/einfuegen_projektion.jpg" /></p>
-</div>
-<div class="section" id="sqlite-explain">
-<h3>SQLite Explain<a class="headerlink" href="#sqlite-explain" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="sqlite-explain">
+<h3>SQLite Explain<a class="headerlink" href="#sqlite-explain" title="Permalink to this headline">#</a></h3>
 <p><img alt="" src="../_images/sqlite.jpg" /></p>
-</div>
-</div>
-<div class="section" id="kostenmodelle">
-<h2>Kostenmodelle<a class="headerlink" href="#kostenmodelle" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="kostenbasierte-optimierung">
-<h3>Kostenbasierte Optimierung<a class="headerlink" href="#kostenbasierte-optimierung" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="kostenmodelle">
+<h2>Kostenmodelle<a class="headerlink" href="#kostenmodelle" title="Permalink to this headline">#</a></h2>
+<section id="kostenbasierte-optimierung">
+<h3>Kostenbasierte Optimierung<a class="headerlink" href="#kostenbasierte-optimierung" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Konzeptionell: Generiere alle denkbaren Anfrageausführungspläne.
 <br><br></p></li>
@@ -1004,9 +1173,9 @@ Achtung: Nicht zu lange optimieren!
 <br><br></p></li>
 <li><p>Führe billigsten Plan aus</p></li>
 </ul>
-</div>
-<div class="section" id="problemgrosze-suchraum">
-<h3>Problemgröße (Suchraum)<a class="headerlink" href="#problemgrosze-suchraum" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="problemgrosze-suchraum">
+<h3>Problemgröße (Suchraum)<a class="headerlink" href="#problemgrosze-suchraum" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Konzeptionell: Generiere alle denkbaren Anfrageausführungspläne</p></li>
 <li><p>Anzahl Bushy-Pläne mit n Tabellen</p></li>
@@ -1042,13 +1211,13 @@ Achtung: Nicht zu lange optimieren!
 <li><p>Plankosten unterscheiden sich um viele Größenordnungen.</p></li>
 <li><p>Optimierungsproblem ist NP-hart</p></li>
 </ul>
-</div>
-<div class="section" id="kostenmodell">
-<h3>Kostenmodell<a class="headerlink" href="#kostenmodell" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="kostenmodell">
+<h3>Kostenmodell<a class="headerlink" href="#kostenmodell" title="Permalink to this headline">#</a></h3>
 <p><img alt="" src="../_images/kostenmodell.jpg" /></p>
-</div>
-<div class="section" id="statistiken">
-<h3>Statistiken<a class="headerlink" href="#statistiken" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="statistiken">
+<h3>Statistiken<a class="headerlink" href="#statistiken" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Zu jeder Basisrelation</p></li>
 <li><p>Anzahl der Tupel</p></li>
@@ -1072,9 +1241,9 @@ Achtung: Nicht zu lange optimieren!
 <br><br>
 <img alt="" src="../_images/statistik.jpg" /></p></li>
 </ul>
-</div>
-<div class="section" id="kosten-von-operationen">
-<h3>Kosten von Operationen<a class="headerlink" href="#kosten-von-operationen" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="kosten-von-operationen">
+<h3>Kosten von Operationen<a class="headerlink" href="#kosten-von-operationen" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Projektion:</p></li>
 <li><p>Keine Kosten falls mit anderem Operator kombiniert
@@ -1101,9 +1270,9 @@ Achtung: Nicht zu lange optimieren!
 <li><p>#Ausgabetupel = #Eingabetupel x Selektivität</p></li>
 <li><p>Auch „Selektivitätsfaktor“ (selectivity factor, sf)</p></li>
 </ul>
-</div>
-<div class="section" id="selektivitat">
-<h3>Selektivität<a class="headerlink" href="#selektivitat" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="selektivitat">
+<h3>Selektivität<a class="headerlink" href="#selektivitat" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Selektivität schätzt Anzahl der qualifizierenden Tupel relativ zur Gesamtanzahl der Tupel in der Input Relation.
 <br><br></p></li>
@@ -1116,8 +1285,8 @@ Achtung: Nicht zu lange optimieren!
 <li><p>Join:</p></li>
 <li><p>sf = |R ⋈ S| / |R x S| = |R ⋈ S| / (|R| · |S|)</p></li>
 </ul>
-<div class="section" id="selektivitat-schatzen">
-<h4>Selektivität schätzen<a class="headerlink" href="#selektivitat-schatzen" title="Permalink to this headline">¶</a></h4>
+<section id="selektivitat-schatzen">
+<h4>Selektivität schätzen<a class="headerlink" href="#selektivitat-schatzen" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
 <li><p>Selektion:</p></li>
 <li><p>Selektion auf einen Schlüssel:</p></li>
@@ -1131,15 +1300,15 @@ Achtung: Nicht zu lange optimieren!
 <li><p>sf = 1 / |R|</p></li>
 <li><p>„Beweis“: sf = |R ⋈ S| / (|R x S|) = |S| / (|R| · |S|)</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="selinger-style-optimization">
-<h3>Selinger-style“ Optimization<a class="headerlink" href="#selinger-style-optimization" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="selinger-style-optimization">
+<h3>Selinger-style“ Optimization<a class="headerlink" href="#selinger-style-optimization" title="Permalink to this headline">#</a></h3>
 <p><img alt="" src="../_images/selinger_style1.jpg" /></p>
 <p><img alt="" src="../_images/selinger_style2.jpg" /></p>
-</div>
-<div class="section" id="join-selektivitat-selinger-style">
-<h3>Join Selektivität (Selinger Style)<a class="headerlink" href="#join-selektivitat-selinger-style" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="join-selektivitat-selinger-style">
+<h3>Join Selektivität (Selinger Style)<a class="headerlink" href="#join-selektivitat-selinger-style" title="Permalink to this headline">#</a></h3>
 <p><img alt="" src="../_images/selinger_style3.jpg" />
 <br>
 Beispiel</p>
@@ -1150,9 +1319,9 @@ Beispiel</p>
 <li><p>sf = 1/|cust|</p></li>
 <li><p>|cust ⋈ order| = 1/|cust| * |cust| * |order| = |order|</p></li>
 </ul>
-</div>
-<div class="section" id="modelle-zum-besseren-schatzen-der-selektivitat">
-<h3>Modelle zum besseren Schätzen der Selektivität<a class="headerlink" href="#modelle-zum-besseren-schatzen-der-selektivitat" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="modelle-zum-besseren-schatzen-der-selektivitat">
+<h3>Modelle zum besseren Schätzen der Selektivität<a class="headerlink" href="#modelle-zum-besseren-schatzen-der-selektivitat" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Gleichverteilung der Werte</p></li>
 <li><p>Platzsparend (count, max, min), einfach</p></li>
@@ -1169,9 +1338,9 @@ Beispiel</p>
 <li><p>Güte hängt von Samplingmethode und Samplegröße ab</p></li>
 <li><p>Außerdem: Aktualität</p></li>
 </ul>
-</div>
-<div class="section" id="beispiel-zu-histogrammen">
-<h3>Beispiel zu Histogrammen<a class="headerlink" href="#beispiel-zu-histogrammen" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="beispiel-zu-histogrammen">
+<h3>Beispiel zu Histogrammen<a class="headerlink" href="#beispiel-zu-histogrammen" title="Permalink to this headline">#</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="o">*</span>
 <span class="n">FROM</span> <span class="n">product</span> <span class="n">p</span><span class="p">,</span> <span class="n">sales</span> <span class="n">S</span>
 <span class="n">WHERE</span> <span class="n">p</span><span class="o">.</span><span class="n">id</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">p_id</span> <span class="ow">and</span>
@@ -1187,9 +1356,9 @@ Beispiel</p>
 <li><p>Selektivität der Bedingung ist 5/3300 ≈ 0,0015 also 5 Produkte</p></li>
 </ul>
 <p><img alt="" src="../_images/histogramm.jpg" /></p>
-</div>
-<div class="section" id="kosten-weitere-komplikationen">
-<h3>Kosten – Weitere Komplikationen<a class="headerlink" href="#kosten-weitere-komplikationen" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="kosten-weitere-komplikationen">
+<h3>Kosten – Weitere Komplikationen<a class="headerlink" href="#kosten-weitere-komplikationen" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Parallelität / Pipelining</p></li>
 <li><p>Kosten aller Operatoren können nicht addiert werden.
@@ -1203,9 +1372,9 @@ Beispiel</p>
 <br><br></p></li>
 <li><p>=&gt; Kostenmodelle sind hochkomplex</p></li>
 </ul>
-</div>
-<div class="section" id="ausblick-auf-dbs-ii">
-<h3>Ausblick auf DBS II<a class="headerlink" href="#ausblick-auf-dbs-ii" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="ausblick-auf-dbs-ii">
+<h3>Ausblick auf DBS II<a class="headerlink" href="#ausblick-auf-dbs-ii" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Diverse Algorithmen für einzelne Operatoren</p></li>
 <li><p>Insbesondere Join und Sortierung</p></li>
@@ -1214,10 +1383,10 @@ Beispiel</p>
 <li><p>Physische Anfragepläne / Pipelining</p></li>
 </ul>
 <p><img alt="" src="../_images/ausblick.jpg" /></p>
-</div>
-</div>
-<div class="section" id="multiple-choice">
-<h2>Multiple Choice<a class="headerlink" href="#multiple-choice" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="multiple-choice">
+<h2>Multiple Choice<a class="headerlink" href="#multiple-choice" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird nur in das JupyterBook eingebunden und nicht selbst gehostet. Der Multiple-Choice-Trainer wird durch GitHub-Pages gehostet.</p></li>
 <li><p>Alle Fragen und Kategorien befinden sich zurzeit in Überarbeitung und sind nicht final.</p></li>
@@ -1235,8 +1404,8 @@ Beispiel</p>
 ></iframe>
 </div></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1260,28 +1429,34 @@ Beispiel</p>
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
 <div class='prev-next-area'>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Prof. Dr. Ziawasch Abedjan<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Prof. Dr. Ziawasch Abedjan<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

@@ -2,41 +2,55 @@
 # coding: utf-8
 
 # # Bearbeitung
+# -> dieses Thema ('Bearbeitung') ist zurzeit in Bearbeitung
 # 
 # **Anfragebearbeitung – Grundproblem**
-# - Anfragen sind deklarativ.
+# - Anfragen sind deklarativ. sagen was wir wollen und nicht wie wir unsere Daten extrahieren. Das würde durch beispielsweise ein Programm das wir schreiben geschehen -> Python Programm geht durch CSV-Datei. Stattdessen sagen wir: Gebe mir alle Filme, die im Jahr 1996 produziert werden. Das Datenbanksystem findet von selbst heraus wie es diese Frage beantwortet. Dafür werden die Anfragen in aus...
 # - SQL, Relationale Algebra
 # <br><br>
 # - Anfragen müssen in ausführbare (prozedurale) Form transformiert werden.
 # - Ziele
-# - „QEP“ – prozeduraler Query Execution Plan
-# - Effizienz
-# - Schnell
+# - Das nennt man „QEP“ – prozeduraler Query Execution Plan 
+# 
+# - Wichtig hierbei ist, dass die Darstellung/das Programm eff..
+# - Effizienz 
+# - Schnell 
 # - Wenig Ressourcenverbrauch (CPU, I/O, RAM, Bandbreite)
-# - Energie
+# - Das alles wirkt sich auf den Energieverbrauch aus. 
 # 
 # **Ablauf der Anfragebearbeitung**
+# Zunächst haben wir unsere Anfrage:
+# SELECT * FROM x WHERE ...;
 # 1. Parsing
 # <br><br>
 # Parsen der Anfrage (Syntax) 
 # <br>
-# Überprüfen der Elemente („Semantik“) 
+# Überprüfen der Elemente („Semantik“) -> Semantik wird überprüft
 # <br>
-# Parsebaum
+# Parsebaum wird erstellt
 # <br><br>
-# 2. Wahl des logischen Anfrageplans 
+# Vor allem wird hierbei herausgefunden ob diese Anfrage stimmt und auf welche Operationselemente abgebildet wird. 
+# 2. Wahl des logischen Anfrageplans -> logischer Anfrageplan wird ausgewählt
 # <br><br>
-# Baum mit logischen Operatoren 
+# Dieser ist in der Regel ein Baum mit logischen Operatoren 
 # <br>
-# Potentiell exponentiell viele 
+# Es gibt Potentiell exponentiell viele Pläne, die man anhand der Elemente, die man in der Anfrage hat, erstellen kann. Natürlich lassen sich bestimme Kombis nicht darstellen. Grundproblem ist auch NP-Vollständig.
 # <br>
-# Wahl des optimalen Plans – Logische Optimierung – Regelbasierter Optimierer – Kostenbasierter Optimierer
+# Wahl des optimalen Plans – 
+# Dabei gibt es verschiedene Optimierungsverfahren:
+#    Logische Optimierung -> Operatoren werden einfach hin- und hergeschoben
+#    
+#    Regelbasierter Optimierer
+#    Kostenbasierter Optimierer
+#    Diese basieren auf den Kosten der jeweiligen Operationen in den Anfragen.
 # <br><br>
 # 3. Wahl des physischen Anfrageplans 
+# Für jede Operation, die momentan noch in deklarativer Form ist, muss nun eine Prozedur/ein Programm mit physi..... ausgewählt werden
 # <br><br>
 # Ausführbar 
 # <br>
-# Programm mit physischen Operatoren – Algorithmen – Scan Operatoren 
+# ...Programm mit physischen Operatoren – 
+# Dies sind unter anderem die Algorithmen, die Scan Operatoren oder auch die JOIN-Implementierungen. 
 # <br>
 # Wahl des optimalen Plans – physische Optimierung
 # <br><br>
@@ -47,39 +61,51 @@
 # 
 # ### Syntaxanalyse
 # - Aufgabe: Umwandlung einer SQL Anfrage in einen Parsebaum.
-# - Atome (Blätter)
-# - Schlüsselworte
-# - Konstanten
-# - Namen (Relationen und Attribute)
-# - Syntaxzeichen
-# - Operatoren
+# - Atome (Blätter) sind:
+#     - Schlüsselworte
+#     - Konstanten
+#     - Namen (Relationen und Attribute)
+#     - Syntaxzeichen
+#     - Operatoren
 # <br><br>
+# Man kann auch Teilausdrücke zu Kategorien zusammenfassen. Beispielsweise bei einer VIEW.
 # - Syntaktische Kategorien
 # - Namen für Teilausdrücke einer Anfrage
 # 
 # ### Eine Grammatik für einen Teil von SQL
-# - Anfragen
-# - <Anfrage> :: = \<SFW\>
-# - <Anfrage> :: = ( <SFW> )
-# - Mengenoperatoren fehlen
+# - Anfragen bestehehn immer aus einer Struktur. 
+# - SFW steht für "SELECT FROM WHERE"
+# 
+#     - <Anfrage> :: = \<SFW\>
+#     - <Anfrage> :: = ( <SFW> )
+#     - Mengenoperatoren fehlen
+# das kann auch eine Menge von Operatoren darstellen. 
 # <br><br>
-# - SFWs
+# - SFWs werden wie folgt aufgebaut:
 # - <SFW> ::= SELECT <SelListe> FROM <FromListe> WHERE <Bedingung>
+#     - die SelListe (SelectListe) enthält die Attribute, die herausprojeziert werden. 
+#     - die FromListe enthält die Relationen aus denen wir die Attribute herausholen
+#     - eine Bedingung...
 # - Gruppierung, Sortierung etc. fehlen
 # <br><br>
 # - Listen
+# Es handelt sich hier um Grammatiken. Diese sind formal festgelegt. Es können keine Anfragen formuliert werden, die nicht der Grammatik entsprechen.
+#     Dabei ergibt sich eine SelListe aus einem Attribut und einer anderen SelListe bzw. nur aus einem Attribut...
 # - <SelListe> ::= <Attribut>, <SelListe>
 # □ <SelListe> ::= <Attribut>
+#     Die FromListe ergibt...
 # □ <FromListe> ::= <Relation>, <FromListe>
 # □ <FromListe> ::= <Relation>
 # <br><br>
 # ■ Bedingungen (Beispiele)
+#     Verknüpfung/Kombinationen von Bedingungen mit AND
 # □ <Bedingung> ::= <Bedingung> AND <Bedingung>
+#   Eine Bedingung kann auch eine Anfrage sein, bei der man eine Überprüfung in einer anderen Anfrage anfordert. 
 # □ <Bedingung> ::= <Tupel> IN <Anfrage>
 # □ <Bedingung> ::= <Attribut> = <Attribut>
 # □ <Bedingung> ::= <Attribut> LIKE <Muster>
 # <br><br>
-# ■ <Tupel>, <Attribut>, <Relation>, <Muster> nicht durch grammatische Regel definiert
+# ■ Die Inhalte von Tupeln ... <Tupel>, <Attribut>, <Relation>, <Muster> sind nicht durch grammatische Regel definiert. Entweder sie existieren oder sie existieren nicht. Angenommen man wählt eine Relation aus, die nicht existiert, dann wird von der Datenbank zurückgegeben, dass diese es diese Relation nicht gibt. 
 # <br><br>
 # - Vollständig z.B. hier: http://docs.openlinksw.com/virtuoso/GRAMMAR.html
 # 
@@ -87,6 +113,9 @@
 # 
 # ![](parsebaum.jpg)
 # 
+# In diesem Bild sieht man den Aufbau eines Parsebaums. Dabei besteht die Anfrage aus SFW. Dieses wiederrum kann unterteilt werden in SELECT, <...
+#                                                                                                                                                  
+# Alle Konstanten und Relationsnamen sind in den Blattstrukturen
 # ```
 # SELECT Titel
 # FROM spielt_in, Schauspieler
@@ -99,12 +128,15 @@
 # - Existieren die Relationen und Sichten der FROM Klausel?
 # - Existieren die Attribute in den genannten Relationen?
 # - Sind sie eindeutig?
-# - Korrekte Typen für Vergleiche?
+# - Korrekte Typen für Vergleiche? (bsp.: Vergleicht man einen Integer mit einem String usw. 
 # - Aggregation korrekt?
 # - ...
 # 
-# ### Vom Parse-Baum zum Operatorbaum
+# Am Ende erhält man einen Parsebaum. Dieser wird im nächsten Schritt in einen Operatorbaum umgewandelt. Dargestellt werden kann der Operatorbaum mittels Relationaler Algebra. Dabei entspricht das SELECT einer Projektion und das WHERE einer Selektion. FROM spielt_in, Schauspieler wird hierbei als Kreuzprodukt der beiden Relationen dargestellt. 
+# Somit haben wir aus den Schlüsselwörtern konkrete Operatoren bekommen, die nun deutlich besser sichtbar sind. Man weiß nun, dass spielt_in und Schauspieler durch eine Kreuzprodukt kombiniert werden. Diese beiden Relationen sind der Input des Kreuzprodukts. Auf dem Output wird findet dananch eine Selektion statt und auf dessen Output letztendlich wieder eine Projektion. 
 # 
+# ### Vom Parse-Baum zum Operatorbaum
+#                                                                 
 # ![](operatorbaum.jpg)
 # 
 # ```
