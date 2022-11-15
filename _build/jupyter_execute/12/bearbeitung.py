@@ -133,7 +133,7 @@
 # - ...
 # 
 # Am Ende erhält man einen Parsebaum. Dieser wird im nächsten Schritt in einen Operatorbaum umgewandelt. Dargestellt werden kann der Operatorbaum mittels Relationaler Algebra. Dabei entspricht das SELECT einer Projektion und das WHERE einer Selektion. FROM spielt_in, Schauspieler wird hierbei als Kreuzprodukt der beiden Relationen dargestellt. 
-# Somit haben wir aus den Schlüsselwörtern konkrete Operatoren bekommen, die nun deutlich besser sichtbar sind. Man weiß nun, dass spielt_in und Schauspieler durch eine Kreuzprodukt kombiniert werden. Diese beiden Relationen sind der Input des Kreuzprodukts. Auf dem Output wird findet dananch eine Selektion statt und auf dessen Output letztendlich wieder eine Projektion. 
+# Somit haben wir aus den Schlüsselwörtern konkrete Operatoren bekommen, die nun deutlich besser sichtbar sind. Man weiß nun, dass spielt_in und Schauspieler durch ein Kreuzprodukt kombiniert werden. Diese beiden Relationen sind der Input des Kreuzprodukts. Auf dem Output wird findet dananch eine Selektion statt und auf dessen Output letztendlich wieder eine Projektion. 
 # 
 # ### Vom Parse-Baum zum Operatorbaum
 #                                                                 
@@ -147,32 +147,43 @@
 # ```
 
 # ## Transformationsregeln der RA
+# Zuvor haben wir gesehen, dass es für jede Anfrage verschiedene Pläne gibt. Das bedeutet also auch, dass es verschiedene Operatorenbäume gibt. Somit kann man also verschiedene Anfragen ineinander transformieren. Dies wird anhand der Transformationseregeln der Relationalen Algebra dargestellt. 
 # ### Anfragebearbeitung – Transformationsregeln
 # - Transformation der internen Darstellung
 # - Ohne Semantik zu verändern
+#     Damit ist gemeint, dass die Operatorenbäume nach der Transformation immernoch die gleiche Anfrage wie vor der Transformation beantworten können/ es kommt das selbe Ergebnis bei raus.
 # - Zur effizienteren Ausführung
+#     generell ist das Ziel eine effizientere Ausführung zu finden 
+#     die Operatoren sollen möglichst kleine Zwischenergebnisse liefern, sodass der nächste Operator als Input auch auf möglichst kleinen Mengen von Tupeln arbeiten muss. 
 # - Insbesondere: Kleine Zwischenergebnisse
 # <br><br>
+# Um diese Transformation zu vollführen, müssen erst einmal äquivalente Ausdrücke identifiziert werden. 
 # - Äquivalente Ausdrücke
 # - Zwei Ausdrücke der relationalen Algebra heißen äquivalent, falls
 # - Gleiche Operanden (= Relationen)
 # - Stets gleiche Antwortrelation
-# - Stets?
+# - Stets? bedeutet hierbei, dass es nicht per Zufall die gleichen Ergebnisse bei zwei Anfragen sind. Es müssen immer die gleichen Ergbnisse herauskommen Für jede mögliche Instanz derDatenbank 
 # <br>
-# Für jede mögliche Instanz derDatenbank 
+# 
 # 
 # ### Anfragebearbeitung – Beispiel
 # 
+# Beispielsweise wollen wir hier den Nachnamen projezieren. Dafür erstellen wir das Kreuzprodukt zwischen den Relationen 'mitarbeiter' und 'projekte'. Darauf selektieren wir alle Paare bei denen die Mitarbeiter-ID gleich der Projekt-ID sind und zusätzlich sortieren wir die Projekte aus, die ein gleiches oder größeres Budget als 40000 haben.  
 # ![](anfragebearbeitung_bsp1.jpg)
 # 
+# Nun kann man sich überlegen wo man noch früher Tupel herausfiltern kann. Eine Möglichkeit wäre es die Selektion mit dem Kreuzprodukt zu einem Join zu kombinieren. 
+# Eine weitere Möglichkeit wäre es die übrig gebliebenen Selektion früher durchzuführen. Noch bevor man das Kreuzprodukt der beiden Relationen bildet, kann man die Selektion 'p.Budget < 40000' auf der 'projekt' Relation ausführen. Nun kann man erwarten, dass der nachfolgende Join auf einer kleineren Tupelmenge ausgeführt wird. 
 # ![](anfragebearbeitung_bsp2.jpg)
 # 
 # ### Kommutativität und Assoziativität
+# 
+# Die Kommutativität und Assoziativität gelten insbesondere für Mengenoperationen. 
+# .. ist eine abstrakte Operation
 #  ist kommutativ und assoziativ
 # <br>
-# R  S = S  R
+# R  S = S  R --> kommutativ 
 # <br>
-# (R  S)  T = R  (S  T)
+# (R  S)  T = R  (S  T) --> assoziativ
 # <br><br>
 # $\cup$ ist kommutativ und assoziativ
 # <br>
@@ -191,6 +202,7 @@
 # R ⋈ S = S ⋈ R
 # <br>
 # (R ⋈ S) ⋈ T = R ⋈ (S ⋈ T)
+# Bei einem Join kann es passieren, dass die Spaltenreihenfolge anders ist, aber diese kann nachträglich noch geändert werden (bspw. mit einer Projektion). 
 # <br><br>
 # Gilt jeweils für Mengen und Multimengen
 # <br><br>
@@ -198,20 +210,30 @@
 # 
 # ### Weitere Regeln
 # Selektion
+# Wenn man eine Selektion mit zwei Bedingungen hat, kann man das in zwei Selektionen, die aufeinander aufbauen, kaskadieren. 
 # - $\sigma_{c1 AND c2}(R ) = \sigma_{c1}(\sigma_{c2} (R))$
+# Wenn man eine Selektion mit einem OR hat kann man davon die Vereinigung bilden. 
+# Problem bei Multimengen: 
+# c1 or c2 -> damit sagt man, gebe mir jedes Tupel egal ob Bedingung c1, c2 oder beide gelten. Man würde bei der Vereinigung jetzt aber eine andere Anzahl an Tupeln bekommen. Bei den Fällen bei denen beide Bedingungen gelten, würde es das Tupel doppelt geben. 
 # - $\sigma_{c1 OR c2}(R ) = \sigma_{c1}(R) \cup \sigma_{c2} (R)$
 # - Nicht bei Multimengen
+# 
+# Die äußere Bedigung kann mit der inneren Bedingung vertauscht werden. Dabei kann man überlegen welche Bedingung evenutell günstiger ist zuerst auszuführen. 
 # - $\sigma_{c1}(\sigma_{c2}(R)) = \sigma_{c2}(\sigma_{c1}(R))$
+# Eine Bedinugung, die auf einen Join ausgeführt wird, kann wie folgt umgeformt werden: 
 # - $\sigma_{c}(R \Phi S) \equiv (\sigma_{c} (R)) \Phi (\sigma_{c} (S))$
 # - $\Phi \in \{\cup, \cap , - , ⋈\}$
 # - $\sigma_{c}(R \Phi S) \equiv (\sigma_{c} (R)) \Phi S$
 # - $\Phi \in \{\cup, \cap , - , ⋈\}$
-# - Falls sich c nur auf Attribute in R bezieht
+# - Falls sich c nur auf Attribute in R bezieht, kann man es so umformen, dass sich die Selektion nur auf die Relation R bezieht. 
 # <br><br>
 # Projektion
+# Eine Projektion einer Spalte auf einem Join zweier Relationen kann einer Projektion einer Spalte auf einem Join zweier Projektionen auf jeweils einer Relation entsprechen. 
 # - $\pi_{L}(R ⋈ S) = \pi_{L}(\pi_{M}(R) ⋈ \pi_{N}(S))$
+# Genauso kann nun auch bei einem Join mit Bedingung und einem Kreuzprodukt vorgegangen werden. 
 # - $\pi_{L}(R ⋈_{C} S) = \pi{L}(\pi_{M}(R) ⋈_{C} \pi_{N}(S))$
 # - $\pi_{L}(R \times S) = \pi_{L}(\pi_{M}(R) \times \pi_{N}(S))$
+# Hierbei kann eine Projektion noch vor die Selektion geschoben werden. Wichtig dabei ist, dass die neue Projektion ($\pi_{M}$) L enthält. Es können auch weitere Projektionen hinzugefügt werden. Solange sie L enthalten, verändert sich nichts. 
 # - $\pi_{L}(\sigma_{C}(R)) = \pi_{L}(\sigma_{C}(\pi_{M}(R)))$
 # 
 
@@ -219,32 +241,32 @@
 # 
 # ### Anfragebearbeitung - Optimierung
 # - Regelbasierte Optimierung
-# - Fester Regelsatz schreibt Transformationen gemäß der genannten Regeln vor.
-# - Prioritäten unter den Regeln: Heuristiken
+# - Fester Regelsatz schreibt Transformationen gemäß der genannten Regeln vor. Man geht davon aus, dass diese Transformationen die Anfrage schneller bearbeiten.
+# Ein Beispiel ist das 'pushen' einer Selektion nach unten im Anfragebaum. 
+# - Prioritäten unter den Regeln werden durch Heuristiken bestimmt. Es ist nach Erfahrung der beste Weg, dies muss aber nicht immer der Fall sein. 
 # <br><br>
 # - Kostenbasierte Optimierung
-# - Kostenmodell
-# - Transformationen um Kosten zu verringern
-# - Bestimmung des optimalen Plans
-# - Bestimmung der optimalen Joinreihenfolge
+# - Für jede Relation, die man hat, kann man ein Kostenmodell aufstellen basierend auf Statistiken, die das Datenbankmodell gesammelt hat. 
+# - Transformationen um Kosten zu verringern 
+# - Dann wird ein optimaler Plan bestimmt, bei dem die Kosten minimal sind. 
+# -( Bestimmung der optimalen Joinreihenfolge)
 # <br><br>
-# - Im Allgemeinen wird nicht die optimale Auswertungsstrategie gesucht, sondern eine einigermaßen effiziente Variante.
+# - Im Allgemeinen wird nicht die optimale Auswertungsstrategie gesucht, sondern eine einigermaßen effiziente Variante. Sie soll uns dabei helfen den schlimmsten Fall zu verhindern.
 # - Ziel: Avoid the worst case.
 # 
 # ### Logische und physische Optimierung
 # - Logische Optimierung
-# - Jeder Ausdruck kann in viele verschiedene, semantisch äquivalente Ausdrücke umgeschrieben werden.
-# - Wähle den (hoffentlich) besten Ausdruck (=Plan, =QEP)
+# - Jeder Ausdruck im Anfragebaum kann in viele verschiedene, semantisch äquivalente Ausdrücke umgeschrieben werden anhand unserer Transformationsregeln. 
+# - Wähle den (hoffentlich) besten Ausdruck (=Plan, =QEP -> QueryExecutionPlan)
 # <br><br>
 # - Physische Optimierung
-# - Für jede relationale Operation gibt es viele verschiedene Implementierungen.
-# - Zugriff auf Tabellen
-# - Scan, verschiedene Indizes, sortierter Zugriff, …
-# - Joins
-# - Nested loop, sort-merge, hash, …
-# - Wähle für jede Operation die (hoffentlich) beste Implementierung
+# - Für jede relationale Operation gibt es viele verschiedene Implementierungen: 
+#     wie man zum Beispiel auf Tabellen zugreift. Das kann ein Scan, verschiedene Indizes, ein sortierter Zugriff, etc. sein. 
+# - Genauso bei Joins kann man auch verschiedene Implementierungen wie Nested loop, sort-merge, hash, etc. wählen. 
+# - Daraus wählt man für jede Operation die (hoffentlich) beste Implementierung aus. 
 # <br><br>
-# - Abhängigkeit beider Probleme!
+# - Es kann nun sein, dass die logische von der physischen Optimierung abhängt. (Abhängigkeit beider Probleme!) 
+# Nun kann man sagen, dass ein bestimmter Plan besser funktioniert, wenn man einen Nested-Loop-Join durchführt. Also wenn man die eine Schleife innerhalb der anderen hat, kann man in der einen Schleifen bereits etwas anderes mitprüfen. Das würde einem bestimmten logischen Plan besser entsprechen. 
 # 
 # ### Logische Optimierung – regelbasiert
 # - Grundsätze der logischen Optimierung
@@ -252,14 +274,21 @@
 # - Selektionen mit AND können aufgeteilt und separat verschoben werden.
 # - Projektionen so weit wie möglich im Baum nach unten schieben,
 # - bzw. neue Projektionen können eingefügt werden.
+# --> Unterschied zwischen dem nach unten Verschieben bei Selektionen und Projektionen: Bei dem Verschieben von Selektionen geht es darum die Menge an Tupeln zu verringern. Bei Projektionen versucht man die Anzahl der Spalten zu verringern.
+# Beides ist sinnvoll, da man davon ausgehen muss, dass bei riesigen Datensätzen eine Spalte unter Anderem mehrere Gigabyte groß sein kann. Wenn man solche Spalten nicht unbedingt mehr mitschleppen muss, macht man das Programm effizienter. 
 # - Duplikateliminierung kann manchmal entfernt werden oder verschoben werden.
-# - Kreuzprodukte mit geeigneten Selektionen zu einem Join zusammenfassen.
+# - Kreuzprodukte mit geeigneten Selektionen zu einem Join zusammenfassen. Man möchte möglichst vermeiden Kreuzprodukte durchzuführen, stattdessen kann man eher Joins mit effizienteren Implementierungen durchführen. 
 # <br><br>
 # - Noch nicht hier: Suche nach der optimalen Joinreihenfolge
 # <br><br>
-# Folie: Prof. Alfons Kemper, TU München
 # 
 # ### Anwendung der Transformationsregeln
+# 
+# Die folgende Anfrage ist von Prof. Alfons Kemper (TU München). 
+# Bei der Anfrage suchen wir eindeutig alle Semester in denen für Studenten, hören, Vorlesungen und Professoren folgenden Bedingungen gelten: 
+# Der Professor heißt mit Namen Sokrates. Dieser Professor soll Vorlesungen halten und diese sollen von Studierenden gehört werden. 
+# Also man möchte wissen: In welchen Semestern sind die Studierenden, die Vorlesungen bei Sokrates hören?
+# 
 # ```
 # select distinct s.Semester
 # from Studiernden s, hören h
@@ -270,35 +299,62 @@
 # and v.VorlNr = h.VorlNr
 # and h.MatrNr = s.MatrNr
 # ```
-# In welchen Semestern sind die Studierenden, die Vorlesungen bei Sokrates hören?
+# 
+# Zunächst hat man eine Darstellung bei der es ein Kreuzprodukt aller Relationen gibt. Dann kommen die aneinandergereihten Selektionsoperatoren. Man kann direkt merken, dass dies nicht die logisch effizienteste Variante ist. 
 # 
 # ![](transformationsregeln.jpg)
 # 
 # ### Aufspalten der Selektionsprädikate
 # 
+# Das erste was wir machen, ist das Aufspalten der Selektion. Dadurch haben wir alles als einzelne Operation. Nun können wir uns für den nächsten Schritt überlegen, wo es effizienter wäre die Selektionen zu platzieren. 
+# 
 # ![](aufspalten_selektionspraedikate.jpg)
 # 
 # ### Verschieben der Selektionsprädikate „Pushing Selections“
+# 
+# 
+# Um die Anzahl der Tupel zu verringern schiebt man die Selektionen weiter nach unten.
+# 
+# Um die Anzahl der Studierenden, die eine Vorlesung hören, zu verringern hat man direkt nach dem Kreuzprodukt zwischen den beiden Relationen 'studierende' und 'hören' die Selektion platziert.
+# Die kleinere Menge an Tupeln als output wird dann wieder wie zuvor über das Kreuzprodukt mit 'Vorlesungen' kombiniert. Direkt danach reduziert man mit einer Selektion die Anzahl der Tupel wieder bevor man ein weiteres Kreuzprodukt bildet. 
+# Ansonsten haben wir direkt vor die Professorentabelle die Selektion mit der Bedingung, dass der Name des Professors Sokrates sein soll, geschoben. Somit erhalten wir als Ouptut nach der Selektion nur ein Tupel und müssen nicht mehr alle Professorentupel mitführen. 
 # 
 # ![](verschieben_selektionspraedikate.jpg)
 # 
 # ### Zusammenfassung von Selektionen und Kreuzprodukten zu Joins
 # 
+# Nun kann man die Selektionen mit den Kreuzprodukten zusammenfassen und durch effizienter implementierte Joins austauschen. 
+# 
 # ![](zusammenfassen_selektionspraedikate.jpg)
 # 
 # ### Optimierung der Joinreihenfolge: Kommutativität und Assoziativität ausnutzen
+# 
+# Nun wollen wir Kommutativität und Assoziativität ausnutzen, um die Joinreihenfolge zu optimieren. Das bedeutet, wir möchten die Tupelmenge, die wir erzeugen, möglichst gering halten. 
+# Wir verschieben daher die Selektion des Professorennames nach ganz unten. Grund hierfür ist, dass wir aus dieser Selektion nur ein Tupel erhalten mit dem wir weiterarbeiten müssen. Danach vergrößert sich die Tupelmenge nur minimal um die Vorlesungen, die der Professor hält, usw. 
+# Ohne diese Optimierung starten wir mit der gesamten Menge an Studierenden, die diese Vorlesung hören. Nun muss man diese große Tupelmenge als Input für die nächsten Operationen mitnehmen, was vermeidbare Kosten verursacht. 
 # 
 # ![](joinreihenfolge1.jpg)
 # 
 # ### Was hat´s gebracht?
 # 
+# Ohne die Optimierungen haben wir ein Maximum von 13 Tupeln mit denen wir arbeiten müssen. Generell arbeiten wir hierbei immer mit einer sehr hohen Anzahl von Tupeln im Gegensatz zu der Variante mit Optimierungen. Durch die Optimierungen arbeiten wir auf maximal 4 Tupeln. 
+# 
+# Es handelt sich hier um ein ausgedachtes Beispiel. Die Zahlen sind nicht logisch herleitbar. Es soll nur darstellen, wie sich das Verschieben von günstigen Join-Varianten auf die Tupelmenge, verhält. 
+# 
 # ![](joinreihenfolge2.jpg)
 # 
 # ### Einfügen von Projektionen
 # 
+# Nun kann man noch darüber nachdenken, ob man Projektionen einfügt, wenn man bestimmte Spalten nicht mehr braucht. Das wäre bei der Matrikelnummer der Fall, denn man benötigt im Nachhinein nur noch diese aus den Attributen beim Join und der Projektion danach. Insbesondere haben wir dort dann einen Left-Join ausgeführt. 
+# 
 # ![](einfuegen_projektion.jpg)
 # 
 # ### SQLite Explain
+# 
+# Anfragepläne kann man auch in SQLite ausprobieren. Dafür stellt man am Anfang mit '.eqp on' den Modus an. Dann wird für jede Anfrage der Plan direkt gezeigt. 
+# Es kann auch explizit mit 'EXPLAIN QUERY PLAN' eingestellt werden. Danach gibt man wie gewohnt die SQL-Anfrage ein. 
+# Nun kann man die tatsächliche Implementierung sehen. Zunächst wird die 'producer' Tabelle gescannt. Es wird dann ein Autoindex für 'movie' verwendet, weil wir den Primärschlüssel 'mid' verwenden. Dieser Index wird für den IN-OPERATOR verwendet. 
+# Außerdem wird ein B-TREE verwendet, um die doppelten Werte zu vermeiden. 
 # 
 # ![](sqlite.jpg)
 
