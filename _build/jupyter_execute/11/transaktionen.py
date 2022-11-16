@@ -233,29 +233,14 @@
 # |Serializable|-|-|-|-|
 
 # ## Serialisierbarkeit
-# 
+# In diesem Kapitel beschäftigen wir uns mit der Serialisierbarkeit von Schedules.
 # ### Seriell vs. Parallel
-# ■ Grundannahme: Korrektheit
-# <br>
-# □ Jede Transaktion, isoliert ausgeführt auf einem konsistenten Zustand der Datenbank, hinterlässt die Datenbank
-# wiederum in einem konsistenten Zustand.
-# <br><br>
-# ■ Einfache Lösung aller obigen Probleme:
-# <br>
-# □ Alle Transaktionen seriell ausführen.
-# <br><br>
-# ■ Aber: Parallele Ausführung bietet Effizienzvorteile
-# <br>
-# □ „Long-Transactions“ über mehrere Stunden hinweg
-# <br>
-# □ Cache ausnutzen
-# <br><br>
-# ■ Deshalb: Korrekte parallele Pläne (Schedules) finden
-# <br>
-# □ Korrekt = Serialisierbar
-# 
+# Unser Ziel ist, dass jede Transaktion, die isoliert auf einem konsistenten Zustand der Datenbank ausgeführt wird, die Datenbank wiederum in einem konsistenten Zustand hinterlässt(Korrektheit). Eine einfache Lösung aller obigen Probleme, wäre das alle Transaktion seriell, also nacheinander ausgeführt werden. Jedoch bietet parallele Ausführung Effizienvorteile, besonders bei „Long-Transactions“, die über mehrere Stunden hinweg laufen oder auch beim Zugriff auf den Cache. Daher ist es wichtig korrekte parallele Pläne(Schedules) zu finden. In diesem Kapitel werden wir lernen, dass mit korrekt serialisierbar gemeint ist.
 # 
 # ### Schedules
+# Ein Schedule ist eine geordnete Abfolge wichtiger Aktionen, die von einer oder mehreren Transaktionen durchgeführt werden. Besonders wichtige Aktionen sind READ und WRITE eines Elements. Ein „Ablaufplan“ für eine Transaktion, legt die Abfolge der jeweiligen Transaktionsoperationen fest.
+# <br><br>
+# Wie im unteren Beispiel zu sehen ist, fängt ein Schedule mit "Begin TA" an und endet mit einem "commit". Wir sehen zwei Transaktionen T1 und T3, in denen jeweil lokal ein Wert aus den Variablen A und B gelesen wird. Dieser Wert wird verändert und in den Variablen überschrieben. Der Effekt dieses parallelen Schedules ist unklar. Es ist möglich, dass Updates verloren gegangen sind oder das nachdem T1 gelesen bzw. geschrieben hat ,T3 gelesen bzw. geschrieben hat.
 # 
 # |Schritt|T1|T3|
 # |-------|---|---|
@@ -268,27 +253,20 @@
 # |7.|write(B,b1)|write(B,b2)|
 # |8.|commit|commit|
 # 
-# ■ Ein Schedule ist eine geordnete Abfolge wichtiger Aktionen, die von einer oder mehreren Transaktionen durchgeführt werden.
-# <br>
-# □ Wichtige Aktionen: READ und WRITE eines Elements
-# <br>
-# □ „Ablaufplan“ für Transaktion, bestehend aus Abfolge von Transaktionsoperationen
 # 
-# #### Serialisierbarkeit
-# ■ Schedule
-# <br>
-# □ „Ablaufplan“ für Transaktionen, bestehend aus Abfolge von Transaktionsoperationen
+# <br> 
+# Beispiel: Alfons Kemper(TU München)
+# 
+# #### Serielle und serialisierbare Schedules
+# Ein serieller Schedule, ist ein Schedule in dem Transaktionen hintereinander ausgeführt werden.
 # <br><br>
-# ■ Serieller Schedule
-# <br>
-# □ Schedule in dem Transaktionen hintereinander ausgeführt werden
+# Ein Schedule ist serialisierbarer, wenn ein serieller Schedule mit identischem Effekt existiert.
 # <br><br>
-# ■ Serialisierbarer Schedule
-# <br>
-# □ Es existiert ein serieller Schedule mit identischem Effekt.
+# Wir sehen unten einen seriellen Schedule, in dem zuerst T1 und dann T2 ausgeführt wird. Daneben sehen wir einen nicht seriellen Schedule mit dem selben Effekt wie der serielle, also ist dieser serialisierbar.
 # 
-# #### Beispiel 1
-# 
+# <table>
+#     <td>
+#          
 # |Serieller Schedule|&#xfeff;|&#xfeff;| 
 # |------------------|--------|--------|
 # |**Schritt**|**T1**|**T2**|
@@ -305,7 +283,8 @@
 # |11.|&#xfeff;|write(A)|
 # |12.|&#xfeff;|commit|
 # 
-# 
+# </td>
+#     <td>
 # 
 # |Serialisierbarer Schedule|&#xfeff;|&#xfeff;|
 # |---|---|---|
@@ -322,9 +301,15 @@
 # |10.|&#xfeff;|read(A)|
 # |11.|&#xfeff;|write(A)|
 # |12.|&#xfeff;|commit|
+#         
+#        
+# </table>
 # 
-# 
+# <br> 
+# Beispiel: Alfons Kemper(TU München)
+
 # #### Beispiel 2
+# Nun fragen wir uns, ob der folgende Schedule serialisierbar ist. Wenn wir den unteren Schedule betrachten, sehen wir ,dass die read(A)write(A) bzw. read(B)write(B) Operationen von T1 abhänging von denen von T3 sind und umgekehrt. Bei den seriellen Schedules T1,T3 und T3,T1 würden Informationen verloren gehen, daher ist der Schedule unten nicht serialisierbar.
 # 
 # |Serialisierbar?|&#xfeff;|&#xfeff;|
 # |---------------|--------|--------|
@@ -342,9 +327,18 @@
 # |11.|write(B)|&#xfeff;|
 # |12.|commit|&#xfeff;|
 # 
-# #### Beispiel 3
-# Aufgabe: Suche äquivalenten seriellen Schedule.
+# <br> 
+# Beispiel: Alfons Kemper(TU München)
+
+# #### Beispiel 2.1
+# Betrachten wir folgenden nicht seriellen Schedule. Zuerst wird in T1 der Wert aus A gelesen und um 50 verringert und geschrieben. Danach wird in T3 der Wert aus A gelesen und um 100 verringert und geschrieben. Folgend wird in T3 der Wert aus B gelesen und um 100 erhöht und geschrieben. Zuletzt wird in T1 der Wert aus B gelsen um 50 erhöht und geschrieben. Wir fragen uns, ob dieser Schedule serialisierbar ist?
+# <br><br>
+# Tatsächlich ist dieser Schedule theoretisch serialisierbar, da die Operationen von T1 und T3 aufeinander aufbauen. Es macht keinen Unterschied, ob zuerst 50 oder 100 von A abgezogen werden oder ob zuerst 50 oder 100 auf B addiert werden. Jedoch müssen wir immer vom schlimmsten Fall ausgehen und können nicht wissen, dass die Operationen aufeinander aufbauen. Daher ist der Schedule in der Realität nicht serialisierbar.
 # 
+# <table>
+#     <tr><th>Nicht seriell, aber serialisierbar ? </th><th>Seriell</th></tr>
+#     <td>
+#          
 # |Schritt|T1|T3|
 # |-------|---|---|
 # |1.|BOT|&#xfeff;|
@@ -364,7 +358,9 @@
 # |15.|write(B,b1)|&#xfeff;|
 # |16.|commit|&#xfeff;|
 # 
-# Effekt: A = A − 150, B = B + 150
+# 
+# </td>
+#     <td>
 # 
 # |Schritt|T1|T3|
 # |-------|---|---|
@@ -385,10 +381,24 @@
 # |15.|&#xfeff;|write(B,b2)|
 # |16.|&#xfeff;|commit|
 # 
-# Effekt: A = A − 150, B = B + 150
+#         
+#        
+# </table>
 # 
-# #### Beispiel 4
 # 
+# 
+# ->Beide Schedules haben den Effekt: A = A − 150, B = B + 150
+# 
+# <br> 
+# Beispiel: Alfons Kemper(TU München)
+
+# #### Beispiel 2.2
+# Dieses Beispiel ähnelt dem vorherigen, jedoch wird in T1 nur addiert und T3 wird nur multipliziert. Wenn wir nun einen seriellen Schedule wie oben erstellen, ist der Effekt nicht mehr identisch, da Punkt-vor-Strich-Rechnung eine Rolle spielt. Sowohl T1T3, als auch T3T1 haben nicht denselben Effekt. Dieses Beipiel soll nochmal veranschaulichen, dass der schlimmste Fall angenommen werden muss und der Schedule nicht serialisierbar ist.
+# 
+# <table>
+#     <tr><th>Schedule 1 </th><th>Schedule 2: T1T3</th></tr>
+#     <td>
+#          
 # |Schritt|T1|T3|A|B|
 # |-------|---|---|---|---|
 # |1.|BOT|&#xfeff;|100|100|
@@ -407,10 +417,12 @@
 # |14.|b1 := b1 + 50|&#xfeff;|&#xfeff;|153|
 # |15.|write(B,b1)|&#xfeff;|&#xfeff;|&#xfeff;|
 # |16.|commit|&#xfeff;|&#xfeff;|&#xfeff;|
+# |Effekt: A = (A − 50) * 1.03 und B = B * 1.03 + 50|&#xfeff;|&#xfeff;|&#xfeff;|&#xfeff;|
 # 
-# 1. Effekt: A = (A − 50) * 1.03
-# <br>
-# B = B * 1.03 + 50
+# 
+# 
+# </td>
+#     <td>
 # 
 # |Schritt|T1|T3|A|B|
 # |-------|---|---|---|---|
@@ -430,13 +442,18 @@
 # |14.|&#xfeff;|b2 := b2 * 1.03|&#xfeff;|154,5|
 # |15.|&#xfeff;|write(B,b2)|&#xfeff;|&#xfeff;|
 # |16.|&#xfeff;|commit|&#xfeff;|&#xfeff;|
+# |Effekt: A = (A − 50) * 1.03 und B = (B + 50) * 1.03|&#xfeff;|&#xfeff;|&#xfeff;|&#xfeff;|
 # 
+#         
+#        
+# </table>
 # 
-# 2. Effekt: A = (A − 50) * 1.03
-# <br>
-# B = (B + 50) * 1.03
+# <br><br>
 # 
-# #### Beispiel 5
+# <table>
+#     <tr><th>Schedule 1 </th><th>Schedule 3: T3T1</th></tr>
+#     <td>
+#          
 # |Schritt|T1|T3|A|B|
 # |-------|---|---|---|---|
 # |1.|BOT|&#xfeff;|100|100|
@@ -455,11 +472,12 @@
 # |14.|b1 := b1 + 50|&#xfeff;|&#xfeff;|153|
 # |15.|write(B,b1)|&#xfeff;|&#xfeff;|&#xfeff;|
 # |16.|commit|&#xfeff;|&#xfeff;|&#xfeff;|
+# |Effekt: A = (A − 50) * 1.03 und B = B * 1.03 + 50|&#xfeff;|&#xfeff;|&#xfeff;|&#xfeff;|
 # 
-# Effekt: A = (A − 50) * 1.03
-# <br>
-# B = B * 1.03 + 50
 # 
+# 
+# </td>
+#     <td>
 # 
 # |Schritt|T1|T3|A|B|
 # |-------|---|---|---|---|
@@ -478,13 +496,18 @@
 # |13.|read(B,b1)|&#xfeff;|&#xfeff;|&#xfeff;|
 # |14.|b1 := b1 + 50|&#xfeff;|&#xfeff;|153|
 # |15.|write(B,b1)|&#xfeff;|&#xfeff;|&#xfeff;|
+# |16.|commit|&#xfeff;|&#xfeff;|&#xfeff;|
+# |Effekt: A = A * 1.03 − 50 und B = B * 1.03 + 50|&#xfeff;|&#xfeff;|&#xfeff;|&#xfeff;|
+#         
+#        
+# </table>
 # 
 # 
-# Effekt: A = A * 1.03 − 50
-# <br>
-# B = B * 1.03 + 50
-# 
-# #### Schedules
+# <br> 
+# Beispiel: Alfons Kemper(TU München)
+
+# #### Zusammenfassung Beispiel 2
+# Betrachten wir erneut unser Ursprungsbeispiel. Dieser Schedule ist nicht serialisierbar, denn obwohl es konkrete Beispiele solcher Transaktionen gibt, für die es einen äquivalenten seriellen Schedule gibt. Muss immer das Schlimmste angenommen. 
 # 
 # |Schritt|T1|T3|
 # |-------|---|---|
@@ -501,32 +524,16 @@
 # |11.|write(B)|&#xfeff;|
 # |12.|commit|&#xfeff;|
 # 
-# Serialisierbar? Nein,denn Effekt entspricht weder dem seriellen Schedule T1T3 noch dem seriellen Schedule T3T1
-# <br><br>
-# Serialisierbar? Nein, obwohl es konkrete Beispiele solcher Transaktionen gibt, für die es einen äquivalenten seriellen Schedule gibt. Man nimmt immer das Schlimmste an.
+# <br> 
+# Beispiel: Alfons Kemper(TU München)
+
+# #### Beispiel 3
+# Wenn wir uns nochmal die beiden seriellen Schedules T1T3 und T3T1 anschauen. Es fällt auf, dass T1T3 ≠ T3T1 ist. Hier muss nun die Applikation entscheiden, welche Reihenfolge logisch Sinn ergibt.
 # 
-# #### Beispiel 9
-# Nochmal die beiden seriellen Schedules. Ist Ihnen etwas aufgefallen?
-# 
-# |Schritt|T1|T3|A|B|
-# |-------|---|---|---|---|
-# |1.|BOT|&#xfeff;|100|100|
-# |2.|read(A,a1)|&#xfeff;|&#xfeff;|&#xfeff;|
-# |3.|a1 := a1 – 50|&#xfeff;|50|&#xfeff;|
-# |4.|write(A,a1)|&#xfeff;|&#xfeff;|&#xfeff;|
-# |5.|&#xfeff;|BOT|&#xfeff;|&#xfeff;|
-# |6.|&#xfeff;|read(A,a2)|&#xfeff;|&#xfeff;|
-# |7.|&#xfeff;|a2 := a2 * 1.03|51,5|&#xfeff;|
-# |8.|&#xfeff;|write(A,a2)|&#xfeff;|&#xfeff;|
-# |9.|&#xfeff;|read(B,b2)|&#xfeff;|&#xfeff;|
-# |10.|&#xfeff;|b2 := b2 * 1.03|&#xfeff;|103|
-# |11.|&#xfeff;|write(B,b2)|&#xfeff;|&#xfeff;|
-# |12.|&#xfeff;|commit|&#xfeff;|&#xfeff;|
-# |13.|read(B,b1)|&#xfeff;|&#xfeff;|&#xfeff;|
-# |14.|b1 := b1 + 50|&#xfeff;|&#xfeff;|153|
-# |15.|write(B,b1)|&#xfeff;|&#xfeff;|&#xfeff;|
-# |16.|commit|&#xfeff;|&#xfeff;|&#xfeff;|
-# 
+# <table>
+#     <tr><th>Schedule 1:T1T3 </th><th>Schedule 2: T3T1</th></tr>
+#     <td>
+#          
 # |Schritt|T1|T3|A|B|
 # |-------|---|---|---|---|
 # |1.|BOT|&#xfeff;|100|100|
@@ -546,9 +553,34 @@
 # |15.|&#xfeff;|write(B,b2)|&#xfeff;|&#xfeff;|
 # |16.|&#xfeff;|commit|&#xfeff;|&#xfeff;|
 # 
-# T1T3 ≠ T3T1 
-# <br>
-# Ist das schlimm?
+# 
+# </td>
+#     <td>
+# 
+# |Schritt|T1|T3|A|B|
+# |-------|---|---|---|---|
+# |1.|&#xfeff;|BOT|100|100|
+# |2.|&#xfeff;|read(A,a2)|&#xfeff;|&#xfeff;|
+# |3.|&#xfeff;|a2 := a2 * 1.03|103|&#xfeff;|
+# |4.|&#xfeff;|write(A,a2)|&#xfeff;|&#xfeff;|
+# |5.|&#xfeff;|read(B,b2)|&#xfeff;|&#xfeff;|
+# |6.|&#xfeff;|b2 := b2 * 1.03|&#xfeff;|103|
+# |7.|&#xfeff;|write(B,b2)|&#xfeff;|&#xfeff;|
+# |8.|&#xfeff;|commit|&#xfeff;|&#xfeff;|
+# |9.|BOT|&#xfeff;|&#xfeff;|&#xfeff;|
+# |10.|read(A,a1)|&#xfeff;|&#xfeff;|&#xfeff;|&#xfeff;|
+# |11.|a1 := a1 – 50|&#xfeff;|53|&#xfeff;|
+# |12.|write(A,a1)|&#xfeff;|&#xfeff;|&#xfeff;|
+# |13.|read(B,b1)|&#xfeff;|&#xfeff;|&#xfeff;|
+# |14.|b1 := b1 + 50|&#xfeff;|&#xfeff;|153|
+# |15.|write(B,b1)|&#xfeff;|&#xfeff;|&#xfeff;|
+# |16.|commit|&#xfeff;|&#xfeff;|&#xfeff;|
+# 
+#        
+# </table>
+# 
+# <br> 
+# Beispiel: Alfons Kemper(TU München)
 
 # ## Konfliktserialisierbarkeit
 # 
