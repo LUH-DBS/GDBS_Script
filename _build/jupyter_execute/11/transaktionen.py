@@ -583,128 +583,75 @@
 # Beispiel: Alfons Kemper(TU München)
 
 # ## Konfliktserialisierbarkeit
+# In diesem Kapitel wollen wir eine Methode kennenlernen, um die Serialisierbarkeit von Schedules zu überprüfen. Wir werden thematisieren wann ein Konflikt zwischen zwei oder mehr Transaktionen herrscht und wie ein äquivalenter serieller Schedule ermittelt werden kann.
 # 
 # ### Konflikte
-# ■ Bedingung für Serialisierbarkeit: „Konfliktserialisierbarkeit“
+# Konfliktserialisierbarkeit ist eine Bedingung für die Serilisierbarkeit und wird von den meisten DBMS verlangt (und hergestellt). Ein Konflikt herrscht zwischen zwei Aktionen eines Schedules, falls die Änderung ihrer Reihenfolge das Ergebnis verändern kann, dies passiert insbesondere bei read-/write-Operationen. 
 # <br><br>
-# ■ Konfliktserialisierbarkeit wird von den meisten DBMS verlangt (und hergestellt)
+# In diesem Kontext lernen wir eine neue Notation von read-/write-Operationen kennen, undzwar schreiben wir ri(x) bzw. wi(x), wobei i die TransaktionID ist und X das Datenbankelement. Mit dieser neuen Notation lassen sich Transaktionen(Sequenz solcher Aktionen) in einer Zeilenform wie z.B r1(A)w1(A)r1(B)w1(B) schreiben. Ein Schedule ist eine Menge von solchen Transaktionen in Zeilenform, welche alle Transaktionen enthalten müssen. Zudem erscheinen die Aktionen einer Transaktion im Schedule in gleicher Reihenfolge.
 # <br><br>
-# ■ Konflikt herrscht zwischen zwei Aktionen eines Schedules falls die Änderung ihrer Reihenfolge das Ergebnis verändern kann.
+# Angenommen wir haben die Transaktionen Ti und Tk gegegeben. Nun gelten folgende Regeln:
 # <br>
-# □ „Kann“ - nicht muss.
+# - ri(X) und rk(X) stehen nicht in Konflikt
+# <br>
+# - ri(X) und wk(Y) stehen nicht in Konflikt (falls X ≠ Y)
+# <br>
+# - wi(X) und rk(Y) stehen nicht in Konflikt (falls X ≠ Y)
+# <br>
+# - wi(X) und wk(Y) stehen nicht in Konflikt (falls X ≠ Y)
+# <br>
+# - ri(X) und wk(X) stehen in Konflikt
+# <br>
+# - wi(X) und rk(X) stehen in Konflikt
+# <br>
+# - wi(X) und wk(X) stehen in Konflikt
+# <br>
+# Es gilt „No coincidences“. Man nimmt immer das schlimmste an. Die konkrete Ausprägung der write-Operationen ist egal.
 # <br><br>
-# ■ Neue Notation: Aktion ri(X) bzw. wi(X)
-# <br>
-# □ read bzw. write
-# <br>
-# □ TransaktionsID i
-# <br>
-# □ Datenbankelement X
-# <br><br>
-# ■ Transaktion ist eine Sequenz solcher Aktionen
-# <br>
-# □ r1(A)w1(A)r1(B)w1(B)
-# <br><br>
-# ■ Schedule einer Menge von Transaktionen ist eine Sequenz von Aktionen
-# <br>
-# □ Alle Aktionen aller Transaktionen müssen enthalten sein
-# <br>
-# □ Aktionen einer Transaktion erscheinen in gleicher Reihenfolge im Schedule
-# <br><br>
-# ■ Gegeben Transaktionen Ti und Tk
-# <br>
-# □ ri(X) und rk(X) stehen nicht in Konflikt
-# <br>
-# □ ri(X) und wk(Y) stehen nicht in Konflikt (falls X ≠ Y)
-# <br>
-# □ wi(X) und rk(Y) stehen nicht in Konflikt (falls X ≠ Y)
-# <br>
-# □ wi(X) und wk(Y) stehen nicht in Konflikt (falls X ≠ Y)
-# <br>
-# □ ri(X) und wk(X) stehen in Konflikt
-# <br>
-# □ wi(X) und rk(X) stehen in Konflikt
-# <br>
-# □ wi(X) und wk(X) stehen in Konflikt
-# <br>
-# – „No coincidences“: Man nimmt immer das schlimmste an. Die konkrete Ausprägung der write-Operationen ist egal.
-# <br><br>
-# ■ Zusammengefasst: Konflikt herrscht falls zwei Aktionen
-# <br>
-# □ das gleiche Datenbankelement betreffen,
-# <br>
-# □ und mindestens eine der beiden Aktionen ein write ist.
-# 
+# Zusammenfassen kann gesagt werden, dass ein Konflikt herrscht falls zwei Aktionen das gleiche Datenbankelement betreffen und mindestens eine der beiden Aktionen ein write ist.
+
 # ### Konfliktserialisierbarkeit
-# ■ Idee: So lange nicht-konfligierende Aktionen tauschen bis aus einem Schedule ein serieller Schedule wird.
-# <br>
-# □ Falls das klappt, ist der Schedule serialisierbar.
+# Haben wir einen Schedule gegeben, können wir so lange nicht-konfligierende Aktionen tauschen,bis aus dem Schedule ein serieller Schedule wird. Falls das erfolgreich ist, ist der Schedule serialisierbar.
 # <br><br>
-# ■ Zwei Schedules S und S‘ heißen konfliktäquivalent, wenn die Reihenfolge aller Paare von konfligierenden Aktionen in beiden Schedules gleich ist.
+# Zwei Schedules S und S‘ heißen **konfliktäquivalent**, wenn die Reihenfolge aller Paare von konfligierenden Aktionen in beiden Schedules gleich ist.
 # <br><br>
-# ■ Ein Schedule S ist genau dann konfliktserialisierbar, wenn S konfliktäquivalent zu einem seriellen Schedule ist.<br><br>
-# ■ Schedule:
+# Ein Schedule S ist genau dann **konfliktserialisierbar**, wenn S konfliktäquivalent zu einem seriellen Schedule ist.
+# <br><br>
+# Betrachten wir nun folgenden Schedule, bestehend aus zwei Transaktionen. Wir wollen nun den Schedule in einen seriellen Schedule umwandeln:
 # <br>
 # r1(A) w1(A) r2(A) w2(A) r2(B) w2(B) r1(B) w1(B)
 # <br><br>
-# ■ Serieller Schedule T1T2:
+# Serieller Schedule T1T2:
 # <br>
 # r1(A) w1(A) r1(B) w1(B) r2(A) w2(A) r2(B) w2(B)
 # <br><br>
-# ■ Serieller Schedule T2T1:
+# Serieller Schedule T2T1:
 # <br>
 # r2(A) w2(A) r2(B) w2(B) r1(A) w1(A) r1(B) w1(B)
-# 
+
 # #### Konflikt – konfligieren
 # ![title](konfliktserialisierbarkeit_img/def_konfligieren.jpg)
 # 
 # #### Konfliktserialisierbarkeit vs. Serialisierbarkeit
-# ■ Konfliktserialisierbarkeit => Serialisierbarkeit
+# Wie oben genannt ist Konfliktserialisierbarkeit eine Bedingung für Serialisierbarkeit, demnach gilt Konfliktserialisierbarkeit => Serialisierbarkeit.
 # <br>
-# □ Beispiel zuvor: Serialisierbarkeit war „zufällig“ aufgrund spezieller Ausprägungen der Aktionen möglich.
-# <br>
-# □ S1: w1(Y) w1(X) w2(Y) w2(X) w3(X)
-# <br>
-# – Ist seriell
-# <br>
-# □ S2: w1(Y) w2(Y) w2(X) w1(X) w3(X)
-# <br>
-# – Hat (zufällig) gleichen Effekt wie S1, ist also serialisierbar.
-# <br>
-# – Aber: Es müssten konfligierende Aktionen getauscht werden. Welche?
-# <br>
-# – S2 ist also nicht konfliktserialisierbar
+# Betrachten wir nun den seriellen Schedule S1: w1(Y) w1(X) w2(Y) w2(X) w3(X). Der Schedule S2: w1(Y) w2(Y) w2(X) w1(X) w3(X) hat (zufällig) den gleichen Effekt wie S1 und ist also serialisierbar. Jedoch müssten konfligierende Aktionen getauscht werden, undzwar muss w1(X) vor w2(Y) getauscht werden, welches gegen die Konfliktserialisierbarkeit verstößt.
 # <br><br>
-# ■ Was fällt auf?
-# <br>
-# □ T3 überschreibt X sowieso -> Sichtserialisierbarkeit (nicht hier)
-# 
+# Was fällt auf? T3 überschreibt X sowieso, in dem Fall spricht man dann von Sichtserialisierbarkeit (nicht hier).
+
 # #### Graphbasierter Test
-# ■ Konfliktgraph G(S) = (V,E) von Schedule S:
-# <br>
-# □ Knotenmenge V enthält alle in S vorkommende Transaktionen.
-# <br>
-# □ Kantenmenge E enthält alle gerichteten Kanten zwischen zwei konfligierenden Transaktionen.
-# <br>
-# – Kantenrichtung entspricht zeitlichem Ablauf im Schedule.
+# Konfliktserialisierbarkeit kann auch graphbasiert, mittles eines Konfliktgraphen G(S) = (V,E) von Schedule S überprüft werden. Die Knotenmenge V enthält alle in S vorkommenden Transaktionen und die Kantenmenge E enthält alle gerichteten Kanten zwischen zwei konfligierenden Transaktionen. Die Kantenrichtung entspricht dem zeitlichem Ablauf im Schedule.
 # <br><br>
-# ■ Eigenschaften
-# <br>
-# □ S ist ein konfliktserialisierbarer Schedule gdw. der vorliegende Konfliktgraph ein azyklischer Graph ist.
-# <br>
-# □ Für jeden azyklischen Graphen G(S) lässt sich ein serieller Schedule S‘ konstruieren, so dass S konfliktäquivalent zu S‘ ist.
-# <br>
-# – D.h. S ist konfliktserialisierbar
-# <br>
-# – Z.B. topologisches Sortieren
-# <br>
-# □ Enthält der Graph Zyklen, ist der zugehörige Schedule nicht konfliktserialisierbar.
+# Nun gilt S ist ein konfliktserialisierbarer Schedule gdw. der vorliegende Konfliktgraph ein azyklischer Graph ist.
+# Für jeden azyklischen Graphen G(S) lässt sich ein serieller Schedule S‘ konstruieren, so dass S konfliktäquivalent zu S‘ ist, z.B mit topologischen Sortieren. Enthält der Konfliktgraph Zyklen, ist der zugehörige Schedule nicht konfliktserialisierbar.
+
+# ### Beispiel 1
+# Wir haben folgenden Schedule gegeben und möchten graphbasiert überprüfen, ob dieser konfliktserialisierbar ist. Unsere Menge V ist V={T1,T3}. Nun schauen wir anhand den obigen Regeln wo Konflikte herrschen. Wir haben einen Konflikt von write(A)(Schritt 3) zu read(A)(Schritt 5) und demnach eine Kante von T1 zu T3. Weiterhin haben wir einen Konflikt von write(B)(Schritt 8) zu read(B)(Schritt 11) und demnach eine Kante von T3 zu T1. Da unser Konfliktgraph einen Zyklus enthält, ist unser Schedule nicht konfliktserialisierbar.
 # 
-# ####  Schedules
-# 
-# ##### Beispiel 1
-# Konfliktserialisierbar ?
-# 
+# <table>
+#     <tr><th>Schedule </th><th>Konfliktgraph</th></tr>
+#     <td>
+#          
 # |Schritt|T1|T3|
 # |-------|---|---|
 # |1.|BOT||
@@ -720,11 +667,22 @@
 # |11.|write(B)|&#xfeff;|
 # |12.|commit|&#xfeff;|
 # 
+# 
+# </td>
+#     <td>
+# 
 # ![title](konfliktserialisierbarkeit_img/graph1.jpg)
+#        
+# </table>
 # 
-# ##### Beispiel 2
-# ![title](konfliktserialisierbarkeit_img/graph2.jpg)
+
+# ### Beispiel 2
+# Betrachten wir nun den Schedule S = r1(y) r3(u) r2(y) w1(y) w1(x) w2(x) w2(z) w3(x). Wir haben einen Konflikt von r2(y) zu w1(y), also hat unser Graph eine Kante von T2 zu T1. Dann gibt es weiterhin einen Konflikt von w1(x) zu w2(x), demnach hat unser Graph ein Kanten von  T1 zu T2. Nun hat unser Konfliktgraph schon eine Zyklus und wir wissen der Schedule S ist nicht konfliktserialisierbar.
 # 
+# <table>
+#     <tr><th>Schedule </th><th>Konfliktgraph</th></tr>
+#     <td>
+#          
 # |Schritt|T1|T2|T3|
 # |-------|---|---|---|
 # |1.|r(y)|&#xfeff;|&#xfeff;|
@@ -736,11 +694,23 @@
 # |7.|&#xfeff;|w(z)|&#xfeff;|
 # |8.|&#xfeff;|&#xfeff;|w(x)|
 # 
-# S = r1(y) r3(u) r2(y) w1(y) w1(x) w2(x) w2(z) w3(x)
 # 
-# ##### Beispiel 3
-# Serialisierbarer Schedule
+# </td>
+#     <td>
 # 
+# ![title](konfliktserialisierbarkeit_img/graph2.jpg)
+#        
+# </table>
+# 
+# 
+
+# ### Beispiel 3
+# In diesem Beispiel haben wir nur einen Konflikt von T1 nach T2 und können somit schließen, dass der Schedule konfliktserialisierbar ist. Der serielle Schedule lautet T3T1. Die Reihenfolge der Transaktionen, wird anhand der Pfeilrichtungen erkannt.
+# 
+# <table>
+#     <tr><th>Schedule </th><th>Konfliktgraph</th></tr>
+#     <td>
+#          
 # |Schritt|T1|T2|
 # |-------|---|---|
 # |1.|BOT|&#xfeff;|
@@ -756,9 +726,15 @@
 # |11.|&#xfeff;|write(A)|
 # |12.|&#xfeff;|commit|
 # 
+# </td>
+#     <td>
 # 
 # ![title](konfliktserialisierbarkeit_img/graph3.jpg)
+#        
+# </table>
 # 
+# Beispie: Alfons Kemper(TU München)
+
 # #### Beweis
 # Konfliktgraph ist zykelfrei <=> Schedule ist konfliktserialisierbar
 # <br>
