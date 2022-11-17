@@ -736,23 +736,23 @@
 # Beispie: Alfons Kemper(TU München)
 
 # #### Beweis
-# Konfliktgraph ist zykelfrei <=> Schedule ist konfliktserialisierbar
+# Nun wollen wir folgendes beweisen: Konfliktgraph ist zykelfrei <=> Schedule ist konfliktserialisierbar
 # <br>
-# Konfliktgraph ist zykelfrei <=> Schedule ist konfliktserialisierbar
+# Wir zeigen zeurst die eine Richtung: Konfliktgraph ist zykelfrei <= Schedule ist konfliktserialisierbar
 # <br>
-# Leicht: Konfliktgraph hat Zykel => Schedule ist nicht konfliktserialisierbar
+# Das ist leicht zu zeigen: Konfliktgraph hat Zykel => Schedule ist nicht konfliktserialisierbar, denn es ist nicht klar welche Transaktion zuerst ausgeführt werden soll, wie im untern Gegenbeispiel veranschaulicht.
 # <br>
-# Bzw. Gegenbeispiel: T1 -> T2 -> … -> Tn -> T1
+# Gegenbeispiel: T1 -> T2 -> … -> Tn -> T1
 # <br>
-# Konfliktgraph ist zykelfrei Þ Schedule ist konfliktserialisierbar
+# Jetzt zeigen wir die andere Richtung: Konfliktgraph ist zykelfrei => Schedule ist konfliktserialisierbar
 # <br>
-# Induktion über Anzahl der Transaktionen n
+# Wir führen eine Induktion über die Anzahl n der Transaktionen durch.
 # <br>
-# n = 1: Graph und Schedule haben nur eine Transaktion.
+# n = 1: Graph und Schedule haben nur eine Transaktion. Es gibt keinen Zyklus.
 # <br>
 # n = n + 1:
 # <br>
-# Graph ist zykelfrei
+# Unser Graph ist zykelfrei
 # <br>
 # => ∃ mindestens ein Knoten Ti ohne eingehende Kante.
 # <br>
@@ -760,68 +760,47 @@
 # <br>
 # Alle Aktionen aus Ti können an den Anfang bewegt werden (Reihenfolge innerhalb Ti bleibt erhalten).
 # <br>
-# Restgraph ist wieder azyklisch (Entfernung von Kanten aus einem azyklischen Graph kann ihn nicht zyklisch machen).
+# D.h. der Restgraph ist wieder azyklisch (Entfernung von Kanten aus einem azyklischen Graph kann ihn nicht zyklisch machen).
 # <br>
-# Restgraph hat n-1 Transaktionen
+# Somit hat der Restgraph n-1 Transaktionen
 
 # ## Sperrkontrolle
+# In diesem Kapitel beschäftigen wir uns wie mit Sperrkontrollen, die  DBMS konfliktserialisierbare Schedules garantiert. 
 # 
 # ### Scheduler
-# ■ Der Scheduler in einem DBMS garantiert konfliktserialisierbare (also auch serialisierbare) Schedules bei gleichzeitig laufenden Transaktionen.
+# Der Scheduler in einem DBMS garantiert konfliktserialisierbare (also auch serialisierbare) Schedules bei gleichzeitig laufenden Transaktionen. Wenn neue Transaktionen ausgeführt werden sollen, könnte der Scheduler jedesmal einen graphbasierten Test durchführen, jedoch ist dies sehr kostenaufwendig. Stattdessen wäre es einfacher Sperren und Sperrkontrollen zu benutzte, welches in fast allen DBMS realisiert ist. Die Idee dahinter ist, dass die Transaktion für die Dauer der Bearbeitung eines Datenbankobjekts dieses sperrt, s.d. andere Transaktionen nicht darauf zugreifen können.
 # <br>
-# □ Komplizierte Variante: Graphbasierter Test
-# <br>
-# – Inkrementell?
-# <br>
-# □ Einfachere Variante: Sperren und Sperrprotokolle
-# <br>
-# – In fast allen DBMS realisiert
-# <br>
-# □ Idee: Transaktion sperrt Objekte der Datenbank für die Dauer der Bearbeitung
-# <br>
-# – Andere Transaktionen können nicht auf gesperrte Objekte zugreifen.
-# <br>
-# BILD
+# 
+# ![title](sperrprotokolle_img/scheduler.jpg)
 # 
 # ### Sperren
-# Idee: Transaktionen müssen zusätzlich zu den Aktionen auch Sperren anfordern und freigeben.
+# Wie oben genannte ist die Idee, dass die Transaktionen zusätzlich zu den Aktionen auch Sperren anfordern und freigeben müssen. Bedingungen hierfür sind, dass die Transaktion konsistent ist. D.h., dass Lesen oder Schreiben eines Objektes nur nachdem die Sperre angefordert wurde und bevor die Sperre wieder freigegeben wurde, erlaubt ist.
+# Zusätzlich muss nachdem Sperren eines Objektes muss später dessen Freigabe erfolgen. Eine weitere Bedingung ist die Legalität des Schedules, welches meint, dass zwei Transaktionen nicht gleichzeitig das gleiche Objekt sperren dürfen. In diesem Kontext lernen wir zwei neue Aktionen kennen:
 # <br>
-# Bedingungen
+# - li(X): Transaktion i fordert Sperre für X an (lock).
 # <br>
-# Konsistenz einer Transaktion
+# - ui(X): Transaktion i gibt Sperre auf X frei (unlock).
+# <br><br>
+# - Konsistenz: Vor jedem ri(X) oder wi(X) kommt ein li(X) (mit keinem ui(X) dazwischen) und ein ui(X) danach.
 # <br>
-# Lesen oder Schreiben eines Objektes nur nachdem Sperre angefordert wurde und bevor die Sperre wieder freigegeben wurde.
-# <br>
-# Nach dem Sperren eines Objektes muss später dessen Freigabe erfolgen.
-# <br>
-# Legalität des Schedules
-# <br>
-# Zwei Transaktionen dürfen nicht gleichzeitig das gleiche Objekt sperren.
-# <br>
-# Zwei neue Aktionen
-# <br>
-# li(X): Transaktion i fordert Sperre für X an (lock).
-# <br>
-# ui(X): Transaktion i gibt Sperre auf X frei (unlock).
-# <br>
-# Konsistenz: Vor jedem ri(X) oder wi(X) kommt ein li(X) (mit keinem ui(X) dazwischen) und ein ui(X) danach.
-# <br>
-# Legalität: Zwischen li(X) und lk(X) kommt immer ein ui(X)
-# 
+# - Legalität: Zwischen li(X) und lk(X) kommt immer ein ui(X)
+
 # ### Schedules mit Sperren
-# ■ Zwei Transaktionen
+# Folgende zwei Transaktionen sind gegeben:
 # <br>
-# □ r1(A)w1(A)r1(B)w1(B)
+# - r1(A)w1(A)r1(B)w1(B)
 # <br>
-# □ r2(A)w2(A)r2(B)w2(B)
+# - r2(A)w2(A)r2(B)w2(B)
+# 
 # <br><br>
-# ■ Zwei Transaktionen mit Sperren
-# <br>
-# □ l1(A)r1(A)w1(A)u1(A)l1(B)r1(B)w1(B)u1(B)
-# <br>
-# □ l2(A)r2(A)w2(A)
+# Wir wollen nun die Aktionen mit lock's und unlock's ergänzen:
 # <br><br>
-# ■ Schedule
+# - l1(A)r1(A)w1(A)u1(A)l1(B)r1(B)w1(B)u1(B)
+# <br>
+# - l2(A)r2(A)w2(A)u2(a)l2(B)r2(b)w2(B)u2(B)
+# <br><br>
+# 
+# Der Schedule der beiden Transaktionen sieht wie folgt aus:
 # 
 # |T1|T2|
 # |---|---|
@@ -830,9 +809,10 @@
 # |&#xfeff;|l2(B)r2(B)w2(B)u2(B)|
 # |l1(B)r1(B)w1(B)u1(B)|&#xfeff;|
 # 
-# □ Legal?
+# Wir fragen uns ob der Schedule legal ist? Ja der Schedule ist legal, denn zwischen allen li(X) und lk(X) kommt immer ein ui(X).
 # <br>
-# □ Konfliktserialisierbar?
+# Konfliktserialisierbar? Der Schedule ist **nicht** konfliktserialisierbar, denn in unserem zugehörigen Konfliktgraph gibt es eine Kante von T1 zu T2 und von T2 zu T1.
+# <br><br>
 # 
 # |T1|T3|A|B|
 # |---|---|---|---|
@@ -852,7 +832,7 @@
 # 
 # <br>
 # Legal? Serialisierbar? Konfliktserialisierbar?
-# 
+
 # ### Freigabe durch Scheduler
 # ■ Scheduler speichert Sperrinformation in Sperrtabelle
 # <br>
