@@ -320,24 +320,19 @@
 # ## Kostenmodelle
 # 
 # ### Kostenbasierte Optimierung
-# - Konzeptionell: Generiere alle denkbaren Anfrageausführungspläne.
-# <br><br>
-# - Bewerte deren Kosten anhand eines Kostenmodells
-# - Statistiken und Histogramme
-# - Kalibrierung gemäß verwendeter Rechner
-# - Abhängig vom verfügbaren Speicher
-# - Aufwands-Kostenmodell
-# - Durchsatz-maximierend
-# - Nicht Antwortzeit-minimierend
+# Generell müsste man konzeptionell alle denkbaren Anfrageausführungspläne generieren, um den besten darunter auszuwählen. Dabei werden die Kosten der Pläne anhand eines Kostenmodells bewertet.  Hierzu werden Statistiken und Histogramme zur Hilfe genommen. 
+# Die Statistiken können können vom verfügbaren Speicher oder vom System abhängig sein. Je nach verwendetem Rechner, kann eine Operation eventuell unterschiedlich viel Zeit benötigen. Daher benötigt es eine Kalibrierung gemäß dem verwendetn Rechner.
+# Beim Aufwands-Kostenmodell probiert man meistens den Durchsatz zu maximieren und nicht die Antwortzeit zu minimieren. 
 # <br>
-# Achtung: Nicht zu lange optimieren!
-# <br><br>
-# - Führe billigsten Plan aus
+# Da es hierbei um Kosten geht, möchte man selbstverständlich den billigsten Plan ausführen. Dennoch sollte man darauf achten nicht zu lange zu optimieren, denn das Optimieren selbst kostet auch wieder Zeit und macht die Anfrage langsamer. Irgendwie muss man einen Zwischenweg zwischen beidem finden. Dies kann beispielsweise mithilfe von Heuristiken geschehen.  
+# 
+# 
 # 
 # ### Problemgröße (Suchraum)
-# - Konzeptionell: Generiere alle denkbaren Anfrageausführungspläne
-# - Anzahl Bushy-Pläne mit n Tabellen
-# - $\frac{(2(n-1))!}{(n-1)!}$
+# Wenn man konzeptionell alle denkbaren Anfrageausführungspläne generiert, erhalten wir die Anzahl der Bushy-Pläne bei n Tabellen gemäß der folgenden Formel:
+# 
+# $\frac{(2(n-1))!}{(n-1)!}$
+# 
 # 
 # 
 # |n|$2^n$|(2(n-1))!/(n-1)!|
@@ -347,158 +342,191 @@
 # |10|1024|1,76 $\times 10^{10}$|
 # |20|1.048.576|$4,3\times10^{27}$|
 # 
+# Bei wachsender Anzahl von n Tabellen, wächst der Suchraum sehr stark an. Die Plankosten unterscheiden sich somit schnell um viele Größenordnungen.
+# Das Optimierungsproblem, unabhängig von den Bushy-Plänen, ist NP-hart.
 # 
 # 
-# - Plankosten unterscheiden sich um viele Größenordnungen.
-# - Optimierungsproblem ist NP-hart
 # 
 # ### Kostenmodell
 # 
 # ![](kostenmodell.jpg)
 # 
+# Haben einen algebraischen Ausdruck. Dieser wird einem Kostenmodell übergeben und man erhält die Ausführungskosten ohne den Ausdruck ausgeführt zu haben. 
+# Das Kostenmodell betrachtet dabei Indexinformationen, Ballungs-Informationen (Clustering on disk), DB-Kardinalitäten und Attributverteilungen. 
+# 
+# 
 # 
 # ### Statistiken
-# - Zu jeder Basisrelation
-# - Anzahl der Tupel
-# - Tupelgröße
+# Zu jeder Basisrelation kennt man die Anzahl der Tupel und deren Tupelgröße. 
+# Zu (jedem) Attribut kennt man eventuell den größten und kleinsten Wert. Es kann ein Histogramm zur Werteverteilung geben und man kennt (hoffentlich) die Anzahl der 'distinct'-Werte (Kardinalität). 
+# Zum System kennt man die Speichergröße, die Bandbreite, die I/O-, sowie die CPU-Zeiten. 
 # <br><br>
-# - Zu (jedem) Attribut
-# - Min / Max
-# - Werteverteilung (Histogramm)
-# - Anzahl der distinct Werte
-# - Oft: „Kardinalität“
+# Problem: Die Statistiken gelten nur für einen Zustand der Datensätze. Theoretisch müsste man nach jeder Veränderung der Datenbank neue Statistiken erstellen oder die bestehenden Statistiken updaten. Das verursacht hohe Kosten und wird daher meistens nur nach einer bestimmten Zeit manuell/explizit durchgeführt mit einer Funktion wie runstats().
 # <br><br>
-# - Zum System
-# - Speichergröße
-# - Bandbreite
-# - I/O Zeiten
-# - CPU Zeiten
-# <br><br>
-# - Problem: Erstellung und Update der Statistiken
-# - Deshalb meist nur explizit/manuell zu initiieren
-# - runstats()
-# <br><br>
+# 
 # ![](statistik.jpg)
 # 
+# 
+# 
 # ### Kosten von Operationen
-# - Projektion:
-# - Keine Kosten falls mit anderem Operator kombiniert
-# <br><br>
-# - Selektion
-# - Ohne Index: Gesamte Relation von Festplatte lesen
-# - Mit Baum-Index (z.B. B-Baum): Teil des Index von Platte lesen (Baumtiefe) und gesuchte Seite von Platte lesen
-# - Bei Pipelining: (Fast) keine Kosten
-# <br><br>
-# - Join
-# - Je nach Joinalgorithmus
-# - Nested Loops, Hash-Join, Sort-Merge Join, usw.
-# <br><br>
-# - Sortierung: Nicht hier
-# <br><br>
-# - Wesentliches Kostenmerkmal: Anzahl der Tupel im Input
-# - Insbesondere: Passt die Relation in den Hauptspeicher?
-# - Selektion, Projektion, Sortierung, Join
-# <br><br>
-# - Output ist Input des nächsten Operators.
-# <br><br>
-# - Deshalb: Ein Kostenmodel schätzt u.a. für jede Operation die Anzahl der Ausgabetupel.
-# - „Selektivität“ in Bezug auf Inputgröße
+# 
+# Es gibt bestimmte Kosten für Operationen, die unabhängig vom Kostenmodell gelten:
+# 
+# - Projektion: 
+#     - Wenn eine Projektion mit einem anderem Operator kombiniert wird, dann kostet diese nichts. 
+#     
+# - Selektion: 
+#     - Bei einer Seletktion ohne Index wird die gesamte Relation von der Festplatte gelesen. Die gesamte Relation ist daher Teil der Kosten. 
+#     - Bei einer Selektion mit Baum-Index (z.B. B-Baum) muss man einen Teil des Index (Baumtiefe) und die gesuchte Seite von der Festplatte lesen.
+#     - Beim Pipelining hat man (fast) keine Kosten. Wenn die Selektion immer wieder an eine Datenpipeline herangehangen wird, verursacht es also (fast) keine Kosten.  
+#     
+# - Join: 
+#     - Beim Join hängen die Kosten vom Joinalgorithmus (Nested Loops, Hash-Join, Sort-Merge Join, usw.) ab. 
+#     
+# - Sortierung: 
+#     - Die Kosten von Sortierungen werden in einer aufbauenden Veranstaltung besprochen. Es wird sich dabei um Sortieralgorithmen wie Two-Phase-Merge-Sort usw. handeln. 
+# 
+# Generell sind die Kosten von Operationen die Anzahl der Tupel im Input. Dabei fragt man sich , ob die Relation in den Hauptspeicher passt. Je kleiner die Anzahl der Tupel im Input ist, desto wahrscheinlicher passt sie in den Hauptspeicher. <br>
+# Bedacht werden muss auch, wie groß die Anzahl der Tupel im Output einer Operation ist. Der Output wird nämlich der Input des nächsten Operators sein. Deshalb schätzt ein Kostenmodel u.a. für jede Operation die Anzahl der Ausgabetupel.
+# Das Schätzen der Ausgabetupel geschieht also unter Betrachtung des Selektivitätsfaktors (selectivity factor, sf). Der Selektivitätsfaktor beschreibt die „Selektivität“ in Bezug auf die Inputgröße. 
+# 
+# 
+# 
 # - #Ausgabetupel = #Eingabetupel x Selektivität
-# - Auch „Selektivitätsfaktor“ (selectivity factor, sf)
+#  
+# Beispiel: Eine Operation mit Selektivitätsfaktor 0.5 wird auf eine Relation angewandt (O(R)). Dann ist die Anzahl der Ausgabetupel wahrscheinlich |R| / 2.
+# 
+# 
 # 
 # ### Selektivität
-# - Selektivität schätzt Anzahl der qualifizierenden Tupel relativ zur Gesamtanzahl der Tupel in der Input Relation.
-# <br><br>
-# - Projektion:
+# Die Selektivität schätzt die Anzahl der qualifizierenden Tupel relativ zur Gesamtanzahl der Tupel in der Input Relation. 
+# <br>
+# 
+# Bei Projektionen ist die Selektivität genau 1. Die Operation erhält R Tupel als Input und gibt R viele Tupel als Output wieder heraus. 
+# 
 # - sf = |R|/|R| = 1
-# <br><br>
-# - Selektion:
+# 
+# <br>
+# Bei der Selektion ist der Selektivitätsfaktor die Anzahl der Tupel der selektierten Menge geteilt durch die gesamte Anzahl der Tupel.
+# 
 # - sf = |$\sigma_c$(R)| / |R|
-# <br><br>
-# - Join:
+# 
+# <br>
+# Bei Joins ergibt sich der Selektivitätsfaktor aus der Selektivität des Joins geteilt durch die Selektivität des Kreuzproduktes. Das Kreuzprodukt ergibt sich aus der Anzahl der Tupel einer Relation multipliziert mit der Anzahl der Tupel einer anderen Relation.  
+# 
 # - sf = |R ⋈ S| / |R x S| = |R ⋈ S| / (|R| · |S|)
 # 
+# 
+# 
 # #### Selektivität schätzen
+# 
 # - Selektion:
-# - Selektion auf einen Schlüssel:
+# Wenn man eine Selektion auf einem einzelnen Schlüssel durchführt, also auf einer Konstanten, kann man davon ausgehen, dass der Selektivitätsfaktor genau
+# 
 # - sf = 1 / |R|
-# - Selektion auf einen Attribut A mit m verschiedenen Werten:
+# 
+# ist, da ein Schlüssel immer nur einmal auftaucht.
+# 
+# Wenn man aber eine Selektion auf einem Attribut A mit m verschiedenen Werten ausführt, ist der Selektivitätsfaktor:
+# 
 # - sf = (|R| / m) / |R| = 1/m
-# - Dies ist nur geschätzt!
-# <br><br>
-# - Join
-# - Equijoin zwischen R und S über Fremdschlüssel in S
+# 
+# Wenn man beispielsweise eine Spalte mit 10 unterschiedlichen Werten hat und eine Selektion auf einem Wert ausführt, kann man davon ausgehen, dass im Schnitt 1/m Werte herauskommen. Dies ist nur eine Schätzung!
+# 
+# <br>
+# - Join:
+# Beim Equijoin zwischen R und S über Fremdschlüssel in S ist der Selektivitätsfaktor:
+# 
 # - sf = 1 / |R|
 # - „Beweis“: sf = |R ⋈ S| / (|R x S|) = |S| / (|R| · |S|)
+#     Da man einen Equijoin über Fremdschlüssel durchführt, ist die Anzahl der Ausgabetupel gleich der Anzahl der Tupel in S. Somit kann man S aus |S| / (|R| · |S|) wegstreichen und es ergibt sich der Selektivitätsfaktor sf = 1 / |R|.
+# 
+# 
 # 
 # ### Selinger-style“ Optimization
+# 
+# Zum Vorherigen gibt es ein Paper aus den 70er Jahren IBM. Im folgenden kann man erkennen wie es vom Research Team dargestellt wird:
 # 
 # ![](selinger_style1.jpg)
 # 
 # ![](selinger_style2.jpg)
 # 
-# ### Join Selektivität (Selinger Style)
+# 
+# 
+# ### Join Selektivität (Selinger Style) 
+# 
 # ![](selinger_style3.jpg)
-# <br>
-# Beispiel
+# 
+# Wir interessieren uns jetzt besonders für die Join Selektivität. Dazu folgende Anfrage als Beispiel:
+# 
 # - SELECT * FROM cust, order WHERE cust.ID = order.custID
+# 
+# Die Kardinalität von customerID (cust.ID) ist die Anzahl von customer (|cust|), weil es ein Schlüssel ist. 
+# 
 # - DISTINCT cust.ID = |cust|
+# 
+# Die order-customer-ID (oder.custID) ist kleiner gleich der Anzahl der customer (cust), weil wir weniger Bestellungen (orders) als Kunden (cust) haben. 
+# 
 # - DISTINCT order.custID ≤ |cust|
+# 
+# Dann müssen wir nach der Formel aus dem Paper das Maximum der beiden Kardinalitäten nehmen. Es ergibt sich ein Selektivitätsfaktor von:
+# 
 # - sf = 1/|cust|
+# 
+# Der Join von customer (cust) und order gibt somit die gleiche Anzahl an Tupeln zurück wie die Anzahl an Tupeln in order. 
+# 
 # - |cust ⋈ order| = 1/|cust| * |cust| * |order| = |order|
 # 
+# 
+# 
 # ### Modelle zum besseren Schätzen der Selektivität
-# - Gleichverteilung der Werte
-# - Platzsparend (count, max, min), einfach
-# - Schlechte Abschätzung bei “skew” (ungleiche Verteilung)
-# <br><br>
-# - Histogramme (Beispiel gleich)
-# - Parametrisierte Größe, einfach
-# - Güte der Abschätzung hängt von Histogrammtyp und -größe ab.
-# - Außerdem: Aktualität garantieren ist aufwändig.
-# <br><br>
-# - Sampling
-# - Repräsentative Teilmenge der Relation
-# - Parametrisierte Größe, schwierig zu finden
-# - Güte hängt von Samplingmethode und Samplegröße ab
-# - Außerdem: Aktualität
+# 
+# Man kann das Schätzen der Selektivität auf unterschiedliche Weisen verbessern. <br>
+# Eine Möglichkeit das Schätzen zu verbessern, wäre es eine Gleichverteilung der Werte anzunehmen sodass man die Minimum und Maximumwerte kennt. Bei einer ungleichen Verteilung ("skew") ist die Abschätzung schwierig und eher schlecht. <br>
+# Dann könnte man ein Histogramm zur Hilfe nehmen. Parametrisierte Größen vereinfachen das Schätzen. Die Güte der Abschätzung hängt von Histogrammtyp und der Histogrammgröße ab. Außerdem ist das Garantieren der Aktualität sehr aufwändig. <br>
+# Eine weitere Möglichkeit ist das Sampling. Dabei schaut man sich eine repräsentative Teilmenge der Relation an und schließt daraus auf die Verteilung der Werte. Parametrisierte Größen sind hierbei schwierig zu finden. Die Güte hängt von der Samplingmethode und der Samplegröße ab. Außerdem ist die Aktualität wieder von Bedeutung.
+# 
+# 
 # 
 # ### Beispiel zu Histogrammen
+# 
+# ![](histogramm.jpg)
+# 
 # ```
 # SELECT *
 # FROM product p, sales S
 # WHERE p.id=s.p_id and
 # p.price > 100 
 # ```
-# - Gegeben 3300 products, 1M sales
-# - Gleichverteilung
-# - Preisspanne ist 0-1000 => Selektivität der Bedingung ist 9/10
-# - Erwartet: 9/10*3300 ≈ 3000 Produkte
-# - Histogramm-basiert
-# - Selektivität der Bedingung ist 5/3300 ≈ 0,0015 also 5 Produkte
 # 
-# ![](histogramm.jpg)
+# Gegeben ist ein Histogramm mit 3300 Produkten und einer Preisspanne von 0 bis 1000. Zu jedem Bucket in der Preisspanne wird angegeben wie viele Produkte darin enthalten sind. Zudem ist eine sales Relation mit einer Millionen Einträgen gegeben. <br>
+# <br>
+# Angenommen es findet eine Gleichverteilung statt. Dann ist der Preis gleichverteilt zwischen 0 und 1000. Aufgrund unserer Selektionsbedingung (p.price > 100) suchen wir nach allen Produkten, die mehr als 100 Kosten. Es bleiben genau 900 Produkte übrig. Also kommen 900 von 1000 Einträgen weiter und man erhält eine Selektivität von 900/1000 = 9/10. Am Ende werden somit 9/10 * 3300 ≈ 3000 Produkte erwartet, die man noch zusätzlich mit der sales Relation joint. <br>
+# <br>
+# Wenn man weiß wie das Histogramm tatsächlich aussieht, würde man wissen, dass es insgesamt nur 5 Produkte gibt, die über 100 kosten. Die Selektivität der Bedingung ist dann 5/3000 ≈ 0.0015. Somit deutlich geringer als zuvor.  
+# 
+# 
 
 # ### Kosten – Weitere Komplikationen
-# - Parallelität / Pipelining
-# - Kosten aller Operatoren können nicht addiert werden.
-# <br><br>
-# - Hauptspeichergröße
-# - Pufferung und Caching
-# <br><br>
-# - I/O Kosten (Lesen einer Seite) vs. CPU Kosten
-# <br><br>
-# - Multiuser: Durchsatz statt Antwortzeit
-# <br><br>
-# - => Kostenmodelle sind hochkomplex
+# Es gibt weitere Komplikationen:<br>
+# Was passiert mit den Kosten, wenn man bestimmte Operationen parallel ausführen kann? Die Kosten aller Operatoren können somit nicht addiert werden.<br>
+# Oder der Hauptspeicher bietet Möglichkeiten wie Pufferung und Caching. Damit kann man die Kosten für bestimmte Operatoren noch weiter verringern. <br>
+# Die I/O Kosten (Lesen einer Seite) könnten auch gegenüber den CPU Kosten einen ganz anderen Faktor spielen.<br>
+# Vielleicht hat man mehrere Nutzer (Multiuser), die gleichzeitig arbeiten und man möchte so viele Nutzer wie möglich zu behandeln. Vielleicht möchte man auch die Antwortzeit der Nutzer verkleinern und müsste anders reagieren. <br>
+# <br>
+# Die Kostenmodelle sind also hochkomplex. In diesem Bereich wird immernoch sehr viel Forschung betrieben. Der beste Optimierer wurde bis heute noch nicht gefunden. 
+# 
+# 
+# 
 # 
 # ### Ausblick auf DBS II
-# - Diverse Algorithmen für einzelne Operatoren
-# - Insbesondere Join und Sortierung
-# - Kostenmodelle/Kostenschätzung genauer
+# In DBS II geht es mit folgenden Themen weiter: 
+# - diverse Algorithmen für einzelne Operatoren, insbesondere bei Joins und Sortierungen. 
+# - Kostenmodelle/Kostenschätzung
 # - Optimale Joinreihenfolge: Dynamische Programmierung
-# - Physische Anfragepläne / Pipelining
+# - Physische Anfragepläne und Pipelining
 # 
+# Hier sieht man Tabellen mit denen man schauen kann, welche Pläne für welche Kombinationen gut funktionieren. Alle Punkte in diesen Diagrammen sind Pläne, die infrage kommen, für bestimmte Konstellationen von diesen Tabellen. 
 # ![](ausblick.jpg)
 
 # ## Multiple Choice
