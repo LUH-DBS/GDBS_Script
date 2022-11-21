@@ -8,33 +8,31 @@
 # Die Anfragen, die man an eine Datenbank stellt, sind deklarativ. Solche Anfragen kann man in SQL, aber auch in der Relationalen Algebra formulieren. 
 # Mittels der Anfragen sagt man somit was man will, aber nicht wie man das bekommt, was man will. 
 # Das Datenbanksystem findet von selbst heraus, wie es an das kommt, was man möchte. 
-# Angenommen die Anfragen wären nicht deklarativ, dann müsste man beispielsweise ein Programm (in Python) schreiben, dass eine CSV-Datei durchgeht. 
-# Stattdessen sagt man (deklarativ): Gebe alle Filme aus, die im Jahr 1996 produziert werden. 
-# <br><br>
-# Dafür müssen die Anfragen in eine ausführbare (prozedurale) Form transformiert werden. Ein Ziel hierbei ist es, einen „QEP“ (prozeduraler Query Execution Plan) zu erhalten. Wichtig zu beachten ist die Effizienz des Programms. Es soll zum Einem schnell sein, aber zum Anderen auch wenige Ressourcen verbrauchen (CPU, I/O, RAM, Bandbreite). All das wirkt sich stark auf den Energieverbrauch aus. 
-# <br><br><br>
+# Angenommen die Anfragen wären nicht deklarativ, dann müsste man ein Programm schreiben, dass beispielsweise erst eine CSV-Datei durchgeht. 
+# Stattdessen "sagt" man (deklarativ): Gebe alle Filme aus, die im Jahr 1996 produziert werden. <br>
+# <br>
+# Dafür müssen die Anfragen in eine ausführbare (prozedurale) Form transformiert werden. Ein Ziel hierbei ist es, einen „QEP“ (prozeduraler Query Execution Plan) zu erhalten. Wichtig zu beachten ist die Effizienz des Programms. Es soll zum Einem schnell sein, aber zum Anderen auch wenige Ressourcen verbrauchen (CPU, I/O, RAM, Bandbreite), denn es wirkt sich stark auf den Energieverbrauch aus. <br>
+# <br>
+# <br>
 # 
 # **Ablauf der Anfragebearbeitung**<br><br>
 # Zunächst hat man eine Anfrage der Form: <br>
 # SELECT * FROM x WHERE ...;
 # 1. Parsing:<br>
-# Eine solche Anfrage wird zunächst mit Blick auf die Syntax geparst. Danach werden die Elemente auf korrekte Semantik überprüft. Anschließend wird ein Parsebaum erstellt. Es wird also herausgefunden auf welche Operationselemente die Anfrage abgebildet wird. 
-# <br><br>
-# 2. Wahl des logischen Anfrageplans:<br>
-# Im zweitem Schritt wird ein logischer Anfrageplan ausgewählt.
-# Es ist in der Regel ein Baum mit logischen Operatoren.<br>
-# Potentiell gibt es exponentiell viele Pläne, die man anhand der Elemente, die man in der Anfrage hat, erstellen kann. Natürlich lassen sich bestimme Kombinationen nicht darstellen. Das Grundproblem ist auch NP-Vollständig.
+# Eine solche Anfrage wird zunächst mit Blick auf die Syntax geparst. Anschließend werden die Elemente auf korrekte Semantik überprüft und ein Parsebaum erstellt. Es wird herausgefunden auf welche Operationselemente die Anfrage abgebildet wird. <br>
 # <br>
-# Unter den verschiedenen Plänen muss nun der optimale Plan ausgewählt werden. 
-# Dabei gibt es noch verschiedene Optimierungsverfahren, die angewandt werden können.<br>
+# 2. Wahl des logischen Anfrageplans:<br>
+# Im zweitem Schritt wird ein logischer Anfrageplan ausgewählt. In der Regel ist es ein Baum mit logischen Operatoren.<br>
+# Es gibt exponentiell viele Pläne, die man anhand der Elemente, die man in der Anfrage hat, erstellen kann. Natürlich lassen sich bestimme Kombinationen nicht darstellen. Das Grundproblem ist auch NP-Vollständig.<br>
+# Unter den verschiedenen Plänen muss der optimale Plan ausgewählt werden. Dabei gibt es verschiedene Optimierungsverfahren, die angewandt werden können.<br>
 # Mittels der logischen Optimierung können Operatoren im Plan hin- und hergeschoben werden.
-# Weitere Optimierungen können auch mit regelbasierten und kostenbasierten Optimierern durchgeführt werden. Diese basieren auf den Kosten der jeweiligen Operationen in den Anfragen.
-# <br><br>
+# Weitere Optimierungen können auch mit regelbasierten und kostenbasierten Optimierern durchgeführt werden. Diese basieren auf den Kosten der jeweiligen Operationen der Anfragen.<br>
+# <br>
 # 3. Wahl des physischen Anfrageplans:<br>
-# Für jede Operation, die momentan noch in deklarativer Form ist, muss nun eine Prozedur bzw. ein Programm mit physischen Operatoren ausgewählt werden. Dies sind unter anderem die Algorithmen, die Scan Operatoren oder auch die JOIN-Implementierungen. 
-# <br>  
-# Bei der Wahl des optimalen Plans können auch noch physische Optimierungen angewandt werden.
-# <br><br>
+# Für jede Operation, die momentan noch in deklarativer Form ist, muss nun eine Prozedur bzw. ein Programm mit physischen Operatoren ausgewählt werden. Dies sind unter anderem Algorithmen, Scan Operatoren oder auch JOIN-Implementierungen. <br> 
+# Hierbei können physische Optimierungen angewandt werden.<br>
+# <br>
+# 
 # Am Ende wird der ausgewählte Anfrageplan ausgeführt. 
 # 
 # ![title](ablauf_anfragebearbeitung.jpg)
@@ -50,10 +48,10 @@
 #    - Syntaxzeichen
 #    - Operatoren
 #    
-# Bei Syntaktischen Kategorien können Teilausdrücken einer Anfrage Namen gegeben werden. Die Teilausdrücke können also zu Kategorien zusammengefasst werden. Beispielsweise bei einer VIEW.  
+# Bei Syntaktischen Kategorien können Teilausdrücke einer Anfrage Namen gegeben werden. Die Teilausdrücke können also zu Kategorien zusammengefasst werden. Beispielsweise bei einer VIEW.  
 # <br>
 # ### Eine Grammatik für einen Teil von SQL
-# Die Anfragen unterliegen einer Grammatik (wie man sie aus der theoretischen Informatik kennt). Die Anfragen bestehen zudem immer aus einer Struktur. Hier in der Form von "SELECT FROM WHERE", kurz SFW. Es können keine Anfragen formuliert werden, die nicht der Grammatik entsprechen.<br>
+# Die Anfragen unterliegen einer Grammatik (wie man sie aus der theoretischen Informatik kennt). Sie bestehen aus einer Struktur der Form "SELECT FROM WHERE", kurz SFW. Es können keine Anfragen formuliert werden, die nicht der Grammatik entsprechen.<br>
 # - Anfragen:
 # 
 #         - <Anfrage> :: = <SFW>
@@ -62,7 +60,7 @@
 # 
 # 
 # - SFWs:<br>
-# Die SFWs werden wie folgt aufgebaut, es fehlen Gruppierungen, Sortierungen etc.:
+#     Die SFWs werden wie folgt aufgebaut, es fehlen Gruppierungen, Sortierungen etc.:
 # 
 #         - <SFW> ::= SELECT <SelListe> FROM <FromListe> WHERE <Bedingung>
 # 
@@ -73,14 +71,14 @@
 #         - <SelListe> ::= <Attribut>, <SelListe>
 #         - <SelListe> ::= <Attribut>
 #     
-#     Die FromListe ergibt aus einer Relation oder aus einer Relation mit einer weitern FromListe.
+#     Die FromListe ergibt sich aus einer Relation oder aus einer Relation mit einer weiteren FromListe.
 #         
 #         - <FromListe> ::= <Relation>, <FromListe>
 #         - <FromListe> ::= <Relation>
 # 
 # 
 # - Bedingungen (Beispiele):<br>
-#     Bedingungen können Verknüpfung bzw. Kombinationen von anderen Bedingungen sein. Verknüpft werden können sie beispielsweise mit AND oder auch OR:
+#     Bedingungen können Verknüpfungen bzw. Kombinationen von anderen Bedingungen sein. Verknüpft werden können sie beispielsweise mit AND oder auch mit OR:
 #     
 #         - <Bedingung> ::= <Bedingung> AND <Bedingung>
 #  
@@ -92,7 +90,8 @@
 #         
 # 
 # - Tupel, Attribute, Relationen und Muster:<br>
-# Die Inhalte von Tupeln ... <Tupel>, <Attribut>, <Relation>, <Muster> sind nicht durch grammatische Regel definiert. Entweder sie existieren oder sie existieren nicht. Angenommen man wählt eine Relation aus, die nicht existiert, dann wird von der Datenbank zurückgegeben, dass es diese Relation nicht gibt. 
+#     Die Inhalte von Tupeln, Attributen, Relationen und Mustern sind nicht durch grammatische Regeln definiert. Entweder sie existieren oder sie existieren nicht. <br>
+#     Angenommen man wählt eine Relation aus, die nicht existiert. Die Anfrage kann nicht korrekt ausgeführt werden und die Datenbank gibt zurück, dass es diese Relation nicht gibt. 
 # <br><br>
 # Die vollständige Grammatik kann man z.B. unter http://docs.openlinksw.com/virtuoso/GRAMMAR.html finden.
 # 
@@ -100,8 +99,8 @@
 # 
 # ![](parsebaum.jpg)
 #     
-# In diesem Bild sieht man den Aufbau eines Parsebaums, der anhand der vorherigen SQL-Anfrage erstellt wurde. Dabei besteht die Anfrage aus SFW. Dieses wiederrum kann unterteilt werden in SELECT, usw. <br>
-# Alle Konstanten und Relationsnamen lassen sich in den Blattstrukturen wiederfinden.
+# In diesem Bild sieht man den Aufbau eines Parsebaums, der anhand der vorherigen SQL-Anfrage erstellt wurde. Dabei besteht die Anfrage aus einem SFW. Das SFW kann wiederrum unterteilt werden in SELECT, SelListe, ... <br>
+# Alle Konstanten und Relationen lassen sich in den Blattstrukturen wiederfinden.
 # 
 # 
 # ### Prüfung der Semantik
@@ -117,35 +116,34 @@
 #                                                                 
 # ![](operatorbaum.jpg)
 # 
-# Am Ende vom vorherigen Schritt erhält man einen Parsebaum. Dieser wird jetzt in einen Operatorbaum umgewandelt. Dargestellt werden kann der Operatorbaum mittels Relationaler Algebra. Dabei entspricht das SELECT einer Projektion und das WHERE einer Selektion. Somit haben wir aus den Schlüsselwörtern konkrete Operatoren bekommen, die nun deutlich besser sichtbar sind.Man weiß nun auch, dass spielt_in und Schauspieler durch ein Kreuzprodukt kombiniert werden.  Diese beiden Relationen sind der Input des Kreuzprodukts. Auf dem Output findet dananch eine Selektion statt und auf dessen Output letztendlich wieder eine Projektion. 
+# Am Ende vom vorherigen Schritt erhält man einen Parsebaum. Dieser wird jetzt in einen Operatorbaum umgewandelt. Dargestellt werden kann der Operatorbaum mittels Relationaler Algebra. Dabei entspricht das SELECT einer Projektion und das WHERE einer Selektion. Aus den Schlüsselwörtern hat man nun konkrete Operatoren bekommen, die nun deutlich besser sichtbar sind. Man weiß jetzt auch, dass spielt_in und Schauspieler durch ein Kreuzprodukt kombiniert werden. Diese beiden Relationen sind der Input des Kreuzprodukts. Auf dem Output findet dananch eine Selektion statt und auf dessen Output letztendlich eine Projektion. 
 
 # ## Transformationsregeln der RA
 # Zuvor haben wir gesehen, dass es für jede Anfrage verschiedene Pläne gibt. Das bedeutet also auch, dass es verschiedene Operatorenbäume gibt. Somit kann man also verschiedene Anfragen ineinander transformieren. Dies wird anhand der Transformationseregeln der Relationalen Algebra dargestellt. 
 # ### Anfragebearbeitung – Transformationsregeln
-# Die Transformation der internen Darstellung soll erfolgen ohne die Semantik zu verändern. Damit ist gemeint, dass die Operatorenbäume nach der Transformation immernoch die gleiche Anfrage wie vor der Transformation beantworten können bzw. es kommt immernoch das gleiche Ergebnis heraus.<br>
-# Generell bei einer Transformation das Ziel eine effizientere Ausführung zu finden. Die Operatoren sollen möglichst kleine Zwischenergebnisse liefern, sodass der nächste Operator als Input auch auf möglichst kleinen Mengen von Tupeln arbeiten kann.
+# Die Transformation der internen Darstellung soll ohne eine Änderung der Semantik erfolgen. Damit ist gemeint, dass die Operatorenbäume nach der Transformation immernoch die gleiche Anfrage wie vor der Transformation beantworten können bzw. es kommt immernoch das gleiche Ergebnis heraus.<br>
+# Das Ziel einer Transformation ist es eine effizientere Ausführung zu finden. Die Operatoren sollen möglichst kleine Zwischenergebnisse liefern. Der nächste Operator soll als Input möglichst kleine Mengen von Tupeln erhalten auf denen er arbeiten kann. 
 # <br><br>
 # Um diese Transformation zu vollführen, müssen zunächst äquivalente Ausdrücke identifiziert werden. 
 # Zwei Ausdrücke der relationalen Algebra gelten als äquivalent, falls sie gleiche Operanden (= Relationen) besitzen und stets die gleiche Antwortrelation zurückgeben.
-# 'Stets' bedeutet hierbei, dass es nicht per Zufall die gleichen Ergebnisse bei mehreren Anfragen sind. Es müssen immer die gleichen Ergbnisse herauskommen für jede mögliche Instanz der Datenbank.
+# 'Stets' bedeutet hierbei, dass nicht per Zufall die gleichen Ergebnisse bei mehreren Anfragen herauskommen. Für jede mögliche Instanz der Datenbank, muss man das selbe Ergebnis erhalten.
 # <br>
 # 
 # 
 # ### Anfragebearbeitung – Beispiel
 # 
-# Beispielsweise will man hier den Nachnamen projizieren. Dafür erstellt man das Kreuzprodukt zwischen den Relationen 'Mitarbeiter' und 'Projekte'. Darauf selektiert man alle Paare bei denen die Mitarbeiter-ID gleich der Projekt-ID sind und zusätzlich sortiert man die Projekte aus, die ein gleiches oder größeres Budget als 40000 haben.  
+# In diesem Beispiel möchte man den Nachnamen projizieren. Dafür erstellt man das Kreuzprodukt zwischen den Relationen 'Mitarbeiter' und 'Projekte'. Darauf selektiert man alle Paare bei denen die Mitarbeiter-ID gleich der Projekt-ID ist. Die Projekte, die ein gleiches oder größeres Budget als 40000 haben, werden aussortiert.  
 # 
 # ![](anfragebearbeitung_bsp1.jpg)
 # 
-# Nun kann man sich überlegen wo man noch früher Tupel herausfiltern kann. Eine Möglichkeit wäre es die Selektion mit dem Kreuzprodukt zu einem Join zu kombinieren. 
-# Eine weitere Möglichkeit wäre es die übrig gebliebenen Selektion früher durchzuführen. Noch bevor man das Kreuzprodukt der beiden Relationen bildet, kann man die Selektion 'p.Budget < 40000' auf der 'projekt' Relation ausführen. Nun kann man erwarten, dass der nachfolgende Join auf einer kleineren Tupelmenge ausgeführt wird. 
+# Nun kann man sich überlegen, wo man noch früher Tupel herausfiltern kann. Eine Möglichkeit wäre es die Selektion mit dem Kreuzprodukt zu einem Join zu kombinieren. 
+# Eine Andere wäre es, die übrig gebliebene Selektion früher durchzuführen. Noch bevor man das Kreuzprodukt der beiden Relationen bildet, kann man die Selektion 'p.Budget < 40000' auf der 'projekt'-Relation ausführen. Man erwartet, dass der nachfolgende Join auf einer kleineren Tupelmenge ausgeführt wird. 
 # 
 # ![](anfragebearbeitung_bsp2.jpg)
 # 
 # ### Kommutativität und Assoziativität
 # 
-# Die Kommutativität und Assoziativität gelten insbesondere für Mengenoperationen. 
-# <br><br>
+# Die Kommutativität und Assoziativität gelten insbesondere für Mengenoperationen. <br>
 # - $\cup$ ist kommutativ und assoziativ
 #     <br>
 #     R $\cup$ S = S $\cup$ R
@@ -164,7 +162,7 @@
 #     <br>
 #     (R ⋈ S) ⋈ T = R ⋈ (S ⋈ T)
 #     
-#     <br>Bei einem Join kann es passieren, dass die Spaltenreihenfolge anders ist, aber diese kann nachträglich noch geändert werden (bspw. mit einer Projektion). 
+#     <br>Bei einem Join kann es passieren, dass die Spaltenreihenfolge anders ist. Sie kann nachträglich noch geändert werden (bspw. mit einer Projektion). 
 #     
 # Alle diese Regeln gelten jeweils für Mengen und für Multimengen. Zudem können die Ausdrücke in beide Richtungen verwendet werden.
 # 
@@ -178,11 +176,11 @@
 #     
 #         Wenn man eine Selektion mit einem OR hat, kann man davon die Vereinigung bilden. 
 #         Dabei kommt es aber zu einem Problem bei Multimengen: 
-#         c1 or c2 bedeutet, gebe mir jedes Tupel egal ob Bedingung c1, c2 oder beide gelten. Man würde bei der Vereinigung jetzt aber eine andere Anzahl an Tupeln bekommen. Bei den Fällen bei denen beide Bedingungen gelten, würde es das Tupel doppelt geben. 
+#         c1 or c2 bedeutet, gebe mir jedes Tupel egal ob Bedingung c1, c2 oder beide gelten. Man würde bei der Vereinigung eine andere Anzahl an Tupeln bekommen. Bei den Fällen bei denen beide Bedingungen gelten, würde es das Tupel doppelt geben. 
 # 
 #     - $\sigma_{c1}(\sigma_{c2}(R)) = \sigma_{c2}(\sigma_{c1}(R))$
 #     
-#         Die äußere Bedigung kann mit der inneren Bedingung vertauscht werden. Dabei kann man überlegen welche Bedingung evenutell günstiger ist zuerst auszuführen. 
+#         Die äußere Bedigung kann mit der inneren Bedingung vertauscht werden. Dabei kann man sich überlegen welche Bedingung günstiger ist und sie zuerst auszuführen. 
 #      
 #     - $\sigma_{c}(R \Phi S) \equiv (\sigma_{c} (R)) \Phi (\sigma_{c} (S))$
 #         - $\Phi \in \{\cup, \cap , - , ⋈\}$
@@ -191,25 +189,23 @@
 #         - Falls sich c nur auf Attribute in R bezieht, kann man es so umformen, sodass sich die Selektion nur auf die Relation R bezieht. 
 # 
 # - Projektion <br>
-#     - $\pi_{L}(R ⋈ S) = \pi_{L}(\pi_{M}(R) ⋈ \pi_{N}(S))$
-#     
-#         <br>Eine Projektion einer Spalte auf einem Join zweier Relationen kann einer Projektion einer Spalte auf einem Join zweier Projektionen auf jeweils einer Relation entsprechen. 
-#     - $\pi_{L}(R ⋈_{C} S) = \pi{L}(\pi_{M}(R) ⋈_{C} \pi_{N}(S))$
-#     
-#         <br>Genauso kann nun auch bei einem Join mit Bedingung und einem Kreuzprodukt vorgegangen werden.
+#     - $\pi_{L}(R ⋈ S) = \pi_{L}(\pi_{M}(R) ⋈ \pi_{N}(S))$<br>
+#         Eine Projektion einer Spalte auf einem Join zweier Relationen kann einer Projektion einer Spalte auf einem Join zweier Projektionen auf jeweils einer Relation entsprechen. 
+#     - $\pi_{L}(R ⋈_{C} S) = \pi{L}(\pi_{M}(R) ⋈_{C} \pi_{N}(S))$<br>
+#         Genauso kann nun auch bei einem Join mit Bedingung und einem Kreuzprodukt vorgegangen werden.
 #     - $\pi_{L}(R \times S) = \pi_{L}(\pi_{M}(R) \times \pi_{N}(S))$
 #     
-#     - $\pi_{L}(\sigma_{C}(R)) = \pi_{L}(\sigma_{C}(\pi_{M}(R)))$
-#     
-#        <br>Hierbei kann eine Projektion noch vor die Selektion geschoben werden. Wichtig dabei ist, dass die neue Projektion ($\pi_{M}$) L enthält. Es können auch weitere Projektionen hinzugefügt werden. Solange sie L enthalten, verändert sich nichts. 
+#     - $\pi_{L}(\sigma_{C}(R)) = \pi_{L}(\sigma_{C}(\pi_{M}(R)))$<br>
+#         Hierbei kann eine Projektion noch vor die Selektion geschoben werden. Wichtig dabei ist, dass die neue Projektion ($\pi_{M}$) L enthält. Es können auch weitere Projektionen hinzugefügt werden. Solange sie L enthalten, verändert sich nichts. 
 # 
 
 # ## Optimierung
 # 
 # ### Anfragebearbeitung - Optimierung
-# Bei der Anfragebearbearbeitung wird eine regelbasierte Optimierung durchgeführt. Dabei schreibt ein fester Regelsatz Transformationen vor. Man geht davon aus, dass diese Transformationen die Anfrage schneller bearbeiten. Die Prioritäten unter den Regeln werden durch Heuristiken bestimmt. Es ist nach Erfahrung der beste Weg, dies muss aber nicht immer der Fall sein. Ein Beispiel einer solchen Optimierung ist das 'pushen' einer Selektion nach unten im Anfragebaum. 
+# Bei der Anfragebearbearbeitung wird eine regelbasierte Optimierung durchgeführt. Dabei schreibt ein fester Regelsatz Transformationen vor. Die Transformationen sollen eine Anfrage schneller bearbeiten. <br>
+# Die Prioritäten unter den Regeln werden durch Heuristiken bestimmt. Es ist nach Erfahrung der beste Weg, es muss aber nicht immer der Fall sein. Ein Beispiel einer solchen Optimierung ist das 'pushen' einer Selektion nach unten im Anfragebaum. 
 # <br><br>
-# Außerdem wird noch eine kostenbasierte Optimierung angewandt. Für jede Relation kann man ein Kostenmodell aufstellen. Das Kostenmodell basiert dabei auf Statistiken, die das Datenbankmodell gesammelt hat. Nach dem Aufstellen des Kostenmodells kann mit diesem ein optimaler Plan bestimmt werden, bei dem die Kosten minimal sind. Dazu kann auch die optimalen Joinreihenfolge bestimmt werden. Transformationen helfen hierbei die Kosten zu verringern.
+# Außerdem wird noch eine kostenbasierte Optimierung angewandt. Für jede Relation kann man ein Kostenmodell aufstellen. Das Kostenmodell basiert dabei auf Statistiken, die das Datenbankmodell gesammelt hat. Nach dem Aufstellen des Kostenmodells kann mit diesem ein optimaler Plan bestimmt werden, bei dem die Kosten minimal sind. Dazu kann auch die optimale Joinreihenfolge bestimmt werden. Transformationen helfen hierbei die Kosten zu verringern.
 # <br><br>
 # Im Allgemeinen wird nicht die optimale Auswertungsstrategie gesucht, sondern eine einigermaßen effiziente Variante. Sie soll uns dabei helfen den schlimmsten Fall zu verhindern -> Avoid the worst case!
 # 
@@ -226,29 +222,29 @@
 # Daraus wählt man für jede Operation wieder die (hoffentlich) beste Implementierung aus. 
 # <br><br>
 # Es kann nun sein, dass die logische von der physischen Optimierung abhängt.
-# Beispielsweise kann man sagen, dass ein bestimmter Plan besser funktioniert, wenn man einen Nested-Loop-Join durchführt. Also wenn man die eine Schleife innerhalb der anderen hat, kann man in der einen Schleifen bereits etwas Anderes mitprüfen. Das würde einem bestimmten logischen Plan besser entsprechen. 
+# Beispielsweise kann man sagen, dass ein bestimmter Plan besser funktioniert, wenn man einen Nested-Loop-Join durchführt. Wenn man eine Schleife innerhalb einer anderen hat, kann man in der einen Schleifen bereits etwas Anderes mitprüfen. Das würde einem bestimmten logischen Plan besser entsprechen. 
 # 
 # 
 # ### Logische Optimierung – regelbasiert
 # Die Grundsätze der logischen Optimierung lauten wie folgt:
-# - Selektionen so weit wie möglich im Baum nach unten schieben.
+# - Selektionen sollen so weit wie möglich im Baum nach unten geschoben werden.
 # - Selektionen mit AND können aufgeteilt und separat verschoben werden.
-# - Projektionen so weit wie möglich im Baum nach unten schieben,
+# - Projektionen sollen so weit wie möglich im Baum nach unten geschoben werden,
 # - bzw. neue Projektionen können eingefügt werden.
 #     <br>Bei dem nach unten Verschieben von Selektionen und Projektionen gibt es einen Unterschied: Bei dem Verschieben von Selektionen geht es darum die Menge an Tupeln zu verringern. Bei Projektionen versucht man die Anzahl der Spalten zu verringern. <br>
-#     Beides ist sinnvoll, da man davon ausgehen muss, dass bei riesigen Datensätzen eine Spalte unter Anderem mehrere Gigabyte groß sein kann. Wenn man solche Spalten nicht unbedingt mehr mitschleppen muss, macht man das Programm effizienter. 
-# - Duplikateliminierung kann manchmal entfernt werden oder verschoben werden.
-# - Kreuzprodukte mit geeigneten Selektionen zu einem Join zusammenfassen. Man möchte möglichst vermeiden Kreuzprodukte durchzuführen, stattdessen kann man eher Joins mit effizienteren Implementierungen durchführen. 
+#     Beides ist sinnvoll, da man davon ausgehen muss, dass bei riesigen Datensätzen eine Spalte mehrere Gigabyte groß sein kann. Wenn man solche Spalten nicht unbedingt mehr mitschleppen muss, macht man das Programm effizienter. 
+# - Duplikateliminierung kann manchmal entfernt oder verschoben werden.
+# - Kreuzprodukte sollen mit geeigneten Selektionen zu einem Join zusammengefasst werden. Kreuzprodukte sollen möglichst vermieden werden, stattdessen können Joins mit effizienteren Implementierungen durchgeführt werden. 
 # 
 # 
-# In dieser Vorlesung geht es noch nicht um die Suche nach der optimalen Joinreihenfolge. Diese Thematik wird erst in aufbauenden Veranstaltungen genauer betrachtet. 
+# In dieser Vorlesung geht es nicht um die Suche nach der optimalen Joinreihenfolge. Diese Thematik wird erst in aufbauenden Veranstaltungen genauer betrachtet. 
 # <br><br>
 # 
 # ### Anwendung der Transformationsregeln
 # 
 # Die folgende Anfrage ist von Prof. Alfons Kemper (TU München). 
 # Bei der Anfrage sucht man eindeutig alle Semester in denen für Studenten, hören, Vorlesungen und Professoren folgenden Bedingungen gelten: 
-# Der Professor heißt mit Namen Sokrates. Dieser Professor soll Vorlesungen halten und diese sollen von Studierenden gehört werden. 
+# Der Professor heißt mit Namen 'Sokrates'. Dieser Professor soll Vorlesungen halten und diese sollen von Studierenden gehört werden. 
 # Also man möchte wissen: In welchen Semestern sind die Studierenden, die Vorlesungen bei Sokrates hören?
 # 
 # ```
@@ -262,34 +258,34 @@
 # and h.MatrNr = s.MatrNr
 # ```
 # 
-# Zunächst hat man eine Darstellung bei der es ein Kreuzprodukt aller Relationen gibt. Dann kommen die aneinandergereihten Selektionsoperatoren. Man kann direkt merken, dass dies nicht die logisch effizienteste Variante ist. 
+# Zunächst hat man eine Darstellung bei der es ein Kreuzprodukt aller Relationen gibt. Dann kommen die aneinandergereihten Selektionsoperatoren. Man merkt sofort, es ist nicht die logisch effizienteste Variante. 
 # 
 # ![](transformationsregeln.jpg)
 # 
 # ### Aufspalten der Selektionsprädikate
 # 
-# Das erste was man macht, ist das Aufspalten der Selektion. Dadurch hat man alles als einzelne Operation. Nun kann man für den nächsten Schritt überlegen, wo es effizienter wäre die Selektionen zu platzieren. 
+# Das Erste was man macht, ist das Aufspalten der Selektion. Dadurch erhält man alles als einzelne Operationen. Im nächsten Schritt wird sich eine effizientere Platzierung der Selektionen überlegt. 
 # 
 # ![](aufspalten_selektionspraedikate.jpg)
 # 
 # ### Verschieben der Selektionsprädikate „Pushing Selections“
 # 
-# Um die Anzahl der Tupel zu verringern schiebt man die Selektionen weiter nach unten.
-# Um die Anzahl der Studierenden, die eine Vorlesung hören, zu verringern hat man direkt nach dem Kreuzprodukt zwischen den beiden Relationen 'studierende' und 'hören' die Selektion platziert.
-# Die kleinere Menge an Tupeln als output wird dann wieder wie zuvor über das Kreuzprodukt mit 'Vorlesungen' kombiniert. Direkt danach reduziert man mit einer Selektion die Anzahl der Tupel, bevor man ein weiteres Kreuzprodukt bildet. 
-# Ansonsten hat man direkt vor die Professorentabelle die Selektion mit der Bedingung, dass der Name des Professors Sokrates sein soll, geschoben. Somit erhält man als Ouptut nach der Selektion nur ein Tupel und man muss nicht mehr alle Professorentupel mitführen. 
+# Um die Anzahl der Tupel zu verringern, schiebt man die Selektionen weiter nach unten.
+# Das ist der Fall bei den Studierenden, die eine Vorlesung hören. Um deren Anzahl zu verringern wird nach dem Kreuzprodukt zwischen den beiden Relationen 'studierende' und 'hören' die Selektion platziert.
+# Die kleinere Menge an Tupeln als Output wird dann wie zuvor über das Kreuzprodukt mit 'Vorlesungen' kombiniert. Mit einer Selektion wird die Anzahl der Tupel reduziert, bevor man ein weiteres Kreuzprodukt bildet. 
+# Ansonsten hat man direkt vor die Professorentabelle die Selektion mit der Bedingung, dass der Name des Professors Sokrates sein soll, geschoben. Somit erhält man als Ouptut nach der Selektion nur ein Tupel und muss nicht mehr alle Professorentupel mitführen. 
 # 
 # ![](verschieben_selektionspraedikate.jpg)
 # 
 # ### Zusammenfassung von Selektionen und Kreuzprodukten zu Joins
 # 
-# Nun kann man die Selektionen mit den Kreuzprodukten zusammenfassen und durch effizienter implementierte Joins austauschen. 
+# Die Selektionen werden mit den Kreuzprodukten zusammengefasst und durch effizienter implementierte Joins ausgetauscht. 
 # 
 # ![](zusammenfassen_selektionspraedikate.jpg)
 # 
 # ### Optimierung der Joinreihenfolge: Kommutativität und Assoziativität ausnutzen
 # 
-# Nun sollen Kommutativität und Assoziativität ausgenutzt werden, um die Joinreihenfolge zu optimieren. Das bedeutet, man möchte die Tupelmenge, die man erzeugt, möglichst gering halten. 
+# Die Kommutativität und Assoziativität werden jetzt ausgenutzt, um die Joinreihenfolge zu optimieren. Das bedeutet, man möchte die Tupelmenge, die man erzeugt, möglichst gering halten. 
 # Daher verschiebt man die Selektion des Professorennames nach ganz unten. Grund hierfür ist, dass man aus dieser Selektion nur ein Tupel erhält, mit dem man weiterarbeiten muss. Danach vergrößert sich die Tupelmenge nur minimal um die Vorlesungen, die der Professor hält, usw. 
 # Ohne diese Optimierung startet man mit der gesamten Menge an Studierenden, die diese Vorlesung hören. Nun muss man diese große Tupelmenge als Input für die nächsten Operationen mitnehmen, was vermeidbare Kosten verursacht. 
 # 
