@@ -813,6 +813,8 @@
 # <br>
 # Konfliktserialisierbar? Der Schedule ist **nicht** konfliktserialisierbar, denn in unserem zugehörigen Konfliktgraph gibt es eine Kante von T1 zu T2 und von T2 zu T1.
 # <br><br>
+# Der folgende Schedule gleicht im Grunde dem obigen. Es wird lediglich zusätzlich noch dargestellt, was für Werte die lokalen Varialen haben. Genau wie der Schedule oben, ist dieser Schedule legal, jedoch nicht serialisierbar und auch nicht konfliktserialisierbar.
+# 
 # 
 # |T1|T3|A|B|
 # |---|---|---|---|
@@ -830,33 +832,31 @@
 # |b1 := b1 + 100|&#xfeff;|150|
 # |write(B,b1); u(B)|&#xfeff;|&#xfeff;|
 # 
-# <br>
-# Legal? Serialisierbar? Konfliktserialisierbar?
+# 
 
 # ### Freigabe durch Scheduler
-# ■ Scheduler speichert Sperrinformation in Sperrtabelle
+# Um das Problem aus dem vorherigen Kapitel zu lösen, ist dasnn alle Sperren vor den Entsperren ausgeführt werden. 
 # <br>
-# □ Sperren(Element, Transaktion)
 # <br>
-# □ Anfragen, INSERT, DELETE
-# <br>
-# □ Vergabe von Sperren nur wenn keine andere Sperre existiert
-# <br>
-# □ Alte Transaktionen
+# Unsere alte Transaktionen:
 # <br>
 # – l1(A)r1(A)w1(A)u1(A)l1(B)r1(B)w1(B)u1(B)
 # <br>
 # – l2(A)r2(A)w2(A)u2(A)l2(B)r2(B)w2(B)u2(B)
-# <br>
-# □ Neue Transaktionen
+# <br><br>
+# In unseren neuen Transaktionen sind alle Sperren vor Entsperren:
 # <br>
 # – l1(A)r1(A)w1(A)l1(B)u1(A)r1(B)w1(B)u1(B)
 # <br>
 # – l2(A)r2(A)w2(A)l2(B)u2(A)r2(B)w2(B)u2(B)
 # <br>
-# – Konsistent?
-# 
+# <br>
+# Somit ist unser Schedule konsistent und legal.
+# <br><br>
+# Der Scheduler gibt Objektefrei und vergibt nur Sperren, wenn keine andere Sperre existiert. Die Sperrinformation werden von dem Scheduler in einer Sperrtabelle gespeichert.
+
 # ### Schedules mit Sperren
+# Im Vergleich zu dem Schedule oben wird hier erst B von T1 gesperrt und dann A entsperrt. Danach wird A von T3 gesperrt und es wird auf A geschrieben. T3 fordert nun die Sperre von B an, das wird jedoch abgelehnt, da B noch von T1 gesperrt wird. Anschließend schreibt T1 auf B und gibt diese frei und zuletzt kann T3 auf B schreiben. Dieser Schedule ist legal, da alle Sperren von Entsperren stattfinden. Dieser Schedule ist ebenfalls serilialisierbar und konfliktserialisierbar, da der zueghörige Konfliktgraph azyklisch ist.
 # 
 # |T1|T3|A|B|
 # |---|---|---|---|
@@ -875,22 +875,21 @@
 # |&#xfeff;|b2 := b2 * 2|&#xfeff;|250|
 # |&#xfeff;|write(B,b2); u(B)|&#xfeff;|&#xfeff;|
 # 
-# Legal? Serialisierbar? Konfliktserialisierbar? Zufall?
 # 
+
 # ### 2-Phasen Sperrprotokoll
-# ■ 2-Phase-Locking (2PL): Einfache Bedingung an Transaktionen garantiert Konfliktserialisierbarkeit.
+# 2-Phase-Locking (2PL) ist eine einfache Bedingung an **Transaktionen**, nicht an den Schedule, die  Konfliktserialisierbarkeit garantiert. Es besteht aus zwei Phasen:
+# - Phase 1: Sperrphase
 # <br>
-# □ Alle Sperranforderungen geschehen vor allen Sperrfreigaben
+# - Phase 2: Freigabephase
 # <br>
-# □ Die Phasen
-# <br>
-# – Phase 1: Sperrphase
-# <br>
-# – Phase 2: Freigabephase
-# <br>
-# □ Wichtig: Bedingung an Transaktionen, nicht an Schedule
-# 
+# So geschen alle Sperranforderungen vor allen Sperrfreigaben.
+
 # #### 2-Phasen Sperrprotokoll – Beispiel
+# <table>
+#     <tr><th>Schedule ohne 2-Phasen Sperrprotokoll </th><th>Schedule mit 2-Phasen Sperrprotokoll</th></tr>
+#     <td>
+#          
 # |T1|T3|A|B|
 # |---|---|---|---|
 # |&#xfeff;|&#xfeff;|25|25|
@@ -907,6 +906,10 @@
 # |b1 := b1 + 100|&#xfeff;|150|
 # |write(B,b1); u(B)|&#xfeff;|&#xfeff;|
 # 
+# 
+# </td>
+#     <td>
+# 
 # |T1|T3|A|B|
 # |---|---|---|---|
 # |&#xfeff;|&#xfeff;|25|25|
@@ -923,13 +926,20 @@
 # |&#xfeff;|l(B); u(A); read(B,b2)|&#xfeff;|&#xfeff;|
 # |&#xfeff;|b2 := b2 * 2|&#xfeff;|250|
 # |&#xfeff;|write(B,b2); u(B)|&#xfeff;|&#xfeff;|
+#        
+# </table>
 # 
 # 
+# 
+
 # #### Deadlocks unter 2PL möglich
-# ■ T1: l(A); r(A); A:=A+100; w(A); l(B); u(A); r(B); B:=B-100; w(B); u(B)
+# Leider sind unter 2PL nicht alle Probleme gelöst, denn ein 2PL-konformer Schedule kann immernoch Deadlocks hervorrufen, wie im unteren Schedule zu sehen ist.
+# <br><br>
+# - T1: l(A); r(A); A:=A+100; w(A); l(B); u(A); r(B); B:=B-100; w(B); u(B)
 # <br>
-# ■ T4: l(B); r(B); B:=B*2; w(B); l(A); u(B); r(A); A:=A*2; w(A); u(A)
-# 
+# - T4: l(B); r(B); B:=B\*2; w(B); l(A); u(B); r(A); A:=A\*2; w(A); u(A)
+# <br><br>
+# Zunächst sperrt T1 A und schreibt auf A. Danach sperrt T4 B und schreibt auf B. Folgend möchte T1 auf B schreiben, dies wird abgelehnt, da T4 B gesperrt hat. T4 möchte nun auch A schreiben, jedoch ist A noch von T1 besetzt. Nun haben wir ein Deadlock, denn beide Transaktionen warten auf die Freigaben des anderen. Eine mögliche Lösung ist das Einsetzten von Timeouts oder es können  „Waits-for“-Graph benutzt werden.
 # |T1|T4|A|B|
 # |---|---|---|---|
 # |&#xfeff;|&#xfeff;|25|25|
@@ -942,110 +952,73 @@
 # |l(B) – abgelehnt|&#xfeff;|&#xfeff;|&#xfeff;|
 # |&#xfeff;|l(A) – abgelehnt|&#xfeff;|&#xfeff;|
 # 
-# 
-# ■ Lösung 1: Timeouts
-# <br>
-# ■ Lösung 2: „Waits-for“-Graph zur Vermeidung von deadlocks
-# 
+
 # #### 2PL – Intuition
-# ■ Jede Transaktion führt sämtliche Aktionen in dem Augenblick aus, zu dem das erste Objekt freigegeben wird.
-# <br>
-# ■ Reihenfolge der Transaktionen des äquivalenten seriellen Schedules: Reihenfolge der ersten Freigaben von
-# Sperren
+# Die Intuition hinter 2Pl ist, dass in der Reihenfolge des äquivalenten seriellen Schedules, zuerst die Transaktion kommt, welche als Erstes Sperren freigibt. Jede Transaktion führt sämtliche Aktionen in dem Augenblick aus, zu dem das erste Objekt freigegeben wird.
 # <br>
 # ![title](sperrprotokolle_img/2pl_intuition.jpg)
-# 
+
 # #### 2PL – Beweis
-# ■ Idee: Verfahren zur Konvertierung eines beliebigen, legalen Schedule S aus konsistenten, 2PL Transaktionen in einen konfliktäquivalenten seriellen Schedule
+# Nun wollen wir dies auch beweisen. Die Idee ist, dass wir einen beliebigen, legalen Schedule S aus konsistenten, 2PL Transaktionen in einen konfliktäquivalenten seriellen Schedule konvertieren.
 # <br><br>
-# ■ Induktion über Anzahl der Transaktionen n
+# Wir führen eine Induktion über die Anzahl der Transaktionen n durch.
 # <br><br>
-# ■ n = 1: Schedule S ist bereits seriell
+# - n = 1: Schedule S ist bereits seriell
 # <br><br>
-# ■ n = n + 1:
-# <br>
-# □ S enthalte Transaktionen T1, T2, …, Tn.
-# <br>
-# □ Sei Ti die Transaktion mit der ersten Freigabe ui(X).
-# <br>
-# □ Behauptung: Es ist möglich, alle Aktionen der Transaktion an den Anfang des Schedules zu bewegen, ohne konfligierende Aktionen zu passieren.
-# <br>
-# □ Angenommen es gibt eine Schreibaktion wi(Y), die man nicht verschieben kann:
-# <br>
+# - n = n + 1:
+# Enthalte S die Transaktionen T1, T2, …, Tn.
+# <br><br>
+# Sei Ti die Transaktion mit der ersten Freigabe ui(X).
+# <br><br>
+# Wir behaupten: Es ist möglich, alle Aktionen der Transaktion an den Anfang des Schedules zu bewegen, ohne konfligierende Aktionen zu passieren.
+# <br><br>
+# Nun nehmen wir an, dass es eine Schreibaktion wi(Y) gibt, die man nicht verschieben kann:
+# <br><br>
 # – … wk(Y) … uk(Y) … li(Y) … wi(Y) …
-# <br>
-# □ Da Ti erste freigebenden Transaktion ist, gibt es ein ui(X) vor uk(Y):
-# <br>
+# <br><br>
+# Da Ti die erste freigebenden Transaktion ist, gibt es ein ui(X) vor uk(Y):
+# <br><br>
 # – … wk(Y) … ui(X) … uk(Y) … li(Y) … wi(Y) …
-# <br>
-# □ Analog für eine Leseaktion ri(Y)
-# <br>
-# □ Ti ist nicht 2PL
+# <br><br>
+# Dasselbe gilt analog für eine Leseaktion ri(Y).
+# <br><br>
+# Somit ist Ti nicht 2PL.
 
 # ## Sperren
+# In diesem Kapitel beschäftigen wir uns mit verschieden Sperrmodi.
 # 
 # ### Mehrere Sperrmodi
-# ■ Idee: Mehrere Arten von Sperren erhöhen die Flexibilität und verringern die Menge der abgewiesenen Sperren.
+# Die Idee hinter mehreren Arten von Sperren ist, dass so die Flexibilität erhöht wird und die Menge der abgewiesenen Sperren verringert wird.
 # <br>
-# □ Sperren obwohl nur gelesen wird, ist übertrieben
-# <br>
-# – Gewisse Sperre ist dennoch nötig
-# <br>
-# – Aber: Mehrere Transaktionen sollen gleichzeitig lesen können.
-# <br>
-# □ Schreibsperre
-# <br>
-# – Exclusive lock: xli(X)
-# <br>
-# – Erlaubt das Lesen und Schreiben durch Transaktion Ti
-# <br>
-# – Sperrt Zugriff aller anderen Transaktionen
-# <br>
-# □ Lesesperre
-# <br>
-# – Shared lock: sli(X)
-# <br>
-# – Erlaubt das Lesen für Transaktion Ti
-# <br>
-# – Sperrt Schreibzugriff für alle anderen Transaktionen
-# <br>
-# □ Kompatibilität
-# <br>
-# – Für ein Objekt darf es nur eine Schreibsperre oder mehrere Lesesperren geben.
-# <br>
-# □ Freigabe
-# <br>
-# – Unlock: ui(X) gibt alle Arten von Sperren frei
+# Z.B sind Sperren obwohl nur gelesen wird übertrieben.Eine gewisse Sperre ist dennoch nötig, aber mehrere Transaktionen sollen auch gleichzeitig lesen können. Für Leseoperationen können sogenannte shared locks si(X) angefordert werden. Diese erlaubt dann das Lesen für die Transaktion Ti und sperrt zudem auch den Schreibzugriff für alle anderen Transaktionen. Für Schreiboperationen wir eine exclusive lock xli(X) angefordert, welches das Lesen und Schreiben durch Transaktion Ti erlaubt. Um diese beiden Sperren aufzuheben wird wie schon bekannt einfach ein unlock ui(X) angefordert. Was die Kompabilität angeht, darf es für ein Objekt nur eine Schreibsperre oder mehrere Lesesperren geben.
+
+# ## Sperren
+# In diesem Kapitel beschäftigen wir uns mit verschieden Sperrmodi.
 # 
+# ### Mehrere Sperrmodi
+# Die Idee hinter mehreren Arten von Sperren ist, dass so die Flexibilität erhöht wird und die Menge der abgewiesenen Sperren verringert wird.
+# <br>
+# Z.B sind Sperren obwohl nur gelesen wird übertrieben.Eine gewisse Sperre ist dennoch nötig, aber mehrere Transaktionen sollen auch gleichzeitig lesen können. Für Leseoperationen können sogenannte shared locks si(X) angefordert werden. Diese erlaubt dann das Lesen für die Transaktion Ti und sperrt zudem auch den Schreibzugriff für alle anderen Transaktionen. Für Schreiboperationen wir eine exclusive lock xli(X) angefordert, welches das Lesen und Schreiben durch Transaktion Ti erlaubt. Um diese beiden Sperren aufzuheben wird wie schon bekannt einfach ein unlock ui(X) angefordert. Was die Kompabilität angeht, darf es für ein Objekt nur eine Schreibsperre oder mehrere Lesesperren geben.
+
 # ### Bedingungen
-# ■ Konsistenz von Transaktionen
-# <br>
-# □ Schreiben ohne Schreibsperre ist nicht erlaubt.
-# <br>
-# □ Lesen ohne irgendeine Sperre ist nicht erlaubt.
-# <br>
-# □ Jede Sperre muss irgendwann freigegeben werden.
+# Um die Konsistenz von Transaktionen zu wahren ist Schreiben ohne Schreibsperre und Lesen ohne irgendeine Sperre nicht erlaubt. Ebenso muss jede Sperre irgendwann freigegeben werden.
 # <br><br>
-# ■ 2PL von Transaktionen
-# <br>
-# □ Wie zuvor: Nach der ersten Freigabe dürfen keine Sperren mehr angefordert werden.
+# Mit den Speermodi hat sich bei der 2PL-Konformität von Transaktionen nichts geändert. Wie zuvor auch dürfen nach der ersten Freigabe keine Sperren mehr angefordert werden.
 # <br><br>
-# ■ Legalität von Schedules
-# <br>
-# □ Auf ein Objekt mit einer Schreibsperre darf es keine andere Sperre einer anderen Transaktion geben.
-# <br>
-# □ Auf ein Objekt kann es mehrere Lesesperren geben.
+# Was die Legalität von Schedules betrifft, darf es auf ein Objekt mit einer Schreibsperre keine andere Sperre einer anderen Transaktion geben und auf ein Objekt kann es mehrere Lesesperren geben. Die untere Tabelle stellt nocheinmal die Kompabilität der verschiedenen Sperren dar.
 # <br>
 # ![title](sperren_img/bedingungen.jpg)
-# 
+
 # #### Beispiel
-# ■ T1: sl1(A)r1(A)xl1(B)r1(B)w1(B)u1(A)u1(B)
+# T1 sperrt zunächst A mit einem sharedlock, T2 tut dem ebenso und sperrt zusätzlich noch B. Folgend fordert T1 ein exclusive lock an B, jedoch ist B mit einem shared lock von T2 besetzt, weshalb die Anfrage abgelehnt wird. T2 gibt A und B frei. Zuletzt wird von T1 erneut ein exclusive lock an B angefordert und T1 liest und schreibt auf B. Ganz zum Schluss werden die Sperren von T1 freigegeben. 
+# <br><br>
+# - T1: sl1(A)r1(A)xl1(B)r1(B)w1(B)u1(A)u1(B)
 # <br>
-# ■ T2: sl2(A)r2(A)sl2(B)r2(B)u2(A)u2(B)
+# - T2: sl2(A)r2(A)sl2(B)r2(B)u2(A)u2(B)
 # <br>
-# □ Konsistent?
+# - Konsistent? Ja der Beispielschedule ist konsistent
 # <br>
-# □ 2PL?
+# - 2PL? Ja der Beispielschedule ist 2PL-konform
 # 
 # |T1|T2|
 # |---|---|
@@ -1057,30 +1030,9 @@
 # |xl(B)r(B)w(B)|&#xfeff;|
 # |u(A)u(B)|&#xfeff;|
 # 
-# Legal? Konfliktserialisierbar? 2PL funktioniert auch hier!
-# 
+
 # ### Weitere Sperrarten
-# ■ Idee: Upgraden einer Sperre
-# <br>
-# □ Von Lesesperre zu Schreibsperre
-# <br>
-# □ Anstatt gleich strenge Schreibsperre zu setzen
-# <br><br>
-# ■ Updatesperren
-# <br>
-# □ Erlaubt nur lesenden Zugriff
-# <br>
-# □ Kann aber Upgrade erfahren
-# <br>
-# □ Lesesperre kann dann keinen Upgrade erfahren
-# <br><br>
-# ■ Inkrementsperre
-# <br>
-# □ Erlaubt lesenden Zugriff
-# <br>
-# □ Erlaubt schreibenden Zugriff falls Wert nur inkrementiert (oder dekrementiert) wird.
-# <br>
-# □ Inkremente sind kommutativ: Vertauschung ist erlaubt
+# Eine weitere Sperrart ist Upgraden einer Sperre von einer Lesesperre zu einer Schreibsperre, anstatt gleich strenge Schreibsperre zu setzen. Es ist auch möglich Updatesperren zu setzten, diese erlaubt nur lesenden Zugriff, jedoch kann ein Upgrade erfahren. Die klassische Lesesperre kann dann keinen Upgrade erfahren. Eine Inkrementsperre erlaubt lesenden Zugriff und erlaubt schreibenden Zugriff, falls der Wert nur inkrementiert (oder dekrementiert) wird. Dies ist erlaubt da Inkremente kommutativ sind, also sind Vertauschung erlaubt.
 
 # ## Multiple Choice
 # 
