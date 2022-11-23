@@ -353,10 +353,12 @@
 # 
 # 
 # ### Statistiken
-# Zu jeder Basisrelation kennt man die Anzahl der Tupel und deren Tupelgröße. 
-# Zu (jedem) Attribut kennt man eventuell den größten und kleinsten Wert. Es kann ein Histogramm zur Werteverteilung geben und man kennt (hoffentlich) die Anzahl der 'distinct'-Werte (Kardinalität). 
-# Zum System kennt man die Speichergröße, die Bandbreite, die I/O-, sowie die CPU-Zeiten. 
-# <br><br>
+# Durch Statistiken kann man verschiedene Informationen zu den Elementen erhalten. <br>
+# Bei einer Basisrelation würde man die Anzahl der Tupel und deren Tupelgröße kennen. <br>  
+# Bei (jedem) Attribut hat man den größten und kleinsten Wert. 
+# Es kann auch ein Histogramm zur Werteverteilung geben und man kennt die Anzahl der 'distinct'-Werte (Kardinalität). <br>
+# Zum System kennt man die Speichergröße, die Bandbreite, die I/O-, sowie die CPU-Zeiten. <br>
+# <br>
 # Problem: Die Statistiken gelten nur für einen Zustand der Datensätze. Theoretisch müsste man nach jeder Veränderung der Datenbank neue Statistiken erstellen oder die bestehenden Statistiken updaten. Das verursacht hohe Kosten und wird daher meistens nur nach einer bestimmten Zeit manuell/explizit durchgeführt mit einer Funktion wie runstats().
 # <br><br>
 # 
@@ -374,23 +376,23 @@
 # - Selektion: 
 #     - Bei einer Seletktion ohne Index wird die gesamte Relation von der Festplatte gelesen. Die gesamte Relation ist daher Teil der Kosten. 
 #     - Bei einer Selektion mit Baum-Index (z.B. B-Baum) muss man einen Teil des Index (Baumtiefe) und die gesuchte Seite von der Festplatte lesen.
-#     - Beim Pipelining hat man (fast) keine Kosten. Wenn die Selektion immer wieder an eine Datenpipeline herangehangen wird, verursacht es also (fast) keine Kosten.  
+#     - Beim Pipelining hat man (fast) keine Kosten. Wenn die Selektion immer wieder an eine Datenpipeline herangehangen wird, verursacht es (fast) keine Kosten.  
 #     
 # - Join: 
 #     - Beim Join hängen die Kosten vom Joinalgorithmus (Nested Loops, Hash-Join, Sort-Merge Join, usw.) ab. 
 #     
 # - Sortierung: 
-#     - Die Kosten von Sortierungen werden in einer aufbauenden Veranstaltung besprochen. Es wird sich dabei um Sortieralgorithmen wie Two-Phase-Merge-Sort usw. handeln. 
+#     - Die Kosten von Sortierungen werden in einer aufbauenden Veranstaltung besprochen. Es wird sich dabei um Sortieralgorithmen wie Two-Phase-Merge-Sort handeln. 
 # 
-# Generell sind die Kosten von Operationen die Anzahl der Tupel im Input. Dabei fragt man sich , ob die Relation in den Hauptspeicher passt. Je kleiner die Anzahl der Tupel im Input ist, desto wahrscheinlicher passt sie in den Hauptspeicher. <br>
-# Bedacht werden muss auch, wie groß die Anzahl der Tupel im Output einer Operation ist. Der Output wird nämlich der Input des nächsten Operators sein. Deshalb schätzt ein Kostenmodel u.a. für jede Operation die Anzahl der Ausgabetupel.
-# Das Schätzen der Ausgabetupel geschieht also unter Betrachtung des Selektivitätsfaktors (selectivity factor, sf). Der Selektivitätsfaktor beschreibt die „Selektivität“ in Bezug auf die Inputgröße. 
+# Generell sind die Kosten von Operationen die Anzahl der Tupel im Input. Dabei fragt man sich, ob die Relation in den Hauptspeicher passt. Je kleiner die Anzahl der Tupel im Input ist, desto wahrscheinlicher passt sie in den Hauptspeicher. <br>
+# Bedacht werden muss auch, wie groß die Anzahl der Tupel im Output einer Operation ist. Der Output wird nämlich der Input des nächsten Operators sein. Aus diesem Grund schätzt ein Kostenmodel unter anderem für jede Operation die Anzahl der Ausgabetupel.
+# Das Schätzen der Ausgabetupel geschieht also unter Betrachtung des Selektivitätsfaktors (selectivity factor, sf). Dieser Faktor beschreibt die „Selektivität“ in Bezug auf die Inputgröße. 
 # 
 # 
 # 
 # - #Ausgabetupel = #Eingabetupel x Selektivität
 #  
-# Beispiel: Eine Operation mit Selektivitätsfaktor 0.5 wird auf eine Relation angewandt (O(R)). Dann ist die Anzahl der Ausgabetupel wahrscheinlich |R| / 2.
+# Beispiel: Eine Operation mit Selektivitätsfaktor 0.5 wird auf eine Relation angewandt (O( R)). Dann ist die Anzahl der Ausgabetupel wahrscheinlich |R| / 2.
 # 
 # 
 # 
@@ -405,7 +407,7 @@
 # <br>
 # Bei der Selektion ist der Selektivitätsfaktor die Anzahl der Tupel der selektierten Menge geteilt durch die gesamte Anzahl der Tupel.
 # 
-# - sf = |$\sigma_c$(R)| / |R|
+# - sf = |$\sigma_c$( R)| / |R|
 # 
 # <br>
 # Bei Joins ergibt sich der Selektivitätsfaktor aus der Selektivität des Joins geteilt durch die Selektivität des Kreuzproduktes. Das Kreuzprodukt ergibt sich aus der Anzahl der Tupel einer Relation multipliziert mit der Anzahl der Tupel einer anderen Relation.  
@@ -416,7 +418,7 @@
 # 
 # #### Selektivität schätzen
 # 
-# - Selektion:
+# Selektion: <br>
 # Wenn man eine Selektion auf einem einzelnen Schlüssel durchführt, also auf einer Konstanten, kann man davon ausgehen, dass der Selektivitätsfaktor genau
 # 
 # - sf = 1 / |R|
@@ -427,21 +429,21 @@
 # 
 # - sf = (|R| / m) / |R| = 1/m
 # 
-# Wenn man beispielsweise eine Spalte mit 10 unterschiedlichen Werten hat und eine Selektion auf einem Wert ausführt, kann man davon ausgehen, dass im Schnitt 1/m Werte herauskommen. Dies ist nur eine Schätzung!
+# Führt man beispielsweise auf einer Spalte mit 10 unterschiedlichen Werten eine Selektion auf einem Wert aus, kann man davon ausgehen, dass im Schnitt 1/m Werte herauskommen. Dies ist nur eine Schätzung!
 # 
 # <br>
-# - Join:
+# Join: <br>
 # Beim Equijoin zwischen R und S über Fremdschlüssel in S ist der Selektivitätsfaktor:
 # 
 # - sf = 1 / |R|
-# - „Beweis“: sf = |R ⋈ S| / (|R x S|) = |S| / (|R| · |S|)
+# - „Beweis“: sf = |R ⋈ S| / (|R x S|) = |S| / (|R| · |S|) <br>
 #     Da man einen Equijoin über Fremdschlüssel durchführt, ist die Anzahl der Ausgabetupel gleich der Anzahl der Tupel in S. Somit kann man S aus |S| / (|R| · |S|) wegstreichen und es ergibt sich der Selektivitätsfaktor sf = 1 / |R|.
 # 
 # 
 # 
 # ### Selinger-style“ Optimization
 # 
-# Zum Vorherigen gibt es ein Paper aus den 70er Jahren IBM. Im folgenden kann man erkennen wie es vom Research Team dargestellt wird:
+# Zum Vorherigen gibt es ein Paper aus den 70er Jahren von IBM. Im Folgenden kann man erkennen wie es vom Research Team dargestellt wird:
 # 
 # ![](selinger_style1.jpg)
 # 
@@ -453,7 +455,7 @@
 # 
 # ![](selinger_style3.jpg)
 # 
-# Wir interessieren uns jetzt besonders für die Join Selektivität. Dazu folgende Anfrage als Beispiel:
+# Der Fokus liegt jetzt besonders auf der Join Selektivität. Dazu folgende Anfrage als Beispiel:
 # 
 # - SELECT * FROM cust, order WHERE cust.ID = order.custID
 # 
@@ -478,9 +480,9 @@
 # ### Modelle zum besseren Schätzen der Selektivität
 # 
 # Man kann das Schätzen der Selektivität auf unterschiedliche Weisen verbessern. <br>
-# Eine Möglichkeit das Schätzen zu verbessern, wäre es eine Gleichverteilung der Werte anzunehmen sodass man die Minimum und Maximumwerte kennt. Bei einer ungleichen Verteilung ("skew") ist die Abschätzung schwierig und eher schlecht. <br>
-# Dann könnte man ein Histogramm zur Hilfe nehmen. Parametrisierte Größen vereinfachen das Schätzen. Die Güte der Abschätzung hängt von Histogrammtyp und der Histogrammgröße ab. Außerdem ist das Garantieren der Aktualität sehr aufwändig. <br>
-# Eine weitere Möglichkeit ist das Sampling. Dabei schaut man sich eine repräsentative Teilmenge der Relation an und schließt daraus auf die Verteilung der Werte. Parametrisierte Größen sind hierbei schwierig zu finden. Die Güte hängt von der Samplingmethode und der Samplegröße ab. Außerdem ist die Aktualität wieder von Bedeutung.
+# Eine Möglichkeit das Schätzen zu verbessern, wäre es eine Gleichverteilung der Werte anzunehmen, sodass man die Minimum- und Maximumwerte kennt. Bei einer ungleichen Verteilung ("skew") ist die Abschätzung schwierig und eher schlecht. <br>
+# Man kann hierzu ein Histogramm zur Hilfe nehmen. Parametrisierte Größen vereinfachen das Schätzen. Die Güte der Abschätzung hängt vom Histogrammtyp und der Histogrammgröße ab. Außerdem ist das Garantieren der Aktualität sehr aufwändig. <br>
+# Eine weitere Möglichkeit ist das Sampling. Dabei schaut man sich eine repräsentative Teilmenge der Relation an und schließt daraus auf die Verteilung der Werte. Parametrisierte Größen sind hierbei wieder schwierig zu finden. Die Güte hängt von der Samplingmethode und der Samplegröße ab. Außerdem ist die Aktualität auch wieder von Bedeutung.
 # 
 # 
 # 
@@ -495,13 +497,11 @@
 # p.price > 100 
 # ```
 # 
-# Gegeben ist ein Histogramm mit 3300 Produkten und einer Preisspanne von 0 bis 1000. Zu jedem Bucket in der Preisspanne wird angegeben wie viele Produkte darin enthalten sind. Zudem ist eine sales Relation mit einer Millionen Einträgen gegeben. <br>
+# Gegeben ist ein Histogramm mit 3300 Produkten und einer Preisspanne von 0 bis 1000. Zu jedem Bucket in der Preisspanne wird angegeben wie viele Produkte darin enthalten sind. Zudem ist eine 'sales' Relation mit einer Millionen Einträgen gegeben. <br>
 # <br>
 # Angenommen es findet eine Gleichverteilung statt. Dann ist der Preis gleichverteilt zwischen 0 und 1000. Aufgrund unserer Selektionsbedingung (p.price > 100) suchen wir nach allen Produkten, die mehr als 100 Kosten. Es bleiben genau 900 Produkte übrig. Also kommen 900 von 1000 Einträgen weiter und man erhält eine Selektivität von 900/1000 = 9/10. Am Ende werden somit 9/10 * 3300 ≈ 3000 Produkte erwartet, die man noch zusätzlich mit der sales Relation joint. <br>
 # <br>
-# Wenn man weiß wie das Histogramm tatsächlich aussieht, würde man wissen, dass es insgesamt nur 5 Produkte gibt, die über 100 kosten. Die Selektivität der Bedingung ist dann 5/3000 ≈ 0.0015. Somit deutlich geringer als zuvor.  
-# 
-# 
+# Wenn man weiß, wie das Histogramm tatsächlich aussieht, würde man wissen, dass es insgesamt nur 5 Produkte gibt, die über 100 kosten. Die Selektivität der Bedingung ist dann 5/3000 ≈ 0.0015. Somit deutlich geringer als zuvor.  
 
 # ### Kosten – Weitere Komplikationen
 # Es gibt weitere Komplikationen:<br>
