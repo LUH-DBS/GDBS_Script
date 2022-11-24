@@ -765,7 +765,7 @@
 # Somit hat der Restgraph n-1 Transaktionen
 
 # ## Sperrkontrolle
-# In diesem Kapitel beschäftigen wir uns wie mit Sperrkontrollen, die  DBMS konfliktserialisierbare Schedules garantiert. 
+# In diesem Kapitel beschäftigen wir uns wie mit Sperrkontrollen die  DBMS konfliktserialisierbare Schedules garantiert. 
 # 
 # ### Scheduler
 # Der Scheduler in einem DBMS garantiert konfliktserialisierbare (also auch serialisierbare) Schedules bei gleichzeitig laufenden Transaktionen. Wenn neue Transaktionen ausgeführt werden sollen, könnte der Scheduler jedesmal einen graphbasierten Test durchführen, jedoch ist dies sehr kostenaufwendig. Stattdessen wäre es einfacher Sperren und Sperrkontrollen zu benutzte, welches in fast allen DBMS realisiert ist. Die Idee dahinter ist, dass die Transaktion für die Dauer der Bearbeitung eines Datenbankobjekts dieses sperrt, s.d. andere Transaktionen nicht darauf zugreifen können.
@@ -984,17 +984,6 @@
 # <br><br>
 # Somit ist Ti nicht 2PL.
 
-# ## Sperren
-# In diesem Kapitel beschäftigen wir uns mit verschieden Sperrmodi.
-# 
-# ### Mehrere Sperrmodi
-# Die Idee hinter mehreren Arten von Sperren ist, dass so die Flexibilität erhöht wird und die Menge der abgewiesenen Sperren verringert wird.
-# <br>
-# Z.B sind Sperren obwohl nur gelesen wird übertrieben.Eine gewisse Sperre ist dennoch nötig, aber mehrere Transaktionen sollen auch gleichzeitig lesen können. Für Leseoperationen können sogenannte shared locks si(X) angefordert werden. Diese erlaubt dann das Lesen für die Transaktion Ti und sperrt zudem auch den Schreibzugriff für alle anderen Transaktionen. Für Schreiboperationen wir eine exclusive lock xli(X) angefordert, welches das Lesen und Schreiben durch Transaktion Ti erlaubt. Um diese beiden Sperren aufzuheben wird wie schon bekannt einfach ein unlock ui(X) angefordert. Was die Kompabilität angeht, darf es für ein Objekt nur eine Schreibsperre oder mehrere Lesesperren geben.
-
-# ## Sperren
-# In diesem Kapitel beschäftigen wir uns mit verschieden Sperrmodi.
-# 
 # ### Mehrere Sperrmodi
 # Die Idee hinter mehreren Arten von Sperren ist, dass so die Flexibilität erhöht wird und die Menge der abgewiesenen Sperren verringert wird.
 # <br>

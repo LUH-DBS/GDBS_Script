@@ -4,13 +4,11 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>8. Relationale Algebra &#8212; Online-Skript Grundlagen der Datenbanksysteme</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,16 +18,20 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -37,13 +39,12 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -63,21 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
-
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -86,10 +73,9 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -107,15 +93,14 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Grundlagen der Datenbanksysteme
-                </a>
-            </li>
-        </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Grundlagen der Datenbanksysteme
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../01/einfuehrung.html">
    1. Einführung
@@ -179,17 +164,12 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
-    </div>
-    <div id="rtd-footer-container"></div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
 </div>
 
 
@@ -197,209 +177,97 @@ const thebe_selector_output = ".output, .cell_output"
 
 
           
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="header-article row sticky-top noprint">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/main/?urlpath=tree/08/relationale_algebra.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="headerbtn__text-container">Live Code</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/LUH-DBS/GDBS_Script"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F08/relationale_algebra.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/08/relationale_algebra.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/08/relationale_algebra.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/LUH-DBS/GDBS_Script"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F08/relationale_algebra.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
     </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/main/?urlpath=tree/08/relationale_algebra.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#einfuhrung">
    8.1. Einführung
@@ -747,11 +615,12 @@ title="Print to PDF"
  </li>
 </ul>
 
-    </nav>
-</div>
+            </nav>
+        </div>
     </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Relationale Algebra</h1>
@@ -1115,14 +984,13 @@ title="Print to PDF"
                     </div>
                 </div>
             </div>
-            <main id="main-content" role="main">
-                
+            
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="relationale-algebra">
-<h1><span class="section-number">8. </span>Relationale Algebra<a class="headerlink" href="#relationale-algebra" title="Permalink to this headline">#</a></h1>
-<section id="einfuhrung">
-<h2><span class="section-number">8.1. </span>Einführung<a class="headerlink" href="#einfuhrung" title="Permalink to this headline">#</a></h2>
+  <div class="tex2jax_ignore mathjax_ignore section" id="relationale-algebra">
+<h1><span class="section-number">8. </span>Relationale Algebra<a class="headerlink" href="#relationale-algebra" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="einfuhrung">
+<h2><span class="section-number">8.1. </span>Einführung<a class="headerlink" href="#einfuhrung" title="Permalink to this headline">¶</a></h2>
 <p>■ Bisher
 <br>
 □ Relationenschemata mit Basisrelationen, die in der Datenbank gespeichert sind
@@ -1136,8 +1004,8 @@ title="Print to PDF"
 – Anfragesprache
 <br>
 □ Basisrelationen bleiben unverändert</p>
-<section id="kriterien-fur-anfragesprachen">
-<h3><span class="section-number">8.1.1. </span>Kriterien für Anfragesprachen<a class="headerlink" href="#kriterien-fur-anfragesprachen" title="Permalink to this headline">#</a></h3>
+<div class="section" id="kriterien-fur-anfragesprachen">
+<h3><span class="section-number">8.1.1. </span>Kriterien für Anfragesprachen<a class="headerlink" href="#kriterien-fur-anfragesprachen" title="Permalink to this headline">¶</a></h3>
 <p>■ Ad-Hoc-Formulierung
 <br>
 □ Benutzer soll eine Anfrage formulieren können, ohne ein vollständiges Programm schreiben zu müssen.
@@ -1194,9 +1062,9 @@ title="Print to PDF"
 <br>
 □ Keine Anfrage, die syntaktisch korrekt ist, darf in eine Endlosschleife geraten oder ein unendliches Ergebnis
 liefern.</p>
-</section>
-<section id="anfragealgebra">
-<h3><span class="section-number">8.1.2. </span>Anfragealgebra<a class="headerlink" href="#anfragealgebra" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="anfragealgebra">
+<h3><span class="section-number">8.1.2. </span>Anfragealgebra<a class="headerlink" href="#anfragealgebra" title="Permalink to this headline">¶</a></h3>
 <p>■ Mathematik
 <br>
 □ Algebra: Definiert durch Wertebereich und auf diesem definierte Operatoren
@@ -1216,9 +1084,9 @@ liefern.</p>
 □ Relationale Algebra (Relational Algebra, RA)
 <br>
 – Anfragesprache für das relationale Modell</p>
-</section>
-<section id="mengen-vs-multimengen">
-<h3><span class="section-number">8.1.3. </span>Mengen vs. Multimengen<a class="headerlink" href="#mengen-vs-multimengen" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="mengen-vs-multimengen">
+<h3><span class="section-number">8.1.3. </span>Mengen vs. Multimengen<a class="headerlink" href="#mengen-vs-multimengen" title="Permalink to this headline">¶</a></h3>
 <p>Relation: Menge von Tupeln
 <br>
 ■ Datenbanktabelle: Multimenge von Tupeln
@@ -1238,13 +1106,13 @@ liefern.</p>
 – Vereinigung als Multimenge
 <br>
 – Vereinigung als Menge</p>
-</section>
-</section>
-<section id="basisoperatoren">
-<h2><span class="section-number">8.2. </span>Basisoperatoren<a class="headerlink" href="#basisoperatoren" title="Permalink to this headline">#</a></h2>
-</section>
-<section id="klassifikation-der-operatoren">
-<h2><span class="section-number">8.3. </span>Klassifikation der Operatoren<a class="headerlink" href="#klassifikation-der-operatoren" title="Permalink to this headline">#</a></h2>
+</div>
+</div>
+<div class="section" id="basisoperatoren">
+<h2><span class="section-number">8.2. </span>Basisoperatoren<a class="headerlink" href="#basisoperatoren" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="klassifikation-der-operatoren">
+<h2><span class="section-number">8.3. </span>Klassifikation der Operatoren<a class="headerlink" href="#klassifikation-der-operatoren" title="Permalink to this headline">¶</a></h2>
 <p>■ Mengenoperatoren
 <br>
 □ Vereinigung, Schnittmenge, Differenz
@@ -1266,9 +1134,9 @@ liefern.</p>
 □ Kombination von Operatoren und Operanden
 <br>
 □ „Anfragen“ (queries)</p>
-</section>
-<section id="vereinigung-union-cup">
-<h2><span class="section-number">8.4. </span>Vereinigung (union, <span class="math notranslate nohighlight">\(\cup\)</span>)<a class="headerlink" href="#vereinigung-union-cup" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="vereinigung-union-cup">
+<h2><span class="section-number">8.4. </span>Vereinigung (union, <span class="math notranslate nohighlight">\(\cup\)</span>)<a class="headerlink" href="#vereinigung-union-cup" title="Permalink to this headline">¶</a></h2>
 <p>■ Sammelt Elemente (Tupel) zweier Relationen unter einem gemeinsamen Schema auf.
 <br>
 □ R ∪ S := {t | t <span class="math notranslate nohighlight">\(\in\)</span> R <span class="math notranslate nohighlight">\(\vee\)</span> t <span class="math notranslate nohighlight">\(\in\)</span> S}
@@ -1282,9 +1150,9 @@ liefern.</p>
 ■ Ein Element ist nur einmal in (R ∪ S) vertreten, auch wenn es jeweils einmal in R und S auftaucht.
 <br>
 □ Duplikatentfernung</p>
-</section>
-<section id="beispiel-fur-mengenoperatoren">
-<h2><span class="section-number">8.5. </span>Beispiel für Mengenoperatoren<a class="headerlink" href="#beispiel-fur-mengenoperatoren" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="beispiel-fur-mengenoperatoren">
+<h2><span class="section-number">8.5. </span>Beispiel für Mengenoperatoren<a class="headerlink" href="#beispiel-fur-mengenoperatoren" title="Permalink to this headline">¶</a></h2>
 <p><span class="math notranslate nohighlight">\(R\)</span></p>
 <table class="colwidths-auto table">
 <thead>
@@ -1356,9 +1224,9 @@ liefern.</p>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="differenz-difference">
-<h2><span class="section-number">8.6. </span>Differenz (difference, ―, \)<a class="headerlink" href="#differenz-difference" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="differenz-difference">
+<h2><span class="section-number">8.6. </span>Differenz (difference, ―, \)<a class="headerlink" href="#differenz-difference" title="Permalink to this headline">¶</a></h2>
 <p>■ Differenz R − S eliminiert die Tupel aus der ersten Relation, die auch in der zweiten Relation vorkommen.
 <br>
 □ R − S := {t | t <span class="math notranslate nohighlight">\(\in\)</span> R <span class="math notranslate nohighlight">\(\wedge\)</span> t <span class="math notranslate nohighlight">\(\notin\)</span> S}
@@ -1368,9 +1236,9 @@ liefern.</p>
 ■ Achtung: R − S ≠ S − R
 <br>
 □ D.h. Kommuntativität gilt nicht</p>
-</section>
-<section id="id1">
-<h2><span class="section-number">8.7. </span>Beispiel für Mengenoperatoren<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="id1">
+<h2><span class="section-number">8.7. </span>Beispiel für Mengenoperatoren<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p><span class="math notranslate nohighlight">\(R\)</span></p>
 <table class="colwidths-auto table">
 <thead>
@@ -1432,9 +1300,9 @@ liefern.</p>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="schnittmenge-intersection-cap">
-<h2><span class="section-number">8.8. </span>Schnittmenge (intersection, <span class="math notranslate nohighlight">\(\cap\)</span>)<a class="headerlink" href="#schnittmenge-intersection-cap" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="schnittmenge-intersection-cap">
+<h2><span class="section-number">8.8. </span>Schnittmenge (intersection, <span class="math notranslate nohighlight">\(\cap\)</span>)<a class="headerlink" href="#schnittmenge-intersection-cap" title="Permalink to this headline">¶</a></h2>
 <p>Schnittmenge R <span class="math notranslate nohighlight">\(\cap\)</span> S ergibt die Tupel, die in beiden Relationen gemeinsam vorkommen.
 <br> <br>
 ■ R <span class="math notranslate nohighlight">\(\cap\)</span> S := {t | t <span class="math notranslate nohighlight">\(\in\)</span> R <span class="math notranslate nohighlight">\(\wedge\)</span> t <span class="math notranslate nohighlight">\(\in\)</span> S}
@@ -1445,9 +1313,9 @@ liefern.</p>
 <br>
 = S − (S − R)</p>
 <p><img alt="title" src="../_images/schnittmenge.jpg" /></p>
-</section>
-<section id="id2">
-<h2><span class="section-number">8.9. </span>Beispiel für Mengenoperatoren<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="id2">
+<h2><span class="section-number">8.9. </span>Beispiel für Mengenoperatoren<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p><span class="math notranslate nohighlight">\(R\)</span></p>
 <table class="colwidths-auto table">
 <thead>
@@ -1509,9 +1377,9 @@ liefern.</p>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="projektion-projection-pi">
-<h2><span class="section-number">8.10. </span>Projektion (projection, <span class="math notranslate nohighlight">\(\pi\)</span>)<a class="headerlink" href="#projektion-projection-pi" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="projektion-projection-pi">
+<h2><span class="section-number">8.10. </span>Projektion (projection, <span class="math notranslate nohighlight">\(\pi\)</span>)<a class="headerlink" href="#projektion-projection-pi" title="Permalink to this headline">¶</a></h2>
 <p>■ Unärer Operator
 <br><br>
 ■ Erzeugt neue Relation mit einer Teilmenge der ursprünglichen Attribute
@@ -1523,9 +1391,9 @@ liefern.</p>
 □ Üblicherweise in der aufgelisteten Reihenfolge
 <br><br>
 ■ Achtung: Es können Duplikate entstehen, die implizit entfernt werden.</p>
-</section>
-<section id="projektion-beispiel">
-<h2><span class="section-number">8.11. </span>Projektion – Beispiel<a class="headerlink" href="#projektion-beispiel" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="projektion-beispiel">
+<h2><span class="section-number">8.11. </span>Projektion – Beispiel<a class="headerlink" href="#projektion-beispiel" title="Permalink to this headline">¶</a></h2>
 <p>Film</p>
 <table class="colwidths-auto table">
 <thead>
@@ -1597,9 +1465,9 @@ liefern.</p>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="erweiterte-projektion">
-<h2><span class="section-number">8.12. </span>Erweiterte Projektion<a class="headerlink" href="#erweiterte-projektion" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="erweiterte-projektion">
+<h2><span class="section-number">8.12. </span>Erweiterte Projektion<a class="headerlink" href="#erweiterte-projektion" title="Permalink to this headline">¶</a></h2>
 <p>■ Motivation: Dem Projektionsoperator mehr Fähigkeiten geben
 <br><br>
 ■ Vorher: <span class="math notranslate nohighlight">\(\pi_{L}\)</span>® wobei L eine Attributliste ist
@@ -1618,9 +1486,9 @@ String-Operationen ist, und C ein neuer Name ist.
 <br></p></li>
 <li><p>Vorname || ` ` || Nachname → Name</p></li>
 </ol>
-</section>
-<section id="selektion-selection-sigma">
-<h2><span class="section-number">8.13. </span>Selektion (selection, <span class="math notranslate nohighlight">\(\sigma\)</span>)<a class="headerlink" href="#selektion-selection-sigma" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="selektion-selection-sigma">
+<h2><span class="section-number">8.13. </span>Selektion (selection, <span class="math notranslate nohighlight">\(\sigma\)</span>)<a class="headerlink" href="#selektion-selection-sigma" title="Permalink to this headline">¶</a></h2>
 <p>■ Unärer Operator
 <br><br>
 ■ Erzeugt neue Relation mit gleichem Schema aber einer Teilmenge der Tupel.
@@ -1644,9 +1512,9 @@ String-Operationen ist, und C ein neuer Name ist.
 ■ Prüfe Bedingung für jedes Tupel
 <br><br>
 Achtung Selektion <span class="math notranslate nohighlight">\(\neq\)</span> SELECT</p>
-</section>
-<section id="selektion-beispiel">
-<h2><span class="section-number">8.14. </span>Selektion – Beispiel<a class="headerlink" href="#selektion-beispiel" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="selektion-beispiel">
+<h2><span class="section-number">8.14. </span>Selektion – Beispiel<a class="headerlink" href="#selektion-beispiel" title="Permalink to this headline">¶</a></h2>
 <p>Film</p>
 <table class="colwidths-auto table">
 <thead>
@@ -1731,9 +1599,9 @@ Achtung Selektion <span class="math notranslate nohighlight">\(\neq\)</span> SEL
 </tr>
 </tbody>
 </table>
-</section>
-<section id="kartesisches-produkt-cartesian-product-cross-product-times">
-<h2><span class="section-number">8.15. </span>Kartesisches Produkt (Cartesian product, cross product <span class="math notranslate nohighlight">\(\times\)</span>)<a class="headerlink" href="#kartesisches-produkt-cartesian-product-cross-product-times" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="kartesisches-produkt-cartesian-product-cross-product-times">
+<h2><span class="section-number">8.15. </span>Kartesisches Produkt (Cartesian product, cross product <span class="math notranslate nohighlight">\(\times\)</span>)<a class="headerlink" href="#kartesisches-produkt-cartesian-product-cross-product-times" title="Permalink to this headline">¶</a></h2>
 <p>■ Binärer Operator
 <br><br>
 ■ Auch: Kreuzprodukt oder Produkt
@@ -1749,9 +1617,9 @@ mit jedem Tupel aus S „paart“.
 <br>
 □ Stattdessen: Umbenennen</p>
 <p><img alt="title" src="../_images/descartes.jpg" /></p>
-</section>
-<section id="kartesisches-produkt-beispiel">
-<h2><span class="section-number">8.16. </span>Kartesisches Produkt – Beispiel<a class="headerlink" href="#kartesisches-produkt-beispiel" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="kartesisches-produkt-beispiel">
+<h2><span class="section-number">8.16. </span>Kartesisches Produkt – Beispiel<a class="headerlink" href="#kartesisches-produkt-beispiel" title="Permalink to this headline">¶</a></h2>
 <p><span class="math notranslate nohighlight">\(R\)</span></p>
 <table class="colwidths-auto table">
 <thead>
@@ -1840,9 +1708,9 @@ mit jedem Tupel aus S „paart“.
 </tr>
 </tbody>
 </table>
-</section>
-<section id="der-join-operatorfamilie">
-<h2><span class="section-number">8.17. </span>Der Join – Operatorfamilie<a class="headerlink" href="#der-join-operatorfamilie" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="der-join-operatorfamilie">
+<h2><span class="section-number">8.17. </span>Der Join – Operatorfamilie<a class="headerlink" href="#der-join-operatorfamilie" title="Permalink to this headline">¶</a></h2>
 <p>■ Natürlicher Join (natural join)
 <br><br>
 ■ Theta-Join
@@ -1854,8 +1722,8 @@ mit jedem Tupel aus S „paart“.
 ■ Left-outer Join und Right-outer Join
 <br><br>
 ■ Full-outer Join</p>
-<section id="naturlicher-join-natural-join">
-<h3><span class="section-number">8.17.1. </span>Natürlicher Join (natural join, ⋈)<a class="headerlink" href="#naturlicher-join-natural-join" title="Permalink to this headline">#</a></h3>
+<div class="section" id="naturlicher-join-natural-join">
+<h3><span class="section-number">8.17.1. </span>Natürlicher Join (natural join, ⋈)<a class="headerlink" href="#naturlicher-join-natural-join" title="Permalink to this headline">¶</a></h3>
 <p>■ Binärer Operator
 <br><br>
 ■ Motivation: Statt im Kreuzprodukt alle Paare zu bilden, sollen nur die Tupelpaare gebildet werden, deren Tupel
@@ -1880,9 +1748,9 @@ mit jedem Tupel aus S „paart“.
 □ R ⋈ S = s r[A1]=s[A1] <span class="math notranslate nohighlight">\(\wedge\)</span> … <span class="math notranslate nohighlight">\(\wedge\)</span> r[Ak]=s[Ak](R × S)
 <br>
 □ Achtung: Eigentlich noch ordentlich projizieren</p>
-</section>
-<section id="naturlicher-join-beispiel">
-<h3><span class="section-number">8.17.2. </span>Natürlicher Join – Beispiel<a class="headerlink" href="#naturlicher-join-beispiel" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="naturlicher-join-beispiel">
+<h3><span class="section-number">8.17.2. </span>Natürlicher Join – Beispiel<a class="headerlink" href="#naturlicher-join-beispiel" title="Permalink to this headline">¶</a></h3>
 <p><span class="math notranslate nohighlight">\(R\)</span></p>
 <table class="colwidths-auto table">
 <thead>
@@ -2071,9 +1939,9 @@ mit jedem Tupel aus S „paart“.
 □ Mehr als ein gemeinsames Attribut
 <br>
 □ Tupel werden mit mehr als einem Partner verknüpft</p>
-</section>
-<section id="theta-join-theta-join-theta">
-<h3><span class="section-number">8.17.3. </span>Theta-Join (theta-join, <span class="math notranslate nohighlight">\(⋈_\theta\)</span>)<a class="headerlink" href="#theta-join-theta-join-theta" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="theta-join-theta-join-theta">
+<h3><span class="section-number">8.17.3. </span>Theta-Join (theta-join, <span class="math notranslate nohighlight">\(⋈_\theta\)</span>)<a class="headerlink" href="#theta-join-theta-join-theta" title="Permalink to this headline">¶</a></h3>
 <p>■ Verallgemeinerung des natürlichen Joins
 <br><br>
 ■ Verknüpfungsbedingung kann selbst gestaltet werden
@@ -2101,9 +1969,9 @@ mit jedem Tupel aus S „paart“.
 □ R(A,B,C) ⋈ S(B,C,D) = <span class="math notranslate nohighlight">\(\rho_{T(A,B,C,D)}\)</span>(<span class="math notranslate nohighlight">\(\pi_{A,R.B,R.C,D}\)</span>(<span class="math notranslate nohighlight">\(\sigma_{(R.B=S.B AND R.C = S.C)}\)</span> (<span class="math notranslate nohighlight">\(R \times S\)</span>)))
 <br>
 -&gt;Umbenennung</p>
-</section>
-<section id="theta-join-beispiel">
-<h3><span class="section-number">8.17.4. </span>Theta-Join – Beispiel<a class="headerlink" href="#theta-join-beispiel" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="theta-join-beispiel">
+<h3><span class="section-number">8.17.4. </span>Theta-Join – Beispiel<a class="headerlink" href="#theta-join-beispiel" title="Permalink to this headline">¶</a></h3>
 <p><span class="math notranslate nohighlight">\(R\)</span></p>
 <table class="colwidths-auto table">
 <thead>
@@ -2220,9 +2088,9 @@ mit jedem Tupel aus S „paart“.
 </tr>
 </tbody>
 </table>
-</section>
-<section id="komplexe-ausdrucke">
-<h3><span class="section-number">8.17.5. </span>Komplexe Ausdrücke<a class="headerlink" href="#komplexe-ausdrucke" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="komplexe-ausdrucke">
+<h3><span class="section-number">8.17.5. </span>Komplexe Ausdrücke<a class="headerlink" href="#komplexe-ausdrucke" title="Permalink to this headline">¶</a></h3>
 <p>■ Idee: Kombination (Schachtelung) von Ausdrücken zur Formulierung komplexer Anfragen.
 <br>
 □ Abgeschlossenheit der relationalen Algebra
@@ -2281,15 +2149,15 @@ Minuten lang sind.
 □ Alternative: <span class="math notranslate nohighlight">\(\pi_{Titel,Jahr}\)</span>(<span class="math notranslate nohighlight">\(\sigma_{Länge≥100 AND StudioName=‚Fox‘}\)</span>(Film))
 <br>
 – U.v.a.m.</p>
-</section>
-<section id="komplexe-ausdrucke-beispiel">
-<h3><span class="section-number">8.17.6. </span>Komplexe Ausdrücke – Beispiel<a class="headerlink" href="#komplexe-ausdrucke-beispiel" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="komplexe-ausdrucke-beispiel">
+<h3><span class="section-number">8.17.6. </span>Komplexe Ausdrücke – Beispiel<a class="headerlink" href="#komplexe-ausdrucke-beispiel" title="Permalink to this headline">¶</a></h3>
 <p>■<span class="math notranslate nohighlight">\(\rho_{Titel,Jahr}\)</span>(<span class="math notranslate nohighlight">\(\sigma_{Länge≥100(Film)}\)</span> <span class="math notranslate nohighlight">\(\cap\)</span> <span class="math notranslate nohighlight">\(\sigma_{StudioName=‚Fox‘}\)</span>(Film))</p>
 <p><img alt="title" src="../_images/komplex_bsp1.jpg" /></p>
 <p>■ Alternative: <span class="math notranslate nohighlight">\(\rho_{Titel,Jahr}\)</span>(<span class="math notranslate nohighlight">\(\sigma_{Länge≥100 AND StudioName=‚Fox‘}\)</span>(Film))</p>
-</section>
-<section id="id3">
-<h3><span class="section-number">8.17.7. </span>Komplexe Ausdrücke – Beispiel<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="id3">
+<h3><span class="section-number">8.17.7. </span>Komplexe Ausdrücke – Beispiel<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>Film</p>
 <table class="colwidths-auto table">
 <thead>
@@ -2370,9 +2238,9 @@ sind.
 in Hörsaal 1 hören.
 <br>
 ■ <span class="math notranslate nohighlight">\(\rho_{Sem}\)</span>(((<span class="math notranslate nohighlight">\(\sigma_{Saal=1}\)</span>(((<span class="math notranslate nohighlight">\(\sigma_{GebJahr = 1960}\)</span>(Professor))⋈Lehrt)⋈VL)⋈Hört)⋈Stud))</p>
-</section>
-<section id="umbenennung-rename-rho">
-<h3><span class="section-number">8.17.8. </span>Umbenennung (rename, <span class="math notranslate nohighlight">\(\rho\)</span>)<a class="headerlink" href="#umbenennung-rename-rho" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="umbenennung-rename-rho">
+<h3><span class="section-number">8.17.8. </span>Umbenennung (rename, <span class="math notranslate nohighlight">\(\rho\)</span>)<a class="headerlink" href="#umbenennung-rename-rho" title="Permalink to this headline">¶</a></h3>
 <p>■ Unärer Operator
 <br>
 <br>
@@ -2399,9 +2267,9 @@ in Hörsaal 1 hören.
 □ Kartesische Produkte, wo bisher Joins ausgeführt wurden
 <br>
 – Gleiche Attribute werden unterschiedlich genannt.</p>
-</section>
-<section id="umbenennung-beispiel">
-<h3><span class="section-number">8.17.9. </span>Umbenennung – Beispiel<a class="headerlink" href="#umbenennung-beispiel" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="umbenennung-beispiel">
+<h3><span class="section-number">8.17.9. </span>Umbenennung – Beispiel<a class="headerlink" href="#umbenennung-beispiel" title="Permalink to this headline">¶</a></h3>
 <p><span class="math notranslate nohighlight">\(R\)</span></p>
 <table class="colwidths-auto table">
 <thead>
@@ -2491,9 +2359,9 @@ in Hörsaal 1 hören.
 </tbody>
 </table>
 <p>■ Alternativer Ausdruck: <span class="math notranslate nohighlight">\(\rho_{S(A,B,X,C,D)}\)</span>(R <span class="math notranslate nohighlight">\(\times\)</span> S)</p>
-</section>
-<section id="unabhangigkeit-und-vollstandigkeit">
-<h3><span class="section-number">8.17.10. </span>Unabhängigkeit und Vollständigkeit<a class="headerlink" href="#unabhangigkeit-und-vollstandigkeit" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="unabhangigkeit-und-vollstandigkeit">
+<h3><span class="section-number">8.17.10. </span>Unabhängigkeit und Vollständigkeit<a class="headerlink" href="#unabhangigkeit-und-vollstandigkeit" title="Permalink to this headline">¶</a></h3>
 <p>Minimale Relationenalgebra:
 <br>
 □ π, σ, <span class="math notranslate nohighlight">\(\times\)</span> , −, ∪ (und r)
@@ -2509,10 +2377,10 @@ in Hörsaal 1 hören.
 □ R ⋈C S = <span class="math notranslate nohighlight">\(\sigma_C\)</span>(R <span class="math notranslate nohighlight">\(\times\)</span> S)
 <br>
 □ R ⋈ S = <span class="math notranslate nohighlight">\(\pi_{L}\)</span>(<span class="math notranslate nohighlight">\(\sigma_{R.A1=S.A1 AND … AND R.An=S.An}\)</span>(R <span class="math notranslate nohighlight">\(\times\)</span> S))</p>
-</section>
-</section>
-<section id="vorschau-zu-optimierung">
-<h2><span class="section-number">8.18. </span>Vorschau zu Optimierung<a class="headerlink" href="#vorschau-zu-optimierung" title="Permalink to this headline">#</a></h2>
+</div>
+</div>
+<div class="section" id="vorschau-zu-optimierung">
+<h2><span class="section-number">8.18. </span>Vorschau zu Optimierung<a class="headerlink" href="#vorschau-zu-optimierung" title="Permalink to this headline">¶</a></h2>
 <p>■ Beispiele für algebraische Regeln zur Transformation
 <br>
 □ R ⋈ S = S ⋈ R
@@ -2532,11 +2400,11 @@ in Hörsaal 1 hören.
 □ <span class="math notranslate nohighlight">\(\sigma_{A=a}(R ∪ S) = \sigma_{A=a}(R) ∪ \sigma_{A=a}(S)\)</span>
 <br>
 ■ Jeweils: Welche Seite ist besser?</p>
-</section>
-<section id="operatoren-auf-multimengen">
-<h2><span class="section-number">8.19. </span>Operatoren auf Multimengen<a class="headerlink" href="#operatoren-auf-multimengen" title="Permalink to this headline">#</a></h2>
-<section id="motivation">
-<h3><span class="section-number">8.19.1. </span>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="operatoren-auf-multimengen">
+<h2><span class="section-number">8.19. </span>Operatoren auf Multimengen<a class="headerlink" href="#operatoren-auf-multimengen" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="motivation">
+<h3><span class="section-number">8.19.1. </span>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h3>
 <p>Mengen sind ein natürliches Konstrukt
 <br>
 □ Keine Duplikate
@@ -2574,9 +2442,9 @@ in Hörsaal 1 hören.
 <p>Multimenge
 <br>
 Reihenfolge ist weiter unwichtig</p>
-</section>
-<section id="effizienz-durch-multimengen">
-<h3><span class="section-number">8.19.2. </span>Effizienz durch Multimengen<a class="headerlink" href="#effizienz-durch-multimengen" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="effizienz-durch-multimengen">
+<h3><span class="section-number">8.19.2. </span>Effizienz durch Multimengen<a class="headerlink" href="#effizienz-durch-multimengen" title="Permalink to this headline">¶</a></h3>
 <p>■ Bei Vereinigung
 <br>
 □ Direkt „aneinanderhängen“
@@ -2627,9 +2495,9 @@ Reihenfolge ist weiter unwichtig</p>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="vereinigung-auf-multimengen">
-<h3><span class="section-number">8.19.3. </span>Vereinigung auf Multimengen<a class="headerlink" href="#vereinigung-auf-multimengen" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="vereinigung-auf-multimengen">
+<h3><span class="section-number">8.19.3. </span>Vereinigung auf Multimengen<a class="headerlink" href="#vereinigung-auf-multimengen" title="Permalink to this headline">¶</a></h3>
 <p>Sei R eine Multimenge
 <br>
 □ Tupel t erscheine n-mal in R.
@@ -2719,9 +2587,9 @@ Reihenfolge ist weiter unwichtig</p>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="schnittmenge-auf-multimengen">
-<h3><span class="section-number">8.19.4. </span>Schnittmenge auf Multimengen<a class="headerlink" href="#schnittmenge-auf-multimengen" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="schnittmenge-auf-multimengen">
+<h3><span class="section-number">8.19.4. </span>Schnittmenge auf Multimengen<a class="headerlink" href="#schnittmenge-auf-multimengen" title="Permalink to this headline">¶</a></h3>
 <p>■ Sei R eine Multimenge
 <br>
 □ Tupel t erscheine n-mal in R.
@@ -2799,10 +2667,10 @@ Reihenfolge ist weiter unwichtig</p>
 </tr>
 </tbody>
 </table>
-</section>
-</section>
-<section id="differenz-auf-multimengen">
-<h2><span class="section-number">8.20. </span>Differenz auf Multimengen<a class="headerlink" href="#differenz-auf-multimengen" title="Permalink to this headline">#</a></h2>
+</div>
+</div>
+<div class="section" id="differenz-auf-multimengen">
+<h2><span class="section-number">8.20. </span>Differenz auf Multimengen<a class="headerlink" href="#differenz-auf-multimengen" title="Permalink to this headline">¶</a></h2>
 <p>■ Sei R eine Multimenge
 <br>
 □ Tupel t erscheine n-mal in R.
@@ -2896,8 +2764,8 @@ Reihenfolge ist weiter unwichtig</p>
 </tr>
 </tbody>
 </table>
-<section id="projektion-und-selektion-auf-multimengen">
-<h3><span class="section-number">8.20.1. </span>Projektion und Selektion auf Multimengen<a class="headerlink" href="#projektion-und-selektion-auf-multimengen" title="Permalink to this headline">#</a></h3>
+<div class="section" id="projektion-und-selektion-auf-multimengen">
+<h3><span class="section-number">8.20.1. </span>Projektion und Selektion auf Multimengen<a class="headerlink" href="#projektion-und-selektion-auf-multimengen" title="Permalink to this headline">¶</a></h3>
 <p>■ Projektion
 <br>
 □ Bei der Projektion können neue Duplikate entstehen.
@@ -2987,9 +2855,9 @@ Reihenfolge ist weiter unwichtig</p>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="kreuzprodukt-auf-multimengen">
-<h3><span class="section-number">8.20.2. </span>Kreuzprodukt auf Multimengen<a class="headerlink" href="#kreuzprodukt-auf-multimengen" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="kreuzprodukt-auf-multimengen">
+<h3><span class="section-number">8.20.2. </span>Kreuzprodukt auf Multimengen<a class="headerlink" href="#kreuzprodukt-auf-multimengen" title="Permalink to this headline">¶</a></h3>
 <p>Sei R eine Multimenge
 <br>
 □ Tupel t erscheine n-mal in R.
@@ -3076,9 +2944,9 @@ Reihenfolge ist weiter unwichtig</p>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="joins-auf-multimengen">
-<h3><span class="section-number">8.20.3. </span>Joins auf Multimengen<a class="headerlink" href="#joins-auf-multimengen" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="joins-auf-multimengen">
+<h3><span class="section-number">8.20.3. </span>Joins auf Multimengen<a class="headerlink" href="#joins-auf-multimengen" title="Permalink to this headline">¶</a></h3>
 <p>■ Keine Überraschungen</p>
 <p><span class="math notranslate nohighlight">\(R\)</span></p>
 <table class="colwidths-auto table">
@@ -3166,13 +3034,13 @@ Reihenfolge ist weiter unwichtig</p>
 </tr>
 </tbody>
 </table>
-</section>
-</section>
-<section id="erweiterte-operatoren">
-<h2><span class="section-number">8.21. </span>Erweiterte Operatoren<a class="headerlink" href="#erweiterte-operatoren" title="Permalink to this headline">#</a></h2>
-</section>
-<section id="uberblick-uber-erweiterungen">
-<h2><span class="section-number">8.22. </span>Überblick über Erweiterungen<a class="headerlink" href="#uberblick-uber-erweiterungen" title="Permalink to this headline">#</a></h2>
+</div>
+</div>
+<div class="section" id="erweiterte-operatoren">
+<h2><span class="section-number">8.21. </span>Erweiterte Operatoren<a class="headerlink" href="#erweiterte-operatoren" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="uberblick-uber-erweiterungen">
+<h2><span class="section-number">8.22. </span>Überblick über Erweiterungen<a class="headerlink" href="#uberblick-uber-erweiterungen" title="Permalink to this headline">¶</a></h2>
 <p>Duplikateliminierung
 <br>
 ■ Aggregation
@@ -3188,8 +3056,8 @@ Reihenfolge ist weiter unwichtig</p>
 ■ Semijoin
 <br>
 ■ (Division)</p>
-<section id="duplikateliminierung-duplicate-elimination-delta">
-<h3><span class="section-number">8.22.1. </span>Duplikateliminierung (duplicate elimination, <span class="math notranslate nohighlight">\(\delta\)</span>)<a class="headerlink" href="#duplikateliminierung-duplicate-elimination-delta" title="Permalink to this headline">#</a></h3>
+<div class="section" id="duplikateliminierung-duplicate-elimination-delta">
+<h3><span class="section-number">8.22.1. </span>Duplikateliminierung (duplicate elimination, <span class="math notranslate nohighlight">\(\delta\)</span>)<a class="headerlink" href="#duplikateliminierung-duplicate-elimination-delta" title="Permalink to this headline">¶</a></h3>
 <p>■ Wandelt eine Multimenge in eine Menge um.
 <br>
 □ Durch Löschen aller Kopien von Tupeln
@@ -3240,9 +3108,9 @@ Reihenfolge ist weiter unwichtig</p>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="aggregation">
-<h3><span class="section-number">8.22.2. </span>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="aggregation">
+<h3><span class="section-number">8.22.2. </span>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">¶</a></h3>
 <p>■ Aggregation fasst Werte einer Spalte zusammen.
 <br>
 □ Operation auf einer Menge oder Multimenge atomarer Werte (nicht Tupel)
@@ -3299,9 +3167,9 @@ MAX(B) = 4
 COUNT(A) = 4
 <br>
 COUNT(B) = 4</p>
-</section>
-<section id="aggregation-beispiele">
-<h3><span class="section-number">8.22.3. </span>Aggregation – Beispiele<a class="headerlink" href="#aggregation-beispiele" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="aggregation-beispiele">
+<h3><span class="section-number">8.22.3. </span>Aggregation – Beispiele<a class="headerlink" href="#aggregation-beispiele" title="Permalink to this headline">¶</a></h3>
 <p>Film</p>
 <table class="colwidths-auto table">
 <thead>
@@ -3348,9 +3216,9 @@ COUNT(B) = 4</p>
 ■ COUNT(StudioName): Anzahl Filme
 <br>
 ■ AVG(SchauspName): syntax error</p>
-</section>
-<section id="gruppierung">
-<h3><span class="section-number">8.22.4. </span>Gruppierung<a class="headerlink" href="#gruppierung" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="gruppierung">
+<h3><span class="section-number">8.22.4. </span>Gruppierung<a class="headerlink" href="#gruppierung" title="Permalink to this headline">¶</a></h3>
 <p>■ Partitionierung der Tupel einer Relation gemäß ihrer Werte in einem oder mehr Attributen.
 <br>
 □ Hauptzweck: Aggregation auf Teilen einer Relation (Gruppen)
@@ -3370,9 +3238,9 @@ COUNT(B) = 4</p>
 – Summiere in jeder Gruppe die Länge der Filme
 <br>
 – Gebe Paare (Studioname, Summe) aus.</p>
-</section>
-<section id="gruppierung-group-gamma">
-<h3><span class="section-number">8.22.5. </span>Gruppierung (group, <span class="math notranslate nohighlight">\(\gamma\)</span>)<a class="headerlink" href="#gruppierung-group-gamma" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="gruppierung-group-gamma">
+<h3><span class="section-number">8.22.5. </span>Gruppierung (group, <span class="math notranslate nohighlight">\(\gamma\)</span>)<a class="headerlink" href="#gruppierung-group-gamma" title="Permalink to this headline">¶</a></h3>
 <p>■ <span class="math notranslate nohighlight">\(\gamma_L\)</span>® wobei L eine Menge von Attributen ist. Ein Element in L ist entweder
 <br></p>
 <ol class="simple">
@@ -3392,9 +3260,9 @@ COUNT(B) = 4</p>
 <br>
 – Aggregierte Werte über alle Tupel der Gruppe</p></li>
 </ol>
-</section>
-<section id="gruppierung-beispiele">
-<h3><span class="section-number">8.22.6. </span>Gruppierung – Beispiele<a class="headerlink" href="#gruppierung-beispiele" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="gruppierung-beispiele">
+<h3><span class="section-number">8.22.6. </span>Gruppierung – Beispiele<a class="headerlink" href="#gruppierung-beispiele" title="Permalink to this headline">¶</a></h3>
 <p>Film</p>
 <table class="colwidths-auto table">
 <thead>
@@ -3483,9 +3351,9 @@ dieses Films.
 \gamma_{SchauspName, MIN(Jahr)→MinJahr, COUNT(Titel)→AnzahlTitel}(SpieltIn)
 ) ) )
 )\)</span></p>
-</section>
-<section id="komplexe-ausdrucke-beispiele">
-<h3><span class="section-number">8.22.7. </span>Komplexe Ausdrücke – Beispiele<a class="headerlink" href="#komplexe-ausdrucke-beispiele" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="komplexe-ausdrucke-beispiele">
+<h3><span class="section-number">8.22.7. </span>Komplexe Ausdrücke – Beispiele<a class="headerlink" href="#komplexe-ausdrucke-beispiele" title="Permalink to this headline">¶</a></h3>
 <br>
 <br>
 ■ Stud(Matrikel, Name, Semester)
@@ -3506,9 +3374,9 @@ dieses Films.
 <br>
 ■ $\pi_{Fachgebiet}$( (Prof ⋈ Lehrt) ⋈
 ($\sigma_{ COUNT < 3(gVL_ID,COUNT(Matrikel)-> COUNT}$(Hört))
-)</section>
-<section id="sortierung-sort-tau">
-<h3><span class="section-number">8.22.8. </span>Sortierung (sort, <span class="math notranslate nohighlight">\(\tau\)</span>)<a class="headerlink" href="#sortierung-sort-tau" title="Permalink to this headline">#</a></h3>
+)</div>
+<div class="section" id="sortierung-sort-tau">
+<h3><span class="section-number">8.22.8. </span>Sortierung (sort, <span class="math notranslate nohighlight">\(\tau\)</span>)<a class="headerlink" href="#sortierung-sort-tau" title="Permalink to this headline">¶</a></h3>
 <br>
 <br>
 ■ $\tau_L$(R) wobei L eine Attributliste aus R ist.
@@ -3520,9 +3388,9 @@ dieses Films.
 □ Deshalb: Sortierung ist letzter Operator eines Ausdrucks. Ansonsten würden wieder Mengen entstehen und
 die Sortierung wäre verloren.
 <br>
-□ Trotzdem: In DBMS macht es manchmal auch Sinn zwischendurch zu sortieren.</section>
-<section id="semi-join">
-<h3><span class="section-number">8.22.9. </span>Semi-Join (⋊)<a class="headerlink" href="#semi-join" title="Permalink to this headline">#</a></h3>
+□ Trotzdem: In DBMS macht es manchmal auch Sinn zwischendurch zu sortieren.</div>
+<div class="section" id="semi-join">
+<h3><span class="section-number">8.22.9. </span>Semi-Join (⋊)<a class="headerlink" href="#semi-join" title="Permalink to this headline">¶</a></h3>
 <br>
 <br>
 ■ Formal
@@ -3539,15 +3407,15 @@ die Sortierung wäre verloren.
 <br>
 □ Definition analog für Theta-Join
 <br>
-■ Nicht kommutativ: R ⋉ S ≠ S ⋉ R</section>
-<section id="id4">
-<h3><span class="section-number">8.22.10. </span>Semi-Join<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+■ Nicht kommutativ: R ⋉ S ≠ S ⋉ R</div>
+<div class="section" id="id4">
+<h3><span class="section-number">8.22.10. </span>Semi-Join<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p><img alt="title" src="../_images/semijoin1.jpg" /></p>
 <p><img alt="title" src="../_images/semijoin2.jpg" /></p>
 <p><img alt="title" src="../_images/semijoin3.jpg" /></p>
-</section>
-<section id="outer-joins-auszere-verbunde">
-<h3><span class="section-number">8.22.11. </span>Outer Joins (Äußere Verbünde, |⋈|)<a class="headerlink" href="#outer-joins-auszere-verbunde" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="outer-joins-auszere-verbunde">
+<h3><span class="section-number">8.22.11. </span>Outer Joins (Äußere Verbünde, |⋈|)<a class="headerlink" href="#outer-joins-auszere-verbunde" title="Permalink to this headline">¶</a></h3>
 <br>
 <br>
 Übernahme von „dangling tuples“ in das Ergebnis und Auffüllen mit Nullwerten (padding)
@@ -3577,9 +3445,9 @@ R ⋈| S
 <br>
 R |⋈| S<p><img alt="title" src="../_images/outerjoin1.jpg" /></p>
 <p><img alt="title" src="../_images/outerjoin2.jpg" /></p>
-</section>
-<section id="outer-union">
-<h3><span class="section-number">8.22.12. </span>Outer Union (⊎)<a class="headerlink" href="#outer-union" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="outer-union">
+<h3><span class="section-number">8.22.12. </span>Outer Union (⊎)<a class="headerlink" href="#outer-union" title="Permalink to this headline">¶</a></h3>
 <br>
 <br>
 ■ Wie Vereinigung, aber auch mit inkompatiblen Schemata
@@ -3674,9 +3542,9 @@ R |⋈| S<p><img alt="title" src="../_images/outerjoin1.jpg" /></p>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="division-division">
-<h3><span class="section-number">8.22.13. </span>Division (division, /)<a class="headerlink" href="#division-division" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="division-division">
+<h3><span class="section-number">8.22.13. </span>Division (division, /)<a class="headerlink" href="#division-division" title="Permalink to this headline">¶</a></h3>
 <br>
 <br>
 ■ Typischerweise nicht als primitiver Operator unterstützt.
@@ -3695,13 +3563,13 @@ in S enthält, so ist der x-Wert in R/S.
 ■ Hole die Namen von Angestellten, die an allen Projekten arbeiten.
 <br>
 □ Sinnvoller: Hole die Namen von Angestellten, die an allen Projekten arbeiten, in denen auch „Thomas Müller“
-arbeitet.</section>
-<section id="division-beispiel">
-<h3><span class="section-number">8.22.14. </span>Division – Beispiel<a class="headerlink" href="#division-beispiel" title="Permalink to this headline">#</a></h3>
+arbeitet.</div>
+<div class="section" id="division-beispiel">
+<h3><span class="section-number">8.22.14. </span>Division – Beispiel<a class="headerlink" href="#division-beispiel" title="Permalink to this headline">¶</a></h3>
 <p><img alt="title" src="../_images/division1.jpg" /></p>
-</section>
-<section id="division-ausdrucken">
-<h3><span class="section-number">8.22.15. </span>Division ausdrücken<a class="headerlink" href="#division-ausdrucken" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="division-ausdrucken">
+<h3><span class="section-number">8.22.15. </span>Division ausdrücken<a class="headerlink" href="#division-ausdrucken" title="Permalink to this headline">¶</a></h3>
 <br>
 <br>
 ■ Division ist kein essentieller Operator, nur nützliche Abkürzung.
@@ -3714,14 +3582,14 @@ arbeitet.</section>
 <br>
 □ Disqualifizierte x-Werte: $\pi_{x}$ (($\pi_{x}$(R) $\times$ S) − R)
 <br>
-□ R/S: $\pi_{x}$(R) − alle disqualifizierten Tupel</section>
-<section id="division">
-<h3><span class="section-number">8.22.16. </span>Division<a class="headerlink" href="#division" title="Permalink to this headline">#</a></h3>
+□ R/S: $\pi_{x}$(R) − alle disqualifizierten Tupel</div>
+<div class="section" id="division">
+<h3><span class="section-number">8.22.16. </span>Division<a class="headerlink" href="#division" title="Permalink to this headline">¶</a></h3>
 <p><img alt="title" src="../_images/division2.jpg" /></p>
-</section>
-</section>
-<section id="multiple-choice">
-<h2><span class="section-number">8.23. </span>Multiple Choice<a class="headerlink" href="#multiple-choice" title="Permalink to this headline">#</a></h2>
+</div>
+</div>
+<div class="section" id="multiple-choice">
+<h2><span class="section-number">8.23. </span>Multiple Choice<a class="headerlink" href="#multiple-choice" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird nur in das JupyterBook eingebunden und nicht selbst gehostet. Der Multiple-Choice-Trainer wird durch GitHub-Pages gehostet.</p></li>
 <li><p>Alle Fragen und Kategorien befinden sich zurzeit in Überarbeitung und sind nicht final.</p></li>
@@ -3739,8 +3607,8 @@ arbeitet.</section>
 ></iframe>
 </div></div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -3764,11 +3632,9 @@ arbeitet.</section>
 
               </div>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="../07/normalisierung.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -3784,28 +3650,24 @@ arbeitet.</section>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            </footer>
+            
         </div>
     </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Prof. Dr. Ziawasch Abedjan<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+    <footer class="footer">
+  <p>
     
-</div>
+      By Prof. Dr. Ziawasch Abedjan<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
 
 
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>
