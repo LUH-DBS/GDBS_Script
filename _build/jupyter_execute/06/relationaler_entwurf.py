@@ -56,7 +56,7 @@
 
 # ### Edgar F. Codd
 
-# Promotion an der University of Michigan Ann Arbor
+# Die Relationale-Datenbanktheorie geht auf Edgar F. Codd zurück, welcher an der University of Michigan Ann Arbor promoviert hat.
 # <br>
 # Entwicklung des Relationalen Modells bei IBM (Almaden)
 # <br>
@@ -330,145 +330,84 @@
 # ■ D.h.: Gleiche oder überlappende Schemas können/sollen nicht immer zusammengelegt werden.
 
 # ## Konvertierung von Spezialisierung
+# 
+# In diesem Kapitel betrachten wir drei Strategien wie Spezialisierungen in Relationen dargestellt werden können.
+
+# ### Spezialisierung
+# 
+# Angenommen wir haben einen Wurzel-Entitytyp der IST-Hierarchie gegeben. Dieser Wurzel-Entitytyp hat einen Schlüssel der alle Entitys der gesamten Hierarchie identifiziert. Eine Entity kann aus mehreren Komponenten der Hierarchie bestehen.
+# 
 
 # ![title](spezialisierung.jpg)
 
-# ## ER-Still
+# ### ER-Still
 
-# □ Für jeden Entitytypen E der Hierarchie erzeuge eine Relation mit den Schlüsselattributen des WurzelEntitytypen und den Attributen von E
+# Beim ER-Stil wird für jeden Entitytypen E der Hierarchie eine Relation mit den Schlüsselattributen des Wurzel-Entitytypen und den Attributen von E erzeugt. Für das obige Beispiel würden sich folgende Relationen ergeben:
+# - Film(Titel, Jahr, Länge,Typ)
+# - Krimi(Titel, Jahr, Waffen)
+# - Zeichentrickfilm(Titel, Jahr)
+# 
 # <br>
 # <br>
-# ■ Film(Titel, Jahr, Länge,Typ)
+# Die IST-Relationship selbst erhält keine Relation und die geerbten Schlüsselattribute können für weitere Beziehungen weiterbenutzt werden. In unserem Beipsiel gibt es vier verschiedene Filmsorten. Jeder Film hat ein Tupel in der Relation Filme. Ein konkreter Film (z.B. Roger Rabbit) kann auch Tupel in allen drei Relationen haben.
 # <br>
 # <br>
-# ■ Krimi(Titel, Jahr, Waffen)
-# <br>
-# <br>
-# ■ Zeichentrickfilm(Titel, Jahr)
-# <br>
-# <br>
-# ■ Anmerkungen
-# <br>
-# □ Die IST-Relationship selbst erhält keine Relation.
-# <br>
-# □ Geerbte Schlüsselattribute werden für weitere Beziehungen benötigt.
-# <br>
-# □ Es gibt vier verschiedene Filmsorten.
-# <br>
-# □ Jeder Film hat ein Tupel in der Relation Filme.
-# <br>
-# □ Ein konkreter Film (z.B. Roger Rabbit) kann Tupel in allen drei Relationen haben.
-# <br>
-# <br>
-# ■ Stimmen(Titel, Jahr, Name)
-# <br>
-# ■ Schema von Zeichentrickfilm ist Teilmenge des Schemas von Stimmen.
-# <br>
-# □ Kann man es weglassen?
-# <br>
-# □ Nein: Stumme Zeichentrickfilme!
+# Zusätzlich können wir noch die Beziehung Stimmen definieren: Stimmen(Titel, Jahr, Name). Wir sehen, dass das Schema von Zeichentrickfilm eine Teilmenge des Schemas von Stimmen ist. Kann man es dann nicht einfach weglassen? Nein, denn es gibt auch stumme Zeichentrickfilme!
 
-# ## Objekt-orientierter Stil
+# ### Objekt-orientierter Stil
 
-# □ Ein Entity gehört zu genau einer Klasse.
-# <br>
-# □ Für jeden möglichen Teilbaum der Hierarchie, der auch die Wurzel enthält, erzeuge eine Relation mit allen
-# Attributen der beteiligten Entitytypen.
+# Beim Objekt-orientierten Stil gehört eine Entity zu genau einer Klasse. Für jeden möglichen Teilbaum der Hierarchie, der auch die Wurzel enthält, wird eine Relation mit allen Attributen der beteiligten Entitytypen erzeugt. Diese Relation repräsentiert die Entities, die genau diese Komponenten der Hierarchie besitzen. Unser Beispiel oben hat vier Teilbäume: Nur Filme, Filme und Zeichentrickfilme, Filme und Krimis, Filme und Zeichentrickfilme und Krimis. Demnach ergeben sich vier Relationen:
+# - Film(Titel, Jahr, Länge, Typ)
+# - FilmZ(Titel, Jahr, Länge, Typ)
+# - FilmK(Titel, Jahr, Länge, Typ, Waffen)
+# - FilmZK(Titel, Jahr, Länge, Typ, Waffen)
 
-# ■ Erzeuge Relation für jeden Teilbaum.
+# Kann man Film und FilmZ zusammenführen?
 # <br>
-# ■ Diese Relation repräsentiert die Entities, die genau diese Komponenten der Hierarchie besitzen.
+# Kann man FilmK und FilmZK zusammenführen?
 # <br>
-# □ Objekte gehören zu genau einer Klasse.
+# <br>
+# Nein, da jede Relation eine bestimmte Typkombination darstellt.
 # <br><br>
-# ■ Vier Teilbäume
+# Wie viele Relationen für Stimmen benötigt man?
 # <br>
-# □ Nur Filme
-# <br>
-# □ Filme und Zeichentrickfilme
-# <br>
-# □ Filme und Krimis
-# <br>
-# □ Filme und Zeichentrickfilme und Krimis
+# Es wird nur eine benötigt: Stimmen(Titel, Jahr, Name)
+
+# ### Null-Werte Stil
+
+# Beim Null-Werte-Stil wird eine einzige Relation für die gesamte Hierarchie erzeugt. Eine Entity wird durch ein Tupel repräsentiert,welches für fehlende Attribute Null-Werte hat. Für unser Beispiel, wird im Null-Werte-Stil also eine einzige Relation mit allen Attributen erstellt:
+# - Film(Titel, Jahr, Länge, Typ, Waffen)
 # <br><br>
-# ■ Film(Titel, Jahr, Länge, Typ)
-# <br>
-# ■ FilmZ(Titel, Jahr, Länge, Typ)
-# <br>
-# ■ FilmK(Titel, Jahr, Länge, Typ, Waffen)
-# <br>
-# ■ FilmZK(Titel, Jahr, Länge, Typ, Waffen)
-# <br>
-# <br>
-# ■ Kann man Film und FilmZ zusammenführen?
-# <br>
-# <br>
-# ■ Kann man FilmK und FilmZK zusammenführen?
-# <br>
-# <br>
-# ■ Wie viele Relationen für Stimmen benötigt man?
-# <br>
-# □ Nur eine: Stimmen(Titel, Jahr, Name)
+# Filme die keine Krimis sind haben alls Attributwert NULL stehen. Zu beachten ist noch, dass mit der Null-Werte-Darstellung stumme Zeichentrickfilme und Krimis ohne Waffen von „normalen“ Filme nicht mehr zu unterscheiden sind.
 
-# ## Null-Werte Stil
+# ### Vergleich der drei Stile
+# 
+# Alle drei Strategien haben ihre Vor- und Nachteile. Wir vergleichen zunächst die Anzahl der benötigten Relationen bei n Entitytypen:
+# -  Null-Stil: Nur eine Relation
+# - ER-Stil: n Relationen
+# -  OO-Stil: O(2n-1) Relationen
+# <br>
+# <br>
 
-# □ Erzeuge eine einzige Relation für die gesamte Hierarchie. Ein Entity wird durch ein Tupel repräsentiert mit NullWerten für Attribute, die der Entity nicht besitzt.
+# Nun vergleichen wir den Speicherbedarf:
+# <br>
+# - OO-Stil: Minimaler Speicherbedarf, da nur ein Tupel pro Entity benötigt wird und jeweil nur so viele Attribute wie nötig dargestellt werden.
+# - Null-Stil: Auch nur ein Tupel pro Entity, möglicherweise jedoch mit vielen Null-Werten, welches das Tupel länger macht.
+# -  ER-Stil: Viele Tupel pro Entity, es werden jedoch nur Schlüsselattribute wiederholt
 
-# ■ Eine einzige Relation mit allen Attributen.
-# <br>
-# <br>
-# ■ Film(Titel, Jahr, Länge, Typ, Waffen)
-# <br>
-# <br>
-# ■ Nicht-Krimis haben NULL-Wert als Attributwert für Waffen.
-# <br>
-# <br>
-# ■ Feinheiten
-# <br>
-# □ Stumme Zeichentrickfilme und Krimis ohne Waffen sehen aus wie „normale“ Filme.
-
-# ## Vergleich der drei Stile
-
-# ■ Anzahl an Relationen (bei n Entitytypen)
-# <br>
-# □ Null-Stil: Nur eine Relation
-# <br>
-# □ ER-Stil: n Relationen
-# <br>
-# □ OO-Stil: O(2n-1) Relationen
-# <br>
-# <br>
-# ■ Speicherbedarf
-# <br>
-# □ OO-Stil: Minimaler Speicherbedarf
-# <br>
-# – Nur ein Tupel pro Entity
-# <br>
-# – Jeweils nur so viele Attribute wie nötig
-# <br>
-# □ Null-Stil: Auch nur ein Tupel pro Entity
-# <br>
-# – Aber: Lange Tupel mit möglicherweise vielen Null-Werten
-# <br>
-# □ ER-Stil: Viele Tupel pro Entity
-# <br>
-# – Aber nur Schlüsselattribute werden wiederholt
-
-#  Anfragebearbeitung
+# Bei der Anfragebearbeitung müssen wir annehmen, das Joins über viele Relationen teuer sind. Daher wäre eine Anfrage mit so wenig Joins wie möglich am günstigten. Das wäre hier der Null-Werte-Stil, da nur eine Tabelle für die Darstellung nötig ist.
+#  <br><br>
+# Möchten wir nun die folgende Anfrage ausführen: Welche Filme aus 1999 sind länger als 150 Minuten?
 #  <br>
-# □ Joins über viele Relationen sind teuer.
+# - ER-Stil: Antwort direkt möglich, da Anfrage direkt an die "normale" Filmrelation gestellt werden kann.
 #  <br>
-# □ Þ Null-Werte im Vorteil
+# - OO-Stil: Anfrage an alle vier Relationen, da die Attribute Länge und Typ in allen vier Relationen vertreten sind.
 #  <br>
-# □ Welche Filme aus 1999 sind länger als 150 Minuten?
 #  <br>
-# – ER-Stil: Antwort direkt möglich
+#  
+# Welche Waffen wurden in Zeichentrickfilmen, die länger als 150 Minuten sind, verwendet?
 #  <br>
-# – OO-Stil: Anfrage an alle vier Relationen
-#  <br>
-# □ Welche Waffen wurden in Zeichentrickfilmen, die länger als 150 Minuten sind, verwendet?
-#  <br>
-# – ER-Stil: Alle drei Relationen sind relevant:
+# - ER-Stil: Alle drei Relationen sind relevant, daher müssen drei Joins durchgeführt werden
 #  <br>
 # 1. Filme für die Länge
 #  <br>
@@ -476,9 +415,7 @@
 #  <br>
 # 3. Krimis für die Waffe
 #  <br>
-# – OO-Stil: Anfrage nur an FilmeZK()
-
-# NICHT enthalten: S.35
+# - OO-Stil: Anfrage nur an FilmeZK()
 
 # ## Multiple Choice
 # 
