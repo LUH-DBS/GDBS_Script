@@ -649,52 +649,33 @@ title="Print to PDF"
      </li>
     </ul>
    </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id5">
-   11.6. Sperren
-  </a>
-  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#mehrere-sperrmodi">
-     11.6.1. Mehrere Sperrmodi
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id6">
-   11.7. Sperren
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
-     11.7.1. Mehrere Sperrmodi
+     11.5.7. Mehrere Sperrmodi
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#bedingungen">
-     11.7.2. Bedingungen
+     11.5.8. Bedingungen
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#beispiel">
-       11.7.2.1. Beispiel
+       11.5.8.1. Beispiel
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#weitere-sperrarten">
-     11.7.3. Weitere Sperrarten
+     11.5.9. Weitere Sperrarten
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#multiple-choice">
-   11.8. Multiple Choice
+   11.6. Multiple Choice
   </a>
  </li>
 </ul>
@@ -967,52 +948,33 @@ title="Print to PDF"
      </li>
     </ul>
    </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id5">
-   11.6. Sperren
-  </a>
-  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#mehrere-sperrmodi">
-     11.6.1. Mehrere Sperrmodi
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id6">
-   11.7. Sperren
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
-     11.7.1. Mehrere Sperrmodi
+     11.5.7. Mehrere Sperrmodi
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#bedingungen">
-     11.7.2. Bedingungen
+     11.5.8. Bedingungen
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#beispiel">
-       11.7.2.1. Beispiel
+       11.5.8.1. Beispiel
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#weitere-sperrarten">
-     11.7.3. Weitere Sperrarten
+     11.5.9. Weitere Sperrarten
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#multiple-choice">
-   11.8. Multiple Choice
+   11.6. Multiple Choice
   </a>
  </li>
 </ul>
@@ -2942,7 +2904,7 @@ Somit hat der Restgraph n-1 Transaktionen</p>
 </section>
 <section id="sperrkontrolle">
 <h2><span class="section-number">11.5. </span>Sperrkontrolle<a class="headerlink" href="#sperrkontrolle" title="Permalink to this headline">#</a></h2>
-<p>In diesem Kapitel beschäftigen wir uns wie mit Sperrkontrollen, die  DBMS konfliktserialisierbare Schedules garantiert.</p>
+<p>In diesem Kapitel beschäftigen wir uns wie mit Sperrkontrollen die  DBMS konfliktserialisierbare Schedules garantiert.</p>
 <section id="scheduler">
 <h3><span class="section-number">11.5.1. </span>Scheduler<a class="headerlink" href="#scheduler" title="Permalink to this headline">#</a></h3>
 <p>Der Scheduler in einem DBMS garantiert konfliktserialisierbare (also auch serialisierbare) Schedules bei gleichzeitig laufenden Transaktionen. Wenn neue Transaktionen ausgeführt werden sollen, könnte der Scheduler jedesmal einen graphbasierten Test durchführen, jedoch ist dies sehr kostenaufwendig. Stattdessen wäre es einfacher Sperren und Sperrkontrollen zu benutzte, welches in fast allen DBMS realisiert ist. Die Idee dahinter ist, dass die Transaktion für die Dauer der Bearbeitung eines Datenbankobjekts dieses sperrt, s.d. andere Transaktionen nicht darauf zugreifen können.
@@ -3428,28 +3390,14 @@ Somit ist Ti nicht 2PL.</p></li>
 </ul>
 </section>
 </section>
-</section>
-<section id="id5">
-<h2><span class="section-number">11.6. </span>Sperren<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
-<p>In diesem Kapitel beschäftigen wir uns mit verschieden Sperrmodi.</p>
 <section id="mehrere-sperrmodi">
-<h3><span class="section-number">11.6.1. </span>Mehrere Sperrmodi<a class="headerlink" href="#mehrere-sperrmodi" title="Permalink to this headline">#</a></h3>
-<p>Die Idee hinter mehreren Arten von Sperren ist, dass so die Flexibilität erhöht wird und die Menge der abgewiesenen Sperren verringert wird.
-<br>
-Z.B sind Sperren obwohl nur gelesen wird übertrieben.Eine gewisse Sperre ist dennoch nötig, aber mehrere Transaktionen sollen auch gleichzeitig lesen können. Für Leseoperationen können sogenannte shared locks si(X) angefordert werden. Diese erlaubt dann das Lesen für die Transaktion Ti und sperrt zudem auch den Schreibzugriff für alle anderen Transaktionen. Für Schreiboperationen wir eine exclusive lock xli(X) angefordert, welches das Lesen und Schreiben durch Transaktion Ti erlaubt. Um diese beiden Sperren aufzuheben wird wie schon bekannt einfach ein unlock ui(X) angefordert. Was die Kompabilität angeht, darf es für ein Objekt nur eine Schreibsperre oder mehrere Lesesperren geben.</p>
-</section>
-</section>
-<section id="id6">
-<h2><span class="section-number">11.7. </span>Sperren<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h2>
-<p>In diesem Kapitel beschäftigen wir uns mit verschieden Sperrmodi.</p>
-<section id="id7">
-<h3><span class="section-number">11.7.1. </span>Mehrere Sperrmodi<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">11.5.7. </span>Mehrere Sperrmodi<a class="headerlink" href="#mehrere-sperrmodi" title="Permalink to this headline">#</a></h3>
 <p>Die Idee hinter mehreren Arten von Sperren ist, dass so die Flexibilität erhöht wird und die Menge der abgewiesenen Sperren verringert wird.
 <br>
 Z.B sind Sperren obwohl nur gelesen wird übertrieben.Eine gewisse Sperre ist dennoch nötig, aber mehrere Transaktionen sollen auch gleichzeitig lesen können. Für Leseoperationen können sogenannte shared locks si(X) angefordert werden. Diese erlaubt dann das Lesen für die Transaktion Ti und sperrt zudem auch den Schreibzugriff für alle anderen Transaktionen. Für Schreiboperationen wir eine exclusive lock xli(X) angefordert, welches das Lesen und Schreiben durch Transaktion Ti erlaubt. Um diese beiden Sperren aufzuheben wird wie schon bekannt einfach ein unlock ui(X) angefordert. Was die Kompabilität angeht, darf es für ein Objekt nur eine Schreibsperre oder mehrere Lesesperren geben.</p>
 </section>
 <section id="bedingungen">
-<h3><span class="section-number">11.7.2. </span>Bedingungen<a class="headerlink" href="#bedingungen" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">11.5.8. </span>Bedingungen<a class="headerlink" href="#bedingungen" title="Permalink to this headline">#</a></h3>
 <p>Um die Konsistenz von Transaktionen zu wahren ist Schreiben ohne Schreibsperre und Lesen ohne irgendeine Sperre nicht erlaubt. Ebenso muss jede Sperre irgendwann freigegeben werden.
 <br><br>
 Mit den Speermodi hat sich bei der 2PL-Konformität von Transaktionen nichts geändert. Wie zuvor auch dürfen nach der ersten Freigabe keine Sperren mehr angefordert werden.
@@ -3458,7 +3406,7 @@ Was die Legalität von Schedules betrifft, darf es auf ein Objekt mit einer Schr
 <br>
 <img alt="title" src="../_images/bedingungen.jpg" /></p>
 <section id="beispiel">
-<h4><span class="section-number">11.7.2.1. </span>Beispiel<a class="headerlink" href="#beispiel" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">11.5.8.1. </span>Beispiel<a class="headerlink" href="#beispiel" title="Permalink to this headline">#</a></h4>
 <p>T1 sperrt zunächst A mit einem sharedlock, T2 tut dem ebenso und sperrt zusätzlich noch B. Folgend fordert T1 ein exclusive lock an B, jedoch ist B mit einem shared lock von T2 besetzt, weshalb die Anfrage abgelehnt wird. T2 gibt A und B frei. Zuletzt wird von T1 erneut ein exclusive lock an B angefordert und T1 liest und schreibt auf B. Ganz zum Schluss werden die Sperren von T1 freigegeben.
 <br><br></p>
 <ul class="simple">
@@ -3503,12 +3451,12 @@ Was die Legalität von Schedules betrifft, darf es auf ein Objekt mit einer Schr
 </section>
 </section>
 <section id="weitere-sperrarten">
-<h3><span class="section-number">11.7.3. </span>Weitere Sperrarten<a class="headerlink" href="#weitere-sperrarten" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">11.5.9. </span>Weitere Sperrarten<a class="headerlink" href="#weitere-sperrarten" title="Permalink to this headline">#</a></h3>
 <p>Eine weitere Sperrart ist Upgraden einer Sperre von einer Lesesperre zu einer Schreibsperre, anstatt gleich strenge Schreibsperre zu setzen. Es ist auch möglich Updatesperren zu setzten, diese erlaubt nur lesenden Zugriff, jedoch kann ein Upgrade erfahren. Die klassische Lesesperre kann dann keinen Upgrade erfahren. Eine Inkrementsperre erlaubt lesenden Zugriff und erlaubt schreibenden Zugriff, falls der Wert nur inkrementiert (oder dekrementiert) wird. Dies ist erlaubt da Inkremente kommutativ sind, also sind Vertauschung erlaubt.</p>
 </section>
 </section>
 <section id="multiple-choice">
-<h2><span class="section-number">11.8. </span>Multiple Choice<a class="headerlink" href="#multiple-choice" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">11.6. </span>Multiple Choice<a class="headerlink" href="#multiple-choice" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird nur in das JupyterBook eingebunden und nicht selbst gehostet. Der Multiple-Choice-Trainer wird durch GitHub-Pages gehostet.</p></li>
 <li><p>Alle Fragen und Kategorien befinden sich zurzeit in Überarbeitung und sind nicht final.</p></li>
