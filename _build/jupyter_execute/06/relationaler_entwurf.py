@@ -244,7 +244,7 @@
 # <br>
 # – inkl. Schlüssel des anderen Entitytypen
 
-# ![title](relationshiptyp1.jpg)
+# ![title](schwache_entitytypen3.jpg)
 
 # ![title](relationshiptyp2.jpg)
 
