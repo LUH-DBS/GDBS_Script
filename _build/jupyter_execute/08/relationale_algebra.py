@@ -2,6 +2,7 @@
 # coding: utf-8
 
 # # Relationale Algebra
+
 # Die Relationale Algebra ist der wohl formalste Teil dieser  Vorlesung. <br>
 # Zuvor wurde über die Modellierung von Daten gesprochen und wie man relationale Datenbanken entwirft. <br>
 # Jetzt geht es darum, die zuvor modellierte relationale Datenbank  mit einer Sprache zu manipulieren bzw. neue Sichten darauf zu erstellen und an diese Anfragen zu stellen. 
@@ -15,9 +16,9 @@
 # Die „abgeleiteten“ Relationsschemata werden durch Anfragen definiert. 
 # Daher benötigt man eine Anfragesprache. Eine Eigenschaft von ihr ist es, die Basis-Relationen nicht zu verändern, sondern neue Relationen für den Nutzer oder für die Applikation zu generieren.
 # <br>
-# --
+# ~~~~
 # Eine Anfrage an eine Relation und deren Ergebnisse stellen wieder neue Relationen dar. 
-# --
+# ~~~~
 # 
 
 # ### Kriterien für Anfragesprachen
@@ -98,6 +99,7 @@
 # Ein Element ist nur einmal in der Vereinigung von R und S (R ∪ S) vertreten, auch wenn es jeweils einmal in R und S auftaucht. Es kommt zu einer Duplikatentfernung.
 
 # ## Beispiel für Mengenoperatoren
+
 # Das Beispiel zeigt zwei Tabellen R und S mit jeweils Name, Adresse, Geschlecht und Geburt. 
 # Wenn man diese Relationen miteinander vereinigt, erhält man eine neue Relation, in der das Tupel mit "Carrie Fisher" nur ein Mal vorkommt. 
 
@@ -134,6 +136,7 @@
 # - R − S ≠ S − R
 
 # ## Beispiel für Mengenoperatoren
+
 # Sowohl in der Relation R, als auch in der Relation S, gibt es das gleiche Tupel mit "Carrie Fisher". Bei der Differenz (R-S) wird das in beiden vorkommende Tupel eliminiert. 
 
 # $R$
@@ -167,6 +170,7 @@
 # ![title](schnittmenge.jpg)
 
 # ## Beispiel für Mengenoperatoren
+
 # In Relation R sowie in Relation S gibt es ein identisches "Carrie Fisher" Tupel. Bildet man die Schnittmenge der beiden Relationen ($R\cap S$), sind in der Ergebnisrelation alle Tupel, die sowohl in R, als auch in S vorkommen. In diesem Fall wäre es nur das Tupel mit "Carrie Fisher". 
 
 # $R$
@@ -210,6 +214,7 @@
 # |1|1|
 
 # ## Projektion – Beispiel
+
 # Hier sind zwei weitere Beispiele zu Projektionen anhand einer Film-Tabelle dargestellt. <br>
 # Im ersten Beispiel werden bei der Projektion nur die Spalten Titel, Jahr und Länge behalten. Die anderen Spalten werden weggeschnitten. <br>
 # In zweitem Beispiel kommt 'True' doppelt vor und daher werden dessen Duplikate entfernt. 
@@ -256,6 +261,7 @@
 # - Selektion $\neq$ SELECT
 
 # ## Selektion – Beispiel
+
 # Die Beispiele zeigen verschiedene Selektionen auf einer gegebenen Film-Relation. <br>
 # Im ersten Beispiel werden alle Filme selektiert, dessen Länge größer oder gleich 100 Minuten ist. <br>
 # Im zweitem Beispiel kommt noch hinzu, dass diese Filem vom Fox-Studio produziert worden sein müssen. 
@@ -290,6 +296,7 @@
 # ![title](descartes.jpg)
 
 # ## Kartesisches Produkt – Beispiel
+
 # Das Beispiel zum Kartesischen Produkt zeigt zwei Relationen R und S, die mittels Kreuzprodukt kombiniert werden. Dazu werden alle möglichen Kombinationen der Tupel gebildet. Die Relationen R und S haben ein Attribut mit dem selben Namen (B). In der neuen Ergbnisrelation wird das Attribut jeweils eindeutig umbenannt. Bei der Umbennenung wird als Präfix der Relationsname vor das Attribut geschrieben: R.B und S.B.
 
 # $R$
