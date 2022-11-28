@@ -2,169 +2,104 @@
 # coding: utf-8
 
 # # Relationale Algebra
+# Die Relationale Algebra ist der wohl formalste Teil dieser  Vorlesung. <br>
+# Zuvor wurde über die Modellierung von Daten gesprochen und wie man relationale Datenbanken entwirft. <br>
+# Jetzt geht es darum, die zuvor modellierte relationale Datenbank  mit einer Sprache zu manipulieren bzw. neue Sichten darauf zu erstellen und an diese Anfragen zu stellen. 
 
 # ## Einführung
 
-# ■ Bisher
+# In den letzten Kapiteln wurde das Relationsschema mit Basisrelationen, die in der Datenbank gespeichert sind, behandelt. 
 # <br>
-# □ Relationenschemata mit Basisrelationen, die in der Datenbank gespeichert sind
-# <br><br>
-# ■ Jetzt
+# Jetzt geht es um „abgeleitete“ Relationenschemata mit virtuellen Relationen, die aus den Basisrelationen berechnet werden. 
 # <br>
-# □ „Abgeleitete“ Relationenschemata mit virtuellen Relationen, die aus den Basisrelationen berechnet werden
+# Die „abgeleiteten“ Relationsschemata werden durch Anfragen definiert. 
+# Daher benötigt man eine Anfragesprache. Eine Eigenschaft von ihr ist es, die Basis-Relationen nicht zu verändern, sondern neue Relationen für den Nutzer oder für die Applikation zu generieren.
 # <br>
-# □ Definiert durch Anfragen
-# <br>
-# – Anfragesprache
-# <br>
-# □ Basisrelationen bleiben unverändert
+# --
+# Eine Anfrage an eine Relation und deren Ergebnisse stellen wieder neue Relationen dar. 
+# --
+# 
 
 # ### Kriterien für Anfragesprachen
 
-# ■ Ad-Hoc-Formulierung
+# Für Anfragesprachen gibt es verschiedene Kritieren. Unter Anderem soll eine Ad-Hoc-Formulierung möglich sein. Der Benutzer soll eine Anfrage formulieren können, ohne ein vollständiges Programm schreiben zu müssen. Wenn man ein neues Programm in einer Sprache wie Python schreibt, muss man sich darum kümmern Bibliotheken zu importieren, usw. Dies ist bei einer Anfragensprache eben nicht der Fall. 
 # <br>
-# □ Benutzer soll eine Anfrage formulieren können, ohne ein vollständiges Programm schreiben zu müssen.
+# Zudem soll eine Anfragesprache eingeschränkt und keine komplette Programmiersprache sein. Sie soll aus einem Standard und nicht aus zu vielen verschiedenen Vokabularien bestehen. Dennoch besteht der SQL-Standard aus mehr als 1300 Seiten!
+# <br>
+# Eine weiteres Kriterium einer Anfragesprache ist die Deskriptivität bzw. die Deklarativität. 
+# Der Benutzer soll formulieren was er haben möchte („Was will ich haben?“) und nicht wie er an das kommt, was er haben möchte („Wie komme ich an das, was ich haben will?“). Das System erstellt die darunterliegenden Programme automatisch zu der gegebenen Anfrage, ohne dass man schreiben muss, wie die Programme genau funktionieren. 
 # <br><br>
-# ■ Eingeschränktheit
-# <br>
-# □ Anfragesprache soll keine komplette Programmiersprache sein
-# <br>
-# – Aber: SQL Standard besteht aus >1300 Seiten…
+# Zusätzlich muss eine Sprache optimierbar sein. Eine Sprache besteht aus wenigen Operationen.
+# Für die Operatormenge gibt es Optimierungsregeln. Die Optimierung ist abhängig von der Nutzung bzw. von den Daten. Bestimmte Operatoren in bestimmten Situationen kosten unterschiedlich viel. 
 # <br><br>
-# ■ Deskriptivität / Deklarativität
-# <br>
-# □ Benutzer soll formulieren „Was will ich haben?“ und nicht „Wie komme ich an das, was ich haben will?“
+# Eine Anfragesprache muss effizient sein, insbesondere die einzelnen Operationen.
+# Im relationalen Modell hat jede Operation eine Komplexität ≤ O(n²)
+# Wobei n die Anzahl der Tupel einer Relation darstellt. 
 # <br><br>
-# ■ Optimierbarkeit
-# <br>
-# □ Sprache besteht aus wenigen Operationen
-# <br>
-# □ Optimierungsregeln für die Operatorenmenge
+# Die Abgeschlossenheit ist eine weitere Eigenschaft einer Anfragesprache. Das Ergebnis von Anfragen auf Relationen ist wiederum eine Relation und kann als Eingabe für die nächste Anfrage verwendet werden.
 # <br><br>
-# ■ Effizienz
-# <br>
-# □ Jede einzelne Operation ist effizient ausführbar.
-# <br>
-# □ Im relationalen Modell hat jede Operation eine Komplexität ≤ O(n²)
-# <br>
-# – n = Anzahl der Tupel einer Relation
+# Eine weitere, aber nicht sehr strenge, Eigenschaft ist die Mengenorientiertheit.
+# Die Operationen sollen auf Mengen von Daten gelten. Dies gilt aber nicht in jedem Fall. 
+# Letztendlich möchte man auf Elemente einer Tabelle zugreifen und nicht nur auf einzelne Elemente  („tuple-at-a-time“), die irgendwo herumliegen. 
 # <br><br>
-# ■ Abgeschlossenheit
-# <br>
-# □ Anfragen auf Relationen
-# <br>
-# □ Anfrageergebnis ist wiederum eine Relation und kann als Eingabe für die nächste Anfrage verwendet werden.
+# Adäquatheit ist eine weitere Eigenschaft einer Anfragensprache. 
+# Alle Konstrukte des zugrundeliegenden Datenmodells sollen unterstützt werden. 
+# Dazu zählen Relationen, Attribute, Schlüssel, usw. 
 # <br><br>
-# ■ Mengenorientiertheit
-# <br>
-# □ Operationen auf Mengen von Daten
-# <br>
-# □ Nicht navigierend nur auf einzelnen Elementen („tuple-at-a-time“)
+# Die Vollständigkeit einer Anfragesprache bedeutet, dass eine Sprache mindestens die Anfragen einer Standardsprache (z.B. relationale Algebra) ausdrücken kann. Die Relationale Algebra dient hierbei als Vorgabe. 
 # <br><br>
-# ■ Adäquatheit
-# <br>
-# □ Alle Konstrukte des zugrundeliegenden Datenmodells werden unterstützt
-# <br>
-# □ Relationen, Attribute, Schlüssel, …
-# <br><br>
-# ■ Vollständigkeit
-# <br>
-# □ Sprache muss mindestens die Anfragen einer Standardsprache (z.B. relationale Algebra) ausdrücken können.
-# <br>
-# □ Relationale Algebra dient als Vorgabe.
-# <br><br>
-# ■ Sicherheit
-# <br>
-# □ Keine Anfrage, die syntaktisch korrekt ist, darf in eine Endlosschleife geraten oder ein unendliches Ergebnis
-# liefern.
+# Zuletzt soll eine Anfragesprache sicher sein. Keine Anfrage, die syntaktisch korrekt ist, darf in eine Endlosschleife geraten oder ein unendliches Ergebnis liefern.
 
 # ### Anfragealgebra
 
-# ■ Mathematik
-# <br>
-# □ Algebra: Definiert durch Wertebereich und auf diesem definierte Operatoren
-# <br>
-# □ Operand: Variablen oder Werte aus denen neue Werte konstruiert werden können
-# <br>
-# □ Operator: Symbole, die Prozeduren repräsentieren, die aus gegebenen Werten neue Werte produzieren
+# In der Mathematik ist die Algebra definiert durch einen Wertebereich und auf diesem definierte Operatoren. <br>
+# Ein Operand besteht aus Variablen oder aus Werten, aus denen neue Werte konstruiert werden können (x, 2, 3, ...).<br>
+# Ein Operator besteht aus Symbolen, die Prozeduren repräsentieren, die aus gegebenen Werten neue Werte produzieren (+, -, * , /, ...).
 # <br><br>
-# ■ Für Datenbankanfragen
-# <br>
-# □ Inhalte der Datenbank (Relationen) sind Operanden
-# <br>
-# □ Operatoren definieren Funktionen zum Berechnen von Anfrageergebnissen
-# <br>
-# – Grundlegenden Dinge, die wir mit Relationen tun wollen.
-# <br>
-# □ Relationale Algebra (Relational Algebra, RA)
-# <br>
-# – Anfragesprache für das relationale Modell
+# Für Datenbankanfragen gibt es ebenfalls eine Algebra, die relationale Algebra (RA). Sie ist eine Anfragesprache für das relationale Modell. 
+# Die Inhalte der Datenbank (Relationen) sind die Operanden.
+# Die Operatoren definieren gewisse Funktionen zum Berechnen von Anfrageergebnissen.
+# Es sind sehr grundlegenden Dinge, die wir mit Relationen tun wollen.
+# 
 
 # ### Mengen vs. Multimengen
 
-#  Relation: Menge von Tupeln
+# Bei der relationalen Algebra geht es hauptsächlich um Mengen. Bei normalen Mengen darf kein Tupel doppelt auftauchen. Bei Multimengen können identische Tupel mehrmals vorkommen. Es kann nämlich in einer Datenbanktabelle passieren, dass die Schlüssel nicht ordentlich definiert sind. Dann hat man sozusagen ein „Sack voll mit Tupeln“ (engl. „bag“).   
 # <br>
-# ■ Datenbanktabelle: Multimenge von Tupeln
-# <br>
-# □ Engl: „bag“
-# <br><br>
-# ■ Operatoren der relationalen Algebra: Operatoren auf Mengen
-# <br><br>
-# ■ Operatoren auf DBMS: SQL Anfragen
-# <br>
-# □ Rel. DBMS speichern Multimengen
-# <br><br>
-# ■ Motivation: Effizienzsteigerung
-# <br>
-# □ Beispiel:
-# <br>
-# – Vereinigung als Multimenge
-# <br>
-# – Vereinigung als Menge
+# Die Operatoren der relationalen Algebra sind auf Mengen definiert, wohingegen die Operatoren auf einem DBMS (SQL-Anfragen) auf Multimengen definiert sind. Dies hat verschiedene Gründe. Zum Einem kann man hiermit die Effizienz beeinflussen bzw. steigern. Dazu kann man sich überlegen wie man eine Vereinigung als Multimenge und eine Vereinigung als Menge implementiert. 
 
 # ## Basisoperatoren
 
 # ## Klassifikation der Operatoren
 
-# ■ Mengenoperatoren 
+# Die bereits bekannten Mengenoperatoren 
 # <br>
 # □ Vereinigung, Schnittmenge, Differenz 
 # <br><br>
-# ■ Entfernende Operatoren
+# Entfernende Operatoren werden auf einzelnen Elemente angewandt. 
 # <br>
 # □ Selektion, Projektion
 # <br><br>
-# ■ Kombinierende Operatoren 
+# Mit kombinierenden Operatoren kann man mehrere Relationen miteinander verbinden und neue Kombinationen von Tupeln bilden. Im Gegensatz zu den Mengenoperationen bei denen die Ergebnistupel immer gleich aussehen, kann es bei den kombinierenden Operatoren dazu kommen, dass die Ergebnistupel in ihren Attributen unterschiedlich aussehen. 
 # <br>
 # □ Kartesisches Produkt, Join, Joinvarianten 
 # <br><br>
-# ■ Umbenennung 
-# <br>
-# □ Verändert nicht Tupel, sondern Schema 
+# Die Umbenennung ist die einzige Ooeration, die nicht die Tupel verändert, sondern das Schema. 
 # <br><br>
-# ■ Ausdrücke der relationalen Algebra 
-# <br>
-# □ Kombination von Operatoren und Operanden 
-# <br>
-# □ „Anfragen“ (queries)
+# Ein Ausdruck in der Relationlen Algebra besteht aus einer Kombination von Operatoren und Operanden, auch Anfragen (queries) genannt. 
 
 # ## Vereinigung (union, $\cup$)
 
-# ■ Sammelt Elemente (Tupel) zweier Relationen unter einem gemeinsamen Schema auf.
+# Die Vereinigung sammelt Elemente (Tupel) zweier Relationen unter einem gemeinsamen Schema auf.
+# - R ∪ S := {t | t $\in$ R $\vee$ t $\in$ S}
+# 
+# Um eine Vereinigung anwenden zu können, müssen die Attributmengen beider Relationen identisch sein. Dazu gehören die Namen, Typen und die Reihenfolge. Wenn man beispielsweise die Attribute  in einer Tabelle in einem anderen Format hat als in der Anderen und die Werte vom gleichen Typ sind, kann mam diese Umbenennen und dennoch eine Vereinigung bilden. 
 # <br>
-# □ R ∪ S := {t | t $\in$ R $\vee$ t $\in$ S}
-# <br><br>
-# ■ Attributmengen beider Relationen müssen identisch sein.
-# <br>
-# □ Namen, Typen und Reihenfolge
-# <br>
-# □ Zur Not: Umbenennung
-# <br><br>
-# ■ Ein Element ist nur einmal in (R ∪ S) vertreten, auch wenn es jeweils einmal in R und S auftaucht.
-# <br>
-# □ Duplikatentfernung
+# Ein Element ist nur einmal in der Vereinigung von R und S (R ∪ S) vertreten, auch wenn es jeweils einmal in R und S auftaucht. Es kommt zu einer Duplikatentfernung.
 
 # ## Beispiel für Mengenoperatoren
+# Das Beispiel zeigt zwei Tabellen R und S mit jeweils Name, Adresse, Geschlecht und Geburt. 
+# Wenn man diese Relationen miteinander vereinigt, erhält man eine neue Relation, in der das Tupel mit "Carrie Fisher" nur ein Mal vorkommt. 
 
 # $R$
 # 
@@ -190,17 +125,16 @@
 
 # ## Differenz (difference, ―, \\)
 
-# ■ Differenz R − S eliminiert die Tupel aus der ersten Relation, die auch in der zweiten Relation vorkommen.
+# Die Differenz in der Relationalen Algebra ist sehr ähnlich zu der aus der Mathematik. <br> 
+# Die Differenz von R und S (R − S) eliminiert die Tupel aus der ersten Relation, die auch in der zweiten Relation vorkommen. Die Schemata beider Relationen müssen für eine Differenz gleich sein. 
 # <br>
-# □ R − S := {t | t $\in$ R $\wedge$ t $\notin$ S}
-# <br><br>
-# ■ Achtung: Schemata von R und S müssen gleich sein.
-# <br><br>
-# ■ Achtung: R − S ≠ S − R
-# <br>
-# □ D.h. Kommuntativität gilt nicht
+# - R − S := {t | t $\in$ R $\wedge$ t $\notin$ S}
+# 
+# Die Kommutativität gilt bei der Differenz nicht:
+# - R − S ≠ S − R
 
 # ## Beispiel für Mengenoperatoren
+# Sowohl in der Relation R, als auch in der Relation S, gibt es das gleiche Tupel mit "Carrie Fisher". Bei der Differenz (R-S) wird das in beiden vorkommende Tupel eliminiert. 
 
 # $R$
 # 
@@ -224,19 +158,16 @@
 
 # ## Schnittmenge (intersection, $\cap$)
 
-#  Schnittmenge R $\cap$ S ergibt die Tupel, die in beiden Relationen gemeinsam vorkommen.
-#  <br> <br>
-# ■ R $\cap$ S := {t | t $\in$ R $\wedge$ t $\in$ S}
-#  <br> <br>
-# ■ Anmerkung: Schnittmenge ist „überflüssig“. Warum?
-#  <br>
-# □ R $\cap$ S = R − (R − S)
-#  <br>
-# = S − (S − R)
+# Die Schnittmenge R $\cap$ S ergibt die Tupel, die in beiden Relationen gemeinsam vorkommen.<br>
+# - R $\cap$ S := {t | t $\in$ R $\wedge$ t $\in$ S}
+# 
+# Die Schnittmenge als Operator kann durch Verinigungen und Differenzen dargestellt werden, daher ist sie prinzipiell „überflüssig“. 
+# - R $\cap$ S = R − (R − S) = S − (S − R)
 
 # ![title](schnittmenge.jpg)
 
 # ## Beispiel für Mengenoperatoren
+# In Relation R sowie in Relation S gibt es ein identisches "Carrie Fisher" Tupel. Bildet man die Schnittmenge der beiden Relationen ($R\cap S$), sind in der Ergebnisrelation alle Tupel, die sowohl in R, als auch in S vorkommen. In diesem Fall wäre es nur das Tupel mit "Carrie Fisher". 
 
 # $R$
 # 
@@ -260,19 +191,28 @@
 
 # ## Projektion (projection, $\pi$)
 
-# ■ Unärer Operator
-# <br><br>
-# ■ Erzeugt neue Relation mit einer Teilmenge der ursprünglichen Attribute
-# <br><br>
-# ■ $\pi_{A1,A2,…,Ak}$(R) ist eine Relation
-# <br>
-# □ mit den Attributen A1,A2,…,Ak
-# <br>
-# □ Üblicherweise in der aufgelisteten Reihenfolge
-# <br><br>
-# ■ Achtung: Es können Duplikate entstehen, die implizit entfernt werden.
+# Die Projektion ist ein unärer Operator. Sie erzeugt eine neue Relation mit einer Teilmenge der ursprünglichen Attribute.<br>
+# Angenommen man projiziert auf eine Relation R mit den Attributen A1 bis Ak: $\pi_{A1,A2,…,Ak}$(R). Als Ergbnis erhält man eine neue Relation mit einer Teilmenge der ursprünglichen Attribute von R. Die Reihenfolge der Attribute entspricht üblicherweise der aufgelisteten Reihenfolge.<br><br>
+# Durch das Weglassen von Attributen, kann es dazu kommen, dass die übrig gebliebenen Attribute  Duplikate enthalten. Diese werden implizit entfernt. <br>
+# Ein Beispiel hierzu: Man bildet eine Projektion mit den Attributen A und B auf R. Das Ergebnis sind zwei identische Tupel. Das Duplikat wird eliminiert. 
+
+# Relation R
+# 
+# |A|B|C|
+# |-|-|-|
+# |1|1|2|
+# |1|1|3|
+
+# $\pi_{A,B}$(R)
+# 
+# |A|B|
+# |-|-|
+# |1|1|
 
 # ## Projektion – Beispiel
+# Hier sind zwei weitere Beispiele zu Projektionen anhand einer Film-Tabelle dargestellt. <br>
+# Im ersten Beispiel werden bei der Projektion nur die Spalten Titel, Jahr und Länge behalten. Die anderen Spalten werden weggeschnitten. <br>
+# In zweitem Beispiel kommt 'True' doppelt vor und daher werden dessen Duplikate entfernt. 
 
 # Film
 # 
@@ -299,50 +239,26 @@
 
 # ## Erweiterte Projektion
 
-# ■ Motivation: Dem Projektionsoperator mehr Fähigkeiten geben
-# <br><br>
-# ■ Vorher: $\pi_{L}$(R) wobei L eine Attributliste ist
-# <br><br>
-# ■ Nun: Ein Element von L ist eines dieser drei Ausdrücke
-# <br><br>
-# 1. Ein Attribut von R (wie zuvor)
-# <br>
-# 2. Ein Ausdruck A→B wobei A ein Attribut in R ist und B ein neuer Name ist (Umbennennung).
-# <br>
-# 3. Ein Ausdruck e→C, wobei e ein Ausdruck mit Konstanten, arithmetischen Operatoren, Attributen von R und
-# String-Operationen ist, und C ein neuer Name ist.
-# <br>
-# 1. A1 + A2 → Summe
-# <br>
-# 2. Vorname || \` \` || Nachname → Name
+# Die Relationale Algebra erlaubt es den Projektionsoperator mehr Fähigkeiten zu geben. Bei der einfachen Projektion zuvor ($\pi_{L}$(R)) war das L dabei 'nur' eine Attributliste. Die erweiterte Projektion kann neben der Attributliste auch andere Ausdrücke an der Stelle des L's stehen haben. <br>
+# Ein anderer Ausdruck wäre A→B, wobei A ein Attribut in R und B ein neuer Name ist. Dies entspricht einer Umbenennung von Attributen. <br>
+# Eine weitere Möglichkeit für einen neuen Ausdruck ist e→C. e ist ein Ausdruck mit Konstanten, arithmetischen Operatoren, Attributen von R, String-Operationen. C ist der neue Name für den Ausdruck e. Zwei Beispiele hierfür: 
+# - A1 + A2 → Summe
+# - Vorname || \` \` || Nachname → Name
 
 # ## Selektion (selection, $\sigma$)
 
-# ■ Unärer Operator
-# <br><br>
-# ■ Erzeugt neue Relation mit gleichem Schema aber einer Teilmenge der Tupel.
-# <br><br>
-# ■ Nur Tupel, die der Selektionsbedingung C (condition) entsprechen.
+# Ein weiterer unärer Operator ist die Selektion. Sie erzeugt eine neue Relation mit gleichem Schema, aber einer Teilmenge der Tupel. Einfach ausgedrückt kann man sagen, dass eine Selektion die Anzahl der Tupel reduziert.  <br>
+# Nur Tupel, die der Selektionsbedingung C (condition) entsprechen, werden in die neu erzeugte Relation übernommen. Für jedes Tupel wird somit einmal die Bedingung geprüft. Es handelt sich bei den Selektionsbedingungen um boolesche Selektionsbedingungen wie man sie aus Programmiersprachen kennt. <br>
+# Die Operanden der Selektionsbedingung sind nur Konstanten oder Attribute von R. Diese können mittels Vergleichsoperatoren wie <, >, ≤, $\ge$, <> und = verglichen werden. const = const ist ein Beispiel dafür wie so etwas aussehen kann. Ist aber eigentlich unnötig, da es sich um Konstanten handelt. Eine typische Selektion ist ein Vergleich zwischen Attribut und Konstante (attr = const). Wenn man zwei Attribute miteinander vergleicht, (attr = attr) kann man mögliche Attribute finden, an denen die zwei Relationen gejoint werden können. Das würde einer Join Bedingung entsprechen. <br>
+# Die einzelnen Selektionsbedingungen können zu einer gesamten Selektionsbedingung durch AND, OR und NOT kombiniert werden.<br>
 # <br>
-# □ Selektionsbedingung wie aus Programmiersprachen
-# <br>
-# □ Operanden der Selektionsbedingung sind nur Konstanten oder Attribute von R.
-# <br>
-# – const = const (eigentlich unnötig)
-# <br>
-# – attr = const (typische Selektion)
-# <br>
-# – attr = attr (Join Bedingung)
-# <br>
-# □ Weitere Vergleiche: <, >, ≤, $\ge$, <>
-# <br>
-# □ Kombination durch AND, OR und NOT
-# <br><br>
-# ■ Prüfe Bedingung für jedes Tupel
-# <br><br>
-# Achtung Selektion $\neq$ SELECT
+# Nicht zu verwechseln sind die Selektion aus der Relationalen Algebra mit dem SELECT aus SQL. Das SELECT entspricht in der Relationalen Algebra einer Projektion. Die Selektion wiederrum entspricht in SQL einer WHERE-Bedingung:
+# - Selektion $\neq$ SELECT
 
 # ## Selektion – Beispiel
+# Die Beispiele zeigen verschiedene Selektionen auf einer gegebenen Film-Relation. <br>
+# Im ersten Beispiel werden alle Filme selektiert, dessen Länge größer oder gleich 100 Minuten ist. <br>
+# Im zweitem Beispiel kommt noch hinzu, dass diese Filem vom Fox-Studio produziert worden sein müssen. 
 
 # Film
 # 
@@ -367,24 +283,14 @@
 
 # ## Kartesisches Produkt (Cartesian product, cross product $\times$)
 
-# ■ Binärer Operator
+# Das Kartesische Produkt ist ein binärer Operator. Benannt worden ist es nach René Descartes. Ein französischer Naturwissenschaftler, Mathematiker und Philosoph. Das Kartesische Produkt ist auch unter anderen Namen wie Kreuzprodukt oder Produkt bekannt. Außerdem gibt es verschiedene Schreibweisen dafür: R * S statt R $\times$ S
 # <br><br>
-# ■ Auch: Kreuzprodukt oder Produkt
-# <br><br>
-# ■ Auch: R * S statt R $\times$ S
-# <br><br>
-# ■ Kreuzprodukt zweier Relationen R und S ist die Menge aller Tupel, die man erhält, wenn man jedes Tupel aus R
-# mit jedem Tupel aus S „paart“.
-# <br><br>
-# ■ Schema hat ein Attribut für jedes Attribut aus R und S
-# <br>
-# □ Achtung: Bei Namensgleichheit wird kein Attribut ausgelassen
-# <br>
-# □ Stattdessen: Umbenennen
+# Das Kreuzprodukt zweier Relationen R und S ist die Menge aller Tupel, die man erhält, wenn man jedes Tupel aus R mit jedem Tupel aus S kombiniert. Das Schema hat ein Attribut für jedes Attribut aus R und S. Bei Namensgleichheit von zwei oder mehreren Attributen wird kein Attribut ausgelassen, stattdessen werden sie eindeutig umbenannt. 
 
 # ![title](descartes.jpg)
 
 # ## Kartesisches Produkt – Beispiel
+# Das Beispiel zum Kartesischen Produkt zeigt zwei Relationen R und S, die mittels Kreuzprodukt kombiniert werden. Dazu werden alle möglichen Kombinationen der Tupel gebildet. Die Relationen R und S haben ein Attribut mit dem selben Namen (B). In der neuen Ergbnisrelation wird das Attribut jeweils eindeutig umbenannt. Bei der Umbennenung wird als Präfix der Relationsname vor das Attribut geschrieben: R.B und S.B.
 
 # $R$
 # 
