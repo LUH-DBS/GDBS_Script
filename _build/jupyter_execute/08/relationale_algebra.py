@@ -327,48 +327,41 @@
 
 # ## Der Join – Operatorfamilie
 
-# ■ Natürlicher Join (natural join)
-# <br><br>
-# ■ Theta-Join
-# <br><br>
-# ■ Equi-Join
-# <br><br>
-# ■ Semi-Join und Anti-Join
-# <br><br>
-# ■ Left-outer Join und Right-outer Join
-# <br><br>
-# ■ Full-outer Join
+# Die folgenden Joins bilden eine Übersicht über die Joins, die in dieser Veranstaltung genauer betrachtet werden:
+# - Natürlicher Join (natural join)
+# - Theta-Join
+# - Equi-Join
+# - Semi-Join und Anti-Join
+# - Left-outer Join und Right-outer Join
+# - Full-outer Join
 
 # ### Natürlicher Join (natural join, ⋈)
 
-# ■ Binärer Operator
+# Der natürliche Join ist ein binärer Operator. 
+# Beim Kreuzprodukt zuvor wurden alle möglichen Tupelpaare gebildet. Im Gegensatz dazu werden beim natürlichen Join Tupelpaare gebildet aus Tupeln, die „irgendwie“ übereinstimmen.
+# Es werden Tupel miteinander verbunden, die eine Übereinstimmung in allen gemeinsamen Attributen besitzen. 
+# Somit handelt es sich dabei um einen „Verbund“ von Tupeln miteinander. Gegebenenfalls ist beim „Verbinden“ eine Umbennung der Attribute erforderlich. Zum Beispiel wäre dies erforderlich bei zwei Attributen in unterschiedlichen Relationen, wenn die Attribute das Selbe aussagen, aber unterschiedlich benannt worden sind. 
 # <br><br>
-# ■ Motivation: Statt im Kreuzprodukt alle Paare zu bilden, sollen nur die Tupelpaare gebildet werden, deren Tupel
-# „irgendwie“ übereinstimmen.
-# <br>
-# □ Auch: „Verbund“
-# <br>
-# □ Beim natürlichen Join: Übereinstimmung in allen gemeinsamen Attributen.
-# <br>
-# □ Gegebenenfalls Umbenennung
-# <br>
-# □ Schema: Vereinigung der beiden Attributmengen
+# Der natürliche Join arbeitet nach dem Schema: Vereinigung der beiden Attributmengen. Im Vergleich zum Kreuzprodukt gibt es nicht mehr die gleichen Attribute doppelt und umbenannt. Das Ergebnis ist nun eine Menge aus Attributen, also ohne (umbenannte) Duplikate. <br>
+# Die Grafik zeigt passend dazu den natürlichen Join zwischen zwei Relationen. Die Rechtecke stellen Attribute und der Verbund von Rechtecken Relationen dar. Beide ursprünglichen Relationen bestehen aus zwei Attributen, wobei das orangene Attribut in beiden gleich ist. Die erste Relation (oben) besteht zusätzlich noch aus einem blauen und die zweite Relation (unten) aus einem grünen Attribut. Bei einem natürlichen Join beider Relationen wird über die identischen Attribute beider Relationen gejoint. In diesem Fall ist es das orangefarbene Attribut. Die Ergebnisrelation enthält somit am Ende das blaue, grüne und nur einmal das orangene Attribut. 
 
 # ![title](njoin.jpg)
 
-# ■ Notation: r[A] sei Projektion der Tupels r auf Attribut A
-# <br><br>
-# ■ Seien A1,…,Ak die gemeinsamen Attribute von R und S
-# <br><br>
-# ■ R ⋈ S = {r $\cup$ s | r$\in$R $\wedge$ s$\in$S $\wedge$ r[A1]=s[A1] $\wedge$ … $\wedge$ r[Ak]=s[Ak] }
-# <br><br>
-# ■ Alternative, üblichere Definition
-# <br>
-# □ R ⋈ S = s r[A1]=s[A1] $\wedge$ … $\wedge$ r[Ak]=s[Ak](R × S)
-# <br>
-# □ Achtung: Eigentlich noch ordentlich projizieren
+# Beim natürlichen Join gibt es verschiedene Notationen. <br>
+# r[A] beschreibt eine Projektion des Tupels r auf dem Attribut A. Es gibt somit genau den Wert des Tupels R beim Attribut A an. <br>
+# Gegeben sind nun zwei Relationen R und S. Beide Relationen haben die gemeinsamen Attribute A1, ..., Ak. Dann wird der natürliche Join wie folgt definiert:
+# - R ⋈ S = {r $\cup$ s | r$\in$R $\wedge$ s$\in$S $\wedge$ r[A1]=s[A1] $\wedge$ … $\wedge$ r[Ak]=s[Ak] }<br>
+# Achtung: Bei der Verinigung von r und s handelt es sich also um Tupelwerte und nicht um Relationen!<br>
+# 
+# Eine alternative, üblichere Definition ist eine Selektion auf dem Kreuzprodukt der Relationen R und S. Die Selektion hat dabei als Bedingung, dass die Werte gleicher Spalten, übereinstimmen.
+# Dabei muss noch projiziert und umbenannt werden, um die Vereinigung richtig zu erwirken.
+# - R ⋈ S = s r[A1]=s[A1] $\wedge$ … $\wedge$ r[Ak]=s[Ak](R × S)
 
-# ### Natürlicher Join – Beispiel
+# ### Natürlicher Join – Beispiele
+
+# Die ursprünglichen Tabellen sind R und S. Auf diesen beiden wird ein natürlicher Join ausgeführt. Dabei wird nur auf gleichen Attributen gejoint. In diesem Fall ist es das Attribut B. R und S stimmen in B in den Werten 2 und 4 überein. Das übrig gebliebene Tupel mit der 9 in B, muss somit nicht mehr kombiniert werden. <br>
+# <br>
+# 
 
 # $R$
 # 
@@ -392,6 +385,8 @@
 # |1|2|5|6|
 # |3|4|7|8|
 
+# Zur Erinnerung ist hier das kartesische Produkt der Relationen R und S dargestellt. Hierauf könnte man die alternative bzw. üblichere Definition des natürlichen Joins anwenden. Man würde wieder die gleichen zwei Tupel nach der Selektion erhalten. Zusätzlich müsste man noch R.B oder S.B wegprojizieren. 
+
 # $R \times S$
 # 
 # |A|R.B|S.B|C|D|
@@ -402,6 +397,9 @@
 # |3|4|2|5|6|
 # |3|4|4|7|8|
 # |3|4|9|10|11|
+
+# Bei dem zweiten Beispiel gibt es mehr als ein gemeinsames Attribut. Es stimmen in R und S die zwei Attribute B und C überein. B und C müssen somit gleichzeitig bei jedem Join übereinstimmen. <br>Obwohl der Wert von B (2) im ersten Tupel beider Relationen übereinstimmt, können diese nicht gejoint werden. Der Grund dafür sind unterschiedliche Werte (3 != 5) im Attribut C. <br>
+# Das erste Tupel aus R und das zweite Tupel aus S haben wiederum in B und C die gleichen Werte und können somit gejoint werden. Genauso haben das zweite und dritte Tupel von R die gleichen Werte in B und C wie das dritte Tupel von S. Das dritte Tupel in S wird also mit mehr als einem Partner verknüpft. 
 
 # $R$
 # 
@@ -427,43 +425,21 @@
 # |6|7|8|10|
 # |9|7|8|10|
 
-# ■ Anmerkungen
-# <br>
-# □ Mehr als ein gemeinsames Attribut
-# <br>
-# □ Tupel werden mit mehr als einem Partner verknüpft
-
 # ### Theta-Join (theta-join, $⋈_\theta$)
 
-# ■ Verallgemeinerung des natürlichen Joins
-# <br><br>
-# ■ Verknüpfungsbedingung kann selbst gestaltet werden
-# <br><br>
-# ■ Konstruktion des Ergebnisses:
-# <br>
-# □ Bilde Kreuzprodukt der beiden Relationen
-# <br>
-# □ Selektiere mittels der gegebenen Joinbedingung
-# <br>
-# □ Also: R ⋈$A_\theta$ B S = s $A_\theta$ B (R $\times$ S)
-# <br>
-# □ $\theta$ ∈ {=, <, >, ≤, ≥, ≠}
-# <br>
-# □ A ist Attribut in R; B ist Attribut in S
-# <br><br>
-# ■ Schema: Wie beim Kreuzprodukt
-# <br><br>
-# ■ Equi-Join ist ein Spezialfall des Theta-Joins mit Operator „=“
-# <br><br>
-# ■ Natural Join ist ein Spezialfall des Theta-Joins
-# <br>
-# □ Aber: Schema des Ergebnisses sieht anders aus.
-# <br>
-# □ R(A,B,C) ⋈ S(B,C,D) = $\rho_{T(A,B,C,D)}$($\pi_{A,R.B,R.C,D}$($\sigma_{(R.B=S.B AND R.C = S.C)}$ ($R \times S$)))
-# <br>
-# ->Umbenennung
+# Der Theta Join ist die Allgemeinste Form der Joins. Der natürliche Join ist also ein Spezialfall vom Theta-Join.
+# Die Verknüpfungsbedingung kann selbst gestaltet werden. Zuvor war die Bedingung, dass die Attribute auf denen gejoint wird, gleich sind.<br>
+# Das Ergebnis wird ähnlich wie zuvor konstruiert. Zunächst wird ein Kreuzprodukt der beiden Relationen gebildet. Selektiert wird darauf mittels der gegebenen Joinbedingung $\theta$. Dabei ist A ein Attribut in R und B ein Attribut in S. 
+# - R ⋈$A_\theta$ B S = s $A_\theta$ B (R $\times$ S)
+# - $\theta$ ∈ {=, <, >, ≤, ≥, ≠}
+# 
+# Das Schema der Ergebnisrelation eines Theta-Joins sieht wie das Schema vom Kreuzprodukt aus. Wenn die Joinbedingung der Operator „=“ ist, handelt es sich um einen Equi-Join. Dieser ist somit, wie auch der Natural-Join, ein Spezialfall des Theta-Joins. Der Unterschied zum Natural Join ist aber, dass das Schema des Ergebnisses anders aussieht als beim Equi-Join. Gleiche Attribute werden umbenannt und sozusagen zu einem Attribut zusammengefasst.   
+# - R(A,B,C) ⋈ S(B,C,D) <br>
+# = $\rho_{T(A,B,C,D)}$($\pi_{A,R.B,R.C,D}$($\sigma_{(R.B=S.B AND R.C = S.C)}$ ($R \times S$)))
 
 # ### Theta-Join – Beispiel
+
+# Im ersten Beispiel sollen R und S gejoint werden, wenn der Wert vom Attribut A kleiner als der von D ist. Zunächst wird das erste Tupel von R mit allen Tupeln von S verglichen. In jedem Fall stimmt die Bedingung und die Tupel können verbunden werden. Analog werden die weiteren Tupel von R mit denen von S verglichen und gegebenenfalls verbunden.
 
 # $R$
 # 
@@ -490,6 +466,8 @@
 # |1|2|3|7|8|10|
 # |6|7|8|7|8|10|
 # |9|7|8|7|8|10|
+
+# Im zweitem Beispiel wird die Bedingung erweitert. R.B und S.B dürfen nicht mehr gleich sein. Wie zuvor wird jede Zeile von R mit jeder Zeile von S verglichen und geprüft, ob die Bedingung stimmt. Falls ja werden die Tupel miteinander verknüpft. Generell können Bedingungen beliebig lang werden.
 
 # $R ⋈_{A<D \wedge R.B \neq S.B}S$
 # 
