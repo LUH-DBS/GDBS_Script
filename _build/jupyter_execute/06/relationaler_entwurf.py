@@ -56,14 +56,8 @@
 
 # ### Edgar F. Codd
 
-# Die Relationale-Datenbanktheorie geht auf Edgar F. Codd zurück, welcher an der University of Michigan Ann Arbor promoviert hat.
-# <br>
-# Entwicklung des Relationalen Modells bei IBM (Almaden)
-# <br>
-# „A Relational Model of Data for Large Shared Data Banks" (1970)
-# <br>
-# Artikelserie
-# <br>
+# Die Relationale-Datenbanktheorie geht auf den Turing Award Gewinner Edgar F. Codd zurück, welcher an der University of Michigan Ann Arbor promoviert hat. Bei IBM (Almaden) hat Codd das Relationalen Modell entwickelt und das Paper „A Relational Model of Data for Large Shared Data Banks" 1970 veröffentlichz.
+# <br><br>
 # Literaturhinweis:
 # <br>
 # The Database Relational Model: A Retrospective Review and Analysis:
@@ -76,89 +70,37 @@
 
 # #### Beiträge von Codd
 
-# ■ Transformation des Datenmanagement zu einer Wissenschaft
-# <br>
-# □ Entsprechende Klarheit und Strenge
-# <br>
-# <br>
-# ■ Nicht nur das relationale Modell, sondern überhaupt das Konzept eines Datenmodells
-# <br>
-# □ Unterscheidung zwischen Modell und Implementierung
-# <br><br>
-# ■ Relationale Algebra und relationales Kalkül
-# <br><br>
-# ■ Informell: Anfragesprache Alpha
-# <br>
-# □ Angelehnt: SEQUEL von Chamberlin und Boyce
-# <br>
-# □ Vorgänger von SQL
-# <br><br>
-# ■ Funktionale Abhängigkeiten
-# <br><br>
-# ■ Normalformen
-# <br>
-# □ Erste bis dritte Normalform
+# Edgar F. Codd hat nicht nut das relationale Modell entwickelt, sondern überhaupt das Konzept eines Datenmodells. Dazu gehört auch die Unterschiedung zwischen Modell und Implementierung, sowie ein mathematisches Regelwerk für Anfragen, die relationale Algebra und das relationale Kalkül. Auf diesem Regelwerk basiert informell die Anfragesprache Alpha und daran angelehnt SEQUEL(SQL Vorgänger) von Chamberlin und Boyce. Ebenso von Codd sind Integritätsbedingungen und Qualitätsformen, wie funktionale Abhängigkeiten und Normalformen(erste bis dritte). Durch seine Beiträge hat Codd das Datenmanagement zu einer Wissenschaft, mit entsprechender Klarheit und Strenge, transformiert.
+# 
 
 # ## Von ER-Diagrammen zu Relationenschemata
 
-# EINLEITUNGSTEXT:
-# <br>
-# Logischer Entwurf:
-# <br>
-# ■ Sprachmittel: Datenmodell des ausgewählten DBMS
-# <br>
-# □ z.B. DB2, Oracle, … => relationales Modell
-# <br>
-# □ Tamino => XML
-# <br>
-# <br>
-# ■ Vorgehensweise
-# <br>
-# □ (Automatische) Transformation des konzeptionellen Schemas
-# <br>
-# – z.B. ER in relationales Modell
-# <br>
-# <br>
-# □ Verbesserung des relationalen Schemas anhand von Gütekriterien
-# <br>
-# – Normalisierung, Redundanzvermeidung, …
-# <br>
-# ■ Ergebnis: logisches Schema, z.B. Sammlung von Relationenschemata
+# In diesem Kapitel möchten wir lernen, wie wir von einem ER-Diagramm zu einem Relationenschema gelangen. Wir befinden uns im Phasenmodell im logischen Entwurf. Als Sprachmittel haben wir das Datenmodell des ausgewählten DBMS gegeben z.B. DB2, Oracle, … => relationales Modell. Am idealsten wäre eine automatische Transformation des konzeptionellen Schemas, z.B ER in relationales Modell erwüscht. Danach ist es noch möglich das entstandende relationale Schema anhand von Gütekriterien, mit Normalisierung und Redundanzvermeidung zu verbessern. Zuletzt soll das Hauptergebnis ein logisches Schema sein, wie z.B. eine Sammlung von Relationenschemata.
 
-# Ziele der Abbildung ER -> relationales Modell
-# <br>
-# ■ Darstellung aller Informationen des ER-Diagramms
-# <br>
-# <br>
-# ■ Exaktheit
-# <br>
-# □ Das Datenbankschema kann genauso viele Instanzen wie das ER-Diagramm darstellen.
-# <br>
-# □ Das Datenbankschema kann nicht mehr Instanzen als das ER-Diagramm darstellen.
-# <br>
-# – Integritätsbedingungen müssen weiterhin gelten
-# <br>
-# <br>
-# ■ Erhaltung und Einhaltung der Informationskapazität!
+# ### Ziele der Abbildung ER -> relationales Modell
+# Bei der Umformung eines ER-Diagramms in ein relationales Modell, soll das relationalle Modell **alle** Informationen des ER-Diagramms darstellen. Dabei spielt einmal die Exaktheit eine große Rolle. D.h. dass das Datenbankschema genauso viele und nicht mehr Instanzen als das ER-Diagramm darstellen kann, wobei Integritätsbedingungen weiterhin gelten müssen. Ziel ist also eine Erhaltung und Einhaltung der Informationskapazität!
 
-# ### Kapazitätserhöhende Abbildung
+# #### Kapazitätserhöhende Abbildung
+# 
+# In diesem Kontext betrachten wir ein Beispiel. Angenommen wir haben ein 1:1-Beziehung zwsichen Studios und Vorsitzende. Studios hat einen Schlüssel SName und Vorsitzende einen Schlüssel VName. Entsprechend könnten wir das Relationenschema: R = {SName, VName} wählen. Für unser gewähltes Relationenschema könnten wir die Schlüsselmenge: {{SName}} wählen. Jedoch wäre es so möglich, dass ein Vorsitzende\*r mehrere Studios leitet und die 1:1-Beziehung verletzt. Das wäre dann eine kapazitätserhöhende Abbildung. Würden wir als Schlüsselmenge beide Schlüssel {{SName},{VName}} wählen, dann hätten wir eine kapazitätserhaltende Abbildung die eine 1:1-Beziehung abbildet.
 
 # ![title](erhoehend.jpg)
 
 # ### Kapazitätsvermindernde Abbildung
+# Betrachten wir nun folgendes Beispiel, in dem ein\*e Schauspieler\*in in einem Film mitspielt. Es herrscht eine n:m-Beziehung zwischen Schuspieler\*in und Film. Schauspieler\*in wird durch Name und Film durch Titel eindeutig identifiziert. Wir wählen nun als Relationenschema: R = {Name, Titel}. Wenn wir nun als Schlüsselmenge {{Name}} wählen, dann kann ein\*e Schauspieler\*in nur jeweils einmal in unserer Relation vorkommen, welches unsere eigentlich Kapazitäts verminderd. Wählt man stattdessen als Schlüsselmenge {{Name, Titel}}, so kommt die Kombination aus Name und Titel jeweils nur einmal in unserer Relation vor, welches kapazitätserhaltend ist.
 
 # ![title](vermindernd.jpg)
 
 # ### Grundalgorithmus
 
+# Der Grundalgorithmus für eine kapazitätserhaltende und -einhaltende Abbildung sieht wie folgt aus:
+# <br>
 # 1. Wandle jeden Entitytypen in eine Relation mit den gleichen Attributen um.
 # <br>
 # <br>
 # 2. Wandle jeden Relationshiptypen in eine Relation um mit:
-# <br>
-# □ Zugehörige Attribute des Relationshiptypen
-# <br>
-# □ Schlüsselattribute der beteiligten Entitytypen
+#     - Zugehörige Attribute des Relationshiptypen
+#     - Schlüsselattribute der beteiligten Entitytypen
 # <br>
 # <br>
 # 3. Verfeinere den Entwurf
@@ -169,63 +111,47 @@
 # <br>
 # 2. Normalisierung
 # <br>
-# ■ Ausnahmen
-# <br>
-# □ Schwache Entitytypen
-# <br>
-# □ IST Relationships
+# Ausnahmen gibt es bei dem Umgang mit schwachen Entitytypen und IST Relationships. Diese werden wir uns noch genauer in folgenden Kapiteln betrachten.
 
 # ### Entity -> Relation
 
-# ■ Name des Entitytyps -> Name der Relation
+# Wir haben folgendes ER-Diagramm gegeben. Bei der Umwandlung eines Entitytyps in eine Relation wird der Name des Entitytyps zu dem Namen der Relation. Die Attribute des Entitytyps werden zu den Attribute der Relation. Die daraus entstehende Relation bildet in keiner Weise Relationships ab.
+
+# Für die drei Entitytyps aus dem Diagramm, ergeben sich folgende Relationen:
+# - Film(Titel, Jahr, Länge, Typ)
 # <br>
-# ■ Attribute des Entitytyps -> Attribute der Relation
+# - Schauspieler(Name, Adresse)
 # <br>
-# ■ Diese Relation bildet in keiner Weise Relationships ab.
+# - Studio(Name, Adresse)
 
 # ![](entitytyp.jpg)
-
-# ■ Film(Titel, Jahr, Länge, Typ)
-# <br>
-# ■ Schauspieler(Name, Adresse)
-# <br>
-# ■ Studio(Name, Adresse)
 
 # ### Relationshiptyp -> Relation
 
-# Attribute
+# Bei der Umwandlung eines Relationshiptyps in eine Relation, müssen die Attribute des Relationshiptyps selbst und die Schlüsselattribute der beiteiligten Entitytypen mitgenommen werden. Sind doppelte Attributnamen vorhanden, sind
+# Umbenennungen nötig!
 # <br>
-# □ Attribute des Relationshiptyps selbst
+# Falls ein Entitytyp in mehreren Rollen beteiligt ist, müssen die Schlüsselattribute entsprechend oft übernommen werden. Geeignete Umbenennungen sind dann sogar nötig.
+
+# Es ergebem sich folgende Relationen:
+# - spielt_in(Titel, Jahr, SchauspielerInName, SchauspielerInAdresse, Rolle)
+#     - spielt_in enthält alle Schlüsselattribute von Film und Schauspieler\*in und die eigenen Attribute
+# - besitzt(Titel, Jahr, StudioName)
+#     - besitzt enthält alle Schlüsselattribute von Film und Studio
 # <br>
-# □ Für jeden beteiligten Entitytypen: Füge deren Schlüsselattribut(e) als Attribute hinzu
-# <br>
-# <br>
-# ■ Doppelte Attributnamen
-# <br>
-# □ Umbenennungen sind nötig!
-# <br>
-# <br>
-# ■ Falls ein Entitytyp in mehreren Rollen beteiligt ist
-# <br>
-# □ Entsprechend oft die Schlüsselattribute übernehmen
-# <br>
-# □ Geeignete Umbenennungen sind dann sogar nötig
+# Umbenennungen dienen hier nur zur Klarheit.
 
 # ![](entitytyp.jpg)
 
-# ■ spielt_in(Titel, Jahr, SchauspielerInName, SchauspielerInAdresse, Rolle)
-# <br>
-# ■ besitzt(Titel, Jahr, StudioName)
-# <br>
-# ■ Umbenennungen hier nur zur Klarheit
+# Bei ternären Beziehungen bleibt das Prinzip gleich. Für die unten dargestellte Beziehung, werden alle Schlüsselattribute der beteiligten Entitytypen, Film, Studio und Schauspieler\*in mitgenommen. Und ebenso die Attribute der Beziehung selbst. So ergibt sich das Relationsschema:
+# - ist_unter_Vertrag(Titel, Jahr, SchauspielerName, SchauspielerAdresse, StudioName)
 
-# BILD
+# ![title](schwache_entitytypen3.jpg)
 
-# ist_unter_Vertrag(Titel, Jahr, SchauspielerName, SchauspielerAdresse, StudioName)
+# Zultzt betrachten wir ein Beziehung mit mehreren Rollen. Das ER-Diagramm ist ähnlich zudem vorherigen, bis darauf, dass ist_unter Vetrag einaml die Rolle Stammstudio und einmal die Rolle porduzierendes Studio besitzt. Dementsprechend muss das Schlüsselattribut des Entitytyps Studio, jeweils einmal für jede Rolle vorkommen. Es ergibt sich demnach folgendes Relationsschema:
+# - ist_unter_Vertrag(Titel, Jahr, SchauspielerName, SchauspielerAdresse, Stammstudio, ProduzierendesStudio, Gehalt)
 
-# BILD
-
-# ist_unter_Vertrag(Titel, Jahr, SchauspielerName, SchauspielerAdresse, Stammstudio, ProduzierendesStudio, Gehalt)
+# ![title](relationshiptyp2.jpg)
 
 # ### Zusammenlegen von Relationen
 
@@ -243,10 +169,6 @@
 # □ Alle Attribute von R
 # <br>
 # – inkl. Schlüssel des anderen Entitytypen
-
-# ![title](schwache_entitytypen3.jpg)
-
-# ![title](relationshiptyp2.jpg)
 
 # ![title](zusammenlegen1.jpg)
 
