@@ -133,123 +133,111 @@
 # <br>
 # Falls ein Entitytyp in mehreren Rollen beteiligt ist, müssen die Schlüsselattribute entsprechend oft übernommen werden. Geeignete Umbenennungen sind dann sogar nötig.
 
-# Es ergebem sich folgende Relationen:
+# #### Beispiel 1
+# Für folgendes ER-Diagramm ergeben sich diese Relationen:
 # - spielt_in(Titel, Jahr, SchauspielerInName, SchauspielerInAdresse, Rolle)
 #     - spielt_in enthält alle Schlüsselattribute von Film und Schauspieler\*in und die eigenen Attribute
+#  
+# <br>
+# 
 # - besitzt(Titel, Jahr, StudioName)
 #     - besitzt enthält alle Schlüsselattribute von Film und Studio
 # <br>
 # Umbenennungen dienen hier nur zur Klarheit.
 
-# ![](entitytyp.jpg)
+# ![](relationship_zu_relation.jpg)
 
+# #### Beispiel 2
 # Bei ternären Beziehungen bleibt das Prinzip gleich. Für die unten dargestellte Beziehung, werden alle Schlüsselattribute der beteiligten Entitytypen, Film, Studio und Schauspieler\*in mitgenommen. Und ebenso die Attribute der Beziehung selbst. So ergibt sich das Relationsschema:
 # - ist_unter_Vertrag(Titel, Jahr, SchauspielerName, SchauspielerAdresse, StudioName)
 
 # ![title](schwache_entitytypen3.jpg)
 
-# Zultzt betrachten wir ein Beziehung mit mehreren Rollen. Das ER-Diagramm ist ähnlich zudem vorherigen, bis darauf, dass ist_unter Vetrag einaml die Rolle Stammstudio und einmal die Rolle porduzierendes Studio besitzt. Dementsprechend muss das Schlüsselattribut des Entitytyps Studio, jeweils einmal für jede Rolle vorkommen. Es ergibt sich demnach folgendes Relationsschema:
+# #### Beispiel 3
+# Zuletzt betrachten wir ein Beziehung mit mehreren Rollen. Das ER-Diagramm ist ähnlich zudem vorherigen, bis darauf, dass ist_unter Vetrag einaml die Rolle Stammstudio und einmal die Rolle porduzierendes Studio besitzt. Dementsprechend muss das Schlüsselattribut des Entitytyps Studio, jeweils einmal für jede Rolle vorkommen. Es ergibt sich demnach folgendes Relationsschema:
 # - ist_unter_Vertrag(Titel, Jahr, SchauspielerName, SchauspielerAdresse, Stammstudio, ProduzierendesStudio, Gehalt)
 
 # ![title](relationshiptyp2.jpg)
 
 # ### Zusammenlegen von Relationen
 
-# ■ Man kann folgende Relationen kombinieren:
-# <br>
-# □ Die Relation für einen Entitytypen E
-# <br>
-# □ mit der Relation eines 1:n Relationshiptypen R, falls E auf den n-Seite liegt.
-# <br>
-# <br>
-# ■ Neue Relation enthält also
-# <br>
-# □ Alle Attribute von E
-# <br>
-# □ Alle Attribute von R
-# <br>
-# – inkl. Schlüssel des anderen Entitytypen
-
-# ![title](zusammenlegen1.jpg)
+# In manchen Fällen können bestimmte Relationen zusammengelegt werden, das ist häufig der Fall wenn eine eindeutige Zuordnung möglich ist. Der Vorteil des Zusammenlegens ist, dass wir Redundanz minimieren.
 
 # #### 1:n-Relationships
+
+# Z.B kann die Relation für einen Entitytypen E mit der Relation eines 1:n Relationshiptypen R zusammengelegt werden, falls E auf den n-Seite liegt. Die neue Relation enthält also alle Attribute von E und alle Attribute von R inkl. den Schlüsseln des anderen Entitytyps.
+# <br><br>
+# In dem ER-Diagramm unten, finden wir eine 1:n-Beziehung, demnach können wir die Relationen Film und besitzt zusammenlegen. In unserer Ausgangssitutation haben wir drei Relationen eine für Film, einer für besitzt und eine für Studio. Nun können wir Film und besitzt zusammenlegen. Unsere resultierende Relation hat alle Attribute von Film und besitzt. Der Vorteil des Zusammenlegens ist, dass wir Redundanz minimieren.
+
+# ![title](zusammenlegen1.jpg)
 
 # ![title](zusammenlegen1n.jpg)
 
 # #### 1:1-Relationships
+# 
+# Haben wir eine 1:1-Beziehung gegegeben, wie in dem ER-Diagramm unten dargestellt. Es ist möglich eine der beiden beteiligten Entitytyp-Relationen mit der Relationship-Relation zusammenzulegen. Für unser Beispiel können wir also entweder leitet mit Studions oder mit Vorsitzende zusammenlegen. Eines der beiden Möglichkeiten ist erlaubt.
 
 # ![title](zusammenlegen11.jpg)
 
 # #### Falschbeispiel: n-m-Relationships
+# 
+# Relationen von n:m-Relationships dürfen **nicht** zusammengelegt werden. Das liegt daran, dass Redundanz so erhöht wird. Betrachten wir das Beispiel unten. Wenn wir nun einen neuen Eintrag (Dead Man, 1995, Robert Michum) in die spielt_in-Relation einfügen wollen würden, dann müsste Jahr, Länge, Typ wieder mitführen müssten. 
 
 # ![title](zusammenlegennm.jpg)
 
 # ### Schwache Entitytypen
 
-# ■ Drei Besonderheiten
-# <br>
-# □ Die Relation eines schwachen Entitytypen S muss nicht nur die eigenen Attribute, sondern auch die
-# Schlüsselattribute aller Entitytypen, die über unterstützende Relationshiptypen erreicht werden, enthalten.
-# <br>
-# □ Alle Relationen für Relationshiptypen, die S in Beziehung mit anderen Entitytypen setzen, müssen ebenfalls alle diese Attribute enthalten.
-# <br>
-# □ Ein unterstützender Relationshiptyp muss hingegen gar nicht durch eine Relation abgebildet werden.
-# <br>
-# – Begründung wie eben: 1:n
+# Schwache Entitytypen haben drei Besonderheiten:
+# - Die Relation eines schwachen Entitytypen S muss nicht nur die eigenen Attribute, sondern auch die Schlüsselattribute aller Entitytypen, die über unterstützende Relationshiptypen erreicht werden, enthalten.
+# - Alle Relationen für Relationshiptypen, die S in Beziehung mit anderen Entitytypen setzen, müssen ebenfalls alle diese Attribute enthalten.
+# - Ein unterstützender Relationshiptyp muss hingegen gar nicht durch eine Relation abgebildet werden. Die Begründung ist analog zu der bei 1:n-Relationships.
+
+# #### Beispiel 1
+# 
+# In unseren Beispiel-ER-Diagramm haben wir den schwachen Entitytyp Crew gegeben. Die Relation Crew enthält alle eigenen Attribute, hier nur Nummer und die Schlüsselattribute derer Entitytypen, mit denen Crew in einer unterstützenden Realtionship verbunden ist, hier Name von Studio. Die Relation arbeitet_für wird nicht gebraucht.
+# 
+# - Studios(Name, Adresse)
+# - Crews(Nummer, Name)
 
 # ![title](schwache_entitytypen.jpg)
 
-# ■ Studios(Name, Adresse)
+# #### Beispiel 2
+# 
+# In diesem Beispiel betrachten wir einen schwachen Entitytypen, welcher in drei unterstützenden Relationships beteiligt ist. Zuerst erstellen wir die Relationenschemata für die "normalen" Entityptypen Schauspiler\*in, Film und Studio. Die Relation Vertrag enthält alle Schlüsselattribute der Entitytypen mit denen der schwache Entitytyp in einer unterstützenden Beziehung steht. Für die unterstützenden Relationships sind keine Realtionenschemata nötig.
+
+# - Studio(Name, Adresse)
 # <br>
-# ■ Crews(Nummer, Name)
+# - Schauspieler\*in(Name, Adresse)
+# <br>
+# - Film(Titel, Jahr, Typ, Länge)
+# <br>
+# - Vertrag(Schauspieler\*inName, StudioName, Titel, Jahr, Gehalt)
 
 # ![title](schwache_entitytypen2.jpg)
 
-# ■ Studio(Name, Adresse)
+# #### Beispiel 3
+
+# Aus dem ER-Diagramm unten lassen sich folgende Relationsschemata bilden.
+# 
+# - Studio(Name, Adresse)
+#  <br>
+# - Schauspieler\*in(Name, Adresse)
 # <br>
-# ■ Schauspieler*in(Name, Adresse)
+# - Film(Titel, Jahr, Typ, Länge)
 # <br>
-# ■ Film(Titel, Jahr, Typ, Länge)
-# <br>
-# ■ Vertrag(Schauspieler*inName, StudioName, Titel, Jahr, Gehalt)
+# - ist_unter_Vertrag(Schauspieler\*inName, StudioName, Titel, Jahr, Gehalt)
+# <br><br>
+# 
+# Was fällt auf?
+#  
 
 # ![title](schwache_entitytypen3.jpg)
 
-#  Studio(Name, Adresse)
-#  <br>
-# ■ Schauspieler*in(Name, Adresse)
-# <br>
-# ■ Film(Titel, Jahr, Typ, Länge)
-# <br>
-# ■ ist_unter_Vertrag(Schauspieler*inName, StudioName, Titel, Jahr, Gehalt)
-# <br>
-# ■ Was fällt auf?
-
 # ### Schema Teilmengen
 
-# Beispiel
-# <br>
-# □ Personen(Name, SSN)
-# <br>
-# □ Steuerzahler*in(Name, SSN, Betrag)
-# <br>
-# <br>
-# ■ Schema von Personen ist Teilmenge des Schemas von Steuerzahler.
-# <br>
-# <br>
-# ■ Aber: Instanzen können sich unterscheiden
-# <br>
-# □ Steuerzahler*in Í Personen (jeder Steuerzahler ist eine Person)
+# Gleiche oder überlappende Schemata können/sollen nicht immer zusammengelegt werden. Haben wir z.B die Relationen Personen(Name, SSN) und Steuerzahler\*in(Name, SSN, Betrag) gegeben. Das Schema von Personen ist die Teilmenge des Schemas von Steuerzahler\*in, aber die Instanzen können sich unterscheiden, denn Steuerzahler\*in $\subseteq$ Personen (jede/jeder Steuerzahler\*in ist eine Person)
 # <br><br>
-# ■ Beispiel
-# <br>
-# □ Schauspieler*in(Name, Adresse)
-# <br>
-# □ Studios(Name, Adresse)
-# <br><br>
-# ■ Schemata sind sogar identisch, aber Instanzen grundverschieden.
-# <br>
-# ■ D.h.: Gleiche oder überlappende Schemas können/sollen nicht immer zusammengelegt werden.
+# Ein weiteres Beispiel sind die Relationen Schauspieler\*in(Name, Adresse) und Studios(Name, Adresse), hier sind Schemata sogar identisch, aber die Instanzen grundverschieden.
 
 # ## Konvertierung von Spezialisierung
 # 
