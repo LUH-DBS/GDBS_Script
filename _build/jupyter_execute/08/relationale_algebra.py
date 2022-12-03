@@ -467,7 +467,7 @@
 # |6|7|8|7|8|10|
 # |9|7|8|7|8|10|
 
-# Im zweitem Beispiel wird die Bedingung erweitert. R.B und S.B dürfen nicht mehr gleich sein. Wie zuvor wird jede Zeile von R mit jeder Zeile von S verglichen und geprüft, ob die Bedingung stimmt. Falls ja werden die Tupel miteinander verknüpft. Generell können Bedingungen beliebig lang werden.
+# Im zweitem Beispiel wird die Bedingung erweitert. R.B und S.B dürfen nicht mehr gleich sein. Wie zuvor wird jede Zeile von R mit jeder Zeile von S verglichen und geprüft, ob die Bedingung stimmt. Falls ja, werden die Tupel miteinander verknüpft. Generell können Bedingungen beliebig lang werden.
 
 # $R ⋈_{A<D \wedge R.B \neq S.B}S$
 # 
@@ -477,17 +477,9 @@
 
 # ### Komplexe Ausdrücke
 
-# ■ Idee: Kombination (Schachtelung) von Ausdrücken zur Formulierung komplexer Anfragen.
-# <br>
-# □ Abgeschlossenheit der relationalen Algebra
-# <br>
-# – Output eines Ausdrucks ist immer eine Relation.
-# <br><br>
-# □ Darstellung
-# <br>
-# – Als geschachtelter Ausdruck mittels Klammerung
-# <br>
-# – Als Baum
+# Die Idee hinter komplexen Ausdrücken ist die Kombination (Schachtelung) von Ausdrücken zur Formulierung komplexer Anfragen. <br>
+# Aufgrund der Abgeschlossenheit der relationalen Algebra kann der Output eines Ausdrucks, der immer eine Relation ist, als Input für den nächsten Ausdruck verwendet werden. <br>
+# Die Darstellung von komplexen Ausdrücken erfolgt mittels Klammerung und Schachtelung von Ausdrücken. Die komplexen Ausdrücke können in einen Baum aufgespalten und dargestellt werden.
 
 # Film
 # 
@@ -497,30 +489,29 @@
 # |Basic Instinct|1992|127|Farbe|Disney|
 # |Dead Man|1995|90|s/w|Paramount|
 
-# ■ Gesucht: Titel und Jahr von Filmen, die von Fox produziert wurden und mindestens 100
-# Minuten lang sind.
-# <br>
-# □ Suche alle Filme von Fox
-# <br>
-# □ Suche alle Filme mit mindestens 100 Minuten
-# <br>
-# □ Bilde die Schnittmenge der beiden Zwischenergebnisse
-# <br>
-# □ Projiziere die Relation auf die Attribute Titel und Jahr.
-# <br>
-# □ $\rho_{Titel,Jahr}$($\sigma_{Länge≥100}$(Film) $\cap$ $\sigma_{StudioName=‚Fox‘}$(Film))
-# <br>
-# □ Alternative: $\pi_{Titel,Jahr}$($\sigma_{Länge≥100 AND StudioName=‚Fox‘}$(Film))
-# <br>
-# – U.v.a.m.
+# Als Beispiel zu komplexen Ausdrücken sei hier eine Film-Relation gegeben. Gesucht werden Titel und Jahr von den Filmen, die von Fox produziert wurden. Die Filme sollen mindestens 100 Minuten lang sein. <br> 
+# Um die Beispielanfrage in die Relationale Algebra zu übersetzen, wird die Anfrage Stück für Stück durchgegangen und umgewandelt. In diesem Beispiel fangen wir von innen heraus an. <br>
+# Gesucht werden Filme, die von Fox produziert worden sind. Somit wird eine Selektion mit der Selektionsbedingung StudioName='Fox' auf der Film-Relation benötigt ($\sigma_{StudioName=‚Fox‘}$(Film)).
+# Die zweite Bedingung fordert, dass alle Filme mindestens 100 Minuten lang sind. Dafür wird wieder eine Selektion auf der Film-Relation angewandt $\sigma_{Länge≥100}$(Film).
+# Da beide Bedingungen gleichzeitig gelten sollen, nimmt man die Schnittmenge von den beiden zuvor verwendeten Selektionen ($\sigma_{Länge≥100}$(Film) $\cap$ $\sigma_{StudioName=‚Fox‘}$(Film)). 
+# Alternativ lässt sich als eine längere Selektionsbedingung darstellen. Dazu werden beide Bedingungen mit einem AND verknüpft ($\sigma_{Länge≥100 AND StudioName=‚Fox‘}$(Film)). 
+# Da nach Titeln und Jahr gesucht wird, wird die Relation am Ende auf die Attribute Titel und Jahr noch projiziert ($\pi_{Titel,Jahr}$(...)). <br>
+# Die vollständige Anfrage in Relationaler Algebra sieht wie folgt aus:
+# - $\pi_{Titel,Jahr}$($\sigma_{Länge≥100}$(Film) $\cap$ $\sigma_{StudioName=‚Fox‘}$(Film))
+# oder in alternativer Form:
+# - $\pi_{Titel,Jahr}$($\sigma_{Länge≥100 AND StudioName=‚Fox‘}$(Film))
+# 
+# Generell gibt es aber viele verschiedene Möglichkeiten wie ein solcher Ausdruck formuliert wird. 
 
 # ### Komplexe Ausdrücke – Beispiel
 
-# ■$\rho_{Titel,Jahr}$($\sigma_{Länge≥100(Film)}$ $\cap$ $\sigma_{StudioName=‚Fox‘}$(Film))
+# Das Beispiel zeigt wie ein Baum von innen heraus aufgespannt wird. Dabei wird mit der Film Relation und den Selektionen darauf begonnen. Danach werden die Ergebnisrelationen beider Selektionen durch eine Schnittmenge verbunden. Zuletzt wird durch die Projektion die Spalten Titel und Jahr ausgegeben. 
+# - $\rho_{Titel,Jahr}$($\sigma_{Länge≥100(Film)}$ $\cap$ $\sigma_{StudioName=‚Fox‘}$(Film))
 
 # ![title](komplex_bsp1.jpg)
 
-# ■ Alternative: $\rho_{Titel,Jahr}$($\sigma_{Länge≥100 AND StudioName=‚Fox‘}$(Film))
+# Zu der Alternative sähe der Baum dementsprechend anders aus. Er würde nur aus einer Film Relation, einer Selektion mit längerer Selektionsbedingung und einer Projektion bestehen. Letztendlich kommt bei beiden Ausdrücken die selbe Relation heraus.
+# - $\rho_{Titel,Jahr}$($\sigma_{Länge≥100 AND StudioName=‚Fox‘}$(Film))
 
 # ### Komplexe Ausdrücke – Beispiel
 
@@ -541,60 +532,44 @@
 # |Total Recall|1990|Arnold|
 # |Dead Man|1995|Johnny Depp|
 
-# ■ Gesucht: Namen aller Schauspieler, die in Filmen spielten, die mindestens 100 Minuten lang
-# sind.
-# <br>
-# □ Verjoine beide Relationen (natürlicher Join)
-# <br>
-# □ Selektiere Filme, die mindestens 100 Minuten lang sind.
-# <br>
-# □ $\rho_{SchauspName}$($\sigma_{Länge≥100}$(Film ⋈ Rolle))
+# Gegeben sind in diesem Beispiel zwei Relationen: Film und Rolle. Gesucht werden die Namen aller Schauspieler, die in den Filmen mitspielten, die mindestens 100 Minuten lang sind. <br>
+# Die Schauspielernamen sind in einer anderen Tabelle als die Filme. Die Tabellen müssen irgendwie verlinkt werden. Dazu eignet sich die beiden Relationen (mittels einem natürlichen Join) zu joinen (Film ⋈ Rolle). Aus dieser Ergebnisrelation werden alle Filme selektiert, die mindestens 100 Minuten lang sind ($\sigma_{Länge≥100}$(...)). Da nur nach den Schauspielernamen gesucht wird, wird auf den Schauspielernamen projiziert ($\rho_{SchauspName}$(...)). 
+# - $\rho_{SchauspName}$($\sigma_{Länge≥100}$(Film ⋈ Rolle))
 
-# ■ Stud(Matrikel, Name, Semester)
+# ### Komplexe Ausdrücke – Beispiel
+
+# - Stud(Matrikel, Name, Semester)
+# - Prof(ProfName, Fachgebiet, GebJahr)
+# - VL(VL_ID, Titel, Saal)
+# - Lehrt(ProfName, VL_ID)
+# - Hört(Matrikel,VL_ID)
+# 
+# Gesucht werden in diesem Beispiel die unterschiedlichen Semester aller Studierenden, die eine Vorlesung eines Professors des Jahrgangs 1960 in Hörsaal 1 hören.<br>
+# Zunächst muss überlegt werden, welche Relationen benötigt werden. Eine Bedingung ist, dass es Hörsaal 1 sein muss, in dem die Vorlesung gehört wird. Das Attribut Saal befindet sich in der Vorlesungsrelation (VL). 
+# Der Jahrgang des Professors ist eine weitere Bedingung. Dafür wird die Professorrelation (Prof) benötigt.
+# Die Professorrelation lässt sich mit der Vorlesungsrelation über die Lehrtrelation (Lehrt) verbinden, da letztere aus jeweils einem Attribut der anderen beiden Relationen besteht. 
+# Ansonsten wird nach den Semestern der Studierenden gefragt. Das Attribut Semester befindet sich in der Studierendenrelation (Stud). Um die Studierendenrelation mit den anderen Relationen zu kombinieren, benötigt man die Hörtrelation (Hört). 
 # <br>
-# ■ Prof(ProfName, Fachgebiet, GebJahr)
-# <br>
-# ■ VL(VL_ID, Titel, Saal)
-# <br>
-# ■ Lehrt(ProfName, VL_ID)
-# <br>
-# ■ Hört(Matrikel,VL_ID)
-# <br>
-# ■ Gesucht: Unterschiedliche Semester aller Studierenden, die eine Vorlesung eines Professors des Jahrgangs 1960
-# in Hörsaal 1 hören.
-# <br>
+# Nach dem Finden aller benötigten Relationen können nun die Selektionen auf den jeweiligen Relationen ausgeführt werden. Eine Bedingung war, dass der Professor vom Jahrgang 1960 sein muss. Diese Selektion wird direkt auf der Professorrelation ausgeführt. Die Bedingung, dass es Saal 1 ist, wird auf der gejointen Professor-, Lehrt- und Vorlesungsrelation durchgeführt. Dann werden die Hört- und die Studierendenrelation gejoint, um an die Semester der Studierenden zu kommen. Zum Schluss wird die Ergebnisrelation auf das Semester projiziert. 
 # ■ $\rho_{Sem}$((($\sigma_{Saal=1}$((($\sigma_{GebJahr = 1960}$(Professor))⋈Lehrt)⋈VL)⋈Hört)⋈Stud))
 
 # ### Umbenennung (rename, $\rho$)
 
-# ■ Unärer Operator
-# <br>
-# <br>
-# ■ Motivation: Zur Kontrolle der Schemata und einfacheren Verknüpfungen
-# <br>
-# □ $\rho_{S(A1,…,An)}$(R)
-# <br>
-# – Benennt Relation R in S um
-# <br>
-# – Benennt die Attribute der neuen Relation A1,…,An
-# <br>
-# □ $\rho_{S(R)}$ benennt nur Relation um.
-# <br>
-# ■ Durch Umbenennung ermöglicht
-# <br>
-# □ Mengenoperationen
-# <br>
-# – Nur möglich bei gleichen Schemata
-# <br>
-# □ Joins, wo bisher kartesische Produkte ausgeführt wurde
-# <br>
-# – Unterschiedliche Attribute werden gleich benannt.
-# <br>
-# □ Kartesische Produkte, wo bisher Joins ausgeführt wurden
-# <br>
-# – Gleiche Attribute werden unterschiedlich genannt.
+# Die Umbenennung ist ein unärer Operator. Sie dient zur Kontrolle der Schemata und bietet  eine Möglichkeit einfachere Verknüpfungen anzuwenden. <br>
+# In dem Beispiel wird eine Relation R in S und die Attribute in der neuen Relation in A1 bis An umbenannt:
+# - $\rho_{S(A1,…,An)}$(R)
+# 
+# Hätte man das Selbe ohne die Attribute der neuen Relation, würde man nur die Relation umbenennen:
+# - $\rho_{S(R)}$
+# 
+# Die Umbenennung ermöglicht weitere Operationen.<br>
+# Wenn mehrere Tabellen, die die gleichen Daten besitzen, zusammengeführt werden sollen, benötigen sie die gleichen Schemata für die Mengenoperationen (Vereinigungen, Schnittmenge ...). Eine Umbennung kann ein gleiches Schema herbeiführen. <br>
+# Bei Joins, wo bisher kartesische Produkte verwendet wurden, können mit einer Umbenennung die unterschiedlichen Attribute gleich benannt und darüber gejoint werden. <br>
+# Bei kartesischen Produkten, bei denen bisher Joins ausgeführt wurden, können gleiche Attribute unterschiedlich genannt werden. 
 
 # ### Umbenennung – Beispiel
+
+# In diesem Beispiel sollen zwei Relationen R und S mittels dem Kreuzprodukt verbunden werden. Damit die Attribute B nicht gleich heißen, wird das B aus der S-Relation in X umbenannt. 
 
 # $R$
 # 
@@ -622,47 +597,48 @@
 # |3|4|4|7|8|
 # |3|4|9|10|11
 
-# ■ Alternativer Ausdruck: $\rho_{S(A,B,X,C,D)}$(R $\times$ S)
+# Alternativ können die Attribute der Ergebnisrelation erst nach dem Bilden des Kreuzproduktes von R und S umbenannt werden. Vor der Umbenennung sind die Namen der Attribute A, R.B., S.B, C, D und nach der Umbennung A, B, X, C, D.
+# - $\rho_{S(A,B,X,C,D)}$(R $\times$ S)
 
 # ### Unabhängigkeit und Vollständigkeit
 
-#  Minimale Relationenalgebra:
-#  <br>
-# □ π, σ, $\times$ , −, ∪ (und r)
-#  <br>
-# ■ Unabhängig:
-#  <br>
-# □ Kein Operator kann weggelassen werden ohne Vollständigkeit zu verlieren.
-#  <br> <br>
-# ■ Natural Join, Join und Schnittmenge sind redundant
-#  <br>
-# □ R $\cap$ S = R − (R − S)
-#  <br>
-# □ R ⋈C S = $\sigma_C$(R $\times$ S) 
-#  <br>
-# □ R ⋈ S = $\pi_{L}$($\sigma_{R.A1=S.A1 AND … AND R.An=S.An}$(R $\times$ S))
+# Man hat eine minimale Menge von Operationen, die die Relationenalgebra bilden. Mittels diesen Operationen kann auf alles wie z.B Joins, Schnittmengen, usw. abgebildet werden. Dazu gehören:
+# - π, σ, $\times$ , −, ∪ (und r)
+# 
+# Unabhängigkeit bedeutet, dass kein Operator dieser Menge weggelassen werden kann ohne die Vollständigkeit zu verlieren. Wäre die Menge nicht mehr vollständig und könnte nicht mehr auf alle Operatoren abgebildet werden. <br>
+# Zum Beispiel sind der Natural Join, Join und die Schnittmenge redundant. Sie können durch andere Operatoren dargestellt werden:
+# - R $\cap$ S = R − (R − S)
+# - R ⋈_C S = $\sigma_C$(R $\times$ S) 
+# - R ⋈ S = $\pi_{L}$($\sigma_{R.A1=S.A1 AND … AND R.An=S.An}$(R $\times$ S))
+# 
+# Dennoch werden redundante Operatoren wie der Join häufig verwendet. Der Grund dafür ist die Übersichtlichkeit der Ausdrücke, wie man sehr gut am Beispiel für den natürlichen Join sehen kann. 
 
 # ## Vorschau zu Optimierung
 
-# ■ Beispiele für algebraische Regeln zur Transformation
+# Um Optimierung zu betreiben, müssen für die vorhandenen Ausdrücke äquivalente Umformungen bekannt sein, mit denen man sie gegebenenfalls austauschen kann. 
+# Dazu ein paar Beispiele für algebraische Regeln bei der Transformation:<br>
 # <br>
-# □ R ⋈ S = S ⋈ R
-# <br>
-# □ (R ⋈ S) ⋈ T = R ⋈ (S ⋈ T)
-# <br>
-# □ $\rho_{Y}(\rho_{X}(R)) = \rho_{Y}(R)$
-# <br>
-# – Falls Y ⊆ X
-# <br>
-# □ $\sigma_{A=a}(\sigma_{B=b}(R))= \sigma_{B=b}(\sigma_{A=a}(R)) [ = \sigma_{B=b\wedge A=a}(R) ]$
-# <br>
-# □ $\pi_{X}(\sigma_{A=a}(R)) = \sigma_{A=a}(\pi_{X}(R))$
-# <br>
-# – Falls A ⊆ X
-# <br>
-# □ $\sigma_{A=a}(R ∪ S) = \sigma_{A=a}(R) ∪ \sigma_{A=a}(S)$
-# <br>
-# ■ Jeweils: Welche Seite ist besser?
+# R gejoint mit S ist das Gleich wie S gejoint mit R. Die Reihenfolge der Attribute ist beim Tauschen von R und S eventuell anders. Kann im Nachhinein aber noch umsortiert werden. 
+# - R ⋈ S = S ⋈ R
+# 
+# Es gilt die Assoziativität. Die Reihenfolge der Klammerung kann beliebig getauscht werden. Das Ergebnis ändert sich auch dabei nicht. 
+# - (R ⋈ S) ⋈ T = R ⋈ (S ⋈ T)
+#  
+# Wenn man zwei Projektionen nacheinander durchführt und die äußere Projektion eine Teilmenge der inneren Projektion ist, kann die innere Projektion weggelassen werden. 
+# - $\rho_{Y}(\rho_{X}(R)) = \rho_{Y}(R)$
+#     - Falls Y ⊆ X
+# 
+# Angenommen man hat zwei Selektionen auf der gleichen Relation R. Dann kann die Reihenfolge beider Selektionen verändert werden. Alternativ können beide Selektionen auch als ein Ausdruck zusammengefasst und verknüpft werden. Das Ergebnis bleibt immer gleich, aber je nachdem was man zuerst ausführt können unterschiedliche Kosten entstehen. 
+# - $\sigma_{A=a}(\sigma_{B=b}(R))= \sigma_{B=b}(\sigma_{A=a}(R)) [ = \sigma_{B=b\wedge A=a}(R) ]$
+# 
+# Das Tauschen von einer Projektion mit einer Selektion ist möglich, sofern das Attribut A in X enthalten ist. 
+# - $\pi_{X}(\sigma_{A=a}(R)) = \sigma_{A=a}(\pi_{X}(R))$
+#     - Falls A ⊆ X
+#     
+# Die Selektion auf einer Vereinigung ist das Gleiche wie Selektionen auf den einzelnen Relationen, die dann vereinigt werden.   
+# - $\sigma_{A=a}(R ∪ S) = \sigma_{A=a}(R) ∪ \sigma_{A=a}(S)$
+# 
+# Der Optimierer fragt sich jedes Mal welche Seite besser bei der jetzigen Ausführung geeignet ist und wählt diese dann aus. 
 
 # ## Operatoren auf Multimengen
 

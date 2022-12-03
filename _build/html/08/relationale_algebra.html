@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>8. Relationale Algebra &#8212; Online-Skript Grundlagen der Datenbanksysteme</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -64,7 +63,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -73,9 +86,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -93,14 +107,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Grundlagen der Datenbanksysteme
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Grundlagen der Datenbanksysteme
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../01/einfuehrung.html">
    1. Einführung
@@ -164,110 +179,227 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/08/relationale_algebra.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/LUH-DBS/GDBS_Script"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F08/relationale_algebra.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/main/?urlpath=tree/08/relationale_algebra.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/main/?urlpath=tree/08/relationale_algebra.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/LUH-DBS/GDBS_Script"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F08/relationale_algebra.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/08/relationale_algebra.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#einfuhrung">
    8.1. Einführung
@@ -430,8 +562,13 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     8.17.8. Komplexe Ausdrücke – Beispiel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#umbenennung-rename-rho">
-     8.17.8. Umbenennung (rename,
+     8.17.9. Umbenennung (rename,
      <span class="math notranslate nohighlight">
       \(\rho\)
      </span>
@@ -440,12 +577,12 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#umbenennung-beispiel">
-     8.17.9. Umbenennung – Beispiel
+     8.17.10. Umbenennung – Beispiel
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#unabhangigkeit-und-vollstandigkeit">
-     8.17.10. Unabhängigkeit und Vollständigkeit
+     8.17.11. Unabhängigkeit und Vollständigkeit
     </a>
    </li>
   </ul>
@@ -572,7 +709,7 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
+    <a class="reference internal nav-link" href="#id5">
      8.22.10. Semi-Join
     </a>
    </li>
@@ -615,12 +752,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Relationale Algebra</h1>
@@ -795,8 +931,13 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     8.17.8. Komplexe Ausdrücke – Beispiel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#umbenennung-rename-rho">
-     8.17.8. Umbenennung (rename,
+     8.17.9. Umbenennung (rename,
      <span class="math notranslate nohighlight">
       \(\rho\)
      </span>
@@ -805,12 +946,12 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#umbenennung-beispiel">
-     8.17.9. Umbenennung – Beispiel
+     8.17.10. Umbenennung – Beispiel
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#unabhangigkeit-und-vollstandigkeit">
-     8.17.10. Unabhängigkeit und Vollständigkeit
+     8.17.11. Unabhängigkeit und Vollständigkeit
     </a>
    </li>
   </ul>
@@ -937,7 +1078,7 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
+    <a class="reference internal nav-link" href="#id5">
      8.22.10. Semi-Join
     </a>
    </li>
@@ -984,16 +1125,17 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="relationale-algebra">
-<h1><span class="section-number">8. </span>Relationale Algebra<a class="headerlink" href="#relationale-algebra" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="relationale-algebra">
+<h1><span class="section-number">8. </span>Relationale Algebra<a class="headerlink" href="#relationale-algebra" title="Permalink to this headline">#</a></h1>
 <p>Die Relationale Algebra ist der wohl formalste Teil dieser  Vorlesung. <br>
 Zuvor wurde über die Modellierung von Daten gesprochen und wie man relationale Datenbanken entwirft. <br>
 Jetzt geht es darum, die zuvor modellierte relationale Datenbank  mit einer Sprache zu manipulieren bzw. neue Sichten darauf zu erstellen und an diese Anfragen zu stellen.</p>
-<div class="section" id="einfuhrung">
-<h2><span class="section-number">8.1. </span>Einführung<a class="headerlink" href="#einfuhrung" title="Permalink to this headline">¶</a></h2>
+<section id="einfuhrung">
+<h2><span class="section-number">8.1. </span>Einführung<a class="headerlink" href="#einfuhrung" title="Permalink to this headline">#</a></h2>
 <p>In den letzten Kapiteln wurde das Relationsschema mit Basisrelationen, die in der Datenbank gespeichert sind, behandelt.
 <br>
 Jetzt geht es um „abgeleitete“ Relationenschemata mit virtuellen Relationen, die aus den Basisrelationen berechnet werden.
@@ -1004,8 +1146,8 @@ Daher benötigt man eine Anfragesprache. Eine Eigenschaft von ihr ist es, die Ba
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Eine</span> <span class="n">Anfrage</span> <span class="n">an</span> <span class="n">eine</span> <span class="n">Relation</span> <span class="n">und</span> <span class="n">deren</span> <span class="n">Ergebnisse</span> <span class="n">stellen</span> <span class="n">wieder</span> <span class="n">neue</span> <span class="n">Relationen</span> <span class="n">dar</span><span class="o">.</span> 
 </pre></div>
 </div>
-<div class="section" id="kriterien-fur-anfragesprachen">
-<h3><span class="section-number">8.1.1. </span>Kriterien für Anfragesprachen<a class="headerlink" href="#kriterien-fur-anfragesprachen" title="Permalink to this headline">¶</a></h3>
+<section id="kriterien-fur-anfragesprachen">
+<h3><span class="section-number">8.1.1. </span>Kriterien für Anfragesprachen<a class="headerlink" href="#kriterien-fur-anfragesprachen" title="Permalink to this headline">#</a></h3>
 <p>Für Anfragesprachen gibt es verschiedene Kritieren. Unter Anderem soll eine Ad-Hoc-Formulierung möglich sein. Der Benutzer soll eine Anfrage formulieren können, ohne ein vollständiges Programm schreiben zu müssen. Wenn man ein neues Programm in einer Sprache wie Python schreibt, muss man sich darum kümmern Bibliotheken zu importieren, usw. Dies ist bei einer Anfragensprache eben nicht der Fall.
 <br>
 Zudem soll eine Anfragesprache eingeschränkt und keine komplette Programmiersprache sein. Sie soll aus einem Standard und nicht aus zu vielen verschiedenen Vokabularien bestehen. Dennoch besteht der SQL-Standard aus mehr als 1300 Seiten!
@@ -1033,9 +1175,9 @@ Dazu zählen Relationen, Attribute, Schlüssel, usw.
 Die Vollständigkeit einer Anfragesprache bedeutet, dass eine Sprache mindestens die Anfragen einer Standardsprache (z.B. relationale Algebra) ausdrücken kann. Die Relationale Algebra dient hierbei als Vorgabe.
 <br><br>
 Zuletzt soll eine Anfragesprache sicher sein. Keine Anfrage, die syntaktisch korrekt ist, darf in eine Endlosschleife geraten oder ein unendliches Ergebnis liefern.</p>
-</div>
-<div class="section" id="anfragealgebra">
-<h3><span class="section-number">8.1.2. </span>Anfragealgebra<a class="headerlink" href="#anfragealgebra" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="anfragealgebra">
+<h3><span class="section-number">8.1.2. </span>Anfragealgebra<a class="headerlink" href="#anfragealgebra" title="Permalink to this headline">#</a></h3>
 <p>In der Mathematik ist die Algebra definiert durch einen Wertebereich und auf diesem definierte Operatoren. <br>
 Ein Operand besteht aus Variablen oder aus Werten, aus denen neue Werte konstruiert werden können (x, 2, 3, …).<br>
 Ein Operator besteht aus Symbolen, die Prozeduren repräsentieren, die aus gegebenen Werten neue Werte produzieren (+, -, * , /, …).
@@ -1044,19 +1186,19 @@ Für Datenbankanfragen gibt es ebenfalls eine Algebra, die relationale Algebra (
 Die Inhalte der Datenbank (Relationen) sind die Operanden.
 Die Operatoren definieren gewisse Funktionen zum Berechnen von Anfrageergebnissen.
 Es sind sehr grundlegenden Dinge, die wir mit Relationen tun wollen.</p>
-</div>
-<div class="section" id="mengen-vs-multimengen">
-<h3><span class="section-number">8.1.3. </span>Mengen vs. Multimengen<a class="headerlink" href="#mengen-vs-multimengen" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="mengen-vs-multimengen">
+<h3><span class="section-number">8.1.3. </span>Mengen vs. Multimengen<a class="headerlink" href="#mengen-vs-multimengen" title="Permalink to this headline">#</a></h3>
 <p>Bei der relationalen Algebra geht es hauptsächlich um Mengen. Bei normalen Mengen darf kein Tupel doppelt auftauchen. Bei Multimengen können identische Tupel mehrmals vorkommen. Es kann nämlich in einer Datenbanktabelle passieren, dass die Schlüssel nicht ordentlich definiert sind. Dann hat man sozusagen ein „Sack voll mit Tupeln“ (engl. „bag“).<br />
 <br>
 Die Operatoren der relationalen Algebra sind auf Mengen definiert, wohingegen die Operatoren auf einem DBMS (SQL-Anfragen) auf Multimengen definiert sind. Dies hat verschiedene Gründe. Zum Einem kann man hiermit die Effizienz beeinflussen bzw. steigern. Dazu kann man sich überlegen wie man eine Vereinigung als Multimenge und eine Vereinigung als Menge implementiert.</p>
-</div>
-</div>
-<div class="section" id="basisoperatoren">
-<h2><span class="section-number">8.2. </span>Basisoperatoren<a class="headerlink" href="#basisoperatoren" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="klassifikation-der-operatoren">
-<h2><span class="section-number">8.3. </span>Klassifikation der Operatoren<a class="headerlink" href="#klassifikation-der-operatoren" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="basisoperatoren">
+<h2><span class="section-number">8.2. </span>Basisoperatoren<a class="headerlink" href="#basisoperatoren" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="klassifikation-der-operatoren">
+<h2><span class="section-number">8.3. </span>Klassifikation der Operatoren<a class="headerlink" href="#klassifikation-der-operatoren" title="Permalink to this headline">#</a></h2>
 <p>Die bereits bekannten Mengenoperatoren
 <br>
 □ Vereinigung, Schnittmenge, Differenz
@@ -1072,9 +1214,9 @@ Mit kombinierenden Operatoren kann man mehrere Relationen miteinander verbinden 
 Die Umbenennung ist die einzige Ooeration, die nicht die Tupel verändert, sondern das Schema.
 <br><br>
 Ein Ausdruck in der Relationlen Algebra besteht aus einer Kombination von Operatoren und Operanden, auch Anfragen (queries) genannt.</p>
-</div>
-<div class="section" id="vereinigung-union-cup">
-<h2><span class="section-number">8.4. </span>Vereinigung (union, <span class="math notranslate nohighlight">\(\cup\)</span>)<a class="headerlink" href="#vereinigung-union-cup" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="vereinigung-union-cup">
+<h2><span class="section-number">8.4. </span>Vereinigung (union, <span class="math notranslate nohighlight">\(\cup\)</span>)<a class="headerlink" href="#vereinigung-union-cup" title="Permalink to this headline">#</a></h2>
 <p>Die Vereinigung sammelt Elemente (Tupel) zweier Relationen unter einem gemeinsamen Schema auf.</p>
 <ul class="simple">
 <li><p>R ∪ S := {t | t <span class="math notranslate nohighlight">\(\in\)</span> R <span class="math notranslate nohighlight">\(\vee\)</span> t <span class="math notranslate nohighlight">\(\in\)</span> S}</p></li>
@@ -1082,9 +1224,9 @@ Ein Ausdruck in der Relationlen Algebra besteht aus einer Kombination von Operat
 <p>Um eine Vereinigung anwenden zu können, müssen die Attributmengen beider Relationen identisch sein. Dazu gehören die Namen, Typen und die Reihenfolge. Wenn man beispielsweise die Attribute  in einer Tabelle in einem anderen Format hat als in der Anderen und die Werte vom gleichen Typ sind, kann mam diese Umbenennen und dennoch eine Vereinigung bilden.
 <br>
 Ein Element ist nur einmal in der Vereinigung von R und S (R ∪ S) vertreten, auch wenn es jeweils einmal in R und S auftaucht. Es kommt zu einer Duplikatentfernung.</p>
-</div>
-<div class="section" id="beispiel-fur-mengenoperatoren">
-<h2><span class="section-number">8.5. </span>Beispiel für Mengenoperatoren<a class="headerlink" href="#beispiel-fur-mengenoperatoren" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="beispiel-fur-mengenoperatoren">
+<h2><span class="section-number">8.5. </span>Beispiel für Mengenoperatoren<a class="headerlink" href="#beispiel-fur-mengenoperatoren" title="Permalink to this headline">#</a></h2>
 <p>Das Beispiel zeigt zwei Tabellen R und S mit jeweils Name, Adresse, Geschlecht und Geburt.
 Wenn man diese Relationen miteinander vereinigt, erhält man eine neue Relation, in der das Tupel mit “Carrie Fisher” nur ein Mal vorkommt.</p>
 <p><span class="math notranslate nohighlight">\(R\)</span></p>
@@ -1158,9 +1300,9 @@ Wenn man diese Relationen miteinander vereinigt, erhält man eine neue Relation,
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="differenz-difference">
-<h2><span class="section-number">8.6. </span>Differenz (difference, ―, \)<a class="headerlink" href="#differenz-difference" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="differenz-difference">
+<h2><span class="section-number">8.6. </span>Differenz (difference, ―, \)<a class="headerlink" href="#differenz-difference" title="Permalink to this headline">#</a></h2>
 <p>Die Differenz in der Relationalen Algebra ist sehr ähnlich zu der aus der Mathematik. <br>
 Die Differenz von R und S (R − S) eliminiert die Tupel aus der ersten Relation, die auch in der zweiten Relation vorkommen. Die Schemata beider Relationen müssen für eine Differenz gleich sein.
 <br></p>
@@ -1171,9 +1313,9 @@ Die Differenz von R und S (R − S) eliminiert die Tupel aus der ersten Relation
 <ul class="simple">
 <li><p>R − S ≠ S − R</p></li>
 </ul>
-</div>
-<div class="section" id="id1">
-<h2><span class="section-number">8.7. </span>Beispiel für Mengenoperatoren<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id1">
+<h2><span class="section-number">8.7. </span>Beispiel für Mengenoperatoren<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
 <p>Sowohl in der Relation R, als auch in der Relation S, gibt es das gleiche Tupel mit “Carrie Fisher”. Bei der Differenz (R-S) wird das in beiden vorkommende Tupel eliminiert.</p>
 <p><span class="math notranslate nohighlight">\(R\)</span></p>
 <table class="colwidths-auto table">
@@ -1236,9 +1378,9 @@ Die Differenz von R und S (R − S) eliminiert die Tupel aus der ersten Relation
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="schnittmenge-intersection-cap">
-<h2><span class="section-number">8.8. </span>Schnittmenge (intersection, <span class="math notranslate nohighlight">\(\cap\)</span>)<a class="headerlink" href="#schnittmenge-intersection-cap" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="schnittmenge-intersection-cap">
+<h2><span class="section-number">8.8. </span>Schnittmenge (intersection, <span class="math notranslate nohighlight">\(\cap\)</span>)<a class="headerlink" href="#schnittmenge-intersection-cap" title="Permalink to this headline">#</a></h2>
 <p>Die Schnittmenge R <span class="math notranslate nohighlight">\(\cap\)</span> S ergibt die Tupel, die in beiden Relationen gemeinsam vorkommen.<br></p>
 <ul class="simple">
 <li><p>R <span class="math notranslate nohighlight">\(\cap\)</span> S := {t | t <span class="math notranslate nohighlight">\(\in\)</span> R <span class="math notranslate nohighlight">\(\wedge\)</span> t <span class="math notranslate nohighlight">\(\in\)</span> S}</p></li>
@@ -1248,9 +1390,9 @@ Die Differenz von R und S (R − S) eliminiert die Tupel aus der ersten Relation
 <li><p>R <span class="math notranslate nohighlight">\(\cap\)</span> S = R − (R − S) = S − (S − R)</p></li>
 </ul>
 <p><img alt="title" src="../_images/schnittmenge.jpg" /></p>
-</div>
-<div class="section" id="id2">
-<h2><span class="section-number">8.9. </span>Beispiel für Mengenoperatoren<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id2">
+<h2><span class="section-number">8.9. </span>Beispiel für Mengenoperatoren<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
 <p>In Relation R sowie in Relation S gibt es ein identisches “Carrie Fisher” Tupel. Bildet man die Schnittmenge der beiden Relationen (<span class="math notranslate nohighlight">\(R\cap S\)</span>), sind in der Ergebnisrelation alle Tupel, die sowohl in R, als auch in S vorkommen. In diesem Fall wäre es nur das Tupel mit “Carrie Fisher”.</p>
 <p><span class="math notranslate nohighlight">\(R\)</span></p>
 <table class="colwidths-auto table">
@@ -1313,9 +1455,9 @@ Die Differenz von R und S (R − S) eliminiert die Tupel aus der ersten Relation
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="projektion-projection-pi">
-<h2><span class="section-number">8.10. </span>Projektion (projection, <span class="math notranslate nohighlight">\(\pi\)</span>)<a class="headerlink" href="#projektion-projection-pi" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="projektion-projection-pi">
+<h2><span class="section-number">8.10. </span>Projektion (projection, <span class="math notranslate nohighlight">\(\pi\)</span>)<a class="headerlink" href="#projektion-projection-pi" title="Permalink to this headline">#</a></h2>
 <p>Die Projektion ist ein unärer Operator. Sie erzeugt eine neue Relation mit einer Teilmenge der ursprünglichen Attribute.<br>
 Angenommen man projiziert auf eine Relation R mit den Attributen A1 bis Ak: <span class="math notranslate nohighlight">\(\pi_{A1,A2,…,Ak}\)</span>®. Als Ergbnis erhält man eine neue Relation mit einer Teilmenge der ursprünglichen Attribute von R. Die Reihenfolge der Attribute entspricht üblicherweise der aufgelisteten Reihenfolge.<br><br>
 Durch das Weglassen von Attributen, kann es dazu kommen, dass die übrig gebliebenen Attribute  Duplikate enthalten. Diese werden implizit entfernt. <br>
@@ -1352,9 +1494,9 @@ Ein Beispiel hierzu: Man bildet eine Projektion mit den Attributen A und B auf R
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="projektion-beispiel">
-<h2><span class="section-number">8.11. </span>Projektion – Beispiel<a class="headerlink" href="#projektion-beispiel" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="projektion-beispiel">
+<h2><span class="section-number">8.11. </span>Projektion – Beispiel<a class="headerlink" href="#projektion-beispiel" title="Permalink to this headline">#</a></h2>
 <p>Hier sind zwei weitere Beispiele zu Projektionen anhand einer Film-Tabelle dargestellt. <br>
 Im ersten Beispiel werden bei der Projektion nur die Spalten Titel, Jahr und Länge behalten. Die anderen Spalten werden weggeschnitten. <br>
 In zweitem Beispiel kommt ‘True’ doppelt vor und daher werden dessen Duplikate entfernt.</p>
@@ -1429,9 +1571,9 @@ In zweitem Beispiel kommt ‘True’ doppelt vor und daher werden dessen Duplika
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="erweiterte-projektion">
-<h2><span class="section-number">8.12. </span>Erweiterte Projektion<a class="headerlink" href="#erweiterte-projektion" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="erweiterte-projektion">
+<h2><span class="section-number">8.12. </span>Erweiterte Projektion<a class="headerlink" href="#erweiterte-projektion" title="Permalink to this headline">#</a></h2>
 <p>Die Relationale Algebra erlaubt es den Projektionsoperator mehr Fähigkeiten zu geben. Bei der einfachen Projektion zuvor (<span class="math notranslate nohighlight">\(\pi_{L}\)</span>®) war das L dabei ‘nur’ eine Attributliste. Die erweiterte Projektion kann neben der Attributliste auch andere Ausdrücke an der Stelle des L’s stehen haben. <br>
 Ein anderer Ausdruck wäre A→B, wobei A ein Attribut in R und B ein neuer Name ist. Dies entspricht einer Umbenennung von Attributen. <br>
 Eine weitere Möglichkeit für einen neuen Ausdruck ist e→C. e ist ein Ausdruck mit Konstanten, arithmetischen Operatoren, Attributen von R, String-Operationen. C ist der neue Name für den Ausdruck e. Zwei Beispiele hierfür:</p>
@@ -1439,9 +1581,9 @@ Eine weitere Möglichkeit für einen neuen Ausdruck ist e→C. e ist ein Ausdruc
 <li><p>A1 + A2 → Summe</p></li>
 <li><p>Vorname || ` ` || Nachname → Name</p></li>
 </ul>
-</div>
-<div class="section" id="selektion-selection-sigma">
-<h2><span class="section-number">8.13. </span>Selektion (selection, <span class="math notranslate nohighlight">\(\sigma\)</span>)<a class="headerlink" href="#selektion-selection-sigma" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="selektion-selection-sigma">
+<h2><span class="section-number">8.13. </span>Selektion (selection, <span class="math notranslate nohighlight">\(\sigma\)</span>)<a class="headerlink" href="#selektion-selection-sigma" title="Permalink to this headline">#</a></h2>
 <p>Ein weiterer unärer Operator ist die Selektion. Sie erzeugt eine neue Relation mit gleichem Schema, aber einer Teilmenge der Tupel. Einfach ausgedrückt kann man sagen, dass eine Selektion die Anzahl der Tupel reduziert.  <br>
 Nur Tupel, die der Selektionsbedingung C (condition) entsprechen, werden in die neu erzeugte Relation übernommen. Für jedes Tupel wird somit einmal die Bedingung geprüft. Es handelt sich bei den Selektionsbedingungen um boolesche Selektionsbedingungen wie man sie aus Programmiersprachen kennt. <br>
 Die Operanden der Selektionsbedingung sind nur Konstanten oder Attribute von R. Diese können mittels Vergleichsoperatoren wie &lt;, &gt;, ≤, <span class="math notranslate nohighlight">\(\ge\)</span>, &lt;&gt; und = verglichen werden. const = const ist ein Beispiel dafür wie so etwas aussehen kann. Ist aber eigentlich unnötig, da es sich um Konstanten handelt. Eine typische Selektion ist ein Vergleich zwischen Attribut und Konstante (attr = const). Wenn man zwei Attribute miteinander vergleicht, (attr = attr) kann man mögliche Attribute finden, an denen die zwei Relationen gejoint werden können. Das würde einer Join Bedingung entsprechen. <br>
@@ -1451,9 +1593,9 @@ Nicht zu verwechseln sind die Selektion aus der Relationalen Algebra mit dem SEL
 <ul class="simple">
 <li><p>Selektion <span class="math notranslate nohighlight">\(\neq\)</span> SELECT</p></li>
 </ul>
-</div>
-<div class="section" id="selektion-beispiel">
-<h2><span class="section-number">8.14. </span>Selektion – Beispiel<a class="headerlink" href="#selektion-beispiel" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="selektion-beispiel">
+<h2><span class="section-number">8.14. </span>Selektion – Beispiel<a class="headerlink" href="#selektion-beispiel" title="Permalink to this headline">#</a></h2>
 <p>Die Beispiele zeigen verschiedene Selektionen auf einer gegebenen Film-Relation. <br>
 Im ersten Beispiel werden alle Filme selektiert, dessen Länge größer oder gleich 100 Minuten ist. <br>
 Im zweitem Beispiel kommt noch hinzu, dass diese Filem vom Fox-Studio produziert worden sein müssen.</p>
@@ -1541,16 +1683,16 @@ Im zweitem Beispiel kommt noch hinzu, dass diese Filem vom Fox-Studio produziert
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="kartesisches-produkt-cartesian-product-cross-product-times">
-<h2><span class="section-number">8.15. </span>Kartesisches Produkt (Cartesian product, cross product <span class="math notranslate nohighlight">\(\times\)</span>)<a class="headerlink" href="#kartesisches-produkt-cartesian-product-cross-product-times" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="kartesisches-produkt-cartesian-product-cross-product-times">
+<h2><span class="section-number">8.15. </span>Kartesisches Produkt (Cartesian product, cross product <span class="math notranslate nohighlight">\(\times\)</span>)<a class="headerlink" href="#kartesisches-produkt-cartesian-product-cross-product-times" title="Permalink to this headline">#</a></h2>
 <p>Das Kartesische Produkt ist ein binärer Operator. Benannt worden ist es nach René Descartes. Ein französischer Naturwissenschaftler, Mathematiker und Philosoph. Das Kartesische Produkt ist auch unter anderen Namen wie Kreuzprodukt oder Produkt bekannt. Außerdem gibt es verschiedene Schreibweisen dafür: R * S statt R <span class="math notranslate nohighlight">\(\times\)</span> S
 <br><br>
 Das Kreuzprodukt zweier Relationen R und S ist die Menge aller Tupel, die man erhält, wenn man jedes Tupel aus R mit jedem Tupel aus S kombiniert. Das Schema hat ein Attribut für jedes Attribut aus R und S. Bei Namensgleichheit von zwei oder mehreren Attributen wird kein Attribut ausgelassen, stattdessen werden sie eindeutig umbenannt.</p>
 <p><img alt="title" src="../_images/descartes.jpg" /></p>
-</div>
-<div class="section" id="kartesisches-produkt-beispiel">
-<h2><span class="section-number">8.16. </span>Kartesisches Produkt – Beispiel<a class="headerlink" href="#kartesisches-produkt-beispiel" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="kartesisches-produkt-beispiel">
+<h2><span class="section-number">8.16. </span>Kartesisches Produkt – Beispiel<a class="headerlink" href="#kartesisches-produkt-beispiel" title="Permalink to this headline">#</a></h2>
 <p>Das Beispiel zum Kartesischen Produkt zeigt zwei Relationen R und S, die mittels Kreuzprodukt kombiniert werden. Dazu werden alle möglichen Kombinationen der Tupel gebildet. Die Relationen R und S haben ein Attribut mit dem selben Namen (B). In der neuen Ergbnisrelation wird das Attribut jeweils eindeutig umbenannt. Bei der Umbennenung wird als Präfix der Relationsname vor das Attribut geschrieben: R.B und S.B.</p>
 <p><span class="math notranslate nohighlight">\(R\)</span></p>
 <table class="colwidths-auto table">
@@ -1640,9 +1782,9 @@ Das Kreuzprodukt zweier Relationen R und S ist die Menge aller Tupel, die man er
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="der-join-operatorfamilie">
-<h2><span class="section-number">8.17. </span>Der Join – Operatorfamilie<a class="headerlink" href="#der-join-operatorfamilie" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="der-join-operatorfamilie">
+<h2><span class="section-number">8.17. </span>Der Join – Operatorfamilie<a class="headerlink" href="#der-join-operatorfamilie" title="Permalink to this headline">#</a></h2>
 <p>Die folgenden Joins bilden eine Übersicht über die Joins, die in dieser Veranstaltung genauer betrachtet werden:</p>
 <ul class="simple">
 <li><p>Natürlicher Join (natural join)</p></li>
@@ -1652,8 +1794,8 @@ Das Kreuzprodukt zweier Relationen R und S ist die Menge aller Tupel, die man er
 <li><p>Left-outer Join und Right-outer Join</p></li>
 <li><p>Full-outer Join</p></li>
 </ul>
-<div class="section" id="naturlicher-join-natural-join">
-<h3><span class="section-number">8.17.1. </span>Natürlicher Join (natural join, ⋈)<a class="headerlink" href="#naturlicher-join-natural-join" title="Permalink to this headline">¶</a></h3>
+<section id="naturlicher-join-natural-join">
+<h3><span class="section-number">8.17.1. </span>Natürlicher Join (natural join, ⋈)<a class="headerlink" href="#naturlicher-join-natural-join" title="Permalink to this headline">#</a></h3>
 <p>Der natürliche Join ist ein binärer Operator.
 Beim Kreuzprodukt zuvor wurden alle möglichen Tupelpaare gebildet. Im Gegensatz dazu werden beim natürlichen Join Tupelpaare gebildet aus Tupeln, die „irgendwie“ übereinstimmen.
 Es werden Tupel miteinander verbunden, die eine Übereinstimmung in allen gemeinsamen Attributen besitzen.
@@ -1674,9 +1816,9 @@ Dabei muss noch projiziert und umbenannt werden, um die Vereinigung richtig zu e
 <ul class="simple">
 <li><p>R ⋈ S = s r[A1]=s[A1] <span class="math notranslate nohighlight">\(\wedge\)</span> … <span class="math notranslate nohighlight">\(\wedge\)</span> r[Ak]=s[Ak](R × S)</p></li>
 </ul>
-</div>
-<div class="section" id="naturlicher-join-beispiele">
-<h3><span class="section-number">8.17.2. </span>Natürlicher Join – Beispiele<a class="headerlink" href="#naturlicher-join-beispiele" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="naturlicher-join-beispiele">
+<h3><span class="section-number">8.17.2. </span>Natürlicher Join – Beispiele<a class="headerlink" href="#naturlicher-join-beispiele" title="Permalink to this headline">#</a></h3>
 <p>Die ursprünglichen Tabellen sind R und S. Auf diesen beiden wird ein natürlicher Join ausgeführt. Dabei wird nur auf gleichen Attributen gejoint. In diesem Fall ist es das Attribut B. R und S stimmen in B in den Werten 2 und 4 überein. Das übrig gebliebene Tupel mit der 9 in B, muss somit nicht mehr kombiniert werden. <br>
 <br></p>
 <p><span class="math notranslate nohighlight">\(R\)</span></p>
@@ -1865,9 +2007,9 @@ Das erste Tupel aus R und das zweite Tupel aus S haben wiederum in B und C die g
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="theta-join-theta-join-theta">
-<h3><span class="section-number">8.17.3. </span>Theta-Join (theta-join, <span class="math notranslate nohighlight">\(⋈_\theta\)</span>)<a class="headerlink" href="#theta-join-theta-join-theta" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="theta-join-theta-join-theta">
+<h3><span class="section-number">8.17.3. </span>Theta-Join (theta-join, <span class="math notranslate nohighlight">\(⋈_\theta\)</span>)<a class="headerlink" href="#theta-join-theta-join-theta" title="Permalink to this headline">#</a></h3>
 <p>Der Theta Join ist die Allgemeinste Form der Joins. Der natürliche Join ist also ein Spezialfall vom Theta-Join.
 Die Verknüpfungsbedingung kann selbst gestaltet werden. Zuvor war die Bedingung, dass die Attribute auf denen gejoint wird, gleich sind.<br>
 Das Ergebnis wird ähnlich wie zuvor konstruiert. Zunächst wird ein Kreuzprodukt der beiden Relationen gebildet. Selektiert wird darauf mittels der gegebenen Joinbedingung <span class="math notranslate nohighlight">\(\theta\)</span>. Dabei ist A ein Attribut in R und B ein Attribut in S.</p>
@@ -1880,9 +2022,9 @@ Das Ergebnis wird ähnlich wie zuvor konstruiert. Zunächst wird ein Kreuzproduk
 <li><p>R(A,B,C) ⋈ S(B,C,D) <br>
 = <span class="math notranslate nohighlight">\(\rho_{T(A,B,C,D)}\)</span>(<span class="math notranslate nohighlight">\(\pi_{A,R.B,R.C,D}\)</span>(<span class="math notranslate nohighlight">\(\sigma_{(R.B=S.B AND R.C = S.C)}\)</span> (<span class="math notranslate nohighlight">\(R \times S\)</span>)))</p></li>
 </ul>
-</div>
-<div class="section" id="theta-join-beispiel">
-<h3><span class="section-number">8.17.4. </span>Theta-Join – Beispiel<a class="headerlink" href="#theta-join-beispiel" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="theta-join-beispiel">
+<h3><span class="section-number">8.17.4. </span>Theta-Join – Beispiel<a class="headerlink" href="#theta-join-beispiel" title="Permalink to this headline">#</a></h3>
 <p>Im ersten Beispiel sollen R und S gejoint werden, wenn der Wert vom Attribut A kleiner als der von D ist. Zunächst wird das erste Tupel von R mit allen Tupeln von S verglichen. In jedem Fall stimmt die Bedingung und die Tupel können verbunden werden. Analog werden die weiteren Tupel von R mit denen von S verglichen und gegebenenfalls verbunden.</p>
 <p><span class="math notranslate nohighlight">\(R\)</span></p>
 <table class="colwidths-auto table">
@@ -1979,7 +2121,7 @@ Das Ergebnis wird ähnlich wie zuvor konstruiert. Zunächst wird ein Kreuzproduk
 </tr>
 </tbody>
 </table>
-<p>Im zweitem Beispiel wird die Bedingung erweitert. R.B und S.B dürfen nicht mehr gleich sein. Wie zuvor wird jede Zeile von R mit jeder Zeile von S verglichen und geprüft, ob die Bedingung stimmt. Falls ja werden die Tupel miteinander verknüpft. Generell können Bedingungen beliebig lang werden.</p>
+<p>Im zweitem Beispiel wird die Bedingung erweitert. R.B und S.B dürfen nicht mehr gleich sein. Wie zuvor wird jede Zeile von R mit jeder Zeile von S verglichen und geprüft, ob die Bedingung stimmt. Falls ja, werden die Tupel miteinander verknüpft. Generell können Bedingungen beliebig lang werden.</p>
 <p><span class="math notranslate nohighlight">\(R ⋈_{A&lt;D \wedge R.B \neq S.B}S\)</span></p>
 <table class="colwidths-auto table">
 <thead>
@@ -2001,20 +2143,12 @@ Das Ergebnis wird ähnlich wie zuvor konstruiert. Zunächst wird ein Kreuzproduk
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="komplexe-ausdrucke">
-<h3><span class="section-number">8.17.5. </span>Komplexe Ausdrücke<a class="headerlink" href="#komplexe-ausdrucke" title="Permalink to this headline">¶</a></h3>
-<p>■ Idee: Kombination (Schachtelung) von Ausdrücken zur Formulierung komplexer Anfragen.
-<br>
-□ Abgeschlossenheit der relationalen Algebra
-<br>
-– Output eines Ausdrucks ist immer eine Relation.
-<br><br>
-□ Darstellung
-<br>
-– Als geschachtelter Ausdruck mittels Klammerung
-<br>
-– Als Baum</p>
+</section>
+<section id="komplexe-ausdrucke">
+<h3><span class="section-number">8.17.5. </span>Komplexe Ausdrücke<a class="headerlink" href="#komplexe-ausdrucke" title="Permalink to this headline">#</a></h3>
+<p>Die Idee hinter komplexen Ausdrücken ist die Kombination (Schachtelung) von Ausdrücken zur Formulierung komplexer Anfragen. <br>
+Aufgrund der Abgeschlossenheit der relationalen Algebra kann der Output eines Ausdrucks, der immer eine Relation ist, als Input für den nächsten Ausdruck verwendet werden. <br>
+Die Darstellung von komplexen Ausdrücken erfolgt mittels Klammerung und Schachtelung von Ausdrücken. Die komplexen Ausdrücke können in einen Baum aufgespalten und dargestellt werden.</p>
 <p>Film</p>
 <table class="colwidths-auto table">
 <thead>
@@ -2046,31 +2180,35 @@ Das Ergebnis wird ähnlich wie zuvor konstruiert. Zunächst wird ein Kreuzproduk
 </tr>
 </tbody>
 </table>
-<p>■ Gesucht: Titel und Jahr von Filmen, die von Fox produziert wurden und mindestens 100
-Minuten lang sind.
-<br>
-□ Suche alle Filme von Fox
-<br>
-□ Suche alle Filme mit mindestens 100 Minuten
-<br>
-□ Bilde die Schnittmenge der beiden Zwischenergebnisse
-<br>
-□ Projiziere die Relation auf die Attribute Titel und Jahr.
-<br>
-□ <span class="math notranslate nohighlight">\(\rho_{Titel,Jahr}\)</span>(<span class="math notranslate nohighlight">\(\sigma_{Länge≥100}\)</span>(Film) <span class="math notranslate nohighlight">\(\cap\)</span> <span class="math notranslate nohighlight">\(\sigma_{StudioName=‚Fox‘}\)</span>(Film))
-<br>
-□ Alternative: <span class="math notranslate nohighlight">\(\pi_{Titel,Jahr}\)</span>(<span class="math notranslate nohighlight">\(\sigma_{Länge≥100 AND StudioName=‚Fox‘}\)</span>(Film))
-<br>
-– U.v.a.m.</p>
-</div>
-<div class="section" id="komplexe-ausdrucke-beispiel">
-<h3><span class="section-number">8.17.6. </span>Komplexe Ausdrücke – Beispiel<a class="headerlink" href="#komplexe-ausdrucke-beispiel" title="Permalink to this headline">¶</a></h3>
-<p>■<span class="math notranslate nohighlight">\(\rho_{Titel,Jahr}\)</span>(<span class="math notranslate nohighlight">\(\sigma_{Länge≥100(Film)}\)</span> <span class="math notranslate nohighlight">\(\cap\)</span> <span class="math notranslate nohighlight">\(\sigma_{StudioName=‚Fox‘}\)</span>(Film))</p>
+<p>Als Beispiel zu komplexen Ausdrücken sei hier eine Film-Relation gegeben. Gesucht werden Titel und Jahr von den Filmen, die von Fox produziert wurden. Die Filme sollen mindestens 100 Minuten lang sein. <br>
+Um die Beispielanfrage in die Relationale Algebra zu übersetzen, wird die Anfrage Stück für Stück durchgegangen und umgewandelt. In diesem Beispiel fangen wir von innen heraus an. <br>
+Gesucht werden Filme, die von Fox produziert worden sind. Somit wird eine Selektion mit der Selektionsbedingung StudioName=‘Fox’ auf der Film-Relation benötigt (<span class="math notranslate nohighlight">\(\sigma_{StudioName=‚Fox‘}\)</span>(Film)).
+Die zweite Bedingung fordert, dass alle Filme mindestens 100 Minuten lang sind. Dafür wird wieder eine Selektion auf der Film-Relation angewandt <span class="math notranslate nohighlight">\(\sigma_{Länge≥100}\)</span>(Film).
+Da beide Bedingungen gleichzeitig gelten sollen, nimmt man die Schnittmenge von den beiden zuvor verwendeten Selektionen (<span class="math notranslate nohighlight">\(\sigma_{Länge≥100}\)</span>(Film) <span class="math notranslate nohighlight">\(\cap\)</span> <span class="math notranslate nohighlight">\(\sigma_{StudioName=‚Fox‘}\)</span>(Film)).
+Alternativ lässt sich als eine längere Selektionsbedingung darstellen. Dazu werden beide Bedingungen mit einem AND verknüpft (<span class="math notranslate nohighlight">\(\sigma_{Länge≥100 AND StudioName=‚Fox‘}\)</span>(Film)).
+Da nach Titeln und Jahr gesucht wird, wird die Relation am Ende auf die Attribute Titel und Jahr noch projiziert (<span class="math notranslate nohighlight">\(\pi_{Titel,Jahr}\)</span>(…)). <br>
+Die vollständige Anfrage in Relationaler Algebra sieht wie folgt aus:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\pi_{Titel,Jahr}\)</span>(<span class="math notranslate nohighlight">\(\sigma_{Länge≥100}\)</span>(Film) <span class="math notranslate nohighlight">\(\cap\)</span> <span class="math notranslate nohighlight">\(\sigma_{StudioName=‚Fox‘}\)</span>(Film))
+oder in alternativer Form:</p></li>
+<li><p><span class="math notranslate nohighlight">\(\pi_{Titel,Jahr}\)</span>(<span class="math notranslate nohighlight">\(\sigma_{Länge≥100 AND StudioName=‚Fox‘}\)</span>(Film))</p></li>
+</ul>
+<p>Generell gibt es aber viele verschiedene Möglichkeiten wie ein solcher Ausdruck formuliert wird.</p>
+</section>
+<section id="komplexe-ausdrucke-beispiel">
+<h3><span class="section-number">8.17.6. </span>Komplexe Ausdrücke – Beispiel<a class="headerlink" href="#komplexe-ausdrucke-beispiel" title="Permalink to this headline">#</a></h3>
+<p>Das Beispiel zeigt wie ein Baum von innen heraus aufgespannt wird. Dabei wird mit der Film Relation und den Selektionen darauf begonnen. Danach werden die Ergebnisrelationen beider Selektionen durch eine Schnittmenge verbunden. Zuletzt wird durch die Projektion die Spalten Titel und Jahr ausgegeben.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\rho_{Titel,Jahr}\)</span>(<span class="math notranslate nohighlight">\(\sigma_{Länge≥100(Film)}\)</span> <span class="math notranslate nohighlight">\(\cap\)</span> <span class="math notranslate nohighlight">\(\sigma_{StudioName=‚Fox‘}\)</span>(Film))</p></li>
+</ul>
 <p><img alt="title" src="../_images/komplex_bsp1.jpg" /></p>
-<p>■ Alternative: <span class="math notranslate nohighlight">\(\rho_{Titel,Jahr}\)</span>(<span class="math notranslate nohighlight">\(\sigma_{Länge≥100 AND StudioName=‚Fox‘}\)</span>(Film))</p>
-</div>
-<div class="section" id="id3">
-<h3><span class="section-number">8.17.7. </span>Komplexe Ausdrücke – Beispiel<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>Zu der Alternative sähe der Baum dementsprechend anders aus. Er würde nur aus einer Film Relation, einer Selektion mit längerer Selektionsbedingung und einer Projektion bestehen. Letztendlich kommt bei beiden Ausdrücken die selbe Relation heraus.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\rho_{Titel,Jahr}\)</span>(<span class="math notranslate nohighlight">\(\sigma_{Länge≥100 AND StudioName=‚Fox‘}\)</span>(Film))</p></li>
+</ul>
+</section>
+<section id="id3">
+<h3><span class="section-number">8.17.7. </span>Komplexe Ausdrücke – Beispiel<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
 <p>Film</p>
 <table class="colwidths-auto table">
 <thead>
@@ -2129,60 +2267,49 @@ Minuten lang sind.
 </tr>
 </tbody>
 </table>
-<p>■ Gesucht: Namen aller Schauspieler, die in Filmen spielten, die mindestens 100 Minuten lang
-sind.
+<p>Gegeben sind in diesem Beispiel zwei Relationen: Film und Rolle. Gesucht werden die Namen aller Schauspieler, die in den Filmen mitspielten, die mindestens 100 Minuten lang sind. <br>
+Die Schauspielernamen sind in einer anderen Tabelle als die Filme. Die Tabellen müssen irgendwie verlinkt werden. Dazu eignet sich die beiden Relationen (mittels einem natürlichen Join) zu joinen (Film ⋈ Rolle). Aus dieser Ergebnisrelation werden alle Filme selektiert, die mindestens 100 Minuten lang sind (<span class="math notranslate nohighlight">\(\sigma_{Länge≥100}\)</span>(…)). Da nur nach den Schauspielernamen gesucht wird, wird auf den Schauspielernamen projiziert (<span class="math notranslate nohighlight">\(\rho_{SchauspName}\)</span>(…)).</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\rho_{SchauspName}\)</span>(<span class="math notranslate nohighlight">\(\sigma_{Länge≥100}\)</span>(Film ⋈ Rolle))</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3><span class="section-number">8.17.8. </span>Komplexe Ausdrücke – Beispiel<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Stud(Matrikel, Name, Semester)</p></li>
+<li><p>Prof(ProfName, Fachgebiet, GebJahr)</p></li>
+<li><p>VL(VL_ID, Titel, Saal)</p></li>
+<li><p>Lehrt(ProfName, VL_ID)</p></li>
+<li><p>Hört(Matrikel,VL_ID)</p></li>
+</ul>
+<p>Gesucht werden in diesem Beispiel die unterschiedlichen Semester aller Studierenden, die eine Vorlesung eines Professors des Jahrgangs 1960 in Hörsaal 1 hören.<br>
+Zunächst muss überlegt werden, welche Relationen benötigt werden. Eine Bedingung ist, dass es Hörsaal 1 sein muss, in dem die Vorlesung gehört wird. Das Attribut Saal befindet sich in der Vorlesungsrelation (VL).
+Der Jahrgang des Professors ist eine weitere Bedingung. Dafür wird die Professorrelation (Prof) benötigt.
+Die Professorrelation lässt sich mit der Vorlesungsrelation über die Lehrtrelation (Lehrt) verbinden, da letztere aus jeweils einem Attribut der anderen beiden Relationen besteht.
+Ansonsten wird nach den Semestern der Studierenden gefragt. Das Attribut Semester befindet sich in der Studierendenrelation (Stud). Um die Studierendenrelation mit den anderen Relationen zu kombinieren, benötigt man die Hörtrelation (Hört).
 <br>
-□ Verjoine beide Relationen (natürlicher Join)
-<br>
-□ Selektiere Filme, die mindestens 100 Minuten lang sind.
-<br>
-□ <span class="math notranslate nohighlight">\(\rho_{SchauspName}\)</span>(<span class="math notranslate nohighlight">\(\sigma_{Länge≥100}\)</span>(Film ⋈ Rolle))</p>
-<p>■ Stud(Matrikel, Name, Semester)
-<br>
-■ Prof(ProfName, Fachgebiet, GebJahr)
-<br>
-■ VL(VL_ID, Titel, Saal)
-<br>
-■ Lehrt(ProfName, VL_ID)
-<br>
-■ Hört(Matrikel,VL_ID)
-<br>
-■ Gesucht: Unterschiedliche Semester aller Studierenden, die eine Vorlesung eines Professors des Jahrgangs 1960
-in Hörsaal 1 hören.
-<br>
+Nach dem Finden aller benötigten Relationen können nun die Selektionen auf den jeweiligen Relationen ausgeführt werden. Eine Bedingung war, dass der Professor vom Jahrgang 1960 sein muss. Diese Selektion wird direkt auf der Professorrelation ausgeführt. Die Bedingung, dass es Saal 1 ist, wird auf der gejointen Professor-, Lehrt- und Vorlesungsrelation durchgeführt. Dann werden die Hört- und die Studierendenrelation gejoint, um an die Semester der Studierenden zu kommen. Zum Schluss wird die Ergebnisrelation auf das Semester projiziert.
 ■ <span class="math notranslate nohighlight">\(\rho_{Sem}\)</span>(((<span class="math notranslate nohighlight">\(\sigma_{Saal=1}\)</span>(((<span class="math notranslate nohighlight">\(\sigma_{GebJahr = 1960}\)</span>(Professor))⋈Lehrt)⋈VL)⋈Hört)⋈Stud))</p>
-</div>
-<div class="section" id="umbenennung-rename-rho">
-<h3><span class="section-number">8.17.8. </span>Umbenennung (rename, <span class="math notranslate nohighlight">\(\rho\)</span>)<a class="headerlink" href="#umbenennung-rename-rho" title="Permalink to this headline">¶</a></h3>
-<p>■ Unärer Operator
-<br>
-<br>
-■ Motivation: Zur Kontrolle der Schemata und einfacheren Verknüpfungen
-<br>
-□ <span class="math notranslate nohighlight">\(\rho_{S(A1,…,An)}\)</span>®
-<br>
-– Benennt Relation R in S um
-<br>
-– Benennt die Attribute der neuen Relation A1,…,An
-<br>
-□ <span class="math notranslate nohighlight">\(\rho_{S(R)}\)</span> benennt nur Relation um.
-<br>
-■ Durch Umbenennung ermöglicht
-<br>
-□ Mengenoperationen
-<br>
-– Nur möglich bei gleichen Schemata
-<br>
-□ Joins, wo bisher kartesische Produkte ausgeführt wurde
-<br>
-– Unterschiedliche Attribute werden gleich benannt.
-<br>
-□ Kartesische Produkte, wo bisher Joins ausgeführt wurden
-<br>
-– Gleiche Attribute werden unterschiedlich genannt.</p>
-</div>
-<div class="section" id="umbenennung-beispiel">
-<h3><span class="section-number">8.17.9. </span>Umbenennung – Beispiel<a class="headerlink" href="#umbenennung-beispiel" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="umbenennung-rename-rho">
+<h3><span class="section-number">8.17.9. </span>Umbenennung (rename, <span class="math notranslate nohighlight">\(\rho\)</span>)<a class="headerlink" href="#umbenennung-rename-rho" title="Permalink to this headline">#</a></h3>
+<p>Die Umbenennung ist ein unärer Operator. Sie dient zur Kontrolle der Schemata und bietet  eine Möglichkeit einfachere Verknüpfungen anzuwenden. <br>
+In dem Beispiel wird eine Relation R in S und die Attribute in der neuen Relation in A1 bis An umbenannt:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\rho_{S(A1,…,An)}\)</span>®</p></li>
+</ul>
+<p>Hätte man das Selbe ohne die Attribute der neuen Relation, würde man nur die Relation umbenennen:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\rho_{S(R)}\)</span></p></li>
+</ul>
+<p>Die Umbenennung ermöglicht weitere Operationen.<br>
+Wenn mehrere Tabellen, die die gleichen Daten besitzen, zusammengeführt werden sollen, benötigen sie die gleichen Schemata für die Mengenoperationen (Vereinigungen, Schnittmenge …). Eine Umbennung kann ein gleiches Schema herbeiführen. <br>
+Bei Joins, wo bisher kartesische Produkte verwendet wurden, können mit einer Umbenennung die unterschiedlichen Attribute gleich benannt und darüber gejoint werden. <br>
+Bei kartesischen Produkten, bei denen bisher Joins ausgeführt wurden, können gleiche Attribute unterschiedlich genannt werden.</p>
+</section>
+<section id="umbenennung-beispiel">
+<h3><span class="section-number">8.17.10. </span>Umbenennung – Beispiel<a class="headerlink" href="#umbenennung-beispiel" title="Permalink to this headline">#</a></h3>
+<p>In diesem Beispiel sollen zwei Relationen R und S mittels dem Kreuzprodukt verbunden werden. Damit die Attribute B nicht gleich heißen, wird das B aus der S-Relation in X umbenannt.</p>
 <p><span class="math notranslate nohighlight">\(R\)</span></p>
 <table class="colwidths-auto table">
 <thead>
@@ -2271,53 +2398,70 @@ in Hörsaal 1 hören.
 </tr>
 </tbody>
 </table>
-<p>■ Alternativer Ausdruck: <span class="math notranslate nohighlight">\(\rho_{S(A,B,X,C,D)}\)</span>(R <span class="math notranslate nohighlight">\(\times\)</span> S)</p>
-</div>
-<div class="section" id="unabhangigkeit-und-vollstandigkeit">
-<h3><span class="section-number">8.17.10. </span>Unabhängigkeit und Vollständigkeit<a class="headerlink" href="#unabhangigkeit-und-vollstandigkeit" title="Permalink to this headline">¶</a></h3>
-<p>Minimale Relationenalgebra:
+<p>Alternativ können die Attribute der Ergebnisrelation erst nach dem Bilden des Kreuzproduktes von R und S umbenannt werden. Vor der Umbenennung sind die Namen der Attribute A, R.B., S.B, C, D und nach der Umbennung A, B, X, C, D.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\rho_{S(A,B,X,C,D)}\)</span>(R <span class="math notranslate nohighlight">\(\times\)</span> S)</p></li>
+</ul>
+</section>
+<section id="unabhangigkeit-und-vollstandigkeit">
+<h3><span class="section-number">8.17.11. </span>Unabhängigkeit und Vollständigkeit<a class="headerlink" href="#unabhangigkeit-und-vollstandigkeit" title="Permalink to this headline">#</a></h3>
+<p>Man hat eine minimale Menge von Operationen, die die Relationenalgebra bilden. Mittels diesen Operationen kann auf alles wie z.B Joins, Schnittmengen, usw. abgebildet werden. Dazu gehören:</p>
+<ul class="simple">
+<li><p>π, σ, <span class="math notranslate nohighlight">\(\times\)</span> , −, ∪ (und r)</p></li>
+</ul>
+<p>Unabhängigkeit bedeutet, dass kein Operator dieser Menge weggelassen werden kann ohne die Vollständigkeit zu verlieren. Wäre die Menge nicht mehr vollständig und könnte nicht mehr auf alle Operatoren abgebildet werden. <br>
+Zum Beispiel sind der Natural Join, Join und die Schnittmenge redundant. Sie können durch andere Operatoren dargestellt werden:</p>
+<ul class="simple">
+<li><p>R <span class="math notranslate nohighlight">\(\cap\)</span> S = R − (R − S)</p></li>
+<li><p>R ⋈_C S = <span class="math notranslate nohighlight">\(\sigma_C\)</span>(R <span class="math notranslate nohighlight">\(\times\)</span> S)</p></li>
+<li><p>R ⋈ S = <span class="math notranslate nohighlight">\(\pi_{L}\)</span>(<span class="math notranslate nohighlight">\(\sigma_{R.A1=S.A1 AND … AND R.An=S.An}\)</span>(R <span class="math notranslate nohighlight">\(\times\)</span> S))</p></li>
+</ul>
+<p>Dennoch werden redundante Operatoren wie der Join häufig verwendet. Der Grund dafür ist die Übersichtlichkeit der Ausdrücke, wie man sehr gut am Beispiel für den natürlichen Join sehen kann.</p>
+</section>
+</section>
+<section id="vorschau-zu-optimierung">
+<h2><span class="section-number">8.18. </span>Vorschau zu Optimierung<a class="headerlink" href="#vorschau-zu-optimierung" title="Permalink to this headline">#</a></h2>
+<p>Um Optimierung zu betreiben, müssen für die vorhandenen Ausdrücke äquivalente Umformungen bekannt sein, mit denen man sie gegebenenfalls austauschen kann.
+Dazu ein paar Beispiele für algebraische Regeln bei der Transformation:<br>
 <br>
-□ π, σ, <span class="math notranslate nohighlight">\(\times\)</span> , −, ∪ (und r)
-<br>
-■ Unabhängig:
-<br>
-□ Kein Operator kann weggelassen werden ohne Vollständigkeit zu verlieren.
-<br> <br>
-■ Natural Join, Join und Schnittmenge sind redundant
-<br>
-□ R <span class="math notranslate nohighlight">\(\cap\)</span> S = R − (R − S)
-<br>
-□ R ⋈C S = <span class="math notranslate nohighlight">\(\sigma_C\)</span>(R <span class="math notranslate nohighlight">\(\times\)</span> S)
-<br>
-□ R ⋈ S = <span class="math notranslate nohighlight">\(\pi_{L}\)</span>(<span class="math notranslate nohighlight">\(\sigma_{R.A1=S.A1 AND … AND R.An=S.An}\)</span>(R <span class="math notranslate nohighlight">\(\times\)</span> S))</p>
-</div>
-</div>
-<div class="section" id="vorschau-zu-optimierung">
-<h2><span class="section-number">8.18. </span>Vorschau zu Optimierung<a class="headerlink" href="#vorschau-zu-optimierung" title="Permalink to this headline">¶</a></h2>
-<p>■ Beispiele für algebraische Regeln zur Transformation
-<br>
-□ R ⋈ S = S ⋈ R
-<br>
-□ (R ⋈ S) ⋈ T = R ⋈ (S ⋈ T)
-<br>
-□ <span class="math notranslate nohighlight">\(\rho_{Y}(\rho_{X}(R)) = \rho_{Y}(R)\)</span>
-<br>
-– Falls Y ⊆ X
-<br>
-□ <span class="math notranslate nohighlight">\(\sigma_{A=a}(\sigma_{B=b}(R))= \sigma_{B=b}(\sigma_{A=a}(R)) [ = \sigma_{B=b\wedge A=a}(R) ]\)</span>
-<br>
-□ <span class="math notranslate nohighlight">\(\pi_{X}(\sigma_{A=a}(R)) = \sigma_{A=a}(\pi_{X}(R))\)</span>
-<br>
-– Falls A ⊆ X
-<br>
-□ <span class="math notranslate nohighlight">\(\sigma_{A=a}(R ∪ S) = \sigma_{A=a}(R) ∪ \sigma_{A=a}(S)\)</span>
-<br>
-■ Jeweils: Welche Seite ist besser?</p>
-</div>
-<div class="section" id="operatoren-auf-multimengen">
-<h2><span class="section-number">8.19. </span>Operatoren auf Multimengen<a class="headerlink" href="#operatoren-auf-multimengen" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="motivation">
-<h3><span class="section-number">8.19.1. </span>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h3>
+R gejoint mit S ist das Gleich wie S gejoint mit R. Die Reihenfolge der Attribute ist beim Tauschen von R und S eventuell anders. Kann im Nachhinein aber noch umsortiert werden.</p>
+<ul class="simple">
+<li><p>R ⋈ S = S ⋈ R</p></li>
+</ul>
+<p>Es gilt die Assoziativität. Die Reihenfolge der Klammerung kann beliebig getauscht werden. Das Ergebnis ändert sich auch dabei nicht.</p>
+<ul class="simple">
+<li><p>(R ⋈ S) ⋈ T = R ⋈ (S ⋈ T)</p></li>
+</ul>
+<p>Wenn man zwei Projektionen nacheinander durchführt und die äußere Projektion eine Teilmenge der inneren Projektion ist, kann die innere Projektion weggelassen werden.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\rho_{Y}(\rho_{X}(R)) = \rho_{Y}(R)\)</span></p>
+<ul>
+<li><p>Falls Y ⊆ X</p></li>
+</ul>
+</li>
+</ul>
+<p>Angenommen man hat zwei Selektionen auf der gleichen Relation R. Dann kann die Reihenfolge beider Selektionen verändert werden. Alternativ können beide Selektionen auch als ein Ausdruck zusammengefasst und verknüpft werden. Das Ergebnis bleibt immer gleich, aber je nachdem was man zuerst ausführt können unterschiedliche Kosten entstehen.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\sigma_{A=a}(\sigma_{B=b}(R))= \sigma_{B=b}(\sigma_{A=a}(R)) [ = \sigma_{B=b\wedge A=a}(R) ]\)</span></p></li>
+</ul>
+<p>Das Tauschen von einer Projektion mit einer Selektion ist möglich, sofern das Attribut A in X enthalten ist.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\pi_{X}(\sigma_{A=a}(R)) = \sigma_{A=a}(\pi_{X}(R))\)</span></p>
+<ul>
+<li><p>Falls A ⊆ X</p></li>
+</ul>
+</li>
+</ul>
+<p>Die Selektion auf einer Vereinigung ist das Gleiche wie Selektionen auf den einzelnen Relationen, die dann vereinigt werden.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\sigma_{A=a}(R ∪ S) = \sigma_{A=a}(R) ∪ \sigma_{A=a}(S)\)</span></p></li>
+</ul>
+<p>Der Optimierer fragt sich jedes Mal welche Seite besser bei der jetzigen Ausführung geeignet ist und wählt diese dann aus.</p>
+</section>
+<section id="operatoren-auf-multimengen">
+<h2><span class="section-number">8.19. </span>Operatoren auf Multimengen<a class="headerlink" href="#operatoren-auf-multimengen" title="Permalink to this headline">#</a></h2>
+<section id="motivation">
+<h3><span class="section-number">8.19.1. </span>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">#</a></h3>
 <p>Mengen sind ein natürliches Konstrukt
 <br>
 □ Keine Duplikate
@@ -2355,9 +2499,9 @@ in Hörsaal 1 hören.
 <p>Multimenge
 <br>
 Reihenfolge ist weiter unwichtig</p>
-</div>
-<div class="section" id="effizienz-durch-multimengen">
-<h3><span class="section-number">8.19.2. </span>Effizienz durch Multimengen<a class="headerlink" href="#effizienz-durch-multimengen" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="effizienz-durch-multimengen">
+<h3><span class="section-number">8.19.2. </span>Effizienz durch Multimengen<a class="headerlink" href="#effizienz-durch-multimengen" title="Permalink to this headline">#</a></h3>
 <p>■ Bei Vereinigung
 <br>
 □ Direkt „aneinanderhängen“
@@ -2408,9 +2552,9 @@ Reihenfolge ist weiter unwichtig</p>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="vereinigung-auf-multimengen">
-<h3><span class="section-number">8.19.3. </span>Vereinigung auf Multimengen<a class="headerlink" href="#vereinigung-auf-multimengen" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="vereinigung-auf-multimengen">
+<h3><span class="section-number">8.19.3. </span>Vereinigung auf Multimengen<a class="headerlink" href="#vereinigung-auf-multimengen" title="Permalink to this headline">#</a></h3>
 <p>Sei R eine Multimenge
 <br>
 □ Tupel t erscheine n-mal in R.
@@ -2500,9 +2644,9 @@ Reihenfolge ist weiter unwichtig</p>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="schnittmenge-auf-multimengen">
-<h3><span class="section-number">8.19.4. </span>Schnittmenge auf Multimengen<a class="headerlink" href="#schnittmenge-auf-multimengen" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="schnittmenge-auf-multimengen">
+<h3><span class="section-number">8.19.4. </span>Schnittmenge auf Multimengen<a class="headerlink" href="#schnittmenge-auf-multimengen" title="Permalink to this headline">#</a></h3>
 <p>■ Sei R eine Multimenge
 <br>
 □ Tupel t erscheine n-mal in R.
@@ -2580,10 +2724,10 @@ Reihenfolge ist weiter unwichtig</p>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="section" id="differenz-auf-multimengen">
-<h2><span class="section-number">8.20. </span>Differenz auf Multimengen<a class="headerlink" href="#differenz-auf-multimengen" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="differenz-auf-multimengen">
+<h2><span class="section-number">8.20. </span>Differenz auf Multimengen<a class="headerlink" href="#differenz-auf-multimengen" title="Permalink to this headline">#</a></h2>
 <p>■ Sei R eine Multimenge
 <br>
 □ Tupel t erscheine n-mal in R.
@@ -2677,8 +2821,8 @@ Reihenfolge ist weiter unwichtig</p>
 </tr>
 </tbody>
 </table>
-<div class="section" id="projektion-und-selektion-auf-multimengen">
-<h3><span class="section-number">8.20.1. </span>Projektion und Selektion auf Multimengen<a class="headerlink" href="#projektion-und-selektion-auf-multimengen" title="Permalink to this headline">¶</a></h3>
+<section id="projektion-und-selektion-auf-multimengen">
+<h3><span class="section-number">8.20.1. </span>Projektion und Selektion auf Multimengen<a class="headerlink" href="#projektion-und-selektion-auf-multimengen" title="Permalink to this headline">#</a></h3>
 <p>■ Projektion
 <br>
 □ Bei der Projektion können neue Duplikate entstehen.
@@ -2768,9 +2912,9 @@ Reihenfolge ist weiter unwichtig</p>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="kreuzprodukt-auf-multimengen">
-<h3><span class="section-number">8.20.2. </span>Kreuzprodukt auf Multimengen<a class="headerlink" href="#kreuzprodukt-auf-multimengen" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="kreuzprodukt-auf-multimengen">
+<h3><span class="section-number">8.20.2. </span>Kreuzprodukt auf Multimengen<a class="headerlink" href="#kreuzprodukt-auf-multimengen" title="Permalink to this headline">#</a></h3>
 <p>Sei R eine Multimenge
 <br>
 □ Tupel t erscheine n-mal in R.
@@ -2857,9 +3001,9 @@ Reihenfolge ist weiter unwichtig</p>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="joins-auf-multimengen">
-<h3><span class="section-number">8.20.3. </span>Joins auf Multimengen<a class="headerlink" href="#joins-auf-multimengen" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="joins-auf-multimengen">
+<h3><span class="section-number">8.20.3. </span>Joins auf Multimengen<a class="headerlink" href="#joins-auf-multimengen" title="Permalink to this headline">#</a></h3>
 <p>■ Keine Überraschungen</p>
 <p><span class="math notranslate nohighlight">\(R\)</span></p>
 <table class="colwidths-auto table">
@@ -2947,13 +3091,13 @@ Reihenfolge ist weiter unwichtig</p>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="section" id="erweiterte-operatoren">
-<h2><span class="section-number">8.21. </span>Erweiterte Operatoren<a class="headerlink" href="#erweiterte-operatoren" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="uberblick-uber-erweiterungen">
-<h2><span class="section-number">8.22. </span>Überblick über Erweiterungen<a class="headerlink" href="#uberblick-uber-erweiterungen" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="erweiterte-operatoren">
+<h2><span class="section-number">8.21. </span>Erweiterte Operatoren<a class="headerlink" href="#erweiterte-operatoren" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="uberblick-uber-erweiterungen">
+<h2><span class="section-number">8.22. </span>Überblick über Erweiterungen<a class="headerlink" href="#uberblick-uber-erweiterungen" title="Permalink to this headline">#</a></h2>
 <p>Duplikateliminierung
 <br>
 ■ Aggregation
@@ -2969,8 +3113,8 @@ Reihenfolge ist weiter unwichtig</p>
 ■ Semijoin
 <br>
 ■ (Division)</p>
-<div class="section" id="duplikateliminierung-duplicate-elimination-delta">
-<h3><span class="section-number">8.22.1. </span>Duplikateliminierung (duplicate elimination, <span class="math notranslate nohighlight">\(\delta\)</span>)<a class="headerlink" href="#duplikateliminierung-duplicate-elimination-delta" title="Permalink to this headline">¶</a></h3>
+<section id="duplikateliminierung-duplicate-elimination-delta">
+<h3><span class="section-number">8.22.1. </span>Duplikateliminierung (duplicate elimination, <span class="math notranslate nohighlight">\(\delta\)</span>)<a class="headerlink" href="#duplikateliminierung-duplicate-elimination-delta" title="Permalink to this headline">#</a></h3>
 <p>■ Wandelt eine Multimenge in eine Menge um.
 <br>
 □ Durch Löschen aller Kopien von Tupeln
@@ -3021,9 +3165,9 @@ Reihenfolge ist weiter unwichtig</p>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="aggregation">
-<h3><span class="section-number">8.22.2. </span>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="aggregation">
+<h3><span class="section-number">8.22.2. </span>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">#</a></h3>
 <p>■ Aggregation fasst Werte einer Spalte zusammen.
 <br>
 □ Operation auf einer Menge oder Multimenge atomarer Werte (nicht Tupel)
@@ -3080,9 +3224,9 @@ MAX(B) = 4
 COUNT(A) = 4
 <br>
 COUNT(B) = 4</p>
-</div>
-<div class="section" id="aggregation-beispiele">
-<h3><span class="section-number">8.22.3. </span>Aggregation – Beispiele<a class="headerlink" href="#aggregation-beispiele" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="aggregation-beispiele">
+<h3><span class="section-number">8.22.3. </span>Aggregation – Beispiele<a class="headerlink" href="#aggregation-beispiele" title="Permalink to this headline">#</a></h3>
 <p>Film</p>
 <table class="colwidths-auto table">
 <thead>
@@ -3129,9 +3273,9 @@ COUNT(B) = 4</p>
 ■ COUNT(StudioName): Anzahl Filme
 <br>
 ■ AVG(SchauspName): syntax error</p>
-</div>
-<div class="section" id="gruppierung">
-<h3><span class="section-number">8.22.4. </span>Gruppierung<a class="headerlink" href="#gruppierung" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="gruppierung">
+<h3><span class="section-number">8.22.4. </span>Gruppierung<a class="headerlink" href="#gruppierung" title="Permalink to this headline">#</a></h3>
 <p>■ Partitionierung der Tupel einer Relation gemäß ihrer Werte in einem oder mehr Attributen.
 <br>
 □ Hauptzweck: Aggregation auf Teilen einer Relation (Gruppen)
@@ -3151,9 +3295,9 @@ COUNT(B) = 4</p>
 – Summiere in jeder Gruppe die Länge der Filme
 <br>
 – Gebe Paare (Studioname, Summe) aus.</p>
-</div>
-<div class="section" id="gruppierung-group-gamma">
-<h3><span class="section-number">8.22.5. </span>Gruppierung (group, <span class="math notranslate nohighlight">\(\gamma\)</span>)<a class="headerlink" href="#gruppierung-group-gamma" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="gruppierung-group-gamma">
+<h3><span class="section-number">8.22.5. </span>Gruppierung (group, <span class="math notranslate nohighlight">\(\gamma\)</span>)<a class="headerlink" href="#gruppierung-group-gamma" title="Permalink to this headline">#</a></h3>
 <p>■ <span class="math notranslate nohighlight">\(\gamma_L\)</span>® wobei L eine Menge von Attributen ist. Ein Element in L ist entweder
 <br></p>
 <ol class="simple">
@@ -3173,9 +3317,9 @@ COUNT(B) = 4</p>
 <br>
 – Aggregierte Werte über alle Tupel der Gruppe</p></li>
 </ol>
-</div>
-<div class="section" id="gruppierung-beispiele">
-<h3><span class="section-number">8.22.6. </span>Gruppierung – Beispiele<a class="headerlink" href="#gruppierung-beispiele" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="gruppierung-beispiele">
+<h3><span class="section-number">8.22.6. </span>Gruppierung – Beispiele<a class="headerlink" href="#gruppierung-beispiele" title="Permalink to this headline">#</a></h3>
 <p>Film</p>
 <table class="colwidths-auto table">
 <thead>
@@ -3264,9 +3408,9 @@ dieses Films.
 \gamma_{SchauspName, MIN(Jahr)→MinJahr, COUNT(Titel)→AnzahlTitel}(SpieltIn)
 ) ) )
 )\)</span></p>
-</div>
-<div class="section" id="komplexe-ausdrucke-beispiele">
-<h3><span class="section-number">8.22.7. </span>Komplexe Ausdrücke – Beispiele<a class="headerlink" href="#komplexe-ausdrucke-beispiele" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="komplexe-ausdrucke-beispiele">
+<h3><span class="section-number">8.22.7. </span>Komplexe Ausdrücke – Beispiele<a class="headerlink" href="#komplexe-ausdrucke-beispiele" title="Permalink to this headline">#</a></h3>
 <br>
 <br>
 ■ Stud(Matrikel, Name, Semester)
@@ -3287,9 +3431,9 @@ dieses Films.
 <br>
 ■ $\pi_{Fachgebiet}$( (Prof ⋈ Lehrt) ⋈
 ($\sigma_{ COUNT < 3(gVL_ID,COUNT(Matrikel)-> COUNT}$(Hört))
-)</div>
-<div class="section" id="sortierung-sort-tau">
-<h3><span class="section-number">8.22.8. </span>Sortierung (sort, <span class="math notranslate nohighlight">\(\tau\)</span>)<a class="headerlink" href="#sortierung-sort-tau" title="Permalink to this headline">¶</a></h3>
+)</section>
+<section id="sortierung-sort-tau">
+<h3><span class="section-number">8.22.8. </span>Sortierung (sort, <span class="math notranslate nohighlight">\(\tau\)</span>)<a class="headerlink" href="#sortierung-sort-tau" title="Permalink to this headline">#</a></h3>
 <br>
 <br>
 ■ $\tau_L$(R) wobei L eine Attributliste aus R ist.
@@ -3301,9 +3445,9 @@ dieses Films.
 □ Deshalb: Sortierung ist letzter Operator eines Ausdrucks. Ansonsten würden wieder Mengen entstehen und
 die Sortierung wäre verloren.
 <br>
-□ Trotzdem: In DBMS macht es manchmal auch Sinn zwischendurch zu sortieren.</div>
-<div class="section" id="semi-join">
-<h3><span class="section-number">8.22.9. </span>Semi-Join (⋊)<a class="headerlink" href="#semi-join" title="Permalink to this headline">¶</a></h3>
+□ Trotzdem: In DBMS macht es manchmal auch Sinn zwischendurch zu sortieren.</section>
+<section id="semi-join">
+<h3><span class="section-number">8.22.9. </span>Semi-Join (⋊)<a class="headerlink" href="#semi-join" title="Permalink to this headline">#</a></h3>
 <br>
 <br>
 ■ Formal
@@ -3320,15 +3464,15 @@ die Sortierung wäre verloren.
 <br>
 □ Definition analog für Theta-Join
 <br>
-■ Nicht kommutativ: R ⋉ S ≠ S ⋉ R</div>
-<div class="section" id="id4">
-<h3><span class="section-number">8.22.10. </span>Semi-Join<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+■ Nicht kommutativ: R ⋉ S ≠ S ⋉ R</section>
+<section id="id5">
+<h3><span class="section-number">8.22.10. </span>Semi-Join<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
 <p><img alt="title" src="../_images/semijoin1.jpg" /></p>
 <p><img alt="title" src="../_images/semijoin2.jpg" /></p>
 <p><img alt="title" src="../_images/semijoin3.jpg" /></p>
-</div>
-<div class="section" id="outer-joins-auszere-verbunde">
-<h3><span class="section-number">8.22.11. </span>Outer Joins (Äußere Verbünde, |⋈|)<a class="headerlink" href="#outer-joins-auszere-verbunde" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="outer-joins-auszere-verbunde">
+<h3><span class="section-number">8.22.11. </span>Outer Joins (Äußere Verbünde, |⋈|)<a class="headerlink" href="#outer-joins-auszere-verbunde" title="Permalink to this headline">#</a></h3>
 <br>
 <br>
 Übernahme von „dangling tuples“ in das Ergebnis und Auffüllen mit Nullwerten (padding)
@@ -3358,9 +3502,9 @@ R ⋈| S
 <br>
 R |⋈| S<p><img alt="title" src="../_images/outerjoin1.jpg" /></p>
 <p><img alt="title" src="../_images/outerjoin2.jpg" /></p>
-</div>
-<div class="section" id="outer-union">
-<h3><span class="section-number">8.22.12. </span>Outer Union (⊎)<a class="headerlink" href="#outer-union" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="outer-union">
+<h3><span class="section-number">8.22.12. </span>Outer Union (⊎)<a class="headerlink" href="#outer-union" title="Permalink to this headline">#</a></h3>
 <br>
 <br>
 ■ Wie Vereinigung, aber auch mit inkompatiblen Schemata
@@ -3455,9 +3599,9 @@ R |⋈| S<p><img alt="title" src="../_images/outerjoin1.jpg" /></p>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="division-division">
-<h3><span class="section-number">8.22.13. </span>Division (division, /)<a class="headerlink" href="#division-division" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="division-division">
+<h3><span class="section-number">8.22.13. </span>Division (division, /)<a class="headerlink" href="#division-division" title="Permalink to this headline">#</a></h3>
 <br>
 <br>
 ■ Typischerweise nicht als primitiver Operator unterstützt.
@@ -3476,13 +3620,13 @@ in S enthält, so ist der x-Wert in R/S.
 ■ Hole die Namen von Angestellten, die an allen Projekten arbeiten.
 <br>
 □ Sinnvoller: Hole die Namen von Angestellten, die an allen Projekten arbeiten, in denen auch „Thomas Müller“
-arbeitet.</div>
-<div class="section" id="division-beispiel">
-<h3><span class="section-number">8.22.14. </span>Division – Beispiel<a class="headerlink" href="#division-beispiel" title="Permalink to this headline">¶</a></h3>
+arbeitet.</section>
+<section id="division-beispiel">
+<h3><span class="section-number">8.22.14. </span>Division – Beispiel<a class="headerlink" href="#division-beispiel" title="Permalink to this headline">#</a></h3>
 <p><img alt="title" src="../_images/division1.jpg" /></p>
-</div>
-<div class="section" id="division-ausdrucken">
-<h3><span class="section-number">8.22.15. </span>Division ausdrücken<a class="headerlink" href="#division-ausdrucken" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="division-ausdrucken">
+<h3><span class="section-number">8.22.15. </span>Division ausdrücken<a class="headerlink" href="#division-ausdrucken" title="Permalink to this headline">#</a></h3>
 <br>
 <br>
 ■ Division ist kein essentieller Operator, nur nützliche Abkürzung.
@@ -3495,14 +3639,14 @@ arbeitet.</div>
 <br>
 □ Disqualifizierte x-Werte: $\pi_{x}$ (($\pi_{x}$(R) $\times$ S) − R)
 <br>
-□ R/S: $\pi_{x}$(R) − alle disqualifizierten Tupel</div>
-<div class="section" id="division">
-<h3><span class="section-number">8.22.16. </span>Division<a class="headerlink" href="#division" title="Permalink to this headline">¶</a></h3>
+□ R/S: $\pi_{x}$(R) − alle disqualifizierten Tupel</section>
+<section id="division">
+<h3><span class="section-number">8.22.16. </span>Division<a class="headerlink" href="#division" title="Permalink to this headline">#</a></h3>
 <p><img alt="title" src="../_images/division2.jpg" /></p>
-</div>
-</div>
-<div class="section" id="multiple-choice">
-<h2><span class="section-number">8.23. </span>Multiple Choice<a class="headerlink" href="#multiple-choice" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="multiple-choice">
+<h2><span class="section-number">8.23. </span>Multiple Choice<a class="headerlink" href="#multiple-choice" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird nur in das JupyterBook eingebunden und nicht selbst gehostet. Der Multiple-Choice-Trainer wird durch GitHub-Pages gehostet.</p></li>
 <li><p>Alle Fragen und Kategorien befinden sich zurzeit in Überarbeitung und sind nicht final.</p></li>
@@ -3520,8 +3664,8 @@ arbeitet.</div>
 ></iframe>
 </div></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -3545,9 +3689,11 @@ arbeitet.</div>
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="../07/normalisierung.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -3563,24 +3709,28 @@ arbeitet.</div>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Prof. Dr. Ziawasch Abedjan<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Prof. Dr. Ziawasch Abedjan<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>
