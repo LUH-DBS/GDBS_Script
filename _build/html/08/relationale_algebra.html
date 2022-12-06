@@ -2460,21 +2460,10 @@ R gejoint mit S ist das Gleich wie S gejoint mit R. Die Reihenfolge der Attribut
 </section>
 <section id="operatoren-auf-multimengen">
 <h2><span class="section-number">8.19. </span>Operatoren auf Multimengen<a class="headerlink" href="#operatoren-auf-multimengen" title="Permalink to this headline">#</a></h2>
+<p>Mit dem Wissen über die Basisoperatoren der Relationalen Algebra, kann nun genauer auf die Multimengen eingegangen werden.</p>
 <section id="motivation">
 <h3><span class="section-number">8.19.1. </span>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">#</a></h3>
-<p>Mengen sind ein natürliches Konstrukt
-<br>
-□ Keine Duplikate
-<br> <br>
-■ Kommerzielle DBMS basieren fast nie nur auf Mengen
-<br>
-□ Sondern erlauben Multimengen
-<br>
-□ D.h. Duplikate sind erlaubt
-<br> <br>
-■ Multimenge
-<br>
-□ bag, multiset</p>
+<p>Mengen sind ein natürliches Konstrukt. Sie enthalten keine Duplikate. Mit dieser Annahme kann schnell eine Schlussfolgerung über einen Datensatz gezogen werden. In der Realität kommen in den Tabellen aber häufig Duplikate vor. Kommerzielle DBMS basieren daher fast nie nur auf Mengen und aus diesem Grund erlauben  sie Multimengen. Eine Multimenge (bag, multiset) kann im Gegensatz zu einer Menge Duplikate enthalten.</p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>A</p></th>
@@ -2496,36 +2485,19 @@ R gejoint mit S ist das Gleich wie S gejoint mit R. Die Reihenfolge der Attribut
 </tr>
 </tbody>
 </table>
-<p>Multimenge
-<br>
-Reihenfolge ist weiter unwichtig</p>
+<p>Das Beispiel zeigt eine Multimenge, da (1,2) mehr als einmal in der Relation vorkommt. Die Reihenfolge der Tupel ist weiter unwichtig.</p>
 </section>
 <section id="effizienz-durch-multimengen">
 <h3><span class="section-number">8.19.2. </span>Effizienz durch Multimengen<a class="headerlink" href="#effizienz-durch-multimengen" title="Permalink to this headline">#</a></h3>
-<p>■ Bei Vereinigung
+<p>Bei manchen Operationen kann man durch die Nutzung von Multimengen Effizienz gewinnen.</p>
+<p>Bei einer Vereinigung kann man die Daten direkt „aneinanderhängen“.
+Bei einer Projektion kann man einfach die Attributwerte „abschneiden“. Es muss nicht wie bei Mengen sichergestellt werden, dass die Projektion keine Duplikate hat. Somit muss auch keine Duplikatsuchstrategie implementiert werden. <br>
 <br>
-□ Direkt „aneinanderhängen“
-<br><br>
-■ Bei Projektion
+Die Suche nach Duplikaten ist sehr teuer. Jedes Tupel im Ergebnis muss mit jedem anderen Tupel verglichen werden. Die Kosten sind O(n²), nicht sehr effizient.<br>
+Eine Strategie effizienter nach Duplikaten zu suchen wäre es, alle Attribute zu sortieren. Die Kosten für eine Sortierung liegen in O(n log n) und sind somit günstiger als der Vergleich zuvor. Da man davon ausgeht, dass identische Tupel hintereinander in der sortierten Tabelle liegen, kann man die Tabelle nochmal durchgehen und dann Duplikate entfernen.<br>
 <br>
-□ Einfach Attributwerte „abschneiden“
-<br><br>
-■ Nach Duplikaten suchen
-<br>
-□ Jedes Tupel im Ergebnis mit jedem anderen vergleichen
-<br>
-□ O(n²)
-<br><br>
-■ Effizienter nach Duplikaten suchen
-<br>
-□ Nach allen Attributen zugleich sortieren: O(n log n)
-<br><br>
-■ Bei Aggregation
-<br>
-□ Duplikateliminierung sogar schädlich bzw. unintuitiv
-<br>
-□ AVG(A) = ?</p>
-<p>Projektion auf (A,B)</p>
+Bei der Aggregation kann eine Duplikateliminierung sogar schädlich bzw. unintuitiv sein. Angenommen man berechnet den Durchschnitt von A (AVG(A)) und bildet zunächst eine Projektion auf A. Das Ergebnis der Projektion in der Mengensemantik ist (1,3). Wohingegen das Ergebnis in der Mutlimengensemantik (1,3,1,1) ist. Häufig ist bei der Berechnung von einem Durchschnitt der Durchschnitt aller Werte gemeint. Die Mengensemantik kann also Verwirrung verursachen und die Betrachtung von Multimengen wäre sinnvoller.</p>
+<p>Wenn in dem Beispiel eine Projektion auf (A,B) ausgeführt wird, erhält man in der Mutlimengensemantik alle Tupel aus (A,B). In der Mengensemantik wären es nur (1,2) und (3,4), ohne deren Duplikate.</p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>A</p></th>
@@ -2555,17 +2527,8 @@ Reihenfolge ist weiter unwichtig</p>
 </section>
 <section id="vereinigung-auf-multimengen">
 <h3><span class="section-number">8.19.3. </span>Vereinigung auf Multimengen<a class="headerlink" href="#vereinigung-auf-multimengen" title="Permalink to this headline">#</a></h3>
-<p>Sei R eine Multimenge
-<br>
-□ Tupel t erscheine n-mal in R.
-<br> <br>
-■ Sei S eine Multimenge
-<br>
-□ Tupel t erscheine m-mal in S.
-<br>
-■ Tupel t erscheint in R <span class="math notranslate nohighlight">\(\cup\)</span> S
-<br>
-□ (n+m) mal.</p>
+<p>Seien R und S jeweils eine Multimenge. Ein Tupel t erscheint n-mal in R und m-mal in S. Ein Tupel t erscheint in R <span class="math notranslate nohighlight">\(\cup\)</span> S genau (n+m) mal.<br>
+Im Beispiel kommt das Tupel (1,2) in R 3-mal und S nur 1-mal vor. Somit erscheint in R <span class="math notranslate nohighlight">\(\cup\)</span> das Tupel n+m = 3+1 = 4-mal.</p>
 <p><span class="math notranslate nohighlight">\(R\)</span></p>
 <table class="colwidths-auto table">
 <thead>
@@ -2647,17 +2610,10 @@ Reihenfolge ist weiter unwichtig</p>
 </section>
 <section id="schnittmenge-auf-multimengen">
 <h3><span class="section-number">8.19.4. </span>Schnittmenge auf Multimengen<a class="headerlink" href="#schnittmenge-auf-multimengen" title="Permalink to this headline">#</a></h3>
-<p>■ Sei R eine Multimenge
-<br>
-□ Tupel t erscheine n-mal in R.
-<br><br>
-■ Sei S eine Multimenge
-<br>
-□ Tupel t erscheine m-mal in S.
-<br><br>
-■ Tupel t erscheint in R <span class="math notranslate nohighlight">\(\cap\)</span> S
-<br>
-□ min(n,m) mal.</p>
+<p>Seien R und S jeweils eine Multimenge.
+Ein Tupel t erscheint n-mal in R und m-mal in S. <br>
+Das Tupel t erscheint in R <span class="math notranslate nohighlight">\(\cap\)</span> S, dann genau min(n,m) mal.<br>
+Das Tupel (1,2) kommt in Relation R 3-mal und in S 1-mal vor. Somit erscheint es in R <span class="math notranslate nohighlight">\(\cap\)</span> S genau min(3,1) = 1-mal.</p>
 <p><span class="math notranslate nohighlight">\(R\)</span></p>
 <table class="colwidths-auto table">
 <thead>
@@ -2705,7 +2661,7 @@ Reihenfolge ist weiter unwichtig</p>
 </tr>
 </tbody>
 </table>
-<p><span class="math notranslate nohighlight">\(R \cap S\)</span></p>
+<p><span class="math notranslate nohighlight">\(R\cap S\)</span></p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>A</p></th>
@@ -2728,23 +2684,11 @@ Reihenfolge ist weiter unwichtig</p>
 </section>
 <section id="differenz-auf-multimengen">
 <h2><span class="section-number">8.20. </span>Differenz auf Multimengen<a class="headerlink" href="#differenz-auf-multimengen" title="Permalink to this headline">#</a></h2>
-<p>■ Sei R eine Multimenge
-<br>
-□ Tupel t erscheine n-mal in R.
-<br><br>
-■ Sei S eine Multimenge
-<br>
-□ Tupel t erscheine m-mal in S.
-<br><br>
-■ Tupel t erscheint in R − S
-<br>
-□ max(0, n−m) mal.
-<br>
-□ Falls t öfter in R als in S vorkommt, bleiben n−m t übrig.
-<br>
-□ Falls t öfter in S als in R vorkommt, bleibt kein t übrig.
-<br>
-□ Jedes Vorkommen von t in S eliminiert ein t in R.</p>
+<p>Seien R und S jeweils eine Multimenge. Ein Tupel t erscheint n-mal in R und m-mal in S. <br>
+Das Tupel t erscheint in R − S dann genau max(0, n−m) mal.
+Falls t öfter in R als in S vorkommt, bleiben n−m t übrig.
+Falls t öfter in S als in R vorkommt, bleibt kein t übrig, da es keine Negativtupel gibt.
+Jedes Vorkommen von t in S eliminiert ein t in R.</p>
 <p><span class="math notranslate nohighlight">\(R\)</span></p>
 <table class="colwidths-auto table">
 <thead>
@@ -2789,7 +2733,7 @@ Reihenfolge ist weiter unwichtig</p>
 </tr>
 </tbody>
 </table>
-<p><span class="math notranslate nohighlight">\(R-S\)</span></p>
+<p><span class="math notranslate nohighlight">\(R -S\)</span></p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>A</p></th>
@@ -2823,19 +2767,9 @@ Reihenfolge ist weiter unwichtig</p>
 </table>
 <section id="projektion-und-selektion-auf-multimengen">
 <h3><span class="section-number">8.20.1. </span>Projektion und Selektion auf Multimengen<a class="headerlink" href="#projektion-und-selektion-auf-multimengen" title="Permalink to this headline">#</a></h3>
-<p>■ Projektion
+<p>Bei der Projektion auf Multimengen können neue Duplikate entstehen. Diese werden nicht entfernt. Bei der Projektion (<span class="math notranslate nohighlight">\(\pi_{A,B}(R)\)</span>) im Beispiel werden daher die Duplikate des Tupels (1,2) nicht entfernt.
 <br>
-□ Bei der Projektion können neue Duplikate entstehen.
-<br>
-□ Diese werden nicht entfernt
-<br><br>
-■ Selektion
-<br>
-□ Selektionsbedingung auf jedes Tupel einzeln und unabhängig anwenden
-<br>
-□ Schon vorhandene Duplikate bleiben erhalten
-<br>
-– Sofern sie beide selektiert bleiben</p>
+Bei der Selektion auf Mutlimengen wird die Selektionsbedingung auf jedes Tupel einzeln und unabhängig angewandt. Die schon vorhandenen Duplikate bleiben erhalten, sofern sie beide selektiert bleiben. Im Beispiel <span class="math notranslate nohighlight">\(\sigma_{C\geq6}(R)\)</span> wird somit nur das Tupel (1,2,5) entfernt, aber das Duplikat von (1,2,7) bleibt erhalten in der Ergebnisrelation.</p>
 <p><span class="math notranslate nohighlight">\(R\)</span></p>
 <table class="colwidths-auto table">
 <thead>
@@ -2894,19 +2828,15 @@ Reihenfolge ist weiter unwichtig</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>1</p></td>
-<td><p>2</p></td>
-<td><p>5</p></td>
-</tr>
-<tr class="row-odd"><td><p>3</p></td>
+<tr class="row-even"><td><p>3</p></td>
 <td><p>4</p></td>
 <td><p>6</p></td>
 </tr>
-<tr class="row-even"><td><p>1</p></td>
+<tr class="row-odd"><td><p>1</p></td>
 <td><p>2</p></td>
 <td><p>7</p></td>
 </tr>
-<tr class="row-odd"><td><p>1</p></td>
+<tr class="row-even"><td><p>1</p></td>
 <td><p>2</p></td>
 <td><p>7</p></td>
 </tr>
@@ -2915,15 +2845,8 @@ Reihenfolge ist weiter unwichtig</p>
 </section>
 <section id="kreuzprodukt-auf-multimengen">
 <h3><span class="section-number">8.20.2. </span>Kreuzprodukt auf Multimengen<a class="headerlink" href="#kreuzprodukt-auf-multimengen" title="Permalink to this headline">#</a></h3>
-<p>Sei R eine Multimenge
-<br>
-□ Tupel t erscheine n-mal in R.
-<br>
-■ Sei S eine Multimenge
-<br>
-□ Tupel u erscheine m-mal in S.
-<br>
-■ Das Tupel tu erscheint in R <span class="math notranslate nohighlight">\(\times\)</span> S n·m-mal.</p>
+<p>Seien R und S jeweils eine Multimenge. Ein Tupel t erscheint n-mal in R und ein Tupel u erscheint m-mal in S.<br>
+Das Tupel tu erscheint in R <span class="math notranslate nohighlight">\(\times\)</span> S dann genau n·m-mal.</p>
 <p><span class="math notranslate nohighlight">\(R\)</span></p>
 <table class="colwidths-auto table">
 <thead>
@@ -3004,7 +2927,7 @@ Reihenfolge ist weiter unwichtig</p>
 </section>
 <section id="joins-auf-multimengen">
 <h3><span class="section-number">8.20.3. </span>Joins auf Multimengen<a class="headerlink" href="#joins-auf-multimengen" title="Permalink to this headline">#</a></h3>
-<p>■ Keine Überraschungen</p>
+<p>Bei Joins auf Multimengen gibt es keine großen Überraschungen. Der natürliche Join verbindet wieder zwei Relationen wo die Werte gleicher Attribute identisch sind. Der Theta-Join joint die Tupelpaare, bei denen die Selektionsbedingung erfüllt ist.</p>
 <p><span class="math notranslate nohighlight">\(R\)</span></p>
 <table class="colwidths-auto table">
 <thead>
@@ -3095,33 +3018,24 @@ Reihenfolge ist weiter unwichtig</p>
 </section>
 <section id="erweiterte-operatoren">
 <h2><span class="section-number">8.21. </span>Erweiterte Operatoren<a class="headerlink" href="#erweiterte-operatoren" title="Permalink to this headline">#</a></h2>
+<p>Die erweiterten Operatoren machen teilweise nur Sinn je nachdem, ob sie für Mengen oder für Multimengen definiert sind. Meistens ergibt sich aus dem Kontext welche Semantik vorliegt.</p>
 </section>
 <section id="uberblick-uber-erweiterungen">
 <h2><span class="section-number">8.22. </span>Überblick über Erweiterungen<a class="headerlink" href="#uberblick-uber-erweiterungen" title="Permalink to this headline">#</a></h2>
-<p>Duplikateliminierung
-<br>
-■ Aggregation
-<br>
-■ Gruppierung
-<br>
-■ Sortierung
-<br>
-■ Outer Join
-<br>
-■ Outer Union
-<br>
-■ Semijoin
-<br>
-■ (Division)</p>
+<p>Eine kurze Übersicht zu den erweiterten Operatoren:</p>
+<ul class="simple">
+<li><p>Duplikateliminierung</p></li>
+<li><p>Aggregation</p></li>
+<li><p>Gruppierung</p></li>
+<li><p>Sortierung</p></li>
+<li><p>Outer Join</p></li>
+<li><p>Outer Union</p></li>
+<li><p>Semijoin</p></li>
+<li><p>(Division)</p></li>
+</ul>
 <section id="duplikateliminierung-duplicate-elimination-delta">
 <h3><span class="section-number">8.22.1. </span>Duplikateliminierung (duplicate elimination, <span class="math notranslate nohighlight">\(\delta\)</span>)<a class="headerlink" href="#duplikateliminierung-duplicate-elimination-delta" title="Permalink to this headline">#</a></h3>
-<p>■ Wandelt eine Multimenge in eine Menge um.
-<br>
-□ Durch Löschen aller Kopien von Tupeln
-<br>
-□ <span class="math notranslate nohighlight">\(\delta\)</span>®
-<br>
-– Strenggenommen unnötig: Mengensemantik der relationalen Algebra</p>
+<p>Eine Duplikateliminierung wandelt eine Multimenge in eine Menge um, indem sie alle Kopien von Tupeln löscht. Sie kann auch auf Mengen angewandt werden, aber es würde das Ergebnis nicht ändern. Strenggenommen ist die Duplikateliminierung unnötig, da sie der Mengensemantik der relationalen Algebra entspricht.</p>
 <p><span class="math notranslate nohighlight">\(R\)</span></p>
 <table class="colwidths-auto table">
 <thead>
@@ -3168,29 +3082,21 @@ Reihenfolge ist weiter unwichtig</p>
 </section>
 <section id="aggregation">
 <h3><span class="section-number">8.22.2. </span>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">#</a></h3>
-<p>■ Aggregation fasst Werte einer Spalte zusammen.
-<br>
-□ Operation auf einer Menge oder Multimenge atomarer Werte (nicht Tupel)
-<br>
-□ Null-Werte gehen idR nicht mit ein
-<br>
-□ Summe (SUM)
-<br>
-□ Durchschnitt (AVG)
-<br>
-– Auch: STDDEV und VARIANCE
-<br>
-□ Minimum (MIN) und Maximum (MAX)
-<br>
-– Lexikographisch für nicht-numerische Werte
-<br>
-□ Anzahl (COUNT)
-<br>
-– Doppelte Werte gehen auch doppelt ein.
-<br>
-– Angewandt auf ein beliebiges Attribut ergibt dies die Anzahl der Tupel in der Relation.
-<br>
-– Zeilen mit NULL-Werten werden idR mitgezählt.</p>
+<p>Eine Aggregation fasst die Werte einer Spalte zusammen.
+Es ist eine Operation auf einer Menge oder Multimenge atomarer Werte (nicht auf Tupeln). Je nach Kontext kann die Mengensemantik oder die Multimengensemantik mehr Sinn machen.
+Bei einer Aggregation gehen die Null-Werte in der Regel nicht mit in die Berechnung ein. <br>
+Wie in Excel gibt es verschiedene Aggregationsoperatoren. Je nach Datenbanksystem kann es auch weitere Operatoren geben.</p>
+<ul class="simple">
+<li><p>Summe (SUM)</p></li>
+<li><p>Durchschnitt (AVG)<br>
+Auch: STDDEV und VARIANCE</p></li>
+<li><p>Minimum (MIN) und Maximum (MAX)<br>
+Für nicht-numerische Werte ist es das Maximum bzw. Minimum lexikographischer Ordnung.</p></li>
+<li><p>Anzahl (COUNT)<br>
+Die doppelten Werte gehen bei der Anzahl auch doppelt ein.<br>
+Angewandt auf ein beliebiges Attribut ergibt dies die Anzahl der Tupel in der Relation.<br>
+Dabei werden Zeilen mit NULL-Werten in der Regel mitgezählt.</p></li>
+</ul>
 <p><span class="math notranslate nohighlight">\(R\)</span></p>
 <table class="colwidths-auto table">
 <thead>
@@ -3213,20 +3119,18 @@ Reihenfolge ist weiter unwichtig</p>
 </tr>
 </tbody>
 </table>
-<p>SUM(B) = 10
-<br>
-AVG(A) = 1,5
-<br>
-MIN(A) = 1
-<br>
-MAX(B) = 4
-<br>
-COUNT(A) = 4
-<br>
-COUNT(B) = 4</p>
+<ul class="simple">
+<li><p>SUM(B) = 10</p></li>
+<li><p>AVG(A) = 1,5</p></li>
+<li><p>MIN(A) = 1</p></li>
+<li><p>MAX(B) = 4</p></li>
+<li><p>COUNT(A) = 4</p></li>
+<li><p>COUNT(B) = 4</p></li>
+</ul>
 </section>
 <section id="aggregation-beispiele">
 <h3><span class="section-number">8.22.3. </span>Aggregation – Beispiele<a class="headerlink" href="#aggregation-beispiele" title="Permalink to this headline">#</a></h3>
+<p>Zu den verschiedenen Aggregationen hier ein Beispiel anhand einer Film Tabelle:</p>
 <p>Film</p>
 <table class="colwidths-auto table">
 <thead>
@@ -3235,6 +3139,7 @@ COUNT(B) = 4</p>
 <th class="head"><p>Länge</p></th>
 <th class="head"><p>Typ</p></th>
 <th class="head"><p>StudioName</p></th>
+<th class="head"><p>SchauspName</p></th>
 </tr>
 </thead>
 <tbody>
@@ -3243,80 +3148,69 @@ COUNT(B) = 4</p>
 <td><p>113</p></td>
 <td><p>Farbe</p></td>
 <td><p>Fox</p></td>
+<td><p>Sharon Stone</p></td>
 </tr>
 <tr class="row-odd"><td><p>Basic Instinct</p></td>
 <td><p>1992</p></td>
 <td><p>127</p></td>
 <td><p>Farbe</p></td>
 <td><p>Disney</p></td>
+<td><p>Sharon Stone</p></td>
 </tr>
-<tr class="row-even"><td><p>Dead Man</p></td>
+<tr class="row-even"><td><p>Total Recall</p></td>
+<td><p>1990</p></td>
+<td><p>113</p></td>
+<td><p>Farbe</p></td>
+<td><p>Fox</p></td>
+<td><p>Arnold</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dead Man</p></td>
 <td><p>1995</p></td>
-<td><p>90</p></td>
+<td><p>121</p></td>
 <td><p>s/w</p></td>
 <td><p>Paramount</p></td>
+<td><p>Johnny Depp</p></td>
 </tr>
 </tbody>
 </table>
-<p>■ MAX(Jahr): Jüngster Film
-<br>
-■ MIN(Länge): Kürzester Film
-<br>
-■ SUM(Länge): Summe der Filmminuten
-<br>
-■ AVG(Länge): Durchschnittliche Filmlänge
-<br>
-■ MIN(Titel): Alphabetisch erster Film
-<br>
-■ COUNT(Titel): Anzahl Filme
-<br>
-■ COUNT(StudioName): Anzahl Filme
-<br>
-■ AVG(SchauspName): syntax error</p>
+<ul class="simple">
+<li><p>MAX(Jahr): Jüngster Film</p></li>
+<li><p>MIN(Länge): Kürzester Film</p></li>
+<li><p>SUM(Länge): Summe der Filmminuten</p></li>
+<li><p>AVG(Länge): Durchschnittliche Filmlänge</p></li>
+<li><p>MIN(Titel): Alphabetisch erster Film</p></li>
+<li><p>COUNT(Titel): Anzahl Filme</p></li>
+<li><p>COUNT(StudioName): Anzahl Filme</p></li>
+<li><p>AVG(SchauspName): syntax error</p></li>
+</ul>
 </section>
 <section id="gruppierung">
 <h3><span class="section-number">8.22.4. </span>Gruppierung<a class="headerlink" href="#gruppierung" title="Permalink to this headline">#</a></h3>
-<p>■ Partitionierung der Tupel einer Relation gemäß ihrer Werte in einem oder mehr Attributen.
+<p>Die Gruppierung spielt eine wichtige Rolle im Zusammenhang mit Aggregationen. Sehr oft werden für einzelne Elemente in der Relation Aggregationen durchgeführt. <br>
 <br>
-□ Hauptzweck: Aggregation auf Teilen einer Relation (Gruppen)
+Die Gruppierung ist die Partitionierung der Tupel einer Relation gemäß ihrer Werte in einem Attribut oder mehreren Attributen.
+Ihr Hauptzweck ist die Aggregation auf Teilen einer Relation (Gruppen).<br>
 <br>
-□ Gegeben
-<br>
-– Film(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentID)
-<br>
-□ Gesucht: Gesamtminuten pro Studio
-<br>
-– Gesamtminuten(StudioName, SummeMinuten)
-<br>
-□ Verfahren:
-<br>
-– Gruppiere nach StudioName
-<br>
-– Summiere in jeder Gruppe die Länge der Filme
-<br>
-– Gebe Paare (Studioname, Summe) aus.</p>
+Beispielsweise ist eine Film Relation gegeben:</p>
+<ul class="simple">
+<li><p>Film(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentID)</p></li>
+</ul>
+<p>Gesucht werden die Gesamtminuten pro Studio:</p>
+<ul class="simple">
+<li><p>Gesamtminuten(StudioName, SummeMinuten)</p></li>
+</ul>
+<p>Um das Gesuchte zu erhalten, wird zunächst nach StudioName gruppiert. Danach wird in jeder Gruppe die Länge der Filme summiert und letztendlich die Paare (Studioname, Summe) ausgegeben.</p>
 </section>
 <section id="gruppierung-group-gamma">
 <h3><span class="section-number">8.22.5. </span>Gruppierung (group, <span class="math notranslate nohighlight">\(\gamma\)</span>)<a class="headerlink" href="#gruppierung-group-gamma" title="Permalink to this headline">#</a></h3>
-<p>■ <span class="math notranslate nohighlight">\(\gamma_L\)</span>® wobei L eine Menge von Attributen ist. Ein Element in L ist entweder
-<br></p>
-<ol class="simple">
-<li><p>Ein Gruppierungsattribut nach dem gruppiert wird
-<br></p></li>
-<li><p>Oder ein Aggregationsoperator auf ein Attribut von R (inkl. Neuen Namen für das aggregierte Attribut)
+<p>Der Operator <span class="math notranslate nohighlight">\(\gamma\)</span> steht für die Gruppierung. <span class="math notranslate nohighlight">\(\gamma_L\)</span>® ist eine Gruppierung auf einer Relation R, wobei L eine Menge von Attributen ist. Ein Element in L ist entweder ein Gruppierungsattribut nach dem gruppiert wird oder ein Aggregationsoperator auf ein Attribut von R (inkl. neuen Namen für das aggregierte Attribut).
 <br>
-■ Ergebnis wird wie folgt konstruiert:
-<br>
-□ Partitioniere R in Gruppen, wobei jede Gruppe gleiche Werte im Gruppierungsattribut hat
-<br>
-– Falls kein Gruppierungsattribut angegeben: Ganz R ist die Gruppe
-<br>
-□ Für jede Gruppe erzeuge ein Tupel mit
-<br>
+■ Ergebnis wird wie folgt konstruiert:</p>
+<p>□ Partitioniere R in Gruppen, wobei jede Gruppe gleiche Werte im Gruppierungsattribut hat
+– Falls kein Gruppierungsattribut angegeben: Ganz R ist die Gruppe</p>
+<p>□ Für jede Gruppe erzeuge ein Tupel mit
 – Wert der Gruppierungsattribute
-<br>
-– Aggregierte Werte über alle Tupel der Gruppe</p></li>
-</ol>
+– Aggregierte Werte über alle Tupel der Gruppe</p>
 </section>
 <section id="gruppierung-beispiele">
 <h3><span class="section-number">8.22.6. </span>Gruppierung – Beispiele<a class="headerlink" href="#gruppierung-beispiele" title="Permalink to this headline">#</a></h3>

@@ -642,21 +642,11 @@
 
 # ## Operatoren auf Multimengen
 
+# Mit dem Wissen über die Basisoperatoren der Relationalen Algebra, kann nun genauer auf die Multimengen eingegangen werden. 
+
 # ### Motivation
 
-#  Mengen sind ein natürliches Konstrukt
-#  <br>
-# □ Keine Duplikate
-#  <br> <br>
-# ■ Kommerzielle DBMS basieren fast nie nur auf Mengen
-#  <br>
-# □ Sondern erlauben Multimengen
-#  <br>
-# □ D.h. Duplikate sind erlaubt
-#  <br> <br>
-# ■ Multimenge
-#  <br>
-# □ bag, multiset 
+# Mengen sind ein natürliches Konstrukt. Sie enthalten keine Duplikate. Mit dieser Annahme kann schnell eine Schlussfolgerung über einen Datensatz gezogen werden. In der Realität kommen in den Tabellen aber häufig Duplikate vor. Kommerzielle DBMS basieren daher fast nie nur auf Mengen und aus diesem Grund erlauben  sie Multimengen. Eine Multimenge (bag, multiset) kann im Gegensatz zu einer Menge Duplikate enthalten.
 
 # |A|B|
 # |-|-|
@@ -665,37 +655,21 @@
 # |1|2|
 # |1|2|
 # 
-# Multimenge
-# <br>
-# Reihenfolge ist weiter unwichtig
+# Das Beispiel zeigt eine Multimenge, da (1,2) mehr als einmal in der Relation vorkommt. Die Reihenfolge der Tupel ist weiter unwichtig.
 
 # ### Effizienz durch Multimengen
 
-# ■ Bei Vereinigung
+# Bei manchen Operationen kann man durch die Nutzung von Multimengen Effizienz gewinnen.
+# 
+# Bei einer Vereinigung kann man die Daten direkt „aneinanderhängen“.
+# Bei einer Projektion kann man einfach die Attributwerte „abschneiden“. Es muss nicht wie bei Mengen sichergestellt werden, dass die Projektion keine Duplikate hat. Somit muss auch keine Duplikatsuchstrategie implementiert werden. <br>
 # <br>
-# □ Direkt „aneinanderhängen“
-# <br><br>
-# ■ Bei Projektion
+# Die Suche nach Duplikaten ist sehr teuer. Jedes Tupel im Ergebnis muss mit jedem anderen Tupel verglichen werden. Die Kosten sind O(n²), nicht sehr effizient.<br>
+# Eine Strategie effizienter nach Duplikaten zu suchen wäre es, alle Attribute zu sortieren. Die Kosten für eine Sortierung liegen in O(n log n) und sind somit günstiger als der Vergleich zuvor. Da man davon ausgeht, dass identische Tupel hintereinander in der sortierten Tabelle liegen, kann man die Tabelle nochmal durchgehen und dann Duplikate entfernen.<br>
 # <br>
-# □ Einfach Attributwerte „abschneiden“
-# <br><br>
-# ■ Nach Duplikaten suchen
-# <br>
-# □ Jedes Tupel im Ergebnis mit jedem anderen vergleichen
-# <br>
-# □ O(n²)
-# <br><br>
-# ■ Effizienter nach Duplikaten suchen
-# <br>
-# □ Nach allen Attributen zugleich sortieren: O(n log n)
-# <br><br>
-# ■ Bei Aggregation
-# <br>
-# □ Duplikateliminierung sogar schädlich bzw. unintuitiv
-# <br>
-# □ AVG(A) = ?
+# Bei der Aggregation kann eine Duplikateliminierung sogar schädlich bzw. unintuitiv sein. Angenommen man berechnet den Durchschnitt von A (AVG(A)) und bildet zunächst eine Projektion auf A. Das Ergebnis der Projektion in der Mengensemantik ist (1,3). Wohingegen das Ergebnis in der Mutlimengensemantik (1,3,1,1) ist. Häufig ist bei der Berechnung von einem Durchschnitt der Durchschnitt aller Werte gemeint. Die Mengensemantik kann also Verwirrung verursachen und die Betrachtung von Multimengen wäre sinnvoller. 
 
-# Projektion auf (A,B)
+# Wenn in dem Beispiel eine Projektion auf (A,B) ausgeführt wird, erhält man in der Mutlimengensemantik alle Tupel aus (A,B). In der Mengensemantik wären es nur (1,2) und (3,4), ohne deren Duplikate. 
 # 
 # |A|B|C|
 # |-|-|-|
@@ -706,17 +680,8 @@
 
 # ### Vereinigung auf Multimengen
 
-#  Sei R eine Multimenge
-#  <br>
-# □ Tupel t erscheine n-mal in R.
-#  <br> <br>
-# ■ Sei S eine Multimenge
-#  <br>
-# □ Tupel t erscheine m-mal in S.
-#  <br>
-# ■ Tupel t erscheint in R $\cup$ S
-# <br>
-# □ (n+m) mal.
+# Seien R und S jeweils eine Multimenge. Ein Tupel t erscheint n-mal in R und m-mal in S. Ein Tupel t erscheint in R $\cup$ S genau (n+m) mal.<br>
+# Im Beispiel kommt das Tupel (1,2) in R 3-mal und S nur 1-mal vor. Somit erscheint in R $\cup$ das Tupel n+m = 3+1 = 4-mal. 
 
 # $R$
 # 
@@ -751,17 +716,10 @@
 
 # ### Schnittmenge auf Multimengen
 
-# ■ Sei R eine Multimenge
-# <br>
-# □ Tupel t erscheine n-mal in R.
-# <br><br>
-# ■ Sei S eine Multimenge
-# <br>
-# □ Tupel t erscheine m-mal in S.
-# <br><br>
-# ■ Tupel t erscheint in R $\cap$ S
-# <br>
-# □ min(n,m) mal.
+# Seien R und S jeweils eine Multimenge. 
+# Ein Tupel t erscheint n-mal in R und m-mal in S. <br>
+# Das Tupel t erscheint in R $\cap$ S, dann genau min(n,m) mal.<br>
+# Das Tupel (1,2) kommt in Relation R 3-mal und in S 1-mal vor. Somit erscheint es in R $\cap$ S genau min(3,1) = 1-mal. 
 
 # $R$
 # 
@@ -782,7 +740,7 @@
 # |3|4|
 # |5|6|
 
-# $R \cap S$
+# $R\cap S$
 # 
 # |A|B|
 # |-|-|
@@ -793,23 +751,11 @@
 
 # ## Differenz auf Multimengen
 
-# ■ Sei R eine Multimenge
-# <br>
-# □ Tupel t erscheine n-mal in R.
-# <br><br>
-# ■ Sei S eine Multimenge
-# <br>
-# □ Tupel t erscheine m-mal in S.
-# <br><br>
-# ■ Tupel t erscheint in R − S
-# <br>
-# □ max(0, n−m) mal.
-# <br>
-# □ Falls t öfter in R als in S vorkommt, bleiben n−m t übrig.
-# <br>
-# □ Falls t öfter in S als in R vorkommt, bleibt kein t übrig.
-# <br>
-# □ Jedes Vorkommen von t in S eliminiert ein t in R.
+# Seien R und S jeweils eine Multimenge. Ein Tupel t erscheint n-mal in R und m-mal in S. <br>
+# Das Tupel t erscheint in R − S dann genau max(0, n−m) mal.
+# Falls t öfter in R als in S vorkommt, bleiben n−m t übrig.
+# Falls t öfter in S als in R vorkommt, bleibt kein t übrig, da es keine Negativtupel gibt.
+# Jedes Vorkommen von t in S eliminiert ein t in R.
 
 # $R$
 # 
@@ -829,7 +775,7 @@
 # |3|4|
 # |5|6|
 
-# $R-S$
+# $R -S$
 # 
 # |A|B|
 # |-|-|
@@ -845,19 +791,9 @@
 
 # ### Projektion und Selektion auf Multimengen
 
-# ■ Projektion
+# Bei der Projektion auf Multimengen können neue Duplikate entstehen. Diese werden nicht entfernt. Bei der Projektion ($\pi_{A,B}(R)$) im Beispiel werden daher die Duplikate des Tupels (1,2) nicht entfernt. 
 # <br>
-# □ Bei der Projektion können neue Duplikate entstehen.
-# <br>
-# □ Diese werden nicht entfernt
-# <br><br>
-# ■ Selektion
-# <br>
-# □ Selektionsbedingung auf jedes Tupel einzeln und unabhängig anwenden
-# <br>
-# □ Schon vorhandene Duplikate bleiben erhalten
-# <br>
-# – Sofern sie beide selektiert bleiben
+# Bei der Selektion auf Mutlimengen wird die Selektionsbedingung auf jedes Tupel einzeln und unabhängig angewandt. Die schon vorhandenen Duplikate bleiben erhalten, sofern sie beide selektiert bleiben. Im Beispiel $\sigma_{C\geq6}(R)$ wird somit nur das Tupel (1,2,5) entfernt, aber das Duplikat von (1,2,7) bleibt erhalten in der Ergebnisrelation. 
 
 # $R$
 # 
@@ -881,22 +817,14 @@
 # 
 # |A|B|C|
 # |-|-|-|
-# |1|2|5|
 # |3|4|6|
 # |1|2|7|
 # |1|2|7|
 
 # ### Kreuzprodukt auf Multimengen
 
-#  Sei R eine Multimenge
-#  <br>
-# □ Tupel t erscheine n-mal in R.
-#  <br>
-# ■ Sei S eine Multimenge
-#  <br>
-# □ Tupel u erscheine m-mal in S.
-# <br>
-# ■ Das Tupel tu erscheint in R $\times$ S n·m-mal.
+# Seien R und S jeweils eine Multimenge. Ein Tupel t erscheint n-mal in R und ein Tupel u erscheint m-mal in S.<br>
+# Das Tupel tu erscheint in R $\times$ S dann genau n·m-mal.
 
 # $R$
 # 
@@ -926,7 +854,7 @@
 
 # ### Joins auf Multimengen
 
-# ■ Keine Überraschungen
+# Bei Joins auf Multimengen gibt es keine großen Überraschungen. Der natürliche Join verbindet wieder zwei Relationen wo die Werte gleicher Attribute identisch sind. Der Theta-Join joint die Tupelpaare, bei denen die Selektionsbedingung erfüllt ist. 
 
 # $R$
 # 
@@ -961,33 +889,23 @@
 
 # ## Erweiterte Operatoren
 
+# Die erweiterten Operatoren machen teilweise nur Sinn je nachdem, ob sie für Mengen oder für Multimengen definiert sind. Meistens ergibt sich aus dem Kontext welche Semantik vorliegt. 
+
 # ## Überblick über Erweiterungen
 
-# Duplikateliminierung 
-#  <br>
-#  ■ Aggregation 
-#   <br>
-#  ■ Gruppierung 
-#   <br>
-#  ■ Sortierung
-#   <br>
-#  ■ Outer Join 
-#   <br>
-#  ■ Outer Union
-#   <br>
-#  ■ Semijoin 
-#   <br>
-#  ■ (Division)
+# Eine kurze Übersicht zu den erweiterten Operatoren:
+# - Duplikateliminierung 
+# - Aggregation 
+# - Gruppierung 
+# - Sortierung
+# - Outer Join 
+# - Outer Union
+# - Semijoin 
+# - (Division)
 
 # ### Duplikateliminierung (duplicate elimination, $\delta$)
 
-# ■ Wandelt eine Multimenge in eine Menge um.
-# <br>
-# □ Durch Löschen aller Kopien von Tupeln
-# <br>
-# □ $\delta$(R)
-# <br>
-# – Strenggenommen unnötig: Mengensemantik der relationalen Algebra
+# Eine Duplikateliminierung wandelt eine Multimenge in eine Menge um, indem sie alle Kopien von Tupeln löscht. Sie kann auch auf Mengen angewandt werden, aber es würde das Ergebnis nicht ändern. Strenggenommen ist die Duplikateliminierung unnötig, da sie der Mengensemantik der relationalen Algebra entspricht. 
 
 # $R$
 # 
@@ -1007,29 +925,19 @@
 
 # ### Aggregation
 
-# ■ Aggregation fasst Werte einer Spalte zusammen.
-# <br>
-# □ Operation auf einer Menge oder Multimenge atomarer Werte (nicht Tupel)
-# <br>
-# □ Null-Werte gehen idR nicht mit ein
-# <br>
-# □ Summe (SUM)
-# <br>
-# □ Durchschnitt (AVG)
-# <br>
-# – Auch: STDDEV und VARIANCE
-# <br>
-# □ Minimum (MIN) und Maximum (MAX)
-# <br>
-# – Lexikographisch für nicht-numerische Werte
-# <br>
-# □ Anzahl (COUNT)
-# <br>
-# – Doppelte Werte gehen auch doppelt ein.
-# <br>
-# – Angewandt auf ein beliebiges Attribut ergibt dies die Anzahl der Tupel in der Relation.
-# <br>
-# – Zeilen mit NULL-Werten werden idR mitgezählt.
+# Eine Aggregation fasst die Werte einer Spalte zusammen.
+# Es ist eine Operation auf einer Menge oder Multimenge atomarer Werte (nicht auf Tupeln). Je nach Kontext kann die Mengensemantik oder die Multimengensemantik mehr Sinn machen. 
+# Bei einer Aggregation gehen die Null-Werte in der Regel nicht mit in die Berechnung ein. <br>
+# Wie in Excel gibt es verschiedene Aggregationsoperatoren. Je nach Datenbanksystem kann es auch weitere Operatoren geben.
+# - Summe (SUM)
+# - Durchschnitt (AVG)<br>
+#     Auch: STDDEV und VARIANCE
+# - Minimum (MIN) und Maximum (MAX)<br>
+#     Für nicht-numerische Werte ist es das Maximum bzw. Minimum lexikographischer Ordnung.  
+# - Anzahl (COUNT)<br>
+#     Die doppelten Werte gehen bei der Anzahl auch doppelt ein.<br>
+#     Angewandt auf ein beliebiges Attribut ergibt dies die Anzahl der Tupel in der Relation.<br>
+#     Dabei werden Zeilen mit NULL-Werten in der Regel mitgezählt.
 
 # $R$
 # 
@@ -1040,84 +948,61 @@
 # |1|2|
 # |1|2|
 
-# SUM(B) = 10
-# <br>
-# AVG(A) = 1,5
-# <br>
-# MIN(A) = 1
-# <br>
-# MAX(B) = 4
-# <br>
-# COUNT(A) = 4
-# <br>
-# COUNT(B) = 4
+# - SUM(B) = 10
+# - AVG(A) = 1,5
+# - MIN(A) = 1
+# - MAX(B) = 4
+# - COUNT(A) = 4
+# - COUNT(B) = 4
 
 # ### Aggregation – Beispiele
 
+# Zu den verschiedenen Aggregationen hier ein Beispiel anhand einer Film Tabelle: 
+
 # Film
 # 
-# |Titel|Jahr|Länge|Typ|StudioName|
-# |-----|----|-----|---|----------|
-# |Total Recall|1990|113|Farbe|Fox|
-# |Basic Instinct|1992|127|Farbe|Disney|
-# |Dead Man|1995|90|s/w|Paramount|
+# |Titel|Jahr|Länge|Typ|StudioName|SchauspName|
+# |-----|----|-----|---|----------|-----------|
+# |Total Recall|1990|113|Farbe|Fox|Sharon Stone|
+# |Basic Instinct|1992|127|Farbe|Disney|Sharon Stone|
+# |Total Recall|1990|113|Farbe|Fox|Arnold|
+# |Dead Man|1995|121|s/w|Paramount|Johnny Depp|
 
-# ■ MAX(Jahr): Jüngster Film
-# <br>
-# ■ MIN(Länge): Kürzester Film
-# <br>
-# ■ SUM(Länge): Summe der Filmminuten
-# <br>
-# ■ AVG(Länge): Durchschnittliche Filmlänge
-# <br>
-# ■ MIN(Titel): Alphabetisch erster Film
-# <br>
-# ■ COUNT(Titel): Anzahl Filme
-# <br>
-# ■ COUNT(StudioName): Anzahl Filme
-# <br>
-# ■ AVG(SchauspName): syntax error
+# - MAX(Jahr): Jüngster Film
+# - MIN(Länge): Kürzester Film
+# - SUM(Länge): Summe der Filmminuten
+# - AVG(Länge): Durchschnittliche Filmlänge
+# - MIN(Titel): Alphabetisch erster Film
+# - COUNT(Titel): Anzahl Filme
+# - COUNT(StudioName): Anzahl Filme
+# - AVG(SchauspName): syntax error
 
 # ### Gruppierung
 
-# ■ Partitionierung der Tupel einer Relation gemäß ihrer Werte in einem oder mehr Attributen.
+# Die Gruppierung spielt eine wichtige Rolle im Zusammenhang mit Aggregationen. Sehr oft werden für einzelne Elemente in der Relation Aggregationen durchgeführt. <br>
 # <br>
-# □ Hauptzweck: Aggregation auf Teilen einer Relation (Gruppen)
+# Die Gruppierung ist die Partitionierung der Tupel einer Relation gemäß ihrer Werte in einem Attribut oder mehreren Attributen.
+# Ihr Hauptzweck ist die Aggregation auf Teilen einer Relation (Gruppen).<br>
 # <br>
-# □ Gegeben
-# <br>
-# – Film(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentID)
-# <br>
-# □ Gesucht: Gesamtminuten pro Studio
-# <br>
-# – Gesamtminuten(StudioName, SummeMinuten)
-# <br>
-# □ Verfahren:
-# <br>
-# – Gruppiere nach StudioName
-# <br>
-# – Summiere in jeder Gruppe die Länge der Filme
-# <br>
-# – Gebe Paare (Studioname, Summe) aus.
+# Beispielsweise ist eine Film Relation gegeben:
+# - Film(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentID)
+# 
+# Gesucht werden die Gesamtminuten pro Studio:
+# - Gesamtminuten(StudioName, SummeMinuten)
+# 
+# Um das Gesuchte zu erhalten, wird zunächst nach StudioName gruppiert. Danach wird in jeder Gruppe die Länge der Filme summiert und letztendlich die Paare (Studioname, Summe) ausgegeben.
 
 # ### Gruppierung (group, $\gamma$)
 
-# ■ $\gamma_L$(R) wobei L eine Menge von Attributen ist. Ein Element in L ist entweder
-# <br>
-# 1. Ein Gruppierungsattribut nach dem gruppiert wird
-# <br>
-# 2. Oder ein Aggregationsoperator auf ein Attribut von R (inkl. Neuen Namen für das aggregierte Attribut)
+# Der Operator $\gamma$ steht für die Gruppierung. $\gamma_L$(R) ist eine Gruppierung auf einer Relation R, wobei L eine Menge von Attributen ist. Ein Element in L ist entweder ein Gruppierungsattribut nach dem gruppiert wird oder ein Aggregationsoperator auf ein Attribut von R (inkl. neuen Namen für das aggregierte Attribut).
 # <br>
 # ■ Ergebnis wird wie folgt konstruiert:
-# <br>
+# 
 # □ Partitioniere R in Gruppen, wobei jede Gruppe gleiche Werte im Gruppierungsattribut hat
-# <br>
 # – Falls kein Gruppierungsattribut angegeben: Ganz R ist die Gruppe
-# <br>
+# 
 # □ Für jede Gruppe erzeuge ein Tupel mit
-# <br>
 # – Wert der Gruppierungsattribute
-# <br>
 # – Aggregierte Werte über alle Tupel der Gruppe
 
 # ### Gruppierung – Beispiele
