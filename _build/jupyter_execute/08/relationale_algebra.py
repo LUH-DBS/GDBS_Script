@@ -1075,76 +1075,72 @@
 # <br><br>
 # **Wichtig**: Das Ergebnis der Sortierung ist keine Menge, sondern eine Liste. Daher sollte die Sortierung der letzte Operator eines Ausdrucks sein. Ansonsten würden wieder Mengen entstehen und die Sortierung wäre verloren. Trotzdem kann es in DBMS vorteilhaft sein manchmal auch zwischendurch zu sortieren.
 
-# ### Semi-Join (⋊)
+# ## Semi-Join (⋊)
+# In den vorherigen Kapiteln haben wir den Theta- und Natural-Join kennengelernt. Nun wollen wir in den folgenden Kapiteln weitere Joinformen kennenlernen. Wir starten mit dem Semi-Join.
+# <br><br>
+# Formal: Wir haben die Relationen R(A) und S(B) gegeben.
 # <br>
-# <br>
-# ■ Formal
-# <br>
-# □ R(A), S(B)
-# <br>
-# □ R ⋉ S : = $\pi_A$(R⋈S)
+# R ⋉ S : = $\pi_A$(R⋈S)
 # <br>
 # = $\pi_A$(R) ⋈$\pi_{A\cap B}$(S)
 # <br>
 # = R⋈$\pi_{A\cap B}$(S)
+# <br><br>
+# Ein Semi-Join ist eine Projektion der Attribute von R, hier A, auf den Natural-Join zwischen R und S. Bzw. der Join zwischen den Attributen von R und den Attributen von S, die eine Überschneidung mit denen von R haben. Zuletzt kann eine Semi-Join auch als der Join zwischen R und dem Teil von S sein, welcher eine Überschneidung mit R hat. Die Definition ist analog für Theta-Joins.
+# <br><br>
+# In Worten: Wir joinen R und S, aber nur die Attribute von R sind für uns von Wichtigkeit. Das Ergebnis ist **nicht** wieder gleich R, da wir nur jene Attribute von R ausgeben, die auch joinbar mit S sind, ohne S mitauszugeben. 
 # <br>
-# □ In Worten: Join über R und S, aber nur die Attribute von R sind interessant.
-# <br>
-# □ Definition analog für Theta-Join
-# <br>
-# ■ Nicht kommutativ: R ⋉ S ≠ S ⋉ R
+# Wichtig: Der Semi-Join ist natürlich nicht kommutativ: R ⋉ S ≠ S ⋉ R.
 
-# ### Semi-Join
-# 
+# ### Beispiel 1
+
+# Semi-Joins sind vorallem interessant, wenn Datenbankberechnungen auf verteilten Systemen stattfinden, da so kontrolliert werden kann wie viele der Daten weitergegeben werden. Betrachten wir zur Veranschaulichung ein Beispiel. Angenommen wir haben einen Server, der die Relation R enthält und einen anderen Server, der die Relation S enthält gegeben. Nun möchten wir R ⋉ S durchführen. Eine Möglichkeit wäre es, das Site 1 die komplette Relation S anfordert und den Semi-Join dann durchführt. Jedoch interessiert uns bei S nur das Joinattribut und wir schicken, aber die gesamte Relation, also eine Größe von Länge der Daten multipliziert mit der Länge der Tupel. Ein anderer Weg wäre nur die Joinattribute von S, in diesem Beispiel ID, zu schicken, welches die Kommunikationskosten deutlich verringern würde. Hier ist natürlich vorausgesetzt, dass das System weiß, dass ein Semi-Join durchgeführt werden soll.
 
 # ![title](semijoin1.jpg)
 
+# ### Beispiel 2
+
+# Betrachten wir nun einen "komplizierteren" Weg. Wir projezieren auf R und schicken die Joinattribute zu dem Server, auf welchem S liegt und semi-joinen diese. Nun wurde die Tupelanzahl schon verringert und wir schicken, das Ergebnis wieder zur Site 1 un joinen diese wieder mit R. 
+
 # ![title](semijoin2.jpg)
+
+# ### Beispiel 3
+# In unserem letzten Beispiel haben wir drei Server gegeben. Unser Ziel ist es, dass alle Attribute aus S und R in Site 1 enthalten sind. Der einfache Weg ist beide Relationen komplett rüberzuschicken und zu joinen. Ein anderer Weg wäre die IDs von S zum Server von R zu schicken und diese zu semi-joinen. Dann werden nur jene Tupel die joinbar mit S sind an unseren Zielserver geschickt. Zeitgleich kann ein Semi-Join zwischen S und den zu Site 0 geschickten IDs von R durchgeführt werden. Daraus resultieren jene Tupel von S die joinbar mit R sind und diese werden auf zum Zielserver geschickt. Zum Schluss werden die beiden Relationen verjoint. Die Frage die sich nun stellt, ist wie groß R und S sein müssen, s.d der "kompliziertere" Weg kostengünstiger ist.
 
 # ![title](semijoin3.jpg)
 
-# ### Outer Joins (Äußere Verbünde, |⋈|)
+# ## Outer Joins (Äußere Verbünde, |⋈|)
+# Outer-Joins fungieren so wie wir es bei normalen Joins gewohnt sind, **außer** das „dangling tuples“ nun in das in das Ergebnis mitaufgenommen werden und mit Nullwerten (padding) aufgefüllt werden.
 # <br>
-# <br>
-# Übernahme von „dangling tuples“ in das Ergebnis und Auffüllen mit Nullwerten (padding)
-# <br>
-# Nullwert: $\perp$ bzw. null (≠ 0)
+# - Nullwert: $\perp$ bzw. null (≠ 0)
 # <br><br>
-# Full outer join
-# <br>
-# Übernimmt alle Tupel beider Operanden
-# R |⋈| S
+# Bei einem Full outer join werden alle Tupel beider Operanden angegeben, bei Tupel die nicht sinnvol verjoint werden können, werden die "Lücken" mit Nullwerten aufgefüllt. Schreibweise: R |⋈| S.
 # <br><br>
-# Left outer join (right outer join)
-# <br>
-# Übernimmt alle Tupel des linken (rechten) Operanden
-# <br>
-# R |⋈ S (bzw. R ⋈| S)
+# Bei einem Left outer join (bzw. Right outer join) werden alle Tupel des linken (bzw. rechten) Operanden übernommen, und jene die nicht verjoint werden konnten, werden ebenfalls mit Nullwerten aufgefüllt. Schreibweise: R |⋈ S (bzw. R ⋈| S)
 # <br><br>
-# Herkömmlicher Join auch „Inner join“
+# Der herkömmlicher Join wird auch „Inner join“ genannt.
 # <br>
 # <br>
+# In der Veranschaulichung 1, haben wir die Relationen R uns S gegeben:
 # <br>
-# R⋈S
+# - R⋈S
+#     - Ergebnis besteht aus j1, f12 und j2
 # <br>
-# R |⋈ S
+# - R |⋈ S
+#     - Ergebnis besteht aus s1, u1, $\perp_1$, j1, f12 und j2
 # <br>
-# R ⋈| S
+# - R ⋈| S
+#     - Ergebnis besteht aus j1, f12, j2, s2, u2, $\perp_2$, 
 # <br>
-# R |⋈| S
+# - R |⋈| S
+#     - Alle Attribute sind enthalten 
 
-# ![title](outerjoin1.jpg)
+# Veranschaulichung 1         |  Veranschaulichung 2
+# :-------------------------:|:-------------------------:
+# <img src="outerjoin1.jpg" width="400" /> | <img src="outerjoin2.jpg" width="400" />
 
-# ![title](outerjoin2.jpg)
-
-# ### Outer Union (⊎)
-# <br>
-# <br>
-# ■ Wie Vereinigung, aber auch mit inkompatiblen Schemata
-# <br>
-# □ Schema ist Vereinigung der Attributmengen
-# <br>
-# □ Fehlende Werte werden mit Nullwerten ergänzt
+# ## Outer Union (⊎)
+# Beim Outer Union werden inkompatible Schemata auch vereinigt. Das Schema besteht dann aus Vereinigung der Attributmengen, wobei fehlende Werte werden mit Nullwerten ergänzt werden. In dem Beispiel unten können nur die Attribute B, C vereinigt werden. Bei den restlichen Attributen A, D wird die fehlende Spalte mit Nullwerten aufgefüllt.
 
 # $R$
 # 
@@ -1173,49 +1169,37 @@
 # |$\perp$|2|3|5|
 # |$\perp$|7|8|10|
 
-# ### Division (division, /)
+# ## Division (division, /)
+# Der Divionsoperator wird typischerweise nicht als primitiver Operator unterstützt. Er kann jedoch bei speziellen Anfragen vorteilhaft sein.
 # <br>
+# Z.B möchten wir alle Segler\*innen, die alle Segelboote reserviert haben finden. Hier haben wir eine Vorbedingung die gewissermaßen auf die Existenz von Tupeln in anderen Relationen voraussetzt.
 # <br>
-# ■ Typischerweise nicht als primitiver Operator unterstützt.
+# Wir haben die Relation R(x,y) und die Relation S(y) gegeben.
 # <br>
-# ■ Finde alle Segler, die alle Segelboote reserviert haben.
+# - R/S = { t $\in$ R(x) | $\forall$ y $\in$ S $\exists$ <x, y> $\in$ R}
+#     - R dividiert durch S, gibt jene Tupel aus R zurück, wo für alle y in S es <x,y> in R gibt.<br>
+#     - R/S enthält alle x-Tupel (Segler*\innen), so dass es für jedes y-Tupel (Boot) in S ein xy-Tupel in R gibt.
+#     - Andersherum: Falls die Menge der y-Werte (Boote), die mit einem x-Wert (Segler\*in) assoziiert sind, alle y-Werte in S enthält, so ist der x-Wert in R/S.
+# 
+# <br><br>
+# Eine weitere Anfrage, die mit einer Division ausgedrückt werden kann ist: Hole die Namen von Angestellten, die an allen Projekten arbeiten.
 # <br>
-# ■ Relation R(x,y), Relation S(y)
-# <br>
-# □ R/S = { t $\in$ R(x) | $\forall$ y $\in$ S $\exists$ <x, y> $\in$ R}
-# <br>
-# □ R/S enthält alle x-Tupel (Segler), so dass es für jedes y-Tupel (Boot) in S ein xy-Tupel in R gibt.
-# <br>
-# □ Andersherum: Falls die Menge der y-Werte (Boote), die mit einem x-Wert (Segler) assoziiert sind, alle y-Werte
-# in S enthält, so ist der x-Wert in R/S.
-# <br>
-# ■ Hole die Namen von Angestellten, die an allen Projekten arbeiten.
-# <br>
-# □ Sinnvoller: Hole die Namen von Angestellten, die an allen Projekten arbeiten, in denen auch „Thomas Müller“
+# Sinnvoller: Hole die Namen von Angestellten, die an allen Projekten arbeiten, in denen auch „Thomas Müller“
 # arbeitet.
 
 # ### Division – Beispiel
 
+# Betrachten wir folgendes Beispiel. Relation A hat die Attribute sno und pno und die Relationenn B1, B2, B3 nur das Attribut pno. A/B1 enthält alle sno's die in A mit den pno's aus B1 auftauchen. Der Wert p2 taucht in A mit den sno's s1, s2, s3 und s4 auf, folglich bildet sich A/B1 daraus. Das gilt analog für A/B2 und A/B3.
+
 # ![title](division1.jpg)
 
 # ### Division ausdrücken
-# <br>
-# <br>
-# ■ Division ist kein essentieller Operator, nur nützliche Abkürzung.
-# <br>
-# □ Ebenso wie Joins, aber Joins sind so üblich, dass Systeme sie speziell unterstützen.
+# Die Division ist kein essentieller Operator,sondern lediglich nur eine nützliche Abkürzung. Ebenso wie Joins, aber Joins sind so üblich, dass Systeme sie speziell unterstützen. Die Idee um R/S zu berechnen sieht wei folgt aus: Berechne alle x-Werte, die nicht durch einen y-Wert in S „disqualifiziert“ werden.
+# - x-Wert ist disqualifiziert, falls man durch Anfügen eines y-Wertes ein xy-Tupel erhält, das nicht in R ist.
+# - Disqualifizierte x-Werte: $\pi_{x}$ (($\pi_{x}$(R) $\times$ S) − R)
+# 
 # <br><br>
-# ■ Idee: Um R/S zu berechnen, berechne alle x-Werte, die nicht durch einen y-Wert in S „disqualifiziert“ werden.
-# <br>
-# – x-Wert ist disqualifiziert, falls man durch Anfügen eines y-Wertes ein xy-Tupel erhält, das nicht in R ist.
-# <br>
-# □ Disqualifizierte x-Werte: $\pi_{x}$ (($\pi_{x}$(R) $\times$ S) − R)
-# <br>
-# □ R/S: $\pi_{x}$(R) − alle disqualifizierten Tupel
-
-# ### Division
-
-# ![title](division2.jpg)
+# => R/S: $\pi_{x}$(R) − alle disqualifizierten Tupel
 
 # ## Multiple Choice
 # 
