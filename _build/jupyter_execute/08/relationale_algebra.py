@@ -996,16 +996,14 @@
 
 # Der Operator $\gamma$ steht für die Gruppierung. $\gamma_L$(R) ist eine Gruppierung auf einer Relation R, wobei L eine Menge von Attributen ist. Ein Element in L ist entweder ein Gruppierungsattribut nach dem gruppiert wird oder ein Aggregationsoperator auf ein Attribut von R (inkl. neuen Namen für das aggregierte Attribut).
 # <br>
-# ■ Ergebnis wird wie folgt konstruiert:
-# 
-# □ Partitioniere R in Gruppen, wobei jede Gruppe gleiche Werte im Gruppierungsattribut hat
-# – Falls kein Gruppierungsattribut angegeben: Ganz R ist die Gruppe
-# 
-# □ Für jede Gruppe erzeuge ein Tupel mit
-# – Wert der Gruppierungsattribute
-# – Aggregierte Werte über alle Tupel der Gruppe
+# Das Ergebnis wird wie folgt konstruiert:
+# <br>
+# - Die Relation R wird in Gruppen partitioniert, wobei jede Gruppe gleiche Werte im Gruppierungsattribut hat. Falls kein Gruppierungsattribut angegeben wird, ist ganz R die Gruppe
+# - Für jede Gruppe wird ein Tupel erzeugt, mit:
+#     - Wert der Gruppierungsattribute
+#     - Aggregierte Werte über alle Tupel der Gruppe
 
-# ### Gruppierung – Beispiele
+# #### Gruppierung – Beispiel 1
 
 # Film
 # 
@@ -1015,100 +1013,67 @@
 # |Basic Instinct|1992|127|Farbe|Disney|
 # |Dead Man|1995|90|s/w|Paramount|
 
-# ■ Durchschnittliche Filmlänge pro Studio
-# <br>
-# □ $\gamma_{Studio, AVG(Länge)→Durchschnittslänge}$(Film)
+# Im Folgenden betrachten wir einige Beispiele, wie wir Gruppierungen verwenden:
 # <br><br>
-# ■ Anzahl der Filme pro Schauspieler
-# <br>
-# □ $\gamma_{SchauspName, Count(Titel)→Filmanzahl}$(Film)
+# - Durchschnittliche Filmlänge pro Studio:
+#     - $\gamma_{Studio, AVG(Länge)→Durchschnittslänge}$(Film)
+#     - Unser Gruppenattribut ist Studio und wir aggregieren über das Attribut Länge, um den Durchschnitt zu ermitteln und benennen zuletzt AVG(Länge) zu Durchschnittslänge um
+#     
 # <br><br>
-# ■ Durchschnittliche Anzahl der Filme pro Schauspieler
-# <br>
-# □ $\gamma_{AVG(Filmanzahl)}(\gamma_{SchauspName, Count(Titel)→Filmanzahl}$(Film))
+# - Anzahl der Filme pro Schauspieler
+#     - $\gamma_{SchauspName, Count(Titel)→Filmanzahl}$(Film)
+#     - Unser Gruppierungsattribut ist SchauspName und wir betrachten für jede/n Schaupspieler\*in alle Filme und zählen diese, zuletzt wird für bessere Handhabung wieder unbenannt
+#     
 # <br><br>
-# ■ Zu Hause:
+# - Durchschnittliche Anzahl der Filme pro Schauspieler
+#     - $\gamma_{AVG(Filmanzahl)}(\gamma_{SchauspName, Count(Titel)→Filmanzahl}$(Film))
+#     - In diesem Beispiel sehen wir zwei verschachtelte Gruppierungen. Zuerst zähllen wir alle Filme pro Schauspieler\*in (Ausdruck wie oben) und über die daraus resultierende Relation, berechnen wir den Durchschnitt der Filmanzahl
+#     
+# <br><br>
+# Als Übung können sie zu Hause die folgenden Beispiel in Ausdrücke der Relationalen Algebra umwandeln:
 # <br>
-# □ Anzahl Schauspieler pro Film
+# - Anzahl Schauspieler pro Film
+# - Durchschnittliche Anzahl der Schauspieler pro Film
+# - Studiogründung: Kleinstes Jahr pro Studio
+
+# #### Gruppierung – Beispiel 2
+
+# Betrachten wir nun die Relation SpieltIn(Titel, Jahr, SchauspName). Wir möchten für jeden Schauspieler\*in , der/die in mindestens 3 Filmen mitspielte, das Jahr des ersten Filmes.
 # <br>
-# □ Durchschnittliche Anzahl der Schauspieler pro Film
-# <br>
-# □ Studiogründung: Kleinstes Jahr pro Studio
-# <br>
-# <br>
-# <br>
-# ■ Gegeben: SpieltIn(Titel, Jahr, SchauspName)
-# <br>
-# ■ Gesucht: Für jeden Schauspieler, der in mindestens 3 Filmen spielte, das Jahr des ersten Filmes.
-# <br>
-# ■ Idee
-# <br>
-# □ Gruppierung nach SchauspName
-# <br>
-# □ Bilde
-# <br>
-# – Minimum vom Jahr
-# <br>
-# – Count von Titeln
-# <br>
-# □ Selektion nach Anzahl der Filme
-# <br>
-# □ Projektion auf Schauspielername und Jahr
-# <br>
-# ■ $\pi_{SchauspName, MinJahr}(\sigma_{AnzahlTitel≥3}(\gamma_{SchauspName, MIN(Jahr)→MinJahr, COUNT(Titel)→AnzahlTitel}(SpieltIn)))$
-# <br>
-# <br>
-# <br>
-# ■ Gegeben: SpieltIn(Titel, Jahr, SchauspName)
-# ■ Gesucht: Für jeden Schauspieler, der in mindestens 3 Filmen spielte, das Jahr des ersten Filmes und den Titel
-# dieses Films.
-# □ Genauer: Ein Titel des Schauspielers in dem Jahr
-# ■ Idee
-# □ Wie zuvor
-# □ Anschließend Self-Join um Filmtitel zu bekommen.
-# □ Anschließend Gruppierung nach SchauspName um Gruppe auf einen Film zu reduzieren.
-# ■ $\gamma_{SchauspName, MIN(MinJahr)→MinJahr, MIN(Titel)→Titel}( (SpieltIn) ⋈_{SchauspName = SchauspName, MinJahr = Jahr}
+# Um das gewünschte Ergebnis zu bekommen, muss nach SchauspName gruppiert werden, danach das Minimum von Jahr und der Count von Titel gebildet werden. Anschließend selektieren wir nach Anzahl der Filme und projezieren auf SchauspName und Jahr.
+# <br><br>
+# $\pi_{SchauspName, MinJahr}(\sigma_{AnzahlTitel≥3}(\gamma_{SchauspName, MIN(Jahr)→MinJahr, COUNT(Titel)→AnzahlTitel}(SpieltIn)))$
+
+# #### Gruppierung – Beispiel 3
+# Wir haben erneut die Relation SpieltIn(Titel, Jahr, SchauspName) gegeben und möchten für jeden Schauspieler\*in , der/die in mindestens 3 Filmen mitspielte, das Jahr des ersten Filmes **und** zusätzlich den Titel dieses Films. Die  Idee ist genauso wie vorher in Beispiel 2. Jedoch wird anschließend ein Self-Join durchgeführt, um Filmtitel zu bekommen. Ganz zum Schluss wird nach SchauspName gruppiert, um die Gruppe auf einen Film zu reduzieren.
+# <br><br>
+# $\gamma_{SchauspName, MIN(MinJahr)→MinJahr, MIN(Titel)→Titel}( (SpieltIn) ⋈_{SchauspName = SchauspName, MinJahr = Jahr}
 # (\pi_{SchauspName, MinJahr}(\sigma_{AnzahlTitel≥3}(
 # \gamma_{SchauspName, MIN(Jahr)→MinJahr, COUNT(Titel)→AnzahlTitel}(SpieltIn)
 # ) ) )
 # )$
 
-# ### Komplexe Ausdrücke – Beispiele
-# <br>
-# <br>
-# ■ Stud(Matrikel, Name, Semester)
-# <br>
-# ■ Prof(ProfName, Fachgebiet, GebJahr)
-# <br>
-# ■ VL(VL_ID, Titel, Saal)
-# <br>
-# ■ Lehrt(ProfName, VL_ID)
-# <br>
-# ■ Hört(Matrikel,VL_ID)
-# <br>
-# ■ Gesucht: Fachgebiete von Professoren, die VL geben, die weniger als drei Hörer haben.
-# <br>
-# ■ $\gamma_{Fachgebiet}$( (Prof ⋈ Lehrt) ⋈
-# ($\sigma_{ COUNT < 3(gVL_ID,COUNT(Matrikel)-> COUNT}$(Hört))
-# )
-# <br>
-# ■ $\pi_{Fachgebiet}$( (Prof ⋈ Lehrt) ⋈
-# ($\sigma_{ COUNT < 3(gVL_ID,COUNT(Matrikel)-> COUNT}$(Hört))
-# )
+# #### Komplexe Ausdrücke – Beispiele
+# Wir haben folgende Reltionen gegeben:
+# - Stud(Matrikel, Name, Semester)
+# - Prof(ProfName, Fachgebiet, GebJahr)
+# - VL(VL_ID, Titel, Saal)
+# - Lehrt(ProfName, VL_ID)
+# - Hört(Matrikel,VL_ID)
+# 
+# <br><br>
+# Gesucht werden die Fachgebiete von Professor\*innen, die VL halten, welche weniger als drei Hörer\*Innen haben. Zunächst zählen wir in der Hört-Relation die Anzahl der Matrikelnummern und selektieren, jene die weniger als drei haben. Die resultierende Relation daraus joinen wir mit Prof und Lehrt. Anschließend gruppieren wir nach Fachgebiet. Die Gruppierung fungiert hier wie eine Projektion, es werden jedoch noch Duplikate entfernt.
+# 
+# 
+# - Mit Gruppierung: $\gamma_{Fachgebiet}$( (Prof ⋈ Lehrt) ⋈ ($\sigma_{ COUNT < 3(gVL_ID,COUNT(Matrikel)-> COUNT}$(Hört)))
+# 
+# <br><br>
+# - Alternativ: $\pi_{Fachgebiet}$( (Prof ⋈ Lehrt) ⋈ ($\sigma_{ COUNT < 3(gVL_ID,COUNT(Matrikel)-> COUNT}$(Hört)))
 
 # ### Sortierung (sort, $\tau$)
-# <br>
-# <br>
-# ■ $\tau_L$(R) wobei L eine Attributliste aus R ist.
-# <br>
-# □ Falls L = (A1,A2,…,An) wird zuerst nach A1, bei gleichen A1 nach A2 usw. sortiert.
+# $\tau_L$(R) sortiert die Realtion R, wobei L eine Attributliste aus R ist. Sei L = (A1,A2,…,An) wird zuerst nach A1, bei gleichen A1 nach A2 usw. sortiert.
 # <br><br>
-# ■ Wichtig: Ergebnis der Sortierung ist keine Menge, sondern eine Liste.
-# <br>
-# □ Deshalb: Sortierung ist letzter Operator eines Ausdrucks. Ansonsten würden wieder Mengen entstehen und
-# die Sortierung wäre verloren.
-# <br>
-# □ Trotzdem: In DBMS macht es manchmal auch Sinn zwischendurch zu sortieren.
+# **Wichtig**: Das Ergebnis der Sortierung ist keine Menge, sondern eine Liste. Daher sollte die Sortierung der letzte Operator eines Ausdrucks sein. Ansonsten würden wieder Mengen entstehen und die Sortierung wäre verloren. Trotzdem kann es in DBMS vorteilhaft sein manchmal auch zwischendurch zu sortieren.
 
 # ### Semi-Join (⋊)
 # <br>
