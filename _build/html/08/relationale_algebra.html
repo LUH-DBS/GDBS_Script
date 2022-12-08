@@ -1139,51 +1139,63 @@ Ein Element ist nur einmal in der Vereinigung von R und S (R ∪ S) vertreten, a
 <h2><span class="section-number">8.5. </span>Beispiel für Mengenoperatoren<a class="headerlink" href="#beispiel-fur-mengenoperatoren" title="Permalink to this headline">¶</a></h2>
 <p>Das Beispiel zeigt zwei Tabellen R und S mit jeweils Name, Adresse, Geschlecht und Geburt.
 Wenn man diese Relationen miteinander vereinigt, erhält man eine neue Relation, in der das Tupel mit “Carrie Fisher” nur ein Mal vorkommt.</p>
-<p><span class="math notranslate nohighlight">\(R\)</span></p>
+<table>
+    <td>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Name</p></th>
-<th class="head"><p>Adresse</p></th>
-<th class="head"><p>Geschlecht</p></th>
-<th class="head"><p>Geburt</p></th>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(R\)</span></p></th>
+<th class="head"><p>﻿</p></th>
+<th class="head"><p>﻿</p></th>
+<th class="head"><p>﻿</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Carrie Fisher</p></td>
+<tr class="row-even"><td><p><strong>Name</strong></p></td>
+<td><p><strong>Adresse</strong></p></td>
+<td><p><strong>Geschlecht</strong></p></td>
+<td><p><strong>Geburt</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Carrie Fisher</p></td>
 <td><p>123 Maple St., Hollywood</p></td>
 <td><p>F</p></td>
 <td><p>9/9/99</p></td>
 </tr>
-<tr class="row-odd"><td><p>Mark Hamill</p></td>
+<tr class="row-even"><td><p>Mark Hamill</p></td>
 <td><p>456 Oak. Rd., Brentwood</p></td>
 <td><p>M</p></td>
 <td><p>8/8/88</p></td>
 </tr>
 </tbody>
 </table>
-<p><span class="math notranslate nohighlight">\(S\)</span></p>
+</td>
+    <td>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Name</p></th>
-<th class="head"><p>Adresse</p></th>
-<th class="head"><p>Geschlecht</p></th>
-<th class="head"><p>Geburt</p></th>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(S\)</span></p></th>
+<th class="head"><p>﻿</p></th>
+<th class="head"><p>﻿</p></th>
+<th class="head"><p>﻿</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Carrie Fisher</p></td>
+<tr class="row-even"><td><p><strong>Name</strong></p></td>
+<td><p><strong>Adresse</strong></p></td>
+<td><p><strong>Geschlecht</strong></p></td>
+<td><p><strong>Geburt</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Carrie Fisher</p></td>
 <td><p>123 Maple St., Hollywood</p></td>
 <td><p>F</p></td>
 <td><p>9/9/99</p></td>
 </tr>
-<tr class="row-odd"><td><p>Harrison Ford</p></td>
+<tr class="row-even"><td><p>Harrison Ford</p></td>
 <td><p>789 Palm Dr., Beverly Hills</p></td>
 <td><p>M</p></td>
 <td><p>7/7/77</p></td>
 </tr>
 </tbody>
 </table>
-<p><span class="math notranslate nohighlight">\(R \cup S\)</span></p>
+</table><p><span class="math notranslate nohighlight">\(R \cup S\)</span></p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -1227,49 +1239,62 @@ Die Differenz von R und S (R − S) eliminiert die Tupel aus der ersten Relation
 <div class="section" id="id1">
 <h2><span class="section-number">8.7. </span>Beispiel für Mengenoperatoren<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>Sowohl in der Relation R, als auch in der Relation S, gibt es das gleiche Tupel mit “Carrie Fisher”. Bei der Differenz (R-S) wird das in beiden vorkommende Tupel eliminiert.</p>
-<p><span class="math notranslate nohighlight">\(R\)</span></p>
+<table>
+    <td>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Name</p></th>
-<th class="head"><p>Adresse</p></th>
-<th class="head"><p>Geschlecht</p></th>
-<th class="head"><p>Geburt</p></th>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(R\)</span></p></th>
+<th class="head"><p>﻿</p></th>
+<th class="head"><p>﻿</p></th>
+<th class="head"><p>﻿</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Carrie Fisher</p></td>
+<tr class="row-even"><td><p><strong>Name</strong></p></td>
+<td><p><strong>Adresse</strong></p></td>
+<td><p><strong>Geschlecht</strong></p></td>
+<td><p><strong>Geburt</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Carrie Fisher</p></td>
 <td><p>123 Maple St., Hollywood</p></td>
 <td><p>F</p></td>
 <td><p>9/9/99</p></td>
 </tr>
-<tr class="row-odd"><td><p>Mark Hamill</p></td>
+<tr class="row-even"><td><p>Mark Hamill</p></td>
 <td><p>456 Oak. Rd., Brentwood</p></td>
 <td><p>M</p></td>
 <td><p>8/8/88</p></td>
 </tr>
 </tbody>
 </table>
-<p><span class="math notranslate nohighlight">\(S\)</span></p>
+</td>
+    <td>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Name</p></th>
-<th class="head"><p>Adresse</p></th>
-<th class="head"><p>Geschlecht</p></th>
-<th class="head"><p>Geburt</p></th>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(S\)</span></p></th>
+<th class="head"><p>﻿</p></th>
+<th class="head"><p>﻿</p></th>
+<th class="head"><p>﻿</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Carrie Fisher</p></td>
+<tr class="row-even"><td><p><strong>Name</strong></p></td>
+<td><p><strong>Adresse</strong></p></td>
+<td><p><strong>Geschlecht</strong></p></td>
+<td><p><strong>Geburt</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Carrie Fisher</p></td>
 <td><p>123 Maple St., Hollywood</p></td>
 <td><p>F</p></td>
 <td><p>9/9/99</p></td>
 </tr>
-<tr class="row-odd"><td><p>Harrison Ford</p></td>
+<tr class="row-even"><td><p>Harrison Ford</p></td>
 <td><p>789 Palm Dr., Beverly Hills</p></td>
 <td><p>M</p></td>
 <td><p>7/7/77</p></td>
 </tr>
 </tbody>
+</table>
 </table>
 <p><span class="math notranslate nohighlight">\(R-S\)</span></p>
 <table class="colwidths-auto table">
@@ -1304,49 +1329,62 @@ Die Differenz von R und S (R − S) eliminiert die Tupel aus der ersten Relation
 <div class="section" id="id2">
 <h2><span class="section-number">8.9. </span>Beispiel für Mengenoperatoren<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>In Relation R sowie in Relation S gibt es ein identisches “Carrie Fisher” Tupel. Bildet man die Schnittmenge der beiden Relationen (<span class="math notranslate nohighlight">\(R\cap S\)</span>), sind in der Ergebnisrelation alle Tupel, die sowohl in R, als auch in S vorkommen. In diesem Fall wäre es nur das Tupel mit “Carrie Fisher”.</p>
-<p><span class="math notranslate nohighlight">\(R\)</span></p>
+<table>
+    <td>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Name</p></th>
-<th class="head"><p>Adresse</p></th>
-<th class="head"><p>Geschlecht</p></th>
-<th class="head"><p>Geburt</p></th>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(R\)</span></p></th>
+<th class="head"><p>﻿</p></th>
+<th class="head"><p>﻿</p></th>
+<th class="head"><p>﻿</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Carrie Fisher</p></td>
+<tr class="row-even"><td><p><strong>Name</strong></p></td>
+<td><p><strong>Adresse</strong></p></td>
+<td><p><strong>Geschlecht</strong></p></td>
+<td><p><strong>Geburt</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Carrie Fisher</p></td>
 <td><p>123 Maple St., Hollywood</p></td>
 <td><p>F</p></td>
 <td><p>9/9/99</p></td>
 </tr>
-<tr class="row-odd"><td><p>Mark Hamill</p></td>
+<tr class="row-even"><td><p>Mark Hamill</p></td>
 <td><p>456 Oak. Rd., Brentwood</p></td>
 <td><p>M</p></td>
 <td><p>8/8/88</p></td>
 </tr>
 </tbody>
 </table>
-<p><span class="math notranslate nohighlight">\(S\)</span></p>
+</td>
+    <td>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Name</p></th>
-<th class="head"><p>Adresse</p></th>
-<th class="head"><p>Geschlecht</p></th>
-<th class="head"><p>Geburt</p></th>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(S\)</span></p></th>
+<th class="head"><p>﻿</p></th>
+<th class="head"><p>﻿</p></th>
+<th class="head"><p>﻿</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Carrie Fisher</p></td>
+<tr class="row-even"><td><p><strong>Name</strong></p></td>
+<td><p><strong>Adresse</strong></p></td>
+<td><p><strong>Geschlecht</strong></p></td>
+<td><p><strong>Geburt</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Carrie Fisher</p></td>
 <td><p>123 Maple St., Hollywood</p></td>
 <td><p>F</p></td>
 <td><p>9/9/99</p></td>
 </tr>
-<tr class="row-odd"><td><p>Harrison Ford</p></td>
+<tr class="row-even"><td><p>Harrison Ford</p></td>
 <td><p>789 Palm Dr., Beverly Hills</p></td>
 <td><p>M</p></td>
 <td><p>7/7/77</p></td>
 </tr>
 </tbody>
+</table>
 </table>
 <p><span class="math notranslate nohighlight">\(R\cap S\)</span></p>
 <table class="colwidths-auto table">
@@ -1620,6 +1658,7 @@ Das Kreuzprodukt zweier Relationen R und S ist die Menge aller Tupel, die man er
 </tr>
 </tbody>
 </table>
+<p><br><br></p>
 <p><span class="math notranslate nohighlight">\(S\)</span></p>
 <table class="colwidths-auto table">
 <thead>
@@ -1844,51 +1883,62 @@ Dabei muss noch projiziert und umbenannt werden, um die Vereinigung richtig zu e
 </table>
 <p>Bei dem zweiten Beispiel gibt es mehr als ein gemeinsames Attribut. Es stimmen in R und S die zwei Attribute B und C überein. B und C müssen somit gleichzeitig bei jedem Join übereinstimmen. <br>Obwohl der Wert von B (2) im ersten Tupel beider Relationen übereinstimmt, können diese nicht gejoint werden. Der Grund dafür sind unterschiedliche Werte (3 != 5) im Attribut C. <br>
 Das erste Tupel aus R und das zweite Tupel aus S haben wiederum in B und C die gleichen Werte und können somit gejoint werden. Genauso haben das zweite und dritte Tupel von R die gleichen Werte in B und C wie das dritte Tupel von S. Das dritte Tupel in S wird also mit mehr als einem Partner verknüpft.</p>
-<p><span class="math notranslate nohighlight">\(R\)</span></p>
+<table>
+    <td>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="head"><p>A</p></th>
-<th class="head"><p>B</p></th>
-<th class="head"><p>C</p></th>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(R\)</span></p></th>
+<th class="head"><p>﻿</p></th>
+<th class="head"><p>﻿</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>1</p></td>
+<tr class="row-even"><td><p><strong>A</strong></p></td>
+<td><p><strong>B</strong></p></td>
+<td><p><strong>C</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
 <td><p>2</p></td>
 <td><p>3</p></td>
 </tr>
-<tr class="row-odd"><td><p>6</p></td>
+<tr class="row-even"><td><p>6</p></td>
 <td><p>7</p></td>
 <td><p>8</p></td>
 </tr>
-<tr class="row-even"><td><p>9</p></td>
+<tr class="row-odd"><td><p>9</p></td>
 <td><p>7</p></td>
 <td><p>8</p></td>
 </tr>
 </tbody>
 </table>
-<p><span class="math notranslate nohighlight">\(S\)</span></p>
+</td>
+    <td>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="head"><p>B</p></th>
-<th class="head"><p>C</p></th>
-<th class="head"><p>D</p></th>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(S\)</span></p></th>
+<th class="head"><p>﻿</p></th>
+<th class="head"><p>﻿</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>2</p></td>
+<tr class="row-even"><td><p><strong>B</strong></p></td>
+<td><p><strong>C</strong></p></td>
+<td><p><strong>D</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
 <td><p>5</p></td>
 <td><p>6</p></td>
 </tr>
-<tr class="row-odd"><td><p>2</p></td>
+<tr class="row-even"><td><p>2</p></td>
 <td><p>3</p></td>
 <td><p>5</p></td>
 </tr>
-<tr class="row-even"><td><p>7</p></td>
+<tr class="row-odd"><td><p>7</p></td>
 <td><p>8</p></td>
 <td><p>10</p></td>
 </tr>
 </tbody>
+</table>
 </table>
 <p><span class="math notranslate nohighlight">\(R ⋈ S\)</span></p>
 <table class="colwidths-auto table">
@@ -1936,53 +1986,63 @@ Das Ergebnis wird ähnlich wie zuvor konstruiert. Zunächst wird ein Kreuzproduk
 <div class="section" id="theta-join-beispiel">
 <h3><span class="section-number">8.17.4. </span>Theta-Join – Beispiel<a class="headerlink" href="#theta-join-beispiel" title="Permalink to this headline">¶</a></h3>
 <p>Im ersten Beispiel sollen R und S gejoint werden, wenn der Wert vom Attribut A kleiner als der von D ist. Zunächst wird das erste Tupel von R mit allen Tupeln von S verglichen. In jedem Fall stimmt die Bedingung und die Tupel können verbunden werden. Analog werden die weiteren Tupel von R mit denen von S verglichen und gegebenenfalls verbunden.</p>
-<p><span class="math notranslate nohighlight">\(R\)</span></p>
+<table>
+    <td>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="head"><p>A</p></th>
-<th class="head"><p>B</p></th>
-<th class="head"><p>C</p></th>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(R\)</span></p></th>
+<th class="head"><p>﻿</p></th>
+<th class="head"><p>﻿</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>1</p></td>
+<tr class="row-even"><td><p><strong>A</strong></p></td>
+<td><p><strong>B</strong></p></td>
+<td><p><strong>C</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
 <td><p>2</p></td>
 <td><p>3</p></td>
 </tr>
-<tr class="row-odd"><td><p>6</p></td>
+<tr class="row-even"><td><p>6</p></td>
 <td><p>7</p></td>
 <td><p>8</p></td>
 </tr>
-<tr class="row-even"><td><p>9</p></td>
+<tr class="row-odd"><td><p>9</p></td>
 <td><p>7</p></td>
 <td><p>8</p></td>
 </tr>
 </tbody>
 </table>
-<p><span class="math notranslate nohighlight">\(S\)</span></p>
+</td>
+    <td>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="head"><p>B</p></th>
-<th class="head"><p>C</p></th>
-<th class="head"><p>D</p></th>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(S\)</span></p></th>
+<th class="head"><p>﻿</p></th>
+<th class="head"><p>﻿</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>2</p></td>
+<tr class="row-even"><td><p><strong>B</strong></p></td>
+<td><p><strong>C</strong></p></td>
+<td><p><strong>D</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
 <td><p>5</p></td>
 <td><p>6</p></td>
 </tr>
-<tr class="row-odd"><td><p>2</p></td>
+<tr class="row-even"><td><p>2</p></td>
 <td><p>3</p></td>
 <td><p>5</p></td>
 </tr>
-<tr class="row-even"><td><p>7</p></td>
+<tr class="row-odd"><td><p>7</p></td>
 <td><p>8</p></td>
 <td><p>10</p></td>
 </tr>
 </tbody>
 </table>
-<p><span class="math notranslate nohighlight">\(R ⋈_{A&lt;D}S\)</span></p>
+</table><p><span class="math notranslate nohighlight">\(R ⋈_{A&lt;D}S\)</span></p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>A</p></th>
@@ -2439,49 +2499,58 @@ Bei der Aggregation kann eine Duplikateliminierung sogar schädlich bzw. unintui
 <h3><span class="section-number">8.19.3. </span>Vereinigung auf Multimengen<a class="headerlink" href="#vereinigung-auf-multimengen" title="Permalink to this headline">¶</a></h3>
 <p>Seien R und S jeweils eine Multimenge. Ein Tupel t erscheint n-mal in R und m-mal in S. Ein Tupel t erscheint in R <span class="math notranslate nohighlight">\(\cup\)</span> S genau (n+m) mal.<br>
 Im Beispiel kommt das Tupel (1,2) in R 3-mal und S nur 1-mal vor. Somit erscheint in R <span class="math notranslate nohighlight">\(\cup\)</span> das Tupel n+m = 3+1 = 4-mal.</p>
-<p><span class="math notranslate nohighlight">\(R\)</span></p>
+<table>
+    <td>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="head"><p>A</p></th>
-<th class="head"><p>B</p></th>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(R\)</span></p></th>
+<th class="head"><p>﻿</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>1</p></td>
-<td><p>2</p></td>
-</tr>
-<tr class="row-odd"><td><p>3</p></td>
-<td><p>4</p></td>
-</tr>
-<tr class="row-even"><td><p>1</p></td>
-<td><p>2</p></td>
+<tr class="row-even"><td><p><strong>A</strong></p></td>
+<td><p><strong>B</strong></p></td>
 </tr>
 <tr class="row-odd"><td><p>1</p></td>
 <td><p>2</p></td>
 </tr>
-</tbody>
-</table>
-<p><span class="math notranslate nohighlight">\(S\)</span></p>
-<table class="colwidths-auto table">
-<thead>
-<tr class="row-odd"><th class="head"><p>A</p></th>
-<th class="head"><p>B</p></th>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>4</p></td>
 </tr>
-</thead>
-<tbody>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>2</p></td>
+</tr>
 <tr class="row-even"><td><p>1</p></td>
 <td><p>2</p></td>
 </tr>
-<tr class="row-odd"><td><p>3</p></td>
-<td><p>4</p></td>
+</tbody>
+</table>
+</td>
+    <td>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(S\)</span></p></th>
+<th class="head"><p>﻿</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>A</strong></p></td>
+<td><p><strong>B</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>2</p></td>
 </tr>
 <tr class="row-even"><td><p>3</p></td>
 <td><p>4</p></td>
 </tr>
-<tr class="row-odd"><td><p>5</p></td>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
 <td><p>6</p></td>
 </tr>
 </tbody>
+</table>
 </table>
 <p><span class="math notranslate nohighlight">\(R \cup S\)</span></p>
 <table class="colwidths-auto table">
@@ -2524,52 +2593,58 @@ Im Beispiel kommt das Tupel (1,2) in R 3-mal und S nur 1-mal vor. Somit erschein
 Ein Tupel t erscheint n-mal in R und m-mal in S. <br>
 Das Tupel t erscheint in R <span class="math notranslate nohighlight">\(\cap\)</span> S, dann genau min(n,m) mal.<br>
 Das Tupel (1,2) kommt in Relation R 3-mal und in S 1-mal vor. Somit erscheint es in R <span class="math notranslate nohighlight">\(\cap\)</span> S genau min(3,1) = 1-mal.</p>
-<p><span class="math notranslate nohighlight">\(R\)</span></p>
+<table>
+    <td>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="head"><p>A</p></th>
-<th class="head"><p>B</p></th>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(R\)</span></p></th>
+<th class="head"><p>﻿</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>1</p></td>
+<tr class="row-even"><td><p><strong>A</strong></p></td>
+<td><p><strong>B</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
 <td><p>2</p></td>
 </tr>
-<tr class="row-odd"><td><p>3</p></td>
+<tr class="row-even"><td><p>3</p></td>
 <td><p>4</p></td>
 </tr>
-<tr class="row-even"><td><p>1</p></td>
+<tr class="row-odd"><td><p>1</p></td>
 <td><p>2</p></td>
-</tr>
-<tr class="row-odd"><td><p>3</p></td>
-<td><p>4</p></td>
 </tr>
 <tr class="row-even"><td><p>1</p></td>
 <td><p>2</p></td>
 </tr>
 </tbody>
 </table>
-<p><span class="math notranslate nohighlight">\(S\)</span></p>
+</td>
+    <td>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="head"><p>A</p></th>
-<th class="head"><p>B</p></th>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(S\)</span></p></th>
+<th class="head"><p>﻿</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>1</p></td>
-<td><p>2</p></td>
+<tr class="row-even"><td><p><strong>A</strong></p></td>
+<td><p><strong>B</strong></p></td>
 </tr>
-<tr class="row-odd"><td><p>3</p></td>
-<td><p>4</p></td>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>2</p></td>
 </tr>
 <tr class="row-even"><td><p>3</p></td>
 <td><p>4</p></td>
 </tr>
-<tr class="row-odd"><td><p>5</p></td>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
 <td><p>6</p></td>
 </tr>
 </tbody>
+</table>
 </table>
 <p><span class="math notranslate nohighlight">\(R\cap S\)</span></p>
 <table class="colwidths-auto table">
@@ -2599,49 +2674,58 @@ Das Tupel t erscheint in R − S dann genau max(0, n−m) mal.
 Falls t öfter in R als in S vorkommt, bleiben n−m t übrig.
 Falls t öfter in S als in R vorkommt, bleibt kein t übrig, da es keine Negativtupel gibt.
 Jedes Vorkommen von t in S eliminiert ein t in R.</p>
-<p><span class="math notranslate nohighlight">\(R\)</span></p>
+<table>
+    <td>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="head"><p>A</p></th>
-<th class="head"><p>B</p></th>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(R\)</span></p></th>
+<th class="head"><p>﻿</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>1</p></td>
-<td><p>2</p></td>
-</tr>
-<tr class="row-odd"><td><p>3</p></td>
-<td><p>4</p></td>
-</tr>
-<tr class="row-even"><td><p>1</p></td>
-<td><p>2</p></td>
+<tr class="row-even"><td><p><strong>A</strong></p></td>
+<td><p><strong>B</strong></p></td>
 </tr>
 <tr class="row-odd"><td><p>1</p></td>
 <td><p>2</p></td>
 </tr>
-</tbody>
-</table>
-<p><span class="math notranslate nohighlight">\(S\)</span></p>
-<table class="colwidths-auto table">
-<thead>
-<tr class="row-odd"><th class="head"><p>A</p></th>
-<th class="head"><p>B</p></th>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>4</p></td>
 </tr>
-</thead>
-<tbody>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>2</p></td>
+</tr>
 <tr class="row-even"><td><p>1</p></td>
 <td><p>2</p></td>
 </tr>
-<tr class="row-odd"><td><p>3</p></td>
-<td><p>4</p></td>
+</tbody>
+</table>
+</td>
+    <td>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(S\)</span></p></th>
+<th class="head"><p>﻿</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>A</strong></p></td>
+<td><p><strong>B</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>2</p></td>
 </tr>
 <tr class="row-even"><td><p>3</p></td>
 <td><p>4</p></td>
 </tr>
-<tr class="row-odd"><td><p>5</p></td>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
 <td><p>6</p></td>
 </tr>
 </tbody>
+</table>
 </table>
 <p><span class="math notranslate nohighlight">\(R -S\)</span></p>
 <table class="colwidths-auto table">
@@ -3331,53 +3415,63 @@ In der Veranschaulichung 1, haben wir die Relationen R uns S gegeben:
 <div class="section" id="outer-union">
 <h2><span class="section-number">8.25. </span>Outer Union (⊎)<a class="headerlink" href="#outer-union" title="Permalink to this headline">¶</a></h2>
 <p>Beim Outer Union werden inkompatible Schemata auch vereinigt. Das Schema besteht dann aus Vereinigung der Attributmengen, wobei fehlende Werte werden mit Nullwerten ergänzt werden. In dem Beispiel unten können nur die Attribute B, C vereinigt werden. Bei den restlichen Attributen A, D wird die fehlende Spalte mit Nullwerten aufgefüllt.</p>
-<p><span class="math notranslate nohighlight">\(R\)</span></p>
+<table>
+    <td>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="head"><p>A</p></th>
-<th class="head"><p>B</p></th>
-<th class="head"><p>C</p></th>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(R\)</span></p></th>
+<th class="head"><p>﻿</p></th>
+<th class="head"><p>﻿</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>1</p></td>
+<tr class="row-even"><td><p><strong>A</strong></p></td>
+<td><p><strong>B</strong></p></td>
+<td><p><strong>C</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
 <td><p>2</p></td>
 <td><p>3</p></td>
 </tr>
-<tr class="row-odd"><td><p>6</p></td>
+<tr class="row-even"><td><p>6</p></td>
 <td><p>7</p></td>
 <td><p>8</p></td>
 </tr>
-<tr class="row-even"><td><p>9</p></td>
+<tr class="row-odd"><td><p>9</p></td>
 <td><p>7</p></td>
 <td><p>8</p></td>
 </tr>
 </tbody>
 </table>
-<p><span class="math notranslate nohighlight">\(S\)</span></p>
+</td>
+    <td>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="head"><p>B</p></th>
-<th class="head"><p>C</p></th>
-<th class="head"><p>D</p></th>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(S\)</span></p></th>
+<th class="head"><p>﻿</p></th>
+<th class="head"><p>﻿</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>2</p></td>
+<tr class="row-even"><td><p><strong>B</strong></p></td>
+<td><p><strong>C</strong></p></td>
+<td><p><strong>D</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
 <td><p>5</p></td>
 <td><p>6</p></td>
 </tr>
-<tr class="row-odd"><td><p>2</p></td>
+<tr class="row-even"><td><p>2</p></td>
 <td><p>3</p></td>
 <td><p>5</p></td>
 </tr>
-<tr class="row-even"><td><p>7</p></td>
+<tr class="row-odd"><td><p>7</p></td>
 <td><p>8</p></td>
 <td><p>10</p></td>
 </tr>
 </tbody>
 </table>
-<p><span class="math notranslate nohighlight">\(R⊎S\)</span></p>
+</table><p><span class="math notranslate nohighlight">\(R⊎S\)</span></p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>A</p></th>

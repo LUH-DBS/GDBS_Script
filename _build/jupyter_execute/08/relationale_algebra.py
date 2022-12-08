@@ -103,19 +103,26 @@
 # Das Beispiel zeigt zwei Tabellen R und S mit jeweils Name, Adresse, Geschlecht und Geburt. 
 # Wenn man diese Relationen miteinander vereinigt, erhält man eine neue Relation, in der das Tupel mit "Carrie Fisher" nur ein Mal vorkommt. 
 
-# $R$
-# 
-# |Name|Adresse|Geschlecht|Geburt|
+# <table>
+#     <td>
+#          
+# |$R$|&#xfeff;|&#xfeff;|&#xfeff;|
 # |----|-------|----------|------|
+# |**Name**|**Adresse**|**Geschlecht**|**Geburt**|
 # |Carrie Fisher|123 Maple St., Hollywood|F|9/9/99|
 # |Mark Hamill|456 Oak. Rd., Brentwood|M|8/8/88|
-
-# $S$
 # 
-# |Name|Adresse|Geschlecht|Geburt|
+# </td>
+#     <td>
+# 
+# |$S$|&#xfeff;|&#xfeff;|&#xfeff;|
 # |----|-------|----------|------|
+# |**Name**|**Adresse**|**Geschlecht**|**Geburt**|
 # |Carrie Fisher|123 Maple St., Hollywood|F|9/9/99|
 # |Harrison Ford|789 Palm Dr., Beverly Hills|M|7/7/77|
+#         
+#       
+# </table>
 
 # $R \cup S$
 # 
@@ -139,19 +146,27 @@
 
 # Sowohl in der Relation R, als auch in der Relation S, gibt es das gleiche Tupel mit "Carrie Fisher". Bei der Differenz (R-S) wird das in beiden vorkommende Tupel eliminiert. 
 
-# $R$
-# 
-# |Name|Adresse|Geschlecht|Geburt|
-# |----|-------|----------|------|
+# <table>
+#     <td>
+#          
+# |$R$|&#xfeff;|&#xfeff;|&#xfeff;|
+# |---------|--------|--------|--------|
+# |**Name**|**Adresse**|**Geschlecht**|**Geburt**|
 # |Carrie Fisher|123 Maple St., Hollywood|F|9/9/99|
 # |Mark Hamill|456 Oak. Rd., Brentwood|M|8/8/88|
-
-# $S$
 # 
-# |Name|Adresse|Geschlecht|Geburt|
+# </td>
+#     <td>
+# 
+# |$S$|&#xfeff;|&#xfeff;|&#xfeff;|
 # |----|-------|----------|------|
+# |**Name**|**Adresse**|**Geschlecht**|**Geburt**|
 # |Carrie Fisher|123 Maple St., Hollywood|F|9/9/99|
 # |Harrison Ford|789 Palm Dr., Beverly Hills|M|7/7/77|
+#         
+#       
+# </table>
+# 
 
 # $R-S$
 # 
@@ -173,19 +188,27 @@
 
 # In Relation R sowie in Relation S gibt es ein identisches "Carrie Fisher" Tupel. Bildet man die Schnittmenge der beiden Relationen ($R\cap S$), sind in der Ergebnisrelation alle Tupel, die sowohl in R, als auch in S vorkommen. In diesem Fall wäre es nur das Tupel mit "Carrie Fisher". 
 
-# $R$
-# 
-# |Name|Adresse|Geschlecht|Geburt|
-# |----|-------|----------|------|
+# <table>
+#     <td>
+#          
+# |$R$|&#xfeff;|&#xfeff;|&#xfeff;|
+# |---------|--------|--------|--------|
+# |**Name**|**Adresse**|**Geschlecht**|**Geburt**|
 # |Carrie Fisher|123 Maple St., Hollywood|F|9/9/99|
 # |Mark Hamill|456 Oak. Rd., Brentwood|M|8/8/88|
-
-# $S$
 # 
-# |Name|Adresse|Geschlecht|Geburt|
+# </td>
+#     <td>
+# 
+# |$S$|&#xfeff;|&#xfeff;|&#xfeff;|
 # |----|-------|----------|------|
+# |**Name**|**Adresse**|**Geschlecht**|**Geburt**|
 # |Carrie Fisher|123 Maple St., Hollywood|F|9/9/99|
 # |Harrison Ford|789 Palm Dr., Beverly Hills|M|7/7/77|
+#         
+#       
+# </table>
+# 
 
 # $R\cap S$
 # 
@@ -299,20 +322,26 @@
 
 # Das Beispiel zum Kartesischen Produkt zeigt zwei Relationen R und S, die mittels Kreuzprodukt kombiniert werden. Dazu werden alle möglichen Kombinationen der Tupel gebildet. Die Relationen R und S haben ein Attribut mit dem selben Namen (B). In der neuen Ergbnisrelation wird das Attribut jeweils eindeutig umbenannt. Bei der Umbennenung wird als Präfix der Relationsname vor das Attribut geschrieben: R.B und S.B.
 
-# $R$
 # 
+# $R$ 
+#         
 # |A|B|
 # |-|-|
 # |1|2|
 # |3|4|
-
-# $S$
+#         
+# <br><br>
 # 
+# $S$
+#         
 # |B|C|D|
 # |-|-|-|
 # |2|5|6|
 # |4|7|8|
 # |9|10|11|
+#         
+# 
+# 
 
 # $R \times S$
 # 
@@ -363,6 +392,7 @@
 # <br>
 # 
 
+# 
 # $R$
 # 
 # |A|B|
@@ -401,21 +431,30 @@
 # Bei dem zweiten Beispiel gibt es mehr als ein gemeinsames Attribut. Es stimmen in R und S die zwei Attribute B und C überein. B und C müssen somit gleichzeitig bei jedem Join übereinstimmen. <br>Obwohl der Wert von B (2) im ersten Tupel beider Relationen übereinstimmt, können diese nicht gejoint werden. Der Grund dafür sind unterschiedliche Werte (3 != 5) im Attribut C. <br>
 # Das erste Tupel aus R und das zweite Tupel aus S haben wiederum in B und C die gleichen Werte und können somit gejoint werden. Genauso haben das zweite und dritte Tupel von R die gleichen Werte in B und C wie das dritte Tupel von S. Das dritte Tupel in S wird also mit mehr als einem Partner verknüpft. 
 
-# $R$
 # 
-# |A|B|C|
+# <table>
+#     <td>
+#          
+# |$R$|&#xfeff;|&#xfeff;|
 # |-|-|-|
+# |**A**|**B**|**C**|
 # |1|2|3|
 # |6|7|8|
 # |9|7|8|
-
-# $S$
 # 
-# |B|C|D|
+# </td>
+#     <td>
+# 
+# |$S$|&#xfeff;|&#xfeff;|
 # |-|-|-|
+# |**B**|**C**|**D**|
 # |2|5|6|
 # |2|3|5|
 # |7|8|10|
+#         
+#       
+# </table>
+# 
 
 # $R ⋈ S$
 # 
@@ -441,21 +480,28 @@
 
 # Im ersten Beispiel sollen R und S gejoint werden, wenn der Wert vom Attribut A kleiner als der von D ist. Zunächst wird das erste Tupel von R mit allen Tupeln von S verglichen. In jedem Fall stimmt die Bedingung und die Tupel können verbunden werden. Analog werden die weiteren Tupel von R mit denen von S verglichen und gegebenenfalls verbunden.
 
-# $R$
-# 
-# |A|B|C|
+# <table>
+#     <td>
+#          
+# |$R$|&#xfeff;|&#xfeff;|
 # |-|-|-|
+# |**A**|**B**|**C**|
 # |1|2|3|
 # |6|7|8|
 # |9|7|8|
-
-# $S$
 # 
-# |B|C|D|
+# </td>
+#     <td>
+# 
+# |$S$|&#xfeff;|&#xfeff;|
 # |-|-|-|
+# |**B**|**C**|**D**|
 # |2|5|6|
 # |2|3|5|
 # |7|8|10|
+#         
+#       
+# </table>
 
 # $R ⋈_{A<D}S$
 # 
@@ -683,23 +729,31 @@
 # Seien R und S jeweils eine Multimenge. Ein Tupel t erscheint n-mal in R und m-mal in S. Ein Tupel t erscheint in R $\cup$ S genau (n+m) mal.<br>
 # Im Beispiel kommt das Tupel (1,2) in R 3-mal und S nur 1-mal vor. Somit erscheint in R $\cup$ das Tupel n+m = 3+1 = 4-mal. 
 
-# $R$
-# 
-# |A|B|
+# <table>
+#     <td>
+#          
+# |$R$|&#xfeff;|
 # |-|-|
+# |**A**|**B**|
 # |1|2|
 # |3|4|
 # |1|2|
 # |1|2|
-
-# $S$
 # 
-# |A|B|
+# </td>
+#     <td>
+# 
+# |$S$|&#xfeff;|
 # |-|-|
+# |**A**|**B**|
 # |1|2|
 # |3|4|
 # |3|4|
 # |5|6|
+#         
+#       
+# </table>
+# 
 
 # $R \cup S$
 # 
@@ -721,24 +775,31 @@
 # Das Tupel t erscheint in R $\cap$ S, dann genau min(n,m) mal.<br>
 # Das Tupel (1,2) kommt in Relation R 3-mal und in S 1-mal vor. Somit erscheint es in R $\cap$ S genau min(3,1) = 1-mal. 
 
-# $R$
-# 
-# |A|B|
+# <table>
+#     <td>
+#          
+# |$R$|&#xfeff;|
 # |-|-|
+# |**A**|**B**|
 # |1|2|
 # |3|4|
 # |1|2|
-# |3|4|
 # |1|2|
-
-# $S$
 # 
-# |A|B|
+# </td>
+#     <td>
+# 
+# |$S$|&#xfeff;|
 # |-|-|
+# |**A**|**B**|
 # |1|2|
 # |3|4|
 # |3|4|
 # |5|6|
+#         
+#       
+# </table>
+# 
 
 # $R\cap S$
 # 
@@ -757,23 +818,31 @@
 # Falls t öfter in S als in R vorkommt, bleibt kein t übrig, da es keine Negativtupel gibt.
 # Jedes Vorkommen von t in S eliminiert ein t in R.
 
-# $R$
-# 
-# |A|B|
+# <table>
+#     <td>
+#          
+# |$R$|&#xfeff;|
 # |-|-|
+# |**A**|**B**|
 # |1|2|
 # |3|4|
 # |1|2|
 # |1|2|
-
-# $S$
 # 
-# |A|B|
+# </td>
+#     <td>
+# 
+# |$S$|&#xfeff;|
 # |-|-|
+# |**A**|**B**|
 # |1|2|
 # |3|4|
 # |3|4|
 # |5|6|
+#         
+#       
+# </table>
+# 
 
 # $R -S$
 # 
@@ -1142,21 +1211,28 @@
 # ## Outer Union (⊎)
 # Beim Outer Union werden inkompatible Schemata auch vereinigt. Das Schema besteht dann aus Vereinigung der Attributmengen, wobei fehlende Werte werden mit Nullwerten ergänzt werden. In dem Beispiel unten können nur die Attribute B, C vereinigt werden. Bei den restlichen Attributen A, D wird die fehlende Spalte mit Nullwerten aufgefüllt.
 
-# $R$
-# 
-# |A|B|C|
+# <table>
+#     <td>
+#          
+# |$R$|&#xfeff;|&#xfeff;|
 # |-|-|-|
+# |**A**|**B**|**C**|
 # |1|2|3|
 # |6|7|8|
 # |9|7|8|
-
-# $S$
 # 
-# |B|C|D|
+# </td>
+#     <td>
+# 
+# |$S$|&#xfeff;|&#xfeff;|
 # |-|-|-|
+# |**B**|**C**|**D**|
 # |2|5|6|
 # |2|3|5|
 # |7|8|10|
+#         
+#       
+# </table>
 
 # $R⊎S$
 # 
