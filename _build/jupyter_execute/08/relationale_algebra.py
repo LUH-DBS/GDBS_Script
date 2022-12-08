@@ -9,16 +9,11 @@
 
 # ## Einführung
 
-# In den letzten Kapiteln wurde das Relationsschema mit Basisrelationen, die in der Datenbank gespeichert sind, behandelt. 
-# <br>
-# Jetzt geht es um „abgeleitete“ Relationenschemata mit virtuellen Relationen, die aus den Basisrelationen berechnet werden. 
+# In den letzten Kapiteln wurde das Relationsschema mit Basisrelationen, die in der Datenbank gespeichert sind, behandelt. Jetzt geht es um „abgeleitete“ Relationenschemata mit virtuellen Relationen, die aus den Basisrelationen berechnet werden. 
 # <br>
 # Die „abgeleiteten“ Relationsschemata werden durch Anfragen definiert. 
 # Daher benötigt man eine Anfragesprache. Eine Eigenschaft von ihr ist es, die Basis-Relationen nicht zu verändern, sondern neue Relationen für den Nutzer oder für die Applikation zu generieren.
-# <br>
-# ~~~~
 # Eine Anfrage an eine Relation und deren Ergebnisse stellen wieder neue Relationen dar. 
-# ~~~~
 # 
 
 # ### Kriterien für Anfragesprachen
@@ -67,29 +62,20 @@
 
 # Bei der relationalen Algebra geht es hauptsächlich um Mengen. Bei normalen Mengen darf kein Tupel doppelt auftauchen. Bei Multimengen können identische Tupel mehrmals vorkommen. Es kann nämlich in einer Datenbanktabelle passieren, dass die Schlüssel nicht ordentlich definiert sind. Dann hat man sozusagen ein „Sack voll mit Tupeln“ (engl. „bag“).   
 # <br>
-# Die Operatoren der relationalen Algebra sind auf Mengen definiert, wohingegen die Operatoren auf einem DBMS (SQL-Anfragen) auf Multimengen definiert sind. Dies hat verschiedene Gründe. Zum Einem kann man hiermit die Effizienz beeinflussen bzw. steigern. Dazu kann man sich überlegen wie man eine Vereinigung als Multimenge und eine Vereinigung als Menge implementiert. 
+# Die Operatoren der relationalen Algebra sind auf Mengen definiert, wohingegen die Operatoren auf einem DBMS (SQL-Anfragen) auf Multimengen definiert sind. Dies hat verschiedene Gründe. Zum Einem wird hiermit die Effizienz beeinflusst bzw. gesteigert. Dazu kann man sich überlegen wie man eine Vereinigung als Multimenge und eine Vereinigung als Menge implementiert. 
 
 # ## Basisoperatoren
 
-# ## Klassifikation der Operatoren
+# Die Basisoperatoren der Relationalen Algebra werden in verschiedene Klassen eingeteilt. In diesem Unterkapitel wird zudem auf verschiedene Operatoren noch genauer eingegangen. 
 
-# Die bereits bekannten Mengenoperatoren 
-# <br>
-# □ Vereinigung, Schnittmenge, Differenz 
-# <br><br>
-# Entfernende Operatoren werden auf einzelnen Elemente angewandt. 
-# <br>
-# □ Selektion, Projektion
-# <br><br>
-# Mit kombinierenden Operatoren kann man mehrere Relationen miteinander verbinden und neue Kombinationen von Tupeln bilden. Im Gegensatz zu den Mengenoperationen bei denen die Ergebnistupel immer gleich aussehen, kann es bei den kombinierenden Operatoren dazu kommen, dass die Ergebnistupel in ihren Attributen unterschiedlich aussehen. 
-# <br>
-# □ Kartesisches Produkt, Join, Joinvarianten 
-# <br><br>
-# Die Umbenennung ist die einzige Ooeration, die nicht die Tupel verändert, sondern das Schema. 
-# <br><br>
+# ### Klassifikation der Operatoren
+
+# Die bereits bekannten Mengenoperatoren sind die Vereinigung, Schnittmenge und die Differenz. Hinzu kommen entfernende Operatoren. Diese werden auf einzelne Elemente angewandt. Dazu zählen Selektionen und Projektionen.<br>
+# Mit kombinierenden Operatoren kann man mehrere Relationen miteinander verbinden und neue Kombinationen von Tupeln bilden. Im Gegensatz zu den Mengenoperationen bei denen die Ergebnistupel immer gleich aussehen, kann es bei den kombinierenden Operatoren dazu kommen, dass die Ergebnistupel in ihren Attributen unterschiedlich aussehen. Typische Operatoren dafür sind das Kartesische Produkt, ein Join bzw. die verschiedenen Joinvarianten. <br>
+# Die Umbenennung ist die einzige Ooeration, die nicht die Tupel verändert, sondern das Schema. <br>
 # Ein Ausdruck in der Relationlen Algebra besteht aus einer Kombination von Operatoren und Operanden, auch Anfragen (queries) genannt. 
 
-# ## Vereinigung (union, $\cup$)
+# ### Vereinigung (union, $\cup$)
 
 # Die Vereinigung sammelt Elemente (Tupel) zweier Relationen unter einem gemeinsamen Schema auf.
 # - R ∪ S := {t | t $\in$ R $\vee$ t $\in$ S}
@@ -97,8 +83,6 @@
 # Um eine Vereinigung anwenden zu können, müssen die Attributmengen beider Relationen identisch sein. Dazu gehören die Namen, Typen und die Reihenfolge. Wenn man beispielsweise die Attribute  in einer Tabelle in einem anderen Format hat als in der Anderen und die Werte vom gleichen Typ sind, kann mam diese Umbenennen und dennoch eine Vereinigung bilden. 
 # <br>
 # Ein Element ist nur einmal in der Vereinigung von R und S (R ∪ S) vertreten, auch wenn es jeweils einmal in R und S auftaucht. Es kommt zu einer Duplikatentfernung.
-
-# ## Beispiel für Mengenoperatoren
 
 # Das Beispiel zeigt zwei Tabellen R und S mit jeweils Name, Adresse, Geschlecht und Geburt. 
 # Wenn man diese Relationen miteinander vereinigt, erhält man eine neue Relation, in der das Tupel mit "Carrie Fisher" nur ein Mal vorkommt. 
@@ -132,7 +116,7 @@
 # |Mark Hamill|456 Oak. Rd., Brentwood|M|8/8/88|
 # |Harrison Ford|789 Palm Dr., Beverly Hills|M|7/7/77|
 
-# ## Differenz (difference, ―, \\)
+# ### Differenz (difference, ―, \\)
 
 # Die Differenz in der Relationalen Algebra ist sehr ähnlich zu der aus der Mathematik. <br> 
 # Die Differenz von R und S (R − S) eliminiert die Tupel aus der ersten Relation, die auch in der zweiten Relation vorkommen. Die Schemata beider Relationen müssen für eine Differenz gleich sein. 
@@ -142,9 +126,7 @@
 # Die Kommutativität gilt bei der Differenz nicht:
 # - R − S ≠ S − R
 
-# ## Beispiel für Mengenoperatoren
-
-# Sowohl in der Relation R, als auch in der Relation S, gibt es das gleiche Tupel mit "Carrie Fisher". Bei der Differenz (R-S) wird das in beiden vorkommende Tupel eliminiert. 
+# In dem folgendem Beispiel gibt es sowohl in der Relation R, als auch in der Relation S, das gleiche Tupel mit "Carrie Fisher". Bei der Differenz (R-S) wird das in beiden vorkommende Tupel eliminiert. 
 
 # <table>
 #     <td>
@@ -174,7 +156,7 @@
 # |----|-------|----------|------|
 # |Mark Hamill|456 Oak. Rd., Brentwood|M|8/8/88|
 
-# ## Schnittmenge (intersection, $\cap$)
+# ### Schnittmenge (intersection, $\cap$)
 
 # Die Schnittmenge R $\cap$ S ergibt die Tupel, die in beiden Relationen gemeinsam vorkommen.<br>
 # - R $\cap$ S := {t | t $\in$ R $\wedge$ t $\in$ S}
@@ -184,9 +166,7 @@
 
 # ![title](schnittmenge.jpg)
 
-# ## Beispiel für Mengenoperatoren
-
-# In Relation R sowie in Relation S gibt es ein identisches "Carrie Fisher" Tupel. Bildet man die Schnittmenge der beiden Relationen ($R\cap S$), sind in der Ergebnisrelation alle Tupel, die sowohl in R, als auch in S vorkommen. In diesem Fall wäre es nur das Tupel mit "Carrie Fisher". 
+# Das Beispiel dazu zeigt zwei Relationen R und S. In Relation R, sowie in Relation S, gibt es ein identisches "Carrie Fisher" Tupel. Bildet man die Schnittmenge der beiden Relationen ($R\cap S$), sind in der Ergebnisrelation alle Tupel, die sowohl in R, als auch in S vorkommen. In diesem Fall wäre es nur das Tupel mit "Carrie Fisher". 
 
 # <table>
 #     <td>
@@ -216,7 +196,7 @@
 # |----|-------|----------|------|
 # |Carrie Fisher|123 Maple St., Hollywood|F|9/9/99|
 
-# ## Projektion (projection, $\pi$)
+# ### Projektion (projection, $\pi$)
 
 # Die Projektion ist ein unärer Operator. Sie erzeugt eine neue Relation mit einer Teilmenge der ursprünglichen Attribute.<br>
 # Angenommen man projiziert auf eine Relation R mit den Attributen A1 bis Ak: $\pi_{A1,A2,…,Ak}$(R). Als Ergbnis erhält man eine neue Relation mit einer Teilmenge der ursprünglichen Attribute von R. Die Reihenfolge der Attribute entspricht üblicherweise der aufgelisteten Reihenfolge.<br><br>
@@ -235,8 +215,6 @@
 # |A|B|
 # |-|-|
 # |1|1|
-
-# ## Projektion – Beispiel
 
 # Hier sind zwei weitere Beispiele zu Projektionen anhand einer Film-Tabelle dargestellt. <br>
 # Im ersten Beispiel werden bei der Projektion nur die Spalten Titel, Jahr und Länge behalten. Die anderen Spalten werden weggeschnitten. <br>
@@ -265,7 +243,7 @@
 # |True|
 # |False|
 
-# ## Erweiterte Projektion
+# ### Erweiterte Projektion
 
 # Die Relationale Algebra erlaubt es den Projektionsoperator mehr Fähigkeiten zu geben. Bei der einfachen Projektion zuvor ($\pi_{L}$(R)) war das L dabei 'nur' eine Attributliste. Die erweiterte Projektion kann neben der Attributliste auch andere Ausdrücke an der Stelle des L's stehen haben. <br>
 # Ein anderer Ausdruck wäre A→B, wobei A ein Attribut in R und B ein neuer Name ist. Dies entspricht einer Umbenennung von Attributen. <br>
@@ -273,7 +251,7 @@
 # - A1 + A2 → Summe
 # - Vorname || \` \` || Nachname → Name
 
-# ## Selektion (selection, $\sigma$)
+# ### Selektion (selection, $\sigma$)
 
 # Ein weiterer unärer Operator ist die Selektion. Sie erzeugt eine neue Relation mit gleichem Schema, aber einer Teilmenge der Tupel. Einfach ausgedrückt kann man sagen, dass eine Selektion die Anzahl der Tupel reduziert.  <br>
 # Nur Tupel, die der Selektionsbedingung C (condition) entsprechen, werden in die neu erzeugte Relation übernommen. Für jedes Tupel wird somit einmal die Bedingung geprüft. Es handelt sich bei den Selektionsbedingungen um boolesche Selektionsbedingungen wie man sie aus Programmiersprachen kennt. <br>
@@ -282,8 +260,6 @@
 # <br>
 # Nicht zu verwechseln sind die Selektion aus der Relationalen Algebra mit dem SELECT aus SQL. Das SELECT entspricht in der Relationalen Algebra einer Projektion. Die Selektion wiederrum entspricht in SQL einer WHERE-Bedingung:
 # - Selektion $\neq$ SELECT
-
-# ## Selektion – Beispiel
 
 # Die Beispiele zeigen verschiedene Selektionen auf einer gegebenen Film-Relation. <br>
 # Im ersten Beispiel werden alle Filme selektiert, dessen Länge größer oder gleich 100 Minuten ist. <br>
@@ -310,15 +286,13 @@
 # |-----|----|-----|-------|------|---------|
 # |Total Recall|1990|113|True|Fox|12345|
 
-# ## Kartesisches Produkt (Cartesian product, cross product $\times$)
+# ### Kartesisches Produkt (Cartesian product, cross product $\times$)
 
 # Das Kartesische Produkt ist ein binärer Operator. Benannt worden ist es nach René Descartes. Ein französischer Naturwissenschaftler, Mathematiker und Philosoph. Das Kartesische Produkt ist auch unter anderen Namen wie Kreuzprodukt oder Produkt bekannt. Außerdem gibt es verschiedene Schreibweisen dafür: R * S statt R $\times$ S
 # <br><br>
 # Das Kreuzprodukt zweier Relationen R und S ist die Menge aller Tupel, die man erhält, wenn man jedes Tupel aus R mit jedem Tupel aus S kombiniert. Das Schema hat ein Attribut für jedes Attribut aus R und S. Bei Namensgleichheit von zwei oder mehreren Attributen wird kein Attribut ausgelassen, stattdessen werden sie eindeutig umbenannt. 
 
 # ![title](descartes.jpg)
-
-# ## Kartesisches Produkt – Beispiel
 
 # Das Beispiel zum Kartesischen Produkt zeigt zwei Relationen R und S, die mittels Kreuzprodukt kombiniert werden. Dazu werden alle möglichen Kombinationen der Tupel gebildet. Die Relationen R und S haben ein Attribut mit dem selben Namen (B). In der neuen Ergbnisrelation wird das Attribut jeweils eindeutig umbenannt. Bei der Umbennenung wird als Präfix der Relationsname vor das Attribut geschrieben: R.B und S.B.
 
@@ -354,7 +328,7 @@
 # |3|4|4|7|8|
 # |3|4|9|10|11|
 
-# ## Der Join – Operatorfamilie
+# ### Der Join – Operatorfamilie
 
 # Die folgenden Joins bilden eine Übersicht über die Joins, die in dieser Veranstaltung genauer betrachtet werden:
 # - Natürlicher Join (natural join)
@@ -386,11 +360,7 @@
 # Dabei muss noch projiziert und umbenannt werden, um die Vereinigung richtig zu erwirken.
 # - R ⋈ S = s r[A1]=s[A1] $\wedge$ … $\wedge$ r[Ak]=s[Ak](R × S)
 
-# ### Natürlicher Join – Beispiele
-
-# Die ursprünglichen Tabellen sind R und S. Auf diesen beiden wird ein natürlicher Join ausgeführt. Dabei wird nur auf gleichen Attributen gejoint. In diesem Fall ist es das Attribut B. R und S stimmen in B in den Werten 2 und 4 überein. Das übrig gebliebene Tupel mit der 9 in B, muss somit nicht mehr kombiniert werden. <br>
-# <br>
-# 
+# Dazu ein Beispiel: Die ursprünglichen Tabellen sind R und S. Auf diesen beiden wird ein natürlicher Join ausgeführt. Dabei wird nur auf gleichen Attributen gejoint. In diesem Fall ist es das Attribut B. R und S stimmen in B in den Werten 2 und 4 überein. Das übrig gebliebene Tupel mit der 9 in B, muss somit nicht mehr kombiniert werden. 
 
 # 
 # $R$
@@ -476,9 +446,7 @@
 # - R(A,B,C) ⋈ S(B,C,D) <br>
 # = $\rho_{T(A,B,C,D)}$($\pi_{A,R.B,R.C,D}$($\sigma_{(R.B=S.B AND R.C = S.C)}$ ($R \times S$)))
 
-# ### Theta-Join – Beispiel
-
-# Im ersten Beispiel sollen R und S gejoint werden, wenn der Wert vom Attribut A kleiner als der von D ist. Zunächst wird das erste Tupel von R mit allen Tupeln von S verglichen. In jedem Fall stimmt die Bedingung und die Tupel können verbunden werden. Analog werden die weiteren Tupel von R mit denen von S verglichen und gegebenenfalls verbunden.
+# Im ersten Beispiel zum Theta-Join werden R und S gejoint, wenn der Wert vom Attribut A kleiner als der von D ist. Zunächst wird das erste Tupel von R mit allen Tupeln von S verglichen. In jedem Fall stimmt die Bedingung und die Tupel können verbunden werden. Analog werden die weiteren Tupel von R mit denen von S verglichen und gegebenenfalls verbunden.
 
 # <table>
 #     <td>
@@ -549,9 +517,7 @@
 # 
 # Generell gibt es aber viele verschiedene Möglichkeiten wie ein solcher Ausdruck formuliert wird. 
 
-# ### Komplexe Ausdrücke – Beispiel
-
-# Das Beispiel zeigt wie ein Baum von innen heraus aufgespannt wird. Dabei wird mit der Film Relation und den Selektionen darauf begonnen. Danach werden die Ergebnisrelationen beider Selektionen durch eine Schnittmenge verbunden. Zuletzt wird durch die Projektion die Spalten Titel und Jahr ausgegeben. 
+# Das folgende Beispiel zeigt wie ein Baum von innen heraus aufgespannt wird. Dabei wird mit der Film Relation und den Selektionen darauf begonnen. Danach werden die Ergebnisrelationen beider Selektionen durch eine Schnittmenge verbunden. Zuletzt wird durch die Projektion die Spalten Titel und Jahr ausgegeben. 
 # - $\rho_{Titel,Jahr}$($\sigma_{Länge≥100(Film)}$ $\cap$ $\sigma_{StudioName=‚Fox‘}$(Film))
 
 # ![title](komplex_bsp1.jpg)
@@ -559,7 +525,9 @@
 # Zu der Alternative sähe der Baum dementsprechend anders aus. Er würde nur aus einer Film Relation, einer Selektion mit längerer Selektionsbedingung und einer Projektion bestehen. Letztendlich kommt bei beiden Ausdrücken die selbe Relation heraus.
 # - $\rho_{Titel,Jahr}$($\sigma_{Länge≥100 AND StudioName=‚Fox‘}$(Film))
 
-# ### Komplexe Ausdrücke – Beispiel
+# Gegeben sind in diesem Beispiel zwei Relationen: Film und Rolle. Gesucht werden die Namen aller Schauspieler, die in den Filmen mitspielten, die mindestens 100 Minuten lang sind. <br>
+# Die Schauspielernamen sind in einer anderen Tabelle als die Filme. Die Tabellen müssen irgendwie verlinkt werden. Dazu eignet sich die beiden Relationen (mittels einem natürlichen Join) zu joinen (Film ⋈ Rolle). Aus dieser Ergebnisrelation werden alle Filme selektiert, die mindestens 100 Minuten lang sind ($\sigma_{Länge≥100}$(...)). Da nur nach den Schauspielernamen gesucht wird, wird auf den Schauspielernamen projiziert ($\rho_{SchauspName}$(...)). 
+# - $\rho_{SchauspName}$($\sigma_{Länge≥100}$(Film ⋈ Rolle))
 
 # Film
 # 
@@ -578,11 +546,7 @@
 # |Total Recall|1990|Arnold|
 # |Dead Man|1995|Johnny Depp|
 
-# Gegeben sind in diesem Beispiel zwei Relationen: Film und Rolle. Gesucht werden die Namen aller Schauspieler, die in den Filmen mitspielten, die mindestens 100 Minuten lang sind. <br>
-# Die Schauspielernamen sind in einer anderen Tabelle als die Filme. Die Tabellen müssen irgendwie verlinkt werden. Dazu eignet sich die beiden Relationen (mittels einem natürlichen Join) zu joinen (Film ⋈ Rolle). Aus dieser Ergebnisrelation werden alle Filme selektiert, die mindestens 100 Minuten lang sind ($\sigma_{Länge≥100}$(...)). Da nur nach den Schauspielernamen gesucht wird, wird auf den Schauspielernamen projiziert ($\rho_{SchauspName}$(...)). 
-# - $\rho_{SchauspName}$($\sigma_{Länge≥100}$(Film ⋈ Rolle))
-
-# ### Komplexe Ausdrücke – Beispiel
+# Zum Verständnis noch ein weiteres Beispiel:
 
 # - Stud(Matrikel, Name, Semester)
 # - Prof(ProfName, Fachgebiet, GebJahr)
@@ -613,9 +577,7 @@
 # Bei Joins, wo bisher kartesische Produkte verwendet wurden, können mit einer Umbenennung die unterschiedlichen Attribute gleich benannt und darüber gejoint werden. <br>
 # Bei kartesischen Produkten, bei denen bisher Joins ausgeführt wurden, können gleiche Attribute unterschiedlich genannt werden. 
 
-# ### Umbenennung – Beispiel
-
-# In diesem Beispiel sollen zwei Relationen R und S mittels dem Kreuzprodukt verbunden werden. Damit die Attribute B nicht gleich heißen, wird das B aus der S-Relation in X umbenannt. 
+# In diesem Beispiel zum Operator Umbenennung sollen zwei Relationen R und S mittels dem Kreuzprodukt verbunden werden. Damit die Attribute B nicht gleich heißen, wird das B aus der S-Relation in X umbenannt. 
 
 # $R$
 # 
@@ -659,7 +621,7 @@
 # 
 # Dennoch werden redundante Operatoren wie der Join häufig verwendet. Der Grund dafür ist die Übersichtlichkeit der Ausdrücke, wie man sehr gut am Beispiel für den natürlichen Join sehen kann. 
 
-# ## Vorschau zu Optimierung
+# ### Vorschau zu Optimierung
 
 # Um Optimierung zu betreiben, müssen für die vorhandenen Ausdrücke äquivalente Umformungen bekannt sein, mit denen man sie gegebenenfalls austauschen kann. 
 # Dazu ein paar Beispiele für algebraische Regeln bei der Transformation:<br>
@@ -810,7 +772,7 @@
 # |3|4|
 # 
 
-# ## Differenz auf Multimengen
+# ### Differenz auf Multimengen
 
 # Seien R und S jeweils eine Multimenge. Ein Tupel t erscheint n-mal in R und m-mal in S. <br>
 # Das Tupel t erscheint in R − S dann genau max(0, n−m) mal.
@@ -960,7 +922,7 @@
 
 # Die erweiterten Operatoren machen teilweise nur Sinn je nachdem, ob sie für Mengen oder für Multimengen definiert sind. Meistens ergibt sich aus dem Kontext welche Semantik vorliegt. 
 
-# ## Überblick über Erweiterungen
+# ### Überblick über Erweiterungen
 
 # Eine kurze Übersicht zu den erweiterten Operatoren:
 # - Duplikateliminierung 
@@ -1024,8 +986,6 @@
 # - COUNT(A) = 4
 # - COUNT(B) = 4
 
-# ### Aggregation – Beispiele
-
 # Zu den verschiedenen Aggregationen hier ein Beispiel anhand einer Film Tabelle: 
 
 # Film
@@ -1046,7 +1006,7 @@
 # - COUNT(StudioName): Anzahl Filme
 # - AVG(SchauspName): syntax error
 
-# ### Gruppierung
+# ### Gruppierung (group, $\gamma$)
 
 # Die Gruppierung spielt eine wichtige Rolle im Zusammenhang mit Aggregationen. Sehr oft werden für einzelne Elemente in der Relation Aggregationen durchgeführt. <br>
 # <br>
@@ -1061,8 +1021,6 @@
 # 
 # Um das Gesuchte zu erhalten, wird zunächst nach StudioName gruppiert. Danach wird in jeder Gruppe die Länge der Filme summiert und letztendlich die Paare (Studioname, Summe) ausgegeben.
 
-# ### Gruppierung (group, $\gamma$)
-
 # Der Operator $\gamma$ steht für die Gruppierung. $\gamma_L$(R) ist eine Gruppierung auf einer Relation R, wobei L eine Menge von Attributen ist. Ein Element in L ist entweder ein Gruppierungsattribut nach dem gruppiert wird oder ein Aggregationsoperator auf ein Attribut von R (inkl. neuen Namen für das aggregierte Attribut).
 # <br>
 # Das Ergebnis wird wie folgt konstruiert:
@@ -1072,7 +1030,9 @@
 #     - Wert der Gruppierungsattribute
 #     - Aggregierte Werte über alle Tupel der Gruppe
 
-# #### Gruppierung – Beispiel 1
+# Im Folgenden betrachten wir einige Beispiele, wie Gruppierungen verwendet werden:
+
+# Beispiel 1:
 
 # Film
 # 
@@ -1082,8 +1042,6 @@
 # |Basic Instinct|1992|127|Farbe|Disney|
 # |Dead Man|1995|90|s/w|Paramount|
 
-# Im Folgenden betrachten wir einige Beispiele, wie wir Gruppierungen verwenden:
-# <br><br>
 # - Durchschnittliche Filmlänge pro Studio:
 #     - $\gamma_{Studio, AVG(Länge)→Durchschnittslänge}$(Film)
 #     - Unser Gruppenattribut ist Studio und wir aggregieren über das Attribut Länge, um den Durchschnitt zu ermitteln und benennen zuletzt AVG(Länge) zu Durchschnittslänge um
@@ -1099,13 +1057,12 @@
 #     - In diesem Beispiel sehen wir zwei verschachtelte Gruppierungen. Zuerst zähllen wir alle Filme pro Schauspieler\*in (Ausdruck wie oben) und über die daraus resultierende Relation, berechnen wir den Durchschnitt der Filmanzahl
 #     
 # <br><br>
-# Als Übung können sie zu Hause die folgenden Beispiel in Ausdrücke der Relationalen Algebra umwandeln:
-# <br>
+# Als Übung können sie zu Hause die folgenden Beispiele in Ausdrücke der Relationalen Algebra umwandeln:
 # - Anzahl Schauspieler pro Film
 # - Durchschnittliche Anzahl der Schauspieler pro Film
 # - Studiogründung: Kleinstes Jahr pro Studio
 
-# #### Gruppierung – Beispiel 2
+# Beispiel 2:
 
 # Betrachten wir nun die Relation SpieltIn(Titel, Jahr, SchauspName). Wir möchten für jeden Schauspieler\*in , der/die in mindestens 3 Filmen mitspielte, das Jahr des ersten Filmes.
 # <br>
@@ -1113,7 +1070,8 @@
 # <br><br>
 # $\pi_{SchauspName, MinJahr}(\sigma_{AnzahlTitel≥3}(\gamma_{SchauspName, MIN(Jahr)→MinJahr, COUNT(Titel)→AnzahlTitel}(SpieltIn)))$
 
-# #### Gruppierung – Beispiel 3
+# Beispiel 3:
+
 # Wir haben erneut die Relation SpieltIn(Titel, Jahr, SchauspName) gegeben und möchten für jeden Schauspieler\*in , der/die in mindestens 3 Filmen mitspielte, das Jahr des ersten Filmes **und** zusätzlich den Titel dieses Films. Die  Idee ist genauso wie vorher in Beispiel 2. Jedoch wird anschließend ein Self-Join durchgeführt, um Filmtitel zu bekommen. Ganz zum Schluss wird nach SchauspName gruppiert, um die Gruppe auf einen Film zu reduzieren.
 # <br><br>
 # $\gamma_{SchauspName, MIN(MinJahr)→MinJahr, MIN(Titel)→Titel}( (SpieltIn) ⋈_{SchauspName = SchauspName, MinJahr = Jahr}
@@ -1122,21 +1080,19 @@
 # ) ) )
 # )$
 
-# #### Komplexe Ausdrücke – Beispiele
-# Wir haben folgende Reltionen gegeben:
+# Beispiel 4 mit komplexen Ausdrücken und Gruppierungen:<br>
+# <br>
+# Es sind folgende Relationen gegeben:
 # - Stud(Matrikel, Name, Semester)
 # - Prof(ProfName, Fachgebiet, GebJahr)
 # - VL(VL_ID, Titel, Saal)
 # - Lehrt(ProfName, VL_ID)
 # - Hört(Matrikel,VL_ID)
 # 
-# <br><br>
-# Gesucht werden die Fachgebiete von Professor\*innen, die VL halten, welche weniger als drei Hörer\*Innen haben. Zunächst zählen wir in der Hört-Relation die Anzahl der Matrikelnummern und selektieren, jene die weniger als drei haben. Die resultierende Relation daraus joinen wir mit Prof und Lehrt. Anschließend gruppieren wir nach Fachgebiet. Die Gruppierung fungiert hier wie eine Projektion, es werden jedoch noch Duplikate entfernt.
-# 
+# Gesucht werden die Fachgebiete von Professor\*innen, die VL halten, welche weniger als drei Hörer\*Innen haben. Zunächst zählen wir in der Hört-Relation die Anzahl der Matrikelnummern und selektieren, jene, die weniger als drei haben. Die resultierende Relation daraus joinen wir mit Prof und Lehrt. Anschließend gruppieren wir nach Fachgebiet. Die Gruppierung fungiert hier wie eine Projektion, es werden jedoch noch Duplikate entfernt.
 # 
 # - Mit Gruppierung: $\gamma_{Fachgebiet}$( (Prof ⋈ Lehrt) ⋈ ($\sigma_{ COUNT < 3(gVL_ID,COUNT(Matrikel)-> COUNT}$(Hört)))
 # 
-# <br><br>
 # - Alternativ: $\pi_{Fachgebiet}$( (Prof ⋈ Lehrt) ⋈ ($\sigma_{ COUNT < 3(gVL_ID,COUNT(Matrikel)-> COUNT}$(Hört)))
 
 # ### Sortierung (sort, $\tau$)
@@ -1144,7 +1100,7 @@
 # <br><br>
 # **Wichtig**: Das Ergebnis der Sortierung ist keine Menge, sondern eine Liste. Daher sollte die Sortierung der letzte Operator eines Ausdrucks sein. Ansonsten würden wieder Mengen entstehen und die Sortierung wäre verloren. Trotzdem kann es in DBMS vorteilhaft sein manchmal auch zwischendurch zu sortieren.
 
-# ## Semi-Join (⋊)
+# ### Semi-Join (⋊)
 # In den vorherigen Kapiteln haben wir den Theta- und Natural-Join kennengelernt. Nun wollen wir in den folgenden Kapiteln weitere Joinformen kennenlernen. Wir starten mit dem Semi-Join.
 # <br><br>
 # Formal: Wir haben die Relationen R(A) und S(B) gegeben.
@@ -1161,24 +1117,26 @@
 # <br>
 # Wichtig: Der Semi-Join ist natürlich nicht kommutativ: R ⋉ S ≠ S ⋉ R.
 
-# ### Beispiel 1
+# #### Beispiele zu Semi Joins
+
+# ##### Beispiel 1
 
 # Semi-Joins sind vorallem interessant, wenn Datenbankberechnungen auf verteilten Systemen stattfinden, da so kontrolliert werden kann wie viele der Daten weitergegeben werden. Betrachten wir zur Veranschaulichung ein Beispiel. Angenommen wir haben einen Server, der die Relation R enthält und einen anderen Server, der die Relation S enthält gegeben. Nun möchten wir R ⋉ S durchführen. Eine Möglichkeit wäre es, das Site 1 die komplette Relation S anfordert und den Semi-Join dann durchführt. Jedoch interessiert uns bei S nur das Joinattribut und wir schicken, aber die gesamte Relation, also eine Größe von Länge der Daten multipliziert mit der Länge der Tupel. Ein anderer Weg wäre nur die Joinattribute von S, in diesem Beispiel ID, zu schicken, welches die Kommunikationskosten deutlich verringern würde. Hier ist natürlich vorausgesetzt, dass das System weiß, dass ein Semi-Join durchgeführt werden soll.
 
 # ![title](semijoin1.jpg)
 
-# ### Beispiel 2
+# ##### Beispiel 2:
 
 # Betrachten wir nun einen "komplizierteren" Weg. Wir projezieren auf R und schicken die Joinattribute zu dem Server, auf welchem S liegt und semi-joinen diese. Nun wurde die Tupelanzahl schon verringert und wir schicken, das Ergebnis wieder zur Site 1 un joinen diese wieder mit R. 
 
 # ![title](semijoin2.jpg)
 
-# ### Beispiel 3
+# ##### Beispiel 3
 # In unserem letzten Beispiel haben wir drei Server gegeben. Unser Ziel ist es, dass alle Attribute aus S und R in Site 1 enthalten sind. Der einfache Weg ist beide Relationen komplett rüberzuschicken und zu joinen. Ein anderer Weg wäre die IDs von S zum Server von R zu schicken und diese zu semi-joinen. Dann werden nur jene Tupel die joinbar mit S sind an unseren Zielserver geschickt. Zeitgleich kann ein Semi-Join zwischen S und den zu Site 0 geschickten IDs von R durchgeführt werden. Daraus resultieren jene Tupel von S die joinbar mit R sind und diese werden auf zum Zielserver geschickt. Zum Schluss werden die beiden Relationen verjoint. Die Frage die sich nun stellt, ist wie groß R und S sein müssen, s.d der "kompliziertere" Weg kostengünstiger ist.
 
 # ![title](semijoin3.jpg)
 
-# ## Outer Joins (Äußere Verbünde, |⋈|)
+# ### Outer Joins (Äußere Verbünde, |⋈|)
 # Outer-Joins fungieren so wie wir es bei normalen Joins gewohnt sind, **außer** das „dangling tuples“ nun in das in das Ergebnis mitaufgenommen werden und mit Nullwerten (padding) aufgefüllt werden.
 # <br>
 # - Nullwert: $\perp$ bzw. null (≠ 0)
@@ -1208,7 +1166,7 @@
 # :-------------------------:|:-------------------------:
 # <img src="outerjoin1.jpg" width="400" /> | <img src="outerjoin2.jpg" width="400" />
 
-# ## Outer Union (⊎)
+# ### Outer Union (⊎)
 # Beim Outer Union werden inkompatible Schemata auch vereinigt. Das Schema besteht dann aus Vereinigung der Attributmengen, wobei fehlende Werte werden mit Nullwerten ergänzt werden. In dem Beispiel unten können nur die Attribute B, C vereinigt werden. Bei den restlichen Attributen A, D wird die fehlende Spalte mit Nullwerten aufgefüllt.
 
 # <table>
@@ -1245,7 +1203,7 @@
 # |$\perp$|2|3|5|
 # |$\perp$|7|8|10|
 
-# ## Division (division, /)
+# ### Division (division, /)
 # Der Divionsoperator wird typischerweise nicht als primitiver Operator unterstützt. Er kann jedoch bei speziellen Anfragen vorteilhaft sein.
 # <br>
 # Z.B möchten wir alle Segler\*innen, die alle Segelboote reserviert haben finden. Hier haben wir eine Vorbedingung die gewissermaßen auf die Existenz von Tupeln in anderen Relationen voraussetzt.
@@ -1263,13 +1221,11 @@
 # Sinnvoller: Hole die Namen von Angestellten, die an allen Projekten arbeiten, in denen auch „Thomas Müller“
 # arbeitet.
 
-# ### Division – Beispiel
-
-# Betrachten wir folgendes Beispiel. Relation A hat die Attribute sno und pno und die Relationenn B1, B2, B3 nur das Attribut pno. A/B1 enthält alle sno's die in A mit den pno's aus B1 auftauchen. Der Wert p2 taucht in A mit den sno's s1, s2, s3 und s4 auf, folglich bildet sich A/B1 daraus. Das gilt analog für A/B2 und A/B3.
+# Betrachten wir folgendes Beispiel zur Division. Relation A hat die Attribute sno und pno und die Relationenn B1, B2, B3 nur das Attribut pno. A/B1 enthält alle sno's die in A mit den pno's aus B1 auftauchen. Der Wert p2 taucht in A mit den sno's s1, s2, s3 und s4 auf, folglich bildet sich A/B1 daraus. Das gilt analog für A/B2 und A/B3.
 
 # ![title](division1.jpg)
 
-# ### Division ausdrücken
+# #### Division ausdrücken
 # Die Division ist kein essentieller Operator,sondern lediglich nur eine nützliche Abkürzung. Ebenso wie Joins, aber Joins sind so üblich, dass Systeme sie speziell unterstützen. Die Idee um R/S zu berechnen sieht wei folgt aus: Berechne alle x-Werte, die nicht durch einen y-Wert in S „disqualifiziert“ werden.
 # - x-Wert ist disqualifiziert, falls man durch Anfügen eines y-Wertes ein xy-Tupel erhält, das nicht in R ist.
 # - Disqualifizierte x-Werte: $\pi_{x}$ (($\pi_{x}$(R) $\times$ S) − R)

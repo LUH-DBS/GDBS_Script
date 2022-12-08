@@ -35,9 +35,11 @@
 # 
 # Am Ende wird der ausgewählte Anfrageplan ausgeführt. 
 # 
-# ![title](ablauf_anfragebearbeitung.jpg)
+# <img src="ablauf_anfragebearbeitung.jpg" alt="drawing" width="300"/>
 
 # ## Parsen der Anfrage
+# 
+# Der erste Schritt im Ablauf einer Anfragebearbeitung ist das Parsen der Anfrage. Dazu wird zunächst eine Syntaxanalyse durchgeführt. 
 # 
 # ### Syntaxanalyse
 # Die Aufgabe einer Syntaxanalyse ist die Umwandlung einer SQL Anfrage in einen Parsebaum.<br>
@@ -201,6 +203,8 @@
 
 # ## Optimierung
 # 
+# Weitere Optimierungen haben das Ziel die Anfragen von zuvor noch schneller bearbeiten zu können. 
+# 
 # ### Anfragebearbeitung - Optimierung
 # Bei der Anfragebearbearbeitung wird eine regelbasierte Optimierung durchgeführt. Dabei schreibt ein fester Regelsatz Transformationen vor. Die Transformationen sollen eine Anfrage schneller bearbeiten. <br>
 # Die Prioritäten unter den Regeln werden durch Heuristiken bestimmt. Es ist nach Erfahrung der beste Weg, es muss aber nicht immer der Fall sein. Ein Beispiel einer solchen Optimierung ist das 'pushen' einer Selektion nach unten im Anfragebaum. 
@@ -210,12 +214,11 @@
 # Im Allgemeinen wird nicht die optimale Auswertungsstrategie gesucht, sondern eine einigermaßen effiziente Variante. Sie soll uns dabei helfen den schlimmsten Fall zu verhindern -> Avoid the worst case!
 # 
 # 
-# ### Logische und physische Optimierung
+# ### Logische Optimierung
 # 
-# Logische Optimierung:<br>
 # Bei der logischen Optimierung kann anhand der Transformationsregeln jeder Ausdruck im Anfragebaum in viele verschiedene, semantisch äquivalente Ausdrücke umgeschrieben werden. Dabei wählt man den (hoffentlich) besten Ausdruck (=Plan, =QEP (QueryExecutionPlan)) aus.
-# <br><br>
-# Physische Optimierung:<br>
+# 
+# ### Physische Optimierung
 # Für jede relationale Operation gibt es viele verschiedene Implementierungen: 
 # Zum Beispiel für den Zugriff auf Tabellen kann es ein Scan, verschiedene Indizes, ein sortierter Zugriff, etc. sein. 
 # Genauso bei Joins kann man auch verschiedene Implementierungen wie Nested loop, sort-merge, hash, etc. wählen. 
@@ -315,8 +318,10 @@
 
 # ## Kostenmodelle
 # 
+# Mittels Kostenmodellen sollen Anfrageausführungspläne verglichen und anhand ihrer Kosten bewertet werden, um letztendlich den besten Anfrageausführungsplan auszuwählen. 
+# 
 # ### Kostenbasierte Optimierung
-# Generell müsste man konzeptionell alle denkbaren Anfrageausführungspläne generieren, um den besten darunter auszuwählen. Dabei werden die Kosten der Pläne anhand eines Kostenmodells bewertet.  Hierzu werden Statistiken und Histogramme zur Hilfe genommen. 
+# Generell müsste man konzeptionell alle denkbaren Anfrageausführungspläne generieren, um den besten darunter auszuwählen. Dabei werden die Kosten der Pläne anhand eines Kostenmodells bewertet. Hierzu werden Statistiken und Histogramme zur Hilfe genommen. 
 # Die Statistiken können können vom verfügbaren Speicher oder vom System abhängig sein. Je nach verwendetem Rechner, kann eine Operation eventuell unterschiedlich viel Zeit benötigen. Daher benötigt es eine Kalibrierung gemäß dem verwendetn Rechner.
 # Beim Aufwands-Kostenmodell probiert man meistens den Durchsatz zu maximieren und nicht die Antwortzeit zu minimieren. 
 # <br>
