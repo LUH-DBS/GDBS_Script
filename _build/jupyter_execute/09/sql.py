@@ -72,46 +72,40 @@ get_ipython().run_line_magic('sql', 'sqlite:///salesDB/salesDB.db')
 #  - Adds row pattern matching, polymorphic table functions, JSON.
 # 
 # ### SQL:2008 Struktur
-# ■ Part 1: Framework (SQL/Framework) – 82 Seiten
-# <br>
-# □ Überblick
+# - Part 1: Framework (SQL/Framework) – 82 Seiten
+#     - Überblick
 # <br><br>
-# ■ Part 2: Foundation (SQL/Foundation) – 1316 Seiten
-# <br>
-# □ Datenmodell, DDL, DML, Abfragen
+# - Part 2: Foundation (SQL/Foundation) – 1316 Seiten
+#     - Datenmodell, DDL, DML, Abfragen
 # <br><br>
-# ■ Part 3: Call-Level Interface (SQL/CLI) – 389 Seiten
-# <br>
-# □ Zugriff auf DBMS mittels Funktionsaufrufen aus anderen Programmiersprachen
+# - Part 3: Call-Level Interface (SQL/CLI) – 389 Seiten
+#     - Zugriff auf DBMS mittels Funktionsaufrufen aus anderen Programmiersprachen
 # <br><br>
-# ■ Part 4: Persistent Stored Modules (SQL/PSM) – 188 Seiten
-# <br>
-# □ Prozedurale Erweiterungen
+# - Part 4: Persistent Stored Modules (SQL/PSM) – 188 Seiten
+#     - Prozedurale Erweiterungen
 # <br><br>
-# ■ Part 9: Management of External Data (SQL/MED) – 484 Seiten
-# <br>
-# □ Neue Datentypen und Funktionen
+# - Part 9: Management of External Data (SQL/MED) – 484 Seiten
+#     - Neue Datentypen und Funktionen
 # <br><br>
-# ■ Part 10: Object Language Bindings (SQL/OLB) – 396 Seiten
-# <br>
-# □ Auch (SQLJ); zur Einbettung von SQL in Java
+# - Part 10: Object Language Bindings (SQL/OLB) – 396 Seiten
+#     - Auch (SQLJ); zur Einbettung von SQL in Java
 # <br><br>
-# ■ Part 11: Information and Definition Schemas (SQL/Schemata) – 286 Seiten
-# <br>
-# □ DBMS werden selbst-beschreibend durch normierten Katalog
+# - Part 11: Information and Definition Schemas (SQL/Schemata) – 286 Seiten
+#     - DBMS werden selbst-beschreibend durch normierten Katalog
 # <br><br>
-# ■ Part 13: SQL Routines and Types (SQL/JRT) – 198 Seiten
-# <br>
-# □ Externe Java Routinen als „stored procedures“
+# - Part 13: SQL Routines and Types (SQL/JRT) – 198 Seiten
+#     - Externe Java Routinen als „stored procedures“
 # <br><br>
-# ■ Part 14: XML-Related Specifications (SQL/XML) – 438 Seiten
-# <br>
-# □ XML Datentyp und Erweiterung von SQL um XQuery
+# - Part 14: XML-Related Specifications (SQL/XML) – 438 Seiten
+#     - XML Datentyp und Erweiterung von SQL um XQuery
+#     
 # <br><br>
 # => Zusammen: 3777 Seiten
 # 
 
 # ## Einfach Anfragen
+# 
+# In diesem Kapitel werden die Grundlagen einer SQL-Anfrage thematisiert. Zuerst wird die SFW-Klausel eingeführt, gefolgt mit grundlegenden Datentypen, Stringvergleichen und abschließend der Sortierung mittels Anfragen.
 
 # ### SELECT … FROM … WHERE …
 # 
@@ -122,7 +116,7 @@ get_ipython().run_line_magic('sql', 'sqlite:///salesDB/salesDB.db')
 # ### Beispielschema
 # ![title](beispielschema.jpg)
 
-# In[4]:
+# In[2]:
 
 
 #SELECT * 
@@ -171,13 +165,13 @@ df
 # <br><br>
 # Im folgenden Beipiel wollen wir alle Attribute bzw. Spalten aus der Filmrelation ausgeben, der Stern "\*" ist hier eine kürzere Schreibweise für alle Attribute.
 
-# In[5]:
+# In[3]:
 
 
 #SELECT * 
 #FROM Film
 
-__SQL__ = " SELECT * FROM Film"
+__SQL__ = " SELECT * FROM Film LIMIT 10"
 conn = sqlite3.connect("filme/filme.db")
 df = pd.read_sql_query(__SQL__, conn)
 df
@@ -185,13 +179,13 @@ df
 
 # Es ist auch möglich konkret die Attributsnamen aufzulisten, die ausgegeben sollen werden. Im unteren Beispiel, geben wir nur die Spalten Titel, Jahr und inFarbe von der Filmrelation aus.
 
-# In[6]:
+# In[4]:
 
 
 #SELECT Titel, Jahr, inFarbe 
 #FROM Film
 
-__SQL__ = "SELECT Titel, Jahr, inFarbe FROM Film"
+__SQL__ = "SELECT Titel, Jahr, inFarbe FROM Film LIMIT 10"
 conn = sqlite3.connect("filme/filme.db")
 df = pd.read_sql_query(__SQL__, conn)
 df
@@ -199,13 +193,13 @@ df
 
 # In der SELECT Klausel ist es auch möglich die Attributsnamen in der Ausgabetabelle umzubenennen. Die Ausgabe einer SQL-Anfrage ist immer eine Tabelle. Im unteren Beispiel projezieren wir die Attribute Titel, Jahr aus der Filmrelation und benennen die Attribute in unserer Ausgabetabelle zu Name,Zeit um. 
 
-# In[7]:
+# In[5]:
 
 
 #SELECT Titel AS Name, Jahr AS Zeit 
 #FROM Film
 
-__SQL__ = "SELECT Titel AS Name, Jahr AS Zeit FROM Film"
+__SQL__ = "SELECT Titel AS Name, Jahr AS Zeit FROM Film LIMIT 10"
 conn = sqlite3.connect("filme/filme.db")
 df = pd.read_sql_query(__SQL__, conn)
 df
@@ -213,13 +207,13 @@ df
 
 # In der SELECT-Klausel ist es auch möglich arithmetische Ausdrücke zu benutzen. Im folgenden Beispiel werden Titel und Laenge der Filme herausprojeziert, wobei die Laenge direkt mit einer Konstanten multipliziert wird. Daher wird in der Ausgabetabelle die Laenge in Stunden und nicht in Minuten angegeben. Dementsprechend haben wir auch das Attribut Laenge in Stunden mit dem Umbenennungsoperator AS umbenannt.
 
-# In[8]:
+# In[6]:
 
 
 #SELECT Titel, Laenge * 0.016667 AS Stunden 
 #FROM Film
 
-__SQL__ = "SELECT Titel, Laenge * 0.016667 AS Stunden FROM Film"
+__SQL__ = "SELECT Titel, Laenge * 0.016667 AS Stunden FROM Film LIMIT 10"
 conn = sqlite3.connect("filme/filme.db")
 df = pd.read_sql_query(__SQL__, conn)
 df
@@ -227,13 +221,13 @@ df
 
 # Zudem ist es auch möglich, sich spezielle Konstanten ausgeben zu lassen. Im unteren Beispiel fügen wir der Ausgabetabelle eine neue Spalte hinzu, mit dem Namen inStunden, in der der String 'std.' steht
 
-# In[4]:
+# In[7]:
 
 
 #SELECT Titel, Laenge * 0.016667 AS Stunden, ‘std.‘ AS inStunden 
 #FROM Film
 
-__SQL__ = "SELECT Titel, Laenge * 0.016667 AS Stunden, 'std.' AS inStunden FROM Film"
+__SQL__ = "SELECT Titel, Laenge * 0.016667 AS Stunden, 'std.' AS inStunden FROM Film LIMIT 10"
 conn = sqlite3.connect("filme/filme.db")
 df = pd.read_sql_query(__SQL__, conn)
 df
@@ -266,14 +260,14 @@ df
 
 # Im unteren Beispiel wollen wir jene Titel aus der Relation Film ausgeben, die nach dem Jahr 1970 erschienen und schwarz-weiß sind
 
-# In[10]:
+# In[8]:
 
 
 #SELECT Titel 
 #FROM Film 
 #WHERE Jahr > 1970 AND NOT inFarbe;
 
-__SQL__ = "SELECT Titel FROM Film WHERE Jahr > 1970 AND NOT inFarbe"
+__SQL__ = "SELECT Titel FROM Film WHERE Jahr > 1970 AND NOT inFarbe LIMIT 10"
 conn = sqlite3.connect("filme/filme.db")
 df = pd.read_sql_query(__SQL__, conn)
 df
@@ -281,7 +275,7 @@ df
 
 # In diesem Beispiel möchten wir wieder alle Filmtitel ausgeben, hier aber alle Filme die von MGM produziert wurden sind und nach dem Jahr 1970 erschienen sind oder kürzer als 90 min sind. 
 
-# In[12]:
+# In[9]:
 
 
 #SELECT Titel 
@@ -310,7 +304,7 @@ df
 # ### String-Mustervergleiche mit LIKE
 # Mit dem LIKE Operator können Sie Stringteile miteinander vergleichen, also ob ein String einem gewissen Stringmuster folgt. Hierfür gibt es zwei spezielle Zeichen, einmal '%', welches eine beliebige Sequenz von 0 oder mehr Zeichen entspricht und '\_', welches ein einzelnes beliebiges Zeichen steht. Hierfür ein Beispiel: Wir suchen jene Titel aus der Filmrelation, wo der Titel mit 'Star' beginnt, ein Leerzeichen folgt und 4 beliebige Zeichen folgen.
 
-# In[13]:
+# In[10]:
 
 
 #SELECT Titel 
@@ -324,7 +318,7 @@ df
 
 # Hier suchen wir alle Titel, wo das Wort 'War' vorkommen muss. Sowohl vor dem 'War' als auch nachdem 'War' sind beliebige Zeichensequenzen erlaubt.
 
-# In[14]:
+# In[11]:
 
 
 #SELECT Titel 
@@ -415,7 +409,7 @@ df
 # <br><br>
 # Zu beachten bei der Ausführungspriorität: NOT vor AND vor OR
 
-# In[15]:
+# In[12]:
 
 
 #SELECT * 
@@ -423,7 +417,7 @@ df
 #WHERE Laenge <= 90 
 #OR Laenge > 90; --Laenge <= 90 == UNKNOWN und Länge > 90
 
-__SQL__ = "SELECT * FROM Film WHERE Laenge <= 90 OR Laenge > 90; --Laenge <= 90 == UNKNOWN und Länge > 90"
+__SQL__ = "SELECT * FROM Film WHERE Laenge <= 90 OR Laenge > 90 LIMIT 10; --Laenge <= 90 == UNKNOWN und Länge > 90"
 conn = sqlite3.connect("filme/filme.db")
 df = pd.read_sql_query(__SQL__, conn)
 df
@@ -436,7 +430,7 @@ df
 # <br><br>
 # Im folgenden Beispiel wollen wir alle Attribute der Filmrelation ausgeben, welche von Disney produziert wurden und 1990 erschienen sind. Zusätzlich, soll die Ausgabe zuerst nach dem Attribut Laenge und folgend nach dem Attribut Titel aufsteigend sortiert werden.
 
-# In[4]:
+# In[13]:
 
 
 #SELECT * 
@@ -452,7 +446,7 @@ df
 
 # Hier wird  zuerst nach Laenge aufsteigend sortiert und folgend nach Titel aber absteigend.
 
-# In[6]:
+# In[14]:
 
 
 #SELECT * 
@@ -467,16 +461,14 @@ df
 
 
 # ## Anfragen über mehrere Relationen
-# 
-# ### Motivation
-# Die Hauptstärke der Relationalen Algebra ist die Kombination von Relationen. Erst durch die Kombination mehrerer Relationen sind viele interessante Anfragen möglich. In SQL ist das möglich, indem man die beteiligten Relationen in der FROM-Klausel nennt.
+# Die Hauptstärke der Relationalen Algebra ist die Kombination von Relationen. Erst durch die Kombination mehrerer Relationen sind viele interessante Anfragen möglich. In SQL ist das möglich, indem man die beteiligten Relationen in der FROM-Klausel nennt. In diesem Kapitel werden v.A. die verschiedenen Joinvarianten, aber auch das Kreuzprodukt und andere Mengenoperatoren in SQL thematisiert.
 # 
 # ### Kreuzprodukt und Join
 # 
 # Im folgenden Beispiel haben wir die Relationen Film(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentinID) und
 # ManagerIn(Name, Adresse, ManagerinID, Gehalt) gegeben. Wir möchten nun alle Namen der Manager\*Innen ausgeben, die einen Star Wars Film produziert haben. Hierfür müssen die Relationen Film und ManagerIn gejoint werden.Zuerst bilden wir das Kruezprodukt der beiden Relationen, indem wir in der FROM-Klausel die Relationen mit einem Komma getrennt nennen , so wird intern das Kreuzprodukt dieser beiden gebildet. Schließlich wenden  wir noch einmal die Selektionsbedingung an, also dass nur ManagerInnen die einen Star Wars Film produziert haben ausgegeben werden. Und zuletzt noch die Joinbedingung, undzwar dass ProduzentinID und ManagerinID im Kreuzprodukt übereinstimmen sollen. Falls die beiden Bedinungen erfüllt sind wird ein Ergebnistupel produziert. Hierbei ist noch zu beachten, dass die Reihenfolge der WHERE-Bedingungen irrelevant ist.
 
-# In[18]:
+# In[15]:
 
 
 #SELECT Name 
@@ -490,7 +482,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# In[ ]:
+# In[16]:
 
 
 #SELECT Name 
@@ -499,7 +491,7 @@ df
 #AND ProduzentinID = ManagerinID; --Joinbedingung
 
 
-# In[19]:
+# In[17]:
 
 
 #SELECT Name 
@@ -518,7 +510,7 @@ df
 # 
 # In diesem Beispiel haben wir die Relationen SchauspielerIn(Name, Adresse, Geschlecht, Geburtstag) und ManagerIn(Name, Adresse, ManagerinID, Gehalt) gegeben. Beide Relationen haben ein Attribut namens "Name". Wir wollen nun die Namen der Schauspieler\*Innen und Manager\*Innen ausgeben, die die selbe Adresse haben. Wie im vorherigen Beispiel,bilden wir wieder das Kreuzprodukt beider. Da nur der Attributname der Relationen uneindeutig wäre, muss in der Anfrage immer ein Präfix vor das Attribut gesetzt werden. Auch bei keiner Uneindeutigkeit, kann man das Präfix schreiben, was manchmal as Lesen von SQL-Anfragen erleichtert.
 
-# In[20]:
+# In[18]:
 
 
 #SELECT SchauspielerIn.Name, ManagerIn.Name 
@@ -542,20 +534,20 @@ df
 # SchauspielerIn AS Star2
 # ```
 
-# In[21]:
+# In[19]:
 
 
 #SELECT Star1.Name, Star2.Name 
 #FROM SchauspielerIn Star1, SchauspielerIn Star2 
 #WHERE Star1.Adresse = Star2.Adresse
 
-__SQL__ = "SELECT Star1.Name, Star2.Name FROM SchauspielerIn Star1, SchauspielerIn Star2 WHERE Star1.Adresse = Star2.Adresse"
+__SQL__ = "SELECT Star1.Name, Star2.Name FROM SchauspielerIn Star1, SchauspielerIn Star2 WHERE Star1.Adresse = Star2.Adresse LIMIT 10"
 conn = sqlite3.connect("filme/filme.db")
 df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# In[22]:
+# In[20]:
 
 
 #SELECT S.Name, M.Name
@@ -572,14 +564,14 @@ df
 # ### Tupelvariablen-Selfjoin
 # 
 
-# In[23]:
+# In[21]:
 
 
 #SELECT Star1.Name, Star2.Name
 #FROM SchauspielerIn Star1, SchauspielerIn Star2
 #WHERE Star1.Adresse = Star2.Adresse;
 
-__SQL__ = "SELECT Star1.Name, Star2.Name FROM SchauspielerIn Star1, SchauspielerIn Star2 WHERE Star1.Adresse = Star2.Adresse;"
+__SQL__ = "SELECT Star1.Name, Star2.Name FROM SchauspielerIn Star1, SchauspielerIn Star2 WHERE Star1.Adresse = Star2.Adresse  LIMIT 10;"
 conn = sqlite3.connect("filme/filme.db")
 df = pd.read_sql_query(__SQL__, conn)
 df
@@ -587,7 +579,7 @@ df
 
 # Damit wir wie in der Ausgabe der obigen Beispiels, keine redundanten Tupel haben, setzten wir zusätzlich noch die Bedingung, dass die Namen der Schauspieler\*Innen verschieden sein müssen.
 
-# In[24]:
+# In[22]:
 
 
 #SELECT Star1.Name, Star2.Name
@@ -608,7 +600,7 @@ df
 # <br>
 # Im folgenden Beispiel sind die Relationen R(A), S(A) und T(A) mit dem selben Attribut A gegeben. Wir suchen die folgenden Tupel R  ∩  (S  ∪  T) (= (R  ∩  S)  ∪  (R  ∩  T) ). Nehmen wir an dass T leer sei, das vermeintliche Resultat ist R  ∩  S. Mit Nested Loops ist das Ergebnis jedoch leer. 
 
-# In[25]:
+# In[23]:
 
 
 #SELECT R.A
@@ -624,7 +616,7 @@ df
 
 # Im folgenden Beispiel ist das Ergebnis mit Nested Loops nicht leer.
 
-# In[5]:
+# In[24]:
 
 
 #SELECT *
@@ -652,14 +644,14 @@ df
 # <br><br>
 # Ein Beispiel für ein Theta-Join finden wir unten. 
 
-# In[27]:
+# In[25]:
 
 
 #SELECT * 
 #FROM Film JOIN spielt_in ON Titel = FilmTitel 
 #AND Jahr = FilmJahr
 
-__SQL__ = "SELECT * FROM Film JOIN spielt_in ON Titel = FilmTitel AND Jahr = FilmJahr"
+__SQL__ = "SELECT * FROM Film JOIN spielt_in ON Titel = FilmTitel AND Jahr = FilmJahr LIMIT 10"
 conn = sqlite3.connect("filme/filme.db")
 df = pd.read_sql_query(__SQL__, conn)
 df
@@ -667,14 +659,14 @@ df
 
 # Beim JOIN werden im Vergleich zum CROSS JOIN die redundanten Attribute eliminiert. Damit das geschieht muss natürlich ein Fremdschlüsselbeziehung vorhanden sein oder die Attributnamen müssen identisch sein. Hier wie im unteren Beispiel gezeigt, werden also FilmTitel und FilmJahr eliminiert.
 
-# In[28]:
+# In[26]:
 
 
 #SELECT Titel, Jahr, Laenge, inFarbe, StudioName, ProduzentinID, Name 
 #FROM Film JOIN spielt_in ON Titel = FilmTitel 
 #AND Jahr = FilmJahr;
 
-__SQL__ = "SELECT Titel, Jahr, Laenge, inFarbe, StudioName, ProduzentinID, Name FROM Film JOIN spielt_in ON Titel = FilmTitel AND Jahr = FilmJahr;"
+__SQL__ = "SELECT Titel, Jahr, Laenge, inFarbe, StudioName, ProduzentinID, Name FROM Film JOIN spielt_in ON Titel = FilmTitel AND Jahr = FilmJahr LIMIT 10;"
 conn = sqlite3.connect("filme/filme.db")
 df = pd.read_sql_query(__SQL__, conn)
 df
@@ -682,7 +674,7 @@ df
 
 # Es ist ebenfalls möglich mehrere Joins hintereinander durchzuführen, wie im Beispiel unten gezeigt. 
 
-# In[29]:
+# In[27]:
 
 
 #SELECT Titel, Jahr 
@@ -705,7 +697,7 @@ df
 #  
 # #### TPC Query - Minimum Cost Supplier 
 
-# In[14]:
+# In[28]:
 
 
 #%sql
@@ -725,7 +717,7 @@ df
 #ORDER BY s_acctbal desc, n_name, s_name, p_partkey;
 
 
-# In[12]:
+# In[29]:
 
 
 __SQL__ = "SELECT s_acctbal, s_name, n_name, p_partkey, p_mfgr, s_address, s_phone, s_comment FROM part, supplier, partsupp, nation, region WHERE p_partkey = ps_partkey AND s_suppkey = ps_suppkey AND p_size = 2 AND p_type like 'PROMO PLATED TIN' AND s_nationkey = n_nationkey AND n_regionkey = r_regionkey AND r_name = 'EUROPE' AND ps_supplycost = (SELECT min(ps_supplycost) FROM partsupp, supplier, nation, region WHERE p_partkey = ps_partkey AND s_suppkey = ps_suppkey AND s_nationkey = n_nationkey AND n_regionkey = r_regionkey AND r_name = 'EUROPE' ) ORDER BY s_acctbal desc, n_name, s_name, p_partkey;"
@@ -736,7 +728,7 @@ df
 
 # #### The TPC-H Universal Table
 
-# In[16]:
+# In[30]:
 
 
 #%sql
@@ -752,7 +744,7 @@ df
 #AND o_orderkey = l_orderkey
 
 
-# In[15]:
+# In[31]:
 
 
 __SQL__ = "SELECT l_linenumber, l_quantity, l_extendedprice, l_discount, l_tax, l_returnflag, l_linestatus, l_shipdate, l_commitdate, l_receiptdate, l_shipinstruct, l_shipmode, l_comment, o_orderkey, o_orderstatus, o_totalprice, o_orderdate, o_orderpriority, o_clerk, o_shippriority, o_comment, ps_availqty, ps_supplycost, ps_comment, p_partkey, p_name, p_mfgr, p_brand, p_type, p_size, p_container, p_retailprice, p_comment, c_custkey, c_name, c_address, c_phone, c_acctbal, c_mktsegment, c_comment, s_suppkey, s_name, s_address, s_phone, s_acctbal, s_comment, n_nationkey, n_name, n_comment, r_regionkey, r_name, r_comment FROM lineitem, orders, partsupp, part, customer, supplier, nation, region WHERE p_partkey = ps_partkey AND s_suppkey = ps_suppkey AND n_nationkey = s_nationkey AND r_regionkey = n_regionkey AND c_custkey = o_custkey AND ps_partkey = l_partkey AND ps_suppkey = l_suppkey AND o_orderkey = l_orderkey"
@@ -764,7 +756,7 @@ df
 
 # Haben wir erneut die Relationen SchauspielerIn(Name, Adresse, Geschlecht, Geburtstag) und ManagerIn(Name, Adresse, ManagerinID, Gehalt) gegeben. Wir suchen nun alle Schauspieler\*Innen, die zugleich auch Manger\*Innen sind. 
 
-# In[31]:
+# In[32]:
 
 
 #SELECT Name, Adresse, Geburtstag, Gehalt 
@@ -779,12 +771,12 @@ df
 
 # Nun suchen wir alle Schauspieler\*Innen und ihre Manager\*Inneninfo, falls diese vorhanden ist.
 
-# In[32]:
+# In[33]:
 
 
 #…FROM SchauspielerIn NATURAL LEFT OUTER JOIN ManagerIn
 
-__SQL__ = "SELECT Name, Adresse, Geburtstag, Gehalt FROM SchauspielerIn NATURAL LEFT OUTER JOIN ManagerIn"
+__SQL__ = "SELECT Name, Adresse, Geburtstag, Gehalt FROM SchauspielerIn NATURAL LEFT OUTER JOIN ManagerIn  LIMIT 10"
 conn = sqlite3.connect("filme/filme.db")
 df = pd.read_sql_query(__SQL__, conn)
 df
@@ -794,7 +786,7 @@ df
 
 # Im Folgenden suchen wir Manager\*Innen und gegebenenfalls ihre Schauspieler\*Inneninfo
 
-# In[9]:
+# In[34]:
 
 
 #…FROM SchauspielerIn NATURAL RIGHT OUTER JOIN ManagerIn
@@ -807,10 +799,10 @@ df
 
 # Wir sehen, dass RIGHT OUTER JOINS in sqlite3 nicht direkt möglich sind, da dieser Operator in sqlite3 nicht unterstützt wird. Man kann aber dennoch durch Vertauschen der Reihenfolge der Tabellen, die gewünschte Ausgabe mit LEFT OUTER JOINS erzeugen.
 
-# In[8]:
+# In[19]:
 
 
-__SQL__ = "SELECT Name, Adresse, Geburtstag, Gehalt FROM ManagerIn NATURAL LEFT OUTER JOIN SchauspielerIn"
+__SQL__ = "SELECT Name, Adresse, Geburtstag, Gehalt FROM ManagerIn NATURAL LEFT OUTER JOIN SchauspielerIn  LIMIT 10"
 conn = sqlite3.connect("filme/filme.db")
 df = pd.read_sql_query(__SQL__, conn)
 df
@@ -833,10 +825,10 @@ df
 
 # Ebenso werden FULL OUTER JOINS in sqlite3 nicht unterstützt. Eine alternative Anfrage mit äquivalenter Ausgabe, die nur LEFT OUTER JOINS verwendet ist möglich. Ein FULL OUTER JOIN ist die Vereinigung von dem LEFT und RIGHT OUTER JOIN zweier Tabellen. Wie im vorherigen Beispiel gezeigt, können wir RIGHT OUTER JOINS mithilfe von LEFT OUTER JOINS erzeugen.
 
-# In[34]:
+# In[20]:
 
 
-__SQL__ = "SELECT Name, Adresse, Geburtstag, Gehalt FROM SchauspielerIn NATURAL LEFT OUTER JOIN ManagerIn UNION SELECT Name, Adresse, Geburtstag, Gehalt FROM ManagerIn NATURAL LEFT OUTER JOIN SchauspielerIn"
+__SQL__ = "SELECT Name, Adresse, Geburtstag, Gehalt FROM SchauspielerIn NATURAL LEFT OUTER JOIN ManagerIn UNION SELECT Name, Adresse, Geburtstag, Gehalt FROM ManagerIn NATURAL LEFT OUTER JOIN SchauspielerIn LIMIT 10"
 conn = sqlite3.connect("filme/filme.db")
 df = pd.read_sql_query(__SQL__, conn)
 df
@@ -849,25 +841,25 @@ df
 # ### Kreuzprodukt
 # Wie aus der Relationalen Algebra bekannt bildet das Kreuzprodukt lle Paare aus Tupeln den beteiligten Relationen. In SQL können Kreuzprodukte mit CROSS JOIN gebildet werden, wie unten gezeigt oder auch mit Komma zwischen den beteiligten Relationen in der FROM-Klausel, wie ein Beispielt weiter gezeigt wird. Kreuzprodukte werden in der Regel selten verwendet, sie sind aber der Grundbaustein für Joins.
 
-# In[35]:
+# In[21]:
 
 
 #SELECT * 
 #FROM SchauspielerIn CROSS JOIN Film
 
-__SQL__ = "SELECT * FROM SchauspielerIn CROSS JOIN Film"
+__SQL__ = "SELECT * FROM SchauspielerIn CROSS JOIN Film LIMIT 10"
 conn = sqlite3.connect("filme/filme.db")
 df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# In[36]:
+# In[22]:
 
 
 #SELECT * 
 #FROM SchauspielerIn, Film
 
-__SQL__ = "SELECT * FROM SchauspielerIn, Film"
+__SQL__ = "SELECT * FROM SchauspielerIn, Film LIMIT 10"
 conn = sqlite3.connect("filme/filme.db")
 df = pd.read_sql_query(__SQL__, conn)
 df
@@ -906,12 +898,12 @@ df
 # #### Vereinigung: UNION
 # UNION entspricht dem logischen „oder“. Im unteren Beispiel geben wir alle Namen und Adressen der Schauspieler\*Innen und den Mangager\*Innen aus.
 
-# In[39]:
+# In[23]:
 
 
 #(SELECT Name, Adresse FROM SchauspielerIn) UNION (SELECT Name, Adresse FROM ManagerIn);
 
-__SQL__ = "SELECT Name, Adresse FROM SchauspielerIn UNION SELECT Name, Adresse FROM ManagerIn"
+__SQL__ = "SELECT Name, Adresse FROM SchauspielerIn UNION SELECT Name, Adresse FROM ManagerIn LIMIT 10"
 conn = sqlite3.connect("filme/filme.db")
 df = pd.read_sql_query(__SQL__, conn)
 df
@@ -978,8 +970,8 @@ df
 # |&#xfeff;|&#xfeff;|5| 
 
 # ## Geschachtelte Anfragen
-# ### Motivation
-# In vorherigen Beispielen haben wir schon geschachtelte Anfragen gesehen, nun betrachten wir diese etwas genauer. Eine Anfrage kann Teil einer anderen theoretisch beliebig tief geschachtelten Anfrage sein. Hier gibt es drei verschiedene Varianten:
+# 
+# In vorherigen Beispielen haben wir schon geschachtelte Anfragen gesehen, nun betrachten wir diese etwas genauer. Eine Anfrage kann Teil einer anderen, theoretisch beliebig tief geschachtelten Anfrage sein. Hier gibt es drei verschiedene Varianten:
 # <br>
 # 1. Die Subanfrage erzeugt einen einzigen Wert, der in der WHERE-Klausel mit einem anderen Wert verglichen werden kann.
 # 2. Die Subanfrage erzeugt eine Relation, die auf verschiedene Weise in der WHERE-Klausel verwendet werden kann.
@@ -988,7 +980,6 @@ df
 # ### Skalare Subanfragen
 # Bei der ersten der drei Varianten von geschachtelten Anfrage, handelt es sich um skalare Subanfragen. Allgemeine Anfragen produzieren Relationen, mit mehreren Attributen, wo Zugriff auf ein bestimmtes Attribut auch möglich ist. Bei skalaren Subanfragen wird (garantiert) maximal nur ein Tupel und Projektion auf nur ein Attribut ausgegeben. Das Ergbenis einer skalaren Anfrage ist entweder genau ein Wert, der dann wie eine Konstante verwendet werden kann, oder wenn keine Zeilen gefunden werden, ist das Ergebnis der skalaren Anfrage NULL.
 # <br>
-# ![title](skalare_subanfragen.jpg)
 # <br>
 # Wir haben im Folgenden Beispiel die Relationen ManagerIn(Name, Adresse, ManagerinID, Gehalt)und Film(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentinID) gegeben. Wir suchen nun den Produzent von Star Wars auf zwei Wegen, wobei garantiert ist, dass es nur einen Produzenten gibt. Zuerst suchen wir ,mithilfe einer allgemeinen Anfrage, unter allen Filmen jene mit dem Titel = 'Star Wars' und Jahr = 1977, wo die ProduzentinID mit der MangaerinID gematcht werden kann. Zuletzt geben wir den Namen aus.
 
@@ -1407,6 +1398,8 @@ df
 
 
 # ## Operationen auf einer Relation
+# In diesem Kapitel lernen wir Operationen kennen, die nur auf einer Relation angewendet werden, das sind Duplikateliminierung, Gruppierung und Aggregation.
+# 
 # ### Duplikateliminierung
 # Wie aus der Relationalen Algebra bekannt, ist die Duplikateliminierung auch in SQL möglich. Relationale DBMS verwenden i.d.R. Multimengensemantik und nicht Mengensemantik. Durch Operationen, wie das Enfügen von Duplikaten in Basisrelationen, die Veränderung von Tupeln in Basisrelationen, Projektion in Anfragen, Subanfragen mit z.B UNION ALL oder die Vermehrung von Duplikaten durch Kreuzprodukte, entstehen Duplikate.
 # 
@@ -1418,13 +1411,13 @@ df
 # <br><br>
 # Im folgenden Beispiel suchen wir alle Filme, in denen mindestens ein Schauspieler mitspielt. In der Relation spielt_in sind pro Schauspieler Titel und Jahr vorhanden. 
 
-# In[66]:
+# In[24]:
 
 
 #SELECT DISTINCT FilmTitel, FilmJahr 
 #FROM spielt_in
 
-__SQL__ = "SELECT DISTINCT FilmTitel, FilmJahr FROM spielt_in"
+__SQL__ = "SELECT DISTINCT FilmTitel, FilmJahr FROM spielt_in LIMIT 10"
 conn = sqlite3.connect("filme/filme.db")
 df = pd.read_sql_query(__SQL__, conn)
 df
@@ -1521,13 +1514,13 @@ df
 # ### Gruppierung
 # Auch die aus der Relationalen Algebra bekannte Gruppierung ist in SLQ möglich mittels GROUP BY nach der WHERE-Klausel. Bei der Gruppierung gibt es in der SELECT-Klausel zwei "Sorten" von Attributen, einmal Gruppierungsattribute und einmal aggregierte Attribute. Nicht-aggregierte Werte der SELECT-Klausel müssen in der GROUP BY-Klausel erscheinen, es müssen jedoch keiner der beiden Sorten erscheinen. Eine Gruppierung mit Aggregation können wir im unteren Beispiel sehen.
 
-# In[72]:
+# In[25]:
 
 
 #SELECT StudioName, SUM(Laenge) 
 #FROM Film GROUP BY StudioName
 
-__SQL__ = "SELECT StudioName, SUM(Laenge) FROM Film GROUP BY StudioName"
+__SQL__ = "SELECT StudioName, SUM(Laenge) FROM Film GROUP BY StudioName LIMIT 10"
 conn = sqlite3.connect("filme/filme.db")
 df = pd.read_sql_query(__SQL__, conn)
 df
@@ -1535,14 +1528,14 @@ df
 
 # In diesem Beispiel lassen wir die Aggregation weg und suchen nur die Studionamen gruppiert bei StudioName.
 
-# In[73]:
+# In[26]:
 
 
 #SELECT StudioName 
 #FROM Film 
 #GROUP BY StudioName
 
-__SQL__ = "SELECT StudioName FROM Film GROUP BY StudioName"
+__SQL__ = "SELECT StudioName FROM Film GROUP BY StudioName LIMIT 10"
 conn = sqlite3.connect("filme/filme.db")
 df = pd.read_sql_query(__SQL__, conn)
 df
@@ -1550,20 +1543,20 @@ df
 
 # In diesem Beispiel suchen wir nur die Gesamtlänge der Studios.
 
-# In[74]:
+# In[27]:
 
 
 #SELECT SUM(Laenge) 
 #FROM Film 
 #GROUP BY StudioName
 
-__SQL__ = "SELECT SUM(Laenge) FROM Film GROUP BY StudioName"
+__SQL__ = "SELECT SUM(Laenge) FROM Film GROUP BY StudioName LIMIT 10"
 conn = sqlite3.connect("filme/filme.db")
 df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# In[75]:
+# In[28]:
 
 
 #SELECT Name, SUM(Laenge) 
@@ -1571,7 +1564,7 @@ df
 #WHERE ManagerinID = ProduzentinID 
 #GROUP BY Name
 
-__SQL__ = "SELECT Name, SUM(Laenge) FROM ManagerIn, Film WHERE ManagerinID = ProduzentinID GROUP BY Name"
+__SQL__ = "SELECT Name, SUM(Laenge) FROM ManagerIn, Film WHERE ManagerinID = ProduzentinID GROUP BY Name LIMIT 10"
 conn = sqlite3.connect("filme/filme.db")
 df = pd.read_sql_query(__SQL__, conn)
 df
@@ -1774,7 +1767,7 @@ WHERE ManagerinID IN
 
 
 # ## Schemata(DDL)
-# ### Überblick
+# 
 # In diesem Kapitel betrachten wir SQL als Data Definition Language(DDL). Möchte man eine neue Tabelle anlegen, müssen die verschiedenen Datentypen, Default-Werte, Indizes und damit zusammenhängende Tabellen beachten, welche wir uns in diesem Kapitel genauer anschauen.
 # 
 # ### Datentypen
@@ -1982,7 +1975,6 @@ SELECT AVG(DOUBLE(m)) FROM counts
 # Spielfilme pro Schauspieler: 4,2
 
 # ## Sichten
-# ### Virtuelle Relationen
 # 
 # Bisher kennen wir nur Relationen, die aus CREATE TABLE Ausdrücken existieren und tatsächlich (materialisiert, physisch) in der Datenbank vorhanden sind. Dieses sind persistent und auf ihnen können Updates ausgeführt werden. In diesem Kapitel beschäftigen wir uns mit Sichten. Sichten entsprechen Anfragen, denen man einen Namen gibt. Sie wirken wie physische Relationen, jedoch existieren die Daten aus Sichten nur virtuell und Updates darauf sind nur manchmal möglich. Views stellen Separation of Concern dar, können Effizienz verbessern und ermöglichen einfachere Anfragen.
 # <br>
@@ -1993,7 +1985,7 @@ SELECT AVG(DOUBLE(m)) FROM counts
 # <br>
 # Michael Stonebraker: Implementation of Integrity Constraints and Views by Query Modification. SIGMOD Conference 1975: 65-78
 
-# ### Sichten in SQL
+# ### Sichten in SQL erstellen
 # Der Grundbaustein zum erstellen von Sichten(Views) ist CREATE VIEW Name AS Anfrage. In der Anfrage dürfen Relationen auch gejoint sein.
 # <br><br>
 # Im folgenden erstellen wir eine View auf alle Filme von Paramount und nennen die View ParamountFilme.
@@ -2015,28 +2007,24 @@ WHERE StudioName = "Paramount";
 # ### Anfragen an Sichten
 # Wir suchen nun alle Filme von Paramount aus 1979 und tun dies indem wir eine Anfrage an unsere ParamountFilme-Sicht stellen. Ohne Sicht müssten wir die Anfrage in eine Anfrage an die Basisrelation umwandeln wie eine Codezelle weiter zu sehen ist.
 
-# In[ ]:
+# In[29]:
 
 
-get_ipython().run_line_magic('sql', '')
-SELECT Titel
-FROM ParamountFilme
-WHERE Jahr = 1979;
+#%sql
+#SELECT Titel 
+#FROM Film 
+#WHERE StudioName = "Paramount" 
+#AND Jahr = 1979;
 
-
-# In[81]:
-
-
-get_ipython().run_line_magic('sql', '')
-SELECT Titel 
-FROM Film 
-WHERE StudioName = "Paramount" 
-AND Jahr = 1979;
+__SQL__ = "SELECT Titel FROM Film WHERE StudioName = 'Paramount' AND Jahr = 1979;"
+conn = sqlite3.connect("filme/filme.db")
+df = pd.read_sql_query(__SQL__, conn)
+df
 
 
 # Ebenso sind Anfrage zugleich an Sichten und Basisrelationen möglich, wie unten gezeigt.
 
-# In[82]:
+# In[ ]:
 
 
 get_ipython().run_line_magic('sql', '')
