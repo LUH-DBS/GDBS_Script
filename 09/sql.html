@@ -24,9 +24,9 @@
     <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
     
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
@@ -42,7 +42,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -498,97 +498,92 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#motivation">
-     9.3.1. Motivation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#kreuzprodukt-und-join">
-     9.3.2. Kreuzprodukt und Join
+     9.3.1. Kreuzprodukt und Join
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#uneindeutige-attributnamen">
-     9.3.3. Uneindeutige Attributnamen
+     9.3.2. Uneindeutige Attributnamen
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#tupelvariablen">
-     9.3.4. Tupelvariablen
+     9.3.3. Tupelvariablen
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#tupelvariablen-selfjoin">
-     9.3.5. Tupelvariablen-Selfjoin
+     9.3.4. Tupelvariablen-Selfjoin
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#interpretation-von-anfragen">
-     9.3.6. Interpretation von Anfragen
+     9.3.5. Interpretation von Anfragen
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#joins">
-     9.3.7. Joins
+     9.3.6. Joins
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#the-tpc-h-schema">
-     9.3.8. The TPC-H Schema
+     9.3.7. The TPC-H Schema
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#tpc-query-minimum-cost-supplier">
-       9.3.8.1. TPC Query - Minimum Cost Supplier
+       9.3.7.1. TPC Query - Minimum Cost Supplier
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#the-tpc-h-universal-table">
-       9.3.8.2. The TPC-H Universal Table
+       9.3.7.2. The TPC-H Universal Table
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#outer-joins">
-     9.3.9. Outer Joins
+     9.3.8. Outer Joins
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#kreuzprodukt">
-     9.3.10. Kreuzprodukt
+     9.3.9. Kreuzprodukt
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#mengenoperationen-in-sql">
-     9.3.11. Mengenoperationen in SQL
+     9.3.10. Mengenoperationen in SQL
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#schnittmenge-intersect">
-       9.3.11.1. Schnittmenge: INTERSECT
+       9.3.10.1. Schnittmenge: INTERSECT
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#vereinigung-union">
-       9.3.11.2. Vereinigung: UNION
+       9.3.10.2. Vereinigung: UNION
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#differenz-except-minus">
-       9.3.11.3. Differenz: EXCEPT/MINUS
+       9.3.10.3. Differenz: EXCEPT/MINUS
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#klammerung">
-       9.3.11.4. Klammerung
+       9.3.10.4. Klammerung
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#zusammenfassung-der-semantik">
-     9.3.12. Zusammenfassung der Semantik
+     9.3.11. Zusammenfassung der Semantik
     </a>
    </li>
   </ul>
@@ -599,55 +594,50 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     9.4.1. Motivation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#skalare-subanfragen">
-     9.4.2. Skalare Subanfragen
+     9.4.1. Skalare Subanfragen
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#skalare-subanfragen-beispiel">
-       9.4.2.1. Skalare Subanfragen – Beispiel
+       9.4.1.1. Skalare Subanfragen – Beispiel
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#bedingungen-mit-relationen">
-     9.4.3. Bedingungen mit Relationen
+     9.4.2. Bedingungen mit Relationen
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#exists-beispiele">
-     9.4.4. EXISTS Beispiele
+     9.4.3. EXISTS Beispiele
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#in-beispiele">
-     9.4.5. IN Beispiele
+     9.4.4. IN Beispiele
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#all-und-any-beispiele">
-     9.4.6. ALL und ANY Beispiele
+     9.4.5. ALL und ANY Beispiele
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#bedingungen-mit-tupeln">
-     9.4.7. Bedingungen mit Tupeln
+     9.4.6. Bedingungen mit Tupeln
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#subanfragen-in-from-klausel">
-     9.4.8. Subanfragen in FROM-Klausel
+     9.4.7. Subanfragen in FROM-Klausel
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#korrelierte-subanfragen">
-     9.4.9. Korrelierte Subanfragen
+     9.4.8. Korrelierte Subanfragen
     </a>
    </li>
   </ul>
@@ -738,60 +728,55 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#uberblick">
-     9.7.1. Überblick
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#datentypen">
-     9.7.2. Datentypen
+     9.7.1. Datentypen
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#uberblick-db2-datentypen">
-     9.7.3. Überblick DB2 Datentypen
+     9.7.2. Überblick DB2 Datentypen
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#tabellen">
-     9.7.4. Tabellen
+     9.7.3. Tabellen
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#default-werte">
-     9.7.5. Default-Werte
+     9.7.4. Default-Werte
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#indizes">
-     9.7.6. Indizes
+     9.7.5. Indizes
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#indexwahl">
-       9.7.6.1. Indexwahl
+       9.7.5.1. Indexwahl
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#indexwahl-voruberlegungen">
-       9.7.6.2. Indexwahl – Vorüberlegungen
+       9.7.5.2. Indexwahl – Vorüberlegungen
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#indexwahl-beispiel">
-       9.7.6.3. Indexwahl – Beispiel
+       9.7.5.3. Indexwahl – Beispiel
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id2">
-       9.7.6.4. Indexwahl – Beispiel
+      <a class="reference internal nav-link" href="#id1">
+       9.7.5.4. Indexwahl – Beispiel
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#verteilung-in-imdb-real-world-daten-stand-ca-2010">
-     9.7.7. Verteilung in IMDB (Real-world Daten, Stand ca. 2010)
+     9.7.6. Verteilung in IMDB (Real-world Daten, Stand ca. 2010)
     </a>
    </li>
   </ul>
@@ -802,65 +787,60 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#virtuelle-relationen">
-     9.8.1. Virtuelle Relationen
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sichten-in-sql">
-     9.8.2. Sichten in SQL
+    <a class="reference internal nav-link" href="#sichten-in-sql-erstellen">
+     9.8.1. Sichten in SQL erstellen
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#anfragen-an-sichten">
-     9.8.3. Anfragen an Sichten
+     9.8.2. Anfragen an Sichten
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#diskussion">
-     9.8.4. Diskussion
+     9.8.3. Diskussion
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#updates-auf-sichten">
-     9.8.5. Updates auf Sichten
+     9.8.4. Updates auf Sichten
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#einfugen-auf-sichten-beispiel">
-     9.8.6. Einfügen auf Sichten – Beispiel
+     9.8.5. Einfügen auf Sichten – Beispiel
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#loschen-und-updates-auf-sichten">
-     9.8.7. Löschen und Updates auf Sichten
+     9.8.6. Löschen und Updates auf Sichten
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#tupelmigration">
-     9.8.8. Tupelmigration
+     9.8.7. Tupelmigration
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#anfrageplanung-mit-sichten">
-     9.8.9. Anfrageplanung mit Sichten
+     9.8.8. Anfrageplanung mit Sichten
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#materialisierte-sichten">
-     9.8.10. Materialisierte Sichten
+     9.8.9. Materialisierte Sichten
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#mv-themen-und-probleme">
-       9.8.10.1. MV – Themen und Probleme
+       9.8.9.1. MV – Themen und Probleme
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#answering-queries-using-views">
-     9.8.11. „Answering Queries using Views“
+     9.8.10. „Answering Queries using Views“
     </a>
    </li>
   </ul>
@@ -997,97 +977,92 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#motivation">
-     9.3.1. Motivation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#kreuzprodukt-und-join">
-     9.3.2. Kreuzprodukt und Join
+     9.3.1. Kreuzprodukt und Join
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#uneindeutige-attributnamen">
-     9.3.3. Uneindeutige Attributnamen
+     9.3.2. Uneindeutige Attributnamen
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#tupelvariablen">
-     9.3.4. Tupelvariablen
+     9.3.3. Tupelvariablen
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#tupelvariablen-selfjoin">
-     9.3.5. Tupelvariablen-Selfjoin
+     9.3.4. Tupelvariablen-Selfjoin
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#interpretation-von-anfragen">
-     9.3.6. Interpretation von Anfragen
+     9.3.5. Interpretation von Anfragen
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#joins">
-     9.3.7. Joins
+     9.3.6. Joins
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#the-tpc-h-schema">
-     9.3.8. The TPC-H Schema
+     9.3.7. The TPC-H Schema
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#tpc-query-minimum-cost-supplier">
-       9.3.8.1. TPC Query - Minimum Cost Supplier
+       9.3.7.1. TPC Query - Minimum Cost Supplier
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#the-tpc-h-universal-table">
-       9.3.8.2. The TPC-H Universal Table
+       9.3.7.2. The TPC-H Universal Table
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#outer-joins">
-     9.3.9. Outer Joins
+     9.3.8. Outer Joins
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#kreuzprodukt">
-     9.3.10. Kreuzprodukt
+     9.3.9. Kreuzprodukt
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#mengenoperationen-in-sql">
-     9.3.11. Mengenoperationen in SQL
+     9.3.10. Mengenoperationen in SQL
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#schnittmenge-intersect">
-       9.3.11.1. Schnittmenge: INTERSECT
+       9.3.10.1. Schnittmenge: INTERSECT
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#vereinigung-union">
-       9.3.11.2. Vereinigung: UNION
+       9.3.10.2. Vereinigung: UNION
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#differenz-except-minus">
-       9.3.11.3. Differenz: EXCEPT/MINUS
+       9.3.10.3. Differenz: EXCEPT/MINUS
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#klammerung">
-       9.3.11.4. Klammerung
+       9.3.10.4. Klammerung
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#zusammenfassung-der-semantik">
-     9.3.12. Zusammenfassung der Semantik
+     9.3.11. Zusammenfassung der Semantik
     </a>
    </li>
   </ul>
@@ -1098,55 +1073,50 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     9.4.1. Motivation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#skalare-subanfragen">
-     9.4.2. Skalare Subanfragen
+     9.4.1. Skalare Subanfragen
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#skalare-subanfragen-beispiel">
-       9.4.2.1. Skalare Subanfragen – Beispiel
+       9.4.1.1. Skalare Subanfragen – Beispiel
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#bedingungen-mit-relationen">
-     9.4.3. Bedingungen mit Relationen
+     9.4.2. Bedingungen mit Relationen
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#exists-beispiele">
-     9.4.4. EXISTS Beispiele
+     9.4.3. EXISTS Beispiele
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#in-beispiele">
-     9.4.5. IN Beispiele
+     9.4.4. IN Beispiele
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#all-und-any-beispiele">
-     9.4.6. ALL und ANY Beispiele
+     9.4.5. ALL und ANY Beispiele
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#bedingungen-mit-tupeln">
-     9.4.7. Bedingungen mit Tupeln
+     9.4.6. Bedingungen mit Tupeln
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#subanfragen-in-from-klausel">
-     9.4.8. Subanfragen in FROM-Klausel
+     9.4.7. Subanfragen in FROM-Klausel
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#korrelierte-subanfragen">
-     9.4.9. Korrelierte Subanfragen
+     9.4.8. Korrelierte Subanfragen
     </a>
    </li>
   </ul>
@@ -1237,60 +1207,55 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#uberblick">
-     9.7.1. Überblick
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#datentypen">
-     9.7.2. Datentypen
+     9.7.1. Datentypen
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#uberblick-db2-datentypen">
-     9.7.3. Überblick DB2 Datentypen
+     9.7.2. Überblick DB2 Datentypen
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#tabellen">
-     9.7.4. Tabellen
+     9.7.3. Tabellen
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#default-werte">
-     9.7.5. Default-Werte
+     9.7.4. Default-Werte
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#indizes">
-     9.7.6. Indizes
+     9.7.5. Indizes
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#indexwahl">
-       9.7.6.1. Indexwahl
+       9.7.5.1. Indexwahl
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#indexwahl-voruberlegungen">
-       9.7.6.2. Indexwahl – Vorüberlegungen
+       9.7.5.2. Indexwahl – Vorüberlegungen
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#indexwahl-beispiel">
-       9.7.6.3. Indexwahl – Beispiel
+       9.7.5.3. Indexwahl – Beispiel
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id2">
-       9.7.6.4. Indexwahl – Beispiel
+      <a class="reference internal nav-link" href="#id1">
+       9.7.5.4. Indexwahl – Beispiel
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#verteilung-in-imdb-real-world-daten-stand-ca-2010">
-     9.7.7. Verteilung in IMDB (Real-world Daten, Stand ca. 2010)
+     9.7.6. Verteilung in IMDB (Real-world Daten, Stand ca. 2010)
     </a>
    </li>
   </ul>
@@ -1301,65 +1266,60 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#virtuelle-relationen">
-     9.8.1. Virtuelle Relationen
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sichten-in-sql">
-     9.8.2. Sichten in SQL
+    <a class="reference internal nav-link" href="#sichten-in-sql-erstellen">
+     9.8.1. Sichten in SQL erstellen
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#anfragen-an-sichten">
-     9.8.3. Anfragen an Sichten
+     9.8.2. Anfragen an Sichten
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#diskussion">
-     9.8.4. Diskussion
+     9.8.3. Diskussion
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#updates-auf-sichten">
-     9.8.5. Updates auf Sichten
+     9.8.4. Updates auf Sichten
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#einfugen-auf-sichten-beispiel">
-     9.8.6. Einfügen auf Sichten – Beispiel
+     9.8.5. Einfügen auf Sichten – Beispiel
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#loschen-und-updates-auf-sichten">
-     9.8.7. Löschen und Updates auf Sichten
+     9.8.6. Löschen und Updates auf Sichten
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#tupelmigration">
-     9.8.8. Tupelmigration
+     9.8.7. Tupelmigration
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#anfrageplanung-mit-sichten">
-     9.8.9. Anfrageplanung mit Sichten
+     9.8.8. Anfrageplanung mit Sichten
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#materialisierte-sichten">
-     9.8.10. Materialisierte Sichten
+     9.8.9. Materialisierte Sichten
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#mv-themen-und-probleme">
-       9.8.10.1. MV – Themen und Probleme
+       9.8.9.1. MV – Themen und Probleme
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#answering-queries-using-views">
-     9.8.11. „Answering Queries using Views“
+     9.8.10. „Answering Queries using Views“
     </a>
    </li>
   </ul>
@@ -1463,47 +1423,68 @@ title="Print to PDF"
 </section>
 <section id="sql-2008-struktur">
 <h3><span class="section-number">9.1.4. </span>SQL:2008 Struktur<a class="headerlink" href="#sql-2008-struktur" title="Permalink to this headline">#</a></h3>
-<p>■ Part 1: Framework (SQL/Framework) – 82 Seiten
-<br>
-□ Überblick
-<br><br>
-■ Part 2: Foundation (SQL/Foundation) – 1316 Seiten
-<br>
-□ Datenmodell, DDL, DML, Abfragen
-<br><br>
-■ Part 3: Call-Level Interface (SQL/CLI) – 389 Seiten
-<br>
-□ Zugriff auf DBMS mittels Funktionsaufrufen aus anderen Programmiersprachen
-<br><br>
-■ Part 4: Persistent Stored Modules (SQL/PSM) – 188 Seiten
-<br>
-□ Prozedurale Erweiterungen
-<br><br>
-■ Part 9: Management of External Data (SQL/MED) – 484 Seiten
-<br>
-□ Neue Datentypen und Funktionen
-<br><br>
-■ Part 10: Object Language Bindings (SQL/OLB) – 396 Seiten
-<br>
-□ Auch (SQLJ); zur Einbettung von SQL in Java
-<br><br>
-■ Part 11: Information and Definition Schemas (SQL/Schemata) – 286 Seiten
-<br>
-□ DBMS werden selbst-beschreibend durch normierten Katalog
-<br><br>
-■ Part 13: SQL Routines and Types (SQL/JRT) – 198 Seiten
-<br>
-□ Externe Java Routinen als „stored procedures“
-<br><br>
-■ Part 14: XML-Related Specifications (SQL/XML) – 438 Seiten
-<br>
-□ XML Datentyp und Erweiterung von SQL um XQuery
-<br><br>
+<ul class="simple">
+<li><p>Part 1: Framework (SQL/Framework) – 82 Seiten</p>
+<ul>
+<li><p>Überblick
+<br><br></p></li>
+</ul>
+</li>
+<li><p>Part 2: Foundation (SQL/Foundation) – 1316 Seiten</p>
+<ul>
+<li><p>Datenmodell, DDL, DML, Abfragen
+<br><br></p></li>
+</ul>
+</li>
+<li><p>Part 3: Call-Level Interface (SQL/CLI) – 389 Seiten</p>
+<ul>
+<li><p>Zugriff auf DBMS mittels Funktionsaufrufen aus anderen Programmiersprachen
+<br><br></p></li>
+</ul>
+</li>
+<li><p>Part 4: Persistent Stored Modules (SQL/PSM) – 188 Seiten</p>
+<ul>
+<li><p>Prozedurale Erweiterungen
+<br><br></p></li>
+</ul>
+</li>
+<li><p>Part 9: Management of External Data (SQL/MED) – 484 Seiten</p>
+<ul>
+<li><p>Neue Datentypen und Funktionen
+<br><br></p></li>
+</ul>
+</li>
+<li><p>Part 10: Object Language Bindings (SQL/OLB) – 396 Seiten</p>
+<ul>
+<li><p>Auch (SQLJ); zur Einbettung von SQL in Java
+<br><br></p></li>
+</ul>
+</li>
+<li><p>Part 11: Information and Definition Schemas (SQL/Schemata) – 286 Seiten</p>
+<ul>
+<li><p>DBMS werden selbst-beschreibend durch normierten Katalog
+<br><br></p></li>
+</ul>
+</li>
+<li><p>Part 13: SQL Routines and Types (SQL/JRT) – 198 Seiten</p>
+<ul>
+<li><p>Externe Java Routinen als „stored procedures“
+<br><br></p></li>
+</ul>
+</li>
+<li><p>Part 14: XML-Related Specifications (SQL/XML) – 438 Seiten</p>
+<ul>
+<li><p>XML Datentyp und Erweiterung von SQL um XQuery</p></li>
+</ul>
+</li>
+</ul>
+<p><br><br>
 =&gt; Zusammen: 3777 Seiten</p>
 </section>
 </section>
 <section id="einfach-anfragen">
 <h2><span class="section-number">9.2. </span>Einfach Anfragen<a class="headerlink" href="#einfach-anfragen" title="Permalink to this headline">#</a></h2>
+<p>In diesem Kapitel werden die Grundlagen einer SQL-Anfrage thematisiert. Zuerst wird die SFW-Klausel eingeführt, gefolgt mit grundlegenden Datentypen, Stringvergleichen und abschließend der Sortierung mittels Anfragen.</p>
 <section id="select-from-where">
 <h3><span class="section-number">9.2.1. </span>SELECT … FROM … WHERE …<a class="headerlink" href="#select-from-where" title="Permalink to this headline">#</a></h3>
 <p>SQL-Anfragen folgen meist einer Drei-Zeilen-Struktur aus SELECT, FROM, WHERE, wobei SELECT und FROM in jeder SQL-Anfrage enthalten sein müssen. Das Schlüsselwort SELECT entspricht dem Projektionsoperator <span class="math notranslate nohighlight">\(\pi\)</span>, den wir aus dem Kapitel Relationale Algebra schon kennengelernt haben. Die FROM-Zeile gibt an von welchen Tabellen die Daten stammen sollen. WHERE entspricht gewissermaßen dem Selektionsoperator <span class="math notranslate nohighlight">\(\sigma\)</span>, hier werden also Bedingungen an  die Tupel gestellt die diese erfüllen sollen.</p>
@@ -1618,7 +1599,7 @@ Im folgenden Beipiel wollen wir alle Attribute bzw. Spalten aus der Filmrelation
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT * </span>
 <span class="c1">#FROM Film</span>
 
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot; SELECT * FROM Film&quot;</span>
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot; SELECT * FROM Film LIMIT 10&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -1743,150 +1724,6 @@ Im folgenden Beipiel wollen wir alle Attribute bzw. Spalten aus der Filmrelation
       <td>A24</td>
       <td>1748</td>
     </tr>
-    <tr>
-      <th>10</th>
-      <td>Roma</td>
-      <td>2018</td>
-      <td>135</td>
-      <td>FALSE</td>
-      <td>Participant</td>
-      <td>5123</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>La Heine</td>
-      <td>1995</td>
-      <td>98</td>
-      <td>FALSE</td>
-      <td>NULL</td>
-      <td>2212</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Total Recall</td>
-      <td>1990</td>
-      <td>113</td>
-      <td>TRUE</td>
-      <td>Fox</td>
-      <td>3310</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Mamma Mia!</td>
-      <td>2008</td>
-      <td>108</td>
-      <td>TRUE</td>
-      <td>Littlestar Productions</td>
-      <td>8871</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>The Dark Knight</td>
-      <td>2008</td>
-      <td>152</td>
-      <td>TRUE</td>
-      <td>Warner Bros.</td>
-      <td>6035</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Pulp Fiction</td>
-      <td>1994</td>
-      <td>154</td>
-      <td>TRUE</td>
-      <td>A Band Apart</td>
-      <td>7654</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>The Great Gatsby</td>
-      <td>2013</td>
-      <td>142</td>
-      <td>TRUE</td>
-      <td>Village Roadshows</td>
-      <td>8634</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Spider-Man</td>
-      <td>2002</td>
-      <td>121</td>
-      <td>TRUE</td>
-      <td>Marvel Enterprises</td>
-      <td>6362</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>La La Land</td>
-      <td>2016</td>
-      <td>128</td>
-      <td>TRUE</td>
-      <td>Summit Entertainment</td>
-      <td>5123</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Moonlight</td>
-      <td>2016</td>
-      <td>124</td>
-      <td>TRUE</td>
-      <td>A24</td>
-      <td>1748</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>Ducktales the Movie: Treasure of the Lost Lamp</td>
-      <td>1990</td>
-      <td>74</td>
-      <td>TRUE</td>
-      <td>Disney</td>
-      <td>1234</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>House of Gucci</td>
-      <td>2021</td>
-      <td>158</td>
-      <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>James Bond 007: Spectre</td>
-      <td>2015</td>
-      <td>148</td>
-      <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>Shipwrecked</td>
-      <td>1990</td>
-      <td>92</td>
-      <td>TRUE</td>
-      <td>Disney</td>
-      <td>1234</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>The Rescuers Down Under</td>
-      <td>1990</td>
-      <td>77</td>
-      <td>TRUE</td>
-      <td>Disney</td>
-      <td>1234</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>Gone with the Wind</td>
-      <td>1939</td>
-      <td>221</td>
-      <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
-    </tr>
   </tbody>
 </table>
 </div></div></div>
@@ -1897,7 +1734,7 @@ Im folgenden Beipiel wollen wir alle Attribute bzw. Spalten aus der Filmrelation
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Titel, Jahr, inFarbe </span>
 <span class="c1">#FROM Film</span>
 
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Titel, Jahr, inFarbe FROM Film&quot;</span>
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Titel, Jahr, inFarbe FROM Film LIMIT 10&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -1989,102 +1826,6 @@ Im folgenden Beipiel wollen wir alle Attribute bzw. Spalten aus der Filmrelation
       <td>2019</td>
       <td>FALSE</td>
     </tr>
-    <tr>
-      <th>10</th>
-      <td>Roma</td>
-      <td>2018</td>
-      <td>FALSE</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>La Heine</td>
-      <td>1995</td>
-      <td>FALSE</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Total Recall</td>
-      <td>1990</td>
-      <td>TRUE</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Mamma Mia!</td>
-      <td>2008</td>
-      <td>TRUE</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>The Dark Knight</td>
-      <td>2008</td>
-      <td>TRUE</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Pulp Fiction</td>
-      <td>1994</td>
-      <td>TRUE</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>The Great Gatsby</td>
-      <td>2013</td>
-      <td>TRUE</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Spider-Man</td>
-      <td>2002</td>
-      <td>TRUE</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>La La Land</td>
-      <td>2016</td>
-      <td>TRUE</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Moonlight</td>
-      <td>2016</td>
-      <td>TRUE</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>Ducktales the Movie: Treasure of the Lost Lamp</td>
-      <td>1990</td>
-      <td>TRUE</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>House of Gucci</td>
-      <td>2021</td>
-      <td>TRUE</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>James Bond 007: Spectre</td>
-      <td>2015</td>
-      <td>TRUE</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>Shipwrecked</td>
-      <td>1990</td>
-      <td>TRUE</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>The Rescuers Down Under</td>
-      <td>1990</td>
-      <td>TRUE</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>Gone with the Wind</td>
-      <td>1939</td>
-      <td>TRUE</td>
-    </tr>
   </tbody>
 </table>
 </div></div></div>
@@ -2095,7 +1836,7 @@ Im folgenden Beipiel wollen wir alle Attribute bzw. Spalten aus der Filmrelation
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Titel AS Name, Jahr AS Zeit </span>
 <span class="c1">#FROM Film</span>
 
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Titel AS Name, Jahr AS Zeit FROM Film&quot;</span>
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Titel AS Name, Jahr AS Zeit FROM Film LIMIT 10&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -2176,86 +1917,6 @@ Im folgenden Beipiel wollen wir alle Attribute bzw. Spalten aus der Filmrelation
       <td>The Lighthouse</td>
       <td>2019</td>
     </tr>
-    <tr>
-      <th>10</th>
-      <td>Roma</td>
-      <td>2018</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>La Heine</td>
-      <td>1995</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Total Recall</td>
-      <td>1990</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Mamma Mia!</td>
-      <td>2008</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>The Dark Knight</td>
-      <td>2008</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Pulp Fiction</td>
-      <td>1994</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>The Great Gatsby</td>
-      <td>2013</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Spider-Man</td>
-      <td>2002</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>La La Land</td>
-      <td>2016</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Moonlight</td>
-      <td>2016</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>Ducktales the Movie: Treasure of the Lost Lamp</td>
-      <td>1990</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>House of Gucci</td>
-      <td>2021</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>James Bond 007: Spectre</td>
-      <td>2015</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>Shipwrecked</td>
-      <td>1990</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>The Rescuers Down Under</td>
-      <td>1990</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>Gone with the Wind</td>
-      <td>1939</td>
-    </tr>
   </tbody>
 </table>
 </div></div></div>
@@ -2266,7 +1927,7 @@ Im folgenden Beipiel wollen wir alle Attribute bzw. Spalten aus der Filmrelation
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Titel, Laenge * 0.016667 AS Stunden </span>
 <span class="c1">#FROM Film</span>
 
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Titel, Laenge * 0.016667 AS Stunden FROM Film&quot;</span>
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Titel, Laenge * 0.016667 AS Stunden FROM Film LIMIT 10&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -2347,86 +2008,6 @@ Im folgenden Beipiel wollen wir alle Attribute bzw. Spalten aus der Filmrelation
       <td>The Lighthouse</td>
       <td>1.816703</td>
     </tr>
-    <tr>
-      <th>10</th>
-      <td>Roma</td>
-      <td>2.250045</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>La Heine</td>
-      <td>1.633366</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Total Recall</td>
-      <td>1.883371</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Mamma Mia!</td>
-      <td>1.800036</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>The Dark Knight</td>
-      <td>2.533384</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Pulp Fiction</td>
-      <td>2.566718</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>The Great Gatsby</td>
-      <td>2.366714</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Spider-Man</td>
-      <td>2.016707</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>La La Land</td>
-      <td>2.133376</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Moonlight</td>
-      <td>2.066708</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>Ducktales the Movie: Treasure of the Lost Lamp</td>
-      <td>1.233358</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>House of Gucci</td>
-      <td>2.633386</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>James Bond 007: Spectre</td>
-      <td>2.466716</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>Shipwrecked</td>
-      <td>1.533364</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>The Rescuers Down Under</td>
-      <td>1.283359</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>Gone with the Wind</td>
-      <td>3.683407</td>
-    </tr>
   </tbody>
 </table>
 </div></div></div>
@@ -2437,7 +2018,7 @@ Im folgenden Beipiel wollen wir alle Attribute bzw. Spalten aus der Filmrelation
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Titel, Laenge * 0.016667 AS Stunden, ‘std.‘ AS inStunden </span>
 <span class="c1">#FROM Film</span>
 
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Titel, Laenge * 0.016667 AS Stunden, &#39;std.&#39; AS inStunden FROM Film&quot;</span>
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Titel, Laenge * 0.016667 AS Stunden, &#39;std.&#39; AS inStunden FROM Film LIMIT 10&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -2529,102 +2110,6 @@ Im folgenden Beipiel wollen wir alle Attribute bzw. Spalten aus der Filmrelation
       <td>1.816703</td>
       <td>std.</td>
     </tr>
-    <tr>
-      <th>10</th>
-      <td>Roma</td>
-      <td>2.250045</td>
-      <td>std.</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>La Heine</td>
-      <td>1.633366</td>
-      <td>std.</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Total Recall</td>
-      <td>1.883371</td>
-      <td>std.</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Mamma Mia!</td>
-      <td>1.800036</td>
-      <td>std.</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>The Dark Knight</td>
-      <td>2.533384</td>
-      <td>std.</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Pulp Fiction</td>
-      <td>2.566718</td>
-      <td>std.</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>The Great Gatsby</td>
-      <td>2.366714</td>
-      <td>std.</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Spider-Man</td>
-      <td>2.016707</td>
-      <td>std.</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>La La Land</td>
-      <td>2.133376</td>
-      <td>std.</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Moonlight</td>
-      <td>2.066708</td>
-      <td>std.</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>Ducktales the Movie: Treasure of the Lost Lamp</td>
-      <td>1.233358</td>
-      <td>std.</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>House of Gucci</td>
-      <td>2.633386</td>
-      <td>std.</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>James Bond 007: Spectre</td>
-      <td>2.466716</td>
-      <td>std.</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>Shipwrecked</td>
-      <td>1.533364</td>
-      <td>std.</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>The Rescuers Down Under</td>
-      <td>1.283359</td>
-      <td>std.</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>Gone with the Wind</td>
-      <td>3.683407</td>
-      <td>std.</td>
-    </tr>
   </tbody>
 </table>
 </div></div></div>
@@ -2662,7 +2147,7 @@ Nur wenn die gesamte WHERE-Klausel zu TRUE evaluiert wird, werden die entspreche
 <span class="c1">#FROM Film </span>
 <span class="c1">#WHERE Jahr &gt; 1970 AND NOT inFarbe;</span>
 
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Titel FROM Film WHERE Jahr &gt; 1970 AND NOT inFarbe&quot;</span>
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Titel FROM Film WHERE Jahr &gt; 1970 AND NOT inFarbe LIMIT 10&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -2731,66 +2216,6 @@ Nur wenn die gesamte WHERE-Klausel zu TRUE evaluiert wird, werden die entspreche
     <tr>
       <th>9</th>
       <td>The Lighthouse</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Roma</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>La Heine</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Total Recall</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Mamma Mia!</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>The Dark Knight</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Pulp Fiction</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>The Great Gatsby</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Spider-Man</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>La La Land</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Moonlight</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>Ducktales the Movie: Treasure of the Lost Lamp</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>House of Gucci</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>James Bond 007: Spectre</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>Shipwrecked</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>The Rescuers Down Under</td>
     </tr>
   </tbody>
 </table>
@@ -3090,7 +2515,7 @@ Zu beachten bei der Ausführungspriorität: NOT vor AND vor OR</p>
 <span class="c1">#WHERE Laenge &lt;= 90 </span>
 <span class="c1">#OR Laenge &gt; 90; --Laenge &lt;= 90 == UNKNOWN und Länge &gt; 90</span>
 
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM Film WHERE Laenge &lt;= 90 OR Laenge &gt; 90; --Laenge &lt;= 90 == UNKNOWN und Länge &gt; 90&quot;</span>
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM Film WHERE Laenge &lt;= 90 OR Laenge &gt; 90 LIMIT 10; --Laenge &lt;= 90 == UNKNOWN und Länge &gt; 90&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -3214,150 +2639,6 @@ Zu beachten bei der Ausführungspriorität: NOT vor AND vor OR</p>
       <td>FALSE</td>
       <td>A24</td>
       <td>1748</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Roma</td>
-      <td>2018</td>
-      <td>135</td>
-      <td>FALSE</td>
-      <td>Participant</td>
-      <td>5123</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>La Heine</td>
-      <td>1995</td>
-      <td>98</td>
-      <td>FALSE</td>
-      <td>NULL</td>
-      <td>2212</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Total Recall</td>
-      <td>1990</td>
-      <td>113</td>
-      <td>TRUE</td>
-      <td>Fox</td>
-      <td>3310</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Mamma Mia!</td>
-      <td>2008</td>
-      <td>108</td>
-      <td>TRUE</td>
-      <td>Littlestar Productions</td>
-      <td>8871</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>The Dark Knight</td>
-      <td>2008</td>
-      <td>152</td>
-      <td>TRUE</td>
-      <td>Warner Bros.</td>
-      <td>6035</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Pulp Fiction</td>
-      <td>1994</td>
-      <td>154</td>
-      <td>TRUE</td>
-      <td>A Band Apart</td>
-      <td>7654</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>The Great Gatsby</td>
-      <td>2013</td>
-      <td>142</td>
-      <td>TRUE</td>
-      <td>Village Roadshows</td>
-      <td>8634</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Spider-Man</td>
-      <td>2002</td>
-      <td>121</td>
-      <td>TRUE</td>
-      <td>Marvel Enterprises</td>
-      <td>6362</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>La La Land</td>
-      <td>2016</td>
-      <td>128</td>
-      <td>TRUE</td>
-      <td>Summit Entertainment</td>
-      <td>5123</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Moonlight</td>
-      <td>2016</td>
-      <td>124</td>
-      <td>TRUE</td>
-      <td>A24</td>
-      <td>1748</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>Ducktales the Movie: Treasure of the Lost Lamp</td>
-      <td>1990</td>
-      <td>74</td>
-      <td>TRUE</td>
-      <td>Disney</td>
-      <td>1234</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>House of Gucci</td>
-      <td>2021</td>
-      <td>158</td>
-      <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>James Bond 007: Spectre</td>
-      <td>2015</td>
-      <td>148</td>
-      <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>Shipwrecked</td>
-      <td>1990</td>
-      <td>92</td>
-      <td>TRUE</td>
-      <td>Disney</td>
-      <td>1234</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>The Rescuers Down Under</td>
-      <td>1990</td>
-      <td>77</td>
-      <td>TRUE</td>
-      <td>Disney</td>
-      <td>1234</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>Gone with the Wind</td>
-      <td>1939</td>
-      <td>221</td>
-      <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
     </tr>
   </tbody>
 </table>
@@ -3522,12 +2803,9 @@ Im folgenden Beispiel wollen wir alle Attribute der Filmrelation ausgeben, welch
 </section>
 <section id="anfragen-uber-mehrere-relationen">
 <h2><span class="section-number">9.3. </span>Anfragen über mehrere Relationen<a class="headerlink" href="#anfragen-uber-mehrere-relationen" title="Permalink to this headline">#</a></h2>
-<section id="motivation">
-<h3><span class="section-number">9.3.1. </span>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">#</a></h3>
-<p>Die Hauptstärke der Relationalen Algebra ist die Kombination von Relationen. Erst durch die Kombination mehrerer Relationen sind viele interessante Anfragen möglich. In SQL ist das möglich, indem man die beteiligten Relationen in der FROM-Klausel nennt.</p>
-</section>
+<p>Die Hauptstärke der Relationalen Algebra ist die Kombination von Relationen. Erst durch die Kombination mehrerer Relationen sind viele interessante Anfragen möglich. In SQL ist das möglich, indem man die beteiligten Relationen in der FROM-Klausel nennt. In diesem Kapitel werden v.A. die verschiedenen Joinvarianten, aber auch das Kreuzprodukt und andere Mengenoperatoren in SQL thematisiert.</p>
 <section id="kreuzprodukt-und-join">
-<h3><span class="section-number">9.3.2. </span>Kreuzprodukt und Join<a class="headerlink" href="#kreuzprodukt-und-join" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.3.1. </span>Kreuzprodukt und Join<a class="headerlink" href="#kreuzprodukt-und-join" title="Permalink to this headline">#</a></h3>
 <p>Im folgenden Beispiel haben wir die Relationen Film(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentinID) und
 ManagerIn(Name, Adresse, ManagerinID, Gehalt) gegeben. Wir möchten nun alle Namen der Manager*Innen ausgeben, die einen Star Wars Film produziert haben. Hierfür müssen die Relationen Film und ManagerIn gejoint werden.Zuerst bilden wir das Kruezprodukt der beiden Relationen, indem wir in der FROM-Klausel die Relationen mit einem Komma getrennt nennen , so wird intern das Kreuzprodukt dieser beiden gebildet. Schließlich wenden  wir noch einmal die Selektionsbedingung an, also dass nur ManagerInnen die einen Star Wars Film produziert haben ausgegeben werden. Und zuletzt noch die Joinbedingung, undzwar dass ProduzentinID und ManagerinID im Kreuzprodukt übereinstimmen sollen. Falls die beiden Bedinungen erfüllt sind wird ein Ergebnistupel produziert. Hierbei ist noch zu beachten, dass die Reihenfolge der WHERE-Bedingungen irrelevant ist.</p>
 <div class="cell docutils container">
@@ -3633,7 +2911,7 @@ ManagerIn(Name, Adresse, ManagerinID, Gehalt) gegeben. Wir möchten nun alle Nam
 </div>
 </section>
 <section id="uneindeutige-attributnamen">
-<h3><span class="section-number">9.3.3. </span>Uneindeutige Attributnamen<a class="headerlink" href="#uneindeutige-attributnamen" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.3.2. </span>Uneindeutige Attributnamen<a class="headerlink" href="#uneindeutige-attributnamen" title="Permalink to this headline">#</a></h3>
 <p>In diesem Beispiel haben wir die Relationen SchauspielerIn(Name, Adresse, Geschlecht, Geburtstag) und ManagerIn(Name, Adresse, ManagerinID, Gehalt) gegeben. Beide Relationen haben ein Attribut namens “Name”. Wir wollen nun die Namen der Schauspieler*Innen und Manager*Innen ausgeben, die die selbe Adresse haben. Wie im vorherigen Beispiel,bilden wir wieder das Kreuzprodukt beider. Da nur der Attributname der Relationen uneindeutig wäre, muss in der Anfrage immer ein Präfix vor das Attribut gesetzt werden. Auch bei keiner Uneindeutigkeit, kann man das Präfix schreiben, was manchmal as Lesen von SQL-Anfragen erleichtert.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3679,7 +2957,7 @@ ManagerIn(Name, Adresse, ManagerinID, Gehalt) gegeben. Wir möchten nun alle Nam
 </div>
 </section>
 <section id="tupelvariablen">
-<h3><span class="section-number">9.3.4. </span>Tupelvariablen<a class="headerlink" href="#tupelvariablen" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.3.3. </span>Tupelvariablen<a class="headerlink" href="#tupelvariablen" title="Permalink to this headline">#</a></h3>
 <p>In SQL ist es möglich einen Alias für eine Relation innerhalb einer Anfrage festzulegen. Dies ist sinnvoll, um die Tupeln, der beteiligten Relationen eindeutig zu Kennzeichnen, insbesondere wenn eine Relation mehrfach innerhalb einer Anfrage vorkommt. Umbenennung kann ebenfalls sinnvoll sein, um lange Relationennamen abzukürzen, um bessere Lesbarkeit zu schaffen. Ein Beispiel hierfür ist, z.B der Selfjoin im unteren Beispiel ,wo wir Schauspieler suchen, die zusammenleben. Und das Beispiel danach, wo wir Umbennenung zur Verkürzung der Anfrage benutzen.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SchauspielerIn</span> <span class="n">Star2</span>
 </pre></div>
@@ -3694,7 +2972,7 @@ ManagerIn(Name, Adresse, ManagerinID, Gehalt) gegeben. Wir möchten nun alle Nam
 <span class="c1">#FROM SchauspielerIn Star1, SchauspielerIn Star2 </span>
 <span class="c1">#WHERE Star1.Adresse = Star2.Adresse</span>
 
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Star1.Name, Star2.Name FROM SchauspielerIn Star1, SchauspielerIn Star2 WHERE Star1.Adresse = Star2.Adresse&quot;</span>
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Star1.Name, Star2.Name FROM SchauspielerIn Star1, SchauspielerIn Star2 WHERE Star1.Adresse = Star2.Adresse LIMIT 10&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -3774,161 +3052,6 @@ ManagerIn(Name, Adresse, ManagerinID, Gehalt) gegeben. Wir möchten nun alle Nam
       <th>9</th>
       <td>Harrison Ford</td>
       <td>Harrison Ford</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Emile Hirsch</td>
-      <td>Emile Hirsch</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>Vincent Cassel</td>
-      <td>Léa Seydoux</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Vincent Cassel</td>
-      <td>Vincent Cassel</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Meryl Streep</td>
-      <td>Meryl Streep</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Cameron Diaz</td>
-      <td>Cameron Diaz</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Cameron Diaz</td>
-      <td>Leonardo DiCaprio</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>Emma Stone</td>
-      <td>Emma Stone</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Phyllis Smith</td>
-      <td>Phyllis Smith</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>Willem Dafoe</td>
-      <td>Willem Dafoe</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Leonardo DiCaprio</td>
-      <td>Cameron Diaz</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>Leonardo DiCaprio</td>
-      <td>Leonardo DiCaprio</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>Tobey Maguire</td>
-      <td>Kirsten Dunst</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>Tobey Maguire</td>
-      <td>Tobey Maguire</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>Samuel L. Jackson</td>
-      <td>Samuel L. Jackson</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>Will Smith</td>
-      <td>Will Smith</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>Tom Hanks</td>
-      <td>Tom Hanks</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>Kirsten Dunst</td>
-      <td>Kirsten Dunst</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>Kirsten Dunst</td>
-      <td>Tobey Maguire</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>Ryan Gosling</td>
-      <td>Jared Leto</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>Ryan Gosling</td>
-      <td>Ryan Gosling</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>Mahershala Ali</td>
-      <td>Mahershala Ali</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>William Shatner</td>
-      <td>William Shatner</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>Alan Young</td>
-      <td>Alan Young</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td>Jared Leto</td>
-      <td>Jared Leto</td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td>Jared Leto</td>
-      <td>Ryan Gosling</td>
-    </tr>
-    <tr>
-      <th>35</th>
-      <td>Adam Driver</td>
-      <td>Adam Driver</td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td>Lady Gaga</td>
-      <td>Lady Gaga</td>
-    </tr>
-    <tr>
-      <th>37</th>
-      <td>Daniel Craig</td>
-      <td>Daniel Craig</td>
-    </tr>
-    <tr>
-      <th>38</th>
-      <td>Léa Seydoux</td>
-      <td>Léa Seydoux</td>
-    </tr>
-    <tr>
-      <th>39</th>
-      <td>Léa Seydoux</td>
-      <td>Vincent Cassel</td>
-    </tr>
-    <tr>
-      <th>40</th>
-      <td>Christoph Waltz</td>
-      <td>Christoph Waltz</td>
     </tr>
   </tbody>
 </table>
@@ -3978,14 +3101,14 @@ ManagerIn(Name, Adresse, ManagerinID, Gehalt) gegeben. Wir möchten nun alle Nam
 </div>
 </section>
 <section id="tupelvariablen-selfjoin">
-<h3><span class="section-number">9.3.5. </span>Tupelvariablen-Selfjoin<a class="headerlink" href="#tupelvariablen-selfjoin" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.3.4. </span>Tupelvariablen-Selfjoin<a class="headerlink" href="#tupelvariablen-selfjoin" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT Star1.Name, Star2.Name</span>
 <span class="c1">#FROM SchauspielerIn Star1, SchauspielerIn Star2</span>
 <span class="c1">#WHERE Star1.Adresse = Star2.Adresse;</span>
 
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Star1.Name, Star2.Name FROM SchauspielerIn Star1, SchauspielerIn Star2 WHERE Star1.Adresse = Star2.Adresse;&quot;</span>
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Star1.Name, Star2.Name FROM SchauspielerIn Star1, SchauspielerIn Star2 WHERE Star1.Adresse = Star2.Adresse  LIMIT 10;&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -4065,161 +3188,6 @@ ManagerIn(Name, Adresse, ManagerinID, Gehalt) gegeben. Wir möchten nun alle Nam
       <th>9</th>
       <td>Harrison Ford</td>
       <td>Harrison Ford</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Emile Hirsch</td>
-      <td>Emile Hirsch</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>Vincent Cassel</td>
-      <td>Léa Seydoux</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Vincent Cassel</td>
-      <td>Vincent Cassel</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Meryl Streep</td>
-      <td>Meryl Streep</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Cameron Diaz</td>
-      <td>Cameron Diaz</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Cameron Diaz</td>
-      <td>Leonardo DiCaprio</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>Emma Stone</td>
-      <td>Emma Stone</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Phyllis Smith</td>
-      <td>Phyllis Smith</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>Willem Dafoe</td>
-      <td>Willem Dafoe</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Leonardo DiCaprio</td>
-      <td>Cameron Diaz</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>Leonardo DiCaprio</td>
-      <td>Leonardo DiCaprio</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>Tobey Maguire</td>
-      <td>Kirsten Dunst</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>Tobey Maguire</td>
-      <td>Tobey Maguire</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>Samuel L. Jackson</td>
-      <td>Samuel L. Jackson</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>Will Smith</td>
-      <td>Will Smith</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>Tom Hanks</td>
-      <td>Tom Hanks</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>Kirsten Dunst</td>
-      <td>Kirsten Dunst</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>Kirsten Dunst</td>
-      <td>Tobey Maguire</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>Ryan Gosling</td>
-      <td>Jared Leto</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>Ryan Gosling</td>
-      <td>Ryan Gosling</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>Mahershala Ali</td>
-      <td>Mahershala Ali</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>William Shatner</td>
-      <td>William Shatner</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>Alan Young</td>
-      <td>Alan Young</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td>Jared Leto</td>
-      <td>Jared Leto</td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td>Jared Leto</td>
-      <td>Ryan Gosling</td>
-    </tr>
-    <tr>
-      <th>35</th>
-      <td>Adam Driver</td>
-      <td>Adam Driver</td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td>Lady Gaga</td>
-      <td>Lady Gaga</td>
-    </tr>
-    <tr>
-      <th>37</th>
-      <td>Daniel Craig</td>
-      <td>Daniel Craig</td>
-    </tr>
-    <tr>
-      <th>38</th>
-      <td>Léa Seydoux</td>
-      <td>Léa Seydoux</td>
-    </tr>
-    <tr>
-      <th>39</th>
-      <td>Léa Seydoux</td>
-      <td>Vincent Cassel</td>
-    </tr>
-    <tr>
-      <th>40</th>
-      <td>Christoph Waltz</td>
-      <td>Christoph Waltz</td>
     </tr>
   </tbody>
 </table>
@@ -4311,7 +3279,7 @@ ManagerIn(Name, Adresse, ManagerinID, Gehalt) gegeben. Wir möchten nun alle Nam
 </div>
 </section>
 <section id="interpretation-von-anfragen">
-<h3><span class="section-number">9.3.6. </span>Interpretation von Anfragen<a class="headerlink" href="#interpretation-von-anfragen" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.3.5. </span>Interpretation von Anfragen<a class="headerlink" href="#interpretation-von-anfragen" title="Permalink to this headline">#</a></h3>
 <p>Anfragen können auf unterschiedlich Arten und Weisen interpretiert werden. Es gibt drie Interpretationsvarianten für Anfragen mit mehreren Relationen. Mit der Nested Loops(geschachtelte Schleifen) gibt es bei mehreren Tupelvariablen, für jede Variable eine geschachtelte Schleife. Bei der parallelen Zuordnung werden alle Kombinationen parallel bzgl. der Bedingungen geprüft. In der Relationen Algebra wird zuerst das Kreuzprodukt gebildet und dann auf jedes Resulat-Tupel die Selektionsbedingungen angewendet.
 <br>
 <br>
@@ -4436,7 +3404,7 @@ Im folgenden Beispiel sind die Relationen R(A), S(A) und T(A) mit dem selben Att
 </div>
 </section>
 <section id="joins">
-<h3><span class="section-number">9.3.7. </span>Joins<a class="headerlink" href="#joins" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.3.6. </span>Joins<a class="headerlink" href="#joins" title="Permalink to this headline">#</a></h3>
 <p><img alt="title" src="../_images/joins.jpg" /></p>
 <p>Bis hierhin haben wir Joins nur mit Komma zwischen den Relationennamen in der FROM-Klausel und der Joinbedingung in der WHERE-Klausel kennengelernt. Kreuzprodukte können auch mit CROSS JOIN ausgedrückt werden,z.B Film CROSS JOIN spielt_in, hier werden direkt doppelte Attributnamen mit Präfix der Relation schon aufgelöst.
 <br><br>
@@ -4447,7 +3415,7 @@ Ein Beispiel für ein Theta-Join finden wir unten.</p>
 <span class="c1">#FROM Film JOIN spielt_in ON Titel = FilmTitel </span>
 <span class="c1">#AND Jahr = FilmJahr</span>
 
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM Film JOIN spielt_in ON Titel = FilmTitel AND Jahr = FilmJahr&quot;</span>
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM Film JOIN spielt_in ON Titel = FilmTitel AND Jahr = FilmJahr LIMIT 10&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -4605,294 +3573,6 @@ Ein Beispiel für ein Theta-Join finden wir unten.</p>
       <td>2013</td>
       <td>Leonardo DiCaprio</td>
     </tr>
-    <tr>
-      <th>10</th>
-      <td>The Great Gatsby</td>
-      <td>2013</td>
-      <td>142</td>
-      <td>TRUE</td>
-      <td>Village Roadshows</td>
-      <td>8634</td>
-      <td>The Great Gatsby</td>
-      <td>2013</td>
-      <td>Tobey Maguire</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>The Great Gatsby</td>
-      <td>2013</td>
-      <td>142</td>
-      <td>TRUE</td>
-      <td>Village Roadshows</td>
-      <td>8634</td>
-      <td>The Great Gatsby</td>
-      <td>2013</td>
-      <td>Carey Mulligan</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Lady Bird</td>
-      <td>2017</td>
-      <td>95</td>
-      <td>TRUE</td>
-      <td>Scott Rudin Productions</td>
-      <td>3456</td>
-      <td>Lady Bird</td>
-      <td>2017</td>
-      <td>Saoirse Ronan</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>La Heine</td>
-      <td>1995</td>
-      <td>98</td>
-      <td>FALSE</td>
-      <td>NULL</td>
-      <td>2212</td>
-      <td>La Heine</td>
-      <td>1995</td>
-      <td>Vincent Cassel</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Mamma Mia!</td>
-      <td>2008</td>
-      <td>108</td>
-      <td>TRUE</td>
-      <td>Littlestar Productions</td>
-      <td>8871</td>
-      <td>Mamma Mia!</td>
-      <td>2008</td>
-      <td>Meryl Streep</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Inside Out</td>
-      <td>2015</td>
-      <td>95</td>
-      <td>TRUE</td>
-      <td>Disney</td>
-      <td>1234</td>
-      <td>Inside Out</td>
-      <td>2015</td>
-      <td>Phyllis Smith</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>Total Recall</td>
-      <td>1990</td>
-      <td>113</td>
-      <td>TRUE</td>
-      <td>Fox</td>
-      <td>3310</td>
-      <td>Total Recall</td>
-      <td>1990</td>
-      <td>Arnold Schwarzenegger</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Total Recall</td>
-      <td>1990</td>
-      <td>113</td>
-      <td>TRUE</td>
-      <td>Fox</td>
-      <td>3310</td>
-      <td>Total Recall</td>
-      <td>1990</td>
-      <td>Sharon Stone</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>Pulp Fiction</td>
-      <td>1994</td>
-      <td>154</td>
-      <td>TRUE</td>
-      <td>A Band Apart</td>
-      <td>7654</td>
-      <td>Pulp Fiction</td>
-      <td>1994</td>
-      <td>Samuel L. Jackson</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Up</td>
-      <td>2009</td>
-      <td>96</td>
-      <td>TRUE</td>
-      <td>Pixar</td>
-      <td>4567</td>
-      <td>Up</td>
-      <td>2009</td>
-      <td>Tom Hanks</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>Spider-Man</td>
-      <td>2002</td>
-      <td>121</td>
-      <td>TRUE</td>
-      <td>Marvel Enterprises</td>
-      <td>6362</td>
-      <td>Spider-Man</td>
-      <td>2002</td>
-      <td>Tobey Maguire</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>Spider-Man</td>
-      <td>2002</td>
-      <td>121</td>
-      <td>TRUE</td>
-      <td>Marvel Enterprises</td>
-      <td>6362</td>
-      <td>Spider-Man</td>
-      <td>2002</td>
-      <td>Willem Dafoe</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>Spider-Man</td>
-      <td>2002</td>
-      <td>121</td>
-      <td>TRUE</td>
-      <td>Marvel Enterprises</td>
-      <td>6362</td>
-      <td>Spider-Man</td>
-      <td>2002</td>
-      <td>Kirsten Dunst</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>La La Land</td>
-      <td>2016</td>
-      <td>128</td>
-      <td>TRUE</td>
-      <td>Summit Entertainment</td>
-      <td>5123</td>
-      <td>La La Land</td>
-      <td>2016</td>
-      <td>Emma Stone</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>La La Land</td>
-      <td>2016</td>
-      <td>128</td>
-      <td>TRUE</td>
-      <td>Summit Entertainment</td>
-      <td>5123</td>
-      <td>La La Land</td>
-      <td>2016</td>
-      <td>Ryan Gosling</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>Moonlight</td>
-      <td>2016</td>
-      <td>124</td>
-      <td>TRUE</td>
-      <td>A24</td>
-      <td>1748</td>
-      <td>Moonlight</td>
-      <td>2016</td>
-      <td>Mahershala Ali</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>Star Trek</td>
-      <td>1979</td>
-      <td>132</td>
-      <td>TRUE</td>
-      <td>Paramount</td>
-      <td>6789</td>
-      <td>Star Trek</td>
-      <td>1979</td>
-      <td>William Shatner</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>Ducktales the Movie: Treasure of the Lost Lamp</td>
-      <td>1990</td>
-      <td>74</td>
-      <td>TRUE</td>
-      <td>Disney</td>
-      <td>1234</td>
-      <td>Ducktales the Movie: Treasure of the Lost Lamp</td>
-      <td>1990</td>
-      <td>Alan Young</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>House of Gucci</td>
-      <td>2021</td>
-      <td>158</td>
-      <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
-      <td>House of Gucci</td>
-      <td>2021</td>
-      <td>Jared Leto</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>House of Gucci</td>
-      <td>2021</td>
-      <td>158</td>
-      <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
-      <td>House of Gucci</td>
-      <td>2021</td>
-      <td>Adam Driver</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>House of Gucci</td>
-      <td>2021</td>
-      <td>158</td>
-      <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
-      <td>House of Gucci</td>
-      <td>2021</td>
-      <td>Lady Gaga</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>James Bond 007: Spectre</td>
-      <td>2015</td>
-      <td>148</td>
-      <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
-      <td>James Bond 007: Spectre</td>
-      <td>2015</td>
-      <td>Daniel Craig</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>James Bond 007: Spectre</td>
-      <td>2015</td>
-      <td>148</td>
-      <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
-      <td>James Bond 007: Spectre</td>
-      <td>2015</td>
-      <td>Léa Seydoux</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td>James Bond 007: Spectre</td>
-      <td>2015</td>
-      <td>148</td>
-      <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
-      <td>James Bond 007: Spectre</td>
-      <td>2015</td>
-      <td>Christoph Waltz</td>
-    </tr>
   </tbody>
 </table>
 </div></div></div>
@@ -4904,7 +3584,7 @@ Ein Beispiel für ein Theta-Join finden wir unten.</p>
 <span class="c1">#FROM Film JOIN spielt_in ON Titel = FilmTitel </span>
 <span class="c1">#AND Jahr = FilmJahr;</span>
 
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Titel, Jahr, Laenge, inFarbe, StudioName, ProduzentinID, Name FROM Film JOIN spielt_in ON Titel = FilmTitel AND Jahr = FilmJahr;&quot;</span>
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Titel, Jahr, Laenge, inFarbe, StudioName, ProduzentinID, Name FROM Film JOIN spielt_in ON Titel = FilmTitel AND Jahr = FilmJahr LIMIT 10;&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -5040,246 +3720,6 @@ Ein Beispiel für ein Theta-Join finden wir unten.</p>
       <td>8634</td>
       <td>Leonardo DiCaprio</td>
     </tr>
-    <tr>
-      <th>10</th>
-      <td>The Great Gatsby</td>
-      <td>2013</td>
-      <td>142</td>
-      <td>TRUE</td>
-      <td>Village Roadshows</td>
-      <td>8634</td>
-      <td>Tobey Maguire</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>The Great Gatsby</td>
-      <td>2013</td>
-      <td>142</td>
-      <td>TRUE</td>
-      <td>Village Roadshows</td>
-      <td>8634</td>
-      <td>Carey Mulligan</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Lady Bird</td>
-      <td>2017</td>
-      <td>95</td>
-      <td>TRUE</td>
-      <td>Scott Rudin Productions</td>
-      <td>3456</td>
-      <td>Saoirse Ronan</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>La Heine</td>
-      <td>1995</td>
-      <td>98</td>
-      <td>FALSE</td>
-      <td>NULL</td>
-      <td>2212</td>
-      <td>Vincent Cassel</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Mamma Mia!</td>
-      <td>2008</td>
-      <td>108</td>
-      <td>TRUE</td>
-      <td>Littlestar Productions</td>
-      <td>8871</td>
-      <td>Meryl Streep</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Inside Out</td>
-      <td>2015</td>
-      <td>95</td>
-      <td>TRUE</td>
-      <td>Disney</td>
-      <td>1234</td>
-      <td>Phyllis Smith</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>Total Recall</td>
-      <td>1990</td>
-      <td>113</td>
-      <td>TRUE</td>
-      <td>Fox</td>
-      <td>3310</td>
-      <td>Arnold Schwarzenegger</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Total Recall</td>
-      <td>1990</td>
-      <td>113</td>
-      <td>TRUE</td>
-      <td>Fox</td>
-      <td>3310</td>
-      <td>Sharon Stone</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>Pulp Fiction</td>
-      <td>1994</td>
-      <td>154</td>
-      <td>TRUE</td>
-      <td>A Band Apart</td>
-      <td>7654</td>
-      <td>Samuel L. Jackson</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Up</td>
-      <td>2009</td>
-      <td>96</td>
-      <td>TRUE</td>
-      <td>Pixar</td>
-      <td>4567</td>
-      <td>Tom Hanks</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>Spider-Man</td>
-      <td>2002</td>
-      <td>121</td>
-      <td>TRUE</td>
-      <td>Marvel Enterprises</td>
-      <td>6362</td>
-      <td>Tobey Maguire</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>Spider-Man</td>
-      <td>2002</td>
-      <td>121</td>
-      <td>TRUE</td>
-      <td>Marvel Enterprises</td>
-      <td>6362</td>
-      <td>Willem Dafoe</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>Spider-Man</td>
-      <td>2002</td>
-      <td>121</td>
-      <td>TRUE</td>
-      <td>Marvel Enterprises</td>
-      <td>6362</td>
-      <td>Kirsten Dunst</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>La La Land</td>
-      <td>2016</td>
-      <td>128</td>
-      <td>TRUE</td>
-      <td>Summit Entertainment</td>
-      <td>5123</td>
-      <td>Emma Stone</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>La La Land</td>
-      <td>2016</td>
-      <td>128</td>
-      <td>TRUE</td>
-      <td>Summit Entertainment</td>
-      <td>5123</td>
-      <td>Ryan Gosling</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>Moonlight</td>
-      <td>2016</td>
-      <td>124</td>
-      <td>TRUE</td>
-      <td>A24</td>
-      <td>1748</td>
-      <td>Mahershala Ali</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>Star Trek</td>
-      <td>1979</td>
-      <td>132</td>
-      <td>TRUE</td>
-      <td>Paramount</td>
-      <td>6789</td>
-      <td>William Shatner</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>Ducktales the Movie: Treasure of the Lost Lamp</td>
-      <td>1990</td>
-      <td>74</td>
-      <td>TRUE</td>
-      <td>Disney</td>
-      <td>1234</td>
-      <td>Alan Young</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>House of Gucci</td>
-      <td>2021</td>
-      <td>158</td>
-      <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
-      <td>Jared Leto</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>House of Gucci</td>
-      <td>2021</td>
-      <td>158</td>
-      <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
-      <td>Adam Driver</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>House of Gucci</td>
-      <td>2021</td>
-      <td>158</td>
-      <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
-      <td>Lady Gaga</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>James Bond 007: Spectre</td>
-      <td>2015</td>
-      <td>148</td>
-      <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
-      <td>Daniel Craig</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>James Bond 007: Spectre</td>
-      <td>2015</td>
-      <td>148</td>
-      <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
-      <td>Léa Seydoux</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td>James Bond 007: Spectre</td>
-      <td>2015</td>
-      <td>148</td>
-      <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
-      <td>Christoph Waltz</td>
-    </tr>
   </tbody>
 </table>
 </div></div></div>
@@ -5369,13 +3809,13 @@ Ein Beispiel für ein Theta-Join finden wir unten.</p>
 </div>
 </section>
 <section id="the-tpc-h-schema">
-<h3><span class="section-number">9.3.8. </span>The TPC-H Schema<a class="headerlink" href="#the-tpc-h-schema" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.3.7. </span>The TPC-H Schema<a class="headerlink" href="#the-tpc-h-schema" title="Permalink to this headline">#</a></h3>
 <p><img alt="title" src="../_images/tpc-h_schema.jpg" /></p>
 <p>Das TPC-H ist ein Benchmark, dessen Datensätze zufällig generiert werden. Die Daten sind an Unternehmen und ihren Handelsketten orientiert. Datenbankentwickler*\Innen benutzen TPC-H ,um neu entwickelte Systeme zu testen.<br />
 <br><br>
 Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
 <section id="tpc-query-minimum-cost-supplier">
-<h4><span class="section-number">9.3.8.1. </span>TPC Query - Minimum Cost Supplier<a class="headerlink" href="#tpc-query-minimum-cost-supplier" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">9.3.7.1. </span>TPC Query - Minimum Cost Supplier<a class="headerlink" href="#tpc-query-minimum-cost-supplier" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%sql</span>
@@ -5453,7 +3893,7 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
 </div>
 </section>
 <section id="the-tpc-h-universal-table">
-<h4><span class="section-number">9.3.8.2. </span>The TPC-H Universal Table<a class="headerlink" href="#the-tpc-h-universal-table" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">9.3.7.2. </span>The TPC-H Universal Table<a class="headerlink" href="#the-tpc-h-universal-table" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%sql</span>
@@ -5794,7 +4234,7 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
 </section>
 </section>
 <section id="outer-joins">
-<h3><span class="section-number">9.3.9. </span>Outer Joins<a class="headerlink" href="#outer-joins" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.3.8. </span>Outer Joins<a class="headerlink" href="#outer-joins" title="Permalink to this headline">#</a></h3>
 <p>Haben wir erneut die Relationen SchauspielerIn(Name, Adresse, Geschlecht, Geburtstag) und ManagerIn(Name, Adresse, ManagerinID, Gehalt) gegeben. Wir suchen nun alle Schauspieler*Innen, die zugleich auch Manger*Innen sind.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -5844,7 +4284,7 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#…FROM SchauspielerIn NATURAL LEFT OUTER JOIN ManagerIn</span>
 
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Name, Adresse, Geburtstag, Gehalt FROM SchauspielerIn NATURAL LEFT OUTER JOIN ManagerIn&quot;</span>
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Name, Adresse, Geburtstag, Gehalt FROM SchauspielerIn NATURAL LEFT OUTER JOIN ManagerIn  LIMIT 10&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -5945,167 +4385,6 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
       <td>Harrison Ford</td>
       <td>P.O. Box 49344 Los Angeles, CA 90049-0344</td>
       <td>1942-07-13</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Emile Hirsch</td>
-      <td>9336 Civic Center Drive, Beverly Hills, CA 902...</td>
-      <td>1985-03-13</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>Vincent Cassel</td>
-      <td>42/44 rue de Paradis, 75010 Paris</td>
-      <td>1966-11-23</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Meryl Streep</td>
-      <td>42 West, 600 3rd Avenue, 23rd Floor, New York</td>
-      <td>1949-06-22</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Cameron Diaz</td>
-      <td>2000 Avenue Of The Stars, 3rd Floor, North Tow...</td>
-      <td>1972-08-30</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Emma Stone</td>
-      <td>Wilshire Blvd., Suite 930, Beverly Hills, CA 9...</td>
-      <td>1988-11-06</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Phyllis Smith</td>
-      <td>8383 Wilshire Blvd., Suite 100, Beverly Hills,...</td>
-      <td>1951-07-10</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>Willem Dafoe</td>
-      <td>9601 Wilshire Blvd., 3rd Floor, Beverly Hills,...</td>
-      <td>1995-07-22</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Leonardo DiCaprio</td>
-      <td>2000 Avenue Of The Stars, 3rd Floor, North Tow...</td>
-      <td>1974-11-11</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>Tobey Maguire</td>
-      <td>10100 Santa Monica Blvd., Suite 2300, Los Ange...</td>
-      <td>1975-06-27</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Samuel L. Jackson</td>
-      <td>8501 Washington Blvd., Culver City, CA 90232-7443</td>
-      <td>1948-12-21</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>Will Smith</td>
-      <td>1880 Century Park East, Suite 1600, Los Angele...</td>
-      <td>1968-09-25</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>Tom Hanks</td>
-      <td>P.O. Box 7340, Santa Monica, CA 90406-7340</td>
-      <td>1956-07-09</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>Kirsten Dunst</td>
-      <td>10100 Santa Monica Blvd., Suite 2300, Los Ange...</td>
-      <td>1982-04-30</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>Ryan Gosling</td>
-      <td>6311 Romaine Street, Suite 7327, Los Angeles, ...</td>
-      <td>1980-11-12</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>Mahershala Ali</td>
-      <td>4208 Overland Avenue Culver City, CA 90230-3736</td>
-      <td>1974-02-16</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>William Shatner</td>
-      <td>5555 Melrose Avenue, Dreier 211, Hollywood, CA...</td>
-      <td>1931-03-22</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>Alan Young</td>
-      <td>P.O. Box 14 Rimrock, AZ 86335</td>
-      <td>1919-11-19</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>Jared Leto</td>
-      <td>6311 Romaine Street, Suite 7327, Los Angeles, ...</td>
-      <td>1971-12-26</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>Adam Driver</td>
-      <td>15260 Ventura Blvd. Suite 900, Sherman Oaks, C...</td>
-      <td>1983-11-19</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>Lady Gaga</td>
-      <td>401 Broadway Suite 206, New York, NY 10013</td>
-      <td>1986-03-20</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>Daniel Craig</td>
-      <td>40 Whitfield Street, London, W1T 2RH</td>
-      <td>1968-03-02</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>Léa Seydoux</td>
-      <td>42/44 rue de Paradis, 75010 Paris</td>
-      <td>1985-07-01</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>Christoph Waltz</td>
-      <td>Sophienstrasse 21, 10178 Berlin</td>
-      <td>1956-10-04</td>
       <td>None</td>
     </tr>
   </tbody>
@@ -6187,7 +4466,7 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
 <p>Wir sehen, dass RIGHT OUTER JOINS in sqlite3 nicht direkt möglich sind, da dieser Operator in sqlite3 nicht unterstützt wird. Man kann aber dennoch durch Vertauschen der Reihenfolge der Tabellen, die gewünschte Ausgabe mit LEFT OUTER JOINS erzeugen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Name, Adresse, Geburtstag, Gehalt FROM ManagerIn NATURAL LEFT OUTER JOIN SchauspielerIn&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Name, Adresse, Geburtstag, Gehalt FROM ManagerIn NATURAL LEFT OUTER JOIN SchauspielerIn  LIMIT 10&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -6290,41 +4569,6 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
       <td>None</td>
       <td>45678,9</td>
     </tr>
-    <tr>
-      <th>10</th>
-      <td>Steve Asbell</td>
-      <td>10201 Pico Blvd, Los Angeles, CA 90064</td>
-      <td>None</td>
-      <td>12678,1</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>Alan Bruckner</td>
-      <td>25 Whitlam Ave Unit 3, Etobicoke, ON M8V2K1</td>
-      <td>None</td>
-      <td>17853,41</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Isaac Perlmutter</td>
-      <td>4000 Warner Blvd., Burbank, CA 91522</td>
-      <td>None</td>
-      <td>18456,1</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Quentin Tarantino</td>
-      <td>10100 Santa Monica Blvd., Los Angeles, CA 90404</td>
-      <td>None</td>
-      <td>12345,57</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Louis B.Mayer</td>
-      <td>625 Palisades Beach Rd, Santa Monica</td>
-      <td>None</td>
-      <td>83333,33</td>
-    </tr>
   </tbody>
 </table>
 </div></div></div>
@@ -6404,7 +4648,7 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
 <p>Ebenso werden FULL OUTER JOINS in sqlite3 nicht unterstützt. Eine alternative Anfrage mit äquivalenter Ausgabe, die nur LEFT OUTER JOINS verwendet ist möglich. Ein FULL OUTER JOIN ist die Vereinigung von dem LEFT und RIGHT OUTER JOIN zweier Tabellen. Wie im vorherigen Beispiel gezeigt, können wir RIGHT OUTER JOINS mithilfe von LEFT OUTER JOINS erzeugen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Name, Adresse, Geburtstag, Gehalt FROM SchauspielerIn NATURAL LEFT OUTER JOIN ManagerIn UNION SELECT Name, Adresse, Geburtstag, Gehalt FROM ManagerIn NATURAL LEFT OUTER JOIN SchauspielerIn&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Name, Adresse, Geburtstag, Gehalt FROM SchauspielerIn NATURAL LEFT OUTER JOIN ManagerIn UNION SELECT Name, Adresse, Geburtstag, Gehalt FROM ManagerIn NATURAL LEFT OUTER JOIN SchauspielerIn LIMIT 10&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -6507,272 +4751,6 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
       <td>1956-10-21</td>
       <td>None</td>
     </tr>
-    <tr>
-      <th>10</th>
-      <td>Christoph Waltz</td>
-      <td>Sophienstrasse 21, 10178 Berlin</td>
-      <td>1956-10-04</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>Daniel Craig</td>
-      <td>40 Whitfield Street, London, W1T 2RH</td>
-      <td>1968-03-02</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Daniel Katz</td>
-      <td>31 West 27th Street, New York City</td>
-      <td>None</td>
-      <td>13450,13</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Emile Hirsch</td>
-      <td>9336 Civic Center Drive, Beverly Hills, CA 902...</td>
-      <td>1985-03-13</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Emma Stone</td>
-      <td>Wilshire Blvd., Suite 930, Beverly Hills, CA 9...</td>
-      <td>1988-11-06</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Harrison Ford</td>
-      <td>P.O. Box 49344 Los Angeles, CA 90049-0344</td>
-      <td>1942-07-13</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>Heath Ledger</td>
-      <td>421 Broome Street, Lower Manhatta, New York City</td>
-      <td>1979-04-04</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Isaac Perlmutter</td>
-      <td>4000 Warner Blvd., Burbank, CA 91522</td>
-      <td>None</td>
-      <td>18456,1</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>Jake Gyllenhaal</td>
-      <td>Wilshire Boulevard, 3rd Floor, Beverly Hills, ...</td>
-      <td>1980-12-19</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Jared Leto</td>
-      <td>6311 Romaine Street, Suite 7327, Los Angeles, ...</td>
-      <td>1971-12-26</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>Jim Berk</td>
-      <td>3520 Wesley Street, Culver City, CA 90232</td>
-      <td>None</td>
-      <td>88584,1</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>Jim Morris</td>
-      <td>1200 Park Ave, Emeryville, CA 94608</td>
-      <td>None</td>
-      <td>16918,33</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>Kirsten Dunst</td>
-      <td>10100 Santa Monica Blvd., Suite 2300, Los Ange...</td>
-      <td>1982-04-30</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>Lady Gaga</td>
-      <td>401 Broadway Suite 206, New York, NY 10013</td>
-      <td>1986-03-20</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>Leonardo DiCaprio</td>
-      <td>2000 Avenue Of The Stars, 3rd Floor, North Tow...</td>
-      <td>1974-11-11</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>Louis B.Mayer</td>
-      <td>625 Palisades Beach Rd, Santa Monica</td>
-      <td>None</td>
-      <td>83333,33</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>Léa Seydoux</td>
-      <td>42/44 rue de Paradis, 75010 Paris</td>
-      <td>1985-07-01</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>Mahershala Ali</td>
-      <td>4208 Overland Avenue Culver City, CA 90230-3736</td>
-      <td>1974-02-16</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>Mark Hamill</td>
-      <td>P.O. Box 287, Grand Blanc, MI 48480</td>
-      <td>1951-09-25</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>Meryl Streep</td>
-      <td>42 West, 600 3rd Avenue, 23rd Floor, New York</td>
-      <td>1949-06-22</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>Paul Golding</td>
-      <td>Pinewood Rd, Slough, Iver SL0 0NH</td>
-      <td>None</td>
-      <td>10235,4</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>Phyllis Smith</td>
-      <td>8383 Wilshire Blvd., Suite 100, Beverly Hills,...</td>
-      <td>1951-07-10</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>Quentin Tarantino</td>
-      <td>10100 Santa Monica Blvd., Los Angeles, CA 90404</td>
-      <td>None</td>
-      <td>12345,57</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td>Robert Kirby</td>
-      <td>Entertainment Rd, Oxenford, Queensland 4210, AU</td>
-      <td>None</td>
-      <td>45678,9</td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td>Robert Pattinson</td>
-      <td>William Morris Endeavor Entertainment, 9601 Wi...</td>
-      <td>1986-05-13</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>35</th>
-      <td>Ryan Gosling</td>
-      <td>6311 Romaine Street, Suite 7327, Los Angeles, ...</td>
-      <td>1980-11-12</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td>Samuel L. Jackson</td>
-      <td>8501 Washington Blvd., Culver City, CA 90232-7443</td>
-      <td>1948-12-21</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>37</th>
-      <td>Saorise Ronan</td>
-      <td>MacFarlane Chard Associates Ltd., 24 Adelaide ...</td>
-      <td>1994-04-12</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>38</th>
-      <td>Scarlet Johansson</td>
-      <td>15821 Ventura Blvs., Suite 370, Encino CA 9143...</td>
-      <td>1984-11-22</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>39</th>
-      <td>Scott Rudin</td>
-      <td>120 W. 45th St., 10th Fl., New York, New York ...</td>
-      <td>None</td>
-      <td>15758,57</td>
-    </tr>
-    <tr>
-      <th>40</th>
-      <td>Sharon Stone</td>
-      <td>407 N Maple Dr Suite 100, Beverly Hills, CA 90...</td>
-      <td>1958-03-10</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>41</th>
-      <td>Steve Asbell</td>
-      <td>10201 Pico Blvd, Los Angeles, CA 90064</td>
-      <td>None</td>
-      <td>12678,1</td>
-    </tr>
-    <tr>
-      <th>42</th>
-      <td>Tobey Maguire</td>
-      <td>10100 Santa Monica Blvd., Suite 2300, Los Ange...</td>
-      <td>1975-06-27</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>43</th>
-      <td>Tom Hanks</td>
-      <td>P.O. Box 7340, Santa Monica, CA 90406-7340</td>
-      <td>1956-07-09</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>44</th>
-      <td>Vincent Cassel</td>
-      <td>42/44 rue de Paradis, 75010 Paris</td>
-      <td>1966-11-23</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>45</th>
-      <td>Will Smith</td>
-      <td>1880 Century Park East, Suite 1600, Los Angele...</td>
-      <td>1968-09-25</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>46</th>
-      <td>Willem Dafoe</td>
-      <td>9601 Wilshire Blvd., 3rd Floor, Beverly Hills,...</td>
-      <td>1995-07-22</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>47</th>
-      <td>William Shatner</td>
-      <td>5555 Melrose Avenue, Dreier 211, Hollywood, CA...</td>
-      <td>1931-03-22</td>
-      <td>None</td>
-    </tr>
   </tbody>
 </table>
 </div></div></div>
@@ -6781,14 +4759,14 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
 <p>Der Unterschied von FULL OUTER JOINS zu UNION ist, dass nur eine Zeile pro Person ausgegeben wird.</p>
 </section>
 <section id="kreuzprodukt">
-<h3><span class="section-number">9.3.10. </span>Kreuzprodukt<a class="headerlink" href="#kreuzprodukt" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.3.9. </span>Kreuzprodukt<a class="headerlink" href="#kreuzprodukt" title="Permalink to this headline">#</a></h3>
 <p>Wie aus der Relationalen Algebra bekannt bildet das Kreuzprodukt lle Paare aus Tupeln den beteiligten Relationen. In SQL können Kreuzprodukte mit CROSS JOIN gebildet werden, wie unten gezeigt oder auch mit Komma zwischen den beteiligten Relationen in der FROM-Klausel, wie ein Beispielt weiter gezeigt wird. Kreuzprodukte werden in der Regel selten verwendet, sie sind aber der Grundbaustein für Joins.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT * </span>
 <span class="c1">#FROM SchauspielerIn CROSS JOIN Film</span>
 
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM SchauspielerIn CROSS JOIN Film&quot;</span>
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM SchauspielerIn CROSS JOIN Film LIMIT 10&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -6893,86 +4871,72 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
       <td>78910</td>
     </tr>
     <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>853</th>
-      <td>Christoph Waltz</td>
-      <td>Sophienstrasse 21, 10178 Berlin</td>
+      <th>5</th>
+      <td>Arnold Schwarzenegger</td>
+      <td>3110 Main Street, Suite 300, Santa Monica, CA ...</td>
       <td>m</td>
-      <td>1956-10-04</td>
-      <td>House of Gucci</td>
-      <td>2021</td>
-      <td>158</td>
+      <td>1947-07-30</td>
+      <td>Star Trek</td>
+      <td>1979</td>
+      <td>132</td>
       <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
+      <td>Paramount</td>
+      <td>6789</td>
     </tr>
     <tr>
-      <th>854</th>
-      <td>Christoph Waltz</td>
-      <td>Sophienstrasse 21, 10178 Berlin</td>
+      <th>6</th>
+      <td>Arnold Schwarzenegger</td>
+      <td>3110 Main Street, Suite 300, Santa Monica, CA ...</td>
       <td>m</td>
-      <td>1956-10-04</td>
-      <td>James Bond 007: Spectre</td>
-      <td>2015</td>
+      <td>1947-07-30</td>
+      <td>Lady Bird</td>
+      <td>2017</td>
+      <td>95</td>
+      <td>TRUE</td>
+      <td>Scott Rudin Productions</td>
+      <td>3456</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Arnold Schwarzenegger</td>
+      <td>3110 Main Street, Suite 300, Santa Monica, CA ...</td>
+      <td>m</td>
+      <td>1947-07-30</td>
+      <td>Into the Wild</td>
+      <td>2007</td>
       <td>148</td>
       <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
+      <td>Paramount</td>
+      <td>6789</td>
     </tr>
     <tr>
-      <th>855</th>
-      <td>Christoph Waltz</td>
-      <td>Sophienstrasse 21, 10178 Berlin</td>
+      <th>8</th>
+      <td>Arnold Schwarzenegger</td>
+      <td>3110 Main Street, Suite 300, Santa Monica, CA ...</td>
       <td>m</td>
-      <td>1956-10-04</td>
-      <td>Shipwrecked</td>
-      <td>1990</td>
-      <td>92</td>
+      <td>1947-07-30</td>
+      <td>Brokeback Mountain</td>
+      <td>2005</td>
+      <td>134</td>
       <td>TRUE</td>
-      <td>Disney</td>
-      <td>1234</td>
+      <td>River Road</td>
+      <td>4712</td>
     </tr>
     <tr>
-      <th>856</th>
-      <td>Christoph Waltz</td>
-      <td>Sophienstrasse 21, 10178 Berlin</td>
+      <th>9</th>
+      <td>Arnold Schwarzenegger</td>
+      <td>3110 Main Street, Suite 300, Santa Monica, CA ...</td>
       <td>m</td>
-      <td>1956-10-04</td>
-      <td>The Rescuers Down Under</td>
-      <td>1990</td>
-      <td>77</td>
-      <td>TRUE</td>
-      <td>Disney</td>
-      <td>1234</td>
-    </tr>
-    <tr>
-      <th>857</th>
-      <td>Christoph Waltz</td>
-      <td>Sophienstrasse 21, 10178 Berlin</td>
-      <td>m</td>
-      <td>1956-10-04</td>
-      <td>Gone with the Wind</td>
-      <td>1939</td>
-      <td>221</td>
-      <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
+      <td>1947-07-30</td>
+      <td>The Lighthouse</td>
+      <td>2019</td>
+      <td>109</td>
+      <td>FALSE</td>
+      <td>A24</td>
+      <td>1748</td>
     </tr>
   </tbody>
 </table>
-<p>858 rows × 10 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -6980,7 +4944,7 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT * </span>
 <span class="c1">#FROM SchauspielerIn, Film</span>
 
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM SchauspielerIn, Film&quot;</span>
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM SchauspielerIn, Film LIMIT 10&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -7085,94 +5049,80 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
       <td>78910</td>
     </tr>
     <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>853</th>
-      <td>Christoph Waltz</td>
-      <td>Sophienstrasse 21, 10178 Berlin</td>
+      <th>5</th>
+      <td>Arnold Schwarzenegger</td>
+      <td>3110 Main Street, Suite 300, Santa Monica, CA ...</td>
       <td>m</td>
-      <td>1956-10-04</td>
-      <td>House of Gucci</td>
-      <td>2021</td>
-      <td>158</td>
+      <td>1947-07-30</td>
+      <td>Star Trek</td>
+      <td>1979</td>
+      <td>132</td>
       <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
+      <td>Paramount</td>
+      <td>6789</td>
     </tr>
     <tr>
-      <th>854</th>
-      <td>Christoph Waltz</td>
-      <td>Sophienstrasse 21, 10178 Berlin</td>
+      <th>6</th>
+      <td>Arnold Schwarzenegger</td>
+      <td>3110 Main Street, Suite 300, Santa Monica, CA ...</td>
       <td>m</td>
-      <td>1956-10-04</td>
-      <td>James Bond 007: Spectre</td>
-      <td>2015</td>
+      <td>1947-07-30</td>
+      <td>Lady Bird</td>
+      <td>2017</td>
+      <td>95</td>
+      <td>TRUE</td>
+      <td>Scott Rudin Productions</td>
+      <td>3456</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Arnold Schwarzenegger</td>
+      <td>3110 Main Street, Suite 300, Santa Monica, CA ...</td>
+      <td>m</td>
+      <td>1947-07-30</td>
+      <td>Into the Wild</td>
+      <td>2007</td>
       <td>148</td>
       <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
+      <td>Paramount</td>
+      <td>6789</td>
     </tr>
     <tr>
-      <th>855</th>
-      <td>Christoph Waltz</td>
-      <td>Sophienstrasse 21, 10178 Berlin</td>
+      <th>8</th>
+      <td>Arnold Schwarzenegger</td>
+      <td>3110 Main Street, Suite 300, Santa Monica, CA ...</td>
       <td>m</td>
-      <td>1956-10-04</td>
-      <td>Shipwrecked</td>
-      <td>1990</td>
-      <td>92</td>
+      <td>1947-07-30</td>
+      <td>Brokeback Mountain</td>
+      <td>2005</td>
+      <td>134</td>
       <td>TRUE</td>
-      <td>Disney</td>
-      <td>1234</td>
+      <td>River Road</td>
+      <td>4712</td>
     </tr>
     <tr>
-      <th>856</th>
-      <td>Christoph Waltz</td>
-      <td>Sophienstrasse 21, 10178 Berlin</td>
+      <th>9</th>
+      <td>Arnold Schwarzenegger</td>
+      <td>3110 Main Street, Suite 300, Santa Monica, CA ...</td>
       <td>m</td>
-      <td>1956-10-04</td>
-      <td>The Rescuers Down Under</td>
-      <td>1990</td>
-      <td>77</td>
-      <td>TRUE</td>
-      <td>Disney</td>
-      <td>1234</td>
-    </tr>
-    <tr>
-      <th>857</th>
-      <td>Christoph Waltz</td>
-      <td>Sophienstrasse 21, 10178 Berlin</td>
-      <td>m</td>
-      <td>1956-10-04</td>
-      <td>Gone with the Wind</td>
-      <td>1939</td>
-      <td>221</td>
-      <td>TRUE</td>
-      <td>MGM</td>
-      <td>5555</td>
+      <td>1947-07-30</td>
+      <td>The Lighthouse</td>
+      <td>2019</td>
+      <td>109</td>
+      <td>FALSE</td>
+      <td>A24</td>
+      <td>1748</td>
     </tr>
   </tbody>
 </table>
-<p>858 rows × 10 columns</p>
 </div></div></div>
 </div>
 </section>
 <section id="mengenoperationen-in-sql">
-<h3><span class="section-number">9.3.11. </span>Mengenoperationen in SQL<a class="headerlink" href="#mengenoperationen-in-sql" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.3.10. </span>Mengenoperationen in SQL<a class="headerlink" href="#mengenoperationen-in-sql" title="Permalink to this headline">#</a></h3>
 <p>Die Mengenoperationen UNION(Vereinigung), INTERSECT(Schnittmenge) und EXCEPT/MINUS(Differenz) können nur zwischen geklammertern Anfrageergebnissen benutzt werden, die das selbe Schema besitzen. Sobald einer dieser Operationen verwendet wird, wird implizit Mengensemantik verwendet. Möchte man Multimengensemantik haben, so müssen die Operatoren UNION ALL, INTERSECT ALL und EXCEPT/MINUS ALL verwendet werden. Das bietet sich an, wenn die Semantik egal ist oder die Mengeneigenschaft von Input und Output bereits bekannt ist.</p>
 <section id="schnittmenge-intersect">
-<h4><span class="section-number">9.3.11.1. </span>Schnittmenge: INTERSECT<a class="headerlink" href="#schnittmenge-intersect" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">9.3.10.1. </span>Schnittmenge: INTERSECT<a class="headerlink" href="#schnittmenge-intersect" title="Permalink to this headline">#</a></h4>
 <p>INTERSECT entspricht dem logischen „und“. Im Folgenden suchen wir die Schnittmenge zwischen den Namen und Adressen der Schauspieler*Innen und den Mangager*Innen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -7255,13 +5205,13 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
 </div>
 </section>
 <section id="vereinigung-union">
-<h4><span class="section-number">9.3.11.2. </span>Vereinigung: UNION<a class="headerlink" href="#vereinigung-union" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">9.3.10.2. </span>Vereinigung: UNION<a class="headerlink" href="#vereinigung-union" title="Permalink to this headline">#</a></h4>
 <p>UNION entspricht dem logischen „oder“. Im unteren Beispiel geben wir alle Namen und Adressen der Schauspieler*Innen und den Mangager*Innen aus.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#(SELECT Name, Adresse FROM SchauspielerIn) UNION (SELECT Name, Adresse FROM ManagerIn);</span>
 
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Name, Adresse FROM SchauspielerIn UNION SELECT Name, Adresse FROM ManagerIn&quot;</span>
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Name, Adresse FROM SchauspielerIn UNION SELECT Name, Adresse FROM ManagerIn LIMIT 10&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -7342,203 +5292,13 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
       <td>Carrie Fisher</td>
       <td>6514 Lankershim Blvd. North Hollywood, California</td>
     </tr>
-    <tr>
-      <th>10</th>
-      <td>Christoph Waltz</td>
-      <td>Sophienstrasse 21, 10178 Berlin</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>Daniel Craig</td>
-      <td>40 Whitfield Street, London, W1T 2RH</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Daniel Katz</td>
-      <td>31 West 27th Street, New York City</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Emile Hirsch</td>
-      <td>9336 Civic Center Drive, Beverly Hills, CA 902...</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Emma Stone</td>
-      <td>Wilshire Blvd., Suite 930, Beverly Hills, CA 9...</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Harrison Ford</td>
-      <td>P.O. Box 49344 Los Angeles, CA 90049-0344</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>Heath Ledger</td>
-      <td>421 Broome Street, Lower Manhatta, New York City</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Isaac Perlmutter</td>
-      <td>4000 Warner Blvd., Burbank, CA 91522</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>Jake Gyllenhaal</td>
-      <td>Wilshire Boulevard, 3rd Floor, Beverly Hills, ...</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Jared Leto</td>
-      <td>6311 Romaine Street, Suite 7327, Los Angeles, ...</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>Jim Berk</td>
-      <td>3520 Wesley Street, Culver City, CA 90232</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>Jim Morris</td>
-      <td>1200 Park Ave, Emeryville, CA 94608</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>Kirsten Dunst</td>
-      <td>10100 Santa Monica Blvd., Suite 2300, Los Ange...</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>Lady Gaga</td>
-      <td>401 Broadway Suite 206, New York, NY 10013</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>Leonardo DiCaprio</td>
-      <td>2000 Avenue Of The Stars, 3rd Floor, North Tow...</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>Louis B.Mayer</td>
-      <td>625 Palisades Beach Rd, Santa Monica</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>Léa Seydoux</td>
-      <td>42/44 rue de Paradis, 75010 Paris</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>Mahershala Ali</td>
-      <td>4208 Overland Avenue Culver City, CA 90230-3736</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>Mark Hamill</td>
-      <td>P.O. Box 287, Grand Blanc, MI 48480</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>Meryl Streep</td>
-      <td>42 West, 600 3rd Avenue, 23rd Floor, New York</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>Paul Golding</td>
-      <td>Pinewood Rd, Slough, Iver SL0 0NH</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>Phyllis Smith</td>
-      <td>8383 Wilshire Blvd., Suite 100, Beverly Hills,...</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>Quentin Tarantino</td>
-      <td>10100 Santa Monica Blvd., Los Angeles, CA 90404</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td>Robert Kirby</td>
-      <td>Entertainment Rd, Oxenford, Queensland 4210, AU</td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td>Robert Pattinson</td>
-      <td>William Morris Endeavor Entertainment, 9601 Wi...</td>
-    </tr>
-    <tr>
-      <th>35</th>
-      <td>Ryan Gosling</td>
-      <td>6311 Romaine Street, Suite 7327, Los Angeles, ...</td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td>Samuel L. Jackson</td>
-      <td>8501 Washington Blvd., Culver City, CA 90232-7443</td>
-    </tr>
-    <tr>
-      <th>37</th>
-      <td>Saorise Ronan</td>
-      <td>MacFarlane Chard Associates Ltd., 24 Adelaide ...</td>
-    </tr>
-    <tr>
-      <th>38</th>
-      <td>Scarlet Johansson</td>
-      <td>15821 Ventura Blvs., Suite 370, Encino CA 9143...</td>
-    </tr>
-    <tr>
-      <th>39</th>
-      <td>Scott Rudin</td>
-      <td>120 W. 45th St., 10th Fl., New York, New York ...</td>
-    </tr>
-    <tr>
-      <th>40</th>
-      <td>Sharon Stone</td>
-      <td>407 N Maple Dr Suite 100, Beverly Hills, CA 90...</td>
-    </tr>
-    <tr>
-      <th>41</th>
-      <td>Steve Asbell</td>
-      <td>10201 Pico Blvd, Los Angeles, CA 90064</td>
-    </tr>
-    <tr>
-      <th>42</th>
-      <td>Tobey Maguire</td>
-      <td>10100 Santa Monica Blvd., Suite 2300, Los Ange...</td>
-    </tr>
-    <tr>
-      <th>43</th>
-      <td>Tom Hanks</td>
-      <td>P.O. Box 7340, Santa Monica, CA 90406-7340</td>
-    </tr>
-    <tr>
-      <th>44</th>
-      <td>Vincent Cassel</td>
-      <td>42/44 rue de Paradis, 75010 Paris</td>
-    </tr>
-    <tr>
-      <th>45</th>
-      <td>Will Smith</td>
-      <td>1880 Century Park East, Suite 1600, Los Angele...</td>
-    </tr>
-    <tr>
-      <th>46</th>
-      <td>Willem Dafoe</td>
-      <td>9601 Wilshire Blvd., 3rd Floor, Beverly Hills,...</td>
-    </tr>
-    <tr>
-      <th>47</th>
-      <td>William Shatner</td>
-      <td>5555 Melrose Avenue, Dreier 211, Hollywood, CA...</td>
-    </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
 </section>
 <section id="differenz-except-minus">
-<h4><span class="section-number">9.3.11.3. </span>Differenz: EXCEPT/MINUS<a class="headerlink" href="#differenz-except-minus" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">9.3.10.3. </span>Differenz: EXCEPT/MINUS<a class="headerlink" href="#differenz-except-minus" title="Permalink to this headline">#</a></h4>
 <p>Im unteren Beispiel suchen wir den Titel und das Jahr jener Filme die in der Film-Relation vorkommen, aber nicht in der spielt_in-Relation. Damit diese Anfrage funktioniert, muss Umbenennung benutzt werden, da die beiden Mengen sonst nicht das selbe Schema besitzten.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -7611,7 +5371,7 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
 </div>
 </section>
 <section id="klammerung">
-<h4><span class="section-number">9.3.11.4. </span>Klammerung<a class="headerlink" href="#klammerung" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">9.3.10.4. </span>Klammerung<a class="headerlink" href="#klammerung" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT *</span>
@@ -7679,7 +5439,7 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
 </section>
 </section>
 <section id="zusammenfassung-der-semantik">
-<h3><span class="section-number">9.3.12. </span>Zusammenfassung der Semantik<a class="headerlink" href="#zusammenfassung-der-semantik" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.3.11. </span>Zusammenfassung der Semantik<a class="headerlink" href="#zusammenfassung-der-semantik" title="Permalink to this headline">#</a></h3>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>R1</p></th>
@@ -7852,21 +5612,17 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
 </section>
 <section id="geschachtelte-anfragen">
 <h2><span class="section-number">9.4. </span>Geschachtelte Anfragen<a class="headerlink" href="#geschachtelte-anfragen" title="Permalink to this headline">#</a></h2>
-<section id="id1">
-<h3><span class="section-number">9.4.1. </span>Motivation<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
-<p>In vorherigen Beispielen haben wir schon geschachtelte Anfragen gesehen, nun betrachten wir diese etwas genauer. Eine Anfrage kann Teil einer anderen theoretisch beliebig tief geschachtelten Anfrage sein. Hier gibt es drei verschiedene Varianten:
+<p>In vorherigen Beispielen haben wir schon geschachtelte Anfragen gesehen, nun betrachten wir diese etwas genauer. Eine Anfrage kann Teil einer anderen, theoretisch beliebig tief geschachtelten Anfrage sein. Hier gibt es drei verschiedene Varianten:
 <br></p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Die Subanfrage erzeugt einen einzigen Wert, der in der WHERE-Klausel mit einem anderen Wert verglichen werden kann.</p></li>
 <li><p>Die Subanfrage erzeugt eine Relation, die auf verschiedene Weise in der WHERE-Klausel verwendet werden kann.</p></li>
 <li><p>Die Subanfrage erzeugt eine Relation, die in der FROM Klausel (sozusagen als weitere Datenquelle) verwendet werden kann. – Wie jede andere normale Relation</p></li>
 </ol>
-</section>
 <section id="skalare-subanfragen">
-<h3><span class="section-number">9.4.2. </span>Skalare Subanfragen<a class="headerlink" href="#skalare-subanfragen" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.4.1. </span>Skalare Subanfragen<a class="headerlink" href="#skalare-subanfragen" title="Permalink to this headline">#</a></h3>
 <p>Bei der ersten der drei Varianten von geschachtelten Anfrage, handelt es sich um skalare Subanfragen. Allgemeine Anfragen produzieren Relationen, mit mehreren Attributen, wo Zugriff auf ein bestimmtes Attribut auch möglich ist. Bei skalaren Subanfragen wird (garantiert) maximal nur ein Tupel und Projektion auf nur ein Attribut ausgegeben. Das Ergbenis einer skalaren Anfrage ist entweder genau ein Wert, der dann wie eine Konstante verwendet werden kann, oder wenn keine Zeilen gefunden werden, ist das Ergebnis der skalaren Anfrage NULL.
 <br>
-<img alt="title" src="../_images/skalare_subanfragen.jpg" />
 <br>
 Wir haben im Folgenden Beispiel die Relationen ManagerIn(Name, Adresse, ManagerinID, Gehalt)und Film(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentinID) gegeben. Wir suchen nun den Produzent von Star Wars auf zwei Wegen, wobei garantiert ist, dass es nur einen Produzenten gibt. Zuerst suchen wir ,mithilfe einer allgemeinen Anfrage, unter allen Filmen jene mit dem Titel = ‘Star Wars’ und Jahr = 1977, wo die ProduzentinID mit der MangaerinID gematcht werden kann. Zuletzt geben wir den Namen aus.</p>
 <div class="cell docutils container">
@@ -7961,7 +5717,7 @@ Wir haben im Folgenden Beispiel die Relationen ManagerIn(Name, Adresse, Manageri
 </div>
 <p>Das DBMS erwartet maximal ein Tupel als Ergebnis der Teilanfrage, falls kein Tupel in der Subanfrage gefunden wird, ist das Ergebnis NULL, falls mehr als ein Tupel gefunden werden, wird ein Laufzeitfehler ausgegeben.</p>
 <section id="skalare-subanfragen-beispiel">
-<h4><span class="section-number">9.4.2.1. </span>Skalare Subanfragen – Beispiel<a class="headerlink" href="#skalare-subanfragen-beispiel" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">9.4.1.1. </span>Skalare Subanfragen – Beispiel<a class="headerlink" href="#skalare-subanfragen-beispiel" title="Permalink to this headline">#</a></h4>
 <p>Im folgenden Beispiel suchen wir die Abteilungen, deren durchschnittliche Bonuszahlungen höher sind als deren durchschnittliches Gehalt. Wir verwenden zwei Subanfragen, die einmal die durchschnittliche Bonuszahlung pro Abteilung ausgibt und einmal das durchschnittliche Gehalt pro Abteilung. Zuletzt vergleichen wir diese Werte miteinander und geben nur die aus, wo die durchschnittliche Bonuszahlung höher ist als das jeweilige durchschnittliche Gehalt.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -8194,7 +5950,7 @@ Wir haben im Folgenden Beispiel die Relationen ManagerIn(Name, Adresse, Manageri
 </section>
 </section>
 <section id="bedingungen-mit-relationen">
-<h3><span class="section-number">9.4.3. </span>Bedingungen mit Relationen<a class="headerlink" href="#bedingungen-mit-relationen" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.4.2. </span>Bedingungen mit Relationen<a class="headerlink" href="#bedingungen-mit-relationen" title="Permalink to this headline">#</a></h3>
 <p>Nun betrachten wir weitere SQL Operatoren auf Relationen die Boole‘sche Werte erzeugen:
 <br><br>
 Um zu überprüfen ob eine Relation leer oder nicht ist, kann der EXISTS-Operator benutzt werden:
@@ -8230,7 +5986,7 @@ Ein alternativer Befehl für ANY ist SOME
 Die Negation mit NOT(…) ist immer möglich.</p>
 </section>
 <section id="exists-beispiele">
-<h3><span class="section-number">9.4.4. </span>EXISTS Beispiele<a class="headerlink" href="#exists-beispiele" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.4.3. </span>EXISTS Beispiele<a class="headerlink" href="#exists-beispiele" title="Permalink to this headline">#</a></h3>
 <p>Im folgenden Beispiel wollen wir die ISBNs aller ausgeliehenen Bücher ausgeben. Hierbei verwenden wir den EXISTS-Operator und geben jene ISBNs aus der Relation BuchExemplar aus, dessen Inventarnr in der Relation Ausleihe existiert.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -8359,7 +6115,7 @@ Die Negation mit NOT(…) ist immer möglich.</p>
 </div>
 </section>
 <section id="in-beispiele">
-<h3><span class="section-number">9.4.5. </span>IN Beispiele<a class="headerlink" href="#in-beispiele" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.4.4. </span>IN Beispiele<a class="headerlink" href="#in-beispiele" title="Permalink to this headline">#</a></h3>
 <p>Im folgenden Beispiel suchen wir eine Auswahl an Büchern mit bestimmter ISBN.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -8592,7 +6348,7 @@ Die Negation mit NOT(…) ist immer möglich.</p>
 <p>Achtung: Korrelierte Subanfrage, die Subanfrag wird für jede ProfID ausgeführt.</p>
 </section>
 <section id="all-und-any-beispiele">
-<h3><span class="section-number">9.4.6. </span>ALL und ANY Beispiele<a class="headerlink" href="#all-und-any-beispiele" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.4.5. </span>ALL und ANY Beispiele<a class="headerlink" href="#all-und-any-beispiele" title="Permalink to this headline">#</a></h3>
 <p>Im folgenden Beispiel suchen wir die schlechteste Note des Studierenden mit der Matrikelnr. 123456.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -8854,7 +6610,7 @@ Die Negation mit NOT(…) ist immer möglich.</p>
 </div>
 </section>
 <section id="bedingungen-mit-tupeln">
-<h3><span class="section-number">9.4.7. </span>Bedingungen mit Tupeln<a class="headerlink" href="#bedingungen-mit-tupeln" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.4.6. </span>Bedingungen mit Tupeln<a class="headerlink" href="#bedingungen-mit-tupeln" title="Permalink to this headline">#</a></h3>
 <p>Verallgemeinerungen von IN, ALL und ANY auf Tupel sind auch möglich.
 <br><br>
 t IN R gibt TRUE zurück, falls t ein Tupel in R ist (mehr als ein Attribut möglich). Hierbei ist vorausgesetzt, dass beide dasselbe Schemata haben und dieselbe Reihenfolge der Attribute.
@@ -8960,7 +6716,7 @@ Im folgenden Beispiel wollen wir alle Namen von Produzenten von Filmen mit Harri
 </div>
 </section>
 <section id="subanfragen-in-from-klausel">
-<h3><span class="section-number">9.4.8. </span>Subanfragen in FROM-Klausel<a class="headerlink" href="#subanfragen-in-from-klausel" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.4.7. </span>Subanfragen in FROM-Klausel<a class="headerlink" href="#subanfragen-in-from-klausel" title="Permalink to this headline">#</a></h3>
 <p>Wir können anstelle einer einfachen Relation auch eine geklammerte Subanfrage in der FROM-Klausel schreiben. Der Subanfrage mussein Alias vergeben werden, um auf die Attribute zuzugreifen.
 <br><br>
 Im folgenden Beispiel wollen wir wieder alle Namen von Produzenten von Filmen mit Harrison Ford ausgeben. Wir stellen eine Subanfrage in der FROM-Klausel, die alle ProduzentinIDs zurückgibt, welche in Filmen mit Harrison Ford beteiligt waren. Zum Schluss werden die ProduzentinIDs wieder mit den ManagerinIDs abgeglichen.</p>
@@ -9010,7 +6766,7 @@ Im folgenden Beispiel wollen wir wieder alle Namen von Produzenten von Filmen mi
 </div>
 </section>
 <section id="korrelierte-subanfragen">
-<h3><span class="section-number">9.4.9. </span>Korrelierte Subanfragen<a class="headerlink" href="#korrelierte-subanfragen" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.4.8. </span>Korrelierte Subanfragen<a class="headerlink" href="#korrelierte-subanfragen" title="Permalink to this headline">#</a></h3>
 <p>Wird eine Subanfragen einmalig ausgeführt, so handelt es sich um eine unkorrelierte Subanfrage. Korrelierte Subanfragen werden mehrfach ausgeführt, undzwar einmal pro Bindung der korrelierten Variable der äußeren Anfrage.
 <br><br>
 Im folgenden ein Beispiel für eine korrelierte Subanfrage. Wir suchen alle mehrfachen Filme mit Ausnahme der jeweils jüngsten Ausgabe. Die Subanfrage wird für jedes Tupel in Filme ausgeführt.</p>
@@ -9215,6 +6971,7 @@ Unten wird die Subanfrage nur einmal ausgeführt, da wir sofort alle AbtIDs habe
 </section>
 <section id="operationen-auf-einer-relation">
 <h2><span class="section-number">9.5. </span>Operationen auf einer Relation<a class="headerlink" href="#operationen-auf-einer-relation" title="Permalink to this headline">#</a></h2>
+<p>In diesem Kapitel lernen wir Operationen kennen, die nur auf einer Relation angewendet werden, das sind Duplikateliminierung, Gruppierung und Aggregation.</p>
 <section id="duplikateliminierung">
 <h3><span class="section-number">9.5.1. </span>Duplikateliminierung<a class="headerlink" href="#duplikateliminierung" title="Permalink to this headline">#</a></h3>
 <p>Wie aus der Relationalen Algebra bekannt, ist die Duplikateliminierung auch in SQL möglich. Relationale DBMS verwenden i.d.R. Multimengensemantik und nicht Mengensemantik. Durch Operationen, wie das Enfügen von Duplikaten in Basisrelationen, die Veränderung von Tupeln in Basisrelationen, Projektion in Anfragen, Subanfragen mit z.B UNION ALL oder die Vermehrung von Duplikaten durch Kreuzprodukte, entstehen Duplikate.</p>
@@ -9230,7 +6987,7 @@ Im folgenden Beispiel suchen wir alle Filme, in denen mindestens ein Schauspiele
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT DISTINCT FilmTitel, FilmJahr </span>
 <span class="c1">#FROM spielt_in</span>
 
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT DISTINCT FilmTitel, FilmJahr FROM spielt_in&quot;</span>
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT DISTINCT FilmTitel, FilmJahr FROM spielt_in LIMIT 10&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -9309,56 +7066,6 @@ Im folgenden Beispiel suchen wir alle Filme, in denen mindestens ein Schauspiele
     <tr>
       <th>9</th>
       <td>Inside Out</td>
-      <td>2015</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Total Recall</td>
-      <td>1990</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>Pulp Fiction</td>
-      <td>1994</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Up</td>
-      <td>2009</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Spider-Man</td>
-      <td>2002</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>La La Land</td>
-      <td>2016</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Moonlight</td>
-      <td>2016</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>Star Trek</td>
-      <td>1979</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Ducktales the Movie: Treasure of the Lost Lamp</td>
-      <td>1990</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>House of Gucci</td>
-      <td>2021</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>James Bond 007: Spectre</td>
       <td>2015</td>
     </tr>
   </tbody>
@@ -9587,7 +7294,7 @@ Ergebnis: (NULL, NULL)</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT StudioName, SUM(Laenge) </span>
 <span class="c1">#FROM Film GROUP BY StudioName</span>
 
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT StudioName, SUM(Laenge) FROM Film GROUP BY StudioName&quot;</span>
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT StudioName, SUM(Laenge) FROM Film GROUP BY StudioName LIMIT 10&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -9667,46 +7374,6 @@ Ergebnis: (NULL, NULL)</p>
       <th>9</th>
       <td>Paramount</td>
       <td>132</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Participant</td>
-      <td>135</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>Pinewood</td>
-      <td>121</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Pixar</td>
-      <td>207</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>River Road</td>
-      <td>134</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Scott Rudin Productions</td>
-      <td>95</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Summit Entertainment</td>
-      <td>128</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>Village Roadshows</td>
-      <td>142</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Warner Bros.</td>
-      <td>152</td>
     </tr>
   </tbody>
 </table>
@@ -9719,7 +7386,7 @@ Ergebnis: (NULL, NULL)</p>
 <span class="c1">#FROM Film </span>
 <span class="c1">#GROUP BY StudioName</span>
 
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT StudioName FROM Film GROUP BY StudioName&quot;</span>
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT StudioName FROM Film GROUP BY StudioName LIMIT 10&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -9789,38 +7456,6 @@ Ergebnis: (NULL, NULL)</p>
       <th>9</th>
       <td>Paramount</td>
     </tr>
-    <tr>
-      <th>10</th>
-      <td>Participant</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>Pinewood</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Pixar</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>River Road</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Scott Rudin Productions</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Summit Entertainment</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>Village Roadshows</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Warner Bros.</td>
-    </tr>
   </tbody>
 </table>
 </div></div></div>
@@ -9832,7 +7467,7 @@ Ergebnis: (NULL, NULL)</p>
 <span class="c1">#FROM Film </span>
 <span class="c1">#GROUP BY StudioName</span>
 
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT SUM(Laenge) FROM Film GROUP BY StudioName&quot;</span>
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT SUM(Laenge) FROM Film GROUP BY StudioName LIMIT 10&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -9902,38 +7537,6 @@ Ergebnis: (NULL, NULL)</p>
       <th>9</th>
       <td>132</td>
     </tr>
-    <tr>
-      <th>10</th>
-      <td>135</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>121</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>207</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>134</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>95</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>128</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>142</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>152</td>
-    </tr>
   </tbody>
 </table>
 </div></div></div>
@@ -9945,7 +7548,7 @@ Ergebnis: (NULL, NULL)</p>
 <span class="c1">#WHERE ManagerinID = ProduzentinID </span>
 <span class="c1">#GROUP BY Name</span>
 
-<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Name, SUM(Laenge) FROM ManagerIn, Film WHERE ManagerinID = ProduzentinID GROUP BY Name&quot;</span>
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Name, SUM(Laenge) FROM ManagerIn, Film WHERE ManagerinID = ProduzentinID GROUP BY Name LIMIT 10&quot;</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 <span class="n">df</span>
@@ -10026,38 +7629,13 @@ Ergebnis: (NULL, NULL)</p>
       <td>Louis B.Mayer</td>
       <td>527</td>
     </tr>
-    <tr>
-      <th>10</th>
-      <td>Paul Golding</td>
-      <td>121</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>Quentin Tarantino</td>
-      <td>154</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Robert Kirby</td>
-      <td>142</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Scott Rudin</td>
-      <td>95</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Steve Asbell</td>
-      <td>113</td>
-    </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
 <p>Wenn mehrere Relationen verwendet werden, wie im obigen Beispiel wird die Gruppierung am Schluss durchgeführt. Sie können sich an die folgende Reihenfolge der Ausführung (und des Lesens) richten:
 <br></p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>FROM-Klausel
 <br></p></li>
 <li><p>WHERE-Klausel
@@ -10391,12 +7969,9 @@ WHERE ManagerinID IN
 </section>
 <section id="schemata-ddl">
 <h2><span class="section-number">9.7. </span>Schemata(DDL)<a class="headerlink" href="#schemata-ddl" title="Permalink to this headline">#</a></h2>
-<section id="uberblick">
-<h3><span class="section-number">9.7.1. </span>Überblick<a class="headerlink" href="#uberblick" title="Permalink to this headline">#</a></h3>
 <p>In diesem Kapitel betrachten wir SQL als Data Definition Language(DDL). Möchte man eine neue Tabelle anlegen, müssen die verschiedenen Datentypen, Default-Werte, Indizes und damit zusammenhängende Tabellen beachten, welche wir uns in diesem Kapitel genauer anschauen.</p>
-</section>
 <section id="datentypen">
-<h3><span class="section-number">9.7.2. </span>Datentypen<a class="headerlink" href="#datentypen" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.7.1. </span>Datentypen<a class="headerlink" href="#datentypen" title="Permalink to this headline">#</a></h3>
 <p>Die vorhandenen Datentypen hängen von dem benutzten DBMS ab, wir betrachten die Datentypen von DB2 von IBM. Jedes definierte Attribut muss einen Datentyp haben. Es gibt:
 <br></p>
 <ul class="simple">
@@ -10420,11 +7995,11 @@ Unten finden Sie einen Überblick aller DB2 Datentypen.</p></li>
 </ul>
 </section>
 <section id="uberblick-db2-datentypen">
-<h3><span class="section-number">9.7.3. </span>Überblick DB2 Datentypen<a class="headerlink" href="#uberblick-db2-datentypen" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.7.2. </span>Überblick DB2 Datentypen<a class="headerlink" href="#uberblick-db2-datentypen" title="Permalink to this headline">#</a></h3>
 <p><img alt="title" src="../_images/db2_datentypen.jpg" /></p>
 </section>
 <section id="tabellen">
-<h3><span class="section-number">9.7.4. </span>Tabellen<a class="headerlink" href="#tabellen" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.7.3. </span>Tabellen<a class="headerlink" href="#tabellen" title="Permalink to this headline">#</a></h3>
 <p>Der Grundbaustein zum Erzeugenvon Tabellen ist CREATE TABLE R …, wobei R der Name der Tabelle ist. In runden Klammern werden kommasepariert die gewünschten Attribute mit den jeweiligen Datentypen genannt.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -10451,7 +8026,7 @@ Auch das Verändern des Tabellenschemas ist möglich, undzwar mit ALTER TABLE R 
 </ul>
 </section>
 <section id="default-werte">
-<h3><span class="section-number">9.7.5. </span>Default-Werte<a class="headerlink" href="#default-werte" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.7.4. </span>Default-Werte<a class="headerlink" href="#default-werte" title="Permalink to this headline">#</a></h3>
 <p>Default-Werte können mit dem Schlüsselwort DEFAULT gesetzt werden. In dem Beispiel unten wird für das Attribut Geschlecht der Default-Wert ‘?’ bestimmt und für den Geburtstag das Default-Datum ‘0000-00-00’.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -10477,7 +8052,7 @@ ADD Telefon CHAR(16) DEFAULT ‚unbekannt‘;
 </div>
 </section>
 <section id="indizes">
-<h3><span class="section-number">9.7.6. </span>Indizes<a class="headerlink" href="#indizes" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.7.5. </span>Indizes<a class="headerlink" href="#indizes" title="Permalink to this headline">#</a></h3>
 <p>Ein Index auf einem Attribut ist eine Datenstruktur, die es dem DBMS erleichtert, Tupel mit einem bekannten Wert des Attributs zu finden. Indizes sind nicht SQL-Standard, aber sind in (fast) jedem DBMS verfügbar.
 <br><br>
 Möchten wir z.B alle Disney Filme aus 1990 ausgeben. Wir könnte mit Variante 1 alle Tupel der Filmerelation durchsuchen und die WHERE Bedingung prüfen. Mit Variante 2 erstellen wir einen Index CREATE INDEX JahrIndex ON Film(Jahr) und können direkt alle Filme aus 1990 betrachten und diese auf ‚Disney‘ prüfen, da der Optimizer des DBMS unsern erstellten Inddex sofort zur Filterung der Bedingung Jahr = 1990 benutzen kann. Zuletzt in einer dritten Variante erstellen wir einen multidimensionalen Index CREATE INDEX JahrStudioIndex ON Film(Jahr, Studioname) und holen uns direkt alle Filme aus 1990 von Disney. Welche der Varianten wir letzlich wählen, hängt von zu erwartenden Anfragen ab. Bei dem Anlegen von Indizes muss auch beachtet werden, dass diese Speicher belegen und aktualisiert werden müssen, wenn neue Daten hinzugefügt wurden.</p>
@@ -10585,16 +8160,16 @@ Um einen Index zu löschen kann DROP INDEX … verwendet werden.</p>
 </div>
 </div>
 <section id="indexwahl">
-<h4><span class="section-number">9.7.6.1. </span>Indexwahl<a class="headerlink" href="#indexwahl" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">9.7.5.1. </span>Indexwahl<a class="headerlink" href="#indexwahl" title="Permalink to this headline">#</a></h4>
 <p>Aufgrund der Kosten muss die Indexwahl abgewogen werden. Zum einen beschleunigen Indizes Punkt- (und Bereichs-) Anfragen und Join-Anfragen erheblich, aber das Einfügen, Löschen und Verändern von Tupeln der Relation wird verlangsamt, da der Index immer wieder aktualisiert werden muss. Zudem benötigen Indizes auch noch Speicherplatz.</p>
 <p>Die Wahl der besten Indizes ist eine der schwierigsten Aufgaben des Datenbankdesigns, in welcher auch viel Forschung betrieben wird. Im Idealfall ist die Vorhersage der Query Workload und Update-Frequenz bekannt und es werden Attribute gewählt mit denen häufig Konstanten verglichen werden oder die häufig als Joinattribute fungieren.</p>
 </section>
 <section id="indexwahl-voruberlegungen">
-<h4><span class="section-number">9.7.6.2. </span>Indexwahl – Vorüberlegungen<a class="headerlink" href="#indexwahl-voruberlegungen" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">9.7.5.2. </span>Indexwahl – Vorüberlegungen<a class="headerlink" href="#indexwahl-voruberlegungen" title="Permalink to this headline">#</a></h4>
 <p>Bei Vorüberlegungen zur Indexwahl muss ebenso beachtet werden, wie Indizes implementiert sind. Typischerweise sind Relationen über mehrere Diskblöcke gespeichert, wobei sich die wichtigsten Datenbankkosten aus der Anzahl, der in den Hauptspeicher gelesenen Diskblöcke bildet. Anders müssen bei Punktanfragen mit einem Index nur ein Block, statt allen gelesen werden, aber der Index selbst muss auch gespeichert und gelesen werden. In der Regel sind viel mehr Tupel pro Block repräsentiert und es werden häufig nur Schlüsselwerte und Speicheradresse und keine Daten gespeichert. Beim Updaten sind die Kosten sogar doppelt, da die Blöcke für das Lesen und Schriben der Index-Blöcke geladen werden muss.</p>
 </section>
 <section id="indexwahl-beispiel">
-<h4><span class="section-number">9.7.6.3. </span>Indexwahl – Beispiel<a class="headerlink" href="#indexwahl-beispiel" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">9.7.5.3. </span>Indexwahl – Beispiel<a class="headerlink" href="#indexwahl-beispiel" title="Permalink to this headline">#</a></h4>
 <p>Nun schauen wir uns ein Beispiel an. Haben wir die Relation spielt_in(FilmTitel, FilmJahr, SchauspielerName) udn die Variablen s,t,j gegeben und möchten drei typische Anfragen ausführen. Wir suchen einma lden Titel und das Jahr eines bestimmten Filmes s, den Schauspieler der in einem bestimmten Film eines bestimmten Jahres mitgespielt hat und wollen zuletzt in die Relation spielt_in Tupel einfügen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -10650,8 +8225,8 @@ Um einen Index zu löschen kann DROP INDEX … verwendet werden.</p>
 </div>
 <p>Wir nehmen an, dass spielt_in auf 10 Disk-Blöcke verteilt ist. Im Durchschnitt hat jeder Film 3 Schauspiel und jeder Schauspieler spielte in 3 Filmen mit. Im schlimmsten Fall sind 3 Tupel auf 3 Blöcke verteilt und eine Index ist auf einem Block gespeichert. Die Operationen Lesen und Schreiben kosten 1 und Update und Insert kosten jeweils 2.</p>
 </section>
-<section id="id2">
-<h4><span class="section-number">9.7.6.4. </span>Indexwahl – Beispiel<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
+<section id="id1">
+<h4><span class="section-number">9.7.5.4. </span>Indexwahl – Beispiel<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
 <p>Im fogenden sind die Kosten der drei Anfragen tabellarisch aufgeführt. Die Variable p1 bildet den Anteil der Anfrage 1, p2 den Anteil der Anfrage 2 und 1-p1-p2 den Anteil der Anfrage 3.</p>
 <table class="colwidths-auto table">
 <thead>
@@ -10692,7 +8267,7 @@ Um einen Index zu löschen kann DROP INDEX … verwendet werden.</p>
 </section>
 </section>
 <section id="verteilung-in-imdb-real-world-daten-stand-ca-2010">
-<h3><span class="section-number">9.7.7. </span>Verteilung in IMDB (Real-world Daten, Stand ca. 2010)<a class="headerlink" href="#verteilung-in-imdb-real-world-daten-stand-ca-2010" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.7.6. </span>Verteilung in IMDB (Real-world Daten, Stand ca. 2010)<a class="headerlink" href="#verteilung-in-imdb-real-world-daten-stand-ca-2010" title="Permalink to this headline">#</a></h3>
 <p>Im folgenden betrachten wir eine größere Datenbank, die dem Sternenschema folgt. In der Mitte sehen wir die Relation Movie und daherum viele weitere Relationen die mit der Movie_ID in Verbindung stehen.</p>
 <p><img alt="title" src="../_images/imdb.jpg" /></p>
 <p>Wir wollen nun die Durchschnittliche Anzahl an Schauspieler*Innen pro Film und umgekehrt berechnen und benutzen das Schlüsselwort WITH, um bestimmte Anfragen mit einem Alias vorzudefinieren.</p>
@@ -10729,8 +8304,6 @@ Um einen Index zu löschen kann DROP INDEX … verwendet werden.</p>
 </section>
 <section id="sichten">
 <h2><span class="section-number">9.8. </span>Sichten<a class="headerlink" href="#sichten" title="Permalink to this headline">#</a></h2>
-<section id="virtuelle-relationen">
-<h3><span class="section-number">9.8.1. </span>Virtuelle Relationen<a class="headerlink" href="#virtuelle-relationen" title="Permalink to this headline">#</a></h3>
 <p>Bisher kennen wir nur Relationen, die aus CREATE TABLE Ausdrücken existieren und tatsächlich (materialisiert, physisch) in der Datenbank vorhanden sind. Dieses sind persistent und auf ihnen können Updates ausgeführt werden. In diesem Kapitel beschäftigen wir uns mit Sichten. Sichten entsprechen Anfragen, denen man einen Namen gibt. Sie wirken wie physische Relationen, jedoch existieren die Daten aus Sichten nur virtuell und Updates darauf sind nur manchmal möglich. Views stellen Separation of Concern dar, können Effizienz verbessern und ermöglichen einfachere Anfragen.
 <br>
 <br>
@@ -10739,9 +8312,8 @@ Um einen Index zu löschen kann DROP INDEX … verwendet werden.</p>
 <img alt="title" src="../_images/stonebraker2.jpg" />
 <br>
 Michael Stonebraker: Implementation of Integrity Constraints and Views by Query Modification. SIGMOD Conference 1975: 65-78</p>
-</section>
-<section id="sichten-in-sql">
-<h3><span class="section-number">9.8.2. </span>Sichten in SQL<a class="headerlink" href="#sichten-in-sql" title="Permalink to this headline">#</a></h3>
+<section id="sichten-in-sql-erstellen">
+<h3><span class="section-number">9.8.1. </span>Sichten in SQL erstellen<a class="headerlink" href="#sichten-in-sql-erstellen" title="Permalink to this headline">#</a></h3>
 <p>Der Grundbaustein zum erstellen von Sichten(Views) ist CREATE VIEW Name AS Anfrage. In der Anfrage dürfen Relationen auch gejoint sein.
 <br><br>
 Im folgenden erstellen wir eine View auf alle Filme von Paramount und nennen die View ParamountFilme.</p>
@@ -10761,25 +8333,20 @@ Im folgenden erstellen wir eine View auf alle Filme von Paramount und nennen die
 Um eine Sicht zu löschen kann DROP VIEW Name, für unser Beispiel DROP VIEW ParamountFilme, benutzt werden, das Löschen der Sicht hat keinen Einfluss auf die Basisdaten</p>
 </section>
 <section id="anfragen-an-sichten">
-<h3><span class="section-number">9.8.3. </span>Anfragen an Sichten<a class="headerlink" href="#anfragen-an-sichten" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.8.2. </span>Anfragen an Sichten<a class="headerlink" href="#anfragen-an-sichten" title="Permalink to this headline">#</a></h3>
 <p>Wir suchen nun alle Filme von Paramount aus 1979 und tun dies indem wir eine Anfrage an unsere ParamountFilme-Sicht stellen. Ohne Sicht müssten wir die Anfrage in eine Anfrage an die Basisrelation umwandeln wie eine Codezelle weiter zu sehen ist.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
-<span class="n">SELECT</span> <span class="n">Titel</span>
-<span class="n">FROM</span> <span class="n">ParamountFilme</span>
-<span class="n">WHERE</span> <span class="n">Jahr</span> <span class="o">=</span> <span class="mi">1979</span><span class="p">;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
-<span class="n">SELECT</span> <span class="n">Titel</span> 
-<span class="n">FROM</span> <span class="n">Film</span> 
-<span class="n">WHERE</span> <span class="n">StudioName</span> <span class="o">=</span> <span class="s2">&quot;Paramount&quot;</span> 
-<span class="n">AND</span> <span class="n">Jahr</span> <span class="o">=</span> <span class="mi">1979</span><span class="p">;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%sql</span>
+<span class="c1">#SELECT Titel </span>
+<span class="c1">#FROM Film </span>
+<span class="c1">#WHERE StudioName = &quot;Paramount&quot; </span>
+<span class="c1">#AND Jahr = 1979;</span>
+
+<span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Titel FROM Film WHERE StudioName = &#39;Paramount&#39; AND Jahr = 1979;&quot;</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;filme/filme.db&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+<span class="n">df</span>
 </pre></div>
 </div>
 </div>
@@ -10820,156 +8387,6 @@ Um eine Sicht zu löschen kann DROP VIEW Name, für unser Beispiel DROP VIEW Par
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Mark Hamill</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Harrison Ford</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Carrie Fisher</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Emile Hirsch</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Jake Gyllenhaal</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Heath Ledger</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Robert Pattinson</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>Willem Dafoe</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>Leonardo DiCaprio</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>Tobey Maguire</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Carey Mulligan</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>Saoirse Ronan</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Vincent Cassel</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Meryl Streep</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Phyllis Smith</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Arnold Schwarzenegger</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>Sharon Stone</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Samuel L. Jackson</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>Tom Hanks</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Kirsten Dunst</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>Emma Stone</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>Ryan Gosling</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>Mahershala Ali</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>William Shatner</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>Alan Young</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>Jared Leto</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>Adam Driver</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>Lady Gaga</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>Daniel Craig</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>Léa Seydoux</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>Christoph Waltz</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <p>Im Folgenden nochmal ein weiteres Beispiel. Haben wir die Relationen Film(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentinID) und ManagerIn (Name, Adresse, ManagerinID, Gehalt) gegeben. Wir erstellen eine View von allen Filmproduzent*Innen und suchen mit der Sicht den/die Profuzent*In für den Film Gone with the Wind.</p>
 <div class="cell docutils container">
@@ -11090,7 +8507,7 @@ WHERE Titel = ‘Gone with the Wind‘
 </div>
 </section>
 <section id="diskussion">
-<h3><span class="section-number">9.8.4. </span>Diskussion<a class="headerlink" href="#diskussion" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.8.3. </span>Diskussion<a class="headerlink" href="#diskussion" title="Permalink to this headline">#</a></h3>
 <p>Die Vorteile von Sichten beinhalten die Vereinfachung von Anfragen, sowie die Strukturierung der Datenbank. Es wird ebenfalls eine logische Datenunabhängigkeit geschaffen. Der Zugriff auf die Daten kann beschränkt werden, z.B könnten wir für unser Beispiel nur Paramount-Mitarbeiter*Innen den Zugriff auf die Sicht ParamountFilme erlauben.
 <br></p>
 <p>□ Logische Datenunabhängigkeit
@@ -11106,7 +8523,7 @@ WHERE Titel = ‘Gone with the Wind‘
 <p>Weiterhin bleibt die Änderung auf Sichten ein Problembereich, sowie die Updatepropagierung für materialisierte Sichten. Auch die automatische Anfragetransformation gestaltet sich mit Sichten schwieriger.</p>
 </section>
 <section id="updates-auf-sichten">
-<h3><span class="section-number">9.8.5. </span>Updates auf Sichten<a class="headerlink" href="#updates-auf-sichten" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.8.4. </span>Updates auf Sichten<a class="headerlink" href="#updates-auf-sichten" title="Permalink to this headline">#</a></h3>
 <p>In einigen Fällen ist es möglich, Einfüge-, Lösch- oder Updateoperationen auf Sichten durchzuführen. Hier stellen sich die Fragen: Wo sind die Sichten gespeichert? Welche Relationen sind betroffen? Wie verläuft die Zuordnung der Änderung zur Sicht?
 <br><br>
 In den meisten Fällen wird die Update-Operation einer Sicht auf eine Update-Operation der zugrunde liegenden Basisrelationen übersetzt. Hierbei darf kein DISTINCT, sondern nur eine normales SELECT verwendet werden. Eine gute Kenntnis der Datenbank muss vorausgesetzt sein, da durch das Vergessen mancher Attribute Inkonsistenzen durch NULL-Werte entstehen können.
@@ -11122,7 +8539,7 @@ In den meisten Fällen wird die Update-Operation einer Sicht auf eine Update-Ope
 □ Nur falls genug Attribute verwendet werden, so dass alle anderen Attribute mit NULL oder dem Default-Wert gefüllt werden können.</p>
 </section>
 <section id="einfugen-auf-sichten-beispiel">
-<h3><span class="section-number">9.8.6. </span>Einfügen auf Sichten – Beispiel<a class="headerlink" href="#einfugen-auf-sichten-beispiel" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.8.5. </span>Einfügen auf Sichten – Beispiel<a class="headerlink" href="#einfugen-auf-sichten-beispiel" title="Permalink to this headline">#</a></h3>
 <p>Haben wir die Relation Filme(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentinID) gegeben. Wir wollen nun einen weiteren Film in unsere ParamountFilme-Sicht einfügen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -11167,7 +8584,7 @@ VALUES (‚Star Trek‘, 1979, ‚Paramount‘);
 </div>
 </section>
 <section id="loschen-und-updates-auf-sichten">
-<h3><span class="section-number">9.8.7. </span>Löschen und Updates auf Sichten<a class="headerlink" href="#loschen-und-updates-auf-sichten" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.8.6. </span>Löschen und Updates auf Sichten<a class="headerlink" href="#loschen-und-updates-auf-sichten" title="Permalink to this headline">#</a></h3>
 <p>Im Folgenden möchten wir alle Filme aus unserer Sicht entfernen die ‘Trek’ im Filmtitel enthalten.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -11213,7 +8630,7 @@ WHERE Titel = ‚Star Trek the Movie‘ AND StudioName = ‚Paramount‘;
 </div>
 </section>
 <section id="tupelmigration">
-<h3><span class="section-number">9.8.8. </span>Tupelmigration<a class="headerlink" href="#tupelmigration" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.8.7. </span>Tupelmigration<a class="headerlink" href="#tupelmigration" title="Permalink to this headline">#</a></h3>
 <p>Angenommen wir erstellen eine Sicht auf die Relation ManagerIn(Name, Adresse, ManagerinID, Gehalt), welche alle Manager*Innen mit einem Gehalt größer als 2 Millionen beinhaltet.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -11259,7 +8676,7 @@ WHERE Titel = ‚Star Trek the Movie‘ AND StudioName = ‚Paramount‘;
 </div>
 </section>
 <section id="anfrageplanung-mit-sichten">
-<h3><span class="section-number">9.8.9. </span>Anfrageplanung mit Sichten<a class="headerlink" href="#anfrageplanung-mit-sichten" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.8.8. </span>Anfrageplanung mit Sichten<a class="headerlink" href="#anfrageplanung-mit-sichten" title="Permalink to this headline">#</a></h3>
 <p>Üblicherweise werden Anfragen in Form eines Baums dargestellt. Die Blätter repräsentieren Basisrelationen und Sichten. Die Sichten können auch durch die Sichtdefinitionen erstezt werden.
 <br>
 Ein Beispiel hierfür sehen wir in der unteren Abbildung. Die Dreiecke sind die Anfragen und die Kreise Sichten. Wir ersetzen die Sichten v und w durch ihre Sichtdefinitionen und sehen, das w eine weitere Sicht z in Anspruch nimmt.</p>
@@ -11305,12 +8722,12 @@ Im zweiten Schritt sehen wir die Ausführungsreihenfolge der Anfrage, die direkt
 Zuletzt sehen wir, dass ParamountFilme durch die Sichtendefnition ersetzt wurde.</p>
 </section>
 <section id="materialisierte-sichten">
-<h3><span class="section-number">9.8.10. </span>Materialisierte Sichten<a class="headerlink" href="#materialisierte-sichten" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.8.9. </span>Materialisierte Sichten<a class="headerlink" href="#materialisierte-sichten" title="Permalink to this headline">#</a></h3>
 <p>In der realen Welt ist es möglich, dass viele Anfragen an eine Datenbank sich häufig wiederholen, wie z.B bei Business Reports, Bilanzen, Umsätze oder Bestellungsplanung, Produktionsplanung oder auch bei der Kennzahlenberechnung. Diese vielen Anfragen sind oft Variationen mit gemeinsamen Kern. Um Ressourcen zu sparen kann eine Anfrage als Sicht einmalig berechnet und dann materialisiert werden. So kann die Sicht automatisch und transparent in folgenden Anfragen wiederbenutzt werden.
 <br><br>
 Drei Folien nach Prof. Ulf Leser, HU Berlin</p>
 <section id="mv-themen-und-probleme">
-<h4><span class="section-number">9.8.10.1. </span>MV – Themen und Probleme<a class="headerlink" href="#mv-themen-und-probleme" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">9.8.9.1. </span>MV – Themen und Probleme<a class="headerlink" href="#mv-themen-und-probleme" title="Permalink to this headline">#</a></h4>
 <p>Es stellt sich die Frage welche Views nun zur Materialisierung ausgewählt werden, hierbei müssen die Kosten(Platz und Aktualisierungsaufwand) von MV beachtete werden, als auch der Workload und die Menge von MVs, beeinflussen die optimale Wahl.
 <br><br>
 Ein anderes Problemengebiet ist die automatische Aktualisierung von MVs, wie also z.B mit einer Aktualisierung bei Änderungen der Basisrelationen umgegangen wird, v.A. bei Aggregaten, Joins, Outer-Joins usw. . Hierfür bieten sich
@@ -11320,7 +8737,7 @@ Weiterhin stellt sich auch die Frage, wie die Verwendung von MVs bei der Ausfüh
 </section>
 </section>
 <section id="answering-queries-using-views">
-<h3><span class="section-number">9.8.11. </span>„Answering Queries using Views“<a class="headerlink" href="#answering-queries-using-views" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.8.10. </span>„Answering Queries using Views“<a class="headerlink" href="#answering-queries-using-views" title="Permalink to this headline">#</a></h3>
 <p>Angenommen wir habene ine Anfrage Q und eine Menge V (materialisierten) von Sichten gegeben. Es stellen sich folgende Fragen:
 <br></p>
 <ul class="simple">
@@ -11350,15 +8767,15 @@ Im Weiteren haben wir SQL als DML betrachtet ,um Datenbankveränderungen mit INS
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_html">
-<iframe
-    width="100%"
-    height="800"
-    src="https://lejuliennn.github.io/sql-trainer/"
-    frameborder="0"
-    allowfullscreen
-
-></iframe>
-</div></div>
+        <iframe
+            width="100%"
+            height="800"
+            src="https://lejuliennn.github.io/sql-trainer/"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
 </div>
 </section>
 <section id="multiple-choice">
@@ -11370,15 +8787,15 @@ Im Weiteren haben wir SQL als DML betrachtet ,um Datenbankveränderungen mit INS
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_html">
-<iframe
-    width="100%"
-    height="800"
-    src="https://lejuliennn.github.io/mct-trainer/#/quiz/categories/sql"
-    frameborder="0"
-    allowfullscreen
-
-></iframe>
-</div></div>
+        <iframe
+            width="100%"
+            height="800"
+            src="https://lejuliennn.github.io/mct-trainer/#/quiz/categories/sql"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
 </div>
 </section>
 </section>

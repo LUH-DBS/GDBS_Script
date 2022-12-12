@@ -24,9 +24,9 @@
     <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
     
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
@@ -42,7 +42,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -841,19 +841,17 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="bearbeitung">
 <h1><span class="section-number">12. </span>Bearbeitung<a class="headerlink" href="#bearbeitung" title="Permalink to this headline">#</a></h1>
 <p><strong>Anfragebearbeitung – Grundproblem</strong> <br></p>
-<p>Die Anfragen, die man an eine Datenbank stellt, sind deklarativ. Solche Anfragen kann man in SQL, aber auch in der Relationalen Algebra formulieren.
+<p>Die Anfragen, die an eine Datenbank gestellt werden, sind deklarativ. Solche Anfragen können in SQL, aber auch in der Relationalen Algebra formuliert werden.
 Mittels der Anfragen sagt man somit was man will, aber nicht wie man das bekommt, was man will.
 Das Datenbanksystem findet von selbst heraus, wie es an das kommt, was man möchte.
-Angenommen die Anfragen wären nicht deklarativ, dann müsste man ein Programm schreiben, dass beispielsweise erst eine CSV-Datei durchgeht.
+Angenommen die Anfragen wären nicht deklarativ, dann müsste ein Programm geschrieben werden, das beispielsweise erst eine CSV-Datei durchgeht usw.
 Stattdessen “sagt” man (deklarativ): Gebe alle Filme aus, die im Jahr 1996 produziert werden. <br>
 <br>
-Dafür müssen die Anfragen in eine ausführbare (prozedurale) Form transformiert werden. Ein Ziel hierbei ist es, einen „QEP“ (prozeduraler Query Execution Plan) zu erhalten. Wichtig zu beachten ist die Effizienz des Programms. Es soll zum Einem schnell sein, aber zum Anderen auch wenige Ressourcen verbrauchen (CPU, I/O, RAM, Bandbreite), denn es wirkt sich stark auf den Energieverbrauch aus. <br>
-<br>
-<br></p>
+Die Anfragen müssen in eine ausführbare (prozedurale) Form transformiert werden. Ein Ziel hierbei ist es, einen „QEP“ (prozeduraler Query Execution Plan) zu erhalten. Wichtig zu beachten ist die Effizienz des Programms. Es soll zum Einem schnell sein, aber zum Anderen auch wenige Ressourcen verbrauchen (CPU, I/O, RAM, Bandbreite), denn es wirkt sich stark auf den Energieverbrauch aus. <br></p>
 <p><strong>Ablauf der Anfragebearbeitung</strong><br><br>
-Zunächst hat man eine Anfrage der Form: <br>
+Gegeben ist zunächst eine Anfrage der Form: <br>
 SELECT * FROM x WHERE …;</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Parsing:<br>
 Eine solche Anfrage wird zunächst mit Blick auf die Syntax geparst. Anschließend werden die Elemente auf korrekte Semantik überprüft und ein Parsebaum erstellt. Es wird herausgefunden auf welche Operationselemente die Anfrage abgebildet wird. <br>
 <br></p></li>
@@ -866,8 +864,7 @@ Weitere Optimierungen können auch mit regelbasierten und kostenbasierten Optimi
 <br></p></li>
 <li><p>Wahl des physischen Anfrageplans:<br>
 Für jede Operation, die momentan noch in deklarativer Form ist, muss nun eine Prozedur bzw. ein Programm mit physischen Operatoren ausgewählt werden. Dies sind unter anderem Algorithmen, Scan Operatoren oder auch JOIN-Implementierungen. <br>
-Hierbei können physische Optimierungen angewandt werden.<br>
-<br></p></li>
+Hierbei können physische Optimierungen angewandt werden.<br></p></li>
 </ol>
 <p>Am Ende wird der ausgewählte Anfrageplan ausgeführt.</p>
 <a class="reference internal image-reference" href="../_images/ablauf_anfragebearbeitung.jpg"><img alt="drawing" src="../_images/ablauf_anfragebearbeitung.jpg" style="width: 300px;" /></a>
@@ -885,7 +882,7 @@ In einem Parsebaum werden folgende Elemente als Atome (Blätter) dargestellt:</p
 <li><p>Syntaxzeichen</p></li>
 <li><p>Operatoren</p></li>
 </ul>
-<p>Bei Syntaktischen Kategorien können Teilausdrücke einer Anfrage Namen gegeben werden. Die Teilausdrücke können also zu Kategorien zusammengefasst werden. Beispielsweise bei einer VIEW.<br />
+<p>Bei Syntaktischen Kategorien können Teilausdrücke einer Anfrage Namen gegeben werden. Die Teilausdrücke können also zu Kategorien zusammengefasst werden, beispielsweise bei einer VIEW.<br />
 <br></p>
 </section>
 <section id="eine-grammatik-fur-einen-teil-von-sql">
@@ -922,7 +919,7 @@ Bedingungen können Verknüpfungen bzw. Kombinationen von anderen Bedingungen se
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  - &lt;Bedingung&gt; ::= &lt;Bedingung&gt; AND &lt;Bedingung&gt;
 </pre></div>
 </div>
-<p>Eine Bedingung kann auch eine Anfrage sein, bei der man eine Überprüfung in einer anderen Anfrage anfordert:</p>
+<p>Eine Bedingung kann auch eine Anfrage sein, bei der eine Überprüfung in einer anderen Anfrage angefordert wird:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  - &lt;Bedingung&gt; ::= &lt;Tupel&gt; IN &lt;Anfrage&gt;
   - &lt;Bedingung&gt; ::= &lt;Attribut&gt; = &lt;Attribut&gt;
   - &lt;Bedingung&gt; ::= &lt;Attribut&gt; LIKE &lt;Muster&gt;
@@ -939,7 +936,7 @@ Die vollständige Grammatik kann man z.B. unter <a class="reference external" hr
 <section id="parse-baum">
 <h3><span class="section-number">12.1.3. </span>Parse-Baum<a class="headerlink" href="#parse-baum" title="Permalink to this headline">#</a></h3>
 <p><img alt="" src="../_images/parsebaum.jpg" /></p>
-<p>In diesem Bild sieht man den Aufbau eines Parsebaums, der anhand der vorherigen SQL-Anfrage erstellt wurde. Dabei besteht die Anfrage aus einem SFW. Das SFW kann wiederrum unterteilt werden in SELECT, SelListe, … <br>
+<p>In diesem Bild ist der Aufbau eines Parsebaums dargestellt, der anhand der vorherigen SQL-Anfrage erstellt wurde. Dabei besteht die Anfrage aus einem SFW. Das SFW kann wiederrum unterteilt werden in SELECT, SelListe, … <br>
 Alle Konstanten und Relationen lassen sich in den Blattstrukturen wiederfinden.</p>
 </section>
 <section id="prufung-der-semantik">
@@ -949,7 +946,7 @@ Alle Konstanten und Relationen lassen sich in den Blattstrukturen wiederfinden.<
 <li><p>Existieren die Relationen und Sichten der FROM Klausel?</p></li>
 <li><p>Existieren die Attribute in den genannten Relationen?</p></li>
 <li><p>Sind sie eindeutig?</p></li>
-<li><p>Korrekte Typen für Vergleiche? (bsp.: Vergleicht man einen Integer mit einem String usw.</p></li>
+<li><p>Sind korrekte Typen für Vergleiche gegeben? (Bsp.: Vergleicht man einen Integer mit einem String)</p></li>
 <li><p>Aggregation korrekt?</p></li>
 <li><p>…</p></li>
 </ul>
@@ -957,28 +954,28 @@ Alle Konstanten und Relationen lassen sich in den Blattstrukturen wiederfinden.<
 <section id="vom-parse-baum-zum-operatorbaum">
 <h3><span class="section-number">12.1.5. </span>Vom Parse-Baum zum Operatorbaum<a class="headerlink" href="#vom-parse-baum-zum-operatorbaum" title="Permalink to this headline">#</a></h3>
 <p><img alt="" src="../_images/operatorbaum.jpg" /></p>
-<p>Am Ende vom vorherigen Schritt erhält man einen Parsebaum. Dieser wird jetzt in einen Operatorbaum umgewandelt. Dargestellt werden kann der Operatorbaum mittels Relationaler Algebra. Dabei entspricht das SELECT einer Projektion und das WHERE einer Selektion. Aus den Schlüsselwörtern hat man nun konkrete Operatoren bekommen, die nun deutlich besser sichtbar sind. Man weiß jetzt auch, dass spielt_in und Schauspieler durch ein Kreuzprodukt kombiniert werden. Diese beiden Relationen sind der Input des Kreuzprodukts. Auf dem Output findet dananch eine Selektion statt und auf dessen Output letztendlich eine Projektion.</p>
+<p>Der vorherige Schritt hat einen Parsebaum generiert. Dieser wird jetzt in einen Operatorbaum umgewandelt. Dargestellt werden kann der Operatorbaum mittels Relationaler Algebra. Dabei entspricht das SELECT einer Projektion und das WHERE einer Selektion. Aus den Schlüsselwörtern werden konkrete Operatoren. Es ist nun auch bekannt, dass spielt_in und Schauspieler durch ein Kreuzprodukt kombiniert werden. Diese beiden Relationen sind also der Input des Kreuzprodukts. Auf dem Output des Kreuzproduktes findet dananch eine Selektion statt und auf dessen Output letztendlich eine Projektion.</p>
 </section>
 </section>
 <section id="transformationsregeln-der-ra">
 <h2><span class="section-number">12.2. </span>Transformationsregeln der RA<a class="headerlink" href="#transformationsregeln-der-ra" title="Permalink to this headline">#</a></h2>
-<p>Zuvor haben wir gesehen, dass es für jede Anfrage verschiedene Pläne gibt. Das bedeutet also auch, dass es verschiedene Operatorenbäume gibt. Somit kann man also verschiedene Anfragen ineinander transformieren. Dies wird anhand der Transformationseregeln der Relationalen Algebra dargestellt.</p>
+<p>Für jede Anfrage gibt es verschiedene Pläne. Das bedeutet also auch, dass es verschiedene Operatorenbäume gibt. Somit kann man  verschiedene Anfragen ineinander transformieren. Dies wird anhand der Transformationseregeln der Relationalen Algebra dargestellt.</p>
 <section id="anfragebearbeitung-transformationsregeln">
 <h3><span class="section-number">12.2.1. </span>Anfragebearbeitung – Transformationsregeln<a class="headerlink" href="#anfragebearbeitung-transformationsregeln" title="Permalink to this headline">#</a></h3>
 <p>Die Transformation der internen Darstellung soll ohne eine Änderung der Semantik erfolgen. Damit ist gemeint, dass die Operatorenbäume nach der Transformation immernoch die gleiche Anfrage wie vor der Transformation beantworten können bzw. es kommt immernoch das gleiche Ergebnis heraus.<br>
-Das Ziel einer Transformation ist es eine effizientere Ausführung zu finden. Die Operatoren sollen möglichst kleine Zwischenergebnisse liefern. Der nächste Operator soll als Input möglichst kleine Mengen von Tupeln erhalten auf denen er arbeiten kann.
+Das Ziel einer Transformation ist es eine effizientere Ausführung zu finden. Die Operatoren sollen möglichst kleine Zwischenergebnisse liefern. Der nächste Operator soll als Input möglichst kleine Mengen von Tupeln erhalten, auf denen er arbeiten kann.
 <br><br>
 Um diese Transformation zu vollführen, müssen zunächst äquivalente Ausdrücke identifiziert werden.
 Zwei Ausdrücke der relationalen Algebra gelten als äquivalent, falls sie gleiche Operanden (= Relationen) besitzen und stets die gleiche Antwortrelation zurückgeben.
-‘Stets’ bedeutet hierbei, dass nicht per Zufall die gleichen Ergebnisse bei mehreren Anfragen herauskommen. Für jede mögliche Instanz der Datenbank, muss man das selbe Ergebnis erhalten.
+‘Stets’ bedeutet hierbei, dass nicht per Zufall die gleichen Ergebnisse bei mehreren Anfragen herauskommen. Für jede mögliche Instanz der Datenbank, muss jedes Mal das gleiche Ergebnis entstehen.
 <br></p>
 </section>
 <section id="anfragebearbeitung-beispiel">
 <h3><span class="section-number">12.2.2. </span>Anfragebearbeitung – Beispiel<a class="headerlink" href="#anfragebearbeitung-beispiel" title="Permalink to this headline">#</a></h3>
-<p>In diesem Beispiel möchte man den Nachnamen projizieren. Dafür erstellt man das Kreuzprodukt zwischen den Relationen ‘Mitarbeiter’ und ‘Projekte’. Darauf selektiert man alle Paare bei denen die Mitarbeiter-ID gleich der Projekt-ID ist. Die Projekte, die ein gleiches oder größeres Budget als 40000 haben, werden aussortiert.</p>
+<p>In diesem Beispiel soll der Nachname projiziert werden. Dafür wird das Kreuzprodukt zwischen den Relationen ‘Mitarbeiter’ und ‘Projekte’ erstellt. Darauf werden alle Paare, bei denen die Mitarbeiter-ID gleich der Projekt-ID ist, selektiert. Die Projekte, die ein gleiches oder größeres Budget als 40000 haben, werden aussortiert.</p>
 <p><img alt="" src="../_images/anfragebearbeitung_bsp1.jpg" /></p>
-<p>Nun kann man sich überlegen, wo man noch früher Tupel herausfiltern kann. Eine Möglichkeit wäre es die Selektion mit dem Kreuzprodukt zu einem Join zu kombinieren.
-Eine Andere wäre es, die übrig gebliebene Selektion früher durchzuführen. Noch bevor man das Kreuzprodukt der beiden Relationen bildet, kann man die Selektion ‘p.Budget &lt; 40000’ auf der ‘projekt’-Relation ausführen. Man erwartet, dass der nachfolgende Join auf einer kleineren Tupelmenge ausgeführt wird.</p>
+<p>Es kann nun überlegt werden, wo man noch früher Tupel herausfiltern kann. Eine Möglichkeit wäre es die Selektion mit dem Kreuzprodukt zu einem Join zu kombinieren.
+Eine Andere wäre es, die übrig gebliebene Selektion früher durchzuführen. Noch bevor das Kreuzprodukt der beiden Relationen gebildet wird, kann man die Selektion ‘p.Budget &lt; 40000’ auf der ‘projekt’-Relation ausführen. Die Erwartung ist, dass der nachfolgende Join auf einer kleineren Tupelmenge ausgeführt wird.</p>
 <p><img alt="" src="../_images/anfragebearbeitung_bsp2.jpg" /></p>
 </section>
 <section id="kommutativitat-und-assoziativitat">
@@ -1013,15 +1010,15 @@ R ⋈ S = S ⋈ R
 <li><p>Selektion<br></p>
 <ul>
 <li><p><span class="math notranslate nohighlight">\(\sigma_{c1 AND c2}(R ) = \sigma_{c1}(\sigma_{c2} (R))\)</span></p>
-<p>Wenn man eine Selektion mit zwei Bedingungen hat, kann man das in zwei Selektionen, die aufeinander aufbauen, kaskadieren.</p>
+<p>Wenn es eine Selektion mit zwei Bedingungen ist, kann sie in zwei Selektionen, die aufeinander aufbauen, kaskadiert werden.</p>
 </li>
 <li><p><span class="math notranslate nohighlight">\(\sigma_{c1 OR c2}(R ) = \sigma_{c1}(R) \cup \sigma_{c2} (R)\)</span></p>
-<p>Wenn man eine Selektion mit einem OR hat, kann man davon die Vereinigung bilden.
-Dabei kommt es aber zu einem Problem bei Multimengen:
-c1 or c2 bedeutet, gebe mir jedes Tupel egal ob Bedingung c1, c2 oder beide gelten. Man würde bei der Vereinigung eine andere Anzahl an Tupeln bekommen. Bei den Fällen bei denen beide Bedingungen gelten, würde es das Tupel doppelt geben.</p>
+<p>Wenn es eine Selektion mit einem OR ist, kann davon die Vereinigung gebildet werden.
+<br>Dabei kommt es zu einem Problem bei Multimengen:<br>
+c1 or c2 bedeutet, gebe jedes Tupel zurück, egal ob Bedingung c1, c2 oder beide gelten. Man würde bei der Vereinigung eine andere Anzahl an Tupeln bekommen. Bei den Fällen bei denen beide Bedingungen gelten, würde es das Tupel doppelt geben.</p>
 </li>
 <li><p><span class="math notranslate nohighlight">\(\sigma_{c1}(\sigma_{c2}(R)) = \sigma_{c2}(\sigma_{c1}(R))\)</span></p>
-<p>Die äußere Bedigung kann mit der inneren Bedingung vertauscht werden. Dabei kann man sich überlegen welche Bedingung günstiger ist und sie zuerst auszuführen.</p>
+<p>Die äußere Bedigung kann mit der inneren Bedingung vertauscht werden. Dabei sollte die günstigere Bedingung am besten zuerst ausgeführt werden.</p>
 </li>
 <li><p><span class="math notranslate nohighlight">\(\sigma_{c}(R \Phi S) \equiv (\sigma_{c} (R)) \Phi (\sigma_{c} (S))\)</span></p>
 <ul class="simple">
@@ -1031,7 +1028,7 @@ c1 or c2 bedeutet, gebe mir jedes Tupel egal ob Bedingung c1, c2 oder beide gelt
 <li><p><span class="math notranslate nohighlight">\(\sigma_{c}(R \Phi S) \equiv (\sigma_{c} (R)) \Phi S\)</span></p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\Phi \in \{\cup, \cap , - , ⋈\}\)</span></p></li>
-<li><p>Falls sich c nur auf Attribute in R bezieht, kann man es so umformen, sodass sich die Selektion nur auf die Relation R bezieht.</p></li>
+<li><p>Falls sich c nur auf Attribute in R bezieht, kann es so umgeformt werden, sodass sich die Selektion nur auf die Relation R bezieht.</p></li>
 </ul>
 </li>
 </ul>
@@ -1058,23 +1055,23 @@ Hierbei kann eine Projektion noch vor die Selektion geschoben werden. Wichtig da
 <p>Bei der Anfragebearbearbeitung wird eine regelbasierte Optimierung durchgeführt. Dabei schreibt ein fester Regelsatz Transformationen vor. Die Transformationen sollen eine Anfrage schneller bearbeiten. <br>
 Die Prioritäten unter den Regeln werden durch Heuristiken bestimmt. Es ist nach Erfahrung der beste Weg, es muss aber nicht immer der Fall sein. Ein Beispiel einer solchen Optimierung ist das ‘pushen’ einer Selektion nach unten im Anfragebaum.
 <br><br>
-Außerdem wird noch eine kostenbasierte Optimierung angewandt. Für jede Relation kann man ein Kostenmodell aufstellen. Das Kostenmodell basiert dabei auf Statistiken, die das Datenbankmodell gesammelt hat. Nach dem Aufstellen des Kostenmodells kann mit diesem ein optimaler Plan bestimmt werden, bei dem die Kosten minimal sind. Dazu kann auch die optimale Joinreihenfolge bestimmt werden. Transformationen helfen hierbei die Kosten zu verringern.
+Außerdem wird noch eine kostenbasierte Optimierung angewandt. Für jede Relation kann ein Kostenmodell aufgestellt werden. Das Kostenmodell basiert dabei auf Statistiken, die das Datenbankmodell gesammelt hat. Nach dem Aufstellen des Kostenmodells kann mit diesem ein optimaler Plan bestimmt werden, bei dem die Kosten minimal sind. Dazu kann auch die optimale Joinreihenfolge bestimmt werden. Transformationen helfen hierbei die Kosten zu verringern.
 <br><br>
-Im Allgemeinen wird nicht die optimale Auswertungsstrategie gesucht, sondern eine einigermaßen effiziente Variante. Sie soll uns dabei helfen den schlimmsten Fall zu verhindern -&gt; Avoid the worst case!</p>
+Im Allgemeinen wird nicht die optimale Auswertungsstrategie gesucht, sondern eine einigermaßen effiziente Variante. Sie soll  dabei helfen den schlimmsten Fall zu verhindern -&gt; Avoid the worst case!</p>
 </section>
 <section id="logische-optimierung">
 <h3><span class="section-number">12.3.2. </span>Logische Optimierung<a class="headerlink" href="#logische-optimierung" title="Permalink to this headline">#</a></h3>
-<p>Bei der logischen Optimierung kann anhand der Transformationsregeln jeder Ausdruck im Anfragebaum in viele verschiedene, semantisch äquivalente Ausdrücke umgeschrieben werden. Dabei wählt man den (hoffentlich) besten Ausdruck (=Plan, =QEP (QueryExecutionPlan)) aus.</p>
+<p>Bei der logischen Optimierung kann anhand der Transformationsregeln jeder Ausdruck im Anfragebaum in viele verschiedene, semantisch äquivalente Ausdrücke umgeschrieben werden. Dabei wird der (hoffentlich) beste Ausdruck (=Plan, =QEP (QueryExecutionPlan)) ausgewählt.</p>
 </section>
 <section id="physische-optimierung">
 <h3><span class="section-number">12.3.3. </span>Physische Optimierung<a class="headerlink" href="#physische-optimierung" title="Permalink to this headline">#</a></h3>
 <p>Für jede relationale Operation gibt es viele verschiedene Implementierungen:
 Zum Beispiel für den Zugriff auf Tabellen kann es ein Scan, verschiedene Indizes, ein sortierter Zugriff, etc. sein.
-Genauso bei Joins kann man auch verschiedene Implementierungen wie Nested loop, sort-merge, hash, etc. wählen.
-Daraus wählt man für jede Operation wieder die (hoffentlich) beste Implementierung aus.
+Genauso bei Joins können auch verschiedene Implementierungen wie Nested loop, sort-merge, hash, etc. ausgewählt werden.
+Für jede Operation wird wieder die (hoffentlich) beste Implementierung ausgewählt.
 <br><br>
 Es kann nun sein, dass die logische von der physischen Optimierung abhängt.
-Beispielsweise kann man sagen, dass ein bestimmter Plan besser funktioniert, wenn man einen Nested-Loop-Join durchführt. Wenn man eine Schleife innerhalb einer anderen hat, kann man in der einen Schleifen bereits etwas Anderes mitprüfen. Das würde einem bestimmten logischen Plan besser entsprechen.</p>
+Beispielsweise kann es sein, dass ein bestimmter Plan besser funktioniert, wenn man einen Nested-Loop-Join durchführt. Wenn eine Schleife innerhalb einer anderen ist, kann in der einen Schleifen bereits etwas Anderes mitgeprüft werden. Das würde einem bestimmten logischen Plan besser entsprechen.</p>
 </section>
 <section id="logische-optimierung-regelbasiert">
 <h3><span class="section-number">12.3.4. </span>Logische Optimierung – regelbasiert<a class="headerlink" href="#logische-optimierung-regelbasiert" title="Permalink to this headline">#</a></h3>
@@ -1084,20 +1081,19 @@ Beispielsweise kann man sagen, dass ein bestimmter Plan besser funktioniert, wen
 <li><p>Selektionen mit AND können aufgeteilt und separat verschoben werden.</p></li>
 <li><p>Projektionen sollen so weit wie möglich im Baum nach unten geschoben werden,</p></li>
 <li><p>bzw. neue Projektionen können eingefügt werden.
-<br>Bei dem nach unten Verschieben von Selektionen und Projektionen gibt es einen Unterschied: Bei dem Verschieben von Selektionen geht es darum die Menge an Tupeln zu verringern. Bei Projektionen versucht man die Anzahl der Spalten zu verringern. <br>
-Beides ist sinnvoll, da man davon ausgehen muss, dass bei riesigen Datensätzen eine Spalte mehrere Gigabyte groß sein kann. Wenn man solche Spalten nicht unbedingt mehr mitschleppen muss, macht man das Programm effizienter.</p></li>
+<br>Bei dem nach unten Verschieben von Selektionen und Projektionen gibt es einen Unterschied: <br>Bei dem Verschieben von Selektionen geht es darum die Menge an Tupeln zu verringern. Bei Projektionen wird versucht die Anzahl der Spalten zu verringern. <br>
+Beides ist sinnvoll, da bei riesigen Datensätzen eine Spalte mehrere Gigabyte groß sein kann. Wenn solche Spalten nicht unbedingt mehr mitgeschleppt werden müssen, wird das Programm effizienter.</p></li>
 <li><p>Duplikateliminierung kann manchmal entfernt oder verschoben werden.</p></li>
-<li><p>Kreuzprodukte sollen mit geeigneten Selektionen zu einem Join zusammengefasst werden. Kreuzprodukte sollen möglichst vermieden werden, stattdessen können Joins mit effizienteren Implementierungen durchgeführt werden.</p></li>
+<li><p>Kreuzprodukte sollen mit geeigneten Selektionen zu einem Join zusammengefasst werden. Generell sollen Kreuzprodukte möglichst vermieden werden, stattdessen können Joins mit effizienteren Implementierungen durchgeführt werden.</p></li>
 </ul>
-<p>In dieser Vorlesung geht es nicht um die Suche nach der optimalen Joinreihenfolge. Diese Thematik wird erst in aufbauenden Veranstaltungen genauer betrachtet.
-<br><br></p>
+<p>In dieser Vorlesung geht es nicht um die Suche nach der optimalen Joinreihenfolge. Diese Thematik wird erst in aufbauenden Veranstaltungen genauer betrachtet.</p>
 </section>
 <section id="anwendung-der-transformationsregeln">
 <h3><span class="section-number">12.3.5. </span>Anwendung der Transformationsregeln<a class="headerlink" href="#anwendung-der-transformationsregeln" title="Permalink to this headline">#</a></h3>
 <p>Die folgende Anfrage ist von Prof. Alfons Kemper (TU München).
-Bei der Anfrage sucht man eindeutig alle Semester in denen für Studenten, hören, Vorlesungen und Professoren folgenden Bedingungen gelten:
-Der Professor heißt mit Namen ‘Sokrates’. Dieser Professor soll Vorlesungen halten und diese sollen von Studierenden gehört werden.
-Also man möchte wissen: In welchen Semestern sind die Studierenden, die Vorlesungen bei Sokrates hören?</p>
+Bei der Anfrage werden eindeutig alle Semester gesucht, in denen für Studenten, hören, Vorlesungen und Professoren folgende Bedingungen gelten:
+Der Professor heißt mit Namen ‘Sokrates’. Dieser Professor soll Vorlesungen halten und die Vorlesungen sollen von Studierenden gehört werden.
+Es soll also in Erfahrung gebracht werden: In welchen Semestern sind die Studierenden, die Vorlesungen bei Sokrates hören?</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>select distinct s.Semester
 from Studiernden s, hören h
 Vorlesungen v,
@@ -1108,20 +1104,20 @@ and v.VorlNr = h.VorlNr
 and h.MatrNr = s.MatrNr
 </pre></div>
 </div>
-<p>Zunächst hat man eine Darstellung bei der es ein Kreuzprodukt aller Relationen gibt. Dann kommen die aneinandergereihten Selektionsoperatoren. Man merkt sofort, es ist nicht die logisch effizienteste Variante.</p>
+<p>Zunächst ist eine Darstellung gegeben, bei der es ein Kreuzprodukt aller Relationen gibt. Dann kommen die aneinandergereihten Selektionsoperatoren. Es ist nicht die logisch effizienteste Variante.</p>
 <p><img alt="" src="../_images/transformationsregeln.jpg" /></p>
 </section>
 <section id="aufspalten-der-selektionspradikate">
 <h3><span class="section-number">12.3.6. </span>Aufspalten der Selektionsprädikate<a class="headerlink" href="#aufspalten-der-selektionspradikate" title="Permalink to this headline">#</a></h3>
-<p>Das Erste was man macht, ist das Aufspalten der Selektion. Dadurch erhält man alles als einzelne Operationen. Im nächsten Schritt wird sich eine effizientere Platzierung der Selektionen überlegt.</p>
+<p>Als erstes wird die Selektion aufgespalten und in einzelne Operationen zerteilt. Im nächsten Schritt wird sich eine effizientere Platzierung der Selektionen überlegt.</p>
 <p><img alt="" src="../_images/aufspalten_selektionspraedikate.jpg" /></p>
 </section>
 <section id="verschieben-der-selektionspradikate-pushing-selections">
 <h3><span class="section-number">12.3.7. </span>Verschieben der Selektionsprädikate „Pushing Selections“<a class="headerlink" href="#verschieben-der-selektionspradikate-pushing-selections" title="Permalink to this headline">#</a></h3>
-<p>Um die Anzahl der Tupel zu verringern, schiebt man die Selektionen weiter nach unten.
-Das ist der Fall bei den Studierenden, die eine Vorlesung hören. Um deren Anzahl zu verringern wird nach dem Kreuzprodukt zwischen den beiden Relationen ‘studierende’ und ‘hören’ die Selektion platziert.
-Die kleinere Menge an Tupeln als Output wird dann wie zuvor über das Kreuzprodukt mit ‘Vorlesungen’ kombiniert. Mit einer Selektion wird die Anzahl der Tupel reduziert, bevor man ein weiteres Kreuzprodukt bildet.
-Ansonsten hat man direkt vor die Professorentabelle die Selektion mit der Bedingung, dass der Name des Professors Sokrates sein soll, geschoben. Somit erhält man als Ouptut nach der Selektion nur ein Tupel und muss nicht mehr alle Professorentupel mitführen.</p>
+<p>Um die Anzahl der Tupel zu verringern, werden die Selektionen weiter nach unten geschoben.
+Das ist der Fall bei den Studierenden, die eine Vorlesung hören. Um deren Anzahl zu verringern, wird nach dem Kreuzprodukt zwischen den beiden Relationen ‘studierende’ und ‘hören’ die Selektion platziert.
+Die kleinere Menge an Tupeln als Output wird dann wie zuvor über das Kreuzprodukt mit ‘Vorlesungen’ kombiniert. Mit einer Selektion wird die Anzahl der Tupel reduziert, bevor ein weiteres Kreuzprodukt gebildet wird.
+Ansonsten ist direkt vor die Professorentabelle die Selektion mit der Bedingung, dass der Name des Professors Sokrates sein soll, geschoben worden. Somit ist der Ouptut nach der Selektion nur ein Tupel und es müssen nicht mehr alle Professorentupel mitgeführt werden.</p>
 <p><img alt="" src="../_images/verschieben_selektionspraedikate.jpg" /></p>
 </section>
 <section id="zusammenfassung-von-selektionen-und-kreuzprodukten-zu-joins">
@@ -1131,27 +1127,27 @@ Ansonsten hat man direkt vor die Professorentabelle die Selektion mit der Beding
 </section>
 <section id="optimierung-der-joinreihenfolge-kommutativitat-und-assoziativitat-ausnutzen">
 <h3><span class="section-number">12.3.9. </span>Optimierung der Joinreihenfolge: Kommutativität und Assoziativität ausnutzen<a class="headerlink" href="#optimierung-der-joinreihenfolge-kommutativitat-und-assoziativitat-ausnutzen" title="Permalink to this headline">#</a></h3>
-<p>Die Kommutativität und Assoziativität werden jetzt ausgenutzt, um die Joinreihenfolge zu optimieren. Das bedeutet, man möchte die Tupelmenge, die man erzeugt, möglichst gering halten.
-Daher verschiebt man die Selektion des Professorennames nach ganz unten. Grund hierfür ist, dass man aus dieser Selektion nur ein Tupel erhält, mit dem man weiterarbeiten muss. Danach vergrößert sich die Tupelmenge nur minimal um die Vorlesungen, die der Professor hält, usw.
-Ohne diese Optimierung startet man mit der gesamten Menge an Studierenden, die diese Vorlesung hören. Nun muss man diese große Tupelmenge als Input für die nächsten Operationen mitnehmen, was vermeidbare Kosten verursacht.</p>
+<p>Die Kommutativität und Assoziativität werden jetzt ausgenutzt, um die Joinreihenfolge zu optimieren. Die Tupelmenge wird möglichst gering gehalten.
+Daher wird die Selektion des Professorennames nach ganz unten verschoben. Grund hierfür ist, dass aus dieser Selektion nur ein Tupel herauskommt, mit dem man weiterarbeiten muss. Danach vergrößert sich die Tupelmenge nur minimal um die Vorlesungen, die der Professor hält, usw.
+Ohne diese Optimierung wird mit der gesamten Menge an Studierenden, die diese Vorlesung hören, gestartet. Diese große Tupelmenge muss als Input für die nächsten Operationen mitgenommen werden, was vermeidbare Kosten verursacht.</p>
 <p><img alt="" src="../_images/joinreihenfolge1.jpg" /></p>
 </section>
 <section id="was-hat-s-gebracht">
 <h3><span class="section-number">12.3.10. </span>Was hat´s gebracht?<a class="headerlink" href="#was-hat-s-gebracht" title="Permalink to this headline">#</a></h3>
-<p>Ohne die Optimierungen hat man ein Maximum von 13 Tupeln mit denen man arbeiten muss. Generell arbeitet man hierbei immer mit einer sehr hohen Anzahl von Tupeln im Gegensatz zu der Variante mit Optimierungen. Durch die Optimierungen arbeitet man auf maximal 4 Tupeln.</p>
+<p>Ohne die Optimierungen sind das Maximum 13 Tupel mit denen gearbeitet werden muss. Generell wird hier immer mit einer sehr hohen Anzahl von Tupeln gearbeitet, im Gegensatz zu der Variante mit Optimierungen. Durch die Optimierungen wird nur auf maximal 4 Tupeln gearbeitet.</p>
 <p>Es handelt sich hier um ein ausgedachtes Beispiel. Die Zahlen sind nicht logisch herleitbar. Es soll nur darstellen, wie sich das Verschieben von günstigen Join-Varianten auf die Tupelmenge, verhält.</p>
 <p><img alt="" src="../_images/joinreihenfolge2.jpg" /></p>
 </section>
 <section id="einfugen-von-projektionen">
 <h3><span class="section-number">12.3.11. </span>Einfügen von Projektionen<a class="headerlink" href="#einfugen-von-projektionen" title="Permalink to this headline">#</a></h3>
-<p>Nun kann man noch darüber nachdenken, ob man Projektionen einfügt, wenn man bestimmte Spalten nicht mehr braucht. Das wäre bei der Matrikelnummer der Fall, denn man benötigt im Nachhinein nur noch diese aus den Attributen beim Join und der Projektion danach. Insbesondere hat man dort einen Left-Join ausgeführt.</p>
+<p>Nun können noch Projektionen einfügt werden, wenn bestimmte Spalten nicht mehr benötigt werden. Das wäre bei der Matrikelnummer der Fall, denn es wird im Nachhinein nur noch die Matrikelnummer aus den Attributen beim Join und der Projektion danach benötigt. Insbesondere wird dort ein Left-Join ausgeführt.</p>
 <p><img alt="" src="../_images/einfuegen_projektion.jpg" /></p>
 </section>
 <section id="sqlite-explain">
 <h3><span class="section-number">12.3.12. </span>SQLite Explain<a class="headerlink" href="#sqlite-explain" title="Permalink to this headline">#</a></h3>
-<p>Anfragepläne kann man auch in SQLite ausprobieren. Dafür stellt man am Anfang mit ‘.eqp on’ den Modus an. Dann wird für jede Anfrage der Plan direkt gezeigt.
-Es kann auch explizit mit ‘EXPLAIN QUERY PLAN’ eingestellt werden. Danach gibt man wie gewohnt die SQL-Anfrage ein.
-Nun kann die tatsächliche Implementierung angesehen werden. Zunächst wird die ‘producer’ Tabelle gescannt. Dann wird ein Autoindex für ‘movie’ verwendet, weil wir den Primärschlüssel ‘mid’ verwenden. Dieser Index wird für den IN-OPERATOR verwendet und es wird ein B-TREE verwendet, um die doppelten Werte zu vermeiden.</p>
+<p>Anfragepläne können auch in SQLite ausprobiert werden. Dafür muss vor der Anfrage mit ‘.eqp on’ eingegeben werden. Für jede Anfrage wird jetzt der Plan direkt gezeigt.
+Es kann auch explizit mit ‘EXPLAIN QUERY PLAN’ eingestellt werden. Danach wird wie gewohnt die SQL-Anfrage eingegeben.
+Nun kann die tatsächliche Implementierung angesehen werden. Zunächst wird die ‘producer’ Tabelle gescannt. Dann wird ein Autoindex für ‘movie’ verwendet, weil der Primärschlüssel ‘mid’ verwendet wird. Dieser Index wird für den IN-OPERATOR verwendet und es wird ein B-TREE verwendet, um die doppelten Werte zu vermeiden.</p>
 <p><img alt="" src="../_images/sqlite.jpg" /></p>
 </section>
 </section>
@@ -1160,15 +1156,15 @@ Nun kann die tatsächliche Implementierung angesehen werden. Zunächst wird die 
 <p>Mittels Kostenmodellen sollen Anfrageausführungspläne verglichen und anhand ihrer Kosten bewertet werden, um letztendlich den besten Anfrageausführungsplan auszuwählen.</p>
 <section id="kostenbasierte-optimierung">
 <h3><span class="section-number">12.4.1. </span>Kostenbasierte Optimierung<a class="headerlink" href="#kostenbasierte-optimierung" title="Permalink to this headline">#</a></h3>
-<p>Generell müsste man konzeptionell alle denkbaren Anfrageausführungspläne generieren, um den besten darunter auszuwählen. Dabei werden die Kosten der Pläne anhand eines Kostenmodells bewertet. Hierzu werden Statistiken und Histogramme zur Hilfe genommen.
-Die Statistiken können können vom verfügbaren Speicher oder vom System abhängig sein. Je nach verwendetem Rechner, kann eine Operation eventuell unterschiedlich viel Zeit benötigen. Daher benötigt es eine Kalibrierung gemäß dem verwendetn Rechner.
-Beim Aufwands-Kostenmodell probiert man meistens den Durchsatz zu maximieren und nicht die Antwortzeit zu minimieren.
+<p>Generell müssen konzeptionell alle denkbaren Anfrageausführungspläne generiert werden, um den besten darunter auszuwählen. Dabei werden die Kosten der Pläne anhand eines Kostenmodells bewertet. Hierzu werden Statistiken und Histogramme zur Hilfe genommen.
+Die Statistiken können vom verfügbaren Speicher oder vom System abhängig sein. Je nach verwendetem Rechner, kann eine Operation eventuell unterschiedlich viel Zeit benötigen. Daher benötigt es eine Kalibrierung gemäß dem verwendetn Rechner.
+Beim Aufwands-Kostenmodell wird meistens probiert den Durchsatz zu maximieren und nicht die Antwortzeit zu minimieren.
 <br>
-Da es hierbei um Kosten geht, möchte man selbstverständlich den billigsten Plan ausführen. Dennoch sollte man darauf achten nicht zu lange zu optimieren, denn das Optimieren selbst kostet auch wieder Zeit und macht die Anfrage langsamer. Irgendwie muss man einen Zwischenweg zwischen beidem finden. Dies kann beispielsweise mithilfe von Heuristiken geschehen.</p>
+Da es hierbei um Kosten geht, soll der billigste Plan ausgeführt werden. Dennoch sollte darauf geachtet werden nicht zu lange zu optimieren, denn das Optimieren selbst kostet auch wieder Zeit und macht die Anfrage langsamer. Irgendwie muss ein Zwischenweg zwischen beidem gefunden werdenn. Dies kann beispielsweise mithilfe von Heuristiken geschehen.</p>
 </section>
 <section id="problemgrosze-suchraum">
 <h3><span class="section-number">12.4.2. </span>Problemgröße (Suchraum)<a class="headerlink" href="#problemgrosze-suchraum" title="Permalink to this headline">#</a></h3>
-<p>Wenn man konzeptionell alle denkbaren Anfrageausführungspläne generiert, erhalten wir die Anzahl der Bushy-Pläne bei n Tabellen gemäß der folgenden Formel:</p>
+<p>Wenn alle denkbaren Anfrageausführungspläne konzeptionell generiert wurden, wird die Anzahl der Bushy-Pläne bei n Tabellen gemäß der folgenden Formel berechnet:</p>
 <p><span class="math notranslate nohighlight">\(\frac{(2(n-1))!}{(n-1)!}\)</span></p>
 <table class="colwidths-auto table">
 <thead>
@@ -1202,18 +1198,18 @@ Das Optimierungsproblem, unabhängig von den Bushy-Plänen, ist NP-hart.</p>
 <section id="kostenmodell">
 <h3><span class="section-number">12.4.3. </span>Kostenmodell<a class="headerlink" href="#kostenmodell" title="Permalink to this headline">#</a></h3>
 <p><img alt="" src="../_images/kostenmodell.jpg" /></p>
-<p>Haben einen algebraischen Ausdruck. Dieser wird einem Kostenmodell übergeben und man erhält die Ausführungskosten ohne den Ausdruck ausgeführt zu haben.
+<p>Es ist ein algebraischer Ausdruck gegeben. Dieser wird einem Kostenmodell übergeben und daraus ergeben sich die Ausführungskosten ohne den Ausdruck ausgeführt zu haben.
 Das Kostenmodell betrachtet dabei Indexinformationen, Ballungs-Informationen (Clustering on disk), DB-Kardinalitäten und Attributverteilungen.</p>
 </section>
 <section id="statistiken">
 <h3><span class="section-number">12.4.4. </span>Statistiken<a class="headerlink" href="#statistiken" title="Permalink to this headline">#</a></h3>
-<p>Durch Statistiken kann man verschiedene Informationen zu den Elementen erhalten. <br>
-Bei einer Basisrelation würde man die Anzahl der Tupel und deren Tupelgröße kennen. <br><br />
-Bei (jedem) Attribut hat man den größten und kleinsten Wert.
-Es kann auch ein Histogramm zur Werteverteilung geben und man kennt die Anzahl der ‘distinct’-Werte (Kardinalität). <br>
-Zum System kennt man die Speichergröße, die Bandbreite, die I/O-, sowie die CPU-Zeiten. <br>
+<p>Durch Statistiken können verschiedene Informationen zu den Elementen erhalten werden. <br>
+Bei einer Basisrelation wäre es die Anzahl der Tupel und deren Tupelgröße. <br><br />
+Bei (jedem) Attribut ist der größte und kleinste Wert bekannt.
+Es kann auch ein Histogramm zur Werteverteilung geben und die Anzahl der ‘distinct’-Werte (Kardinalität) ist bekannt. <br>
+Zum System sind die Speichergröße, die Bandbreite, die I/O-, sowie die CPU-Zeiten gegeben. <br>
 <br>
-Problem: Die Statistiken gelten nur für einen Zustand der Datensätze. Theoretisch müsste man nach jeder Veränderung der Datenbank neue Statistiken erstellen oder die bestehenden Statistiken updaten. Das verursacht hohe Kosten und wird daher meistens nur nach einer bestimmten Zeit manuell/explizit durchgeführt mit einer Funktion wie runstats().
+Problem: Die Statistiken gelten nur für einen Zustand der Datensätze. Theoretisch muss nach jeder Veränderung der Datenbank neue Statistiken erstellt oder die bestehenden Statistiken geupdatet werden. Das verursacht hohe Kosten und wird daher meistens nur nach einer bestimmten Zeit manuell/explizit durchgeführt mit einer Funktion wie runstats().
 <br><br></p>
 <p><img alt="" src="../_images/statistik.jpg" /></p>
 </section>
@@ -1273,16 +1269,16 @@ Bei Joins ergibt sich der Selektivitätsfaktor aus der Selektivität des Joins g
 <section id="selektivitat-schatzen">
 <h4><span class="section-number">12.4.6.1. </span>Selektivität schätzen<a class="headerlink" href="#selektivitat-schatzen" title="Permalink to this headline">#</a></h4>
 <p>Selektion: <br>
-Wenn man eine Selektion auf einem einzelnen Schlüssel durchführt, also auf einer Konstanten, kann man davon ausgehen, dass der Selektivitätsfaktor genau</p>
+Wenn eine Selektion auf einem einzelnen Schlüssel durchgeführt wird, also auf einer Konstanten, kann davon ausgegangen werden, dass der Selektivitätsfaktor genau</p>
 <ul class="simple">
 <li><p>sf = 1 / |R|</p></li>
 </ul>
 <p>ist, da ein Schlüssel immer nur einmal auftaucht.</p>
-<p>Wenn man aber eine Selektion auf einem Attribut A mit m verschiedenen Werten ausführt, ist der Selektivitätsfaktor:</p>
+<p>Wenn aber eine Selektion auf einem Attribut A mit m verschiedenen Werten ausgeführt wird, ist der Selektivitätsfaktor:</p>
 <ul class="simple">
 <li><p>sf = (|R| / m) / |R| = 1/m</p></li>
 </ul>
-<p>Führt man beispielsweise auf einer Spalte mit 10 unterschiedlichen Werten eine Selektion auf einem Wert aus, kann man davon ausgehen, dass im Schnitt 1/m Werte herauskommen. Dies ist nur eine Schätzung!</p>
+<p>Wird auf einer Spalte mit 10 unterschiedlichen Werten eine Selektion auf einem Wert ausgeführt, kann davon ausgegangen werden, dass im Schnitt 1/m Werte herauskommen. Dies ist nur eine Schätzung!</p>
 <br>
 Join: <br>
 Beim Equijoin zwischen R und S über Fremdschlüssel in S ist der Selektivitätsfaktor:
@@ -1295,7 +1291,7 @@ Da man einen Equijoin über Fremdschlüssel durchführt, ist die Anzahl der Ausg
 </section>
 <section id="selinger-style-optimization">
 <h3><span class="section-number">12.4.7. </span>Selinger-style“ Optimization<a class="headerlink" href="#selinger-style-optimization" title="Permalink to this headline">#</a></h3>
-<p>Zum Vorherigen gibt es ein Paper aus den 70er Jahren von IBM. Im Folgenden kann man erkennen wie es vom Research Team dargestellt wird:</p>
+<p>Zum Vorherigen gibt es ein Paper aus den 70er Jahren von IBM. Im Folgenden ist die Darstellung vom Research Team zu sehen:</p>
 <p><img alt="" src="../_images/selinger_style1.jpg" /></p>
 <p><img alt="" src="../_images/selinger_style2.jpg" /></p>
 </section>
@@ -1310,11 +1306,11 @@ Da man einen Equijoin über Fremdschlüssel durchführt, ist die Anzahl der Ausg
 <ul class="simple">
 <li><p>DISTINCT <a class="reference external" href="http://cust.ID">cust.ID</a> = |cust|</p></li>
 </ul>
-<p>Die order-customer-ID (oder.custID) ist kleiner gleich der Anzahl der customer (cust), weil wir weniger Bestellungen (orders) als Kunden (cust) haben.</p>
+<p>Die order-customer-ID (oder.custID) ist kleiner gleich der Anzahl der customer (cust), weil es weniger Bestellungen (orders) als Kunden (cust) sind.</p>
 <ul class="simple">
 <li><p>DISTINCT order.custID ≤ |cust|</p></li>
 </ul>
-<p>Dann müssen wir nach der Formel aus dem Paper das Maximum der beiden Kardinalitäten nehmen. Es ergibt sich ein Selektivitätsfaktor von:</p>
+<p>Dann muss nach der Formel aus dem Paper das Maximum der beiden Kardinalitäten genommen werden. Es ergibt sich ein Selektivitätsfaktor von:</p>
 <ul class="simple">
 <li><p>sf = 1/|cust|</p></li>
 </ul>
@@ -1325,10 +1321,10 @@ Da man einen Equijoin über Fremdschlüssel durchführt, ist die Anzahl der Ausg
 </section>
 <section id="modelle-zum-besseren-schatzen-der-selektivitat">
 <h3><span class="section-number">12.4.9. </span>Modelle zum besseren Schätzen der Selektivität<a class="headerlink" href="#modelle-zum-besseren-schatzen-der-selektivitat" title="Permalink to this headline">#</a></h3>
-<p>Man kann das Schätzen der Selektivität auf unterschiedliche Weisen verbessern. <br>
-Eine Möglichkeit das Schätzen zu verbessern, wäre es eine Gleichverteilung der Werte anzunehmen, sodass man die Minimum- und Maximumwerte kennt. Bei einer ungleichen Verteilung (“skew”) ist die Abschätzung schwierig und eher schlecht. <br>
-Man kann hierzu ein Histogramm zur Hilfe nehmen. Parametrisierte Größen vereinfachen das Schätzen. Die Güte der Abschätzung hängt vom Histogrammtyp und der Histogrammgröße ab. Außerdem ist das Garantieren der Aktualität sehr aufwändig. <br>
-Eine weitere Möglichkeit ist das Sampling. Dabei schaut man sich eine repräsentative Teilmenge der Relation an und schließt daraus auf die Verteilung der Werte. Parametrisierte Größen sind hierbei wieder schwierig zu finden. Die Güte hängt von der Samplingmethode und der Samplegröße ab. Außerdem ist die Aktualität auch wieder von Bedeutung.</p>
+<p>Das Schätzen der Selektivität kann auf unterschiedliche Weisen verbessert werden. <br>
+Eine Möglichkeit das Schätzen zu verbessern, wäre es eine Gleichverteilung der Werte anzunehmen, sodass die Minimum- und Maximumwerte bekannt sind. Bei einer ungleichen Verteilung (“skew”) ist die Abschätzung schwierig und eher schlecht. <br>
+Dazu kann ein Histogramm zur Hilfe genommen werden. Parametrisierte Größen vereinfachen das Schätzen. Die Güte der Abschätzung hängt vom Histogrammtyp und der Histogrammgröße ab. Außerdem ist das Garantieren der Aktualität sehr aufwändig. <br>
+Eine weitere Möglichkeit ist das Sampling. Dabei wird eine repräsentative Teilmenge der Relation angeschaut und schließt daraus auf die Verteilung der Werte. Parametrisierte Größen sind hierbei wieder schwierig zu finden. Die Güte hängt von der Samplingmethode und der Samplegröße ab. Außerdem ist die Aktualität auch wieder von Bedeutung.</p>
 </section>
 <section id="beispiel-zu-histogrammen">
 <h3><span class="section-number">12.4.10. </span>Beispiel zu Histogrammen<a class="headerlink" href="#beispiel-zu-histogrammen" title="Permalink to this headline">#</a></h3>
@@ -1341,17 +1337,17 @@ Eine weitere Möglichkeit ist das Sampling. Dabei schaut man sich eine repräsen
 </div>
 <p>Gegeben ist ein Histogramm mit 3300 Produkten und einer Preisspanne von 0 bis 1000. Zu jedem Bucket in der Preisspanne wird angegeben wie viele Produkte darin enthalten sind. Zudem ist eine ‘sales’ Relation mit einer Millionen Einträgen gegeben. <br>
 <br>
-Angenommen es findet eine Gleichverteilung statt. Dann ist der Preis gleichverteilt zwischen 0 und 1000. Aufgrund unserer Selektionsbedingung (p.price &gt; 100) suchen wir nach allen Produkten, die mehr als 100 Kosten. Es bleiben genau 900 Produkte übrig. Also kommen 900 von 1000 Einträgen weiter und man erhält eine Selektivität von 900/1000 = 9/10. Am Ende werden somit 9/10 * 3300 ≈ 3000 Produkte erwartet, die man noch zusätzlich mit der sales Relation joint. <br>
+Angenommen es findet eine Gleichverteilung statt. Dann ist der Preis gleichverteilt zwischen 0 und 1000. Aufgrund der Selektionsbedingung (p.price &gt; 100) wird nach allen Produkten, die mehr als 100 Kosten, gesucht. Es bleiben genau 900 Produkte übrig. Also kommen 900 von 1000 Einträgen weiter. Es ergibt sich eine Selektivität von 900/1000 = 9/10. Am Ende werden somit 9/10 * 3300 ≈ 3000 Produkte erwartet, die noch zusätzlich mit der sales Relation gejoint wird. <br>
 <br>
-Wenn man weiß, wie das Histogramm tatsächlich aussieht, würde man wissen, dass es insgesamt nur 5 Produkte gibt, die über 100 kosten. Die Selektivität der Bedingung ist dann 5/3000 ≈ 0.0015. Somit deutlich geringer als zuvor.</p>
+Durch das Kennen des Aussehens des Histogramms, ist bekannt, dass es insgesamt nur 5 Produkte gibt, die über 100 kosten. Die Selektivität der Bedingung ist dann 5/3000 ≈ 0.0015. Somit deutlich geringer als zuvor.</p>
 </section>
 <section id="kosten-weitere-komplikationen">
 <h3><span class="section-number">12.4.11. </span>Kosten – Weitere Komplikationen<a class="headerlink" href="#kosten-weitere-komplikationen" title="Permalink to this headline">#</a></h3>
 <p>Es gibt weitere Komplikationen:<br>
-Was passiert mit den Kosten, wenn man bestimmte Operationen parallel ausführen kann? Die Kosten aller Operatoren können somit nicht addiert werden.<br>
-Oder der Hauptspeicher bietet Möglichkeiten wie Pufferung und Caching. Damit kann man die Kosten für bestimmte Operatoren noch weiter verringern. <br>
+Was passiert mit den Kosten, wenn bestimmte Operationen parallel ausgeführt werden? Die Kosten aller Operatoren können somit nicht addiert werden.<br>
+Oder der Hauptspeicher bietet Möglichkeiten wie Pufferung und Caching. Damit können die Kosten für bestimmte Operatoren noch weiter verringert werden. <br>
 Die I/O Kosten (Lesen einer Seite) könnten auch gegenüber den CPU Kosten einen ganz anderen Faktor spielen.<br>
-Vielleicht hat man mehrere Nutzer (Multiuser), die gleichzeitig arbeiten und man möchte so viele Nutzer wie möglich zu behandeln. Vielleicht möchte man auch die Antwortzeit der Nutzer verkleinern und müsste anders reagieren. <br>
+Vielleicht gibt es mehrere Nutzer (Multiuser), die gleichzeitig arbeiten und es sollen so viele Nutzer wie möglich behandelt werden. Vielleicht soll auch die Antwortzeit der Nutzer verkleinert werden und es müsste anders reagiert werden. <br>
 <br>
 Die Kostenmodelle sind also hochkomplex. In diesem Bereich wird immernoch sehr viel Forschung betrieben. Der beste Optimierer wurde bis heute noch nicht gefunden.</p>
 </section>
@@ -1364,7 +1360,7 @@ Die Kostenmodelle sind also hochkomplex. In diesem Bereich wird immernoch sehr v
 <li><p>Optimale Joinreihenfolge: Dynamische Programmierung</p></li>
 <li><p>Physische Anfragepläne und Pipelining</p></li>
 </ul>
-<p>Hier sieht man Tabellen mit denen man schauen kann, welche Pläne für welche Kombinationen gut funktionieren. Alle Punkte in diesen Diagrammen sind Pläne, die infrage kommen, für bestimmte Konstellationen von diesen Tabellen.
+<p>Hier sind Tabellen gegeben mit denen man schauen kann, welche Pläne für welche Kombinationen gut funktionieren. Alle Punkte in diesen Diagrammen sind Pläne, die infrage kommen, für bestimmte Konstellationen von diesen Tabellen.
 <img alt="" src="../_images/ausblick.jpg" /></p>
 </section>
 </section>
@@ -1377,15 +1373,15 @@ Die Kostenmodelle sind also hochkomplex. In diesem Bereich wird immernoch sehr v
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_html">
-<iframe
-    width="100%"
-    height="800"
-    src="https://lejuliennn.github.io/mct-trainer/#/quiz/categories/bearbeitung"
-    frameborder="0"
-    allowfullscreen
-
-></iframe>
-</div></div>
+        <iframe
+            width="100%"
+            height="800"
+            src="https://lejuliennn.github.io/mct-trainer/#/quiz/categories/bearbeitung"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
 </div>
 </section>
 </section>
