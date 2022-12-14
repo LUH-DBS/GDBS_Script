@@ -334,24 +334,22 @@ df
 # ### Datum und Uhrzeit
 # In SQL gibt es auch Datentypen um Daten und Zeiten darzustellen.Der Datentyp DATE stellt ein Datumskonstante dar:
 # <br>
-# – DATE ‘YYYY-MM-DD‘
-# <br>
-# – DATE ‘1948-05-14‘
+# - DATE ‘YYYY-MM-DD‘
+# - DATE ‘1948-05-14‘
 # <br><br>
 # Zeitkonstanten werden mit dem Datentyp TIME dargestellt:
-# – TIME ‘HH:MM:SS.S‘
-# <br>
-# – TIME ‘15:00:02.5‘
+# - TIME ‘HH:MM:SS.S‘
+# - TIME ‘15:00:02.5‘
 # <br><br>
 # Zeitstempel, also eine Kombination aus Datum und Zeit, werden mit dem Datentyp TIMESTAMP dargestellt:
 # <br>
-# – TIMESTAMP ‘1948-05-14 15:00:02.5‘
+# - TIMESTAMP ‘1948-05-14 15:00:02.5‘
 # <br><br>
 # Auch dieses Datentypen können wieder miteinander ,in Form von Variablen und Konstanten, verglichen werden:
 # <br>
-# – TIME ‘15:00:02.5‘ < TIME ‘15:02:02.5‘ ergibt TRUE
+# - TIME ‘15:00:02.5‘ < TIME ‘15:02:02.5‘ ergibt TRUE
 # <br><br>
-# – ERSCHEINUNGSTAG >= DATE ‘1949-11-12‘
+# - ERSCHEINUNGSTAG >= DATE ‘1949-11-12‘
 
 # ### Nullwerte
 # Nullwerte sind spezielle Datentypen, in SQL wird dieser als NULL dargestellt, auf Papier ist auch ⊥ geläufig. Es gibt mehrere Arten einen Nullwert zu interpretieren. Zum einen kann ein Nullwert bedeuten, dass ein Wert unbekannt ist, z.B kann es sein, dass der Geburtstag eines/r Schauspieler\*in unbekannt ist. Eine weitere Interpretationsart ist, dass ein Wert eingetragen wurde der unzulässig ist, wie z.B ein Ehegatte eine eines/r Schauspieler\*in. Zuletzt  können mit Nullwerten bestimmte Zellen oder Spalten maskiert werden, wie z.B bei einer unterdrückten Telefonnummer.
@@ -1423,10 +1421,51 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# ![title](duplikateliminierung.jpg)
-# 
+# Wir erinnern uns zurück an die Anfragen, wo wir die Produzent\*Innen von Filmen mit Harrison Ford gesucht haben.
 
-# Wir erinnern uns zurück an die Anfragen, wo wir die Produzent\*Innen von Filmen mit Harrison Ford gesucht haben. Einmal sind wir an das Ergebnis durch Subanfragen gelangt und auf einem anderen Wege mit einem Join. Nun sind beide Anfragen nicht äquivalent, da bei der Anfrage mit dem Join Duplikate möglich sind, welches sich aber mit dem DISTINCT-Schlüsselwort lösen lässt.
+# In[ ]:
+
+
+get_ipython().run_line_magic('sql', '')
+SELECT ManagerinID, Name
+FROM ManagerIn
+WHERE ManagerinId IN
+    (SELECT ProduzentinID
+     FROM Film
+     WHERE (Titel, Jahr) IN
+        (SELECT FilmTitel,
+            FilmJahr
+         FROM spielt_in
+         WHERE SchauspielerinName = 'Harrison Ford'));
+
+
+# Einmal sind wir an das Ergebnis durch Subanfragen gelangt s.o. und auf einem anderen Wege mit einem Join.
+
+# In[ ]:
+
+
+get_ipython().run_line_magic('sql', '')
+SELECT ManagerinID, Name
+FROM ManagerIn, Film, spielt_in
+WHERE ManagerinID = ProduzentinID
+AND Titel = FilmTitel
+AND Jahr = FilmJahr
+AND SchauspielerName = 'Harrison Ford';
+
+
+# Nun ist die Frage, ob beide Anfragen äquivalent sind. das ist nicht der Fall, da bei der Anfrage mit dem Join Duplikate möglich sind, welches sich aber mit dem DISTINCT-Schlüsselwort lösen lässt.
+
+# In[ ]:
+
+
+get_ipython().run_line_magic('sql', '')
+SELECT DISTINCT ManagerinID, Name
+FROM ManagerIn, Film, spielt_in
+WHERE ManagerinID = ProduzentinID
+AND Titel = FilmTitel
+AND Jahr = FilmJahr
+AND SchauspielerName = 'Harrison Ford';
+
 
 # ### Aggregation
 # Die aus der Relationalen Algebra bekannte Aggregation ist auch in SQL möglich, die Standardaggregationsoperatoren SUM, AVG, MIN, MAX, COUNT können auf einzelne Attribute in der SELECT-Klausel angewendet werden. Zudem gibt es noch weitere Aggregationsoperatoren wir z.B VAR, STDDEV für die Varianz und Standardabweichung. Es wird auch COUNT(\*) häufig benutzt, welches die Anzahl der Tupel in der Relation, die durch die FROM und WHERE Klauseln definiert wird zählt. Auch die Kombination mit DISTINCT wird häufig benutzt wie z.B COUNT(DISTINCT Jahr) SUM(DISTINCT Gehalt)
@@ -1460,7 +1499,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# In diesem Beispiel zählen wir alle Schauspiel in der spielt_in Relation, jedoch wird doppelt gezählt.
+# In diesem Beispiel zählen wir alle Schauspieler\*innen, die in der spielt_in Relation vorkommen, jedoch wird doppelt gezählt.
 
 # In[70]:
 
@@ -2232,7 +2271,7 @@ WHERE ManagerinID = 25;
 
 # Um Tupelmigration zu verhindern, können problematische Update durch WITH CHECK OPTION abgelehnt werden.
 
-# In[1]:
+# In[ ]:
 
 
 get_ipython().run_line_magic('sql', '')
@@ -2273,17 +2312,9 @@ FROM ParamountFilme
 WHERE Jahr = 1979;
 
 
-# ![title](anfrageplanung2.jpg)
-# <br><br>
-# Hier wird die Sichtendefinition der ParamountFilme dargestellt.
-# <br><br>
-# ![title](anfrageplanung3.jpg)
-# <br><br>
-# Im zweiten Schritt sehen wir die Ausführungsreihenfolge der Anfrage, die direkt auf der Sicht ParamountFilme ausgeführt wird
-# <br><br>
-# ![title](anfrageplanung4.jpg)
-# <br><br>
-# Zuletzt sehen wir, dass ParamountFilme durch die Sichtendefnition ersetzt wurde.
+# Sichtendefinition der ParamountFilme         |  Ausführungsreihenfolge der Anfrage, die direkt auf der Sicht ParamountFilme ausgeführt wird     |  ParamountFilme ersetzt durch die Sichtendefinition 
+# :-------------------------:|:-------------------------:|:-------------------------:
+# <img src="anfrageplanung2.jpg" width="200" /> | <img src="anfrageplanung3.jpg" width="200" /> | <img src="anfrageplanung4.jpg" width="200" />
 
 # ### Materialisierte Sichten
 # In der realen Welt ist es möglich, dass viele Anfragen an eine Datenbank sich häufig wiederholen, wie z.B bei Business Reports, Bilanzen, Umsätze oder Bestellungsplanung, Produktionsplanung oder auch bei der Kennzahlenberechnung. Diese vielen Anfragen sind oft Variationen mit gemeinsamen Kern. Um Ressourcen zu sparen kann eine Anfrage als Sicht einmalig berechnet und dann materialisiert werden. So kann die Sicht automatisch und transparent in folgenden Anfragen wiederbenutzt werden.
