@@ -199,7 +199,7 @@
 # ### Projektion (projection, $\pi$)
 
 # Die Projektion ist ein unärer Operator. Sie erzeugt eine neue Relation mit einer Teilmenge der ursprünglichen Attribute.<br>
-# Angenommen man projiziert auf eine Relation R mit den Attributen A1 bis Ak: $\pi_{A1,A2,…,Ak}$(R). Als Ergbnis erhält man eine neue Relation mit einer Teilmenge der ursprünglichen Attribute von R. Die Reihenfolge der Attribute entspricht üblicherweise der aufgelisteten Reihenfolge.<br><br>
+# Angenommen man projiziert auf eine Relation R mit den Attributen A1 bis Ak: $\pi_{A1,A2,…,Ak}$( R ). Als Ergbnis erhält man eine neue Relation mit einer Teilmenge der ursprünglichen Attribute von R. Die Reihenfolge der Attribute entspricht üblicherweise der aufgelisteten Reihenfolge.<br><br>
 # Durch das Weglassen von Attributen, kann es dazu kommen, dass die übrig gebliebenen Attribute  Duplikate enthalten. Diese werden implizit entfernt. <br>
 # Ein Beispiel hierzu: Man bildet eine Projektion mit den Attributen A und B auf R. Das Ergebnis sind zwei identische Tupel. Das Duplikat wird eliminiert. 
 
@@ -210,7 +210,7 @@
 # |1|1|2|
 # |1|1|3|
 
-# $\pi_{A,B}$(R)
+# $\pi_{A,B}$( R )
 # 
 # |A|B|
 # |-|-|
@@ -245,7 +245,7 @@
 
 # ### Erweiterte Projektion
 
-# Die Relationale Algebra erlaubt es den Projektionsoperator mehr Fähigkeiten zu geben. Bei der einfachen Projektion zuvor ($\pi_{L}$(R)) war das L dabei 'nur' eine Attributliste. Die erweiterte Projektion kann neben der Attributliste auch andere Ausdrücke an der Stelle des L's stehen haben. <br>
+# Die Relationale Algebra erlaubt es den Projektionsoperator mehr Fähigkeiten zu geben. Bei der einfachen Projektion zuvor ($\pi_{L}$( R )) war das L dabei 'nur' eine Attributliste. Die erweiterte Projektion kann neben der Attributliste auch andere Ausdrücke an der Stelle des L's stehen haben. <br>
 # Ein anderer Ausdruck wäre A→B, wobei A ein Attribut in R und B ein neuer Name ist. Dies entspricht einer Umbenennung von Attributen. <br>
 # Eine weitere Möglichkeit für einen neuen Ausdruck ist e→C. e ist ein Ausdruck mit Konstanten, arithmetischen Operatoren, Attributen von R, String-Operationen. C ist der neue Name für den Ausdruck e. Zwei Beispiele hierfür: 
 # - A1 + A2 → Summe
@@ -561,13 +561,13 @@
 # Ansonsten wird nach den Semestern der Studierenden gefragt. Das Attribut Semester befindet sich in der Studierendenrelation (Stud). Um die Studierendenrelation mit den anderen Relationen zu kombinieren, benötigt man die Hörtrelation (Hört). 
 # <br>
 # Nach dem Finden aller benötigten Relationen können nun die Selektionen auf den jeweiligen Relationen ausgeführt werden. Eine Bedingung war, dass der Professor vom Jahrgang 1960 sein muss. Diese Selektion wird direkt auf der Professorrelation ausgeführt. Die Bedingung, dass es Saal 1 ist, wird auf der gejointen Professor-, Lehrt- und Vorlesungsrelation durchgeführt. Dann werden die Hört- und die Studierendenrelation gejoint, um an die Semester der Studierenden zu kommen. Zum Schluss wird die Ergebnisrelation auf das Semester projiziert. 
-# ■ $\rho_{Sem}$((($\sigma_{Saal=1}$((($\sigma_{GebJahr = 1960}$(Professor))⋈Lehrt)⋈VL)⋈Hört)⋈Stud))
+# - $\rho_{Sem}$((($\sigma_{Saal=1}$((($\sigma_{GebJahr = 1960}$(Professor))⋈Lehrt)⋈VL)⋈Hört)⋈Stud))
 
 # ### Umbenennung (rename, $\rho$)
 
 # Die Umbenennung ist ein unärer Operator. Sie dient zur Kontrolle der Schemata und bietet  eine Möglichkeit einfachere Verknüpfungen anzuwenden. <br>
 # In dem Beispiel wird eine Relation R in S und die Attribute in der neuen Relation in A1 bis An umbenannt:
-# - $\rho_{S(A1,…,An)}$(R)
+# - $\rho_{S(A1,…,An)}$( R )
 # 
 # Hätte man das Selbe ohne die Attribute der neuen Relation, würde man nur die Relation umbenennen:
 # - $\rho_{S(R)}$
@@ -1021,7 +1021,7 @@
 # 
 # Um das Gesuchte zu erhalten, wird zunächst nach StudioName gruppiert. Danach wird in jeder Gruppe die Länge der Filme summiert und letztendlich die Paare (Studioname, Summe) ausgegeben.
 
-# Der Operator $\gamma$ steht für die Gruppierung. $\gamma_L$(R) ist eine Gruppierung auf einer Relation R, wobei L eine Menge von Attributen ist. Ein Element in L ist entweder ein Gruppierungsattribut nach dem gruppiert wird oder ein Aggregationsoperator auf ein Attribut von R (inkl. neuen Namen für das aggregierte Attribut).
+# Der Operator $\gamma$ steht für die Gruppierung. $\gamma_L$( R ) ist eine Gruppierung auf einer Relation R, wobei L eine Menge von Attributen ist. Ein Element in L ist entweder ein Gruppierungsattribut nach dem gruppiert wird oder ein Aggregationsoperator auf ein Attribut von R (inkl. neuen Namen für das aggregierte Attribut).
 # <br>
 # Das Ergebnis wird wie folgt konstruiert:
 # <br>
@@ -1096,7 +1096,7 @@
 # - Alternativ: $\pi_{Fachgebiet}$( (Prof ⋈ Lehrt) ⋈ ($\sigma_{ COUNT < 3(gVL_ID,COUNT(Matrikel)-> COUNT}$(Hört)))
 
 # ### Sortierung (sort, $\tau$)
-# $\tau_L$(R) sortiert die Realtion R, wobei L eine Attributliste aus R ist. Sei L = (A1,A2,…,An) wird zuerst nach A1, bei gleichen A1 nach A2 usw. sortiert.
+# $\tau_L$( R ) sortiert die Realtion R, wobei L eine Attributliste aus R ist. Sei L = (A1,A2,…,An) wird zuerst nach A1, bei gleichen A1 nach A2 usw. sortiert.
 # <br><br>
 # **Wichtig**: Das Ergebnis der Sortierung ist keine Menge, sondern eine Liste. Daher sollte die Sortierung der letzte Operator eines Ausdrucks sein. Ansonsten würden wieder Mengen entstehen und die Sortierung wäre verloren. Trotzdem kann es in DBMS vorteilhaft sein manchmal auch zwischendurch zu sortieren.
 
@@ -1107,7 +1107,7 @@
 # <br>
 # R ⋉ S : = $\pi_A$(R⋈S)
 # <br>
-# = $\pi_A$(R) ⋈$\pi_{A\cap B}$(S)
+# = $\pi_A$( R ) ⋈$\pi_{A\cap B}$(S)
 # <br>
 # = R⋈$\pi_{A\cap B}$(S)
 # <br><br>
@@ -1117,21 +1117,20 @@
 # <br>
 # Wichtig: Der Semi-Join ist natürlich nicht kommutativ: R ⋉ S ≠ S ⋉ R.
 
-# #### Beispiele zu Semi Joins
-
-# ##### Beispiel 1
+# **Beispiel 1**
 
 # Semi-Joins sind vorallem interessant, wenn Datenbankberechnungen auf verteilten Systemen stattfinden, da so kontrolliert werden kann wie viele der Daten weitergegeben werden. Betrachten wir zur Veranschaulichung ein Beispiel. Angenommen wir haben einen Server, der die Relation R enthält und einen anderen Server, der die Relation S enthält gegeben. Nun möchten wir R ⋉ S durchführen. Eine Möglichkeit wäre es, das Site 1 die komplette Relation S anfordert und den Semi-Join dann durchführt. Jedoch interessiert uns bei S nur das Joinattribut und wir schicken, aber die gesamte Relation, also eine Größe von Länge der Daten multipliziert mit der Länge der Tupel. Ein anderer Weg wäre nur die Joinattribute von S, in diesem Beispiel ID, zu schicken, welches die Kommunikationskosten deutlich verringern würde. Hier ist natürlich vorausgesetzt, dass das System weiß, dass ein Semi-Join durchgeführt werden soll.
 
 # ![title](semijoin1.jpg)
 
-# ##### Beispiel 2:
+# **Beispiel 2**
 
 # Betrachten wir nun einen "komplizierteren" Weg. Wir projezieren auf R und schicken die Joinattribute zu dem Server, auf welchem S liegt und semi-joinen diese. Nun wurde die Tupelanzahl schon verringert und wir schicken, das Ergebnis wieder zur Site 1 un joinen diese wieder mit R. 
 
 # ![title](semijoin2.jpg)
 
-# ##### Beispiel 3
+# **Beispiel 3**
+
 # In unserem letzten Beispiel haben wir drei Server gegeben. Unser Ziel ist es, dass alle Attribute aus S und R in Site 1 enthalten sind. Der einfache Weg ist beide Relationen komplett rüberzuschicken und zu joinen. Ein anderer Weg wäre die IDs von S zum Server von R zu schicken und diese zu semi-joinen. Dann werden nur jene Tupel die joinbar mit S sind an unseren Zielserver geschickt. Zeitgleich kann ein Semi-Join zwischen S und den zu Site 0 geschickten IDs von R durchgeführt werden. Daraus resultieren jene Tupel von S die joinbar mit R sind und diese werden auf zum Zielserver geschickt. Zum Schluss werden die beiden Relationen verjoint. Die Frage die sich nun stellt, ist wie groß R und S sein müssen, s.d der "kompliziertere" Weg kostengünstiger ist.
 
 # ![title](semijoin3.jpg)
@@ -1162,9 +1161,7 @@
 # - R |⋈| S
 #     - Alle Attribute sind enthalten 
 
-# Veranschaulichung 1         |  Veranschaulichung 2
-# :-------------------------:|:-------------------------:
-# <img src="outerjoin1.jpg" width="400" /> | <img src="outerjoin2.jpg" width="400" />
+# <img src="outerjoin1.jpg" width="250" />
 
 # ### Outer Union (⊎)
 # Beim Outer Union werden inkompatible Schemata auch vereinigt. Das Schema besteht dann aus Vereinigung der Attributmengen, wobei fehlende Werte werden mit Nullwerten ergänzt werden. In dem Beispiel unten können nur die Attribute B, C vereinigt werden. Bei den restlichen Attributen A, D wird die fehlende Spalte mit Nullwerten aufgefüllt.
@@ -1223,15 +1220,14 @@
 
 # Betrachten wir folgendes Beispiel zur Division. Relation A hat die Attribute sno und pno und die Relationenn B1, B2, B3 nur das Attribut pno. A/B1 enthält alle sno's die in A mit den pno's aus B1 auftauchen. Der Wert p2 taucht in A mit den sno's s1, s2, s3 und s4 auf, folglich bildet sich A/B1 daraus. Das gilt analog für A/B2 und A/B3.
 
-# ![title](division1.jpg)
+# <img src="division1.jpg" alt="drawing" width="350"/>
 
-# #### Division ausdrücken
 # Die Division ist kein essentieller Operator,sondern lediglich nur eine nützliche Abkürzung. Ebenso wie Joins, aber Joins sind so üblich, dass Systeme sie speziell unterstützen. Die Idee um R/S zu berechnen sieht wei folgt aus: Berechne alle x-Werte, die nicht durch einen y-Wert in S „disqualifiziert“ werden.
 # - x-Wert ist disqualifiziert, falls man durch Anfügen eines y-Wertes ein xy-Tupel erhält, das nicht in R ist.
-# - Disqualifizierte x-Werte: $\pi_{x}$ (($\pi_{x}$(R) $\times$ S) − R)
+# - Disqualifizierte x-Werte: $\pi_{x}$ (($\pi_{x}$( R ) $\times$ S) − R)
 # 
 # <br><br>
-# => R/S: $\pi_{x}$(R) − alle disqualifizierten Tupel
+# => R/S: $\pi_{x}$( R ) − alle disqualifizierten Tupel
 
 # ## Multiple Choice
 # 
