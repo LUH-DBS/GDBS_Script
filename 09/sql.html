@@ -24,9 +24,9 @@
     <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
@@ -42,7 +42,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -2384,25 +2384,25 @@ Nur wenn die gesamte WHERE-Klausel zu TRUE evaluiert wird, werden die entspreche
 <section id="datum-und-uhrzeit">
 <h3><span class="section-number">9.2.7. </span>Datum und Uhrzeit<a class="headerlink" href="#datum-und-uhrzeit" title="Permalink to this headline">#</a></h3>
 <p>In SQL gibt es auch Datentypen um Daten und Zeiten darzustellen.Der Datentyp DATE stellt ein Datumskonstante dar:
-<br>
-– DATE ‘YYYY-MM-DD‘
-<br>
-– DATE ‘1948-05-14‘
+<br></p>
+<ul class="simple">
+<li><p>DATE ‘YYYY-MM-DD‘</p></li>
+<li><p>DATE ‘1948-05-14‘
 <br><br>
-Zeitkonstanten werden mit dem Datentyp TIME dargestellt:
-– TIME ‘HH:MM:SS.S‘
-<br>
-– TIME ‘15:00:02.5‘
+Zeitkonstanten werden mit dem Datentyp TIME dargestellt:</p></li>
+<li><p>TIME ‘HH:MM:SS.S‘</p></li>
+<li><p>TIME ‘15:00:02.5‘
 <br><br>
 Zeitstempel, also eine Kombination aus Datum und Zeit, werden mit dem Datentyp TIMESTAMP dargestellt:
-<br>
-– TIMESTAMP ‘1948-05-14 15:00:02.5‘
+<br></p></li>
+<li><p>TIMESTAMP ‘1948-05-14 15:00:02.5‘
 <br><br>
 Auch dieses Datentypen können wieder miteinander ,in Form von Variablen und Konstanten, verglichen werden:
-<br>
-– TIME ‘15:00:02.5‘ &lt; TIME ‘15:02:02.5‘ ergibt TRUE
-<br><br>
-– ERSCHEINUNGSTAG &gt;= DATE ‘1949-11-12‘</p>
+<br></p></li>
+<li><p>TIME ‘15:00:02.5‘ &lt; TIME ‘15:02:02.5‘ ergibt TRUE
+<br><br></p></li>
+<li><p>ERSCHEINUNGSTAG &gt;= DATE ‘1949-11-12‘</p></li>
+</ul>
 </section>
 <section id="nullwerte">
 <h3><span class="section-number">9.2.8. </span>Nullwerte<a class="headerlink" href="#nullwerte" title="Permalink to this headline">#</a></h3>
@@ -5614,7 +5614,7 @@ Eine Beispielanfrage für das TPC-H Schema finden Sie unten.</p>
 <h2><span class="section-number">9.4. </span>Geschachtelte Anfragen<a class="headerlink" href="#geschachtelte-anfragen" title="Permalink to this headline">#</a></h2>
 <p>In vorherigen Beispielen haben wir schon geschachtelte Anfragen gesehen, nun betrachten wir diese etwas genauer. Eine Anfrage kann Teil einer anderen, theoretisch beliebig tief geschachtelten Anfrage sein. Hier gibt es drei verschiedene Varianten:
 <br></p>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>Die Subanfrage erzeugt einen einzigen Wert, der in der WHERE-Klausel mit einem anderen Wert verglichen werden kann.</p></li>
 <li><p>Die Subanfrage erzeugt eine Relation, die auf verschiedene Weise in der WHERE-Klausel verwendet werden kann.</p></li>
 <li><p>Die Subanfrage erzeugt eine Relation, die in der FROM Klausel (sozusagen als weitere Datenquelle) verwendet werden kann. – Wie jede andere normale Relation</p></li>
@@ -7072,8 +7072,52 @@ Im folgenden Beispiel suchen wir alle Filme, in denen mindestens ein Schauspiele
 </table>
 </div></div></div>
 </div>
-<p><img alt="title" src="../_images/duplikateliminierung.jpg" /></p>
-<p>Wir erinnern uns zurück an die Anfragen, wo wir die Produzent*Innen von Filmen mit Harrison Ford gesucht haben. Einmal sind wir an das Ergebnis durch Subanfragen gelangt und auf einem anderen Wege mit einem Join. Nun sind beide Anfragen nicht äquivalent, da bei der Anfrage mit dem Join Duplikate möglich sind, welches sich aber mit dem DISTINCT-Schlüsselwort lösen lässt.</p>
+<p>Wir erinnern uns zurück an die Anfragen, wo wir die Produzent*Innen von Filmen mit Harrison Ford gesucht haben.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
+<span class="n">SELECT</span> <span class="n">ManagerinID</span><span class="p">,</span> <span class="n">Name</span>
+<span class="n">FROM</span> <span class="n">ManagerIn</span>
+<span class="n">WHERE</span> <span class="n">ManagerinId</span> <span class="n">IN</span>
+    <span class="p">(</span><span class="n">SELECT</span> <span class="n">ProduzentinID</span>
+     <span class="n">FROM</span> <span class="n">Film</span>
+     <span class="n">WHERE</span> <span class="p">(</span><span class="n">Titel</span><span class="p">,</span> <span class="n">Jahr</span><span class="p">)</span> <span class="n">IN</span>
+        <span class="p">(</span><span class="n">SELECT</span> <span class="n">FilmTitel</span><span class="p">,</span>
+            <span class="n">FilmJahr</span>
+         <span class="n">FROM</span> <span class="n">spielt_in</span>
+         <span class="n">WHERE</span> <span class="n">SchauspielerinName</span> <span class="o">=</span> <span class="s1">&#39;Harrison Ford&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Einmal sind wir an das Ergebnis durch Subanfragen gelangt s.o. und auf einem anderen Wege mit einem Join.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
+<span class="n">SELECT</span> <span class="n">ManagerinID</span><span class="p">,</span> <span class="n">Name</span>
+<span class="n">FROM</span> <span class="n">ManagerIn</span><span class="p">,</span> <span class="n">Film</span><span class="p">,</span> <span class="n">spielt_in</span>
+<span class="n">WHERE</span> <span class="n">ManagerinID</span> <span class="o">=</span> <span class="n">ProduzentinID</span>
+<span class="n">AND</span> <span class="n">Titel</span> <span class="o">=</span> <span class="n">FilmTitel</span>
+<span class="n">AND</span> <span class="n">Jahr</span> <span class="o">=</span> <span class="n">FilmJahr</span>
+<span class="n">AND</span> <span class="n">SchauspielerName</span> <span class="o">=</span> <span class="s1">&#39;Harrison Ford&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nun ist die Frage, ob beide Anfragen äquivalent sind. das ist nicht der Fall, da bei der Anfrage mit dem Join Duplikate möglich sind, welches sich aber mit dem DISTINCT-Schlüsselwort lösen lässt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span>
+<span class="n">SELECT</span> <span class="n">DISTINCT</span> <span class="n">ManagerinID</span><span class="p">,</span> <span class="n">Name</span>
+<span class="n">FROM</span> <span class="n">ManagerIn</span><span class="p">,</span> <span class="n">Film</span><span class="p">,</span> <span class="n">spielt_in</span>
+<span class="n">WHERE</span> <span class="n">ManagerinID</span> <span class="o">=</span> <span class="n">ProduzentinID</span>
+<span class="n">AND</span> <span class="n">Titel</span> <span class="o">=</span> <span class="n">FilmTitel</span>
+<span class="n">AND</span> <span class="n">Jahr</span> <span class="o">=</span> <span class="n">FilmJahr</span>
+<span class="n">AND</span> <span class="n">SchauspielerName</span> <span class="o">=</span> <span class="s1">&#39;Harrison Ford&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="aggregation">
 <h3><span class="section-number">9.5.2. </span>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">#</a></h3>
@@ -7168,7 +7212,7 @@ Im folgenden Beispiel suchen wir alle Filme, in denen mindestens ein Schauspiele
 </table>
 </div></div></div>
 </div>
-<p>In diesem Beispiel zählen wir alle Schauspiel in der spielt_in Relation, jedoch wird doppelt gezählt.</p>
+<p>In diesem Beispiel zählen wir alle Schauspieler*innen, die in der spielt_in Relation vorkommen, jedoch wird doppelt gezählt.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SELECT COUNT(Name) </span>
@@ -7635,7 +7679,7 @@ Ergebnis: (NULL, NULL)</p>
 </div>
 <p>Wenn mehrere Relationen verwendet werden, wie im obigen Beispiel wird die Gruppierung am Schluss durchgeführt. Sie können sich an die folgende Reihenfolge der Ausführung (und des Lesens) richten:
 <br></p>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>FROM-Klausel
 <br></p></li>
 <li><p>WHERE-Klausel
@@ -8665,14 +8709,6 @@ WHERE Titel = ‚Star Trek the Movie‘ AND StudioName = ‚Paramount‘;
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">CREATE</span> <span class="n">VIEW</span> <span class="n">Reiche</span> <span class="n">AS</span>
-           <span class="o">^</span>
-<span class="ne">SyntaxError</span>: invalid syntax
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="anfrageplanung-mit-sichten">
@@ -8709,17 +8745,20 @@ WHERE StudioName = ‚Paramount‘;
 </div>
 </div>
 </div>
-<p><img alt="title" src="../_images/anfrageplanung2.jpg" />
-<br><br>
-Hier wird die Sichtendefinition der ParamountFilme dargestellt.
-<br><br>
-<img alt="title" src="../_images/anfrageplanung3.jpg" />
-<br><br>
-Im zweiten Schritt sehen wir die Ausführungsreihenfolge der Anfrage, die direkt auf der Sicht ParamountFilme ausgeführt wird
-<br><br>
-<img alt="title" src="../_images/anfrageplanung4.jpg" />
-<br><br>
-Zuletzt sehen wir, dass ParamountFilme durch die Sichtendefnition ersetzt wurde.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Sichtendefinition der ParamountFilme</p></th>
+<th class="text-align:center head"><p>Ausführungsreihenfolge der Anfrage, die direkt auf der Sicht ParamountFilme ausgeführt wird</p></th>
+<th class="text-align:center head"><p>ParamountFilme ersetzt durch die Sichtendefinition</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p><a class="reference internal" href="../_images/anfrageplanung2.jpg"><img alt="../_images/anfrageplanung2.jpg" src="../_images/anfrageplanung2.jpg" style="width: 200px;" /></a></p></td>
+<td class="text-align:center"><p><a class="reference internal" href="../_images/anfrageplanung3.jpg"><img alt="../_images/anfrageplanung3.jpg" src="../_images/anfrageplanung3.jpg" style="width: 200px;" /></a></p></td>
+<td class="text-align:center"><p><a class="reference internal" href="../_images/anfrageplanung4.jpg"><img alt="../_images/anfrageplanung4.jpg" src="../_images/anfrageplanung4.jpg" style="width: 200px;" /></a></p></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="materialisierte-sichten">
 <h3><span class="section-number">9.8.9. </span>Materialisierte Sichten<a class="headerlink" href="#materialisierte-sichten" title="Permalink to this headline">#</a></h3>
@@ -8767,15 +8806,15 @@ Im Weiteren haben wir SQL als DML betrachtet ,um Datenbankveränderungen mit INS
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_html">
-        <iframe
-            width="100%"
-            height="800"
-            src="https://lejuliennn.github.io/sql-trainer/"
-            frameborder="0"
-            allowfullscreen
-            
-        ></iframe>
-        </div></div>
+<iframe
+    width="100%"
+    height="800"
+    src="https://lejuliennn.github.io/sql-trainer/"
+    frameborder="0"
+    allowfullscreen
+
+></iframe>
+</div></div>
 </div>
 </section>
 <section id="multiple-choice">
@@ -8787,15 +8826,15 @@ Im Weiteren haben wir SQL als DML betrachtet ,um Datenbankveränderungen mit INS
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_html">
-        <iframe
-            width="100%"
-            height="800"
-            src="https://lejuliennn.github.io/mct-trainer/#/quiz/categories/sql"
-            frameborder="0"
-            allowfullscreen
-            
-        ></iframe>
-        </div></div>
+<iframe
+    width="100%"
+    height="800"
+    src="https://lejuliennn.github.io/mct-trainer/#/quiz/categories/sql"
+    frameborder="0"
+    allowfullscreen
+
+></iframe>
+</div></div>
 </div>
 </section>
 </section>
