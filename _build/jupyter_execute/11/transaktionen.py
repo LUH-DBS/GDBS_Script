@@ -308,7 +308,9 @@
 # <br> 
 # Beispiel: Alfons Kemper(TU München)
 
-# #### Beispiel 2
+# <br><br>
+# **Beispiel 2**
+# <br><br>
 # Nun fragen wir uns, ob der folgende Schedule serialisierbar ist. Wenn wir den unteren Schedule betrachten, sehen wir ,dass die read(A)write(A) bzw. read(B)write(B) Operationen von T1 abhänging von denen von T3 sind und umgekehrt. Bei den seriellen Schedules T1,T3 und T3,T1 würden Informationen verloren gehen, daher ist der Schedule unten nicht serialisierbar.
 # 
 # |Serialisierbar?|&#xfeff;|&#xfeff;|
@@ -330,7 +332,9 @@
 # <br> 
 # Beispiel: Alfons Kemper(TU München)
 
-# #### Beispiel 2.1
+# <br><br>
+# **Beispiel 2.1**
+# <br><br>
 # Betrachten wir folgenden nicht seriellen Schedule. Zuerst wird in T1 der Wert aus A gelesen und um 50 verringert und geschrieben. Danach wird in T3 der Wert aus A gelesen und um 100 verringert und geschrieben. Folgend wird in T3 der Wert aus B gelesen und um 100 erhöht und geschrieben. Zuletzt wird in T1 der Wert aus B gelsen um 50 erhöht und geschrieben. Wir fragen uns, ob dieser Schedule serialisierbar ist?
 # <br><br>
 # Tatsächlich ist dieser Schedule theoretisch serialisierbar, da die Operationen von T1 und T3 aufeinander aufbauen. Es macht keinen Unterschied, ob zuerst 50 oder 100 von A abgezogen werden oder ob zuerst 50 oder 100 auf B addiert werden. Jedoch müssen wir immer vom schlimmsten Fall ausgehen und können nicht wissen, dass die Operationen aufeinander aufbauen. Daher ist der Schedule in der Realität nicht serialisierbar.
@@ -392,7 +396,8 @@
 # <br> 
 # Beispiel: Alfons Kemper(TU München)
 
-# #### Beispiel 2.2
+# **Beispiel 2.2**
+# <br><br>
 # Dieses Beispiel ähnelt dem vorherigen, jedoch wird in T1 nur addiert und T3 wird nur multipliziert. Wenn wir nun einen seriellen Schedule wie oben erstellen, ist der Effekt nicht mehr identisch, da Punkt-vor-Strich-Rechnung eine Rolle spielt. Sowohl T1T3, als auch T3T1 haben nicht denselben Effekt. Dieses Beipiel soll nochmal veranschaulichen, dass der schlimmste Fall angenommen werden muss und der Schedule nicht serialisierbar ist.
 # 
 # <table>
@@ -506,7 +511,9 @@
 # <br> 
 # Beispiel: Alfons Kemper(TU München)
 
-# #### Zusammenfassung Beispiel 2
+# <br><br>
+# **Zusammenfassung Beispiel 2**
+# <br><br>
 # Betrachten wir erneut unser Ursprungsbeispiel. Dieser Schedule ist nicht serialisierbar, denn obwohl es konkrete Beispiele solcher Transaktionen gibt, für die es einen äquivalenten seriellen Schedule gibt. Muss immer das Schlimmste angenommen. 
 # 
 # |Schritt|T1|T3|
@@ -527,7 +534,9 @@
 # <br> 
 # Beispiel: Alfons Kemper(TU München)
 
-# #### Beispiel 3
+# <br><br>
+# **Beispiel 3**
+# <br><br>
 # Wenn wir uns nochmal die beiden seriellen Schedules T1T3 und T3T1 anschauen. Es fällt auf, dass T1T3 ≠ T3T1 ist. Hier muss nun die Applikation entscheiden, welche Reihenfolge logisch Sinn ergibt.
 # 
 # <table>
@@ -645,7 +654,9 @@
 # Nun gilt S ist ein konfliktserialisierbarer Schedule gdw. der vorliegende Konfliktgraph ein azyklischer Graph ist.
 # Für jeden azyklischen Graphen G(S) lässt sich ein serieller Schedule S‘ konstruieren, so dass S konfliktäquivalent zu S‘ ist, z.B mit topologischen Sortieren. Enthält der Konfliktgraph Zyklen, ist der zugehörige Schedule nicht konfliktserialisierbar.
 
-# ### Beispiel 1
+# <br><br>
+# **Beispiel 1**
+# <br><br>
 # Wir haben folgenden Schedule gegeben und möchten graphbasiert überprüfen, ob dieser konfliktserialisierbar ist. Unsere Menge V ist V={T1,T3}. Nun schauen wir anhand den obigen Regeln wo Konflikte herrschen. Wir haben einen Konflikt von write(A)(Schritt 3) zu read(A)(Schritt 5) und demnach eine Kante von T1 zu T3. Weiterhin haben wir einen Konflikt von write(B)(Schritt 8) zu read(B)(Schritt 11) und demnach eine Kante von T3 zu T1. Da unser Konfliktgraph einen Zyklus enthält, ist unser Schedule nicht konfliktserialisierbar.
 # 
 # <table>
@@ -676,7 +687,9 @@
 # </table>
 # 
 
-# ### Beispiel 2
+# <br><br>
+# **Beispiel 2**
+# <br><br>
 # Betrachten wir nun den Schedule S = r1(y) r3(u) r2(y) w1(y) w1(x) w2(x) w2(z) w3(x). Wir haben einen Konflikt von r2(y) zu w1(y), also hat unser Graph eine Kante von T2 zu T1. Dann gibt es weiterhin einen Konflikt von w1(x) zu w2(x), demnach hat unser Graph ein Kanten von  T1 zu T2. Nun hat unser Konfliktgraph schon eine Zyklus und wir wissen der Schedule S ist nicht konfliktserialisierbar.
 # 
 # <table>
@@ -704,7 +717,9 @@
 # 
 # 
 
-# ### Beispiel 3
+# <br><br>
+# **Beispiel 3**
+# <br><br>
 # In diesem Beispiel haben wir nur einen Konflikt von T1 nach T2 und können somit schließen, dass der Schedule konfliktserialisierbar ist. Der serielle Schedule lautet T3T1. Die Reihenfolge der Transaktionen, wird anhand der Pfeilrichtungen erkannt.
 # 
 # <table>
@@ -735,7 +750,7 @@
 # 
 # Beispie: Alfons Kemper(TU München)
 
-# #### Beweis
+# ### Beweis
 # Nun wollen wir folgendes beweisen: Konfliktgraph ist zykelfrei <=> Schedule ist konfliktserialisierbar
 # <br>
 # Wir zeigen zeurst die eine Richtung: Konfliktgraph ist zykelfrei <= Schedule ist konfliktserialisierbar
@@ -998,7 +1013,8 @@
 # <br>
 # ![title](sperren_img/bedingungen.jpg)
 
-# #### Beispiel
+# **Beispiel**
+# <br><br>
 # T1 sperrt zunächst A mit einem sharedlock, T2 tut dem ebenso und sperrt zusätzlich noch B. Folgend fordert T1 ein exclusive lock an B, jedoch ist B mit einem shared lock von T2 besetzt, weshalb die Anfrage abgelehnt wird. T2 gibt A und B frei. Zuletzt wird von T1 erneut ein exclusive lock an B angefordert und T1 liest und schreibt auf B. Ganz zum Schluss werden die Sperren von T1 freigegeben. 
 # <br><br>
 # - T1: sl1(A)r1(A)xl1(B)r1(B)w1(B)u1(A)u1(B)
