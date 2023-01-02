@@ -615,12 +615,12 @@
 # <br>
 # - wi(X) und wk(X) stehen in Konflikt
 # <br>
+# 
 # Es gilt „No coincidences“. Man nimmt immer das schlimmste an. Die konkrete Ausprägung der write-Operationen ist egal.
 # <br><br>
-# Zusammenfassen kann gesagt werden, dass ein Konflikt herrscht falls zwei Aktionen das gleiche Datenbankelement betreffen und mindestens eine der beiden Aktionen ein write ist.
+# Zusammenfassend kann gesagt werden, dass ein Konflikt herrscht falls zwei Aktionen das gleiche Datenbankelement betreffen und mindestens eine der beiden Aktionen ein write ist.
 
-# ### Konfliktserialisierbarkeit
-# Haben wir einen Schedule gegeben, können wir so lange nicht-konfligierende Aktionen tauschen,bis aus dem Schedule ein serieller Schedule wird. Falls das erfolgreich ist, ist der Schedule serialisierbar.
+# Haben wir einen Schedule gegeben, können wir so lange nicht-konfligierende Aktionen tauschen, bis aus dem Schedule ein serieller Schedule wird. Falls das erfolgreich ist, ist der Schedule serialisierbar.
 # <br><br>
 # Zwei Schedules S und S‘ heißen **konfliktäquivalent**, wenn die Reihenfolge aller Paare von konfligierenden Aktionen in beiden Schedules gleich ist.
 # <br><br>
@@ -638,7 +638,7 @@
 # <br>
 # r2(A) w2(A) r2(B) w2(B) r1(A) w1(A) r1(B) w1(B)
 
-# #### Konflikt – konfligieren
+# **Konflikt – konfligieren**
 # ![title](konfliktserialisierbarkeit_img/def_konfligieren.jpg)
 # 
 # #### Konfliktserialisierbarkeit vs. Serialisierbarkeit
@@ -648,7 +648,7 @@
 # <br><br>
 # Was fällt auf? T3 überschreibt X sowieso, in dem Fall spricht man dann von Sichtserialisierbarkeit (nicht hier).
 
-# #### Graphbasierter Test
+# ### Graphbasierter Test
 # Konfliktserialisierbarkeit kann auch graphbasiert, mittles eines Konfliktgraphen G(S) = (V,E) von Schedule S überprüft werden. Die Knotenmenge V enthält alle in S vorkommenden Transaktionen und die Kantenmenge E enthält alle gerichteten Kanten zwischen zwei konfligierenden Transaktionen. Die Kantenrichtung entspricht dem zeitlichem Ablauf im Schedule.
 # <br><br>
 # Nun gilt S ist ein konfliktserialisierbarer Schedule gdw. der vorliegende Konfliktgraph ein azyklischer Graph ist.
