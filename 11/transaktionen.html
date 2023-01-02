@@ -388,28 +388,18 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal nav-link" href="#konflikte">
      11.4.1. Konflikte
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     11.4.2. Konfliktserialisierbarkeit
-    </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#konflikt-konfligieren">
-       11.4.2.1. Konflikt – konfligieren
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#konfliktserialisierbarkeit-vs-serialisierbarkeit">
-       11.4.2.2. Konfliktserialisierbarkeit vs. Serialisierbarkeit
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#graphbasierter-test">
-       11.4.2.3. Graphbasierter Test
+       11.4.1.1. Konfliktserialisierbarkeit vs. Serialisierbarkeit
       </a>
      </li>
     </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graphbasierter-test">
+     11.4.2. Graphbasierter Test
+    </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#beweis">
@@ -444,7 +434,7 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
+    <a class="reference internal nav-link" href="#id1">
      11.5.5. Schedules mit Sperren
     </a>
    </li>
@@ -639,28 +629,18 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal nav-link" href="#konflikte">
      11.4.1. Konflikte
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     11.4.2. Konfliktserialisierbarkeit
-    </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#konflikt-konfligieren">
-       11.4.2.1. Konflikt – konfligieren
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#konfliktserialisierbarkeit-vs-serialisierbarkeit">
-       11.4.2.2. Konfliktserialisierbarkeit vs. Serialisierbarkeit
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#graphbasierter-test">
-       11.4.2.3. Graphbasierter Test
+       11.4.1.1. Konfliktserialisierbarkeit vs. Serialisierbarkeit
       </a>
      </li>
     </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graphbasierter-test">
+     11.4.2. Graphbasierter Test
+    </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#beweis">
@@ -695,7 +675,7 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
+    <a class="reference internal nav-link" href="#id1">
      11.5.5. Schedules mit Sperren
     </a>
    </li>
@@ -2394,15 +2374,12 @@ Angenommen wir haben die Transaktionen Ti und Tk gegegeben. Nun gelten folgende 
 <li><p>wi(X) und rk(X) stehen in Konflikt
 <br></p></li>
 <li><p>wi(X) und wk(X) stehen in Konflikt
-<br>
-Es gilt „No coincidences“. Man nimmt immer das schlimmste an. Die konkrete Ausprägung der write-Operationen ist egal.
-<br><br>
-Zusammenfassen kann gesagt werden, dass ein Konflikt herrscht falls zwei Aktionen das gleiche Datenbankelement betreffen und mindestens eine der beiden Aktionen ein write ist.</p></li>
+<br></p></li>
 </ul>
-</div>
-<div class="section" id="id1">
-<h3><span class="section-number">11.4.2. </span>Konfliktserialisierbarkeit<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<p>Haben wir einen Schedule gegeben, können wir so lange nicht-konfligierende Aktionen tauschen,bis aus dem Schedule ein serieller Schedule wird. Falls das erfolgreich ist, ist der Schedule serialisierbar.
+<p>Es gilt „No coincidences“. Man nimmt immer das schlimmste an. Die konkrete Ausprägung der write-Operationen ist egal.
+<br><br>
+Zusammenfassend kann gesagt werden, dass ein Konflikt herrscht falls zwei Aktionen das gleiche Datenbankelement betreffen und mindestens eine der beiden Aktionen ein write ist.</p>
+<p>Haben wir einen Schedule gegeben, können wir so lange nicht-konfligierende Aktionen tauschen, bis aus dem Schedule ein serieller Schedule wird. Falls das erfolgreich ist, ist der Schedule serialisierbar.
 <br><br>
 Zwei Schedules S und S‘ heißen <strong>konfliktäquivalent</strong>, wenn die Reihenfolge aller Paare von konfligierenden Aktionen in beiden Schedules gleich ist.
 <br><br>
@@ -2419,20 +2396,19 @@ r1(A) w1(A) r1(B) w1(B) r2(A) w2(A) r2(B) w2(B)
 Serieller Schedule T2T1:
 <br>
 r2(A) w2(A) r2(B) w2(B) r1(A) w1(A) r1(B) w1(B)</p>
-<div class="section" id="konflikt-konfligieren">
-<h4><span class="section-number">11.4.2.1. </span>Konflikt – konfligieren<a class="headerlink" href="#konflikt-konfligieren" title="Permalink to this headline">¶</a></h4>
-<p><img alt="title" src="../_images/def_konfligieren.jpg" /></p>
-</div>
+<p><strong>Konflikt – konfligieren</strong>
+<img alt="title" src="../_images/def_konfligieren.jpg" /></p>
 <div class="section" id="konfliktserialisierbarkeit-vs-serialisierbarkeit">
-<h4><span class="section-number">11.4.2.2. </span>Konfliktserialisierbarkeit vs. Serialisierbarkeit<a class="headerlink" href="#konfliktserialisierbarkeit-vs-serialisierbarkeit" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">11.4.1.1. </span>Konfliktserialisierbarkeit vs. Serialisierbarkeit<a class="headerlink" href="#konfliktserialisierbarkeit-vs-serialisierbarkeit" title="Permalink to this headline">¶</a></h4>
 <p>Wie oben genannt ist Konfliktserialisierbarkeit eine Bedingung für Serialisierbarkeit, demnach gilt Konfliktserialisierbarkeit =&gt; Serialisierbarkeit.
 <br>
 Betrachten wir nun den seriellen Schedule S1: w1(Y) w1(X) w2(Y) w2(X) w3(X). Der Schedule S2: w1(Y) w2(Y) w2(X) w1(X) w3(X) hat (zufällig) den gleichen Effekt wie S1 und ist also serialisierbar. Jedoch müssten konfligierende Aktionen getauscht werden, undzwar muss w1(X) vor w2(Y) getauscht werden, welches gegen die Konfliktserialisierbarkeit verstößt.
 <br><br>
 Was fällt auf? T3 überschreibt X sowieso, in dem Fall spricht man dann von Sichtserialisierbarkeit (nicht hier).</p>
 </div>
+</div>
 <div class="section" id="graphbasierter-test">
-<h4><span class="section-number">11.4.2.3. </span>Graphbasierter Test<a class="headerlink" href="#graphbasierter-test" title="Permalink to this headline">¶</a></h4>
+<h3><span class="section-number">11.4.2. </span>Graphbasierter Test<a class="headerlink" href="#graphbasierter-test" title="Permalink to this headline">¶</a></h3>
 <p>Konfliktserialisierbarkeit kann auch graphbasiert, mittles eines Konfliktgraphen G(S) = (V,E) von Schedule S überprüft werden. Die Knotenmenge V enthält alle in S vorkommenden Transaktionen und die Kantenmenge E enthält alle gerichteten Kanten zwischen zwei konfligierenden Transaktionen. Die Kantenrichtung entspricht dem zeitlichem Ablauf im Schedule.
 <br><br>
 Nun gilt S ist ein konfliktserialisierbarer Schedule gdw. der vorliegende Konfliktgraph ein azyklischer Graph ist.
@@ -2639,7 +2615,6 @@ In diesem Beispiel haben wir nur einen Konflikt von T1 nach T2 und können somit
 </table>
 <p>Beispie: Alfons Kemper(TU München)</p>
 </div>
-</div>
 <div class="section" id="beweis">
 <h3><span class="section-number">11.4.3. </span>Beweis<a class="headerlink" href="#beweis" title="Permalink to this headline">¶</a></h3>
 <p>Nun wollen wir folgendes beweisen: Konfliktgraph ist zykelfrei &lt;=&gt; Schedule ist konfliktserialisierbar
@@ -2839,8 +2814,8 @@ Somit ist unser Schedule konsistent und legal.
 <br><br>
 Der Scheduler gibt Objektefrei und vergibt nur Sperren, wenn keine andere Sperre existiert. Die Sperrinformation werden von dem Scheduler in einer Sperrtabelle gespeichert.</p>
 </div>
-<div class="section" id="id2">
-<h3><span class="section-number">11.5.5. </span>Schedules mit Sperren<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h3><span class="section-number">11.5.5. </span>Schedules mit Sperren<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>Im Vergleich zu dem Schedule oben wird hier erst B von T1 gesperrt und dann A entsperrt. Danach wird A von T3 gesperrt und es wird auf A geschrieben. T3 fordert nun die Sperre von B an, das wird jedoch abgelehnt, da B noch von T1 gesperrt wird. Anschließend schreibt T1 auf B und gibt diese frei und zuletzt kann T3 auf B schreiben. Dieser Schedule ist legal, da alle Sperren von Entsperren stattfinden. Dieser Schedule ist ebenfalls serilialisierbar und konfliktserialisierbar, da der zueghörige Konfliktgraph azyklisch ist.</p>
 <table class="colwidths-auto table">
 <thead>
