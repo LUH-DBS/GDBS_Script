@@ -638,10 +638,10 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Die einfachtse und am häufigsten genutzte Bedingung sind Schlüssel. Schlüssel sollten aus den vorherigen Kapiteln bekannt sein, sie bilden sich aus ein oder mehreren Attributen und identifizieren eindeutig ein Tupel. Falls eine Schlüsselmenge S gegeben ist, müssen sich also zwei Tupel einer Relation in mindestens einem Attributwert der Schlüsselmenge unterscheiden.
 <br>
 <br>
-Schlüssel werden im CREATE TABLE Ausdruck spezifiziert. Der Primärschlüssel wird mit dem Schlüsselwort PRIMARY KEY gekennzeichnet und kann nie einen Nullwert enthalten. Es gibt pro Relation maximal einen PRIMARY KEY. Ein weiterer Schlüssel ist UNIQUE, hiervon ist es erlaubt mehrere pro Relation und auch Nullwerte zu haben. Falls UNIQUE ohne Nullwerte benutzt werden soll, ist dies mit UNIQUE NOT NULL möglich.</p>
+Schlüssel werden im <code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">TABLE</span></code> Ausdruck spezifiziert. Der Primärschlüssel wird mit dem Schlüsselwort PRIMARY KEY gekennzeichnet und kann nie einen Nullwert enthalten. Es gibt pro Relation maximal einen <code class="docutils literal notranslate"><span class="pre">PRIMARY</span> <span class="pre">KEY</span></code>. Ein weiterer Schlüssel ist <code class="docutils literal notranslate"><span class="pre">UNIQUE</span></code>, hiervon ist es erlaubt mehrere pro Relation und auch Nullwerte zu haben. Falls <code class="docutils literal notranslate"><span class="pre">UNIQUE</span></code> ohne Nullwerte benutzt werden soll, ist dies mit <code class="docutils literal notranslate"><span class="pre">UNIQUE</span> <span class="pre">NOT</span> <span class="pre">NULL</span></code> möglich.</p>
 <div class="section" id="primarschlussel">
 <h4><span class="section-number">10.2.1.1. </span>Primärschlüssel<a class="headerlink" href="#primarschlussel" title="Permalink to this headline">¶</a></h4>
-<p>Primaärschlüssel werden im CREATE TABLE Ausdruck spezifiziert. Im Folgenden finden Sie eine Deklaration eines Primärschlüssels bei genau einem Attribut, dort findet die Deklaration dirket in der Attributenliste statt. Es ist auch möglich bei nur einem Attribut die Deklaration nach den Attributen zu nennen.</p>
+<p>Primaärschlüssel werden im<code class="docutils literal notranslate"> <span class="pre">CREATE</span> <span class="pre">TABLE</span></code> Ausdruck spezifiziert. Im Folgenden finden Sie eine Deklaration eines Primärschlüssels bei genau einem Attribut, dort findet die Deklaration dirket in der Attributenliste statt. Es ist auch möglich bei nur einem Attribut die Deklaration nach den Attributen zu nennen.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">SchauspielerIn</span><span class="p">(</span>
 <span class="n">Name</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
 <span class="n">Adresse</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
@@ -661,7 +661,7 @@ Schlüssel werden im CREATE TABLE Ausdruck spezifiziert. Der Primärschlüssel w
 </div>
 <div class="section" id="sekundarschlussel">
 <h4><span class="section-number">10.2.1.2. </span>Sekundärschlüssel<a class="headerlink" href="#sekundarschlussel" title="Permalink to this headline">¶</a></h4>
-<p>Sekundärschlüssel bzw. Schlüsselkandidaten werden mit dem Schlüsseltwort UNIQUE spezifiziert. Die Sytax ist genau wie bei der Deklaration von einem PRIMARY KEY, also direkt beim Attribut oder als separate Attributliste nach den Attributen.
+<p>Sekundärschlüssel bzw. Schlüsselkandidaten werden mit dem Schlüsseltwort <code class="docutils literal notranslate"><span class="pre">UNIQUE</span></code> spezifiziert. Die Sytax ist genau wie bei der Deklaration von einem <code class="docutils literal notranslate"><span class="pre">PRIMARY</span> <span class="pre">KEY</span></code>, also direkt beim Attribut oder als separate Attributliste nach den Attributen.
 <br><br>
 Der große Unterschied zu PRIMARY KEY  ist, dass es mehrere UNIQUE Deklarationen geben darf. Standardmäßig erlaubt UNIQUE NULL-Werte, da von NULL ≠ NULL (bzw. UNKNOWN) ausgegangen wird. Bei NULL ist es also möglich, dass zwei Tupel in UNIQUE Attributen übereinstimmen. Um auch Nullwerte zu unterbinden, kann UNIQUE NOT NULL verwendet werden. Ein Beispiel für eine Deklaration eines Sekundärschlüssel befindet sich unten.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">SchauspielerIn</span><span class="p">(</span>
@@ -675,8 +675,8 @@ Der große Unterschied zu PRIMARY KEY  ist, dass es mehrere UNIQUE Deklarationen
 </div>
 <div class="section" id="schlusselbedingungen-erzwingen">
 <h4><span class="section-number">10.2.1.3. </span>Schlüsselbedingungen erzwingen<a class="headerlink" href="#schlusselbedingungen-erzwingen" title="Permalink to this headline">¶</a></h4>
-<p>Die spezifizierten Schlüsselbedingungen müssen stets gelten. Diese sind nur relevant bei INSERT und UPDATE, da bei DELETE keine Verletzung der Bedingungen passieren kann, denn es wurden keine Tupel der Relation hinzugefügt, die nicht den Bedingungen entsprechen. Beim Einfügen oder Ändern wird geprüft der neue Schlüsselwert bereits vorhanden ist.</p>
-<p>Meistens ist die effiziente Prüfung der Bedingungen mittels Index möglich, da DBMS in der Regel automatisch Indizes für Primärschlüsselattribute anlegen. Optional ist es auch möglich manuell für UNIQUE-Attribute Indizes zu erstellen, z.B CREATE UNIQUE INDEX JahrIndex ON Filme(Jahr). Das entspricht CREATE INDEX JahrIndex ON Filme(Jahr), aber mit einer neuen UNIQUE Bedingung auf Jahr.
+<p>Die spezifizierten Schlüsselbedingungen müssen stets gelten. Diese sind nur relevant bei <code class="docutils literal notranslate"><span class="pre">INSERT</span></code> und <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code>, da bei <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> keine Verletzung der Bedingungen passieren kann, denn es wurden keine Tupel der Relation hinzugefügt, die nicht den Bedingungen entsprechen. Beim Einfügen oder Ändern wird geprüft der neue Schlüsselwert bereits vorhanden ist.</p>
+<p>Meistens ist die effiziente Prüfung der Bedingungen mittels Index möglich, da DBMS in der Regel automatisch Indizes für Primärschlüsselattribute anlegen. Optional ist es auch möglich manuell für <code class="docutils literal notranslate"><span class="pre">UNIQUE</span></code>-Attribute Indizes zu erstellen, z.B <code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">UNIQUE</span> <span class="pre">INDEX</span> <span class="pre">JahrIndex</span> <span class="pre">ON</span> <span class="pre">Filme(Jahr)</span></code>. Das entspricht <code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">INDEX</span> <span class="pre">JahrIndex</span> <span class="pre">ON</span> <span class="pre">Filme(Jahr)</span></code>, aber mit einer neuen UNIQUE Bedingung auf Jahr.
 <br><br>
 Ohne Indizes ist die Überprüfung eher ineffizient, da die gesamte Spalte durchsucht werden muss. Sind die Dtaen sortiert, kann binäre Suche verwendet werden, andernfalls muss sequentielle Suche benutzt werden.</p>
 </div>
@@ -734,7 +734,7 @@ Auf (einem oder) mehreren Attributen:
 <h3><span class="section-number">10.2.3. </span>Referentielle Integrität erzwingen<a class="headerlink" href="#referentielle-integritat-erzwingen" title="Permalink to this headline">¶</a></h3>
 <p>Es gibt drei Varianten um referentielle Integrität zu erzwingen: Ablehnung verletzender Änderungen (SQL default) ,Kaskadierung und Null-Werte.
 <br><br>
-Haben wir wieder die Relationen ManagerIn(Name, Adresse, ManagerinID, Gehalt) und Studios(Name, Adresse, VorsitzenderID) gegeben, wobei VorsitzendeID auf ManagerinID verweist.</p>
+Haben wir wieder die Relationen <code class="docutils literal notranslate"><span class="pre">ManagerIn(Name,</span> <span class="pre">Adresse,</span> <span class="pre">ManagerinID,</span> <span class="pre">Gehalt)</span></code> und <code class="docutils literal notranslate"><span class="pre">Studios(Name,</span> <span class="pre">Adresse,</span> <span class="pre">VorsitzenderID)</span></code> gegeben, wobei VorsitzendeID auf ManagerinID verweist.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">Studios</span><span class="p">(</span>
 <span class="n">Name</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
 <span class="n">Adresse</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
@@ -745,37 +745,37 @@ Haben wir wieder die Relationen ManagerIn(Name, Adresse, ManagerinID, Gehalt) un
 <h4><span class="section-number">10.2.3.1. </span>Referentielle Integrität erzwingen: Änderungen Ablehnen<a class="headerlink" href="#referentielle-integritat-erzwingen-anderungen-ablehnen" title="Permalink to this headline">¶</a></h4>
 <p>Durch den von uns festgelegten Fremdschlüssel muss  es für jede VorsitzendeID auch eine ManagerinID geben. SQL lehnt per default Änderungen ab, die Fremdschlüsselbeziehungen verletzen.
 <br>
-Wenn ein INSERT Studio … mit einer neuen (nicht-NULL) VorsitzendeID angefragt wird, die nicht in ManagerIn gespeichert ist, so wird dies abgelehnt.
+Wenn ein <code class="docutils literal notranslate"><span class="pre">INSERT</span></code> Studio … mit einer neuen (nicht-NULL) VorsitzendeID angefragt wird, die nicht in ManagerIn gespeichert ist, so wird dies abgelehnt.
 <br><br>
-Wenn ein UPDATE eines Studios mit einer neuen VorsitzendeID, die nicht in Manager gespeichert ist, angefragt wird, so wird dies ebenfalls abgelehnt.
+Wenn ein <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> eines Studios mit einer neuen VorsitzendeID, die nicht in Manager gespeichert ist, angefragt wird, so wird dies ebenfalls abgelehnt.
 <br><br>
-Wenn ein DELETE eines ManagerIn-Tupels, dessen ManagerinID auch eine (oder mehrere) VorsitzendeID ist, so wird dieses auch abgelehnt.
+Wenn ein <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> eines ManagerIn-Tupels, dessen ManagerinID auch eine (oder mehrere) VorsitzendeID ist, so wird dieses auch abgelehnt.
 <br><br>
-Wenn ein UPDATE der ManagerinID eines ManagerIn-Tupels angefragt wird, die auch eine (oder mehrere) VorsitzendeID ist, so wird dies auch abgelehnt.</p>
+Wenn ein <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> der ManagerinID eines ManagerIn-Tupels angefragt wird, die auch eine (oder mehrere) VorsitzendeID ist, so wird dies auch abgelehnt.</p>
 </div>
 <div class="section" id="referentielle-integritat-erzwingen-kaskadierung">
 <h4><span class="section-number">10.2.3.2. </span>Referentielle Integrität erzwingen: Kaskadierung<a class="headerlink" href="#referentielle-integritat-erzwingen-kaskadierung" title="Permalink to this headline">¶</a></h4>
 <p>Bei der Kaskadierung ist die Idee, dass Änderungen im Schlüssel im Fremdschlüssel nachgezogen werden. Bei Veränderung in der Schlüsselrelation, verändern sich auch die Werte der Fremdrelation mit.
 <br><br>
-Ein INSERT Studio … mit einer neuen (nicht-NULL) VorsitzendeID, die nicht in ManagerIn gespeichert ist wird weiterhin abgelehnt.
+Ein <code class="docutils literal notranslate"><span class="pre">INSERT</span></code> Studio … mit einer neuen (nicht-NULL) VorsitzendeID, die nicht in ManagerIn gespeichert ist wird weiterhin abgelehnt.
 <br><br>
-Ein UPDATE eines Studios mit einer neuen VorsitzendeID, die nicht in Manager gespeichert ist, word auch weiterhin abgelehnt.
+Ein <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> eines Studios mit einer neuen VorsitzendeID, die nicht in Manager gespeichert ist, word auch weiterhin abgelehnt.
 <br><br>
-Ein DELETE eines ManagerIn-Tupels, dessen ManagerinID auch auf eine (oder mehrere) VorsitzendeID ist, wird akzeptiert, aber alle abhängigen Studios werden ebenfalls gelöscht.
+Ein <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> eines ManagerIn-Tupels, dessen ManagerinID auch auf eine (oder mehrere) VorsitzendeID ist, wird akzeptiert, aber alle abhängigen Studios werden ebenfalls gelöscht.
 <br><br>
-Ein UPDATE der ManagerinID eines ManagerIn-Tupels, die auch eine (oder mehrere) VorsitzendeID ist, wird akzeptiert, aber die VorsitzendeIDs in Studios werden ebenfalls geändert.</p>
+Ein <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> der ManagerinID eines ManagerIn-Tupels, die auch eine (oder mehrere) VorsitzendeID ist, wird akzeptiert, aber die VorsitzendeIDs in Studios werden ebenfalls geändert.</p>
 </div>
 <div class="section" id="referentielle-integritat-erzwingen-auf-null-setzen">
 <h4><span class="section-number">10.2.3.3. </span>Referentielle Integrität erzwingen: Auf NULL setzen<a class="headerlink" href="#referentielle-integritat-erzwingen-auf-null-setzen" title="Permalink to this headline">¶</a></h4>
 <p>Bei der Behandlung mit NULL-Werten ist die Idee, dass bei Änderungen im Schlüssel der Wert des Fremdschlüssels auf NULL gesetzt wird.
 <br><br>
-Ein INSERT Studio mit einer neuen (nicht-NULL) VorsitzendeID, die nicht in Manager gespeichert ist wird abgelehnt.
+Ein <code class="docutils literal notranslate"><span class="pre">INSERT</span></code> Studio mit einer neuen (nicht-NULL) VorsitzendeID, die nicht in Manager gespeichert ist wird abgelehnt.
 <br><br>
-Ein UPDATE eines Studios mit einer neuen VorsitzendeID, die nicht in Manager gespeichert ist, wird auch weiterhin abgelehnt.
+Ein <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> eines Studios mit einer neuen VorsitzendeID, die nicht in Manager gespeichert ist, wird auch weiterhin abgelehnt.
 <br><br>
-Ein DELETE eines Manager-Tupels, dessen ManagerinID auch eine (oder mehrere) VorsitzendeID ist wird akzeptier, aber die VorsitzendeID aller abhängigen Studios werden auf NULL gesetzt.
+Ein <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> eines Manager-Tupels, dessen ManagerinID auch eine (oder mehrere) VorsitzendeID ist wird akzeptier, aber die VorsitzendeID aller abhängigen Studios werden auf NULL gesetzt.
 <br><br>
-Ein UPDATE der ManagerinID eines ManagerIn-Tupels, die auch eine (oder mehrere) VorsitzendeID ist, wird ebenfalls akzeptiert aber die VorsitzendeIDs in Studios werden auf NULL gesetzt.</p>
+Ein <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> der ManagerinID eines ManagerIn-Tupels, die auch eine (oder mehrere) VorsitzendeID ist, wird ebenfalls akzeptiert aber die VorsitzendeIDs in Studios werden auf NULL gesetzt.</p>
 </div>
 <div class="section" id="id1">
 <h4><span class="section-number">10.2.3.4. </span>Referentielle Integrität erzwingen<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
@@ -810,9 +810,9 @@ WHERE Name = ‘Redlight‘;
 </div>
 <p>Eine schönere Lösung für dieses Problem wäre, erst den Manager, dann das Studio einzufügen.
 <br><br>
-Es kann der Fall auftreten, dass es zyklische referentielle Integritätsbedingungen gibt. Z.B könnten zusätzlich Manager*Innen nur Vorsitzende von Studios sein, also ist ManagerinID ein Fremdschlüssel und referenziert auf VorsitzendeID. So gilt die Fremdschlüsselbedingung in beide <a class="reference external" href="http://Richtungen.Es">Richtungen.Es</a> kann nach wie vor kein Studio ohne vorhandenes Managertupel eingefügt werden. Es kann nun auch kein Manager*In ohne vorhandenes Studio eingefügt werden. Die Lösung für dieses Problem ist das Zusammenfassen mehrerer Änderungsoperationen zu einer „Transaktion“ (mehr dazu im Kapitel 11 „Transaktionsmanagement“) und dann das Verschieben der Integritätschecks bis ans Ende der Transaktion.
+Es kann der Fall auftreten, dass es zyklische referentielle Integritätsbedingungen gibt. Z.B könnten zusätzlich Manager*Innen nur Vorsitzende von Studios sein, also ist ManagerinID ein Fremdschlüssel und referenziert auf VorsitzendeID. So gilt die Fremdschlüsselbedingung in beide <a class="reference external" href="http://Richtungen.Es">Richtungen.Es</a> kann nach wie vor kein Studio ohne vorhandenes Managertupel eingefügt werden. Es kann nun auch keine Manager*in ohne vorhandenes Studio eingefügt werden. Die Lösung für dieses Problem ist das Zusammenfassen mehrerer Änderungsoperationen zu einer „Transaktion“ (mehr dazu im Kapitel 11 „Transaktionsmanagement“) und dann das Verschieben der Integritätschecks bis ans Ende der Transaktion.
 <br><br>
-Dieser Constraint kann mit dem Schlüsselwort DEFERRABLE deklariert werden. DEFERRABLE lässt sich einmal in INITIALLY DEFERRED und INITIALLY IMMEDIATE teilen. Bei INITIALLY DEFERRED wird der Integritätscheck an das Ende der Transaktion, die aus mehreren Statements bestehen kann, verschoben. Bei INITIALLY IMMEDIATE wird zunächst nichts verschoben, bis eine Verschiebung des Integritätscheck ans Ende des Statements verlangt wird. NOT DEFERRABLE, also dass die Bedingung bei jeder Änderung der Datenbank geprüft wird, ist default. Ein Beispiel für die Synatx zu DEFERRABLE finden Sie unten.</p>
+Dieser Constraint kann mit dem Schlüsselwort <code class="docutils literal notranslate"><span class="pre">DEFERRABLE</span></code> deklariert werden, um flexibler den Zeitpunk der Prüfung zu gestalten. <code class="docutils literal notranslate"><span class="pre">DEFERRABLE</span></code> lässt sich einmal in <code class="docutils literal notranslate"><span class="pre">INITIALLY</span> <span class="pre">DEFERRED</span></code> und <code class="docutils literal notranslate"><span class="pre">INITIALLY</span> <span class="pre">IMMEDIATE</span></code> teilen. Bei <code class="docutils literal notranslate"><span class="pre">INITIALLY</span> <span class="pre">DEFERRED</span></code> wird der Integritätscheck an das Ende der Transaktion, die aus mehreren Statements bestehen kann, verschoben. Bei <code class="docutils literal notranslate"><span class="pre">INITIALLY</span> <span class="pre">IMMEDIATE</span></code> wird zunächst nichts verschoben. In einer Transaktionssession kann nun durch <code class="docutils literal notranslate"><span class="pre">Set</span> <span class="pre">constraint</span> <span class="pre">DEFERRABLE/IMMEDIATE</span></code> das Verhalten temporär angepasst werden. <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">DEFERRABLE</span></code>, also dass die Bedingung bei jeder Änderung der Datenbank geprüft wird, ist default. Ein Beispiel für die Synatx zu <code class="docutils literal notranslate"><span class="pre">DEFERRABLE</span></code> finden Sie unten.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">Studios</span><span class="p">(</span>
 <span class="n">Name</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
 <span class="n">Adresse</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
@@ -821,14 +821,15 @@ Dieser Constraint kann mit dem Schlüsselwort DEFERRABLE deklariert werden. DEFE
 <span class="p">);</span>
 </pre></div>
 </div>
+<p>Obwohl Assertions zum SQL-Standard gehören, werden werden sie nur in sehr wenigen Datenbanken eingesetzt.</p>
 </div>
 </div>
 <div class="section" id="bedingungen-auf-attributen-und-tupel">
 <h2><span class="section-number">10.3. </span>Bedingungen auf Attributen und Tupel<a class="headerlink" href="#bedingungen-auf-attributen-und-tupel" title="Permalink to this headline">¶</a></h2>
-<p>In diesem Kapitel werden weitere Arten der Nebenbedingungen, wie die Annahme bestimmter Werte untersagt wird, betrachtet. Zuerst beschäftigen wir uns mit Bedingungen auf einzelnen Attributen(NOT NULL und CHECK) und anschließend mit Bedingungen für ganze Tupel, also auf das Schema(CHECK).</p>
+<p>In diesem Kapitel werden weitere Arten der Nebenbedingungen, wie die Annahme bestimmter Werte untersagt wird, betrachtet. Zuerst beschäftigen wir uns mit Bedingungen auf einzelnen Attributen(<code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">NULL</span></code> und <code class="docutils literal notranslate"><span class="pre">CHECK</span></code>) und anschließend mit Bedingungen für ganze Tupel, also auf das Schema(CHECK).</p>
 <div class="section" id="not-null">
 <h3><span class="section-number">10.3.1. </span>NOT NULL<a class="headerlink" href="#not-null" title="Permalink to this headline">¶</a></h3>
-<p>Wird ein Attribut mit NOT NULL deklariert, so ist es nicht erlaubt für dieses Attribut den Wert NULL einzutragen.</p>
+<p>Wird ein Attribut mit <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">NULL</span></code> deklariert, so ist es nicht erlaubt für dieses Attribut den Wert <code class="docutils literal notranslate"><span class="pre">NULL</span></code> einzutragen.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">Studios</span><span class="p">(</span>
 <span class="n">Name</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
 <span class="n">Adresse</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="n">NOT</span> <span class="n">NULL</span><span class="p">,</span>
@@ -838,11 +839,11 @@ Dieser Constraint kann mit dem Schlüsselwort DEFERRABLE deklariert werden. DEFE
 <span class="p">);</span>
 </pre></div>
 </div>
-<p>Für das obige Beispiel gilt mit den NOT-NULL-Bedingungen, dass das Einfügen eines Studios ohne Manager*In nicht mehr möglich ist und das jedes Studio eine Adresse haben muss. Somit ist die Null-Werte Strategie beim Löschen von Manager*Innen nicht mehr möglich.</p>
+<p>Für das obige Beispiel gilt mit den NOT-NULL-Bedingungen, dass das Einfügen eines Studios ohne einer Manager*in nicht mehr möglich ist und das jedes Studio eine Adresse haben muss. Somit ist die Null-Werte Strategie beim Löschen von Manager*innen nicht mehr möglich.</p>
 </div>
 <div class="section" id="attribut-basierte-check-bedingungen">
 <h3><span class="section-number">10.3.2. </span>Attribut-basierte CHECK Bedingungen<a class="headerlink" href="#attribut-basierte-check-bedingungen" title="Permalink to this headline">¶</a></h3>
-<p>Die CHECK-Bedingung verfeinert die erlaubten Werte für ein Attribut durch die Spezifikation einer Bedingung. Die Bedingung wie jedes mal geprüft, falls ein Attribut einen neuen Wert erhält, also bei INSERT und UPDATE. Sie ist ähnlich zur WHERE-Klausel, kann beliebig komplex sein und auch aus einer SELECT…FROM…WHERE… Anfrage bestehen. I.d.R. werden CHECK-Bedingungen benutzt um eine einfache Einschränkung der Werte durchzuführen. Falls die Bedingung nicht erfüllt wird, so scheitert die Änderung.
+<p>Die CHECK-Bedingung verfeinert die erlaubten Werte für ein Attribut durch die Spezifikation einer Bedingung. Die Bedingung wie jedes mal geprüft, falls ein Attribut einen neuen Wert erhält, also bei INSERT und UPDATE. Sie ist ähnlich zur WHERE-Klausel, kann beliebig komplex sein und auch aus einer <code class="docutils literal notranslate"><span class="pre">SELECT…FROM…WHERE…</span></code> Anfrage bestehen. I.d.R. werden CHECK-Bedingungen benutzt um eine einfache Einschränkung der Werte durchzuführen. Falls die Bedingung nicht erfüllt wird, so scheitert die Änderung.
 <br><br>
 In diesem Beispiel wird gecheckt, ob die VorsitztendeID &gt;= 100000 ist, da kleinere Werte für die VorsitzendeID nicht erlaubt sind.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">Studios</span><span class="p">(</span>
@@ -871,11 +872,11 @@ Geburtstag DATE );
 <span class="p">);</span>
 </pre></div>
 </div>
-<p>Auf diese Weise wird indirekt referentielle Integrität simuliert. Wenn hier ein UPDATE oder INSERT auf der Studios Relation ausgeführt wird, wird der CHECK geprüft. Bei einem DELETE auf der Manager*In Relation, wird der CHECK nicht geprüft, die CHECK Bedingung kann ungültig werden. D.h. andere Relationen kennen diese CHECK Bedingung nicht.</p>
+<p>Auf diese Weise wird indirekt referentielle Integrität simuliert. Wenn hier ein <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> oder <code class="docutils literal notranslate"><span class="pre">INSERT</span></code> auf der Studios Relation ausgeführt wird, wird der CHECK geprüft. Bei einem DELETE auf der <code class="docutils literal notranslate"><span class="pre">ManagerIn</span></code> Relation, wird der <code class="docutils literal notranslate"><span class="pre">CHECK</span></code> nicht geprüft, die <code class="docutils literal notranslate"><span class="pre">CHECK</span></code> Bedingung kann ungültig werden. D.h. andere Relationen kennen diese CHECK Bedingung nicht.</p>
 </div>
 <div class="section" id="tupel-basierte-check-bedingungen">
 <h3><span class="section-number">10.3.3. </span>Tupel-basierte CHECK Bedingungen<a class="headerlink" href="#tupel-basierte-check-bedingungen" title="Permalink to this headline">¶</a></h3>
-<p>Es ist auch möglich Bedingungen für ganze Tupel zu deklarieren. Eine CHECK-Bedingung kann wie Primär- und Fremdschlüsselbezeiehungen in der Liste der Attributen auftauchen und beliebige Bedingungen wie eine WHERE-Klausel haben. Die deklarierten CHECKs werden bei jedem INSERT und UPDATE eines Tupels geprüft.
+<p>Es ist auch möglich Bedingungen für ganze Tupel zu deklarieren. Eine CHECK-Bedingung kann wie Primär- und Fremdschlüsselbezeiehungen in der Liste der Attributen auftauchen und beliebige Bedingungen wie eine WHERE-Klausel haben. Die deklarierten CHECKs werden bei jedem <code class="docutils literal notranslate"><span class="pre">INSERT</span></code> und <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> eines Tupels geprüft.
 <br><br>
 Im unteren Beispiel wird geprüft, ob das Geschlecht ‘W’ ist oder ob die Anrede nicth mit ‘Fr’ beginnt.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CREATE TABLE SchauspielerIn (
@@ -887,7 +888,7 @@ Geburtstag DATE,
 CHECK (Geschlecht = ‚W‘ OR Anrede NOT LIKE ‚Fr%‘ ));
 </pre></div>
 </div>
-<p>Eine CHECK-Bedingung wird nicht geprüft, falls eine andere (oder sogar die gleiche) Relation in einer Subanfrage der CHECK Bedingung erwähnt wird und diese eine Änderung erfährt. D.h. andere Relationen kennen diese CHECK Bedingung nicht. Solche Probleme gibt es bei ASSERTIONS (siehe Kapitel …) nicht. Deshalb sollten komplexe Bedingungen lieber als ASSERTION deklariert werden, oder (realistischer) in die Anwendungslogik gesteckt werden…</p>
+<p>Eine CHECK-Bedingung wird nicht geprüft, falls eine andere (oder sogar die gleiche) Relation in einer Subanfrage der CHECK Bedingung erwähnt wird und diese eine Änderung erfährt. D.h. andere Relationen kennen diese <code class="docutils literal notranslate"><span class="pre">CHECK</span></code> Bedingung nicht. Solche Probleme gibt es bei <code class="docutils literal notranslate"><span class="pre">ASSERTIONS</span></code> (siehe Abschnitt <a class="reference external" href="#Zusicherungen(Assertions)_und_Trigger">Assertions</a>) nicht. Deshalb sollten komplexe Bedingungen lieber als <code class="docutils literal notranslate"><span class="pre">ASSERTION</span></code> deklariert werden, oder (realistischer) in die Anwendungslogik gesteckt werden…</p>
 </div>
 <div class="section" id="bedingungen-andern">
 <h3><span class="section-number">10.3.4. </span>Bedingungen ändern<a class="headerlink" href="#bedingungen-andern" title="Permalink to this headline">¶</a></h3>
@@ -908,7 +909,7 @@ CHECK (Geschlecht = ‚W‘ OR Anrede NOT LIKE ‚Frau%‘ );
 <span class="n">SET</span> <span class="n">CONSTRAINT</span> <span class="n">MyConstraint</span> <span class="n">IMMEDIATE</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>Das Entfernen von CONSTRAINTS ist nach dem Scheme ALTER TABLE Relation DROP CONSTRAINT Name; möglich.</p>
+<p>Das Entfernen von <code class="docutils literal notranslate"><span class="pre">CONSTRAINTS</span></code> ist nach dem Scheme <code class="docutils literal notranslate"><span class="pre">ALTER</span> <span class="pre">TABLE</span> <span class="pre">Relation</span> <span class="pre">DROP</span> <span class="pre">CONSTRAINT</span> <span class="pre">Name</span></code>; möglich.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ALTER</span> <span class="n">TABLE</span> <span class="n">Schauspieler</span> <span class="n">DROP</span> <span class="n">CONSTRAINT</span> <span class="n">NamePrimaer</span><span class="p">;</span>
 <span class="n">ALTER</span> <span class="n">TABLE</span> <span class="n">Schauspieler</span> <span class="n">DROP</span> <span class="n">CONSTRAINT</span> <span class="n">NichtGeschlechtslos</span><span class="p">;</span>
 <span class="n">ALTER</span> <span class="n">TABLE</span> <span class="n">Schauspieler</span> <span class="n">DROP</span> <span class="n">CONSTRAINT</span> <span class="n">AnredeKorrekt</span><span class="p">;</span>
@@ -926,20 +927,14 @@ ALTER TABLE Schauspieler ADD CONSTRAINT AnredeKorrekt CHECK (Geschlecht = ‚W�
 <div class="section" id="zusicherungen-assertions-und-trigger">
 <h2><span class="section-number">10.4. </span>Zusicherungen(Assertions) und Trigger<a class="headerlink" href="#zusicherungen-assertions-und-trigger" title="Permalink to this headline">¶</a></h2>
 <p>Manchmal sollen sich Bedingungen nicht auf bestimmte Tupel beziehen, sondern auf der Schemaebene definiert werden (wie Relationen und Sichten). Solche Bedingungen nennen sich Assertions (Zusicherungen) und Trigger. Eine Assertion ist ein Boole‘scher SQL Ausdruck, der stets wahr sein muss. Die Handhabung von Assertions ist durch einen Admin sehr leicht, jedoch verlangsamen Assertions die Datenbank, da sie schwierig effizient zu implementieren sind.
-Trigger (Auslöser) sind Aktionen, die bei bestimmten Ereignissen (INSERTs, …) ausgelöst werden, im Vergleich zu Assertions sind Trigger leichter effizient zu implementieren.</p>
+Trigger (Auslöser) sind Aktionen, die bei bestimmten Ereignissen (<code class="docutils literal notranslate"><span class="pre">INSERTs</span></code>, …) ausgelöst werden, im Vergleich zu Assertions sind Trigger leichter effizient zu implementieren.</p>
 <div class="section" id="assertions">
 <h3><span class="section-number">10.4.1. </span>Assertions<a class="headerlink" href="#assertions" title="Permalink to this headline">¶</a></h3>
-<p>Assertions werden nach dem folgenden Schema deklariert CREATE ASSERTION Name CHECK (Bedingung). Die Bedingung muss stets gelten, auch schon bei der Erzeugung der Assertion. Änderungen die die Assertion verletzen werden abgewiesen.
-CHECK Bedingungen innerhalb eines CREATE TABLE … können hingegen falsch werden!
-<br><br>
-Zur Formulierung
-<br>
-Kein direkter Bezug zu Relationen, deshalb müssen Attribute und Relationen in einer SQL Anfrage eingeführt werden.
-<br><br>
-Um eine Assertion zu löschen wird folgendes Schema benutzt DROP ASSERTION Name.</p>
+<p>Assertions werden nach dem folgenden Schema deklariert <code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">ASSERTION</span> <span class="pre">Name</span> <span class="pre">CHECK</span> <span class="pre">(Bedingung)</span></code>. Die Bedingung muss stets gelten, auch schon bei der Erzeugung der Assertion. Änderungen, die die Assertion verletzen, werden abgewiesen.
+CHECK Bedingungen innerhalb einer <code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">TABLE</span></code> - Anweisung können hingegen nachträglich ungültig werden!</p>
 <div class="section" id="assertions-beispiel">
 <h4><span class="section-number">10.4.1.1. </span>Assertions – Beispiel<a class="headerlink" href="#assertions-beispiel" title="Permalink to this headline">¶</a></h4>
-<p>Haben wir die Relationen ManagerIn(Name, Adresse, ManagerinID, Gehalt) und Studios(Name, Adresse, VorsitzendeID) gegeben.
+<p>Haben wir die Relationen <code class="docutils literal notranslate"><span class="pre">ManagerIn(Name,</span> <span class="pre">Adresse,</span> <span class="pre">ManagerinID,</span> <span class="pre">Gehalt)</span></code> und <code class="docutils literal notranslate"><span class="pre">Studios(Name,</span> <span class="pre">Adresse,</span> <span class="pre">VorsitzendeID)</span></code> gegeben.
 <br>
 In diesem Beispiel wurde eine Assertion deklariert die nur Vorsitzende von Studios annimmt, die mindestens 1.000.000 verdienen.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">ASSERTION</span> <span class="n">ReicheVorsitzende</span> <span class="n">CHECK</span>
@@ -951,7 +946,7 @@ In diesem Beispiel wurde eine Assertion deklariert die nur Vorsitzende von Studi
 <span class="p">);</span>
 </pre></div>
 </div>
-<p>Eine Alternative zu dem Beispiel oben, wäre ein CHECK innerhalb eines CREATE TABLE … .Der Unterschied zu der Assertion oben ist, dass nachträgliche Änderungen an der Relation ManagerIn nicht mehr abgefangen werden können</p>
+<p>Eine Alternative zu dem Beispiel oben, wäre ein CHECK innerhalb eines <code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">TABLE</span></code> … .Der Unterschied zu der Assertion oben ist, dass nachträgliche Änderungen an der Relation <code class="docutils literal notranslate"><span class="pre">ManagerIn</span></code> nicht mehr abgefangen werden können</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">Studios</span><span class="p">(</span>
 <span class="n">Name</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
 <span class="n">Adresse</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="n">NOT</span> <span class="n">NULL</span><span class="p">,</span>
@@ -962,7 +957,7 @@ In diesem Beispiel wurde eine Assertion deklariert die nur Vorsitzende von Studi
 <span class="p">);</span>
 </pre></div>
 </div>
-<p>Haben wir nun die Relation Filme(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentID) gegeben. Wir formulieren eine Assertion, die sicherstellt, dass die Gesamtlänge der von einem Studio produzierten Filme mind. 10000 Minuten beträgt.</p>
+<p>Haben wir nun die Relation <code class="docutils literal notranslate"><span class="pre">Filme(Titel,</span> <span class="pre">Jahr,</span> <span class="pre">Länge,</span> <span class="pre">inFarbe,</span> <span class="pre">StudioName,</span> <span class="pre">ProduzentID)</span></code> gegeben. Wir formulieren eine Assertion, die sicherstellt, dass die Gesamtlänge der von einem <code class="docutils literal notranslate"><span class="pre">Studio</span></code> produzierten Filme mind. 10000 Minuten beträgt.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">ASSERTION</span> <span class="n">NurGrosseStudios</span> <span class="n">CHECK</span>
 <span class="p">(</span><span class="mi">10000</span> <span class="o">&lt;=</span> <span class="n">ALL</span>
 <span class="p">(</span><span class="n">SELECT</span> <span class="n">SUM</span><span class="p">(</span><span class="n">Länge</span><span class="p">)</span> <span class="n">FROM</span> <span class="n">Filme</span>
@@ -976,7 +971,12 @@ In diesem Beispiel wurde eine Assertion deklariert die nur Vorsitzende von Studi
 <span class="n">GROUP</span> <span class="n">BY</span> <span class="n">StudioName</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Der Unterschied im Vergleich zu der Assertion oben ist, dass beim Löschen eines Films die Bedingung nicht geprüft wird. Also ist es möglich, dass nachdem Filme aus der Relation Filme gelöscht wurden, es Studios gibt, die nicht mehr mind. 10000 Minuten Filmmaterial haben und dies nicht überprüft wird. Ebenso kann dies eim Studiowechsel eines Films nicht geprüft werden.</p>
+<p>Der Unterschied im Vergleich zu der Assertion oben ist, dass beim Löschen eines Films die Bedingung nicht geprüft wird. Also ist es möglich, dass nachdem Filme aus der Relation <code class="docutils literal notranslate"><span class="pre">Filme</span></code> gelöscht wurden, es Studios gibt, die nicht mehr mind. 10000 Minuten Filmmaterial haben und dies nicht überprüft wird. Ebenso kann dies eim Studiowechsel eines Films nicht geprüft werden.</p>
+<p>Zur Formulierung:</p>
+<ul class="simple">
+<li><p>Kein direkter Bezug zu Relationen, deshalb müssen Attribute und Relationen in einer SQL Anfrage eingeführt werden.</p></li>
+<li><p>Um eine Assertion zu löschen wird mittels <code class="docutils literal notranslate"><span class="pre">DROP</span> <span class="pre">ASSERTION</span> <span class="pre">Name-der-Assertion</span></code>.</p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="unterschiede-der-check-bedingungen">
@@ -992,12 +992,12 @@ In diesem Beispiel wurde eine Assertion deklariert die nur Vorsitzende von Studi
 <tbody>
 <tr class="row-even"><td><p><strong>Attribut-basiertes</strong></p></td>
 <td><p>CHECK Beim Attribut</p></td>
-<td><p>Bei INSERT in Relation oder UPDATE des Attributs</p></td>
+<td><p>Bei <code class="docutils literal notranslate"><span class="pre">INSERT</span></code> in Relation oder <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> des Attributs</p></td>
 <td><p>Nein, falls Subanfragen verwendet werden.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>Tupel-basiertes CHECK</strong></p></td>
 <td><p>Teil des Relationenschemas</p></td>
-<td><p>Bei INSERT oder UPDATE eines Tupels</p></td>
+<td><p>Bei <code class="docutils literal notranslate"><span class="pre">INSERT</span></code> oder <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> eines Tupels</p></td>
 <td><p>Nein, falls Subanfragen verwendet werden.</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>Assertion</strong></p></td>
@@ -1010,14 +1010,14 @@ In diesem Beispiel wurde eine Assertion deklariert die nur Vorsitzende von Studi
 </div>
 <div class="section" id="trigger">
 <h3><span class="section-number">10.4.3. </span>Trigger<a class="headerlink" href="#trigger" title="Permalink to this headline">¶</a></h3>
-<p>Trigger sind so genannte Event-Condition-Action Rules (ECA-Rules). Der Unterschied zu Zusicherungen ist, dass Trigger nicht immer gelten müssen, sondern sie werden nur bei bestimmten Ereignissen (INSERT, UPDATE, DELETE, Ende einer Transaktion) ausgeführt. Ein Ereignis wird zunächst nicht verhindert, sondern es wird lediglich eine bestimmte Bedingung geprüft. Falls die Triggerbedingung falsch ist passiert nichts weiter. Falls sie wahr ist, wird eine Aktion ausgeführt. Die Aktion könnte das Ereignis verhindern oder rückgängig machen oder auch etwas völlig anderes tun.</p>
+<p>Trigger sind so genannte Event-Condition-Action Rules (ECA-Rules). Der Unterschied zu Zusicherungen ist, dass Trigger nicht immer gelten müssen, sondern sie werden nur bei bestimmten Ereignissen (<code class="docutils literal notranslate"><span class="pre">INSERT</span></code>, <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code>, <code class="docutils literal notranslate"><span class="pre">DELETE</span></code>, Ende einer Transaktion) ausgeführt. Ein Ereignis wird zunächst nicht verhindert, sondern es wird lediglich eine bestimmte Bedingung geprüft. Falls die Triggerbedingung falsch ist passiert nichts weiter. Falls sie wahr ist, wird eine Aktion ausgeführt. Die Aktion könnte das Ereignis verhindern oder rückgängig machen oder auch etwas völlig anderes tun.</p>
 </div>
 <div class="section" id="trigger-in-sql">
 <h3><span class="section-number">10.4.4. </span>Trigger in SQL<a class="headerlink" href="#trigger-in-sql" title="Permalink to this headline">¶</a></h3>
-<p>Die ausgelöste Aktion durch Trigger kann sowohl vor oder nach dem Ereignis ausgeführt werden. Die Aktion kann sich auf alte und/oder neue Werte von Tupeln beziehen, die beim Ereignis eingefügt, verändert oder gelöscht werden.Mit WHEN können neben dem Ereignis auch weitere Bedingungen angegeben werden, die gelten müssen um die Aktion durchzuführen. Die Aktion kann einmal für jedes veränderte Tupel oder einmalig für alle Tupel, die verändert wurden ausgeführt werden.</p>
+<p>Die ausgelöste Aktion durch Trigger kann sowohl vor oder nach dem Ereignis ausgeführt werden. Die Aktion kann sich auf alte und/oder neue Werte von Tupeln beziehen, die beim Ereignis eingefügt, verändert oder gelöscht werden. Mit <code class="docutils literal notranslate"><span class="pre">WHEN</span></code> können neben dem Ereignis auch weitere Bedingungen angegeben werden, die gelten müssen um die Aktion durchzuführen. Die Aktion kann einmal für jedes veränderte Tupel oder einmalig für alle Tupel, die verändert wurden ausgeführt werden.</p>
 <div class="section" id="trigger-beispiel">
 <h4><span class="section-number">10.4.4.1. </span>Trigger – Beispiel<a class="headerlink" href="#trigger-beispiel" title="Permalink to this headline">¶</a></h4>
-<p>Hier finden Sie ein Beispiel für einen Trigger, welcher verhindert, dass Manager*Innengehälter nicht gesenkt werden. Nach jedem Update von Gehalt der Manager*In Relation, wird das alte Gehalt mit dem neuen verglichen und wenn das alte größer war, wird das Gehalt des betroffenen Tupels wieder auf das Alte gesetzt. Das Rekursionsverhalten ist DBMS-Hersteller-spezifisch.</p>
+<p>Hier finden Sie ein Beispiel für einen Trigger, welcher verhindert, dass Manager*innengehälter nicht gesenkt werden. Nach jedem Update von Gehalt der <code class="docutils literal notranslate"><span class="pre">ManagerIn</span></code> Relation, wird das alte Gehalt mit dem neuen verglichen und wenn das alte größer war, wird das Gehalt des betroffenen Tupels wieder auf das Alte gesetzt. Das Rekursionsverhalten ist DBMS-Hersteller-spezifisch.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TRIGGER</span> <span class="n">GehaltsTrigger</span> <span class="o">--</span><span class="n">Name</span> <span class="n">des</span> <span class="n">Triggers</span>
 <span class="n">AFTER</span> <span class="n">UPDATE</span> <span class="n">OF</span> <span class="n">Gehalt</span> <span class="n">ON</span> <span class="n">ManagerIn</span> <span class="o">--</span><span class="n">Ereignis</span>
 <span class="n">REFERENCING</span>
@@ -1033,7 +1033,7 @@ In diesem Beispiel wurde eine Assertion deklariert die nur Vorsitzende von Studi
 </div>
 <div class="section" id="trigger-alternative">
 <h4><span class="section-number">10.4.4.2. </span>Trigger  –  Alternative<a class="headerlink" href="#trigger-alternative" title="Permalink to this headline">¶</a></h4>
-<p>Anstelle von AFTER kann in einem Trigger BEFORE benutzt werden, ebenso könne die auslösenden Ereignisse INSERT/DELETE auch ohne OF sein. Bei INSERT gibt es kein OLD ROW … und bei DELETE kein NEW ROW …, da es keine alten und neue Tupel gibt. Wenn FOR EACH ROW nicht explizit spezifizeirt ist, ist FOR EACH STATEMENT der Default, dann gilt OLD TABLE / NEW TABLE. Die WHEN-Klausel ist optional und es können mehrere SQL-Ausdrücke drin enthalten sein, die mit BEGIN … END umrahmt sind.</p>
+<p>Anstelle von <code class="docutils literal notranslate"><span class="pre">AFTER</span></code> kann in einem Trigger <code class="docutils literal notranslate"><span class="pre">BEFORE</span></code> benutzt werden, ebenso könne die auslösenden Ereignisse <code class="docutils literal notranslate"><span class="pre">INSERT</span></code>/<code class="docutils literal notranslate"><span class="pre">DELETE</span></code> auch ohne <code class="docutils literal notranslate"><span class="pre">OF</span></code> sein. Bei <code class="docutils literal notranslate"><span class="pre">INSERT</span></code> gibt es kein <code class="docutils literal notranslate"><span class="pre">OLD</span> <span class="pre">ROW</span> <span class="pre">...</span></code> und bei <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> kein <code class="docutils literal notranslate"><span class="pre">NEW</span> <span class="pre">ROW</span> <span class="pre">...</span></code>, da es keine alten und neue Tupel gibt. Wenn FOR EACH ROW nicht explizit spezifizeirt ist, ist <code class="docutils literal notranslate"><span class="pre">FOR</span> <span class="pre">EACH</span> <span class="pre">STATEMENT</span></code> der Default, dann gilt <code class="docutils literal notranslate"><span class="pre">OLD</span> <span class="pre">TABLE</span></code> / <code class="docutils literal notranslate"><span class="pre">NEW</span> <span class="pre">TABLE</span></code>. Die <code class="docutils literal notranslate"><span class="pre">WHEN</span></code>-Klausel ist optional und es können mehrere SQL-Ausdrücke drin enthalten sein, die mit <code class="docutils literal notranslate"><span class="pre">BEGIN</span> <span class="pre">…</span> <span class="pre">END</span></code> umrahmt sind.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CREATE TRIGGER GehaltsTrigger                   --BEFORE
 AFTER UPDATE OF Gehalt ON ManagerIn             --INSERT / DELETE (ohne OF…)
 REFERENCING
@@ -1049,7 +1049,7 @@ WHEN (AltesTupel.Gehalt &gt; NeuesTupel.Gehalt)    --WHEN ist optional
 </div>
 <div class="section" id="id2">
 <h4><span class="section-number">10.4.4.3. </span>Trigger - Beispiel<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
-<p>In diesem Beispiel sind mehrere SQL-Ausdrücke in der WHEN-Klausel enthalten. Dieser Trigger bewirkt, dass das Durchschnittsgehalt von Manager*Innen nicht unte 500.000 sinkt. Es sind je ein Trigger für UPDATE, INSERT und DELETE nötig.</p>
+<p>In diesem Beispiel sind mehrere SQL-Ausdrücke in der <code class="docutils literal notranslate"><span class="pre">WHEN</span></code>-Klausel enthalten. Dieser Trigger bewirkt, dass das Durchschnittsgehalt von Manager*innen nicht unter 500.000 sinkt. Es sind je ein Trigger für <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code>, <code class="docutils literal notranslate"><span class="pre">INSERT</span></code> und <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> nötig.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TRIGGER</span> <span class="n">DurchschnittsgehaltTrigger</span>
 <span class="n">AFTER</span> <span class="n">UPDATE</span> <span class="n">OF</span> <span class="n">Gehalt</span> <span class="n">ON</span> <span class="n">ManagerIn</span>
 <span class="n">REFERENCING</span>
@@ -1070,7 +1070,7 @@ WHEN (AltesTupel.Gehalt &gt; NeuesTupel.Gehalt)    --WHEN ist optional
 </div>
 <div class="section" id="zusammenfassung">
 <h2><span class="section-number">10.5. </span>Zusammenfassung<a class="headerlink" href="#zusammenfassung" title="Permalink to this headline">¶</a></h2>
-<p>In diesem Kapitel haben wir uns mit verschiedenen Schlüsseln, wie UNIQUE(Sekundärschlüssel) und PRIMARY KEY(Primärschlüssel) beschäftigt. Weiterhin haben wir gelernt wie referentielle Integrität erhalten bleibt, mithilfe von Fremdschlüsselbeziehungen, in SQL REFERENCES und FOREIGN KEY. Wir haben auch gesehen wie Attribut-basierte und Tupel-basierte Assertions mit CHECK deklariert werden können. Zuletzt haben wir Triggers kennengelernt, welche nur zu bestimmten Ereignissen wie INSERT,UPDATE usw. ausgeführt werden.</p>
+<p>In diesem Kapitel haben wir uns mit verschiedenen Schlüsseln, wie <code class="docutils literal notranslate"><span class="pre">UNIQUE</span></code>(Sekundärschlüssel) und <code class="docutils literal notranslate"><span class="pre">PRIMARY</span> <span class="pre">KEY(Primärschlüssel)</span></code> beschäftigt. Weiterhin haben wir gelernt wie referentielle Integrität erhalten bleibt, mithilfe von Fremdschlüsselbeziehungen, in SQL <code class="docutils literal notranslate"><span class="pre">REFERENCES</span></code> und <code class="docutils literal notranslate"><span class="pre">FOREIGN</span> <span class="pre">KEY</span></code>. Wir haben auch gesehen wie Attribut-basierte und Tupel-basierte Assertions mit <code class="docutils literal notranslate"><span class="pre">CHECK</span></code> deklariert werden können. Zuletzt haben wir Triggers kennengelernt, welche nur zu bestimmten Ereignissen wie <code class="docutils literal notranslate"><span class="pre">INSERT</span></code>,<code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> usw. ausgeführt werden.</p>
 </div>
 <div class="section" id="multiple-choice">
 <h2><span class="section-number">10.6. </span>Multiple Choice<a class="headerlink" href="#multiple-choice" title="Permalink to this headline">¶</a></h2>
