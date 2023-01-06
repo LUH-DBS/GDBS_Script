@@ -51,8 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="7. Normalisierung" href="../07/normalisierung.html" />
@@ -667,8 +667,8 @@ Die Mengen <span class="math notranslate nohighlight">\(A_i\)</span> sind im Dat
 <ul class="simple">
 <li><p>Leicht beschreibbar. Entspricht oft unserer Vorstellung der Daten.</p></li>
 <li><p>Einfach in einer DB abzubilden (zwei-dimensionales Array, Liste von Arrays, usw. )</p></li>
-<li><p>Relationen bilden sowohl Entitytypen als auch Relationshiptypen ab.</p></li>
-<li><p>Ist das abstrakte Modell hinter SQL</p></li>
+<li><p>Relationen bilden als einzelnes Konstrukt sowohl Entitytypen als auch Relationshiptypen ab.</p></li>
+<li><p>Ist das abstrakte Modell hinter SQL, welches häufig angewendet wird.</p></li>
 </ul>
 </div>
 <div class="section" id="elemente-des-relationalen-modells">
@@ -688,7 +688,7 @@ Die Mengen <span class="math notranslate nohighlight">\(A_i\)</span> sind im Dat
 <div class="section" id="formal">
 <h3><span class="section-number">6.1.3. </span>Formal<a class="headerlink" href="#formal" title="Permalink to this headline">¶</a></h3>
 <p>Formal betrachtet können wir die mathematische Definition von Relationen etwas spezieller auf Relationen in Datenbanken anwenden. Ausgangspunkt sind <span class="math notranslate nohighlight">\(n\)</span> Domänen <span class="math notranslate nohighlight">\(D_1, D_2, \dots, D_n\)</span>. Jede Domäne entspricht einer endlichen oder unendlichen Menge von gleichartigen Ausdrücken. Domänen können auch ganz allgemein als Datentypen wie String oder Integer aufgefasst werden.
-Eine Relation im Sinne des relationalen Modells ist die Teilmenge des Kreuzproduktes von <span class="math notranslate nohighlight">\(n\)</span> Domänen: <span class="math notranslate nohighlight">\(R \subseteq D_1 \times D_2 \times \dots \times D_n \)</span>. Daraus Ergibt sich, dass es für jede Domäne <span class="math notranslate nohighlight">\(D_n\)</span> eine Menge <span class="math notranslate nohighlight">\(A_n \subset D_n\)</span> gibt die alle Werte, die in der Zieltabelle vorkommen abbilden. Zum Beispiel könnte <span class="math notranslate nohighlight">\(A_n\)</span> die Menge aller Adressen eines Unternehmens sein. Im folgenden Beispiel wird das Nochmal verdeutlicht. Formal gibt es für jede Attributwertmenge <span class="math notranslate nohighlight">\(A_n\)</span> auch ein Label <span class="math notranslate nohighlight">\(a_n\)</span> welches die Menge bezeichnet. Hier: <span class="math notranslate nohighlight">\(a_n=\)</span> “Adressen”. Oft wird <span class="math notranslate nohighlight">\(A_n\)</span> auch Synonym (unsauber) als Bezeichner verwendet.</p>
+Eine Relation im Sinne des relationalen Modells ist die Teilmenge des Kreuzproduktes von <span class="math notranslate nohighlight">\(n\)</span> Domänen: <span class="math notranslate nohighlight">\(R \subseteq D_1 \times D_2 \times \dots \times D_n \)</span>. Daraus Ergibt sich, dass es für jede Domäne <span class="math notranslate nohighlight">\(D_n\)</span> eine Menge <span class="math notranslate nohighlight">\(A_n \subset D_n\)</span> gibt die alle Werte, die in der Zieltabelle vorkommen abbilden. Zum Beispiel könnte <span class="math notranslate nohighlight">\(A_n\)</span> die Menge aller Adressen eines Unternehmens sein. Im folgenden Beispiel wird das nochmal verdeutlicht. Formal gibt es für jede Attributwertmenge <span class="math notranslate nohighlight">\(A_n\)</span> auch ein Label <span class="math notranslate nohighlight">\(a_n\)</span> welches die Menge bezeichnet. Hier: <span class="math notranslate nohighlight">\(a_n=\)</span> “Adressen”. Oft wird <span class="math notranslate nohighlight">\(A_n\)</span> auch Synonym (unsauber) als Bezeichner verwendet.</p>
 <ul class="simple">
 <li><p>Beispiel</p>
 <ul>
@@ -701,7 +701,7 @@ Eine Relation im Sinne des relationalen Modells ist die Teilmenge des Kreuzprodu
 </div>
 <div class="section" id="edgar-f-codd">
 <h3><span class="section-number">6.1.4. </span>Edgar F. Codd<a class="headerlink" href="#edgar-f-codd" title="Permalink to this headline">¶</a></h3>
-<p>Die Relationale-Datenbanktheorie geht auf den Turing Award Gewinner Edgar F. Codd zurück, welcher an der University of Michigan Ann Arbor promoviert hat. Bei IBM (Almaden) hat Codd das Relationalen Modell entwickelt und das Paper „A Relational Model of Data for Large Shared Data Banks” 1970 veröffentlichz.
+<p>Die Relationale-Datenbanktheorie geht auf den Turing Award Gewinner Edgar F. Codd zurück, welcher an der University of Michigan Ann Arbor promoviert hat. Bei IBM (Almaden) hat Codd das Relationalen Modell entwickelt und das Paper <a class="reference external" href="https://www.seas.upenn.edu/~zives/03f/cis550/codd.pdf">„A Relational Model of Data for Large Shared Data Banks”</a> 1970 veröffentlicht.
 <br><br>
 Literaturhinweis:
 <br>

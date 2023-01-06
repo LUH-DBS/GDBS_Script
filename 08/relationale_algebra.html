@@ -51,8 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="9. SQL" href="../09/sql.html" />
@@ -803,37 +803,23 @@ Jetzt geht es darum, die zuvor modellierte relationale Datenbank  mit einer Spra
 <p>In den letzten Kapiteln wurde das Relationsschema mit Basisrelationen, die in der Datenbank gespeichert sind, behandelt. Jetzt geht es um „abgeleitete“ Relationenschemata mit virtuellen Relationen, die aus den Basisrelationen berechnet werden.
 <br>
 Die „abgeleiteten“ Relationsschemata werden durch Anfragen definiert.
-Daher benötigt man eine Anfragesprache. Eine Eigenschaft von ihr ist es, die Basis-Relationen nicht zu verändern, sondern neue Relationen für den Nutzer oder für die Applikation zu generieren.
-Eine Anfrage an eine Relation und deren Ergebnisse stellen wieder neue Relationen dar.</p>
+Dafür benötigt man eine Anfragesprache. Anfragen sollen hierbei die Basis-Relationen nicht verändern, sondern neue Relationen generieren, die die erforderten Schemata besitzen.
+Das Ergebnis einer Anfrage ist somit immer eine Relation.</p>
 <div class="section" id="kriterien-fur-anfragesprachen">
 <h3><span class="section-number">8.1.1. </span>Kriterien für Anfragesprachen<a class="headerlink" href="#kriterien-fur-anfragesprachen" title="Permalink to this headline">¶</a></h3>
-<p>Für Anfragesprachen gibt es verschiedene Kritieren. Unter Anderem soll eine Ad-Hoc-Formulierung möglich sein. Der Benutzer soll eine Anfrage formulieren können, ohne ein vollständiges Programm schreiben zu müssen. Wenn man ein neues Programm in einer Sprache wie Python schreibt, muss man sich darum kümmern Bibliotheken zu importieren, usw. Dies ist bei einer Anfragensprache eben nicht der Fall.
-<br>
-Zudem soll eine Anfragesprache eingeschränkt und keine komplette Programmiersprache sein. Sie soll aus einem Standard und nicht aus zu vielen verschiedenen Vokabularien bestehen. Dennoch besteht der SQL-Standard aus mehr als 1300 Seiten!
-<br>
-Eine weiteres Kriterium einer Anfragesprache ist die Deskriptivität bzw. die Deklarativität.
-Der Benutzer soll formulieren was er haben möchte („Was will ich haben?“) und nicht wie er an das kommt, was er haben möchte („Wie komme ich an das, was ich haben will?“). Das System erstellt die darunterliegenden Programme automatisch zu der gegebenen Anfrage, ohne dass man schreiben muss, wie die Programme genau funktionieren.
-<br><br>
-Zusätzlich muss eine Sprache optimierbar sein. Eine Sprache besteht aus wenigen Operationen.
-Für die Operatormenge gibt es Optimierungsregeln. Die Optimierung ist abhängig von der Nutzung bzw. von den Daten. Bestimmte Operatoren in bestimmten Situationen kosten unterschiedlich viel.
-<br><br>
-Eine Anfragesprache muss effizient sein, insbesondere die einzelnen Operationen.
-Im relationalen Modell hat jede Operation eine Komplexität ≤ O(n²)
-Wobei n die Anzahl der Tupel einer Relation darstellt.
-<br><br>
-Die Abgeschlossenheit ist eine weitere Eigenschaft einer Anfragesprache. Das Ergebnis von Anfragen auf Relationen ist wiederum eine Relation und kann als Eingabe für die nächste Anfrage verwendet werden.
-<br><br>
-Eine weitere, aber nicht sehr strenge, Eigenschaft ist die Mengenorientiertheit.
-Die Operationen sollen auf Mengen von Daten gelten. Dies gilt aber nicht in jedem Fall.
-Letztendlich möchte man auf Elemente einer Tabelle zugreifen und nicht nur auf einzelne Elemente  („tuple-at-a-time“), die irgendwo herumliegen.
-<br><br>
-Adäquatheit ist eine weitere Eigenschaft einer Anfragensprache.
-Alle Konstrukte des zugrundeliegenden Datenmodells sollen unterstützt werden.
-Dazu zählen Relationen, Attribute, Schlüssel, usw.
-<br><br>
-Die Vollständigkeit einer Anfragesprache bedeutet, dass eine Sprache mindestens die Anfragen einer Standardsprache (z.B. relationale Algebra) ausdrücken kann. Die Relationale Algebra dient hierbei als Vorgabe.
-<br><br>
-Zuletzt soll eine Anfragesprache sicher sein. Keine Anfrage, die syntaktisch korrekt ist, darf in eine Endlosschleife geraten oder ein unendliches Ergebnis liefern.</p>
+<p>Für Anfragesprachen gibt es verschiedene Kritieren.</p>
+<ul class="simple">
+<li><p><strong>Ad-Hoc-Formulierung</strong> Die Nutzenden sollen eine Anfrage formulieren können, ohne ein vollständiges Programm schreiben zu müssen. Wenn man ein neues Programm in einer Sprache wie Python schreibt, muss man Bibliotheken importieren, sich über Effizienz und Datenstrukturen Gedanken machen. Dies soll bei einer Anfragensprache nicht der Fall sein.</p></li>
+<li><p><strong>Standardisierung</strong> Eine Anfragesprache sollte einem Standard entsprechend und aus einer minimalen Menge von Vokabularien bestehen. Dennoch besteht der SQL-Standard aus mehr als 1300 Seiten!</p></li>
+<li><p><strong>Deklarativität</strong> Ein weiteres Kriterium einer Anfragesprache ist die Deskriptivität bzw. die Deklarativität. Die Nutzenden sollen formulieren was sie haben möchten („Was will ich haben?“) und nicht wie das Ergebnis berechnet werden soll („Wie komme ich an das, was ich haben will?“). Das System erstellt die darunterliegenden Programme automatisch zu der gegebenen Anfrage, ohne dass man die Prozeduren des Programmablaufes beschreiben muss.</p></li>
+<li><p><strong>Optimierbarkeit</strong> Zusätzlich muss eine Anfrage optimierbar sein. Eine Sprache besteht aus wenigen Operationen. Für die Operatormenge gibt es Optimierungsregeln. Die Optimierung ist abhängig von der Nutzung bzw. von den Daten. Ein Operator kann entsprechend unterschiedlich teuer im Sinne der des Ressourcenverbrauches sein.</p></li>
+<li><p><strong>Effiziente Grundoperatoren</strong> Die Operatoren der Anfragesprache müssen effizient auszuführen sein. Im relationalen Modell hat jede Operation eine Komplexität ≤ <span class="math notranslate nohighlight">\(O(n^2)\)</span>. Wobei <span class="math notranslate nohighlight">\(n\)</span> die Anzahl der Tupel einer Relation darstellt.</p></li>
+<li><p><strong>Abgeschlossenheit</strong> Die Abgeschlossenheit ist eine weitere Eigenschaft einer Anfragesprache. Das Ergebnis von Anfragen auf Relationen ist wiederum eine Relation und kann als Eingabe für die nächste Anfrage verwendet werden.</p></li>
+<li><p><strong>(Mengenorientiertheit)</strong> Eine weitere, aber nicht sehr strenge, Eigenschaft ist die Mengenorientiertheit. Die Operationen sollen auf Mengen von Daten definiert sein. Dies gilt aber nicht in jedem Fall. Letztendlich möchte man auf Elemente einer Tabelle zugreifen und nicht nur auf einzelne Elemente Datenpunkte, die zusammenhangslos vorkommen.</p></li>
+<li><p><strong>Angemessenheit</strong> ist eine weitere Eigenschaft einer Anfragensprache, die beschreibt, ob die Sprache auf das Datenmodell passt. Alle Konstrukte des zugrundeliegenden Datenmodells sollen unterstützt werden. Bei relationalem Datenmodell zählen Relationen, Attribute, Schlüssel, usw.</p></li>
+<li><p><strong>Vollständigkeit</strong> Die Vollständigkeit einer Anfragesprache gibt an, dass eine Sprache eine minimale Menge von Operatoren einer Standardsprache abdeckt. In Bezug auf das relationale Modell bedeutet das, dass mindestens die Anfragen einer der relationale Algebra ausgedrückt werden können.</p></li>
+<li><p><strong>Sicher</strong> Zuletzt soll eine Anfragesprache „sicher“ sein. Keine Anfrage, die syntaktisch korrekt ist, darf in eine Endlosschleife geraten oder ein unendliches Ergebnis liefern.</p></li>
+</ul>
 </div>
 <div class="section" id="anfragealgebra">
 <h3><span class="section-number">8.1.2. </span>Anfragealgebra<a class="headerlink" href="#anfragealgebra" title="Permalink to this headline">¶</a></h3>

@@ -426,7 +426,7 @@ Hier wird formal die Diskurswelt (Universe of Discourse) festgegelt. Das heißt 
 </div>
 <div class="section" id="verteilungsentwurf-partitionierung">
 <h2><span class="section-number">4.3. </span>Verteilungsentwurf (Partitionierung)<a class="headerlink" href="#verteilungsentwurf-partitionierung" title="Permalink to this headline">¶</a></h2>
-<p>Falls die Anwendung eine Verteilung der Daten erfordert, wird ein Verteilungsentwurf erstellt, welcher beschreibt, wie die verteilten Daten gespeichert werden sollen. Beispielsweise könnte es sinnvoll sein Daten horizontal oder vertikal auf mehreren Maschinen zu verteilen. Das hängt sehr stark vom Anwendungsgebiet und den erwarteten Anfragebelastungen (query work loads) ab.</p>
+<p>Falls die Anwendung eine Verteilung der Daten erfordert, wird ein Verteilungsentwurf erstellt, welcher beschreibt, wie die verteilten Daten gespeichert werden sollen. Beispielsweise könnte es sinnvoll sein Daten horizontal (zeilenweise) oder vertikal (spaltenweise) auf mehreren Maschinen zu verteilen. Das hängt sehr stark vom Anwendungsgebiet und den erwarteten Anfragebelastungen (query work loads) ab.</p>
 </div>
 <div class="section" id="logischer-entwurf">
 <h2><span class="section-number">4.4. </span>Logischer Entwurf<a class="headerlink" href="#logischer-entwurf" title="Permalink to this headline">¶</a></h2>
@@ -446,7 +446,7 @@ Zusätzlich können auch konkret die Anwendungssichten für die konkrete Datenba
 </div>
 <div class="section" id="physischer-entwurf">
 <h2><span class="section-number">4.6. </span>Physischer Entwurf<a class="headerlink" href="#physischer-entwurf" title="Permalink to this headline">¶</a></h2>
-<p>Der physische Entwurf bestimmt wie die Daten konkret auf den Speichermedien abgelegt werden. Beispielsweise können Datensätze unsortiert nacheinander auf einer Festplattenspur angelegt werden.
+<p>Der physische Entwurf bestimmt wie die Daten konkret auf den Speichermedien abgelegt werden. Beispielsweise können Datensätze unsortiert nacheinander auf einer Festplattenspur angelegt werden. Auch spielt es eine Rolle, ob Daten zeilenweise oder spaltenweise abgelegt werden.<br />
 Diese Aufgabe wird automatisch vom DBMS durchgeführt.
 Ergänzend kann die DB-Administration diesen Prozess durch das Anlegen von weiteren Indizes für die effiziente Datenverarbeitung beeinflussen. Der typische Befehl hierzu ist</p>
 <ul class="simple">
@@ -457,7 +457,7 @@ Ergänzend kann die DB-Administration diesen Prozess durch das Anlegen von weite
 <h2><span class="section-number">4.7. </span>Implementierung und Wartung<a class="headerlink" href="#implementierung-und-wartung" title="Permalink to this headline">¶</a></h2>
 <p>Sind die Daten in einer Datenbank abgelegt, gilt es die laufende Datenbank zu warten. Zur Wartung gehören, neben der Beobachtung der Sicherstellung der Verfügbarkeit der Daten, weitere Aufgaben wie zum Beispiel:</p>
 <ul class="simple">
-<li><p>Datenbanktuning,</p></li>
+<li><p>Datenbanktuning (z.B. Indexierung, Konfigurationen, Aktualisierung der Statistiken, Erstellung von neuen Sichten)</p></li>
 <li><p>Anpassung an neue Anforderungen</p></li>
 <li><p>Anpassung an neue Systemplattformen</p></li>
 <li><p>Portierung auf neue Datenbankmanagementsysteme</p></li>
