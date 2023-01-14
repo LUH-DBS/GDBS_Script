@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>12. Bearbeitung &#8212; Online-Skript Grundlagen der Datenbanksysteme</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,20 +37,21 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="prev" title="11. Transaktionsmanagement" href="../11/transaktionen.html" />
@@ -63,7 +62,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -72,9 +85,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -92,14 +106,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Grundlagen der Datenbanksysteme
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Grundlagen der Datenbanksysteme
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../01/einfuehrung.html">
    1. Einführung
@@ -163,110 +178,227 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/12/bearbeitung.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/LUH-DBS/GDBS_Script"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F12/bearbeitung.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/main/?urlpath=tree/12/bearbeitung.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/main/?urlpath=tree/12/bearbeitung.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/LUH-DBS/GDBS_Script"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F12/bearbeitung.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/12/bearbeitung.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#parsen-der-anfrage">
    12.1. Parsen der Anfrage
@@ -468,18 +600,17 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#multiple-choice">
-   12.5. Multiple Choice
+  <a class="reference internal nav-link" href="#fragen">
+   12.5. Fragen
   </a>
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Bearbeitung</h1>
@@ -693,8 +824,8 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#multiple-choice">
-   12.5. Multiple Choice
+  <a class="reference internal nav-link" href="#fragen">
+   12.5. Fragen
   </a>
  </li>
 </ul>
@@ -703,11 +834,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="bearbeitung">
-<h1><span class="section-number">12. </span>Bearbeitung<a class="headerlink" href="#bearbeitung" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="bearbeitung">
+<h1><span class="section-number">12. </span>Bearbeitung<a class="headerlink" href="#bearbeitung" title="Permalink to this headline">#</a></h1>
 <p><strong>Anfragebearbeitung – Grundproblem</strong> <br></p>
 <p>Die Anfragen, die an eine Datenbank gestellt werden, sind deklarativ. Solche Anfragen können in SQL, aber auch in der Relationalen Algebra formuliert werden.
 Mittels der Anfragen sagt man somit was man will, aber nicht wie man das bekommt, was man will.
@@ -719,7 +851,7 @@ Die Anfragen müssen in eine ausführbare (prozedurale) Form transformiert werde
 <p><strong>Ablauf der Anfragebearbeitung</strong><br><br>
 Gegeben ist zunächst eine Anfrage der Form: <br>
 SELECT * FROM x WHERE …;</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Parsing:<br>
 Eine solche Anfrage wird zunächst mit Blick auf die Syntax geparst. Anschließend werden die Elemente auf korrekte Semantik überprüft und ein Parsebaum erstellt. Es wird herausgefunden auf welche Operationselemente die Anfrage abgebildet wird. <br>
 <br></p></li>
@@ -736,11 +868,11 @@ Hierbei können physische Optimierungen angewandt werden.<br></p></li>
 </ol>
 <p>Am Ende wird der ausgewählte Anfrageplan ausgeführt.</p>
 <a class="reference internal image-reference" href="../_images/ablauf_anfragebearbeitung.jpg"><img alt="drawing" src="../_images/ablauf_anfragebearbeitung.jpg" style="width: 300px;" /></a>
-<div class="section" id="parsen-der-anfrage">
-<h2><span class="section-number">12.1. </span>Parsen der Anfrage<a class="headerlink" href="#parsen-der-anfrage" title="Permalink to this headline">¶</a></h2>
+<section id="parsen-der-anfrage">
+<h2><span class="section-number">12.1. </span>Parsen der Anfrage<a class="headerlink" href="#parsen-der-anfrage" title="Permalink to this headline">#</a></h2>
 <p>Der erste Schritt im Ablauf einer Anfragebearbeitung ist das Parsen der Anfrage. Dazu wird zunächst eine Syntaxanalyse durchgeführt.</p>
-<div class="section" id="syntaxanalyse">
-<h3><span class="section-number">12.1.1. </span>Syntaxanalyse<a class="headerlink" href="#syntaxanalyse" title="Permalink to this headline">¶</a></h3>
+<section id="syntaxanalyse">
+<h3><span class="section-number">12.1.1. </span>Syntaxanalyse<a class="headerlink" href="#syntaxanalyse" title="Permalink to this headline">#</a></h3>
 <p>Die Aufgabe einer Syntaxanalyse ist die Umwandlung einer SQL Anfrage in einen Parsebaum.<br>
 In einem Parsebaum werden folgende Elemente als Atome (Blätter) dargestellt:</p>
 <ul class="simple">
@@ -752,9 +884,9 @@ In einem Parsebaum werden folgende Elemente als Atome (Blätter) dargestellt:</p
 </ul>
 <p>Bei Syntaktischen Kategorien können Teilausdrücke einer Anfrage Namen gegeben werden. Die Teilausdrücke können also zu Kategorien zusammengefasst werden, beispielsweise bei einer VIEW.<br />
 <br></p>
-</div>
-<div class="section" id="eine-grammatik-fur-einen-teil-von-sql">
-<h3><span class="section-number">12.1.2. </span>Eine Grammatik für einen Teil von SQL<a class="headerlink" href="#eine-grammatik-fur-einen-teil-von-sql" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="eine-grammatik-fur-einen-teil-von-sql">
+<h3><span class="section-number">12.1.2. </span>Eine Grammatik für einen Teil von SQL<a class="headerlink" href="#eine-grammatik-fur-einen-teil-von-sql" title="Permalink to this headline">#</a></h3>
 <p>Die Anfragen unterliegen einer Grammatik (wie man sie aus der theoretischen Informatik kennt). Sie bestehen aus einer Struktur der Form “SELECT FROM WHERE”, kurz SFW. Es können keine Anfragen formuliert werden, die nicht der Grammatik entsprechen.<br></p>
 <ul>
 <li><p>Anfragen:</p>
@@ -800,15 +932,15 @@ Angenommen man wählt eine Relation aus, die nicht existiert. Die Anfrage kann n
 <br><br>
 Die vollständige Grammatik kann man z.B. unter <a class="reference external" href="http://docs.openlinksw.com/virtuoso/GRAMMAR.html">http://docs.openlinksw.com/virtuoso/GRAMMAR.html</a> finden.</p></li>
 </ul>
-</div>
-<div class="section" id="parse-baum">
-<h3><span class="section-number">12.1.3. </span>Parse-Baum<a class="headerlink" href="#parse-baum" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="parse-baum">
+<h3><span class="section-number">12.1.3. </span>Parse-Baum<a class="headerlink" href="#parse-baum" title="Permalink to this headline">#</a></h3>
 <p><img alt="" src="../_images/parsebaum.jpg" /></p>
 <p>In diesem Bild ist der Aufbau eines Parsebaums dargestellt, der anhand der vorherigen SQL-Anfrage erstellt wurde. Dabei besteht die Anfrage aus einem SFW. Das SFW kann wiederrum unterteilt werden in SELECT, SelListe, … <br>
 Alle Konstanten und Relationen lassen sich in den Blattstrukturen wiederfinden.</p>
-</div>
-<div class="section" id="prufung-der-semantik">
-<h3><span class="section-number">12.1.4. </span>Prüfung der Semantik<a class="headerlink" href="#prufung-der-semantik" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="prufung-der-semantik">
+<h3><span class="section-number">12.1.4. </span>Prüfung der Semantik<a class="headerlink" href="#prufung-der-semantik" title="Permalink to this headline">#</a></h3>
 <p>Die Prüfung der Semantik auf Korrektheit erfolgt während der Übersetzung. Dabei werden auf verschiedene Punkte geachtet, unter Anderem:</p>
 <ul class="simple">
 <li><p>Existieren die Relationen und Sichten der FROM Klausel?</p></li>
@@ -818,18 +950,18 @@ Alle Konstanten und Relationen lassen sich in den Blattstrukturen wiederfinden.<
 <li><p>Aggregation korrekt?</p></li>
 <li><p>…</p></li>
 </ul>
-</div>
-<div class="section" id="vom-parse-baum-zum-operatorbaum">
-<h3><span class="section-number">12.1.5. </span>Vom Parse-Baum zum Operatorbaum<a class="headerlink" href="#vom-parse-baum-zum-operatorbaum" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="vom-parse-baum-zum-operatorbaum">
+<h3><span class="section-number">12.1.5. </span>Vom Parse-Baum zum Operatorbaum<a class="headerlink" href="#vom-parse-baum-zum-operatorbaum" title="Permalink to this headline">#</a></h3>
 <p><img alt="" src="../_images/operatorbaum.jpg" /></p>
 <p>Der vorherige Schritt hat einen Parsebaum generiert. Dieser wird jetzt in einen Operatorbaum umgewandelt. Dargestellt werden kann der Operatorbaum mittels Relationaler Algebra. Dabei entspricht das SELECT einer Projektion und das WHERE einer Selektion. Aus den Schlüsselwörtern werden konkrete Operatoren. Es ist nun auch bekannt, dass spielt_in und Schauspieler durch ein Kreuzprodukt kombiniert werden. Diese beiden Relationen sind also der Input des Kreuzprodukts. Auf dem Output des Kreuzproduktes findet dananch eine Selektion statt und auf dessen Output letztendlich eine Projektion.</p>
-</div>
-</div>
-<div class="section" id="transformationsregeln-der-ra">
-<h2><span class="section-number">12.2. </span>Transformationsregeln der RA<a class="headerlink" href="#transformationsregeln-der-ra" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="transformationsregeln-der-ra">
+<h2><span class="section-number">12.2. </span>Transformationsregeln der RA<a class="headerlink" href="#transformationsregeln-der-ra" title="Permalink to this headline">#</a></h2>
 <p>Für jede Anfrage gibt es verschiedene Pläne. Das bedeutet also auch, dass es verschiedene Operatorenbäume gibt. Somit kann man  verschiedene Anfragen ineinander transformieren. Dies wird anhand der Transformationseregeln der Relationalen Algebra dargestellt.</p>
-<div class="section" id="anfragebearbeitung-transformationsregeln">
-<h3><span class="section-number">12.2.1. </span>Anfragebearbeitung – Transformationsregeln<a class="headerlink" href="#anfragebearbeitung-transformationsregeln" title="Permalink to this headline">¶</a></h3>
+<section id="anfragebearbeitung-transformationsregeln">
+<h3><span class="section-number">12.2.1. </span>Anfragebearbeitung – Transformationsregeln<a class="headerlink" href="#anfragebearbeitung-transformationsregeln" title="Permalink to this headline">#</a></h3>
 <p>Die Transformation der internen Darstellung soll ohne eine Änderung der Semantik erfolgen. Damit ist gemeint, dass die Operatorenbäume nach der Transformation immernoch die gleiche Anfrage wie vor der Transformation beantworten können bzw. es kommt immernoch das gleiche Ergebnis heraus.<br>
 Das Ziel einer Transformation ist es eine effizientere Ausführung zu finden. Die Operatoren sollen möglichst kleine Zwischenergebnisse liefern. Der nächste Operator soll als Input möglichst kleine Mengen von Tupeln erhalten, auf denen er arbeiten kann.
 <br><br>
@@ -837,17 +969,17 @@ Um diese Transformation zu vollführen, müssen zunächst äquivalente Ausdrück
 Zwei Ausdrücke der relationalen Algebra gelten als äquivalent, falls sie gleiche Operanden (= Relationen) besitzen und stets die gleiche Antwortrelation zurückgeben.
 ‘Stets’ bedeutet hierbei, dass nicht per Zufall die gleichen Ergebnisse bei mehreren Anfragen herauskommen. Für jede mögliche Instanz der Datenbank, muss jedes Mal das gleiche Ergebnis entstehen.
 <br></p>
-</div>
-<div class="section" id="anfragebearbeitung-beispiel">
-<h3><span class="section-number">12.2.2. </span>Anfragebearbeitung – Beispiel<a class="headerlink" href="#anfragebearbeitung-beispiel" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="anfragebearbeitung-beispiel">
+<h3><span class="section-number">12.2.2. </span>Anfragebearbeitung – Beispiel<a class="headerlink" href="#anfragebearbeitung-beispiel" title="Permalink to this headline">#</a></h3>
 <p>In diesem Beispiel soll der Nachname projiziert werden. Dafür wird das Kreuzprodukt zwischen den Relationen ‘Mitarbeiter’ und ‘Projekte’ erstellt. Darauf werden alle Paare, bei denen die Mitarbeiter-ID gleich der Projekt-ID ist, selektiert. Die Projekte, die ein gleiches oder größeres Budget als 40000 haben, werden aussortiert.</p>
 <p><img alt="" src="../_images/anfragebearbeitung_bsp1.jpg" /></p>
 <p>Es kann nun überlegt werden, wo man noch früher Tupel herausfiltern kann. Eine Möglichkeit wäre es die Selektion mit dem Kreuzprodukt zu einem Join zu kombinieren.
 Eine Andere wäre es, die übrig gebliebene Selektion früher durchzuführen. Noch bevor das Kreuzprodukt der beiden Relationen gebildet wird, kann man die Selektion ‘p.Budget &lt; 40000’ auf der ‘projekt’-Relation ausführen. Die Erwartung ist, dass der nachfolgende Join auf einer kleineren Tupelmenge ausgeführt wird.</p>
 <p><img alt="" src="../_images/anfragebearbeitung_bsp2.jpg" /></p>
-</div>
-<div class="section" id="kommutativitat-und-assoziativitat">
-<h3><span class="section-number">12.2.3. </span>Kommutativität und Assoziativität<a class="headerlink" href="#kommutativitat-und-assoziativitat" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="kommutativitat-und-assoziativitat">
+<h3><span class="section-number">12.2.3. </span>Kommutativität und Assoziativität<a class="headerlink" href="#kommutativitat-und-assoziativitat" title="Permalink to this headline">#</a></h3>
 <p>Die Kommutativität und Assoziativität gelten insbesondere für Mengenoperationen. <br></p>
 <ul>
 <li><p><span class="math notranslate nohighlight">\(\cup\)</span> ist kommutativ und assoziativ
@@ -871,9 +1003,9 @@ R ⋈ S = S ⋈ R
 </li>
 </ul>
 <p>Alle diese Regeln gelten jeweils für Mengen und für Multimengen. Zudem können die Ausdrücke in beide Richtungen verwendet werden.</p>
-</div>
-<div class="section" id="weitere-regeln">
-<h3><span class="section-number">12.2.4. </span>Weitere Regeln<a class="headerlink" href="#weitere-regeln" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="weitere-regeln">
+<h3><span class="section-number">12.2.4. </span>Weitere Regeln<a class="headerlink" href="#weitere-regeln" title="Permalink to this headline">#</a></h3>
 <ul>
 <li><p>Selektion<br></p>
 <ul>
@@ -913,26 +1045,26 @@ Hierbei kann eine Projektion noch vor die Selektion geschoben werden. Wichtig da
 </ul>
 </li>
 </ul>
-</div>
-</div>
-<div class="section" id="optimierung">
-<h2><span class="section-number">12.3. </span>Optimierung<a class="headerlink" href="#optimierung" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="optimierung">
+<h2><span class="section-number">12.3. </span>Optimierung<a class="headerlink" href="#optimierung" title="Permalink to this headline">#</a></h2>
 <p>Weitere Optimierungen haben das Ziel die Anfragen von zuvor noch schneller bearbeiten zu können.</p>
-<div class="section" id="anfragebearbeitung-optimierung">
-<h3><span class="section-number">12.3.1. </span>Anfragebearbeitung - Optimierung<a class="headerlink" href="#anfragebearbeitung-optimierung" title="Permalink to this headline">¶</a></h3>
+<section id="anfragebearbeitung-optimierung">
+<h3><span class="section-number">12.3.1. </span>Anfragebearbeitung - Optimierung<a class="headerlink" href="#anfragebearbeitung-optimierung" title="Permalink to this headline">#</a></h3>
 <p>Bei der Anfragebearbearbeitung wird eine regelbasierte Optimierung durchgeführt. Dabei schreibt ein fester Regelsatz Transformationen vor. Die Transformationen sollen eine Anfrage schneller bearbeiten. <br>
 Die Prioritäten unter den Regeln werden durch Heuristiken bestimmt. Es ist nach Erfahrung der beste Weg, es muss aber nicht immer der Fall sein. Ein Beispiel einer solchen Optimierung ist das ‘pushen’ einer Selektion nach unten im Anfragebaum.
 <br><br>
 Außerdem wird noch eine kostenbasierte Optimierung angewandt. Für jede Relation kann ein Kostenmodell aufgestellt werden. Das Kostenmodell basiert dabei auf Statistiken, die das Datenbankmodell gesammelt hat. Nach dem Aufstellen des Kostenmodells kann mit diesem ein optimaler Plan bestimmt werden, bei dem die Kosten minimal sind. Dazu kann auch die optimale Joinreihenfolge bestimmt werden. Transformationen helfen hierbei die Kosten zu verringern.
 <br><br>
 Im Allgemeinen wird nicht die optimale Auswertungsstrategie gesucht, sondern eine einigermaßen effiziente Variante. Sie soll  dabei helfen den schlimmsten Fall zu verhindern -&gt; Avoid the worst case!</p>
-</div>
-<div class="section" id="logische-optimierung">
-<h3><span class="section-number">12.3.2. </span>Logische Optimierung<a class="headerlink" href="#logische-optimierung" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="logische-optimierung">
+<h3><span class="section-number">12.3.2. </span>Logische Optimierung<a class="headerlink" href="#logische-optimierung" title="Permalink to this headline">#</a></h3>
 <p>Bei der logischen Optimierung kann anhand der Transformationsregeln jeder Ausdruck im Anfragebaum in viele verschiedene, semantisch äquivalente Ausdrücke umgeschrieben werden. Dabei wird der (hoffentlich) beste Ausdruck (=Plan, =QEP (QueryExecutionPlan)) ausgewählt.</p>
-</div>
-<div class="section" id="physische-optimierung">
-<h3><span class="section-number">12.3.3. </span>Physische Optimierung<a class="headerlink" href="#physische-optimierung" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="physische-optimierung">
+<h3><span class="section-number">12.3.3. </span>Physische Optimierung<a class="headerlink" href="#physische-optimierung" title="Permalink to this headline">#</a></h3>
 <p>Für jede relationale Operation gibt es viele verschiedene Implementierungen:
 Zum Beispiel für den Zugriff auf Tabellen kann es ein Scan, verschiedene Indizes, ein sortierter Zugriff, etc. sein.
 Genauso bei Joins können auch verschiedene Implementierungen wie Nested loop, sort-merge, hash, etc. ausgewählt werden.
@@ -940,9 +1072,9 @@ Für jede Operation wird wieder die (hoffentlich) beste Implementierung ausgewä
 <br><br>
 Es kann nun sein, dass die logische von der physischen Optimierung abhängt.
 Beispielsweise kann es sein, dass ein bestimmter Plan besser funktioniert, wenn man einen Nested-Loop-Join durchführt. Wenn eine Schleife innerhalb einer anderen ist, kann in der einen Schleifen bereits etwas Anderes mitgeprüft werden. Das würde einem bestimmten logischen Plan besser entsprechen.</p>
-</div>
-<div class="section" id="logische-optimierung-regelbasiert">
-<h3><span class="section-number">12.3.4. </span>Logische Optimierung – regelbasiert<a class="headerlink" href="#logische-optimierung-regelbasiert" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="logische-optimierung-regelbasiert">
+<h3><span class="section-number">12.3.4. </span>Logische Optimierung – regelbasiert<a class="headerlink" href="#logische-optimierung-regelbasiert" title="Permalink to this headline">#</a></h3>
 <p>Die Grundsätze der logischen Optimierung lauten wie folgt:</p>
 <ul class="simple">
 <li><p>Selektionen sollen so weit wie möglich im Baum nach unten geschoben werden.</p></li>
@@ -955,9 +1087,9 @@ Beides ist sinnvoll, da bei riesigen Datensätzen eine Spalte mehrere Gigabyte g
 <li><p>Kreuzprodukte sollen mit geeigneten Selektionen zu einem Join zusammengefasst werden. Generell sollen Kreuzprodukte möglichst vermieden werden, stattdessen können Joins mit effizienteren Implementierungen durchgeführt werden.</p></li>
 </ul>
 <p>In dieser Vorlesung geht es nicht um die Suche nach der optimalen Joinreihenfolge. Diese Thematik wird erst in aufbauenden Veranstaltungen genauer betrachtet.</p>
-</div>
-<div class="section" id="anwendung-der-transformationsregeln">
-<h3><span class="section-number">12.3.5. </span>Anwendung der Transformationsregeln<a class="headerlink" href="#anwendung-der-transformationsregeln" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="anwendung-der-transformationsregeln">
+<h3><span class="section-number">12.3.5. </span>Anwendung der Transformationsregeln<a class="headerlink" href="#anwendung-der-transformationsregeln" title="Permalink to this headline">#</a></h3>
 <p>Die folgende Anfrage ist von Prof. Alfons Kemper (TU München).
 Bei der Anfrage werden eindeutig alle Semester gesucht, in denen für Studenten, hören, Vorlesungen und Professoren folgende Bedingungen gelten:
 Der Professor heißt mit Namen ‘Sokrates’. Dieser Professor soll Vorlesungen halten und die Vorlesungen sollen von Studierenden gehört werden.
@@ -974,64 +1106,64 @@ and h.MatrNr = s.MatrNr
 </div>
 <p>Zunächst ist eine Darstellung gegeben, bei der es ein Kreuzprodukt aller Relationen gibt. Dann kommen die aneinandergereihten Selektionsoperatoren. Es ist nicht die logisch effizienteste Variante.</p>
 <p><img alt="" src="../_images/transformationsregeln.jpg" /></p>
-</div>
-<div class="section" id="aufspalten-der-selektionspradikate">
-<h3><span class="section-number">12.3.6. </span>Aufspalten der Selektionsprädikate<a class="headerlink" href="#aufspalten-der-selektionspradikate" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="aufspalten-der-selektionspradikate">
+<h3><span class="section-number">12.3.6. </span>Aufspalten der Selektionsprädikate<a class="headerlink" href="#aufspalten-der-selektionspradikate" title="Permalink to this headline">#</a></h3>
 <p>Als erstes wird die Selektion aufgespalten und in einzelne Operationen zerteilt. Im nächsten Schritt wird sich eine effizientere Platzierung der Selektionen überlegt.</p>
 <p><img alt="" src="../_images/aufspalten_selektionspraedikate.jpg" /></p>
-</div>
-<div class="section" id="verschieben-der-selektionspradikate-pushing-selections">
-<h3><span class="section-number">12.3.7. </span>Verschieben der Selektionsprädikate „Pushing Selections“<a class="headerlink" href="#verschieben-der-selektionspradikate-pushing-selections" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="verschieben-der-selektionspradikate-pushing-selections">
+<h3><span class="section-number">12.3.7. </span>Verschieben der Selektionsprädikate „Pushing Selections“<a class="headerlink" href="#verschieben-der-selektionspradikate-pushing-selections" title="Permalink to this headline">#</a></h3>
 <p>Um die Anzahl der Tupel zu verringern, werden die Selektionen weiter nach unten geschoben.
 Das ist der Fall bei den Studierenden, die eine Vorlesung hören. Um deren Anzahl zu verringern, wird nach dem Kreuzprodukt zwischen den beiden Relationen ‘studierende’ und ‘hören’ die Selektion platziert.
 Die kleinere Menge an Tupeln als Output wird dann wie zuvor über das Kreuzprodukt mit ‘Vorlesungen’ kombiniert. Mit einer Selektion wird die Anzahl der Tupel reduziert, bevor ein weiteres Kreuzprodukt gebildet wird.
 Ansonsten ist direkt vor die Professorentabelle die Selektion mit der Bedingung, dass der Name des Professors Sokrates sein soll, geschoben worden. Somit ist der Ouptut nach der Selektion nur ein Tupel und es müssen nicht mehr alle Professorentupel mitgeführt werden.</p>
 <p><img alt="" src="../_images/verschieben_selektionspraedikate.jpg" /></p>
-</div>
-<div class="section" id="zusammenfassung-von-selektionen-und-kreuzprodukten-zu-joins">
-<h3><span class="section-number">12.3.8. </span>Zusammenfassung von Selektionen und Kreuzprodukten zu Joins<a class="headerlink" href="#zusammenfassung-von-selektionen-und-kreuzprodukten-zu-joins" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="zusammenfassung-von-selektionen-und-kreuzprodukten-zu-joins">
+<h3><span class="section-number">12.3.8. </span>Zusammenfassung von Selektionen und Kreuzprodukten zu Joins<a class="headerlink" href="#zusammenfassung-von-selektionen-und-kreuzprodukten-zu-joins" title="Permalink to this headline">#</a></h3>
 <p>Die Selektionen werden mit den Kreuzprodukten zusammengefasst und durch effizienter implementierte Joins ausgetauscht.</p>
 <p><img alt="" src="../_images/zusammenfassen_selektionspraedikate.jpg" /></p>
-</div>
-<div class="section" id="optimierung-der-joinreihenfolge-kommutativitat-und-assoziativitat-ausnutzen">
-<h3><span class="section-number">12.3.9. </span>Optimierung der Joinreihenfolge: Kommutativität und Assoziativität ausnutzen<a class="headerlink" href="#optimierung-der-joinreihenfolge-kommutativitat-und-assoziativitat-ausnutzen" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="optimierung-der-joinreihenfolge-kommutativitat-und-assoziativitat-ausnutzen">
+<h3><span class="section-number">12.3.9. </span>Optimierung der Joinreihenfolge: Kommutativität und Assoziativität ausnutzen<a class="headerlink" href="#optimierung-der-joinreihenfolge-kommutativitat-und-assoziativitat-ausnutzen" title="Permalink to this headline">#</a></h3>
 <p>Die Kommutativität und Assoziativität werden jetzt ausgenutzt, um die Joinreihenfolge zu optimieren. Die Tupelmenge wird möglichst gering gehalten.
 Daher wird die Selektion des Professorennames nach ganz unten verschoben. Grund hierfür ist, dass aus dieser Selektion nur ein Tupel herauskommt, mit dem man weiterarbeiten muss. Danach vergrößert sich die Tupelmenge nur minimal um die Vorlesungen, die der Professor hält, usw.
 Ohne diese Optimierung wird mit der gesamten Menge an Studierenden, die diese Vorlesung hören, gestartet. Diese große Tupelmenge muss als Input für die nächsten Operationen mitgenommen werden, was vermeidbare Kosten verursacht.</p>
 <p><img alt="" src="../_images/joinreihenfolge1.jpg" /></p>
-</div>
-<div class="section" id="was-hat-s-gebracht">
-<h3><span class="section-number">12.3.10. </span>Was hat´s gebracht?<a class="headerlink" href="#was-hat-s-gebracht" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="was-hat-s-gebracht">
+<h3><span class="section-number">12.3.10. </span>Was hat´s gebracht?<a class="headerlink" href="#was-hat-s-gebracht" title="Permalink to this headline">#</a></h3>
 <p>Ohne die Optimierungen sind das Maximum 13 Tupel mit denen gearbeitet werden muss. Generell wird hier immer mit einer sehr hohen Anzahl von Tupeln gearbeitet, im Gegensatz zu der Variante mit Optimierungen. Durch die Optimierungen wird nur auf maximal 4 Tupeln gearbeitet.</p>
 <p>Es handelt sich hier um ein ausgedachtes Beispiel. Die Zahlen sind nicht logisch herleitbar. Es soll nur darstellen, wie sich das Verschieben von günstigen Join-Varianten auf die Tupelmenge, verhält.</p>
 <p><img alt="" src="../_images/joinreihenfolge2.jpg" /></p>
-</div>
-<div class="section" id="einfugen-von-projektionen">
-<h3><span class="section-number">12.3.11. </span>Einfügen von Projektionen<a class="headerlink" href="#einfugen-von-projektionen" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="einfugen-von-projektionen">
+<h3><span class="section-number">12.3.11. </span>Einfügen von Projektionen<a class="headerlink" href="#einfugen-von-projektionen" title="Permalink to this headline">#</a></h3>
 <p>Nun können noch Projektionen einfügt werden, wenn bestimmte Spalten nicht mehr benötigt werden. Das wäre bei der Matrikelnummer der Fall, denn es wird im Nachhinein nur noch die Matrikelnummer aus den Attributen beim Join und der Projektion danach benötigt. Insbesondere wird dort ein Left-Join ausgeführt.</p>
 <p><img alt="" src="../_images/einfuegen_projektion.jpg" /></p>
-</div>
-<div class="section" id="sqlite-explain">
-<h3><span class="section-number">12.3.12. </span>SQLite Explain<a class="headerlink" href="#sqlite-explain" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="sqlite-explain">
+<h3><span class="section-number">12.3.12. </span>SQLite Explain<a class="headerlink" href="#sqlite-explain" title="Permalink to this headline">#</a></h3>
 <p>Anfragepläne können auch in SQLite ausprobiert werden. Dafür muss vor der Anfrage mit ‘.eqp on’ eingegeben werden. Für jede Anfrage wird jetzt der Plan direkt gezeigt.
 Es kann auch explizit mit ‘EXPLAIN QUERY PLAN’ eingestellt werden. Danach wird wie gewohnt die SQL-Anfrage eingegeben.
 Nun kann die tatsächliche Implementierung angesehen werden. Zunächst wird die ‘producer’ Tabelle gescannt. Dann wird ein Autoindex für ‘movie’ verwendet, weil der Primärschlüssel ‘mid’ verwendet wird. Dieser Index wird für den IN-OPERATOR verwendet und es wird ein B-TREE verwendet, um die doppelten Werte zu vermeiden.</p>
 <p><img alt="" src="../_images/sqlite.jpg" /></p>
-</div>
-</div>
-<div class="section" id="kostenmodelle">
-<h2><span class="section-number">12.4. </span>Kostenmodelle<a class="headerlink" href="#kostenmodelle" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="kostenmodelle">
+<h2><span class="section-number">12.4. </span>Kostenmodelle<a class="headerlink" href="#kostenmodelle" title="Permalink to this headline">#</a></h2>
 <p>Mittels Kostenmodellen sollen Anfrageausführungspläne verglichen und anhand ihrer Kosten bewertet werden, um letztendlich den besten Anfrageausführungsplan auszuwählen.</p>
-<div class="section" id="kostenbasierte-optimierung">
-<h3><span class="section-number">12.4.1. </span>Kostenbasierte Optimierung<a class="headerlink" href="#kostenbasierte-optimierung" title="Permalink to this headline">¶</a></h3>
+<section id="kostenbasierte-optimierung">
+<h3><span class="section-number">12.4.1. </span>Kostenbasierte Optimierung<a class="headerlink" href="#kostenbasierte-optimierung" title="Permalink to this headline">#</a></h3>
 <p>Generell müssen konzeptionell alle denkbaren Anfrageausführungspläne generiert werden, um den besten darunter auszuwählen. Dabei werden die Kosten der Pläne anhand eines Kostenmodells bewertet. Hierzu werden Statistiken und Histogramme zur Hilfe genommen.
 Die Statistiken können vom verfügbaren Speicher oder vom System abhängig sein. Je nach verwendetem Rechner, kann eine Operation eventuell unterschiedlich viel Zeit benötigen. Daher benötigt es eine Kalibrierung gemäß dem verwendetn Rechner.
 Beim Aufwands-Kostenmodell wird meistens probiert den Durchsatz zu maximieren und nicht die Antwortzeit zu minimieren.
 <br>
 Da es hierbei um Kosten geht, soll der billigste Plan ausgeführt werden. Dennoch sollte darauf geachtet werden nicht zu lange zu optimieren, denn das Optimieren selbst kostet auch wieder Zeit und macht die Anfrage langsamer. Irgendwie muss ein Zwischenweg zwischen beidem gefunden werdenn. Dies kann beispielsweise mithilfe von Heuristiken geschehen.</p>
-</div>
-<div class="section" id="problemgrosze-suchraum">
-<h3><span class="section-number">12.4.2. </span>Problemgröße (Suchraum)<a class="headerlink" href="#problemgrosze-suchraum" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="problemgrosze-suchraum">
+<h3><span class="section-number">12.4.2. </span>Problemgröße (Suchraum)<a class="headerlink" href="#problemgrosze-suchraum" title="Permalink to this headline">#</a></h3>
 <p>Wenn alle denkbaren Anfrageausführungspläne konzeptionell generiert wurden, wird die Anzahl der Bushy-Pläne bei n Tabellen gemäß der folgenden Formel berechnet:</p>
 <p><span class="math notranslate nohighlight">\(\frac{(2(n-1))!}{(n-1)!}\)</span></p>
 <table class="colwidths-auto table">
@@ -1062,15 +1194,15 @@ Da es hierbei um Kosten geht, soll der billigste Plan ausgeführt werden. Dennoc
 </table>
 <p>Bei wachsender Anzahl von n Tabellen, wächst der Suchraum sehr stark an. Die Plankosten unterscheiden sich somit schnell um viele Größenordnungen.
 Das Optimierungsproblem, unabhängig von den Bushy-Plänen, ist NP-hart.</p>
-</div>
-<div class="section" id="kostenmodell">
-<h3><span class="section-number">12.4.3. </span>Kostenmodell<a class="headerlink" href="#kostenmodell" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="kostenmodell">
+<h3><span class="section-number">12.4.3. </span>Kostenmodell<a class="headerlink" href="#kostenmodell" title="Permalink to this headline">#</a></h3>
 <p><img alt="" src="../_images/kostenmodell.jpg" /></p>
 <p>Es ist ein algebraischer Ausdruck gegeben. Dieser wird einem Kostenmodell übergeben und daraus ergeben sich die Ausführungskosten ohne den Ausdruck ausgeführt zu haben.
 Das Kostenmodell betrachtet dabei Indexinformationen, Ballungs-Informationen (Clustering on disk), DB-Kardinalitäten und Attributverteilungen.</p>
-</div>
-<div class="section" id="statistiken">
-<h3><span class="section-number">12.4.4. </span>Statistiken<a class="headerlink" href="#statistiken" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="statistiken">
+<h3><span class="section-number">12.4.4. </span>Statistiken<a class="headerlink" href="#statistiken" title="Permalink to this headline">#</a></h3>
 <p>Durch Statistiken können verschiedene Informationen zu den Elementen erhalten werden. <br>
 Bei einer Basisrelation wäre es die Anzahl der Tupel und deren Tupelgröße. <br><br />
 Bei (jedem) Attribut ist der größte und kleinste Wert bekannt.
@@ -1080,9 +1212,9 @@ Zum System sind die Speichergröße, die Bandbreite, die I/O-, sowie die CPU-Zei
 Problem: Die Statistiken gelten nur für einen Zustand der Datensätze. Theoretisch muss nach jeder Veränderung der Datenbank neue Statistiken erstellt oder die bestehenden Statistiken geupdatet werden. Das verursacht hohe Kosten und wird daher meistens nur nach einer bestimmten Zeit manuell/explizit durchgeführt mit einer Funktion wie runstats().
 <br><br></p>
 <p><img alt="" src="../_images/statistik.jpg" /></p>
-</div>
-<div class="section" id="kosten-von-operationen">
-<h3><span class="section-number">12.4.5. </span>Kosten von Operationen<a class="headerlink" href="#kosten-von-operationen" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="kosten-von-operationen">
+<h3><span class="section-number">12.4.5. </span>Kosten von Operationen<a class="headerlink" href="#kosten-von-operationen" title="Permalink to this headline">#</a></h3>
 <p>Es gibt bestimmte Kosten für Operationen, die unabhängig vom Kostenmodell gelten:</p>
 <ul class="simple">
 <li><p>Projektion:</p>
@@ -1115,9 +1247,9 @@ Das Schätzen der Ausgabetupel geschieht also unter Betrachtung des Selektivitä
 <li><p>#Ausgabetupel = #Eingabetupel x Selektivität</p></li>
 </ul>
 <p>Beispiel: Eine Operation mit Selektivitätsfaktor 0.5 wird auf eine Relation angewandt (O( R)). Dann ist die Anzahl der Ausgabetupel wahrscheinlich |R| / 2.</p>
-</div>
-<div class="section" id="selektivitat">
-<h3><span class="section-number">12.4.6. </span>Selektivität<a class="headerlink" href="#selektivitat" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="selektivitat">
+<h3><span class="section-number">12.4.6. </span>Selektivität<a class="headerlink" href="#selektivitat" title="Permalink to this headline">#</a></h3>
 <p>Die Selektivität schätzt die Anzahl der qualifizierenden Tupel relativ zur Gesamtanzahl der Tupel in der Input Relation.
 <br></p>
 <p>Bei Projektionen ist die Selektivität genau 1. Die Operation erhält R Tupel als Input und gibt R viele Tupel als Output wieder heraus.</p>
@@ -1134,8 +1266,8 @@ Bei Joins ergibt sich der Selektivitätsfaktor aus der Selektivität des Joins g
 <ul class="simple">
 <li><p>sf = |R ⋈ S| / |R x S| = |R ⋈ S| / (|R| · |S|)</p></li>
 </ul>
-<div class="section" id="selektivitat-schatzen">
-<h4><span class="section-number">12.4.6.1. </span>Selektivität schätzen<a class="headerlink" href="#selektivitat-schatzen" title="Permalink to this headline">¶</a></h4>
+<section id="selektivitat-schatzen">
+<h4><span class="section-number">12.4.6.1. </span>Selektivität schätzen<a class="headerlink" href="#selektivitat-schatzen" title="Permalink to this headline">#</a></h4>
 <p>Selektion: <br>
 Wenn eine Selektion auf einem einzelnen Schlüssel durchgeführt wird, also auf einer Konstanten, kann davon ausgegangen werden, dass der Selektivitätsfaktor genau</p>
 <ul class="simple">
@@ -1155,16 +1287,16 @@ Beim Equijoin zwischen R und S über Fremdschlüssel in S ist der Selektivitäts
 <li><p>„Beweis“: sf = |R ⋈ S| / (|R x S|) = |S| / (|R| · |S|) <br>
 Da man einen Equijoin über Fremdschlüssel durchführt, ist die Anzahl der Ausgabetupel gleich der Anzahl der Tupel in S. Somit kann man S aus |S| / (|R| · |S|) wegstreichen und es ergibt sich der Selektivitätsfaktor sf = 1 / |R|.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="selinger-style-optimization">
-<h3><span class="section-number">12.4.7. </span>Selinger-style“ Optimization<a class="headerlink" href="#selinger-style-optimization" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="selinger-style-optimization">
+<h3><span class="section-number">12.4.7. </span>Selinger-style“ Optimization<a class="headerlink" href="#selinger-style-optimization" title="Permalink to this headline">#</a></h3>
 <p>Zum Vorherigen gibt es ein Paper aus den 70er Jahren von IBM. Im Folgenden ist die Darstellung vom Research Team zu sehen:</p>
 <p><img alt="" src="../_images/selinger_style1.jpg" /></p>
 <p><img alt="" src="../_images/selinger_style2.jpg" /></p>
-</div>
-<div class="section" id="join-selektivitat-selinger-style">
-<h3><span class="section-number">12.4.8. </span>Join Selektivität (Selinger Style)<a class="headerlink" href="#join-selektivitat-selinger-style" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="join-selektivitat-selinger-style">
+<h3><span class="section-number">12.4.8. </span>Join Selektivität (Selinger Style)<a class="headerlink" href="#join-selektivitat-selinger-style" title="Permalink to this headline">#</a></h3>
 <p><img alt="" src="../_images/selinger_style3.jpg" /></p>
 <p>Der Fokus liegt jetzt besonders auf der Join Selektivität. Dazu folgende Anfrage als Beispiel:</p>
 <ul class="simple">
@@ -1186,16 +1318,16 @@ Da man einen Equijoin über Fremdschlüssel durchführt, ist die Anzahl der Ausg
 <ul class="simple">
 <li><p>|cust ⋈ order| = 1/|cust| * |cust| * |order| = |order|</p></li>
 </ul>
-</div>
-<div class="section" id="modelle-zum-besseren-schatzen-der-selektivitat">
-<h3><span class="section-number">12.4.9. </span>Modelle zum besseren Schätzen der Selektivität<a class="headerlink" href="#modelle-zum-besseren-schatzen-der-selektivitat" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="modelle-zum-besseren-schatzen-der-selektivitat">
+<h3><span class="section-number">12.4.9. </span>Modelle zum besseren Schätzen der Selektivität<a class="headerlink" href="#modelle-zum-besseren-schatzen-der-selektivitat" title="Permalink to this headline">#</a></h3>
 <p>Das Schätzen der Selektivität kann auf unterschiedliche Weisen verbessert werden. <br>
 Eine Möglichkeit das Schätzen zu verbessern, wäre es eine Gleichverteilung der Werte anzunehmen, sodass die Minimum- und Maximumwerte bekannt sind. Bei einer ungleichen Verteilung (“skew”) ist die Abschätzung schwierig und eher schlecht. <br>
 Dazu kann ein Histogramm zur Hilfe genommen werden. Parametrisierte Größen vereinfachen das Schätzen. Die Güte der Abschätzung hängt vom Histogrammtyp und der Histogrammgröße ab. Außerdem ist das Garantieren der Aktualität sehr aufwändig. <br>
 Eine weitere Möglichkeit ist das Sampling. Dabei wird eine repräsentative Teilmenge der Relation angeschaut und schließt daraus auf die Verteilung der Werte. Parametrisierte Größen sind hierbei wieder schwierig zu finden. Die Güte hängt von der Samplingmethode und der Samplegröße ab. Außerdem ist die Aktualität auch wieder von Bedeutung.</p>
-</div>
-<div class="section" id="beispiel-zu-histogrammen">
-<h3><span class="section-number">12.4.10. </span>Beispiel zu Histogrammen<a class="headerlink" href="#beispiel-zu-histogrammen" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="beispiel-zu-histogrammen">
+<h3><span class="section-number">12.4.10. </span>Beispiel zu Histogrammen<a class="headerlink" href="#beispiel-zu-histogrammen" title="Permalink to this headline">#</a></h3>
 <p><img alt="" src="../_images/histogramm.jpg" /></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="o">*</span>
 <span class="n">FROM</span> <span class="n">product</span> <span class="n">p</span><span class="p">,</span> <span class="n">sales</span> <span class="n">S</span>
@@ -1208,9 +1340,9 @@ Eine weitere Möglichkeit ist das Sampling. Dabei wird eine repräsentative Teil
 Angenommen es findet eine Gleichverteilung statt. Dann ist der Preis gleichverteilt zwischen 0 und 1000. Aufgrund der Selektionsbedingung (p.price &gt; 100) wird nach allen Produkten, die mehr als 100 Kosten, gesucht. Es bleiben genau 900 Produkte übrig. Also kommen 900 von 1000 Einträgen weiter. Es ergibt sich eine Selektivität von 900/1000 = 9/10. Am Ende werden somit 9/10 * 3300 ≈ 3000 Produkte erwartet, die noch zusätzlich mit der sales Relation gejoint wird. <br>
 <br>
 Durch das Kennen des Aussehens des Histogramms, ist bekannt, dass es insgesamt nur 5 Produkte gibt, die über 100 kosten. Die Selektivität der Bedingung ist dann 5/3000 ≈ 0.0015. Somit deutlich geringer als zuvor.</p>
-</div>
-<div class="section" id="kosten-weitere-komplikationen">
-<h3><span class="section-number">12.4.11. </span>Kosten – Weitere Komplikationen<a class="headerlink" href="#kosten-weitere-komplikationen" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="kosten-weitere-komplikationen">
+<h3><span class="section-number">12.4.11. </span>Kosten – Weitere Komplikationen<a class="headerlink" href="#kosten-weitere-komplikationen" title="Permalink to this headline">#</a></h3>
 <p>Es gibt weitere Komplikationen:<br>
 Was passiert mit den Kosten, wenn bestimmte Operationen parallel ausgeführt werden? Die Kosten aller Operatoren können somit nicht addiert werden.<br>
 Oder der Hauptspeicher bietet Möglichkeiten wie Pufferung und Caching. Damit können die Kosten für bestimmte Operatoren noch weiter verringert werden. <br>
@@ -1218,9 +1350,9 @@ Die I/O Kosten (Lesen einer Seite) könnten auch gegenüber den CPU Kosten einen
 Vielleicht gibt es mehrere Nutzer (Multiuser), die gleichzeitig arbeiten und es sollen so viele Nutzer wie möglich behandelt werden. Vielleicht soll auch die Antwortzeit der Nutzer verkleinert werden und es müsste anders reagiert werden. <br>
 <br>
 Die Kostenmodelle sind also hochkomplex. In diesem Bereich wird immernoch sehr viel Forschung betrieben. Der beste Optimierer wurde bis heute noch nicht gefunden.</p>
-</div>
-<div class="section" id="ausblick-auf-dbs-ii">
-<h3><span class="section-number">12.4.12. </span>Ausblick auf DBS II<a class="headerlink" href="#ausblick-auf-dbs-ii" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="ausblick-auf-dbs-ii">
+<h3><span class="section-number">12.4.12. </span>Ausblick auf DBS II<a class="headerlink" href="#ausblick-auf-dbs-ii" title="Permalink to this headline">#</a></h3>
 <p>In DBS II geht es mit folgenden Themen weiter:</p>
 <ul class="simple">
 <li><p>diverse Algorithmen für einzelne Operatoren, insbesondere bei Joins und Sortierungen.</p></li>
@@ -1230,29 +1362,30 @@ Die Kostenmodelle sind also hochkomplex. In diesem Bereich wird immernoch sehr v
 </ul>
 <p>Hier sind Tabellen gegeben mit denen man schauen kann, welche Pläne für welche Kombinationen gut funktionieren. Alle Punkte in diesen Diagrammen sind Pläne, die infrage kommen, für bestimmte Konstellationen von diesen Tabellen.
 <img alt="" src="../_images/ausblick.jpg" /></p>
-</div>
-</div>
-<div class="section" id="multiple-choice">
-<h2><span class="section-number">12.5. </span>Multiple Choice<a class="headerlink" href="#multiple-choice" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="fragen">
+<h2><span class="section-number">12.5. </span>Fragen<a class="headerlink" href="#fragen" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
-<li><p>Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird nur in das JupyterBook eingebunden und nicht selbst gehostet. Der Multiple-Choice-Trainer wird durch GitHub-Pages gehostet.</p></li>
+<li><p>Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird über GitHub-Pages gehostet und in das Skript eingebunden.</p></li>
 <li><p>Alle Fragen und Kategorien befinden sich zurzeit in Überarbeitung und sind nicht final.</p></li>
+<li><p>Für den vollen Funktionsumfang wird empfohlen einen auf Firefox basierten Browser zu nutzen.</p></li>
 </ul>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_html">
-<iframe
-    width="100%"
-    height="800"
-    src="https://lejuliennn.github.io/mct-trainer/#/quiz/categories/bearbeitung"
-    frameborder="0"
-    allowfullscreen
-
-></iframe>
-</div></div>
+        <iframe
+            width="100%"
+            height="800"
+            src="https://luh-dbs.github.io/mct-trainer/#/quiz/categories/bearbeitung"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1276,9 +1409,11 @@ Die Kostenmodelle sind also hochkomplex. In diesem Bereich wird immernoch sehr v
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="../11/transaktionen.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1287,24 +1422,28 @@ Die Kostenmodelle sind also hochkomplex. In diesem Bereich wird immernoch sehr v
         </div>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Prof. Dr. Ziawasch Abedjan<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Prof. Dr. Ziawasch Abedjan<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>
