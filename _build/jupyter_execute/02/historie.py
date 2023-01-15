@@ -12,7 +12,7 @@
 
 # ## Frühe automatisierte Speichertechnologie
 # 
-# Bei der Entwicklung von Datenbanksystemen war ein Unternehmen besonders aktiv. Herman Hollerith gründete bereits 1896 die Tabulating Machine Company, die 1924 in International Business Machines Corporation (IBM) umbenannt wurde. In Ihrem Ursprung entwickelte IBM Lochkartensysteme, die Informationen durch physische Löscher auf Karten, abspeichern und ablesen konnten. 
+# Bei der Entwicklung von Datenbanksystemen war ein Unternehmen besonders aktiv. [Herman Hollerith](https://en.wikipedia.org/wiki/Herman_Hollerith) gründete bereits 1896 die Tabulating Machine Company, die 1924 in International Business Machines Corporation (IBM) umbenannt wurde. In Ihrem Ursprung entwickelte IBM Lochkartensysteme, die Informationen durch physische Löscher auf Karten, abspeichern und ablesen konnten. 
 
 # ![Herman Hollerith](herman_hollerith.jpg)
 # 
@@ -66,17 +66,18 @@
 # 
 # Ein weiterer Forschungsstrang bot neue Entwicklungen aus dem Bereich der Hardware: FPGA, GPGPU, SSD, Main-Memory, Infiniband, die Annahmen über Speicherhierarchien und Kostenmodelle verändern würden.
 
-# ## Multiple Choice
+# ## Fragen
 # 
-# - Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird nur in das JupyterBook eingebunden und nicht selbst gehostet. Der Multiple-Choice-Trainer wird durch GitHub-Pages gehostet. 
+# - Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird über GitHub-Pages gehostet und in das Skript eingebunden.  
 # - Alle Fragen und Kategorien befinden sich zurzeit in Überarbeitung und sind nicht final. 
+# - Für den vollen Funktionsumfang wird empfohlen einen auf Firefox basierten Browser zu nutzen.
 
 # In[1]:
 
 
 from IPython.display import IFrame
 
-url = "https://lejuliennn.github.io/mct-trainer/#/quiz/categories/historie"
+url = "https://luh-dbs.github.io/mct-trainer/#/quiz/categories/historie"
 IFrame(src=url, width='100%', height=800)
 
 

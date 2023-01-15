@@ -527,17 +527,17 @@
 # Hier sind Tabellen gegeben mit denen man schauen kann, welche Pläne für welche Kombinationen gut funktionieren. Alle Punkte in diesen Diagrammen sind Pläne, die infrage kommen, für bestimmte Konstellationen von diesen Tabellen. 
 # ![](ausblick.jpg)
 
-# ## Multiple Choice
-# 
-# - Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird nur in das JupyterBook eingebunden und nicht selbst gehostet. Der Multiple-Choice-Trainer wird durch GitHub-Pages gehostet. 
+# ## Fragen
+# - Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird über GitHub-Pages gehostet und in das Skript eingebunden.  
 # - Alle Fragen und Kategorien befinden sich zurzeit in Überarbeitung und sind nicht final. 
+# - Für den vollen Funktionsumfang wird empfohlen einen auf Firefox basierten Browser zu nutzen.
 
 # In[1]:
 
 
 from IPython.display import IFrame
 
-url = "https://lejuliennn.github.io/mct-trainer/#/quiz/categories/bearbeitung"
+url = "https://luh-dbs.github.io/mct-trainer/#/quiz/categories/bearbeitung"
 IFrame(src=url, width='100%', height=800)
 
 

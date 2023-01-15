@@ -109,7 +109,7 @@ get_ipython().run_line_magic('sql', 'sqlite:///salesDB/salesDB.db')
 
 # ### SELECT … FROM … WHERE …
 # 
-# SQL-Anfragen folgen meist einer Drei-Zeilen-Struktur aus SELECT, FROM, WHERE, wobei SELECT und FROM in jeder SQL-Anfrage enthalten sein müssen. Das Schlüsselwort SELECT entspricht dem Projektionsoperator $\pi$, den wir aus dem Kapitel Relationale Algebra schon kennengelernt haben. Die FROM-Zeile gibt an von welchen Tabellen die Daten stammen sollen. WHERE entspricht gewissermaßen dem Selektionsoperator $\sigma$, hier werden also Bedingungen an  die Tupel gestellt die diese erfüllen sollen.
+# SQL-Anfragen folgen meist einer Drei-Zeilen-Struktur aus ```SELECT```, ```FROM```, ```WHERE```, wobei ```SELECT``` und ```FROM``` in jeder SQL-Anfrage enthalten sein müssen. Das Schlüsselwort ```SELECT``` entspricht dem Projektionsoperator $\pi$, den wir aus dem Kapitel Relationale Algebra schon kennengelernt haben. Die ```FROM```-Zeile gibt an von welchen Tabellen die Daten stammen sollen. WHERE entspricht gewissermaßen dem Selektionsoperator $\sigma$, hier werden also Bedingungen an  die Tupel gestellt die diese erfüllen sollen.
 # 
 # Betrachten wir folgendes Beispielschema für Filme, welches aus den vorherigen Kapiteln bekannt sein sollte. Wir möchten nun eine Anfrage formulieren, die uns alle Filme ausgibt, welche von Disney produziert und im Jahre 1990 erschienen sind.
 
@@ -129,10 +129,10 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# Wir benutzen SELECT \*, wodurch uns alle Attribute der ausgewählten Tabelle ausgegeben werden, alternativ kann man auch SELECT Titel, Jahr, Laenge... machen. Da wir alle Filme ausgeben wollen, schreiben wir FROM Film, da wir Tupel aus der Tabelle Film wollen. Zuletzt selektieren wir die Tupel, die StudioName = "Disney" und Jahr = 1990 erfüllen.
+# Wir benutzen ```SELECT *```, wodurch uns alle Attribute der ausgewählten Tabelle ausgegeben werden, alternativ kann man auch ```SELECT Titel, Jahr, Laenge...``` machen. Da wir alle Filme ausgeben wollen, schreiben wir ```FROM Film```, da wir Tupel aus der Tabelle ```Film``` wollen. Zuletzt selektieren wir die Tupel, die ```StudioName = "Disney"``` und ```Jahr = 1990``` erfüllen.
 # 
 
-# In SQL wird Groß- und Kleinschreibung nicht beachtet, sowohl bei Schlüsselwörtern wie SELECT, FROM, WHERE usw., als auch bei Attribut- und Relationen.
+# In SQL wird Groß- und Kleinschreibung nicht beachtet, sowohl bei Schlüsselwörtern wie ```SELECT```, ```FROM```, ```WHERE``` usw., als auch bei Attribut- und Relationen.
 # <br><br>
 # D.h es gilt also:
 # ```
@@ -161,9 +161,9 @@ df
 
 # ### Projektion in SQL (SELECT, $\pi$)
 # 
-# Wir betrachten nun die einzelnen Schlüsselwörter etwas genauer und starten mit der Projektion. In der SELECT Klausel werden Attribute von Relationen aufgelistet, die herausprojeziert werden sollen.
+# Wir betrachten nun die einzelnen Schlüsselwörter etwas genauer und starten mit der Projektion. In der ```SELECT``` Klausel werden Attribute von Relationen aufgelistet, die herausprojeziert werden sollen.
 # <br><br>
-# Im folgenden Beipiel wollen wir alle Attribute bzw. Spalten aus der Filmrelation ausgeben, der Stern "\*" ist hier eine kürzere Schreibweise für alle Attribute.
+# Im folgenden Beipiel wollen wir alle Attribute bzw. Spalten aus der Filmrelation ausgeben, der Stern ```\*``` ist hier eine kürzere Schreibweise für alle Attribute.
 
 # In[3]:
 
@@ -177,7 +177,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# Es ist auch möglich konkret die Attributsnamen aufzulisten, die ausgegeben sollen werden. Im unteren Beispiel, geben wir nur die Spalten Titel, Jahr und inFarbe von der Filmrelation aus.
+# Es ist auch möglich konkret die Attributsnamen aufzulisten, die ausgegeben sollen werden. Im unteren Beispiel, geben wir nur die Spalten ```Titel```, ```Jahr``` und ```inFarbe``` von der Filmrelation aus.
 
 # In[4]:
 
@@ -191,7 +191,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# In der SELECT Klausel ist es auch möglich die Attributsnamen in der Ausgabetabelle umzubenennen. Die Ausgabe einer SQL-Anfrage ist immer eine Tabelle. Im unteren Beispiel projezieren wir die Attribute Titel, Jahr aus der Filmrelation und benennen die Attribute in unserer Ausgabetabelle zu Name,Zeit um. 
+# In der ```SELECT``` Klausel ist es auch möglich die Attributsnamen in der Ausgabetabelle umzubenennen. Die Ausgabe einer SQL-Anfrage ist immer eine Tabelle. Im unteren Beispiel projezieren wir die Attribute ```Titel```, ```Jahr``` aus der Filmrelation und benennen die Attribute in unserer Ausgabetabelle zu ```Name```,```Zeit``` um. 
 
 # In[5]:
 
@@ -205,7 +205,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# In der SELECT-Klausel ist es auch möglich arithmetische Ausdrücke zu benutzen. Im folgenden Beispiel werden Titel und Laenge der Filme herausprojeziert, wobei die Laenge direkt mit einer Konstanten multipliziert wird. Daher wird in der Ausgabetabelle die Laenge in Stunden und nicht in Minuten angegeben. Dementsprechend haben wir auch das Attribut Laenge in Stunden mit dem Umbenennungsoperator AS umbenannt.
+# In der ```SELECT```-Klausel ist es auch möglich arithmetische Ausdrücke zu benutzen. Im folgenden Beispiel werden ```Titel``` und ```Laenge``` der Filme herausprojeziert, wobei die ```Laenge``` direkt mit einer Konstanten multipliziert wird. Daher wird in der Ausgabetabelle die ```Laenge``` in ```Stunden``` und nicht in Minuten angegeben. Dementsprechend haben wir auch das Attribut ```Laenge``` in ```Stunden``` mit dem Umbenennungsoperator ```AS``` umbenannt.
 
 # In[6]:
 
@@ -219,7 +219,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# Zudem ist es auch möglich, sich spezielle Konstanten ausgeben zu lassen. Im unteren Beispiel fügen wir der Ausgabetabelle eine neue Spalte hinzu, mit dem Namen inStunden, in der der String 'std.' steht
+# Zudem ist es auch möglich, sich spezielle Konstanten ausgeben zu lassen. Im unteren Beispiel fügen wir der Ausgabetabelle eine neue Spalte hinzu, mit dem Namen ```inStunden```, in der der String 'std.' steht
 
 # In[7]:
 
@@ -234,9 +234,9 @@ df
 
 
 # ### Selektion in SQL (WHERE, $\sigma$)
-# Die Selektion die wir aus der relationalen Algebra kennen wird in SQL mit dem Schlüsselwort WHERE ausgedrückt, nicht mit dem Schlüsselwort SELECT. Wie aus anderen Programmiersprachen bekannt, kann man in der WHERE-Klausel Bedinungen aufstellen. 
+# Die Selektion die wir aus der relationalen Algebra kennen wird in SQL mit dem Schlüsselwort ```WHERE``` ausgedrückt, nicht mit dem Schlüsselwort ```SELECT```. Wie aus anderen Programmiersprachen bekannt, kann man in der ```WHERE```-Klausel Bedinungen aufstellen. 
 # <br><br>
-# Es gibt sechs Vergleichsoperatoren =, <>, <, >, <=, >=(gleich, ungleich, kleiner, größer, kleiner gleich, größer gleich), hier können Sie links und rechts der Vergleichsoperatoren Konstanten und Attribute einsetzen. Insbesondere ist es auch möglich Attribute in der WHERE-Klausel zu vergleichen, die nicht in der SELECT- Klausel herausprojeziert werden. Auch im WHERE kann man arithmetische Ausdrücke in die Bedinung einbauen wie in diesem Beispiel:
+# Es gibt sechs Vergleichsoperatoren ```=```, ```<>```, ```<```, ```>```, ```<=```, ```>=```(gleich, ungleich, kleiner, größer, kleiner gleich, größer gleich), hier können Sie links und rechts der Vergleichsoperatoren Konstanten und Attribute einsetzen. Insbesondere ist es auch möglich Attribute in der ```WHERE```-Klausel zu vergleichen, die nicht in der ```SELECT```- Klausel herausprojeziert werden. Auch im ```WHERE``` kann man arithmetische Ausdrücke in die Bedingung einbauen wie in diesem Beispiel:
 # ```
 # (Jahr - 1930) * (Jahr - 1930) <= 100
 # ```
@@ -254,11 +254,11 @@ df
 # ```
 # Hier werden die Variablen Vorname und Nachname mit einer Leerstelle konkateniert und verglichen, ob der String 'Luke Skywalker' entspricht.
 # <br><br>
-# Das Ergebnis der Vergleichsoperation in SQL ist dann ein Bool'escher Wert, als TRUE oder FALSE. Dementsprechend können mehrere Vergleichsoperatoren mit AND, OR und NOT verknüpft werden, wobei die Klammerungen auch den bekannten Regeln der Logik entsprechen. 
+# Das Ergebnis der Vergleichsoperation in SQL ist dann ein Bool'escher Wert, als ```TRUE``` oder ```FALSE```. Dementsprechend können mehrere Vergleichsoperatoren mit ```AND```, ```OR``` und ```NOT``` verknüpft werden, wobei die Klammerungen auch den bekannten Regeln der Logik entsprechen. 
 # <br><br> 
-# Nur wenn die gesamte WHERE-Klausel zu TRUE evaluiert wird, werden die entsprechenden Tupel ausgegeben.
+# Nur wenn die gesamte ```WHERE```-Klausel zu ```TRUE``` evaluiert wird, werden die entsprechenden Tupel ausgegeben.
 
-# Im unteren Beispiel wollen wir jene Titel aus der Relation Film ausgeben, die nach dem Jahr 1970 erschienen und schwarz-weiß sind
+# Im unteren Beispiel wollen wir jene Titel aus der Relation ```Film``` ausgeben, die nach dem Jahr 1970 erschienen und schwarz-weiß sind
 
 # In[8]:
 
@@ -293,7 +293,7 @@ df
 # ```
 # foo _ _ _ _ _ = foo = ‘foo‘
 # ```
-# Ebenfalls sind lexikographische Vergleiche mit den schon bekannten Vergleichsoperatoren =, <, >, <=, >=, <> möglich. Je nach verwendeter DBMS werden Sortierreihenfolge mit upper-case/lower-case andere behandelt
+# Ebenfalls sind lexikographische Vergleiche mit den schon bekannten Vergleichsoperatoren ```=```, ```<```, ```>```, ```<=```,``` >=```, ```<>``` möglich. Je nach verwendeter DBMS werden Sortierreihenfolge mit upper-case/lower-case andere behandelt
 # ```
 # 'fodder' < 'foo'
 # ```
@@ -302,7 +302,7 @@ df
 # ```
 
 # ### String-Mustervergleiche mit LIKE
-# Mit dem LIKE Operator können Sie Stringteile miteinander vergleichen, also ob ein String einem gewissen Stringmuster folgt. Hierfür gibt es zwei spezielle Zeichen, einmal '%', welches eine beliebige Sequenz von 0 oder mehr Zeichen entspricht und '\_', welches ein einzelnes beliebiges Zeichen steht. Hierfür ein Beispiel: Wir suchen jene Titel aus der Filmrelation, wo der Titel mit 'Star' beginnt, ein Leerzeichen folgt und 4 beliebige Zeichen folgen.
+# Mit dem ```LIKE``` Operator können Sie Stringteile miteinander vergleichen, also ob ein String einem gewissen Stringmuster folgt. Hierfür gibt es zwei spezielle Zeichen, einmal ```%```, welches eine beliebige Sequenz von 0 oder mehr Zeichen entspricht und ```_```, welches ein einzelnes beliebiges Zeichen steht. Hierfür ein Beispiel: Wir suchen jene Titel aus der Filmrelation, wo der Titel mit 'Star' beginnt, ein Leerzeichen folgt und 4 beliebige Zeichen folgen.
 
 # In[10]:
 
@@ -316,7 +316,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# Hier suchen wir alle Titel, wo das Wort 'War' vorkommen muss. Sowohl vor dem 'War' als auch nachdem 'War' sind beliebige Zeichensequenzen erlaubt.
+# Hier suchen wir alle ```Titel```, wo das Wort 'War' vorkommen muss. Sowohl vor dem 'War' als auch nachdem 'War' sind beliebige Zeichensequenzen erlaubt.
 
 # In[11]:
 
@@ -332,34 +332,34 @@ df
 
 
 # ### Datum und Uhrzeit
-# In SQL gibt es auch Datentypen um Daten und Zeiten darzustellen.Der Datentyp DATE stellt ein Datumskonstante dar:
+# In SQL gibt es auch Datentypen um Daten und Zeiten darzustellen.Der Datentyp ```DATE``` stellt ein Datumskonstante dar:
 # <br>
-# - DATE ‘YYYY-MM-DD‘
-# - DATE ‘1948-05-14‘
+# - ```DATE ‘YYYY-MM-DD‘```
+# - ```DATE ‘1948-05-14‘```
 # <br><br>
-# Zeitkonstanten werden mit dem Datentyp TIME dargestellt:
-# - TIME ‘HH:MM:SS.S‘
-# - TIME ‘15:00:02.5‘
+# Zeitkonstanten werden mit dem Datentyp ```TIME``` dargestellt:
+# - ```TIME ‘HH:MM:SS.S‘```
+# - ```TIME ‘15:00:02.5‘```
 # <br><br>
 # Zeitstempel, also eine Kombination aus Datum und Zeit, werden mit dem Datentyp TIMESTAMP dargestellt:
 # <br>
-# - TIMESTAMP ‘1948-05-14 15:00:02.5‘
+# - ```TIMESTAMP ‘1948-05-14 15:00:02.5‘```
 # <br><br>
 # Auch dieses Datentypen können wieder miteinander ,in Form von Variablen und Konstanten, verglichen werden:
 # <br>
-# - TIME ‘15:00:02.5‘ < TIME ‘15:02:02.5‘ ergibt TRUE
+# - ```TIME ‘15:00:02.5‘ < TIME ‘15:02:02.5‘``` ergibt ```TRUE```
 # <br><br>
-# - ERSCHEINUNGSTAG >= DATE ‘1949-11-12‘
+# - ```ERSCHEINUNGSTAG >= DATE ‘1949-11-12‘```
 
 # ### Nullwerte
-# Nullwerte sind spezielle Datentypen, in SQL wird dieser als NULL dargestellt, auf Papier ist auch ⊥ geläufig. Es gibt mehrere Arten einen Nullwert zu interpretieren. Zum einen kann ein Nullwert bedeuten, dass ein Wert unbekannt ist, z.B kann es sein, dass der Geburtstag eines/r Schauspieler\*in unbekannt ist. Eine weitere Interpretationsart ist, dass ein Wert eingetragen wurde der unzulässig ist, wie z.B ein Ehegatte eine eines/r Schauspieler\*in. Zuletzt  können mit Nullwerten bestimmte Zellen oder Spalten maskiert werden, wie z.B bei einer unterdrückten Telefonnummer.
+# Nullwerte sind spezielle Datentypen, in SQL wird dieser als ```NULL``` dargestellt, auf Papier ist auch ⊥ geläufig. Es gibt mehrere Arten einen Nullwert zu interpretieren. Zum einen kann ein Nullwert bedeuten, dass ein Wert unbekannt ist, z.B kann es sein, dass der Geburtstag eines/r Schauspieler\*in unbekannt ist. Eine weitere Interpretationsart ist, dass ein Wert eingetragen wurde der unzulässig ist, wie z.B ein Ehegatte eine eines/r Schauspieler\*in. Zuletzt  können mit Nullwerten bestimmte Zellen oder Spalten maskiert werden, wie z.B bei einer unterdrückten Telefonnummer.
 # <br><br>
-# Bei dem Umgang mit Nullwerten gibt es verschiedene Regeln, die beachtet werden müssen. Wird NULL mit arithmetischen Operationen verknüpft, so ergibt sich aus der Verknüpfung wiederum NULL. Bei Vergleichen mit NULL ergibt der Wahrheitswert UNKNOWN und nicht NULL. Man muss auch beachten, dass NULL keine Konstante ist, sondern NULL erscheint als Attributwert, abhängig von dem DBMS gilt NULL = NULL oder NULL $\neq$ NULL.
+# Bei dem Umgang mit Nullwerten gibt es verschiedene Regeln, die beachtet werden müssen. Wird ```NULL``` mit arithmetischen Operationen verknüpft, so ergibt sich aus der Verknüpfung wiederum ```NULL```. Bei Vergleichen mit ```NULL``` ergibt der Wahrheitswert ```UNKNOWN``` und nicht ```NULL```. Man muss auch beachten, dass ```NULL``` keine Konstante ist, sondern ```NULL``` erscheint als Attributwert, abhängig von dem DBMS gilt ```NULL``` = ```NULL``` oder ```NULL``` $\neq$ ```NULL```.
 # <br><br>
-# Beispiele: Sei der Wert von einer Variablen x NULL. Der Ausdruck x+3 ergibt NULL, da x NULL ist. Der Ausdruck NULL+3 ist unzulässig und kann so auch nicht geschrieben werden. Der Vergleich x=3 ergibt UNKNOWN, auch da x NULL ist.
+# Beispiele: Sei der Wert von einer Variablen x ```NULL```. Der Ausdruck x+3 ergibt ```NULL```, da x ```NULL``` ist. Der Ausdruck ```NULL+3``` ist unzulässig und kann so auch nicht geschrieben werden. Der Vergleich x=3 ergibt ```UNKNOWN```, auch da x ```NULL``` ist.
 # <br>
 # <br>
-# Weiterhin kann in der WHERE-Klausel mit IS NULL und IS NOT NULL überprüft werden, ob ein Wert NULL its. Z.B:
+# Weiterhin kann in der ```WHERE```-Klausel mit ```IS NULL``` und ```IS NOT NULL``` überprüft werden, ob ein Wert ```NULL``` its. Z.B:
 # ```
 # Geburtstag IS NULL 
 # ```
@@ -387,17 +387,17 @@ df
 # |**unknown**|unknown|
 # |**false**|true|
 # 
-# Nehmen wir an TRUE=1, FALSE=0 und UNKNOWN = ½. Dann ergeben sich folgende Rechenregeln: 
+# Nehmen wir an ```TRUE```=1, ```FALSE```=0 und ```UNKNOWN``` = ½. Dann ergeben sich folgende Rechenregeln: 
 # <br>
-# AND: Minimum der beiden Werte
+# ```AND```: Minimum der beiden Werte
 # <br>
-# OR: Maximum der beiden Werte
+# ```OR```: Maximum der beiden Werte
 # <br>
-# NOT: 1 – Wert
+# ```NOT```: 1 – Wert
 # <br><br>
 # Beispiele:
 # <br>
-# TRUE AND (FALSE OR NOT(UNKNOWN))
+# ```TRUE AND (FALSE OR NOT(UNKNOWN))```
 # <br>
 # = MIN(1, MAX(0, (1 - ½ )))
 # <br>
@@ -405,7 +405,7 @@ df
 # <br>
 # = MIN(1, ½ ) = ½.
 # <br><br>
-# Zu beachten bei der Ausführungspriorität: NOT vor AND vor OR
+# Zu beachten bei der Ausführungspriorität: ```NOT``` vor ```AND``` vor ```OR```
 
 # In[12]:
 
@@ -422,11 +422,11 @@ df
 
 
 # ### Sortierung
-# In SQL sind Sortierungen(ASC für aufsteigend bzw. DESC für absteigend) mit der ORDER BY Klausel möglich, welche an das Ende der Anfrage geschrieben wird. ASC wird als default gewählt: 
+# In SQL sind Sortierungen(```ASC``` für aufsteigend bzw. ```DESC``` für absteigend) mit der ```ORDER BY``` Klausel möglich, welche an das Ende der Anfrage geschrieben wird. ```ASC``` wird als default gewählt: 
 # <br><br>
-# ORDER BY \<Attributliste\> DESC/ASC
+# ```ORDER BY \<Attributliste\> DESC/ASC```
 # <br><br>
-# Im folgenden Beispiel wollen wir alle Attribute der Filmrelation ausgeben, welche von Disney produziert wurden und 1990 erschienen sind. Zusätzlich, soll die Ausgabe zuerst nach dem Attribut Laenge und folgend nach dem Attribut Titel aufsteigend sortiert werden.
+# Im folgenden Beispiel wollen wir alle Attribute der Filmrelation ausgeben, welche von Disney produziert wurden und 1990 erschienen sind. Zusätzlich, soll die Ausgabe zuerst nach dem Attribut ```Laenge``` und folgend nach dem Attribut ```Titel``` aufsteigend sortiert werden.
 
 # In[13]:
 
@@ -442,7 +442,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# Hier wird  zuerst nach Laenge aufsteigend sortiert und folgend nach Titel aber absteigend.
+# Hier wird  zuerst nach ```Laenge``` aufsteigend sortiert und folgend nach ```Titel``` aber absteigend.
 
 # In[14]:
 
@@ -459,12 +459,12 @@ df
 
 
 # ## Anfragen über mehrere Relationen
-# Die Hauptstärke der Relationalen Algebra ist die Kombination von Relationen. Erst durch die Kombination mehrerer Relationen sind viele interessante Anfragen möglich. In SQL ist das möglich, indem man die beteiligten Relationen in der FROM-Klausel nennt. In diesem Kapitel werden v.A. die verschiedenen Joinvarianten, aber auch das Kreuzprodukt und andere Mengenoperatoren in SQL thematisiert.
+# Die Hauptstärke der Relationalen Algebra ist die Kombination von Relationen. Erst durch die Kombination mehrerer Relationen sind viele interessante Anfragen möglich. In SQL ist das möglich, indem man die beteiligten Relationen in der ```FROM```-Klausel nennt. In diesem Kapitel werden v.A. die verschiedenen Joinvarianten, aber auch das Kreuzprodukt und andere Mengenoperatoren in SQL thematisiert.
 # 
 # ### Kreuzprodukt und Join
 # 
-# Im folgenden Beispiel haben wir die Relationen Film(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentinID) und
-# ManagerIn(Name, Adresse, ManagerinID, Gehalt) gegeben. Wir möchten nun alle Namen der Manager\*Innen ausgeben, die einen Star Wars Film produziert haben. Hierfür müssen die Relationen Film und ManagerIn gejoint werden.Zuerst bilden wir das Kruezprodukt der beiden Relationen, indem wir in der FROM-Klausel die Relationen mit einem Komma getrennt nennen , so wird intern das Kreuzprodukt dieser beiden gebildet. Schließlich wenden  wir noch einmal die Selektionsbedingung an, also dass nur ManagerInnen die einen Star Wars Film produziert haben ausgegeben werden. Und zuletzt noch die Joinbedingung, undzwar dass ProduzentinID und ManagerinID im Kreuzprodukt übereinstimmen sollen. Falls die beiden Bedinungen erfüllt sind wird ein Ergebnistupel produziert. Hierbei ist noch zu beachten, dass die Reihenfolge der WHERE-Bedingungen irrelevant ist.
+# Im folgenden Beispiel haben wir die Relationen ```Film(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentinID)``` und
+# ```ManagerIn(Name, Adresse, ManagerinID, Gehalt)``` gegeben. Wir möchten nun alle ```Namen``` der Manager\*Innen ausgeben, die einen Star Wars Film produziert haben. Hierfür müssen die Relationen ```Film``` und ```ManagerIn``` gejoint werden.Zuerst bilden wir das Kruezprodukt der beiden Relationen, indem wir in der ```FROM```-Klausel die Relationen mit einem Komma getrennt nennen , so wird intern das Kreuzprodukt dieser beiden gebildet. Schließlich wenden  wir noch einmal die Selektionsbedingung an, also dass nur ManagerInnen die einen Star Wars Film produziert haben ausgegeben werden. Und zuletzt noch die Joinbedingung, undzwar dass ```ProduzentinID``` und ```ManagerinID``` im Kreuzprodukt übereinstimmen sollen. Falls die beiden Bedinungen erfüllt sind wird ein Ergebnistupel produziert. Hierbei ist noch zu beachten, dass die Reihenfolge der ```WHERE```-Bedingungen irrelevant ist.
 
 # In[15]:
 
@@ -485,17 +485,8 @@ df
 
 #SELECT Name 
 #FROM Film, ManagerIn --Kreuzprodukt
-#WHERE Titel = ‘Star Wars‘--Selektionsbedingung 
+#WHERE Titel = "Star Wars" --Selektionsbedingung
 #AND ProduzentinID = ManagerinID; --Joinbedingung
-
-
-# In[17]:
-
-
-#SELECT Name 
-#FROM Film, ManagerIn 
-#WHERE Titel = "Star Wars" 
-#AND ProduzentinID = ManagerinID; 
 
 __SQL__ = "SELECT Name FROM Film, ManagerIn WHERE Titel = 'Star Wars' AND ProduzentinID = ManagerinID"
 conn = sqlite3.connect("filme/filme.db")
@@ -506,9 +497,9 @@ df
 
 # ### Uneindeutige Attributnamen
 # 
-# In diesem Beispiel haben wir die Relationen SchauspielerIn(Name, Adresse, Geschlecht, Geburtstag) und ManagerIn(Name, Adresse, ManagerinID, Gehalt) gegeben. Beide Relationen haben ein Attribut namens "Name". Wir wollen nun die Namen der Schauspieler\*Innen und Manager\*Innen ausgeben, die die selbe Adresse haben. Wie im vorherigen Beispiel,bilden wir wieder das Kreuzprodukt beider. Da nur der Attributname der Relationen uneindeutig wäre, muss in der Anfrage immer ein Präfix vor das Attribut gesetzt werden. Auch bei keiner Uneindeutigkeit, kann man das Präfix schreiben, was manchmal as Lesen von SQL-Anfragen erleichtert.
+# In diesem Beispiel haben wir die Relationen ```SchauspielerIn(Name, Adresse, Geschlecht, Geburtstag)``` und ```ManagerIn(Name, Adresse, ManagerinID, Gehalt)``` gegeben. Beide Relationen haben ein Attribut namens ```Name```. Wir wollen nun die ```Namen``` der Schauspieler\*Innen und Manager\*Innen ausgeben, die die selbe Adresse haben. Wie im vorherigen Beispiel,bilden wir wieder das Kreuzprodukt beider. Da nur der Attributname der Relationen uneindeutig wäre, muss in der Anfrage immer ein Präfix vor das Attribut gesetzt werden. Auch bei keiner Uneindeutigkeit, kann man das Präfix schreiben, was manchmal as Lesen von SQL-Anfragen erleichtert.
 
-# In[18]:
+# In[17]:
 
 
 #SELECT SchauspielerIn.Name, ManagerIn.Name 
@@ -532,7 +523,7 @@ df
 # SchauspielerIn AS Star2
 # ```
 
-# In[19]:
+# In[18]:
 
 
 #SELECT Star1.Name, Star2.Name 
@@ -545,7 +536,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# In[20]:
+# In[19]:
 
 
 #SELECT S.Name, M.Name
@@ -562,7 +553,7 @@ df
 # ### Tupelvariablen-Selfjoin
 # 
 
-# In[21]:
+# In[20]:
 
 
 #SELECT Star1.Name, Star2.Name
@@ -577,7 +568,7 @@ df
 
 # Damit wir wie in der Ausgabe der obigen Beispiels, keine redundanten Tupel haben, setzten wir zusätzlich noch die Bedingung, dass die Namen der Schauspieler\*Innen verschieden sein müssen.
 
-# In[22]:
+# In[21]:
 
 
 #SELECT Star1.Name, Star2.Name
@@ -596,9 +587,9 @@ df
 # Anfragen können auf unterschiedlich Arten und Weisen interpretiert werden. Es gibt drie Interpretationsvarianten für Anfragen mit mehreren Relationen. Mit der Nested Loops(geschachtelte Schleifen) gibt es bei mehreren Tupelvariablen, für jede Variable eine geschachtelte Schleife. Bei der parallelen Zuordnung werden alle Kombinationen parallel bzgl. der Bedingungen geprüft. In der Relationen Algebra wird zuerst das Kreuzprodukt gebildet und dann auf jedes Resulat-Tupel die Selektionsbedingungen angewendet.
 # <br>
 # <br>
-# Im folgenden Beispiel sind die Relationen R(A), S(A) und T(A) mit dem selben Attribut A gegeben. Wir suchen die folgenden Tupel R  ∩  (S  ∪  T) (= (R  ∩  S)  ∪  (R  ∩  T) ). Nehmen wir an dass T leer sei, das vermeintliche Resultat ist R  ∩  S. Mit Nested Loops ist das Ergebnis jedoch leer. 
+# Im folgenden Beispiel sind die Relationen ```R(A)```, ```S(A)``` und ```T(A)``` mit dem selben Attribut ```A``` gegeben. Wir suchen die folgenden Tupel ```R```  ∩  (```S```  ∪  ```T```) (= (```R```  ∩  ```S```)  ∪  (```R```  ∩  ```T```) ). Nehmen wir an dass ```T``` leer sei, das vermeintliche Resultat ist ```R```  ∩  ```S```. Mit Nested Loops ist das Ergebnis jedoch leer. 
 
-# In[23]:
+# In[22]:
 
 
 #SELECT R.A
@@ -614,7 +605,7 @@ df
 
 # Im folgenden Beispiel ist das Ergebnis mit Nested Loops nicht leer.
 
-# In[24]:
+# In[23]:
 
 
 #SELECT *
@@ -638,11 +629,11 @@ df
 # ### Joins
 # ![title](joins.jpg)
 
-# Bis hierhin haben wir Joins nur mit Komma zwischen den Relationennamen in der FROM-Klausel und der Joinbedingung in der WHERE-Klausel kennengelernt. Kreuzprodukte können auch mit CROSS JOIN ausgedrückt werden,z.B Film CROSS JOIN spielt_in, hier werden direkt doppelte Attributnamen mit Präfix der Relation schon aufgelöst. 
+# Bis hierhin haben wir Joins nur mit Komma zwischen den Relationennamen in der ```FROM```-Klausel und der Joinbedingung in der ```WHERE```-Klausel kennengelernt. Kreuzprodukte können auch mit ```CROSS JOIN``` ausgedrückt werden,z.B ```Film CROSS JOIN spielt_in```, hier werden direkt doppelte Attributnamen mit Präfix der Relation schon aufgelöst. 
 # <br><br>
 # Ein Beispiel für ein Theta-Join finden wir unten. 
 
-# In[25]:
+# In[24]:
 
 
 #SELECT * 
@@ -655,9 +646,9 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# Beim JOIN werden im Vergleich zum CROSS JOIN die redundanten Attribute eliminiert. Damit das geschieht muss natürlich ein Fremdschlüsselbeziehung vorhanden sein oder die Attributnamen müssen identisch sein. Hier wie im unteren Beispiel gezeigt, werden also FilmTitel und FilmJahr eliminiert.
+# Beim ```JOIN``` werden im Vergleich zum ```CROSS JOIN``` die redundanten Attribute eliminiert. Damit das geschieht muss natürlich ein Fremdschlüsselbeziehung vorhanden sein oder die Attributnamen müssen identisch sein. Hier wie im unteren Beispiel gezeigt, werden also ```FilmTitel``` und ```FilmJahr``` eliminiert.
 
-# In[26]:
+# In[25]:
 
 
 #SELECT Titel, Jahr, Laenge, inFarbe, StudioName, ProduzentinID, Name 
@@ -672,7 +663,7 @@ df
 
 # Es ist ebenfalls möglich mehrere Joins hintereinander durchzuführen, wie im Beispiel unten gezeigt. 
 
-# In[27]:
+# In[26]:
 
 
 #SELECT Titel, Jahr 
@@ -695,7 +686,7 @@ df
 #  
 # #### TPC Query - Minimum Cost Supplier 
 
-# In[28]:
+# In[27]:
 
 
 #%sql
@@ -715,7 +706,7 @@ df
 #ORDER BY s_acctbal desc, n_name, s_name, p_partkey;
 
 
-# In[29]:
+# In[28]:
 
 
 __SQL__ = "SELECT s_acctbal, s_name, n_name, p_partkey, p_mfgr, s_address, s_phone, s_comment FROM part, supplier, partsupp, nation, region WHERE p_partkey = ps_partkey AND s_suppkey = ps_suppkey AND p_size = 2 AND p_type like 'PROMO PLATED TIN' AND s_nationkey = n_nationkey AND n_regionkey = r_regionkey AND r_name = 'EUROPE' AND ps_supplycost = (SELECT min(ps_supplycost) FROM partsupp, supplier, nation, region WHERE p_partkey = ps_partkey AND s_suppkey = ps_suppkey AND s_nationkey = n_nationkey AND n_regionkey = r_regionkey AND r_name = 'EUROPE' ) ORDER BY s_acctbal desc, n_name, s_name, p_partkey;"
@@ -726,7 +717,7 @@ df
 
 # #### The TPC-H Universal Table
 
-# In[30]:
+# In[29]:
 
 
 #%sql
@@ -742,7 +733,7 @@ df
 #AND o_orderkey = l_orderkey
 
 
-# In[31]:
+# In[30]:
 
 
 __SQL__ = "SELECT l_linenumber, l_quantity, l_extendedprice, l_discount, l_tax, l_returnflag, l_linestatus, l_shipdate, l_commitdate, l_receiptdate, l_shipinstruct, l_shipmode, l_comment, o_orderkey, o_orderstatus, o_totalprice, o_orderdate, o_orderpriority, o_clerk, o_shippriority, o_comment, ps_availqty, ps_supplycost, ps_comment, p_partkey, p_name, p_mfgr, p_brand, p_type, p_size, p_container, p_retailprice, p_comment, c_custkey, c_name, c_address, c_phone, c_acctbal, c_mktsegment, c_comment, s_suppkey, s_name, s_address, s_phone, s_acctbal, s_comment, n_nationkey, n_name, n_comment, r_regionkey, r_name, r_comment FROM lineitem, orders, partsupp, part, customer, supplier, nation, region WHERE p_partkey = ps_partkey AND s_suppkey = ps_suppkey AND n_nationkey = s_nationkey AND r_regionkey = n_regionkey AND c_custkey = o_custkey AND ps_partkey = l_partkey AND ps_suppkey = l_suppkey AND o_orderkey = l_orderkey"
@@ -752,9 +743,9 @@ df
 
 # ### Outer Joins
 
-# Haben wir erneut die Relationen SchauspielerIn(Name, Adresse, Geschlecht, Geburtstag) und ManagerIn(Name, Adresse, ManagerinID, Gehalt) gegeben. Wir suchen nun alle Schauspieler\*Innen, die zugleich auch Manger\*Innen sind. 
+# Haben wir erneut die Relationen ```SchauspielerIn(Name, Adresse, Geschlecht, Geburtstag)``` und ```ManagerIn(Name, Adresse, ManagerinID, Gehalt)``` gegeben. Wir suchen nun alle Schauspieler\*Innen, die zugleich auch Manger\*Innen sind. 
 
-# In[32]:
+# In[31]:
 
 
 #SELECT Name, Adresse, Geburtstag, Gehalt 
@@ -769,7 +760,7 @@ df
 
 # Nun suchen wir alle Schauspieler\*Innen und ihre Manager\*Inneninfo, falls diese vorhanden ist.
 
-# In[33]:
+# In[32]:
 
 
 #…FROM SchauspielerIn NATURAL LEFT OUTER JOIN ManagerIn
@@ -780,11 +771,11 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# Falls keine Manager\*Ininfo vorhanden ist bleibt Gehalt NULL.
+# Falls keine Manager\*Ininfo vorhanden ist bleibt Gehalt ```NULL```.
 
 # Im Folgenden suchen wir Manager\*Innen und gegebenenfalls ihre Schauspieler\*Inneninfo
 
-# In[34]:
+# In[33]:
 
 
 #…FROM SchauspielerIn NATURAL RIGHT OUTER JOIN ManagerIn
@@ -795,7 +786,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# Wir sehen, dass RIGHT OUTER JOINS in sqlite3 nicht direkt möglich sind, da dieser Operator in sqlite3 nicht unterstützt wird. Man kann aber dennoch durch Vertauschen der Reihenfolge der Tabellen, die gewünschte Ausgabe mit LEFT OUTER JOINS erzeugen.
+# Wir sehen, dass ```RIGHT OUTER JOINS``` in sqlite3 nicht direkt möglich sind, da dieser Operator in sqlite3 nicht unterstützt wird. Man kann aber dennoch durch Vertauschen der Reihenfolge der Tabellen, die gewünschte Ausgabe mit ```LEFT OUTER JOINS``` erzeugen.
 
 # In[19]:
 
@@ -806,7 +797,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# Falls die Schauspieler\*Inneninfo nicht vorhanden ist bleibt Geburtstag NULL.
+# Falls die Schauspieler\*Inneninfo nicht vorhanden ist bleibt Geburtstag ```NULL```.
 
 # Nun suchen wir alle Schauspieler\*innen und Manager\*innen.
 
@@ -821,7 +812,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# Ebenso werden FULL OUTER JOINS in sqlite3 nicht unterstützt. Eine alternative Anfrage mit äquivalenter Ausgabe, die nur LEFT OUTER JOINS verwendet ist möglich. Ein FULL OUTER JOIN ist die Vereinigung von dem LEFT und RIGHT OUTER JOIN zweier Tabellen. Wie im vorherigen Beispiel gezeigt, können wir RIGHT OUTER JOINS mithilfe von LEFT OUTER JOINS erzeugen.
+# Ebenso werden ```FULL OUTER JOINS``` in sqlite3 nicht unterstützt. Eine alternative Anfrage mit äquivalenter Ausgabe, die nur ```LEFT OUTER JOINS``` verwendet ist möglich. Ein ```FULL OUTER JOIN``` ist die Vereinigung von dem ```LEFT``` und ```RIGHT OUTER JOIN``` zweier Tabellen. Wie im vorherigen Beispiel gezeigt, können wir ```RIGHT OUTER JOINS``` mithilfe von ```LEFT OUTER JOINS``` erzeugen.
 
 # In[20]:
 
@@ -832,12 +823,12 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# Falls zu den Schauspieler\*Innen die Manager\*Inneninfo bzw. Manager\*Innen die Schauspieler\*Inneninfo fehlt, bleiben Geburtstag oder Gehalt gegebenenfalls leer.
+# Falls zu den Schauspieler\*Innen die Manager\*Inneninfo bzw. Manager\*Innen die Schauspieler\*Inneninfo fehlt, bleiben ```Geburtstag``` oder ```Gehalt``` gegebenenfalls leer.
 
-# Der Unterschied von FULL OUTER JOINS zu UNION ist, dass nur eine Zeile pro Person ausgegeben wird.
+# Der Unterschied von ```FULL OUTER JOINS``` zu ```UNION``` ist, dass nur eine Zeile pro Person ausgegeben wird.
 
 # ### Kreuzprodukt
-# Wie aus der Relationalen Algebra bekannt bildet das Kreuzprodukt lle Paare aus Tupeln den beteiligten Relationen. In SQL können Kreuzprodukte mit CROSS JOIN gebildet werden, wie unten gezeigt oder auch mit Komma zwischen den beteiligten Relationen in der FROM-Klausel, wie ein Beispielt weiter gezeigt wird. Kreuzprodukte werden in der Regel selten verwendet, sie sind aber der Grundbaustein für Joins.
+# Wie aus der Relationalen Algebra bekannt bildet das Kreuzprodukt alle Paare aus Tupeln den beteiligten Relationen. In SQL können Kreuzprodukte mit ```CROSS JOIN``` gebildet werden, wie unten gezeigt oder auch mit Komma zwischen den beteiligten Relationen in der ```FROM```-Klausel, wie ein Beispielt weiter gezeigt wird. Kreuzprodukte werden in der Regel selten verwendet, sie sind aber der Grundbaustein für Joins.
 
 # In[21]:
 
@@ -864,10 +855,10 @@ df
 
 
 # ### Mengenoperationen in SQL
-# Die Mengenoperationen UNION(Vereinigung), INTERSECT(Schnittmenge) und EXCEPT/MINUS(Differenz) können nur zwischen geklammertern Anfrageergebnissen benutzt werden, die das selbe Schema besitzen. Sobald einer dieser Operationen verwendet wird, wird implizit Mengensemantik verwendet. Möchte man Multimengensemantik haben, so müssen die Operatoren UNION ALL, INTERSECT ALL und EXCEPT/MINUS ALL verwendet werden. Das bietet sich an, wenn die Semantik egal ist oder die Mengeneigenschaft von Input und Output bereits bekannt ist.
+# Die Mengenoperationen ```UNION```(Vereinigung), ```INTERSECT```(Schnittmenge) und ```EXCEPT/MINUS```(Differenz) können nur zwischen geklammertern Anfrageergebnissen benutzt werden, die das selbe Schema besitzen. Sobald einer dieser Operationen verwendet wird, wird implizit Mengensemantik verwendet. Möchte man Multimengensemantik haben, so müssen die Operatoren ```UNION ALL```, ```INTERSECT ALL``` und ```EXCEPT/MINUS ALL``` verwendet werden. Das bietet sich an, wenn die Semantik egal ist oder die Mengeneigenschaft von Input und Output bereits bekannt ist.
 
 # #### Schnittmenge: INTERSECT
-# INTERSECT entspricht dem logischen „und“. Im Folgenden suchen wir die Schnittmenge zwischen den Namen und Adressen der Schauspieler\*Innen und den Mangager\*Innen.
+# ```INTERSECT``` entspricht dem logischen „und“. Im Folgenden suchen wir die Schnittmenge zwischen den ```Namen``` und ```Adressen``` der Schauspieler\*Innen und den Mangager\*Innen.
 
 # In[37]:
 
@@ -880,7 +871,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# In diesem Beispiel suchen wir die Schnittmenge zwischen den Namen und Adressen der  weiblichen Schauspieler\*Innen und den Mangager\*Innen, die ein Gehalt größer als 1000000 haben.
+# In diesem Beispiel suchen wir die Schnittmenge zwischen den ```Namen``` und ```Adressen``` der  weiblichen Schauspieler\*Innen und den Mangager\*Innen, die ein Gehalt größer als 1000000 haben.
 
 # In[38]:
 
@@ -894,7 +885,7 @@ df
 
 
 # #### Vereinigung: UNION
-# UNION entspricht dem logischen „oder“. Im unteren Beispiel geben wir alle Namen und Adressen der Schauspieler\*Innen und den Mangager\*Innen aus.
+# ```UNION``` entspricht dem logischen „oder“. Im unteren Beispiel geben wir alle ```Namen``` und ```Adressen``` der Schauspieler\*Innen und den Mangager\*Innen aus.
 
 # In[23]:
 
@@ -908,7 +899,7 @@ df
 
 
 # #### Differenz: EXCEPT/MINUS
-# Im unteren Beispiel suchen wir den Titel und das Jahr jener Filme die in der Film-Relation vorkommen, aber nicht in der spielt_in-Relation. Damit diese Anfrage funktioniert, muss Umbenennung benutzt werden, da die beiden Mengen sonst nicht das selbe Schema besitzten.
+# Im unteren Beispiel suchen wir den ```Titel``` und das ```Jahr``` jener Filme die in der ```Film```-Relation vorkommen, aber nicht in der ```spielt_in```-Relation. Damit diese Anfrage funktioniert, muss Umbenennung benutzt werden, da die beiden Mengen sonst nicht das selbe Schema besitzten.
 
 # In[40]:
 
@@ -971,15 +962,15 @@ df
 # 
 # In vorherigen Beispielen haben wir schon geschachtelte Anfragen gesehen, nun betrachten wir diese etwas genauer. Eine Anfrage kann Teil einer anderen, theoretisch beliebig tief geschachtelten Anfrage sein. Hier gibt es drei verschiedene Varianten:
 # <br>
-# 1. Die Subanfrage erzeugt einen einzigen Wert, der in der WHERE-Klausel mit einem anderen Wert verglichen werden kann.
-# 2. Die Subanfrage erzeugt eine Relation, die auf verschiedene Weise in der WHERE-Klausel verwendet werden kann.
-# 3. Die Subanfrage erzeugt eine Relation, die in der FROM Klausel (sozusagen als weitere Datenquelle) verwendet werden kann. – Wie jede andere normale Relation
+# 1. Die Subanfrage erzeugt einen einzigen Wert, der in der ```WHERE```-Klausel mit einem anderen Wert verglichen werden kann.
+# 2. Die Subanfrage erzeugt eine Relation, die auf verschiedene Weise in der ```WHERE```-Klausel verwendet werden kann.
+# 3. Die Subanfrage erzeugt eine Relation, die in der ```FROM``` Klausel (sozusagen als weitere Datenquelle) verwendet werden kann. – Wie jede andere normale Relation
 # 
 # ### Skalare Subanfragen
 # Bei der ersten der drei Varianten von geschachtelten Anfrage, handelt es sich um skalare Subanfragen. Allgemeine Anfragen produzieren Relationen, mit mehreren Attributen, wo Zugriff auf ein bestimmtes Attribut auch möglich ist. Bei skalaren Subanfragen wird (garantiert) maximal nur ein Tupel und Projektion auf nur ein Attribut ausgegeben. Das Ergbenis einer skalaren Anfrage ist entweder genau ein Wert, der dann wie eine Konstante verwendet werden kann, oder wenn keine Zeilen gefunden werden, ist das Ergebnis der skalaren Anfrage NULL.
 # <br>
 # <br>
-# Wir haben im Folgenden Beispiel die Relationen ManagerIn(Name, Adresse, ManagerinID, Gehalt)und Film(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentinID) gegeben. Wir suchen nun den Produzent von Star Wars auf zwei Wegen, wobei garantiert ist, dass es nur einen Produzenten gibt. Zuerst suchen wir ,mithilfe einer allgemeinen Anfrage, unter allen Filmen jene mit dem Titel = 'Star Wars' und Jahr = 1977, wo die ProduzentinID mit der MangaerinID gematcht werden kann. Zuletzt geben wir den Namen aus.
+# Wir haben im Folgenden Beispiel die Relationen ```ManagerIn(Name, Adresse, ManagerinID, Gehalt)``` und ```Film(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentinID)``` gegeben. Wir suchen nun den Produzent von Star Wars auf zwei Wegen, wobei garantiert ist, dass es nu```r einen Produzenten gibt. Zuerst suchen wir ,mithilfe einer allgemeinen Anfrage, unter allen Filmen jene mit dem Titel = 'Star Wars'``` und ```Jahr = 1977```, wo die ```ProduzentinID``` mit der ```MangaerinID``` gematcht werden kann. Zuletzt geben wir den ```Namen``` aus.
 
 # In[41]:
 
@@ -996,7 +987,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# In dieser Variante suchen wir wieder den Produzent von Star Wars, jedoch mithile einer skalaren Subanfrage. Wir suchen zuerst die ProduzentinID des Films, wo Titel = 'Star Wars' und Jahr = 1977 gilt und vergleichen diesen einen mit der ManagerinID. Wenn eine identische ManagerinID gefunden wurde, geben wir den dazugehörigen Namen aus.
+# In dieser Variante suchen wir wieder den Produzent von Star Wars, jedoch mithile einer skalaren Subanfrage. Wir suchen zuerst die ```ProduzentinID``` des Films, wo ```Titel = 'Star Wars'``` und ```Jahr = 1977``` gilt und vergleichen diesen einen mit der ```ManagerinID```. Wenn eine identische ```ManagerinID``` gefunden wurde, geben wir den dazugehörigen Namen aus.
 
 # In[42]:
 
@@ -1010,7 +1001,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# Das DBMS erwartet maximal ein Tupel als Ergebnis der Teilanfrage, falls kein Tupel in der Subanfrage gefunden wird, ist das Ergebnis NULL, falls mehr als ein Tupel gefunden werden, wird ein Laufzeitfehler ausgegeben.
+# Das DBMS erwartet maximal ein Tupel als Ergebnis der Teilanfrage, falls kein Tupel in der Subanfrage gefunden wird, ist das Ergebnis ```NULL```, falls mehr als ein Tupel gefunden werden, wird ein Laufzeitfehler ausgegeben.
 
 # #### Skalare Subanfragen – Beispiel 
 # 
@@ -1073,39 +1064,39 @@ df
 # ### Bedingungen mit Relationen
 # Nun betrachten wir weitere SQL Operatoren auf Relationen die Boole‘sche Werte erzeugen:
 # <br><br>
-# Um zu überprüfen ob eine Relation leer oder nicht ist, kann der EXISTS-Operator benutzt werden: 
+# Um zu überprüfen ob eine Relation leer oder nicht ist, kann der ```EXISTS```-Operator benutzt werden: 
 # <br>
-# EXISTS R gibt TRUE zurück, falls R nicht leer ist
+# ```EXISTS R``` gibt ```TRUE``` zurück, falls ```R``` nicht leer ist
 # <br><br>
-# Um zu überprüfen ob ein Wert in einer Relation mind. einmal vorkommt, kann der IN-Operator benutzt werden:
+# Um zu überprüfen ob ein Wert in einer Relation mind. einmal vorkommt, kann der ```IN```-Operator benutzt werden:
 # <br>
-# x IN R gibt TRUE zurück, falls x gleich einem Wert in R ist (R hat nur ein Attribut)
+# ```x IN R``` gibt ```TRUE``` zurück, falls x gleich einem Wert in ```R``` ist (```R``` hat nur ein Attribut)
 # <br><br>
-# Um zu überprüfen ob x nicht in R vorkommt, kann NOT IN benutzt werden:
+# Um zu überprüfen ob x nicht in ```R``` vorkommt, kann ```NOT IN``` benutzt werden:
 # <br>
-# x NOT IN R gibt TRUE zurück, falls x keinem Wert in R gleicht
+# ```x NOT IN R``` gibt ```TRUE``` zurück, falls x keinem Wert in ```R``` gleicht
 # <br><br>
-# Um, zu überprüfen ob ein Wert größer als alle Werte in R ist, kann der ALL-Operator benutzt werden:
+# Um, zu überprüfen ob ein Wert größer als alle Werte in ```R``` ist, kann der ```ALL```-Operator benutzt werden:
 # <br>
-# x > ALL R gibt TRUE zurück, falls x größer als jeder Wert in R ist (R hat nur ein Attribut)
+# ```x > ALL R``` gibt ```TRUE``` zurück, falls x größer als jeder Wert in ```R``` ist (```R``` hat nur ein Attribut)
 # <br>
-# x <> ALL R entspricht x NOT IN R bzw. auch NOT(x in R)
+# ```x <> ALL R``` entspricht ```x NOT IN R``` bzw. auch ```NOT(x in R)```
 # <br>
-# Natürlich kann man alternativ auch die anderen Vergleichsoperatoren verwenden: <, >, <=, >=, <>, =
+# Natürlich kann man alternativ auch die anderen Vergleichsoperatoren verwenden: ```<```, ```>```, ```<=```, ```>=```, ```<>```, ```=```
 # <br><br>
-# Um zu überprüfen, ob ein Wert größer als mind. ein Wert aus einer Relation ist, kann der ANY-Operator benutzt werden
+# Um zu überprüfen, ob ein Wert größer als mind. ein Wert aus einer Relation ist, kann der ```ANY```-Operator benutzt werden
 # <br>
-# x > ANY R gibt TRUE zurück, falls x größer als mindestens ein Wert in R ist (R hat nur ein Attribut)
+# ```x > ANY R``` gibt ```TRUE``` zurück, falls x größer als mindestens ein Wert in ```R``` ist (```R hat``` nur ein Attribut)
 # <br>
-# Auch hier kann man natürlich auch alternativ die anderen Vergleichsoperatoren verwenden: <, >, <=, >=, <>, =
+# Auch hier kann man natürlich auch alternativ die anderen Vergleichsoperatoren verwenden: ```<```, ```>```, ```<=```, ```>=```, ```<>```, ```=```
 # <br>
-# x = ANY R entspricht x IN R
+# ```x = ANY R``` entspricht ```x IN R```
 # <br>
-# Ein alternativer Befehl für ANY ist SOME
+# Ein alternativer Befehl für ```ANY``` ist ```SOME```
 # <br><br>
-# Die Negation mit NOT(…) ist immer möglich.
+# Die Negation mit ```NOT```(…) ist immer möglich.
 # ### EXISTS Beispiele
-# Im folgenden Beispiel wollen wir die ISBNs aller ausgeliehenen Bücher ausgeben. Hierbei verwenden wir den EXISTS-Operator und geben jene ISBNs aus der Relation BuchExemplar aus, dessen Inventarnr in der Relation Ausleihe existiert.
+# Im folgenden Beispiel wollen wir die ```ISBNs``` aller ausgeliehenen Bücher ausgeben. Hierbei verwenden wir den ```EXISTS```-Operator und geben jene ```ISBNs``` aus der Relation ```BuchExemplar``` aus, dessen ```Inventarnr``` in der Relation ```Ausleihe``` existiert.
 
 # In[46]:
 
@@ -1124,7 +1115,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# Im folgenden Beispiel suchen wir die Lehrstuhlbezeichnungen der Professor\*innen, die alle von ihnen gelesenen Vorlesungen auch schon einmal geprüft haben bzw. Lehrstuhlbezeichnungen von Professor\*innen, wo keine von diesem/er gelesene Vorlesung existiert, die von ihm/ihr nicht geprüft wurde. 
+# Im folgenden Beispiel suchen wir die ```Lehrstuhlbezeichnungen``` der Professor\*innen, die alle von ihnen gelesenen Vorlesungen auch schon einmal geprüft haben bzw. ```Lehrstuhlbezeichnungen``` von Professor\*innen, wo keine von diesem/er gelesene Vorlesung existiert, die von ihm/ihr nicht geprüft wurde. 
 
 # In[18]:
 
@@ -1148,7 +1139,7 @@ df
 
 
 # ### IN Beispiele
-# Im folgenden Beispiel suchen wir eine Auswahl an Büchern mit bestimmter ISBN.
+# Im folgenden Beispiel suchen wir eine Auswahl an Büchern mit bestimmter ```ISBN```.
 
 # In[47]:
 
@@ -1163,7 +1154,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# Hier suchen wir die Matrikelnr. der Studierenden, die zumindest einen Prüfer/in gemeinsam mit dem Studierenden mit der Matrikelnr. ‚123456‘ haben. 
+# Hier suchen wir die Matrikelnr. der Studierenden, die zumindest einen Prüfer/in gemeinsam mit dem Studierenden mit der ```Matrikelnr.``` ‚123456‘ haben. 
 
 # In[20]:
 
@@ -1180,7 +1171,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# Eine Alternativanfrage, welche dieselbe Ausgabe erzeugt, aber nicht den IN-Operator benutzt:
+# Eine Alternativanfrage, welche dieselbe Ausgabe erzeugt, aber nicht den ```IN```-Operator benutzt:
 
 # In[21]:
 
@@ -1196,7 +1187,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# In diesem Beispiel geben wir alle Nachnamen aller Professor\*innen aus, die schon einmal eine 1,0 vergeben haben.
+# In diesem Beispiel geben wir alle ```Nachnamen``` aller Professor\*innen aus, die schon einmal eine 1,0 vergeben haben.
 
 # In[25]:
 
@@ -1213,11 +1204,11 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# Achtung: Korrelierte Subanfrage, die Subanfrag wird für jede ProfID ausgeführt.
+# Achtung: Korrelierte Subanfrage, die Subanfrag wird für jede ```ProfID``` ausgeführt.
 # 
 # ### ALL und ANY Beispiele
 # 
-# Im folgenden Beispiel suchen wir die schlechteste Note des Studierenden mit der Matrikelnr. 123456.
+# Im folgenden Beispiel suchen wir die schlechteste Note des Studierenden mit der ```Matrikelnr.``` 123456.
 
 # In[3]:
 
@@ -1235,7 +1226,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# Wie man sehen kann wird der Operator ALL nicht von sqlite3 unterstützt. Stattdessen kann man eine äquivalente Anfrage mithilfe MAX() formulieren.
+# Wie man sehen kann wird der Operator ```ALL``` nicht von sqlite3 unterstützt. Stattdessen kann man eine äquivalente Anfrage mithilfe ```MAX()``` formulieren.
 
 # In[27]:
 
@@ -1262,7 +1253,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# Wie man sehen kann wird der Operator ANY nicht von sqlite3 unterstützt. Stattdessen kann man eine äquivalente Anfrage mithilfe IN formulieren.
+# Wie man sehen kann wird der Operator ```ANY``` nicht von sqlite3 unterstützt. Stattdessen kann man eine äquivalente Anfrage mithilfe ```IN``` formulieren.
 
 # In[5]:
 
@@ -1274,16 +1265,16 @@ df
 
 
 # ### Bedingungen mit Tupeln
-# Verallgemeinerungen von IN, ALL und ANY auf Tupel sind auch möglich. 
+# Verallgemeinerungen von ```IN```, ```ALL``` und ```ANY``` auf Tupel sind auch möglich. 
 # <br><br>
-# t IN R gibt TRUE zurück, falls t ein Tupel in R ist (mehr als ein Attribut möglich). Hierbei ist vorausgesetzt, dass beide dasselbe Schemata haben und dieselbe Reihenfolge der Attribute.
+# ```t IN R``` gibt ```TRUE``` zurück, falls t ein Tupel in ```R``` ist (mehr als ein Attribut möglich). Hierbei ist vorausgesetzt, dass beide dasselbe Schemata haben und dieselbe Reihenfolge der Attribute.
 # <br><br>
-# t > ALL R gibt TRUE zurück, falls t größer als jedes Tupel in R ist. Die Vergleiche finden in Standardreihenfolge der Attribute statt.
+# ```t > ALL R``` gibt ```TRUE``` zurück, falls t größer als jedes Tupel in ```R``` ist. Die Vergleiche finden in Standardreihenfolge der Attribute statt.
 # <br><br>
-# t <> ANY R gibt TRUE zurück, falls R mindestens ein Tupel hat, das ungleich t ist.
+# ```t <> ANY R``` gibt ```TRUE``` zurück, falls ```R``` mindestens ein Tupel hat, das ungleich t ist.
 # <br>
 # <br>
-# Im folgenden Beispiel wollen wir alle Namen von Produzenten von Filmen mit Harrison Ford ausgeben. Wir suchen erst Titel und Jahr aller Filme mit Harrison Ford mithilfe einer Subanfrage. Für jene Filme suchen wir dann die ProduzentinIDs und gleichen die mit den ManagerinIDs ab, zuletzt geben wir die Namen der passenden Manager\*Innen aus.
+# Im folgenden Beispiel wollen wir alle Namen von Produzenten von Filmen mit Harrison Ford ausgeben. Wir suchen erst ```Titel``` und ```Jahr``` aller Filme mit Harrison Ford mithilfe einer Subanfrage. Für jene Filme suchen wir dann die ```ProduzentinIDs``` und gleichen die mit den ```ManagerinIDs``` ab, zuletzt geben wir die ```Namen``` der passenden Manager\*Innen aus.
 
 # In[58]:
 
@@ -1299,7 +1290,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# Es gibt auch eine alternative Formulierung der Anfrage ohne IN. Wir joinen ManagerIn, Film und spielt_in und geben jene Manager\*Innamen aus, wo spielt_in.Name Harrison Ford entspricht.
+# Es gibt auch eine alternative Formulierung der Anfrage ohne ```IN```. Wir joinen ```ManagerIn```, ```Film``` und ```spielt_in``` und geben jene Manager\*Innamen aus, wo ```spielt_in.Name Harrison Ford``` entspricht.
 
 # In[59]:
 
@@ -1318,9 +1309,9 @@ df
 
 
 # ### Subanfragen in FROM-Klausel
-# Wir können anstelle einer einfachen Relation auch eine geklammerte Subanfrage in der FROM-Klausel schreiben. Der Subanfrage mussein Alias vergeben werden, um auf die Attribute zuzugreifen.
+# Wir können anstelle einer einfachen Relation auch eine geklammerte Subanfrage in der ```FROM```-Klausel schreiben. Der Subanfrage mussein Alias vergeben werden, um auf die Attribute zuzugreifen.
 # <br><br>
-# Im folgenden Beispiel wollen wir wieder alle Namen von Produzenten von Filmen mit Harrison Ford ausgeben. Wir stellen eine Subanfrage in der FROM-Klausel, die alle ProduzentinIDs zurückgibt, welche in Filmen mit Harrison Ford beteiligt waren. Zum Schluss werden die ProduzentinIDs wieder mit den ManagerinIDs abgeglichen.
+# Im folgenden Beispiel wollen wir wieder alle Namen von Produzenten von Filmen mit Harrison Ford ausgeben. Wir stellen eine Subanfrage in der ```FROM```-Klausel, die alle ```ProduzentinIDs``` zurückgibt, welche in Filmen mit Harrison Ford beteiligt waren. Zum Schluss werden die ```ProduzentinIDs``` wieder mit den ```ManagerinIDs``` abgeglichen.
 
 # In[60]:
 
@@ -1355,9 +1346,9 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# Nun suchen wir die Namen und Gehälter aller Mitarbeiter\*Innen in Potsdam, wir formulieren zunächst eine Anfrage mit einer unkorrelierten und dann eine mit einr korrelierte Subanfrage.
+# Nun suchen wir die ```Namen``` und ```Gehälter``` aller Mitarbeiter\*Innen in Potsdam, wir formulieren zunächst eine Anfrage mit einer unkorrelierten und dann eine mit einr korrelierte Subanfrage.
 # <br><br>
-# Unten wird die Subanfrage nur einmal ausgeführt, da wir sofort alle AbtIDs haben. Daher handelt es sich hierbei um eine unkorrelierte Subanfrage.
+# Unten wird die Subanfrage nur einmal ausgeführt, da wir sofort alle ```AbtIDs``` haben. Daher handelt es sich hierbei um eine unkorrelierte Subanfrage.
 
 # In[64]:
 
@@ -1376,7 +1367,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# Hierbei handelt es sich um eine korrelierte Subanfrage, aufgrund des p.AbtID, da die Subanfrage für jedes Tupel aus Personal p ausgeführt werden muss.
+# Hierbei handelt es sich um eine korrelierte Subanfrage, aufgrund des ```p.AbtID```, da die Subanfrage für jedes Tupel aus ```Personal p``` ausgeführt werden muss.
 
 # In[65]:
 
@@ -1399,15 +1390,15 @@ df
 # In diesem Kapitel lernen wir Operationen kennen, die nur auf einer Relation angewendet werden, das sind Duplikateliminierung, Gruppierung und Aggregation.
 # 
 # ### Duplikateliminierung
-# Wie aus der Relationalen Algebra bekannt, ist die Duplikateliminierung auch in SQL möglich. Relationale DBMS verwenden i.d.R. Multimengensemantik und nicht Mengensemantik. Durch Operationen, wie das Enfügen von Duplikaten in Basisrelationen, die Veränderung von Tupeln in Basisrelationen, Projektion in Anfragen, Subanfragen mit z.B UNION ALL oder die Vermehrung von Duplikaten durch Kreuzprodukte, entstehen Duplikate.
+# Wie aus der Relationalen Algebra bekannt, ist die Duplikateliminierung auch in SQL möglich. Relationale DBMS verwenden i.d.R. Multimengensemantik und nicht Mengensemantik. Durch Operationen, wie das Enfügen von Duplikaten in Basisrelationen, die Veränderung von Tupeln in Basisrelationen, Projektion in Anfragen, Subanfragen mit z.B ```UNION ALL``` oder die Vermehrung von Duplikaten durch Kreuzprodukte, entstehen Duplikate.
 # 
-# Um Duplikate zu eliminieren kann man das DISTINCt-Schlüsselwort benutzen, nach folgendem Schema:
+# Um Duplikate zu eliminieren kann man das ```DISTINCT```-Schlüsselwort benutzen, nach folgendem Schema:
 # ```
 # SELECT DISTINCT Attributnamen
 # ```
-# So wird gewährleistet, dass jedes projezierte Element aus Attributnamen nur einmal in der Ausgabe vorkommt. Zu beachten ist noch, dass DISTINCT eine kostenaufwändige Operation ist, da die Ausgabe einmal auf Duplikate hin durchsucht werden muss, mithilfe Sortierung oder Hashing.
+# So wird gewährleistet, dass jedes projezierte Element aus Attributnamen nur einmal in der Ausgabe vorkommt. Zu beachten ist noch, dass ```DISTINCT``` eine kostenaufwändige Operation ist, da die Ausgabe einmal auf Duplikate hin durchsucht werden muss, mithilfe Sortierung oder Hashing.
 # <br><br>
-# Im folgenden Beispiel suchen wir alle Filme, in denen mindestens ein Schauspieler mitspielt. In der Relation spielt_in sind pro Schauspieler Titel und Jahr vorhanden. 
+# Im folgenden Beispiel suchen wir alle Filme, in denen mindestens ein Schauspieler mitspielt. In der Relation ```spielt_in``` sind pro Schauspieler ```Titel``` und ```Jahr``` vorhanden. 
 
 # In[24]:
 
@@ -1453,7 +1444,7 @@ AND Jahr = FilmJahr
 AND SchauspielerName = 'Harrison Ford';
 
 
-# Nun ist die Frage, ob beide Anfragen äquivalent sind. das ist nicht der Fall, da bei der Anfrage mit dem Join Duplikate möglich sind, welches sich aber mit dem DISTINCT-Schlüsselwort lösen lässt.
+# Nun ist die Frage, ob beide Anfragen äquivalent sind. das ist nicht der Fall, da bei der Anfrage mit dem Join Duplikate möglich sind, welches sich aber mit dem ```DISTINCT```-Schlüsselwort lösen lässt.
 
 # In[ ]:
 
@@ -1468,7 +1459,7 @@ AND SchauspielerName = 'Harrison Ford';
 
 
 # ### Aggregation
-# Die aus der Relationalen Algebra bekannte Aggregation ist auch in SQL möglich, die Standardaggregationsoperatoren SUM, AVG, MIN, MAX, COUNT können auf einzelne Attribute in der SELECT-Klausel angewendet werden. Zudem gibt es noch weitere Aggregationsoperatoren wir z.B VAR, STDDEV für die Varianz und Standardabweichung. Es wird auch COUNT(\*) häufig benutzt, welches die Anzahl der Tupel in der Relation, die durch die FROM und WHERE Klauseln definiert wird zählt. Auch die Kombination mit DISTINCT wird häufig benutzt wie z.B COUNT(DISTINCT Jahr) SUM(DISTINCT Gehalt)
+# Die aus der Relationalen Algebra bekannte Aggregation ist auch in SQL möglich, die Standardaggregationsoperatoren ```SUM```, ```AVG```, ```MIN```, ```MAX```, ```COUNT``` können auf einzelne Attribute in der ```SELECT```-Klausel angewendet werden. Zudem gibt es noch weitere Aggregationsoperatoren wir z.B ```VAR```, ```STDDEV``` für die Varianz und Standardabweichung. Es wird auch ```COUNT()``` häufig benutzt, welches die Anzahl der Tupel in der Relation, die durch die FROM und WHERE Klauseln definiert wird zählt. Auch die Kombination mit ```DISTINCT``` wird häufig benutzt wie z.B ```COUNT(DISTINCT Jahr)``` ```SUM(DISTINCT Gehalt)```
 # 
 # #### Aggregation – Beispiele
 # Im folgenden Beispiel möchten wir das Durchschnittsgehalt aller Manager*\Innen ausgeben.
@@ -1485,7 +1476,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# In diesem Beispiel möchten wir alle Einträger der Relation spielt_in zählen.
+# In diesem Beispiel möchten wir alle Einträger der Relation ```spielt_in``` zählen.
 
 # In[69]:
 
@@ -1499,7 +1490,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# In diesem Beispiel zählen wir alle Schauspieler\*innen, die in der spielt_in Relation vorkommen, jedoch wird doppelt gezählt.
+# In diesem Beispiel zählen wir alle Schauspieler\*innen, die in der ```spielt_in``` Relation vorkommen, jedoch wird doppelt gezählt.
 
 # In[70]:
 
@@ -1513,7 +1504,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# Mit DISTINCT wird nicht mehr doppelt gezählt.
+# Mit ```DISTINCT``` wird nicht mehr doppelt gezählt.
 
 # In[71]:
 
@@ -1529,29 +1520,29 @@ df
 
 
 # ### Gruppierung, Aggregation und NULL
-# NULL wird bei der Aggregation ignoriert und trägt somit nicht zu SUM, AVG oder COUNT bei und wird auch nicht als MIN oder MAX ausgegeben. Um die Anzahl der nicht-NULL Werte zuzählen, kann also folgende Anfrage benutzt werden:
+# NULL wird bei der Aggregation ignoriert und trägt somit nicht zu ```SUM```, ```AVG``` oder ```COUNT``` bei und wird auch nicht als ```MIN``` oder ```MAX``` ausgegeben. Um die Anzahl der nicht-```NULL``` Werte zuzählen, kann also folgende Anfrage benutzt werden:
 # ```
 # SELECT COUNT(Länge) FROM Film;
 # ```
 # 
-# Bei der Gruppierung ist NULL ein eigener Gruppierungswert, also gibt es z.B die NULL-Gruppe. Um das zu veranschaulichen betrachten wir die folgende Relation R:
+# Bei der Gruppierung ist NULL ein eigener Gruppierungswert, also gibt es z.B die ```NULL```-Gruppe. Um das zu veranschaulichen betrachten wir die folgende Relation ```R```:
 # 
 # |A|B|
 # |---|---|
 # |NULL|NULL|
 # 
 # 
-# SELECT A, COUNT(B) FROM R GROUP BY A;
+# ```SELECT A, COUNT(B) FROM R GROUP BY A;```
 # <br>
-# Ergebnis: (NULL, 0)
+# Ergebnis: ```(NULL, 0)```
 # <br><br>
-# SELECT A, SUM(B) FROM R GROUP BY A;
+# ```SELECT A, SUM(B) FROM R GROUP BY A;```
 # <br>
-# Ergebnis: (NULL, NULL)
+# Ergebnis: ```(NULL, NULL)```
 # 
 # 
 # ### Gruppierung
-# Auch die aus der Relationalen Algebra bekannte Gruppierung ist in SLQ möglich mittels GROUP BY nach der WHERE-Klausel. Bei der Gruppierung gibt es in der SELECT-Klausel zwei "Sorten" von Attributen, einmal Gruppierungsattribute und einmal aggregierte Attribute. Nicht-aggregierte Werte der SELECT-Klausel müssen in der GROUP BY-Klausel erscheinen, es müssen jedoch keiner der beiden Sorten erscheinen. Eine Gruppierung mit Aggregation können wir im unteren Beispiel sehen.
+# Auch die aus der Relationalen Algebra bekannte Gruppierung ist in SQL möglich mittels ```GROUP BY``` nach der ```WHERE```-Klausel. Bei der Gruppierung gibt es in der ```SELECT```-Klausel zwei "Sorten" von Attributen, einmal Gruppierungsattribute und einmal aggregierte Attribute. Nicht-aggregierte Werte der ```SELECT```-Klausel müssen in der ```GROUP BY```-Klausel erscheinen, es müssen jedoch keiner der beiden Sorten erscheinen. Eine Gruppierung mit Aggregation können wir im unteren Beispiel sehen.
 
 # In[25]:
 
@@ -1565,7 +1556,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# In diesem Beispiel lassen wir die Aggregation weg und suchen nur die Studionamen gruppiert bei StudioName.
+# In diesem Beispiel lassen wir die Aggregation weg und suchen nur die Studionamen gruppiert bei ```StudioName```.
 
 # In[26]:
 
@@ -1611,17 +1602,17 @@ df
 
 # Wenn mehrere Relationen verwendet werden, wie im obigen Beispiel wird die Gruppierung am Schluss durchgeführt. Sie können sich an die folgende Reihenfolge der Ausführung (und des Lesens) richten:
 # <br>
-# 1. FROM-Klausel
+# 1. ```FROM```-Klausel
 # <br>
-# 2. WHERE-Klausel
+# 2. ```WHERE```-Klausel
 # <br>
-# 3. GROUP BY-Klausel
+# 3. ```GROUP``` BY-Klausel
 # <br>
-# 4. SELECT-Klausel
+# 4. ```SELECT```-Klausel
 # <br>
 # <br>
 
-# Möchte man nun die Ergebnismenge nach der Gruppierung einschränken, so geht das nicht durch eine zusätzliche Bedingung in der WHERE-Klausel, sondern es muss das Schlüsselwort HAVING benutzt werden.Benutzt man zusätzlich noch Aggregationen in der HAVING-Klausel, so beziehen sich diese nur auf die aktuelle Gruppe. Wie bei der SELECT-Klausel, dürfen bei der Gruppierung in der HAVING-Klausel nur un-aggregierte Gruppierungsattribute erscheinen.
+# Möchte man nun die Ergebnismenge nach der Gruppierung einschränken, so geht das nicht durch eine zusätzliche Bedingung in der ```WHERE```-Klausel, sondern es muss das Schlüsselwort ```HAVING``` benutzt werden.Benutzt man zusätzlich noch Aggregationen in der ```HAVING```-Klausel, so beziehen sich diese nur auf die aktuelle Gruppe. Wie bei der ```SELECT```-Klausel, dürfen bei der Gruppierung in der ```HAVING```-Klausel nur un-aggregierte Gruppierungsattribute erscheinen.
 # <br>
 # <br>
 # Wir möchten die Summe der Filmlänge von Manager\*Innen ausgeben, dessen Gehälter über 1000000 liegt. Das untere Beispiel erfüllt nicht die Anfrage.
@@ -1640,7 +1631,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# Wie oben schon genannt muss HAVING benutzt werden, um die Ergebnismenge nach der Gruppierung einzuschränken, wie um unteren Beispiel dargestellt wird.
+# Wie oben schon genannt muss ```HAVING``` benutzt werden, um die Ergebnismenge nach der Gruppierung einzuschränken, wie um unteren Beispiel dargestellt wird.
 
 # In[77]:
 
@@ -1675,28 +1666,28 @@ df
 # ### Zusammenfassung SQL
 # Hier werden nocheinmal die Grundbausteine einer SQL Anfrage (mit empfohlener Lesereihenfolge) aufgelistet.
 
-# 6\. SELECT
+# 6\. ```SELECT```
 # <br>
-# 1\. FROM
+# 1\. ```FROM```
 # <br>
-# 2\. WHERE
+# 2\. ```WHERE```
 # <br>
-# 3\. GROUP BY
+# 3\. ```GROUP BY```
 # <br>
-# 4\. HAVING
+# 4\. ```HAVING```
 # <br>
-# 5\. ORDER BY
+# 5\. ```ORDER BY```
 
-# Bei einer Anfrage die auf eine Datenbank zugreift sins SELECT … FROM … Pflicht. Zuletzt darf HAVING nur in Kombination mit GROUP BY erscheinen.
+# Bei einer Anfrage die auf eine Datenbank zugreift sind ```SELECT``` … ```FROM``` … Pflicht. Zuletzt darf ```HAVING``` nur in Kombination mit ```GROUP BY``` erscheinen.
 
 # ## Datenbearbeitung(DML)
-# Zuvor haben wir SQL nur als Anfragesprache betrachtet. In diesem Kapitel betrachten wir SQL nun als DMl(Data Manipulation Language), also das Bearbeiten von Daten. In SQL stehen folgende Funktione zur Verfügung um Daten zu bearbeiten Create, Read, Update und Delete(CRUD). Um einzelne Tupel einzufügen, zu löschen und zu ändern.
+# Zuvor haben wir SQL nur als Anfragesprache betrachtet. In diesem Kapitel betrachten wir SQL nun als DML(Data Manipulation Language), also das Bearbeiten von Daten. In SQL stehen folgende Funktione zur Verfügung um Daten zu bearbeiten Create, Read, Update und Delete(CRUD). Um einzelne Tupel einzufügen, zu löschen und zu ändern.
 # 
 # 
 # ### Einfügen
-# Als Grundbaustein für das Einfügen in einer Relation R, muss man folgendem Schema folgen INSERT INTO R($A_1$, …, $A_n$) VALUES ($v_1$,…,$v_n$), wobei $A_1$,...,$A_n$ die Attribute der Relation R sind und $v_1$ ,...,$v_n$ die zu einfügenden Werte. Hierbei muss die Reihenfolge der Werte und Attribute beachtet werden, die Reihenfolge sollte entsprechend der Spezifikation des Schemas (CREATE TABLE ...) erfolgen. Falls beim INSERT Attribute fehlen, wird der Default-Wert aus der Tabellendefinition eingesetzt bzw. NULL, falls nicht anders angegeben wurde. 
+# Als Grundbaustein für das Einfügen in einer Relation R, muss man folgendem Schema folgen ```INSERT INTO R```($A_1$, …, $A_n$) ```VALUES``` ($v_1$,…,$v_n$), wobei $A_1$,...,$A_n$ die Attribute der Relation ```R``` sind und $v_1$ ,...,$v_n$ die zu einfügenden Werte. Hierbei muss die Reihenfolge der Werte und Attribute beachtet werden, die Reihenfolge sollte entsprechend der Spezifikation des Schemas ```(CREATE TABLE ...)``` erfolgen. Falls beim ```INSERT``` Attribute fehlen, wird der Default-Wert aus der Tabellendefinition eingesetzt bzw. ```NULL```, falls nicht anders angegeben wurde. 
 # <br><br>
-# Ein Beispiel für das Einfügen eines Tupels in die spielt_in-Relation ist unten zu finden.
+# Ein Beispiel für das Einfügen eines Tupels in die ```spielt_in```-Relation ist unten zu finden.
 
 # In[ ]:
 
@@ -1716,7 +1707,7 @@ get_ipython().run_line_magic('sql', 'INSERT INTO spielt_in VALUES (‘Star Wars�
 # In SQL ist es auch möglich Einfügeoperationen mit Anfragen zu kombinieren.
 # <br>
 # <br>
-# Haben wir die beiden Relationen Studio(Name, Adresse, VorsitzendeID) und Film(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentinID). Nun kann es sein, dass Studios in der Film-Relation vorkommen, aber nicht in der Studio-Relation. Wir möchten also alle Studios der Film-Relation ind die Studio-Relation einfügen. In der unteren Anfrage fügen wir jene StudioNamen in die Studio-Relation ein, die nicht in der Studio-Relation vorkommen. Jedoch bleiben bei dieser Anfrage die Attribute Adresse und VorsitzendeID auf NULL, welches im Allgemeinen Redundanz erzeugt, was vermieden werden sollte.
+# Haben wir die beiden Relationen ```Studio(Name, Adresse, VorsitzendeID)``` und ```Film(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentinID)```. Nun kann es sein, dass Studios in der Film-Relation vorkommen, aber nicht in der Studio-Relation. Wir möchten also alle Studios der Film-Relation ind die Studio-Relation einfügen. In der unteren Anfrage fügen wir jene StudioNamen in die Studio-Relation ein, die nicht in der Studio-Relation vorkommen. Jedoch bleiben bei dieser Anfrage die Attribute Adresse und VorsitzendeID auf ```NULL```, welches im Allgemeinen Redundanz erzeugt, was vermieden werden sollte.
 
 # In[ ]:
 
@@ -1732,7 +1723,7 @@ WHERE StudioName NOT IN
 
 # ### Ausführungsreihenfolge beim Einfügen
 # 
-# Betrachten wir wieder das vorherige Beispiel, einmal mit DISTINCT und einmal ohne. Wir fragen uns, ob jedes mal wenn, ein StudioName gefunden wurde, der noch nicht in der Tabelle enthalten ist, dieser direkt schon in die Tabelle eingefügt wird oder ob zuerst die ganze Anfrage ausgeführt wird. Tatsächlich ist es in SQL Standard so, dass zuerst die gesamte Anfrage ausgeführt wird und dann erst in die Relation eingefügt wird.
+# Betrachten wir wieder das vorherige Beispiel, einmal mit ```DISTINCT``` und einmal ohne. Wir fragen uns, ob jedes mal wenn, ein StudioName gefunden wurde, der noch nicht in der Tabelle enthalten ist, dieser direkt schon in die Tabelle eingefügt wird oder ob zuerst die ganze Anfrage ausgeführt wird. Tatsächlich ist es in SQL Standard so, dass zuerst die gesamte Anfrage ausgeführt wird und dann erst in die Relation eingefügt wird.
 
 # In[ ]:
 
@@ -1759,12 +1750,12 @@ WHERE StudioName NOT IN
 
 
 # #### Bulk insert
-# Beim INSERT werden die Daten zeilenbasiert aus SQL statements eingefügt. Es ist möglich, dass die Daten ,die in eine Datenbank eingefügt werden sollen schon in einer bestimmten Form vorliegen. Da bietet es sich an den Befehl IMPORT zu benutzten, mitdem Daten aus einer Datei Zeilenbasiert eingefügt werden. Hierbei bleiben die gesetzten Trigger und Nebenbedingungen weiterhin aktiv und auch die Indizes werden laufend aktualisiert.
+# Beim ```INSERT``` werden die Daten zeilenbasiert aus SQL statements eingefügt. Es ist möglich, dass die Daten ,die in eine Datenbank eingefügt werden sollen schon in einer bestimmten Form vorliegen. Da bietet es sich an den Befehl IMPORT zu benutzten, mitdem Daten aus einer Datei Zeilenbasiert eingefügt werden. Hierbei bleiben die gesetzten Trigger und Nebenbedingungen weiterhin aktiv und auch die Indizes werden laufend aktualisiert.
 # <br><br>
-# Eine deutlich effizientere Weise Daten einzufügen ist mit LOAD, hier wird seitenbasiert aus einer Datei eingefügt, wobei Trigger und Nebenbedingungen nicht berücksichtigt werden und die Indizes am Ende neu generiert werden. Man muss beachten, dass die Syntax von IMPORT und LOAD jeweils DBMS-spezifisch ist, z.B gibt es in sqlite keinen LOAD-Befehl.
+# Eine deutlich effizientere Weise Daten einzufügen ist mit ```LOAD```, hier wird seitenbasiert aus einer Datei eingefügt, wobei Trigger und Nebenbedingungen nicht berücksichtigt werden und die Indizes am Ende neu generiert werden. Man muss beachten, dass die Syntax von ```IMPORT``` und ```LOAD``` jeweils DBMS-spezifisch ist, z.B gibt es in sqlite keinen ```LOAD```-Befehl.
 # 
 # ### Löschen
-# Der Grundbaustein zum Löschen von Tupeln ist DELETE FROM R WHERE …, wobei R wie beim Einfügen eine Relation ist. Beim Delete werden immer ganze Tupel gelöscht. Im Gegensatz zum Einfügen, können die zu löschenden Tupel nicht direkt angegeben werden, sondern müssen in der WHERE-Klausel umschrieben werden. Um ein konkretes Tupel zu löschen, müssen also alle Werte dieses Tupel oder wenn vorhanden eine ID bekannt sein. Es werden alle Tupel gelöscht für die TRUE in der WHERE-Kausel gilt. Es ist auch möglich die WHERE-Klausel wegzulassen, dann werden alle Tupel der Relation gelöscht. Unten finden Sie einige Beispiele.
+# Der Grundbaustein zum Löschen von Tupeln ist ```DELETE FROM R WHERE``` …, wobei ```R``` wie beim Einfügen eine Relation ist. Beim Delete werden immer ganze Tupel gelöscht. Im Gegensatz zum Einfügen, können die zu löschenden Tupel nicht direkt angegeben werden, sondern müssen in der ```WHERE```-Klausel umschrieben werden. Um ein konkretes Tupel zu löschen, müssen also alle Werte dieses Tupel oder wenn vorhanden eine ID bekannt sein. Es werden alle Tupel gelöscht für die ```TRUE``` in der ```WHERE```-Kausel gilt. Es ist auch möglich die ```WHERE```-Klausel wegzulassen, dann werden alle Tupel der Relation gelöscht. Unten finden Sie einige Beispiele.
 
 # In[ ]:
 
@@ -1792,7 +1783,7 @@ DELETE FROM Manager;
 
 
 # ### Verändern (update)
-# Der Grundbaustein zum Verändern von Tupeln ist UPDATE R SET … WHERE …, wobei auch hier R eine Relation ist. In der SET-Klausel werden komma-separiert Werte zugewiesen. Im Beispiel unten wird in der Managerrelation vor dem Name jener Manager\*Innen eine 'Präs.' gesetzt, dessen Manager\*InID in den Präsident\*InnenIDs vorkommt.
+# Der Grundbaustein zum Verändern von Tupeln ist ```UPDATE R SET``` … ```WHERE``` …, wobei auch hier ```R``` eine Relation ist. In der ```SET```-Klausel werden komma-separiert Werte zugewiesen. Im Beispiel unten wird in der Managerrelation vor dem Name jener Manager\*Innen eine 'Präs.' gesetzt, dessen Manager\*InID in den Präsident\*InnenIDs vorkommt.
 # 
 
 # In[ ]:
@@ -1813,21 +1804,21 @@ WHERE ManagerinID IN
 # 
 # Die vorhandenen Datentypen hängen von dem benutzten DBMS ab, wir betrachten die Datentypen von DB2 von IBM. Jedes definierte Attribut muss einen Datentyp haben. Es gibt: 
 # <br>
-# - CHAR(n) – String fester Länge (n Zeichen) 
+# - ```CHAR(n)``` – String fester Länge (n Zeichen) 
 # <br>
-# - VARCHAR(n) – String variabler Länge, maximal n Zeichen 
+# - ```VARCHAR(n)``` – String variabler Länge, maximal n Zeichen 
 # <br>
-# - BIT(n) bzw. BIT VARYING(n) – Wie CHAR, aber Bits 
+# - ```BIT(n)``` bzw. ```BIT VARYING(n)``` – Wie ```CHAR```, aber Bits 
 # <br>
-# - BOOLEAN – TRUE, FALSE oder UNKNOWN 
+# - ```BOOLEAN``` – ```TRUE```, ```FALSE``` oder ```UNKNOWN``` 
 # <br>
-# - INT / INTEGER bzw. SHORTINT – 8 bzw. 4 Byte 
+# - ```INT / INTEGER``` bzw. ```SHORTINT``` – 8 bzw. 4 Byte 
 # <br>
-# - FLOAT / REAL bzw. DOUBLE PRECISION 
+# - ```FLOAT``` / ```REAL``` bzw. ```DOUBLE PRECISION``` 
 # <br>
-# - DECIMAL (n,d) – Z.B. Gehalt DECIMAL(7,2) – 7 Stellen, davon 2 Nachkommastellen
+# - ```DECIMAL (n,d)``` – Z.B. Gehalt ```DECIMAL(7,2)``` – 7 Stellen, davon 2 Nachkommastellen
 # <br>
-# - CLOB und BLOB
+# - ```CLOB``` und ```BLOB```
 # <br><br>
 # Unten finden Sie einen Überblick aller DB2 Datentypen.
 # 
@@ -1835,7 +1826,7 @@ WHERE ManagerinID IN
 # ![title](db2_datentypen.jpg)
 
 # ### Tabellen
-# Der Grundbaustein zum Erzeugenvon Tabellen ist CREATE TABLE R …, wobei R der Name der Tabelle ist. In runden Klammern werden kommasepariert die gewünschten Attribute mit den jeweiligen Datentypen genannt. 
+# Der Grundbaustein zum Erzeugenvon Tabellen ist ```CREATE TABLE R``` …, wobei ```R``` der Name der Tabelle ist. In runden Klammern werden kommasepariert die gewünschten Attribute mit den jeweiligen Datentypen genannt. 
 
 # In[ ]:
 
@@ -1848,18 +1839,18 @@ Geschlecht CHAR(1),
 Geburtstag DATE );
 
 
-# Um eine Tabelle zu löschen wird DROP TABLE R ... verwendet.
+# Um eine Tabelle zu löschen wird ```DROP TABLE R``` ... verwendet.
 # <br><br>
-# Auch das Verändern des Tabellenschemas ist möglich, undzwar mit ALTER TABLE R ... . Es können neue Attribute hinzugefügt werden, alte gelöscht oder auch Datentypen von bestehenden Attributen verändert werden. Zu beachten ist, dass bei dem Hinzufügen von neuen Attributen Nullwerte entstehen.
+# Auch das Verändern des Tabellenschemas ist möglich, undzwar mit ```ALTER TABLE R ```... . Es können neue Attribute hinzugefügt werden, alte gelöscht oder auch Datentypen von bestehenden Attributen verändert werden. Zu beachten ist, dass bei dem Hinzufügen von neuen Attributen Nullwerte entstehen.
 # <br>
-# - ALTER TABLE Schauspieler ADD Telefon CHAR(6);
+# - ```ALTER TABLE Schauspieler ADD Telefon CHAR(6);```
 # <br>
-# - ALTER TABLE Schauspieler DROP Geburtstag;
+# - ```ALTER TABLE Schauspieler DROP Geburtstag;```
 # <br>
-# - ALTER TABLE Schauspieler MODIFY Telefon CHAR(10);
+# - ```ALTER TABLE Schauspieler MODIFY Telefon CHAR(10);```
 
 # ### Default-Werte
-# Default-Werte können mit dem Schlüsselwort DEFAULT gesetzt werden. In dem Beispiel unten wird für das Attribut Geschlecht der Default-Wert '?' bestimmt und für den Geburtstag das Default-Datum '0000-00-00'.
+# Default-Werte können mit dem Schlüsselwort ```DEFAULT``` gesetzt werden. In dem Beispiel unten wird für das Attribut Geschlecht der Default-Wert ```?``` bestimmt und für den Geburtstag das Default-Datum ```'0000-00-00'```.
 
 # In[ ]:
 
@@ -1872,7 +1863,7 @@ Geschlecht CHAR(1) DEFAULT ‚?‘,
 Geburtstag DATE DEFAULT DATE ‚'0000-00-00');
 
 
-# Ein Default-Wert kann auch nachträglich mit einem ALTER TABLE hinzugefügt werden.
+# Ein Default-Wert kann auch nachträglich mit einem ```ALTER TABLE``` hinzugefügt werden.
 
 # In[ ]:
 
@@ -1885,7 +1876,7 @@ ADD Telefon CHAR(16) DEFAULT ‚unbekannt‘;
 # ### Indizes
 # Ein Index auf einem Attribut ist eine Datenstruktur, die es dem DBMS erleichtert, Tupel mit einem bekannten Wert des Attributs zu finden. Indizes sind nicht SQL-Standard, aber sind in (fast) jedem DBMS verfügbar.
 # <br><br>
-# Möchten wir z.B alle Disney Filme aus 1990 ausgeben. Wir könnte mit Variante 1 alle Tupel der Filmerelation durchsuchen und die WHERE Bedingung prüfen. Mit Variante 2 erstellen wir einen Index CREATE INDEX JahrIndex ON Film(Jahr) und können direkt alle Filme aus 1990 betrachten und diese auf ‚Disney‘ prüfen, da der Optimizer des DBMS unsern erstellten Inddex sofort zur Filterung der Bedingung Jahr = 1990 benutzen kann. Zuletzt in einer dritten Variante erstellen wir einen multidimensionalen Index CREATE INDEX JahrStudioIndex ON Film(Jahr, Studioname) und holen uns direkt alle Filme aus 1990 von Disney. Welche der Varianten wir letzlich wählen, hängt von zu erwartenden Anfragen ab. Bei dem Anlegen von Indizes muss auch beachtet werden, dass diese Speicher belegen und aktualisiert werden müssen, wenn neue Daten hinzugefügt wurden.
+# Möchten wir z.B alle Disney Filme aus 1990 ausgeben. Wir könnte mit Variante 1 alle Tupel der Filmerelation durchsuchen und die ```WHERE``` Bedingung prüfen. Mit Variante 2 erstellen wir einen Index ```CREATE INDEX JahrIndex ON Film(Jahr)``` und können direkt alle Filme aus 1990 betrachten und diese auf ‚Disney‘ prüfen, da der Optimizer des DBMS unsern erstellten Inddex sofort zur Filterung der Bedingung Jahr = 1990 benutzen kann. Zuletzt in einer dritten Variante erstellen wir einen multidimensionalen Index ```CREATE INDEX JahrStudioIndex ON Film(Jahr, Studioname)``` und holen uns direkt alle Filme aus 1990 von Disney. Welche der Varianten wir letzlich wählen, hängt von zu erwartenden Anfragen ab. Bei dem Anlegen von Indizes muss auch beachtet werden, dass diese Speicher belegen und aktualisiert werden müssen, wenn neue Daten hinzugefügt wurden.
 
 # In[79]:
 
@@ -1922,7 +1913,7 @@ ON Film(Jahr, Studioname);
 
 # Die Reihenfolge der Relationen bei Indizes auf mehreren Attributen ist wichtig. Wenn der Index sort-basiert ist, wird nach Jahr sortiert und für jedes Jahr jeweils nach Studioname. Für unser Beispiel wird mplizit zuerst nach Jahr gefolgt von StudioName gesucht.
 # <br><br>
-# Um einen Index zu löschen kann DROP INDEX ... verwendet werden.
+# Um einen Index zu löschen kann ```DROP INDEX``` ... verwendet werden.
 
 # In[ ]:
 
@@ -1941,7 +1932,7 @@ DROP INDEX JahrIndex;
 # Bei Vorüberlegungen zur Indexwahl muss ebenso beachtet werden, wie Indizes implementiert sind. Typischerweise sind Relationen über mehrere Diskblöcke gespeichert, wobei sich die wichtigsten Datenbankkosten aus der Anzahl, der in den Hauptspeicher gelesenen Diskblöcke bildet. Anders müssen bei Punktanfragen mit einem Index nur ein Block, statt allen gelesen werden, aber der Index selbst muss auch gespeichert und gelesen werden. In der Regel sind viel mehr Tupel pro Block repräsentiert und es werden häufig nur Schlüsselwerte und Speicheradresse und keine Daten gespeichert. Beim Updaten sind die Kosten sogar doppelt, da die Blöcke für das Lesen und Schriben der Index-Blöcke geladen werden muss.
 # 
 # #### Indexwahl – Beispiel
-# Nun schauen wir uns ein Beispiel an. Haben wir die Relation spielt_in(FilmTitel, FilmJahr, SchauspielerName) udn die Variablen s,t,j gegeben und möchten drei typische Anfragen ausführen. Wir suchen einma lden Titel und das Jahr eines bestimmten Filmes s, den Schauspieler der in einem bestimmten Film eines bestimmten Jahres mitgespielt hat und wollen zuletzt in die Relation spielt_in Tupel einfügen.
+# Nun schauen wir uns ein Beispiel an. Haben wir die Relation ```spielt_in(FilmTitel, FilmJahr, SchauspielerName)``` und die Variablen s,t,j gegeben und möchten drei typische Anfragen ausführen. Wir suchen einmal den Titel und das Jahr eines bestimmten Filmes s, den Schauspieler der in einem bestimmten Film eines bestimmten Jahres mitgespielt hat und wollen zuletzt in die Relation ```spielt_in``` Tupel einfügen.
 
 # In[7]:
 
@@ -2015,7 +2006,7 @@ SELECT AVG(DOUBLE(m)) FROM counts
 
 # ## Sichten
 # 
-# Bisher kennen wir nur Relationen, die aus CREATE TABLE Ausdrücken existieren und tatsächlich (materialisiert, physisch) in der Datenbank vorhanden sind. Dieses sind persistent und auf ihnen können Updates ausgeführt werden. In diesem Kapitel beschäftigen wir uns mit Sichten. Sichten entsprechen Anfragen, denen man einen Namen gibt. Sie wirken wie physische Relationen, jedoch existieren die Daten aus Sichten nur virtuell und Updates darauf sind nur manchmal möglich. Views stellen Separation of Concern dar, können Effizienz verbessern und ermöglichen einfachere Anfragen.
+# Bisher kennen wir nur Relationen, die aus ```CREATE TABLE``` Ausdrücken existieren und tatsächlich (materialisiert, physisch) in der Datenbank vorhanden sind. Dieses sind persistent und auf ihnen können Updates ausgeführt werden. In diesem Kapitel beschäftigen wir uns mit Sichten. Sichten entsprechen Anfragen, denen man einen Namen gibt. Sie wirken wie physische Relationen, jedoch existieren die Daten aus Sichten nur virtuell und Updates darauf sind nur manchmal möglich. Views stellen Separation of Concern dar, können Effizienz verbessern und ermöglichen einfachere Anfragen.
 # <br>
 # <br>
 # ![title](stonebraker1.jpg)
@@ -2025,7 +2016,7 @@ SELECT AVG(DOUBLE(m)) FROM counts
 # Michael Stonebraker: Implementation of Integrity Constraints and Views by Query Modification. SIGMOD Conference 1975: 65-78
 
 # ### Sichten in SQL erstellen
-# Der Grundbaustein zum erstellen von Sichten(Views) ist CREATE VIEW Name AS Anfrage. In der Anfrage dürfen Relationen auch gejoint sein.
+# Der Grundbaustein zum erstellen von Sichten(Views) ist ```CREATE VIEW Name AS Anfrage```. In der Anfrage dürfen Relationen auch gejoint sein.
 # <br><br>
 # Im folgenden erstellen wir eine View auf alle Filme von Paramount und nennen die View ParamountFilme.
 
@@ -2041,7 +2032,7 @@ WHERE StudioName = "Paramount";
 
 # Bei einer Anfrage an eine Sicht, wird die Anfrage aus der Sichtdefinition ausgeführt und die ursprüngliche Anfrage verwendet das Ergebnis dann als Relation. Bei Änderungen der zugrundeliegenden Relationen ändern sich quch die Daten der Sicht.
 # <br><br>
-# Um eine Sicht zu löschen kann DROP VIEW Name, für unser Beispiel DROP VIEW ParamountFilme, benutzt werden, das Löschen der Sicht hat keinen Einfluss auf die Basisdaten
+# Um eine Sicht zu löschen kann ```DROP VIEW Name```, für unser Beispiel ```DROP VIEW ParamountFilme```, benutzt werden, das Löschen der Sicht hat keinen Einfluss auf die Basisdaten
 # 
 # ### Anfragen an Sichten
 # Wir suchen nun alle Filme von Paramount aus 1979 und tun dies indem wir eine Anfrage an unsere ParamountFilme-Sicht stellen. Ohne Sicht müssten wir die Anfrage in eine Anfrage an die Basisrelation umwandeln wie eine Codezelle weiter zu sehen ist.
@@ -2072,7 +2063,7 @@ FROM ParamountFilme, spielt_in
 WHERE Titel = FilmTitel AND Jahr = FilmJahr;
 
 
-# Im Folgenden nochmal ein weiteres Beispiel. Haben wir die Relationen Film(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentinID) und ManagerIn (Name, Adresse, ManagerinID, Gehalt) gegeben. Wir erstellen eine View von allen Filmproduzent\*Innen und suchen mit der Sicht den/die Profuzent\*In für den Film Gone with the Wind.
+# Im Folgenden nochmal ein weiteres Beispiel. Haben wir die Relationen ```Film(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentinID)``` und ```ManagerIn (Name, Adresse, ManagerinID, Gehalt)``` gegeben. Wir erstellen eine View von allen Filmproduzent\*Innen und suchen mit der Sicht den/die Profuzent\*In für den Film Gone with the Wind.
 
 # In[ ]:
 
@@ -2149,21 +2140,21 @@ FROM Film;
 # ### Updates auf Sichten
 # In einigen Fällen ist es möglich, Einfüge-, Lösch- oder Updateoperationen auf Sichten durchzuführen. Hier stellen sich die Fragen: Wo sind die Sichten gespeichert? Welche Relationen sind betroffen? Wie verläuft die Zuordnung der Änderung zur Sicht?
 # <br><br>
-# In den meisten Fällen wird die Update-Operation einer Sicht auf eine Update-Operation der zugrunde liegenden Basisrelationen übersetzt. Hierbei darf kein DISTINCT, sondern nur eine normales SELECT verwendet werden. Eine gute Kenntnis der Datenbank muss vorausgesetzt sein, da durch das Vergessen mancher Attribute Inkonsistenzen durch NULL-Werte entstehen können.
+# In den meisten Fällen wird die Update-Operation einer Sicht auf eine Update-Operation der zugrunde liegenden Basisrelationen übersetzt. Hierbei darf kein ```DISTINCT```, sondern nur eine normales ```SELECT``` verwendet werden. Eine gute Kenntnis der Datenbank muss vorausgesetzt sein, da durch das Vergessen mancher Attribute Inkonsistenzen durch ```NULL```-Werte entstehen können.
 # <br><br>
 # □ Nur bei einer Relation
 # <br>
 # – Keine Subanfragen mit Selbstbezug
 # <br>
-# □ Nur bei normalem SELECT
+# □ Nur bei normalem ```SELECT```
 # <br>
-# – Kein DISTINCT
+# – Kein ```DISTINCT```
 # <br>
-# □ Nur falls genug Attribute verwendet werden, so dass alle anderen Attribute mit NULL oder dem Default-Wert gefüllt werden können.
+# □ Nur falls genug Attribute verwendet werden, so dass alle anderen Attribute mit ```NULL``` oder dem Default-Wert gefüllt werden können.
 # 
 # ### Einfügen auf Sichten – Beispiel
 # 
-# Haben wir die Relation Filme(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentinID) gegeben. Wir wollen nun einen weiteren Film in unsere ParamountFilme-Sicht einfügen.
+# Haben wir die Relation ```Filme(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentinID)``` gegeben. Wir wollen nun einen weiteren Film in unsere ParamountFilme-Sicht einfügen.
 
 # In[ ]:
 
@@ -2183,7 +2174,7 @@ INSERT INTO ParamountFilme
 VALUES (‚Star Trek‘, 1979);
 
 
-# Das Einfügen wie oben dargestellt ist nicht erlaubt, das kein Wert für Studioname vorhanden ist und nicht überprüft wern kann, ob es sich um ein Paramountfilm handelt. Unten sehen wir eine korrekte Weise des Einfügens in die Sicht. Es wurde eine neue Sicht erstellt die StudioName beinhaltet. Der StudioName bei der Einfügeoperation muss Paramount sein, da kein anderer StudioName der Sicht entspricht. Das Neue Tupel ist (‚Star Trek‘, 1979, 0, NULL, ‚Paramount‘, NULL).
+# Das Einfügen wie oben dargestellt ist nicht erlaubt, das kein Wert für Studioname vorhanden ist und nicht überprüft wern kann, ob es sich um ein Paramountfilm handelt. Unten sehen wir eine korrekte Weise des Einfügens in die Sicht. Es wurde eine neue Sicht erstellt die StudioName beinhaltet. Der StudioName bei der Einfügeoperation muss Paramount sein, da kein anderer StudioName der Sicht entspricht. Das Neue Tupel ist ```(‚Star Trek‘, 1979, 0, NULL, ‚Paramount‘, NULL)```.
 
 # In[ ]:
 
@@ -2247,7 +2238,7 @@ WHERE Titel = ‚Star Trek the Movie‘ AND StudioName = ‚Paramount‘;
 
 
 # ### Tupelmigration
-# Angenommen wir erstellen eine Sicht auf die Relation ManagerIn(Name, Adresse, ManagerinID, Gehalt), welche alle Manager\*Innen mit einem Gehalt größer als 2 Millionen beinhaltet. 
+# Angenommen wir erstellen eine Sicht auf die Relation ```ManagerIn(Name, Adresse, ManagerinID, Gehalt)```, welche alle Manager\*Innen mit einem Gehalt größer als 2 Millionen beinhaltet. 
 
 # In[ ]:
 
@@ -2259,7 +2250,7 @@ CREATE VIEW Reiche AS
     WHERE Gehalt > 2000000;
 
 
-# Nun updaten wir unsere View, sodass der Manager mit der MnagerinID=25 ein Gehalt von 1,5 Millionen haben muss. Das Tupel (‚Eisner\`, ‚Hollywood‘, 25, 3000000), welches vor dem Update noch in der Sicht enthalten war, wird danach aus der Sicht „herausbewegt“.
+# Nun updaten wir unsere View, sodass der Manager mit der ManagerinID=25 ein Gehalt von 1,5 Millionen haben muss. Das Tupel (‚Eisner\`, ‚Hollywood‘, 25, 3000000), welches vor dem Update noch in der Sicht enthalten war, wird danach aus der Sicht „herausbewegt“.
 
 # In[ ]:
 
@@ -2269,7 +2260,7 @@ UPDATE Reiche SET Gehalt = 1500000
 WHERE ManagerinID = 25;
 
 
-# Um Tupelmigration zu verhindern, können problematische Update durch WITH CHECK OPTION abgelehnt werden.
+# Um Tupelmigration zu verhindern, können problematische Update durch ```WITH CHECK OPTION``` abgelehnt werden.
 
 # In[ ]:
 
@@ -2341,36 +2332,36 @@ WHERE Jahr = 1979;
 # - Ist es günstig, Sichten aus V zur Beantwortung von Q zu verwenden? Welche?
 
 # ## Zusammenfassung
-# In diesem Kapitel haben wir uns mit der Anfragesprache SQL beschäftigt. Zuerst haben wir uns mit dem Grundgerüst aller SQL-Anfragen dem SFW(SELECT FROM WHERE) Block beschäftigt, gefolgt von Subanfragen in der FROM- und WHERE-Klausel und den Schlüsselwörtern EXISTS, IN, ALL, ANY ,die genutzt werden um Bedingungen an Relationen zu stellen. Weiterhin haben wir die Mengenoperationen UNION, INTERSECT, EXCEPT und diesbezüglich DISTINCT,ALL(bei Multimengensemantik) kennengelernt. Wir haben auch die verschiedenen Joins und Outerjoins betrachtet und den Einsatz von Nullwerten kennengelernt. Darüber hinaus haben wir gesehen wie Gruppierung und Aggregation in SQL in Kombination mit Schlüsselwörtern wie GROUP BY, HAVING und MIN, MAX, COUNT umgesetzt wird.
+# In diesem Kapitel haben wir uns mit der Anfragesprache SQL beschäftigt. Zuerst haben wir uns mit dem Grundgerüst aller SQL-Anfragen dem SFW(```SELECT``` ```FROM``` ```WHERE```) Block beschäftigt, gefolgt von Subanfragen in der ```FROM```- und ```WHERE```-Klausel und den Schlüsselwörtern ```EXISTS```, ```IN```, ```ALL```, ```ANY``` ,die genutzt werden um Bedingungen an Relationen zu stellen. Weiterhin haben wir die Mengenoperationen ```UNION```, ```INTERSECT```, ```EXCEPT``` und diesbezüglich ```DISTINCT```,```ALL```(bei Multimengensemantik) kennengelernt. Wir haben auch die verschiedenen Joins und Outerjoins betrachtet und den Einsatz von Nullwerten kennengelernt. Darüber hinaus haben wir gesehen wie Gruppierung und Aggregation in SQL in Kombination mit Schlüsselwörtern wie ```GROUP BY```, ```HAVING``` und ```MIN```, ```MAX```, ```COUNT``` umgesetzt wird.
 # <br>
 # <br>
-# Im Weiteren haben wir SQL als DML betrachtet ,um Datenbankveränderungen mit INSERT, UPDATE, DELETE zu schaffen. In Bezug auf SQL als DDL haben wir Schemata und Datentypen kennengelernt, die zur Erstellung und Veränderung von Relationen mit CREATE TABLE und ALTER TABLE nötig sind. Anschließend haben wir die Datenstruktur Index betrachtet, die die Suche nach Tupel erleichtert. Zuletzt haben wir uns mit Sichten und materalisierten Sichten, sowie Anfragen und Updates darauf beschäftigt.
+# Im Weiteren haben wir SQL als DML betrachtet ,um Datenbankveränderungen mit ```INSERT```, ```UPDATE```, ```DELETE``` zu schaffen. In Bezug auf SQL als DDL haben wir Schemata und Datentypen kennengelernt, die zur Erstellung und Veränderung von Relationen mit ```CREATE TABLE``` und ```ALTER TABLE``` nötig sind. Anschließend haben wir die Datenstruktur Index betrachtet, die die Suche nach Tupel erleichtert. Zuletzt haben wir uns mit Sichten und materalisierten Sichten, sowie Anfragen und Updates darauf beschäftigt.
 
 # ## SQL-Trainer
 # 
 # - Mithilfe des SQL-Trainers können sie ihr erlangtes Wissen aus diesem Kapitel vertiefen und praktisch anwenden:
-# - Die hier verwendete Version des SQL-Trainers von EILD.nrw wird nur in das JupyterBook eingebunden und nicht selbst gehostet. Der SQL-Trainer wird durch GitHub-Pages gehostet. 
+# - Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird über GitHub-Pages gehostet und in das Skript eingebunden. 
 
-# In[1]:
+# In[3]:
 
 
 from IPython.display import IFrame
 
-url = "https://lejuliennn.github.io/sql-trainer/"
+url = "https://luh-dbs.github.io/sql-trainer/"
 IFrame(src=url, width='100%', height=800)
 
 
-# ## Multiple Choice
-# 
-# - Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird nur in das JupyterBook eingebunden und nicht selbst gehostet. Der Multiple-Choice-Trainer wird durch GitHub-Pages gehostet. 
+# ## Fragen
+# - Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird über GitHub-Pages gehostet und in das Skript eingebunden.  
 # - Alle Fragen und Kategorien befinden sich zurzeit in Überarbeitung und sind nicht final. 
+# - Für den vollen Funktionsumfang wird empfohlen einen auf Firefox basierten Browser zu nutzen.
 
-# In[2]:
+# In[4]:
 
 
 from IPython.display import IFrame
 
-url = "https://lejuliennn.github.io/mct-trainer/#/quiz/categories/sql"
+url = "https://luh-dbs.github.io/mct-trainer/#/quiz/categories/sql"
 IFrame(src=url, width='100%', height=800)
 
 

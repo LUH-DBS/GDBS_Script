@@ -26,8 +26,8 @@
 # 
 # - Leicht beschreibbar. Entspricht oft unserer Vorstellung der Daten.
 # - Einfach in einer DB abzubilden (zwei-dimensionales Array, Liste von Arrays, usw. )
-# - Relationen bilden sowohl Entitytypen als auch Relationshiptypen ab.
-# - Ist das abstrakte Modell hinter SQL
+# - Relationen bilden als einzelnes Konstrukt sowohl Entitytypen als auch Relationshiptypen ab.
+# - Ist das abstrakte Modell hinter SQL, welches häufig angewendet wird. 
 
 # ### Elemente des Relationalen Modells
 
@@ -47,7 +47,7 @@
 # ### Formal
 
 # Formal betrachtet können wir die mathematische Definition von Relationen etwas spezieller auf Relationen in Datenbanken anwenden. Ausgangspunkt sind $n$ Domänen $D_1, D_2, \dots, D_n$. Jede Domäne entspricht einer endlichen oder unendlichen Menge von gleichartigen Ausdrücken. Domänen können auch ganz allgemein als Datentypen wie String oder Integer aufgefasst werden. 
-# Eine Relation im Sinne des relationalen Modells ist die Teilmenge des Kreuzproduktes von $n$ Domänen: $R \subseteq D_1 \times D_2 \times \dots \times D_n $. Daraus Ergibt sich, dass es für jede Domäne $D_n$ eine Menge $A_n \subset D_n$ gibt die alle Werte, die in der Zieltabelle vorkommen abbilden. Zum Beispiel könnte $A_n$ die Menge aller Adressen eines Unternehmens sein. Im folgenden Beispiel wird das Nochmal verdeutlicht. Formal gibt es für jede Attributwertmenge $A_n$ auch ein Label $a_n$ welches die Menge bezeichnet. Hier: $a_n=$ "Adressen". Oft wird $A_n$ auch Synonym (unsauber) als Bezeichner verwendet.
+# Eine Relation im Sinne des relationalen Modells ist die Teilmenge des Kreuzproduktes von $n$ Domänen: $R \subseteq D_1 \times D_2 \times \dots \times D_n $. Daraus Ergibt sich, dass es für jede Domäne $D_n$ eine Menge $A_n \subset D_n$ gibt die alle Werte, die in der Zieltabelle vorkommen abbilden. Zum Beispiel könnte $A_n$ die Menge aller Adressen eines Unternehmens sein. Im folgenden Beispiel wird das nochmal verdeutlicht. Formal gibt es für jede Attributwertmenge $A_n$ auch ein Label $a_n$ welches die Menge bezeichnet. Hier: $a_n=$ "Adressen". Oft wird $A_n$ auch Synonym (unsauber) als Bezeichner verwendet.
 # 
 # - Beispiel
 #     - Relationenschema: $R(a_1,a_2,a_3,a_4)$ $\equiv$ Film(Titel, Jahr, Länge, Typ)
@@ -56,7 +56,7 @@
 
 # ### Edgar F. Codd
 
-# Die Relationale-Datenbanktheorie geht auf den Turing Award Gewinner Edgar F. Codd zurück, welcher an der University of Michigan Ann Arbor promoviert hat. Bei IBM (Almaden) hat Codd das Relationalen Modell entwickelt und das Paper „A Relational Model of Data for Large Shared Data Banks" 1970 veröffentlichz.
+# Die Relationale-Datenbanktheorie geht auf den Turing Award Gewinner Edgar F. Codd zurück, welcher an der University of Michigan Ann Arbor promoviert hat. Bei IBM (Almaden) hat Codd das Relationalen Modell entwickelt und das Paper [„A Relational Model of Data for Large Shared Data Banks"](https://www.seas.upenn.edu/~zives/03f/cis550/codd.pdf) 1970 veröffentlicht.
 # <br><br>
 # Literaturhinweis:
 # <br>
@@ -327,17 +327,17 @@
 #  <br>
 # - OO-Stil: Anfrage nur an FilmeZK()
 
-# ## Multiple Choice
-# 
-# - Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird nur in das JupyterBook eingebunden und nicht selbst gehostet. Der Multiple-Choice-Trainer wird durch GitHub-Pages gehostet. 
+# ## Fragen
+# - Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird über GitHub-Pages gehostet und in das Skript eingebunden.  
 # - Alle Fragen und Kategorien befinden sich zurzeit in Überarbeitung und sind nicht final. 
+# - Für den vollen Funktionsumfang wird empfohlen einen auf Firefox basierten Browser zu nutzen.
 
 # In[1]:
 
 
 from IPython.display import IFrame
 
-url = "https://lejuliennn.github.io/mct-trainer/#/quiz/categories/relationalerentwurf"
+url = "https://luh-dbs.github.io/mct-trainer/#/quiz/categories/relationalerentwurf"
 IFrame(src=url, width='100%', height=800)
 
 

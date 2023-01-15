@@ -37,7 +37,7 @@ File [0;32m~/.local/lib/python3.8/site-packages/pandas/io/sql.py:2018[0m, in 
 The above exception was the direct cause of the following exception:
 
 [0;31mDatabaseError[0m                             Traceback (most recent call last)
-Input [0;32mIn [34][0m, in [0;36m<cell line: 5>[0;34m()[0m
+Input [0;32mIn [33][0m, in [0;36m<cell line: 5>[0;34m()[0m
 [1;32m      3[0m __SQL__ [38;5;241m=[39m [38;5;124m"[39m[38;5;124mSELECT Name, Adresse, Geburtstag, Gehalt FROM ManagerIn NATURAL RIGHT OUTER JOIN SchauspielerIn[39m[38;5;124m"[39m
 [1;32m      4[0m conn [38;5;241m=[39m sqlite3[38;5;241m.[39mconnect([38;5;124m"[39m[38;5;124mfilme/filme.db[39m[38;5;124m"[39m)
 [0;32m----> 5[0m df [38;5;241m=[39m [43mpd[49m[38;5;241;43m.[39;49m[43mread_sql_query[49m[43m([49m[43m__SQL__[49m[43m,[49m[43m [49m[43mconn[49m[43m)[49m

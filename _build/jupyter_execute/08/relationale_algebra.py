@@ -12,39 +12,30 @@
 # In den letzten Kapiteln wurde das Relationsschema mit Basisrelationen, die in der Datenbank gespeichert sind, behandelt. Jetzt geht es um „abgeleitete“ Relationenschemata mit virtuellen Relationen, die aus den Basisrelationen berechnet werden. 
 # <br>
 # Die „abgeleiteten“ Relationsschemata werden durch Anfragen definiert. 
-# Daher benötigt man eine Anfragesprache. Eine Eigenschaft von ihr ist es, die Basis-Relationen nicht zu verändern, sondern neue Relationen für den Nutzer oder für die Applikation zu generieren.
-# Eine Anfrage an eine Relation und deren Ergebnisse stellen wieder neue Relationen dar. 
+# Dafür benötigt man eine Anfragesprache. Anfragen sollen hierbei die Basis-Relationen nicht verändern, sondern neue Relationen generieren, die die erforderten Schemata besitzen.
+# Das Ergebnis einer Anfrage ist somit immer eine Relation.
 # 
 
 # ### Kriterien für Anfragesprachen
 
-# Für Anfragesprachen gibt es verschiedene Kritieren. Unter Anderem soll eine Ad-Hoc-Formulierung möglich sein. Der Benutzer soll eine Anfrage formulieren können, ohne ein vollständiges Programm schreiben zu müssen. Wenn man ein neues Programm in einer Sprache wie Python schreibt, muss man sich darum kümmern Bibliotheken zu importieren, usw. Dies ist bei einer Anfragensprache eben nicht der Fall. 
-# <br>
-# Zudem soll eine Anfragesprache eingeschränkt und keine komplette Programmiersprache sein. Sie soll aus einem Standard und nicht aus zu vielen verschiedenen Vokabularien bestehen. Dennoch besteht der SQL-Standard aus mehr als 1300 Seiten!
-# <br>
-# Eine weiteres Kriterium einer Anfragesprache ist die Deskriptivität bzw. die Deklarativität. 
-# Der Benutzer soll formulieren was er haben möchte („Was will ich haben?“) und nicht wie er an das kommt, was er haben möchte („Wie komme ich an das, was ich haben will?“). Das System erstellt die darunterliegenden Programme automatisch zu der gegebenen Anfrage, ohne dass man schreiben muss, wie die Programme genau funktionieren. 
-# <br><br>
-# Zusätzlich muss eine Sprache optimierbar sein. Eine Sprache besteht aus wenigen Operationen.
-# Für die Operatormenge gibt es Optimierungsregeln. Die Optimierung ist abhängig von der Nutzung bzw. von den Daten. Bestimmte Operatoren in bestimmten Situationen kosten unterschiedlich viel. 
-# <br><br>
-# Eine Anfragesprache muss effizient sein, insbesondere die einzelnen Operationen.
-# Im relationalen Modell hat jede Operation eine Komplexität ≤ O(n²)
-# Wobei n die Anzahl der Tupel einer Relation darstellt. 
-# <br><br>
-# Die Abgeschlossenheit ist eine weitere Eigenschaft einer Anfragesprache. Das Ergebnis von Anfragen auf Relationen ist wiederum eine Relation und kann als Eingabe für die nächste Anfrage verwendet werden.
-# <br><br>
-# Eine weitere, aber nicht sehr strenge, Eigenschaft ist die Mengenorientiertheit.
-# Die Operationen sollen auf Mengen von Daten gelten. Dies gilt aber nicht in jedem Fall. 
-# Letztendlich möchte man auf Elemente einer Tabelle zugreifen und nicht nur auf einzelne Elemente  („tuple-at-a-time“), die irgendwo herumliegen. 
-# <br><br>
-# Adäquatheit ist eine weitere Eigenschaft einer Anfragensprache. 
-# Alle Konstrukte des zugrundeliegenden Datenmodells sollen unterstützt werden. 
-# Dazu zählen Relationen, Attribute, Schlüssel, usw. 
-# <br><br>
-# Die Vollständigkeit einer Anfragesprache bedeutet, dass eine Sprache mindestens die Anfragen einer Standardsprache (z.B. relationale Algebra) ausdrücken kann. Die Relationale Algebra dient hierbei als Vorgabe. 
-# <br><br>
-# Zuletzt soll eine Anfragesprache sicher sein. Keine Anfrage, die syntaktisch korrekt ist, darf in eine Endlosschleife geraten oder ein unendliches Ergebnis liefern.
+# Für Anfragesprachen gibt es verschiedene Kritieren. 
+# 
+# - **Ad-Hoc-Formulierung** Die Nutzenden sollen eine Anfrage formulieren können, ohne ein vollständiges Programm schreiben zu müssen. Wenn man ein neues Programm in einer Sprache wie Python schreibt, muss man Bibliotheken importieren, sich über Effizienz und Datenstrukturen Gedanken machen. Dies soll bei einer Anfragensprache nicht der Fall sein. 
+# - **Standardisierung** Eine Anfragesprache sollte einem Standard entsprechend und aus einer minimalen Menge von Vokabularien bestehen. Dennoch besteht der SQL-Standard aus mehr als 1300 Seiten!
+# - **Deklarativität** Ein weiteres Kriterium einer Anfragesprache ist die Deskriptivität bzw. die Deklarativität. Die Nutzenden sollen formulieren was sie haben möchten („Was will ich haben?“) und nicht wie das Ergebnis berechnet werden soll („Wie komme ich an das, was ich haben will?“). Das System erstellt die darunterliegenden Programme automatisch zu der gegebenen Anfrage, ohne dass man die Prozeduren des Programmablaufes beschreiben muss. 
+# - **Optimierbarkeit** Zusätzlich muss eine Anfrage optimierbar sein. Eine Sprache besteht aus wenigen Operationen. Für die Operatormenge gibt es Optimierungsregeln. Die Optimierung ist abhängig von der Nutzung bzw. von den Daten. Ein Operator kann entsprechend unterschiedlich teuer im Sinne der des Ressourcenverbrauches sein. 
+# 
+# - **Effiziente Grundoperatoren** Die Operatoren der Anfragesprache müssen effizient auszuführen sein. Im relationalen Modell hat jede Operation eine Komplexität ≤ $O(n^2)$. Wobei $n$ die Anzahl der Tupel einer Relation darstellt. 
+# 
+# - **Abgeschlossenheit** Die Abgeschlossenheit ist eine weitere Eigenschaft einer Anfragesprache. Das Ergebnis von Anfragen auf Relationen ist wiederum eine Relation und kann als Eingabe für die nächste Anfrage verwendet werden.
+# 
+# - **(Mengenorientiertheit)** Eine weitere, aber nicht sehr strenge, Eigenschaft ist die Mengenorientiertheit. Die Operationen sollen auf Mengen von Daten definiert sein. Dies gilt aber nicht in jedem Fall. Letztendlich möchte man auf Elemente einer Tabelle zugreifen und nicht nur auf einzelne Elemente Datenpunkte, die zusammenhangslos vorkommen. 
+# 
+# - **Angemessenheit** ist eine weitere Eigenschaft einer Anfragensprache, die beschreibt, ob die Sprache auf das Datenmodell passt. Alle Konstrukte des zugrundeliegenden Datenmodells sollen unterstützt werden. Bei relationalem Datenmodell zählen Relationen, Attribute, Schlüssel, usw. 
+# 
+# - **Vollständigkeit** Die Vollständigkeit einer Anfragesprache gibt an, dass eine Sprache eine minimale Menge von Operatoren einer Standardsprache abdeckt. In Bezug auf das relationale Modell bedeutet das, dass mindestens die Anfragen einer der relationale Algebra ausgedrückt werden können.
+# 
+# - **Sicher** Zuletzt soll eine Anfragesprache „sicher“ sein. Keine Anfrage, die syntaktisch korrekt ist, darf in eine Endlosschleife geraten oder ein unendliches Ergebnis liefern.
 
 # ### Anfragealgebra
 
@@ -1229,17 +1220,17 @@
 # <br><br>
 # => R/S: $\pi_{x}$( R ) − alle disqualifizierten Tupel
 
-# ## Multiple Choice
-# 
-# - Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird nur in das JupyterBook eingebunden und nicht selbst gehostet. Der Multiple-Choice-Trainer wird durch GitHub-Pages gehostet. 
+# ## Fragen
+# - Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird über GitHub-Pages gehostet und in das Skript eingebunden.  
 # - Alle Fragen und Kategorien befinden sich zurzeit in Überarbeitung und sind nicht final. 
+# - Für den vollen Funktionsumfang wird empfohlen einen auf Firefox basierten Browser zu nutzen.
 
 # In[1]:
 
 
 from IPython.display import IFrame
 
-url = "https://lejuliennn.github.io/mct-trainer/#/quiz/categories/relationalealgebra"
+url = "https://luh-dbs.github.io/mct-trainer/#/quiz/categories/relationalealgebra"
 IFrame(src=url, width='100%', height=800)
 
 

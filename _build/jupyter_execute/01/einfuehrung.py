@@ -19,7 +19,7 @@
 
 # ## Aufbau eines Datenbanksystems 
 
-# Bevor wir die Aufgaben eines Datenbanksystems genauer betrachten, wollen wir nochmal die Begriffe: Datenbank, Datenbanksystem und Datenbankmanagementsystem trennen. Ein Datenbanksystem besteht aus der Datenbank und dem Datenbankmanagementsystem (DBMS). Die Datenbank setzt sich aus den Daten selbst und den Metadaten zusammen, die die Daten beschreiben. Das DBMS ist eine Softwarekomoponente, die server-basiert arbeitet. Es ermöglicht den Zugriff auf eine oder mehrere Datenbanken. Somit können mehrere Anwendungen und Nutzer als Klienten eine oder mehrere Datenbankserver nutzen.
+# Bevor wir die Aufgaben eines Datenbanksystems genauer betrachten, wollen wir nochmal die Begriffe: Datenbank, Datenbanksystem und Datenbankmanagementsystem trennen. Ein Datenbanksystem besteht aus der Datenbank und dem Datenbankmanagementsystem (DBMS). Die Datenbank setzt sich aus den Daten selbst und den Metadaten zusammen, die die Daten beschreiben. Das DBMS ist eine Softwarekomponente, die server-basiert arbeitet. Es ermöglicht den Zugriff auf eine oder mehrere Datenbanken. Somit können mehrere Anwendungen und Nutzer:innen als Klienten eine oder mehrere Datenbankserver nutzen.
 # 
 # <img src="dbms_aufbau2.jpg" alt="Funktionen" width="500"/>
 # 
@@ -38,11 +38,11 @@
 # - Speicherverwaltung (RAM & Disk)
 # - Transaktionsmanagement
 # - Auch im Mehr-Benutzer-Betrieb
-# - Nutzerverwaltung & Zugangskontrolle
+# - Zugangsverwaltung & Zugangskontrolle
 # 
 
 # **Beispiel(Netflix):**
-# Betrachten Sie das Architekturbild zu dem Streamingdienst Netflix. In dieser Architektur sehen Sie an vier verschiedenen Stellen den Einsatz von Datenbanksystemen. Zunächst sind Nutzergeräte mit mehreren (verteilten) Online transaction processing (OLTP) -Datenbankmanagementsystemen verbunden. Das sind Systeme, auf denen viele Transaktionen pro Sekunde parallel laufen können. Das heißt, dass hierbei Daten häufig verändert werden müssen, jedoch das Gesamtsystem immer einen konsistenten Zustand beibehalten muss. Dann sehen wir sogenannte Stream-processing Systeme, also Datenbanktechnologien, die sich um die effiziente Abwicklung von Datenströmen kümmern. Daran angedockt sind sogenannte Datawarehouses, die über die Zeit Informationen über den gesamten Streamingprozess für die spätere Analyse anhäufen. Im Unterschied zu den OLTP Datenbankmanagementsystemen sprechen wir hier von Online analytical processing (OLAP)-Systemen, die zwar keine häufigen Datenänderungen erfahren, aber sehr komplexe analytische Anfragen effizient beantworten müssen. Das Beispiel zeigt, dass selbst innerhalb eines einzigen Dienstes verschiedene DBS eingesetzt werden müssen, wobei sich die Aufgaben dieser Systeme unterscheiden. 
+# Betrachten Sie das Architekturbild zu dem Streamingdienst Netflix. In dieser Architektur sehen Sie an vier verschiedenen Stellen den Einsatz von Datenbanksystemen. Zunächst sind Endgeräte mit mehreren (verteilten) Online transaction processing (OLTP) -Datenbankmanagementsystemen verbunden. Das sind Systeme, auf denen viele Transaktionen pro Sekunde parallel laufen können. Das heißt, dass hierbei Daten häufig verändert werden müssen, jedoch das Gesamtsystem immer einen konsistenten Zustand beibehalten muss. Dann sehen wir sogenannte Stream-processing Systeme, also Datenbanktechnologien, die sich um die effiziente Abwicklung von Datenströmen kümmern. Daran angedockt sind sogenannte Datawarehouses, die über die Zeit Informationen über den gesamten Streamingprozess für die spätere Analyse anhäufen. Im Unterschied zu den OLTP Datenbankmanagementsystemen sprechen wir hier von Online analytical processing (OLAP)-Systemen, die zwar keine häufigen Datenänderungen erfahren, aber sehr komplexe analytische Anfragen effizient beantworten müssen. Das Beispiel zeigt, dass selbst innerhalb eines einzigen Dienstes verschiedene DBS eingesetzt werden müssen, wobei sich die Aufgaben dieser Systeme unterscheiden. 
 # 
 # <img src="netflix.jpg"  width="500"/>
 # 
@@ -55,7 +55,7 @@
 
 # ## Anforderungen an DBMS nach Codd 1982
 
-# Auch wenn es verschiedene DBMS mit verschiedenen Schwerpunkten gibt, gibt es eine Reihe von Standardanforderungen, die bereits vor über 40 Jahren von Edgar F. Codd formuliert wurden. In dem unten abgebildeten Papier beschreibt Codd (Turing Award Gewinner), den Blueprint für die weitverbreiteten relationalen Datenbanksysteme. In dieser Vorlesung werden wir uns hauptsächlich auf diese Art von Datenbanksysteme beziehen. 
+# Auch wenn es verschiedene DBMS mit verschiedenen Schwerpunkten gibt, gibt es eine Reihe von Standardanforderungen, die bereits vor über 40 Jahren von [Edgar F. Codd](https://en.wikipedia.org/wiki/Edgar_F._Codd) formuliert wurden. In dem unten abgebildeten Papier beschreibt Codd (Turing Award Gewinner), den Blueprint für die weitverbreiteten relationalen Datenbanksysteme. In dieser Vorlesung werden wir uns hauptsächlich auf diese Art von Datenbanksysteme beziehen. 
 # 
 # <img src="anforderungen_nach_codd.jpg" width="500"/>
 
@@ -65,7 +65,7 @@
 # 
 # - Operationen: Das System soll Grundoperationen zum Definieren, Speichern, Abfragen und Ändern von Daten bereitstellen.
 # - Deklarativ: Die Operationen sollten deklarativ definiert werden können. Man soll direkt beschreiben können, welche Daten man haben will, ohne darüber nachdenken zu müssen, wie diese zusammengesetzt werden sollen. Das "Wie" soll das DBMS übernehmen.
-# - Benutzersichten: Das System soll verschiedene Anwendungen, Prioritäten mit entsprechenden Zugriffskontrollmechanismen und Umstrukturierungen erlauben.
+# - Sichten: Das System soll verschiedene Anwendungen, Prioritäten mit entsprechenden Zugriffskontrollmechanismen und Umstrukturierungen erlauben.
 # - Integritätssicherung: Das System soll Methoden und Instrumente für die Wahrung der Integrität der Daten, das heißt dessen Korrektkeit und Konsistenz bereitstellen.
 # - Transaktionen: Das System soll mehrere DB-Operationen als Funktionseinheit betrachten können und Erfolg bzw. Misserfolg einer solchen Einheit verbuchen können. 
 # - Synchronisation: Parallele Transaktionen sollen koordiniert werden, sodass die Daten immer in einem konsistenten Zustand sind.
@@ -74,17 +74,18 @@
 # - Persistenz: Große Datenmengen sollten auf sekundäre und terziere Speicher geladen und effizient wieder abrufbar gemacht werden. 
 # - Katalog: Das System sollte Daten über die verwalteten Daten führen. Es soll möglich sein auf diese Metadaten zuzugreifen. 
 
-# ## Multiple Choice
+# ## Fragen
 # 
-# - Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird nur in das JupyterBook eingebunden und nicht selbst gehostet. Der Multiple-Choice-Trainer wird durch GitHub-Pages gehostet. 
+# - Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird über GitHub-Pages gehostet und in das Skript eingebunden.  
 # - Alle Fragen und Kategorien befinden sich zurzeit in Überarbeitung und sind nicht final. 
+# - Für den vollen Funktionsumfang wird empfohlen einen auf Firefox basierten Browser zu nutzen.
 
 # In[1]:
 
 
 from IPython.display import IFrame
 
-url = "https://lejuliennn.github.io/mct-trainer/#/quiz/categories/einfuehrung"
+url = "https://luh-dbs.github.io/mct-trainer/#/quiz/categories/einfuehrung"
 IFrame(src=url, width='100%', height=800)
 
 

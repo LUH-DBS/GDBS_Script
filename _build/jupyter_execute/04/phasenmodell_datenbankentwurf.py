@@ -47,7 +47,7 @@
 
 # ### Verteilungsentwurf (Partitionierung)
 
-# Falls die Anwendung eine Verteilung der Daten erfordert, wird ein Verteilungsentwurf erstellt, welcher beschreibt, wie die verteilten Daten gespeichert werden sollen. Beispielsweise könnte es sinnvoll sein Daten horizontal oder vertikal auf mehreren Maschinen zu verteilen. Das hängt sehr stark vom Anwendungsgebiet und den erwarteten Anfragebelastungen (query work loads) ab. 
+# Falls die Anwendung eine Verteilung der Daten erfordert, wird ein Verteilungsentwurf erstellt, welcher beschreibt, wie die verteilten Daten gespeichert werden sollen. Beispielsweise könnte es sinnvoll sein Daten horizontal (zeilenweise) oder vertikal (spaltenweise) auf mehreren Maschinen zu verteilen. Das hängt sehr stark vom Anwendungsgebiet und den erwarteten Anfragebelastungen (query work loads) ab. 
 # 
 
 # ### Logischer Entwurf
@@ -66,7 +66,7 @@
 
 # ### Physischer Entwurf
 
-# Der physische Entwurf bestimmt wie die Daten konkret auf den Speichermedien abgelegt werden. Beispielsweise können Datensätze unsortiert nacheinander auf einer Festplattenspur angelegt werden. 
+# Der physische Entwurf bestimmt wie die Daten konkret auf den Speichermedien abgelegt werden. Beispielsweise können Datensätze unsortiert nacheinander auf einer Festplattenspur angelegt werden. Auch spielt es eine Rolle, ob Daten zeilenweise oder spaltenweise abgelegt werden.  
 # Diese Aufgabe wird automatisch vom DBMS durchgeführt. 
 # Ergänzend kann die DB-Administration diesen Prozess durch das Anlegen von weiteren Indizes für die effiziente Datenverarbeitung beeinflussen. Der typische Befehl hierzu ist
 # - CREATE INDEX …
@@ -75,23 +75,24 @@
 
 # Sind die Daten in einer Datenbank abgelegt, gilt es die laufende Datenbank zu warten. Zur Wartung gehören, neben der Beobachtung der Sicherstellung der Verfügbarkeit der Daten, weitere Aufgaben wie zum Beispiel:
 # 
-# - Datenbanktuning, 
+# - Datenbanktuning (z.B. Indexierung, Konfigurationen, Aktualisierung der Statistiken, Erstellung von neuen Sichten)
 # - Anpassung an neue Anforderungen
 # - Anpassung an neue Systemplattformen
 # - Portierung auf neue Datenbankmanagementsysteme
 # 
 # Diese Phase ist grundsätzlich die kostenaufwendigste.
 
-# ## Multiple Choice
-# - Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird nur in das JupyterBook eingebunden und nicht selbst gehostet. Der Multiple-Choice-Trainer wird durch GitHub-Pages gehostet. 
+# ## Fragen
+# - Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird über GitHub-Pages gehostet und in das Skript eingebunden.  
 # - Alle Fragen und Kategorien befinden sich zurzeit in Überarbeitung und sind nicht final. 
+# - Für den vollen Funktionsumfang wird empfohlen einen auf Firefox basierten Browser zu nutzen.
 
 # In[1]:
 
 
 from IPython.display import IFrame
 
-url = "https://lejuliennn.github.io/mct-trainer/#/quiz/categories/phasenmodell"
+url = "https://luh-dbs.github.io/mct-trainer/#/quiz/categories/phasenmodell"
 IFrame(src=url, width='100%', height=800)
 
 

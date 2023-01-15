@@ -1039,17 +1039,17 @@
 # ### Weitere Sperrarten
 # Eine weitere Sperrart ist Upgraden einer Sperre von einer Lesesperre zu einer Schreibsperre, anstatt gleich strenge Schreibsperre zu setzen. Es ist auch möglich Updatesperren zu setzten, diese erlaubt nur lesenden Zugriff, jedoch kann ein Upgrade erfahren. Die klassische Lesesperre kann dann keinen Upgrade erfahren. Eine Inkrementsperre erlaubt lesenden Zugriff und erlaubt schreibenden Zugriff, falls der Wert nur inkrementiert (oder dekrementiert) wird. Dies ist erlaubt da Inkremente kommutativ sind, also sind Vertauschung erlaubt.
 
-# ## Multiple Choice
-# 
-# - Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird nur in das JupyterBook eingebunden und nicht selbst gehostet. Der Multiple-Choice-Trainer wird durch GitHub-Pages gehostet. 
+# ## Fragen
+# - Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird über GitHub-Pages gehostet und in das Skript eingebunden.  
 # - Alle Fragen und Kategorien befinden sich zurzeit in Überarbeitung und sind nicht final. 
+# - Für den vollen Funktionsumfang wird empfohlen einen auf Firefox basierten Browser zu nutzen.
 
 # In[1]:
 
 
 from IPython.display import IFrame
 
-url = "https://lejuliennn.github.io/mct-trainer/#/quiz/categories/transaktionsmanagement"
+url = "https://luh-dbs.github.io/mct-trainer/#/quiz/categories/transaktionsmanagement"
 IFrame(src=url, width='100%', height=800)
 
 
