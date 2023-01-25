@@ -5,10 +5,10 @@
 # In diesem Kapitel beschäftigen wir uns mit Integritätsbedingungen und Triggern.
 
 # ## Motivation – Aktive Datenbanken
-# Die Daten, die wir in eine Datenbank einfügen wollen können fehlerhaft sein, es kann sich um typographische Fehler, logische Fehler oder auch Andere handeln. Um den Fehlern entgegenzuwirken wäre eine Möglichkeit , das Schreiben besserer Anwendungen, jedoch ist das Prüfen der Konsistenz und Korrektheit sehr schwer, da z.B komplexe Bedingungen, schon abhängig von vorhandenen Daten sein können. Eine andere Möglichkeit ist das Benutzen von aktiven Elementen im DBMS wie Integritätsbedingungen(integrity constraints, ICs), die einmal spezifiziert werden und wenn nötig dann ausgeführt werden. Integritätsbedingungen "bewachen", dass nur Daten die der spezifizierten Form entsprechen, zugelassen werden.
+# Die Daten, die wir in eine Datenbank einfügen wollen können fehlerhaft sein, es kann sich um typographische Fehler, logische Fehler oder auch Andere handeln. Um den Fehlern entgegenzuwirken wäre eine Möglichkeit , das Schreiben besserer Anwendungen, jedoch ist das Prüfen der Konsistenz und Korrektheit sehr schwer, da z.B komplexe Bedingungen, schon abhängig von vorhandenen Daten sein können. Eine andere Möglichkeit ist das Benutzen von aktiven Elementen im DBMS wie Integritätsbedingungen (integrity constraints, ICs), die einmal spezifiziert und wenn nötig dann ausgeführt werden. Integritätsbedingungen "bewachen", dass nur Daten die der spezifizierten Form entsprechen, zugelassen werden.
 
 # ## Schlüssel und Fremdschlüssel
-# In diesem Kapitel beschäftigen wir uns mit der am häufigsten genutzten Integritätsbedingung, Schlüssel. Zunächst werden wir die verschiedenen Arten von Schlüsseln(Primär-, Sekundärschlüssel, Fremdschlüssel) kennenlernen und anschließend wie diese Schlüsselbedingungen und referentielle Integrität erzwungen werden.
+# In diesem Kapitel beschäftigen wir uns mit der am häufigsten genutzten Integritätsbedingung, Schlüssel. Zunächst werden wir die verschiedenen Arten von Schlüsseln (Primär-, Sekundärschlüssel, Fremdschlüssel) kennenlernen und anschließend wie diese Schlüsselbedingungen und referentielle Integrität erzwungen werden.
 # 
 # ### Schlüssel
 # Die einfachtse und am häufigsten genutzte Bedingung sind Schlüssel. Schlüssel sollten aus den vorherigen Kapiteln bekannt sein, sie bilden sich aus ein oder mehreren Attributen und identifizieren eindeutig ein Tupel. Falls eine Schlüsselmenge S gegeben ist, müssen sich also zwei Tupel einer Relation in mindestens einem Attributwert der Schlüsselmenge unterscheiden.
@@ -57,7 +57,7 @@
 # Ohne Indizes ist die Überprüfung eher ineffizient, da die gesamte Spalte durchsucht werden muss. Sind die Daten sortiert, kann binäre Suche verwendet werden, andernfalls muss sequentielle Suche benutzt werden.
 # 
 # #### Fremdschlüssel
-# Ein Attribut oder eine Attributmenge kann als ```FOREIGN KEY``` deklariert werden, wenn die Attributmenge eine entsprechende Attributmenge einer zweiten Relation referenziert. So müssen gemeinsame Werte der Fremdschlüsselattribute auch als gemeinsame Werte des referenzierten Schlüssels auftauchen. Die referenzierte Attributmenge muss ```UNIQUE``` oder ```PRIMARY KEY``` sein. Haben wir z.B die zwei Relationen ```ManagerIn(Name, Adresse, ManagerinID, Gehalt)``` und ```Studios(Name, Adresse, VorsitzendeID)```, dann wäre es sinnvoll, dass der Attributwert für VorsitzendeID auf einen bestimmten, vorhandenen Manager verweist. Im Vergleich zu normalen Schlüsseln, darf ein Fremdschlüssel den Wert ```NULL``` annehmen. Das verwiesende Schlüsselattribut muss jedoch nicht einen ```NULL```-Wert besitzen (und darf es meist auch nicht), hier kann ```NOT NULL``` Abhilfe leisten. Bei Fremdschlüsseln muss referentielle Integrität beibehalten werden, da es sonst zu dangling tuples kommen kann. Folgend einige Beispiele für die Syntax von Fremdschlüsseln:
+# Ein Attribut oder eine Attributmenge kann als ```FOREIGN KEY``` deklariert werden, wenn die Attributmenge eine entsprechende Attributmenge einer zweiten Relation referenziert. So müssen gemeinsame Werte der Fremdschlüsselattribute auch als gemeinsame Werte des referenzierten Schlüssels auftauchen. Die referenzierte Attributmenge muss ```UNIQUE``` oder ```PRIMARY KEY``` sein. Haben wir z.B die zwei Relationen ```ManagerIn(Name, Adresse, ManagerinID, Gehalt)``` und ```Studios(Name, Adresse, VorsitzendeID)```, dann wäre es sinnvoll, dass der Attributwert für ```VorsitzendeID``` auf einen bestimmten, vorhandenen Manager verweist. Im Vergleich zu normalen Schlüsseln, darf ein Fremdschlüssel den Wert ```NULL``` annehmen. Das verwiesende Schlüsselattribut muss jedoch nicht einen ```NULL```-Wert besitzen (und darf es meist auch nicht), hier kann ```NOT NULL``` Abhilfe leisten. Bei Fremdschlüsseln muss referentielle Integrität beibehalten werden, da es sonst zu dangling tuples kommen kann. Folgend einige Beispiele für die Syntax von Fremdschlüsseln:
 # <br><br>
 # Auf einem Attribut:
 # <br>
@@ -71,7 +71,7 @@
 # ```
 # FOREIGN KEY (Attribute) REFERENCES Relation(Attribute)
 # ```
-# Seien die Relationen ```ManagerIn(Name, Adresse, ManagerinID, Gehalt)``` und ```Studios(Name, Adresse, VorsitzendeID)``` gegeben. Wir legen eine Fremdschlüssel für VorsitzendeID an, der auf ManagerinID verweist.
+# Seien die Relationen ```ManagerIn(Name, Adresse, ManagerinID, Gehalt)``` und ```Studios(Name, Adresse, VorsitzendeID)``` gegeben. Wir legen eine Fremdschlüssel für ```VorsitzendeID``` an, der auf ```ManagerinID``` verweist.
 # 
 # ```
 # CREATE TABLE Studios(
@@ -107,9 +107,9 @@
 # ```
 
 # ### Referentielle Integrität erzwingen
-# Es gibt drei Varianten um referentielle Integrität zu erzwingen: Ablehnung verletzender Änderungen (SQL default) ,Kaskadierung und Null-Werte.
+# Es gibt drei Varianten um referentielle Integrität zu erzwingen: Ablehnung verletzender Änderungen (SQL default), Kaskadierung und Null-Werte.
 # <br><br>
-# Haben wir wieder die Relationen ```ManagerIn(Name, Adresse, ManagerinID, Gehalt)``` und ```Studios(Name, Adresse, VorsitzenderID)``` gegeben, wobei VorsitzendeID auf ManagerinID verweist.
+# Haben wir wieder die Relationen ```ManagerIn(Name, Adresse, ManagerinID, Gehalt)``` und ```Studios(Name, Adresse, VorsitzenderID)``` gegeben, wobei ```VorsitzendeID``` auf ```ManagerinID``` verweist.
 # 
 # ```
 # CREATE TABLE Studios(
@@ -120,41 +120,41 @@
 # 
 # #### Referentielle Integrität erzwingen: Änderungen Ablehnen
 # 
-# Durch den von uns festgelegten Fremdschlüssel muss  es für jede VorsitzendeID auch eine ManagerinID geben. SQL lehnt per default Änderungen ab, die Fremdschlüsselbeziehungen verletzen.
+# Durch den von uns festgelegten Fremdschlüssel muss  es für jede ```VorsitzendeID``` auch eine ```ManagerinID``` geben. SQL lehnt per default Änderungen ab, die Fremdschlüsselbeziehungen verletzen.
 # <br>
-# Wenn ein ```INSERT``` Studio ... mit einer neuen (nicht-```NULL```) VorsitzendeID angefragt wird, die nicht in ```ManagerIn``` gespeichert ist, so wird dies abgelehnt.
+# Wenn ein ```INSERT Studio``` ... mit einer neuen (nicht-```NULL```) ```VorsitzendeID``` angefragt wird, die nicht in ```ManagerIn``` gespeichert ist, so wird dies abgelehnt.
 # <br><br>
-# Wenn ein ```UPDATE``` eines Studios mit einer neuen VorsitzendeID, die nicht in ```ManagerIn``` gespeichert ist, angefragt wird, so wird dies ebenfalls abgelehnt.
+# Wenn ein ```UPDATE``` eines Studios mit einer neuen ```VorsitzendeID```, die nicht in ```ManagerIn``` gespeichert ist, angefragt wird, so wird dies ebenfalls abgelehnt.
 # <br><br>
-# Wenn ein ```DELETE``` eines ```ManagerIn```-Tupels, dessen ManagerinID auch eine (oder mehrere) VorsitzendeID ist, so wird dieses auch abgelehnt.
+# Wenn ein ```DELETE``` eines ```ManagerIn```-Tupels, dessen ```ManagerinID``` auch eine (oder mehrere) ```VorsitzendeID``` ist, so wird dieses auch abgelehnt.
 # <br><br>
-# Wenn ein ```UPDATE``` der ManagerinID eines ManagerIn-Tupels angefragt wird, die auch eine (oder mehrere) VorsitzendeID ist, so wird dies auch abgelehnt.
+# Wenn ein ```UPDATE``` der ```ManagerinID``` eines ```ManagerIn```-Tupels angefragt wird, die auch eine (oder mehrere) ```VorsitzendeID``` ist, so wird dies auch abgelehnt.
 # 
 # 
 # #### Referentielle Integrität erzwingen: Kaskadierung
 # Bei der Kaskadierung ist die Idee, dass Änderungen im Schlüssel im Fremdschlüssel nachgezogen werden. Bei Veränderung in der Schlüsselrelation, verändern sich auch die Werte der Fremdrelation mit.
 # <br><br>
-# Ein ```INSERT``` Studio ... mit einer neuen (nicht-```NULL```) VorsitzendeID, die nicht in ```ManagerIn``` gespeichert ist wird weiterhin abgelehnt.
+# Ein ```INSERT Studio``` ... mit einer neuen (nicht-```NULL```) ```VorsitzendeID```, die nicht in ```ManagerIn``` gespeichert ist wird weiterhin abgelehnt.
 # <br><br>
-# Ein ```UPDATE``` eines Studios mit einer neuen VorsitzendeID, die nicht in ```Manager``` gespeichert ist, wird auch weiterhin abgelehnt.
+# Ein ```UPDATE``` eines Studios mit einer neuen ```VorsitzendeID```, die nicht in ```Manager``` gespeichert ist, wird auch weiterhin abgelehnt.
 # <br><br>
-# Ein ```DELETE``` eines ManagerIn-Tupels, dessen ManagerinID auch auf eine (oder mehrere) VorsitzendeID ist, wird akzeptiert, aber alle abhängigen Studios werden ebenfalls gelöscht.
+# Ein ```DELETE``` eines ```ManagerIn```-Tupels, dessen ```ManagerinID``` auch auf eine (oder mehrere) ```VorsitzendeID``` ist, wird akzeptiert, aber alle abhängigen Studios werden ebenfalls gelöscht.
 # <br><br>
-# Ein ```UPDATE``` der ManagerinID eines ManagerIn-Tupels, die auch eine (oder mehrere) VorsitzendeID ist, wird akzeptiert, aber die VorsitzendeIDs in Studios werden ebenfalls geändert.
+# Ein ```UPDATE``` der ```ManagerinID``` eines ```ManagerIn```-Tupels, die auch eine (oder mehrere) ```VorsitzendeID``` ist, wird akzeptiert, aber die ```VorsitzendeID```s in ```Studios``` werden ebenfalls geändert.
 # 
 # #### Referentielle Integrität erzwingen: Auf NULL setzen
 # Bei der Behandlung mit ```NULL```-Werten ist die Idee, dass bei Änderungen im Schlüssel der Wert des Fremdschlüssels auf ```NULL``` gesetzt wird.
 # <br><br>
-# Ein ```INSERT``` Studio mit einer neuen (nicht-```NULL```) VorsitzendeID, die nicht in ```Manager``` gespeichert ist wird abgelehnt.
+# Ein ```INSERT``` Studio mit einer neuen (nicht-```NULL```) ```VorsitzendeID```, die nicht in ```Manager``` gespeichert ist wird abgelehnt.
 # <br><br>
-# Ein ```UPDATE``` eines Studios mit einer neuen VorsitzendeID, die nicht in ```Manager``` gespeichert ist, wird auch weiterhin abgelehnt.
+# Ein ```UPDATE``` eines Studios mit einer neuen ```VorsitzendeID```, die nicht in ```Manager``` gespeichert ist, wird auch weiterhin abgelehnt.
 # <br><br>
-# Ein ```DELETE``` eines Manager-Tupels, dessen ManagerinID auch eine (oder mehrere) VorsitzendeID ist wird akzeptier, aber die VorsitzendeID aller abhängigen Studios werden auf NULL gesetzt.
+# Ein ```DELETE``` eines ```Manager```-Tupels, dessen ```ManagerinID``` auch eine (oder mehrere) ```VorsitzendeID``` ist wird akzeptiert, aber die ```VorsitzendeID```s aller abhängigen Studios werden auf ```NULL``` gesetzt.
 # <br><br>
-# Ein ```UPDATE``` der ManagerinID eines ManagerIn-Tupels, die auch eine (oder mehrere) VorsitzendeID ist, wird ebenfalls akzeptiert aber die VorsitzendeIDs in Studios werden auf ```NULL``` gesetzt.
+# Ein ```UPDATE``` der ```ManagerinID``` eines ```ManagerIn```-Tupels, die auch eine (oder mehrere) ```VorsitzendeID``` ist, wird ebenfalls akzeptiert aber die ```VorsitzendeID```s in ```Studios``` werden auf ```NULL``` gesetzt.
 # 
 # #### Referentielle Integrität erzwingen
-# In bestimmten DBMS kann die Vorgehensweise individuell spezifiziert werden. Im unteren Beispiel legen wir beim Löschen Behandlung mit ```NULL```-Werten und beim Ändern Kaskadierung fest. Hier wird eine "vorsichtige" Strategie verfolgt, denn die Studios werden nicht gelöscht und behalten falls möglich ihre VorsitzendenID.
+# In bestimmten DBMS kann die Vorgehensweise individuell spezifiziert werden. Im unteren Beispiel legen wir beim Löschen Behandlung mit ```NULL```-Werten und beim Ändern Kaskadierung fest. Hier wird eine "vorsichtige" Strategie verfolgt, denn die Studios werden nicht gelöscht und behalten falls möglich ihre ```VorsitzendenID```.
 # 
 # ```
 # CREATE TABLE Studios(
@@ -167,27 +167,27 @@
 # ```
 
 # ### Integritätschecks verschieben
-# Es ist nicht immer möglich, Tupel einzufügen, die der referentiellen Integrität gehorchen. Möchten wir beispielsweise ein neues Studio, namens Redlight mit Sitz in New York und mit ManagerinID 23456, in unsere Relation Studios einfügen. Jedoch wurde die ManagerIn mit der ID 23456 noch nicht angelegt.
+# Es ist nicht immer möglich, Tupel einzufügen, die der referentiellen Integrität gehorchen. Möchten wir beispielsweise ein neues Studio, namens Redlight mit Sitz in New York und mit ```ManagerinID``` 23456, in unsere Relation ```Studios``` einfügen. Jedoch wurde die ManagerIn mit der ID 23456 noch nicht angelegt.
 # ```
 # INSERT INTO Studios
 # VALUES (‘Redlight‘, ‘New York‘, 23456);
 # ```
-# Wir könnten stattdessen die ManagerinID ```NULL``` lassen, welches auch erlaubt ist, da ```NULL```-Werte nicht auf referentielle Integrität geprüft werden müssen.
+# Wir könnten stattdessen die ```ManagerinID``` ```NULL``` lassen, welches auch erlaubt ist, da ```NULL```-Werte nicht auf referentielle Integrität geprüft werden müssen.
 # 
 # ```
 # INSERT INTO Studios(Name, Adresse)
 # VALUES (‘Redlight‘, ‘New York‘);
 # ```
 # 
-# Später nach dem Einfügen des Managertupels mit der ManagerinID 23456 können wir das Tupel aus der Studiosrelation updaten:
+# Später nach dem Einfügen des Managertupels mit der ```ManagerinID``` 23456 können wir das Tupel aus der Studiosrelation updaten:
 # 
 # ```
 # UPDATE Studios SET VorsitzendeID = 23456
 # WHERE Name = ‘Redlight‘;
 # ```
-# Eine schönere Lösung für dieses Problem wäre, erst den Manager, dann das Studio einzufügen.
+# Eine schönere Lösung für dieses Problem wäre, erst den Manager und dann das Studio einzufügen.
 # <br><br>
-# Es kann der Fall auftreten, dass es zyklische referentielle Integritätsbedingungen gibt. Z.B könnten zusätzlich Manager\*Innen nur Vorsitzende von Studios sein, also ist ManagerinID ein Fremdschlüssel und referenziert auf VorsitzendeID. So gilt die Fremdschlüsselbedingung in beide Richtungen. Es kann nach wie vor kein Studio ohne vorhandenes Managertupel eingefügt werden. Es kann nun auch keine Manager\*in ohne vorhandenes Studio eingefügt werden. Die Lösung für dieses Problem ist das Zusammenfassen mehrerer Änderungsoperationen zu einer „Transaktion“ (mehr dazu im Kapitel 11 „Transaktionsmanagement“) und dann das Verschieben der Integritätschecks bis ans Ende der Transaktion.
+# Es kann der Fall auftreten, dass es zyklische referentielle Integritätsbedingungen gibt. Z.B könnten zusätzlich Manager\*Innen nur Vorsitzende von Studios sein, also ist ```ManagerinID``` ein Fremdschlüssel und referenziert auf ```VorsitzendeID```. So gilt die Fremdschlüsselbedingung in beide Richtungen. Es kann nach wie vor kein Studio ohne vorhandenes Managertupel eingefügt werden. Es kann nun auch keine ```Manager\*in``` ohne vorhandenes Studio eingefügt werden. Die Lösung für dieses Problem ist das Zusammenfassen mehrerer Änderungsoperationen zu einer „Transaktion“ (mehr dazu im Kapitel 11 „Transaktionsmanagement“) und dann das Verschieben der Integritätschecks bis ans Ende der Transaktion.
 # <br><br>
 # Dieser Constraint kann mit dem Schlüsselwort ```DEFERRABLE``` deklariert werden, um flexibler den Zeitpunk der Prüfung zu gestalten. ```DEFERRABLE``` lässt sich einmal in ```INITIALLY DEFERRED``` und ```INITIALLY IMMEDIATE``` teilen. Bei ```INITIALLY DEFERRED``` wird der Integritätscheck an das Ende der Transaktion, die aus mehreren Statements bestehen kann, verschoben. Bei ```INITIALLY IMMEDIATE``` wird zunächst nichts verschoben. In einer Transaktionssession kann nun durch ```Set constraint DEFERRABLE/IMMEDIATE``` das Verhalten temporär angepasst werden. ```NOT DEFERRABLE```, also dass die Bedingung bei jeder Änderung der Datenbank geprüft wird, ist default. Ein Beispiel für die Synatx zu ```DEFERRABLE``` finden Sie unten.
 # 
@@ -203,7 +203,7 @@
 # Obwohl Assertions zum SQL-Standard gehören, werden werden sie nur in sehr wenigen Datenbanken eingesetzt.
 
 # ## Bedingungen auf Attributen und Tupel
-# In diesem Kapitel werden weitere Arten der Nebenbedingungen, wie die Annahme bestimmter Werte untersagt wird, betrachtet. Zuerst beschäftigen wir uns mit Bedingungen auf einzelnen Attributen(```NOT NULL``` und ```CHECK```) und anschließend mit Bedingungen für ganze Tupel, also auf das Schema(CHECK). 
+# In diesem Kapitel werden weitere Arten der Nebenbedingungen, wie die Annahme bestimmter Werte untersagt wird, betrachtet. Zuerst beschäftigen wir uns mit Bedingungen auf einzelnen Attributen(```NOT NULL``` und ```CHECK```) und anschließend mit Bedingungen für ganze Tupel, also auf das Schema(```CHECK```). 
 # 
 # ### NOT NULL
 # Wird ein Attribut mit ```NOT NULL``` deklariert, so ist es nicht erlaubt für dieses Attribut den Wert ```NULL``` einzutragen.
@@ -217,12 +217,12 @@
 # ON UPDATE CASCADE
 # );
 # ```
-# Für das obige Beispiel gilt mit den ```NOT-NULL```-Bedingungen, dass das Einfügen eines Studios ohne einer Manager\*in nicht mehr möglich ist und das jedes Studio eine Adresse haben muss. Somit ist die Null-Werte Strategie beim Löschen von Manager\*innen nicht mehr möglich.
+# Für das obige Beispiel gilt mit den ```NOT-NULL```-Bedingungen, dass das Einfügen eines Studios ohne einer Manager\*in nicht mehr möglich ist und das jedes Studio eine Adresse haben muss. Somit ist die ```Null```-Werte Strategie beim Löschen von Manager\*innen nicht mehr möglich.
 # 
 # ### Attribut-basierte CHECK Bedingungen
 # Die ```CHECK```-Bedingung verfeinert die erlaubten Werte für ein Attribut durch die Spezifikation einer Bedingung. Die Bedingung wie jedes mal geprüft, falls ein Attribut einen neuen Wert erhält, also bei ```INSERT``` und ```UPDATE```. Sie ist ähnlich zur ```WHERE```-Klausel, kann beliebig komplex sein und auch aus einer ```SELECT…FROM…WHERE…``` Anfrage bestehen. I.d.R. werden ```CHECK```-Bedingungen benutzt um eine einfache Einschränkung der Werte durchzuführen. Falls die Bedingung nicht erfüllt wird, so scheitert die Änderung.
 # <br><br>
-# In diesem Beispiel wird gecheckt, ob die VorsitztendeID >= 100000 ist, da kleinere Werte für die VorsitzendeID nicht erlaubt sind.
+# In diesem Beispiel wird gecheckt, ob die ```VorsitztendeID >= 100000``` ist, da kleinere Werte für die ```VorsitzendeID``` nicht erlaubt sind.
 # 
 # ```
 # CREATE TABLE Studios(
@@ -252,7 +252,7 @@
 # (SELECT ManagerinID FROM ManagerIn))
 # );
 # ```
-# Auf diese Weise wird indirekt referentielle Integrität simuliert. Wenn hier ein ```UPDATE``` oder ```INSERT``` auf der Studios Relation ausgeführt wird, wird der ```CHECK``` geprüft. Bei einem DELETE auf der ```ManagerIn``` Relation, wird der ```CHECK``` nicht geprüft, die ```CHECK``` Bedingung kann ungültig werden. D.h. andere Relationen kennen diese ```CHECK``` Bedingung nicht.
+# Auf diese Weise wird indirekt referentielle Integrität simuliert. Wenn hier ein ```UPDATE``` oder ```INSERT``` auf der ```Studios``` Relation ausgeführt wird, wird der ```CHECK``` geprüft. Bei einem DELETE auf der ```ManagerIn``` Relation, wird der ```CHECK``` nicht geprüft, die ```CHECK``` Bedingung kann ungültig werden. D.h. andere Relationen kennen diese ```CHECK``` Bedingung nicht.
 # 
 # ### Tupel-basierte CHECK Bedingungen
 # Es ist auch möglich Bedingungen für ganze Tupel zu deklarieren. Eine ```CHECK```-Bedingung kann wie Primär- und Fremdschlüsselbezeiehungen in der Liste der Attributen auftauchen und beliebige Bedingungen wie eine ```WHERE```-Klausel haben. Die deklarierten ```CHECK```s werden bei jedem ```INSERT``` und ```UPDATE``` eines Tupels geprüft.
