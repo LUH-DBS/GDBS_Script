@@ -66,13 +66,18 @@
 # 
 # Ein weiterer Forschungsstrang bot neue Entwicklungen aus dem Bereich der Hardware: FPGA, GPGPU, SSD, Main-Memory, Infiniband, die Annahmen über Speicherhierarchien und Kostenmodelle verändern würden.
 
-# ## Fragen
-# 
-# - Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird über GitHub-Pages gehostet und in das Skript eingebunden.  
-# - Alle Fragen und Kategorien befinden sich zurzeit in Überarbeitung und sind nicht final. 
-# - Für den vollen Funktionsumfang wird empfohlen einen auf Firefox basierten Browser zu nutzen.
-
 # In[1]:
+
+
+"""
+## Fragen
+- Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird über GitHub-Pages gehostet und in das Skript eingebunden.  
+- Alle Fragen und Kategorien befinden sich zurzeit in Überarbeitung und sind nicht final. 
+- **Für den vollen Funktionsumfang wird empfohlen einen auf Firefox basierten Browser zu nutzen, ansonsten können  unerwünschte Nebeneffekte entstehen.**
+"""
+
+
+# In[2]:
 
 
 from IPython.display import IFrame

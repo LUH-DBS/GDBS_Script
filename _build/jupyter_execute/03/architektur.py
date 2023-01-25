@@ -32,12 +32,18 @@
 
 # Auch wenn es sich hierbei um einen Standard handelt, gibt es bei heutigen Datenbanksystemen oft Abweichungen. Beispielsweise haben Anwendungen oft direkten Zugriff auf die konzeptionelle Ebene. 
 
-# ## Fragen
-# - Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird über GitHub-Pages gehostet und in das Skript eingebunden.  
-# - Alle Fragen und Kategorien befinden sich zurzeit in Überarbeitung und sind nicht final. 
-# - Für den vollen Funktionsumfang wird empfohlen einen auf Firefox basierten Browser zu nutzen.
-
 # In[1]:
+
+
+"""
+## Fragen
+- Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird über GitHub-Pages gehostet und in das Skript eingebunden.  
+- Alle Fragen und Kategorien befinden sich zurzeit in Überarbeitung und sind nicht final. 
+- **Für den vollen Funktionsumfang wird empfohlen einen auf Firefox basierten Browser zu nutzen, ansonsten können  unerwünschte Nebeneffekte entstehen.**
+"""
+
+
+# In[2]:
 
 
 from IPython.display import IFrame
