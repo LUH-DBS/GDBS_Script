@@ -527,12 +527,18 @@
 # Hier sind Tabellen gegeben mit denen man schauen kann, welche Pläne für welche Kombinationen gut funktionieren. Alle Punkte in diesen Diagrammen sind Pläne, die infrage kommen, für bestimmte Konstellationen von diesen Tabellen. 
 # ![](ausblick.jpg)
 
-# ## Fragen
-# - Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird über GitHub-Pages gehostet und in das Skript eingebunden.  
-# - Alle Fragen und Kategorien befinden sich zurzeit in Überarbeitung und sind nicht final. 
-# - Für den vollen Funktionsumfang wird empfohlen einen auf Firefox basierten Browser zu nutzen.
-
 # In[1]:
+
+
+"""
+## Fragen
+- Die hier verwendete Version des Multiple-Choice-Trainers von EILD.nrw wird über GitHub-Pages gehostet und in das Skript eingebunden.  
+- Alle Fragen und Kategorien befinden sich zurzeit in Überarbeitung und sind nicht final. 
+- Für den vollen Funktionsumfang wird empfohlen einen auf Firefox basierten Browser zu nutzen.
+"""
+
+
+# In[2]:
 
 
 from IPython.display import IFrame
