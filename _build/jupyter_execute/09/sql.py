@@ -116,7 +116,7 @@ get_ipython().run_line_magic('sql', 'sqlite:///salesDB/salesDB.db')
 # ### Beispielschema
 # ![title](beispielschema.jpg)
 
-# In[2]:
+# In[4]:
 
 
 #SELECT * 
@@ -165,7 +165,7 @@ df
 # <br><br>
 # Im folgenden Beipiel wollen wir alle Attribute bzw. Spalten aus der Filmrelation ausgeben, der Stern ```*``` ist hier eine kürzere Schreibweise für alle Attribute.
 
-# In[3]:
+# In[6]:
 
 
 #SELECT * 
@@ -179,7 +179,7 @@ df
 
 # Es ist auch möglich konkret die Attributsnamen aufzulisten, die ausgegeben sollen werden. Im unteren Beispiel, geben wir nur die Spalten ```Titel```, ```Jahr``` und ```inFarbe``` von der Filmrelation aus.
 
-# In[4]:
+# In[7]:
 
 
 #SELECT Titel, Jahr, inFarbe 
@@ -193,7 +193,7 @@ df
 
 # In der ```SELECT``` Klausel ist es auch möglich die Attributsnamen in der Ausgabetabelle umzubenennen. Die Ausgabe einer SQL-Anfrage ist immer eine Tabelle. Im unteren Beispiel projezieren wir die Attribute ```Titel```, ```Jahr``` aus der ```Filmrelation``` und benennen die Attribute in unserer Ausgabetabelle zu ```Name```,```Zeit``` um. 
 
-# In[5]:
+# In[8]:
 
 
 #SELECT Titel AS Name, Jahr AS Zeit 
@@ -207,7 +207,7 @@ df
 
 # In der ```SELECT```-Klausel ist es auch möglich arithmetische Ausdrücke zu benutzen. Im folgenden Beispiel werden ```Titel``` und ```Laenge``` der ```Filme``` herausprojeziert, wobei die ```Laenge``` direkt mit einer Konstanten multipliziert wird. Daher wird in der Ausgabetabelle die ```Laenge``` in ```Stunden``` und nicht in Minuten angegeben. Dementsprechend haben wir auch das Attribut ```Laenge``` in ```Stunden``` mit dem Umbenennungsoperator ```AS``` umbenannt.
 
-# In[6]:
+# In[9]:
 
 
 #SELECT Titel, Laenge * 0.016667 AS Stunden 
@@ -221,7 +221,7 @@ df
 
 # Zudem ist es auch möglich, sich spezielle Konstanten ausgeben zu lassen. Im unteren Beispiel fügen wir der Ausgabetabelle eine neue Spalte hinzu, mit dem Namen ```inStunden```, in der der String 'std.' steht
 
-# In[7]:
+# In[10]:
 
 
 #SELECT Titel, Laenge * 0.016667 AS Stunden, ‘std.‘ AS inStunden 
@@ -260,7 +260,7 @@ df
 
 # Im unteren Beispiel wollen wir jene Titel aus der Relation ```Film``` ausgeben, die nach dem Jahr 1970 erschienen und schwarz-weiß sind
 
-# In[8]:
+# In[11]:
 
 
 #SELECT Titel 
@@ -275,7 +275,7 @@ df
 
 # In diesem Beispiel möchten wir wieder alle ```Filmtitel``` ausgeben, hier aber alle ```Filme``` die von MGM produziert wurden sind und nach dem Jahr 1970 erschienen sind oder kürzer als 90 min sind. 
 
-# In[9]:
+# In[12]:
 
 
 #SELECT Titel 
@@ -304,7 +304,7 @@ df
 # ### String-Mustervergleiche mit LIKE
 # Mit dem ```LIKE``` Operator können Sie Stringteile miteinander vergleichen, also ob ein String einem gewissen Stringmuster folgt. Hierfür gibt es zwei spezielle Zeichen, einmal ```%```, welches eine beliebige Sequenz von 0 oder mehr Zeichen entspricht und ```_```, welches ein einzelnes beliebiges Zeichen steht. Hierfür ein Beispiel: Wir suchen jene ```Titel``` aus der ```Filmrelation```, wo der ```Titel``` mit 'Star' beginnt, ein Leerzeichen folgt und 4 beliebige Zeichen folgen.
 
-# In[10]:
+# In[13]:
 
 
 #SELECT Titel 
@@ -318,7 +318,7 @@ df
 
 # Hier suchen wir alle ```Titel```, wo das Wort 'War' vorkommen muss. Sowohl vor dem 'War' als auch nachdem 'War' sind beliebige Zeichensequenzen erlaubt.
 
-# In[11]:
+# In[3]:
 
 
 #SELECT Titel 
@@ -407,7 +407,7 @@ df
 # <br><br>
 # Zu beachten bei der Ausführungspriorität: ```NOT``` vor ```AND``` vor ```OR```
 
-# In[12]:
+# In[13]:
 
 
 #SELECT * 
@@ -428,7 +428,7 @@ df
 # <br><br>
 # Im folgenden Beispiel wollen wir alle Attribute der ```Filmrelation``` ausgeben, welche von Disney produziert wurden und 1990 erschienen sind. Zusätzlich, soll die Ausgabe zuerst nach dem Attribut ```Laenge``` und folgend nach dem Attribut ```Titel``` aufsteigend sortiert werden.
 
-# In[13]:
+# In[4]:
 
 
 #SELECT * 
@@ -444,7 +444,7 @@ df
 
 # Hier wird  zuerst nach ```Laenge``` aufsteigend sortiert und folgend nach ```Titel``` aber absteigend.
 
-# In[14]:
+# In[6]:
 
 
 #SELECT * 
@@ -466,7 +466,7 @@ df
 # Im folgenden Beispiel haben wir die Relationen ```Film(Titel, Jahr, Länge, inFarbe, StudioName, ProduzentinID)``` und
 # ```ManagerIn(Name, Adresse, ManagerinID, Gehalt)``` gegeben. Wir möchten nun alle ```Namen``` der Manager\*Innen ausgeben, die einen Star Wars Film produziert haben. Hierfür müssen die Relationen ```Film``` und ```ManagerIn``` gejoint werden. Zuerst bilden wir das Kruezprodukt der beiden Relationen, indem wir in der ```FROM```-Klausel die Relationen mit einem Komma getrennt nennen , so wird intern das Kreuzprodukt dieser beiden gebildet. Schließlich wenden  wir noch einmal die Selektionsbedingung an, also dass nur ManagerInnen die einen Star Wars Film produziert haben ausgegeben werden. Und zuletzt noch die Joinbedingung, undzwar dass ```ProduzentinID``` und ```ManagerinID``` im Kreuzprodukt übereinstimmen sollen. Falls die beiden Bedinungen erfüllt sind wird ein Ergebnistupel produziert. Hierbei ist noch zu beachten, dass die Reihenfolge der ```WHERE```-Bedingungen irrelevant ist.
 
-# In[15]:
+# In[18]:
 
 
 #SELECT Name 
@@ -480,7 +480,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# In[16]:
+# In[19]:
 
 
 #SELECT Name 
@@ -499,7 +499,7 @@ df
 # 
 # In diesem Beispiel haben wir die Relationen ```SchauspielerIn(Name, Adresse, Geschlecht, Geburtstag)``` und ```ManagerIn(Name, Adresse, ManagerinID, Gehalt)``` gegeben. Beide Relationen haben ein Attribut namens ```Name```. Wir wollen nun die ```Namen``` der Schauspieler\*Innen und Manager\*Innen ausgeben, die die selbe Adresse haben. Wie im vorherigen Beispiel, bilden wir wieder das Kreuzprodukt beider. Da nur der Attributname der Relationen uneindeutig wäre, muss in der Anfrage immer ein Präfix vor das Attribut gesetzt werden. Auch bei keiner Uneindeutigkeit, kann man das Präfix schreiben, was manchmal as Lesen von SQL-Anfragen erleichtert.
 
-# In[17]:
+# In[20]:
 
 
 #SELECT SchauspielerIn.Name, ManagerIn.Name 
@@ -523,7 +523,7 @@ df
 # SchauspielerIn AS Star2
 # ```
 
-# In[18]:
+# In[14]:
 
 
 #SELECT Star1.Name, Star2.Name 
@@ -536,7 +536,7 @@ df = pd.read_sql_query(__SQL__, conn)
 df
 
 
-# In[19]:
+# In[22]:
 
 
 #SELECT S.Name, M.Name
@@ -553,7 +553,7 @@ df
 # ### Tupelvariablen-Selfjoin
 # 
 
-# In[20]:
+# In[15]:
 
 
 #SELECT Star1.Name, Star2.Name
@@ -568,7 +568,7 @@ df
 
 # Damit wir wie in der Ausgabe der obigen Beispiels, keine redundanten Tupel haben, setzten wir zusätzlich noch die Bedingung, dass die ```Namen``` der ```Schauspieler\*Innen``` verschieden sein müssen.
 
-# In[21]:
+# In[24]:
 
 
 #SELECT Star1.Name, Star2.Name
@@ -589,7 +589,7 @@ df
 # <br>
 # Im folgenden Beispiel sind die Relationen ```R(A)```, ```S(A)``` und ```T(A)``` mit dem selben Attribut ```A``` gegeben. Wir suchen die folgenden Tupel ```R```  ∩  (```S```  ∪  ```T```) (= (```R```  ∩  ```S```)  ∪  (```R```  ∩  ```T```) ). Nehmen wir an dass ```T``` leer sei, das vermeintliche Resultat ist ```R```  ∩  ```S```. Mit Nested Loops ist das Ergebnis jedoch leer. 
 
-# In[22]:
+# In[25]:
 
 
 #SELECT R.A
@@ -605,7 +605,7 @@ df
 
 # Im folgenden Beispiel ist das Ergebnis mit Nested Loops nicht leer.
 
-# In[23]:
+# In[5]:
 
 
 #SELECT *
@@ -633,7 +633,7 @@ df
 # <br><br>
 # Ein Beispiel für ein Theta-Join finden wir unten. 
 
-# In[24]:
+# In[16]:
 
 
 #SELECT * 
@@ -648,7 +648,7 @@ df
 
 # Beim ```JOIN``` werden im Vergleich zum ```CROSS JOIN``` die redundanten Attribute eliminiert. Damit das geschieht muss natürlich ein Fremdschlüsselbeziehung vorhanden sein oder die Attributnamen müssen identisch sein. Hier wie im unteren Beispiel gezeigt, werden also ```FilmTitel``` und ```FilmJahr``` eliminiert.
 
-# In[25]:
+# In[17]:
 
 
 #SELECT Titel, Jahr, Laenge, inFarbe, StudioName, ProduzentinID, Name 
@@ -663,7 +663,7 @@ df
 
 # Es ist ebenfalls möglich mehrere Joins hintereinander durchzuführen, wie im Beispiel unten gezeigt. 
 
-# In[26]:
+# In[29]:
 
 
 #SELECT Titel, Jahr 
@@ -686,7 +686,7 @@ df
 #  
 # #### TPC Query - Minimum Cost Supplier 
 
-# In[27]:
+# In[14]:
 
 
 #%sql
@@ -706,7 +706,7 @@ df
 #ORDER BY s_acctbal desc, n_name, s_name, p_partkey;
 
 
-# In[28]:
+# In[12]:
 
 
 __SQL__ = "SELECT s_acctbal, s_name, n_name, p_partkey, p_mfgr, s_address, s_phone, s_comment FROM part, supplier, partsupp, nation, region WHERE p_partkey = ps_partkey AND s_suppkey = ps_suppkey AND p_size = 2 AND p_type like 'PROMO PLATED TIN' AND s_nationkey = n_nationkey AND n_regionkey = r_regionkey AND r_name = 'EUROPE' AND ps_supplycost = (SELECT min(ps_supplycost) FROM partsupp, supplier, nation, region WHERE p_partkey = ps_partkey AND s_suppkey = ps_suppkey AND s_nationkey = n_nationkey AND n_regionkey = r_regionkey AND r_name = 'EUROPE' ) ORDER BY s_acctbal desc, n_name, s_name, p_partkey;"
@@ -717,7 +717,7 @@ df
 
 # #### The TPC-H Universal Table
 
-# In[29]:
+# In[16]:
 
 
 #%sql
@@ -733,7 +733,7 @@ df
 #AND o_orderkey = l_orderkey
 
 
-# In[30]:
+# In[15]:
 
 
 __SQL__ = "SELECT l_linenumber, l_quantity, l_extendedprice, l_discount, l_tax, l_returnflag, l_linestatus, l_shipdate, l_commitdate, l_receiptdate, l_shipinstruct, l_shipmode, l_comment, o_orderkey, o_orderstatus, o_totalprice, o_orderdate, o_orderpriority, o_clerk, o_shippriority, o_comment, ps_availqty, ps_supplycost, ps_comment, p_partkey, p_name, p_mfgr, p_brand, p_type, p_size, p_container, p_retailprice, p_comment, c_custkey, c_name, c_address, c_phone, c_acctbal, c_mktsegment, c_comment, s_suppkey, s_name, s_address, s_phone, s_acctbal, s_comment, n_nationkey, n_name, n_comment, r_regionkey, r_name, r_comment FROM lineitem, orders, partsupp, part, customer, supplier, nation, region WHERE p_partkey = ps_partkey AND s_suppkey = ps_suppkey AND n_nationkey = s_nationkey AND r_regionkey = n_regionkey AND c_custkey = o_custkey AND ps_partkey = l_partkey AND ps_suppkey = l_suppkey AND o_orderkey = l_orderkey"
@@ -760,7 +760,7 @@ df
 
 # Nun suchen wir alle Schauspieler\*Innen und ihre Manager\*Inneninfo, falls diese vorhanden ist.
 
-# In[32]:
+# In[18]:
 
 
 #…FROM SchauspielerIn NATURAL LEFT OUTER JOIN ManagerIn
@@ -775,7 +775,7 @@ df
 
 # Im Folgenden suchen wir Manager\*Innen und gegebenenfalls ihre Schauspieler\*Inneninfo
 
-# In[33]:
+# In[9]:
 
 
 #…FROM SchauspielerIn NATURAL RIGHT OUTER JOIN ManagerIn

@@ -1,83 +1,88 @@
 Traceback (most recent call last):
-  File "/home/jennywu/.local/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+  File "/home/julian/.local/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
     executenb(
-  File "/home/jennywu/.local/lib/python3.8/site-packages/nbclient/client.py", line 1204, in execute
+  File "/home/julian/.local/lib/python3.10/site-packages/nbclient/client.py", line 1204, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "/home/jennywu/.local/lib/python3.8/site-packages/nbclient/util.py", line 84, in wrapped
+  File "/home/julian/.local/lib/python3.10/site-packages/nbclient/util.py", line 84, in wrapped
     return just_run(coro(*args, **kwargs))
-  File "/home/jennywu/.local/lib/python3.8/site-packages/nbclient/util.py", line 62, in just_run
+  File "/home/julian/.local/lib/python3.10/site-packages/nbclient/util.py", line 62, in just_run
     return loop.run_until_complete(coro)
-  File "/usr/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
     return future.result()
-  File "/home/jennywu/.local/lib/python3.8/site-packages/nbclient/client.py", line 663, in async_execute
+  File "/home/julian/.local/lib/python3.10/site-packages/nbclient/client.py", line 663, in async_execute
     await self.async_execute_cell(
-  File "/home/jennywu/.local/lib/python3.8/site-packages/nbclient/client.py", line 965, in async_execute_cell
+  File "/home/julian/.local/lib/python3.10/site-packages/nbclient/client.py", line 965, in async_execute_cell
     await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/home/jennywu/.local/lib/python3.8/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+  File "/home/julian/.local/lib/python3.10/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-#…FROM SchauspielerIn NATURAL RIGHT OUTER JOIN ManagerIn
-
-__SQL__ = "SELECT Name, Adresse, Geburtstag, Gehalt FROM ManagerIn NATURAL RIGHT OUTER JOIN SchauspielerIn"
-conn = sqlite3.connect("filme/filme.db")
-df = pd.read_sql_query(__SQL__, conn)
-df
+import sqlite3
+import pandas as pd
+%load_ext sql
+%sql sqlite:///filme/filme.db
+%sql sqlite:///abteilung/abteilung.db
+%sql sqlite:///buecher/buecher.db
+%sql sqlite:///lehre/lehre.db
+%sql sqlite:///rst/rst.db
+%sql sqlite:///salesDB/salesDB.db
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mOperationalError[0m                          Traceback (most recent call last)
-File [0;32m~/.local/lib/python3.8/site-packages/pandas/io/sql.py:2018[0m, in [0;36mSQLiteDatabase.execute[0;34m(self, *args, **kwargs)[0m
-[1;32m   2017[0m [38;5;28;01mtry[39;00m:
-[0;32m-> 2018[0m     [43mcur[49m[38;5;241;43m.[39;49m[43mexecute[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
-[1;32m   2019[0m     [38;5;28;01mreturn[39;00m cur
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Input [0;32mIn [1][0m, in [0;36m<cell line: 3>[0;34m()[0m
+[1;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01msqlite3[39;00m
+[1;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mpandas[39;00m [38;5;28;01mas[39;00m [38;5;21;01mpd[39;00m
+[0;32m----> 3[0m [43mget_ipython[49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[43mrun_line_magic[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mload_ext[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43msql[39;49m[38;5;124;43m'[39;49m[43m)[49m
+[1;32m      4[0m get_ipython()[38;5;241m.[39mrun_line_magic([38;5;124m'[39m[38;5;124msql[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124msqlite:///filme/filme.db[39m[38;5;124m'[39m)
+[1;32m      5[0m get_ipython()[38;5;241m.[39mrun_line_magic([38;5;124m'[39m[38;5;124msql[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124msqlite:///abteilung/abteilung.db[39m[38;5;124m'[39m)
 
-[0;31mOperationalError[0m: RIGHT and FULL OUTER JOINs are not currently supported
+File [0;32m~/.local/lib/python3.10/site-packages/IPython/core/interactiveshell.py:2304[0m, in [0;36mInteractiveShell.run_line_magic[0;34m(self, magic_name, line, _stack_depth)[0m
+[1;32m   2302[0m     kwargs[[38;5;124m'[39m[38;5;124mlocal_ns[39m[38;5;124m'[39m] [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mget_local_scope(stack_depth)
+[1;32m   2303[0m [38;5;28;01mwith[39;00m [38;5;28mself[39m[38;5;241m.[39mbuiltin_trap:
+[0;32m-> 2304[0m     result [38;5;241m=[39m [43mfn[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m   2305[0m [38;5;28;01mreturn[39;00m result
 
-The above exception was the direct cause of the following exception:
+File [0;32m~/.local/lib/python3.10/site-packages/IPython/core/magics/extension.py:33[0m, in [0;36mExtensionMagics.load_ext[0;34m(self, module_str)[0m
+[1;32m     31[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m module_str:
+[1;32m     32[0m     [38;5;28;01mraise[39;00m UsageError([38;5;124m'[39m[38;5;124mMissing module name.[39m[38;5;124m'[39m)
+[0;32m---> 33[0m res [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mshell[49m[38;5;241;43m.[39;49m[43mextension_manager[49m[38;5;241;43m.[39;49m[43mload_extension[49m[43m([49m[43mmodule_str[49m[43m)[49m
+[1;32m     35[0m [38;5;28;01mif[39;00m res [38;5;241m==[39m [38;5;124m'[39m[38;5;124malready loaded[39m[38;5;124m'[39m:
+[1;32m     36[0m     [38;5;28mprint[39m([38;5;124m"[39m[38;5;124mThe [39m[38;5;132;01m%s[39;00m[38;5;124m extension is already loaded. To reload it, use:[39m[38;5;124m"[39m [38;5;241m%[39m module_str)
 
-[0;31mDatabaseError[0m                             Traceback (most recent call last)
-Input [0;32mIn [33][0m, in [0;36m<cell line: 5>[0;34m()[0m
-[1;32m      3[0m __SQL__ [38;5;241m=[39m [38;5;124m"[39m[38;5;124mSELECT Name, Adresse, Geburtstag, Gehalt FROM ManagerIn NATURAL RIGHT OUTER JOIN SchauspielerIn[39m[38;5;124m"[39m
-[1;32m      4[0m conn [38;5;241m=[39m sqlite3[38;5;241m.[39mconnect([38;5;124m"[39m[38;5;124mfilme/filme.db[39m[38;5;124m"[39m)
-[0;32m----> 5[0m df [38;5;241m=[39m [43mpd[49m[38;5;241;43m.[39;49m[43mread_sql_query[49m[43m([49m[43m__SQL__[49m[43m,[49m[43m [49m[43mconn[49m[43m)[49m
-[1;32m      6[0m df
+File [0;32m~/.local/lib/python3.10/site-packages/IPython/core/extensions.py:76[0m, in [0;36mExtensionManager.load_extension[0;34m(self, module_str)[0m
+[1;32m     69[0m [38;5;250m[39m[38;5;124;03m"""Load an IPython extension by its module name.[39;00m
+[1;32m     70[0m 
+[1;32m     71[0m [38;5;124;03mReturns the string "already loaded" if the extension is already loaded,[39;00m
+[1;32m     72[0m [38;5;124;03m"no load function" if the module doesn't have a load_ipython_extension[39;00m
+[1;32m     73[0m [38;5;124;03mfunction, or None if it succeeded.[39;00m
+[1;32m     74[0m [38;5;124;03m"""[39;00m
+[1;32m     75[0m [38;5;28;01mtry[39;00m:
+[0;32m---> 76[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_load_extension[49m[43m([49m[43mmodule_str[49m[43m)[49m
+[1;32m     77[0m [38;5;28;01mexcept[39;00m [38;5;167;01mModuleNotFoundError[39;00m:
+[1;32m     78[0m     [38;5;28;01mif[39;00m module_str [38;5;129;01min[39;00m BUILTINS_EXTS:
 
-File [0;32m~/.local/lib/python3.8/site-packages/pandas/io/sql.py:397[0m, in [0;36mread_sql_query[0;34m(sql, con, index_col, coerce_float, params, parse_dates, chunksize, dtype)[0m
-[1;32m    339[0m [38;5;124;03m"""[39;00m
-[1;32m    340[0m [38;5;124;03mRead SQL query into a DataFrame.[39;00m
-[1;32m    341[0m 
-[0;32m   (...)[0m
-[1;32m    394[0m [38;5;124;03mparameter will be converted to UTC.[39;00m
-[1;32m    395[0m [38;5;124;03m"""[39;00m
-[1;32m    396[0m pandas_sql [38;5;241m=[39m pandasSQL_builder(con)
-[0;32m--> 397[0m [38;5;28;01mreturn[39;00m [43mpandas_sql[49m[38;5;241;43m.[39;49m[43mread_query[49m[43m([49m
-[1;32m    398[0m [43m    [49m[43msql[49m[43m,[49m
-[1;32m    399[0m [43m    [49m[43mindex_col[49m[38;5;241;43m=[39;49m[43mindex_col[49m[43m,[49m
-[1;32m    400[0m [43m    [49m[43mparams[49m[38;5;241;43m=[39;49m[43mparams[49m[43m,[49m
-[1;32m    401[0m [43m    [49m[43mcoerce_float[49m[38;5;241;43m=[39;49m[43mcoerce_float[49m[43m,[49m
-[1;32m    402[0m [43m    [49m[43mparse_dates[49m[38;5;241;43m=[39;49m[43mparse_dates[49m[43m,[49m
-[1;32m    403[0m [43m    [49m[43mchunksize[49m[38;5;241;43m=[39;49m[43mchunksize[49m[43m,[49m
-[1;32m    404[0m [43m    [49m[43mdtype[49m[38;5;241;43m=[39;49m[43mdtype[49m[43m,[49m
-[1;32m    405[0m [43m[49m[43m)[49m
+File [0;32m~/.local/lib/python3.10/site-packages/IPython/core/extensions.py:92[0m, in [0;36mExtensionManager._load_extension[0;34m(self, module_str)[0m
+[1;32m     90[0m [38;5;28;01mif[39;00m module_str [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m sys[38;5;241m.[39mmodules:
+[1;32m     91[0m     [38;5;28;01mwith[39;00m prepended_to_syspath([38;5;28mself[39m[38;5;241m.[39mipython_extension_dir):
+[0;32m---> 92[0m         mod [38;5;241m=[39m [43mimport_module[49m[43m([49m[43mmodule_str[49m[43m)[49m
+[1;32m     93[0m         [38;5;28;01mif[39;00m mod[38;5;241m.[39m[38;5;18m__file__[39m[38;5;241m.[39mstartswith([38;5;28mself[39m[38;5;241m.[39mipython_extension_dir):
+[1;32m     94[0m             [38;5;28mprint[39m(([38;5;124m"[39m[38;5;124mLoading extensions from [39m[38;5;132;01m{dir}[39;00m[38;5;124m is deprecated. [39m[38;5;124m"[39m
+[1;32m     95[0m                    [38;5;124m"[39m[38;5;124mWe recommend managing extensions like any [39m[38;5;124m"[39m
+[1;32m     96[0m                    [38;5;124m"[39m[38;5;124mother Python packages, in site-packages.[39m[38;5;124m"[39m)[38;5;241m.[39mformat(
+[1;32m     97[0m                   [38;5;28mdir[39m[38;5;241m=[39mcompress_user([38;5;28mself[39m[38;5;241m.[39mipython_extension_dir)))
 
-File [0;32m~/.local/lib/python3.8/site-packages/pandas/io/sql.py:2078[0m, in [0;36mSQLiteDatabase.read_query[0;34m(self, sql, index_col, coerce_float, params, parse_dates, chunksize, dtype)[0m
-[1;32m   2066[0m [38;5;28;01mdef[39;00m [38;5;21mread_query[39m(
-[1;32m   2067[0m     [38;5;28mself[39m,
-[1;32m   2068[0m     sql,
-[0;32m   (...)[0m
-[1;32m   2074[0m     dtype: DtypeArg [38;5;241m|[39m [38;5;28;01mNone[39;00m [38;5;241m=[39m [38;5;28;01mNone[39;00m,
-[1;32m   2075[0m ) [38;5;241m-[39m[38;5;241m>[39m DataFrame [38;5;241m|[39m Iterator[DataFrame]:
-[1;32m   2077[0m     args [38;5;241m=[39m _convert_params(sql, params)
-[0;32m-> 2078[0m     cursor [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mexecute[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m)[49m
-[1;32m   2079[0m     columns [38;5;241m=[39m [col_desc[[38;5;241m0[39m] [38;5;28;01mfor[39;00m col_desc [38;5;129;01min[39;00m cursor[38;5;241m.[39mdescription]
-[1;32m   2081[0m     [38;5;28;01mif[39;00m chunksize [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+File [0;32m/usr/lib/python3.10/importlib/__init__.py:126[0m, in [0;36mimport_module[0;34m(name, package)[0m
+[1;32m    124[0m             [38;5;28;01mbreak[39;00m
+[1;32m    125[0m         level [38;5;241m+[39m[38;5;241m=[39m [38;5;241m1[39m
+[0;32m--> 126[0m [38;5;28;01mreturn[39;00m [43m_bootstrap[49m[38;5;241;43m.[39;49m[43m_gcd_import[49m[43m([49m[43mname[49m[43m[[49m[43mlevel[49m[43m:[49m[43m][49m[43m,[49m[43m [49m[43mpackage[49m[43m,[49m[43m [49m[43mlevel[49m[43m)[49m
 
-File [0;32m~/.local/lib/python3.8/site-packages/pandas/io/sql.py:2030[0m, in [0;36mSQLiteDatabase.execute[0;34m(self, *args, **kwargs)[0m
-[1;32m   2027[0m     [38;5;28;01mraise[39;00m ex [38;5;28;01mfrom[39;00m [38;5;21;01minner_exc[39;00m
-[1;32m   2029[0m ex [38;5;241m=[39m DatabaseError([38;5;124mf[39m[38;5;124m"[39m[38;5;124mExecution failed on sql [39m[38;5;124m'[39m[38;5;132;01m{[39;00margs[[38;5;241m0[39m][38;5;132;01m}[39;00m[38;5;124m'[39m[38;5;124m: [39m[38;5;132;01m{[39;00mexc[38;5;132;01m}[39;00m[38;5;124m"[39m)
-[0;32m-> 2030[0m [38;5;28;01mraise[39;00m ex [38;5;28;01mfrom[39;00m [38;5;21;01mexc[39;00m
+File [0;32m<frozen importlib._bootstrap>:1050[0m, in [0;36m_gcd_import[0;34m(name, package, level)[0m
 
-[0;31mDatabaseError[0m: Execution failed on sql 'SELECT Name, Adresse, Geburtstag, Gehalt FROM ManagerIn NATURAL RIGHT OUTER JOIN SchauspielerIn': RIGHT and FULL OUTER JOINs are not currently supported
-DatabaseError: Execution failed on sql 'SELECT Name, Adresse, Geburtstag, Gehalt FROM ManagerIn NATURAL RIGHT OUTER JOIN SchauspielerIn': RIGHT and FULL OUTER JOINs are not currently supported
+File [0;32m<frozen importlib._bootstrap>:1027[0m, in [0;36m_find_and_load[0;34m(name, import_)[0m
+
+File [0;32m<frozen importlib._bootstrap>:1004[0m, in [0;36m_find_and_load_unlocked[0;34m(name, import_)[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'sql'
+ModuleNotFoundError: No module named 'sql'
 
