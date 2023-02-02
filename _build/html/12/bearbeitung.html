@@ -840,7 +840,7 @@ Stattdessen “sagt” man (deklarativ): Gebe alle Filme aus, die im Jahr 1996 p
 Die Anfragen müssen in eine ausführbare (prozedurale) Form transformiert werden. Ein Ziel hierbei ist es, einen „QEP“ (prozeduraler Query Execution Plan) zu erhalten. Wichtig zu beachten ist die Effizienz des Programms. Es soll zum Einem schnell sein, aber zum Anderen auch wenige Ressourcen verbrauchen (CPU, I/O, RAM, Bandbreite), denn es wirkt sich stark auf den Energieverbrauch aus. <br></p>
 <p><strong>Ablauf der Anfragebearbeitung</strong><br><br>
 Gegeben ist zunächst eine Anfrage der Form: <br>
-SELECT * FROM x WHERE …;</p>
+<code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span> <span class="pre">FROM</span> <span class="pre">x</span> <span class="pre">WHERE</span> <span class="pre">...;</span></code></p>
 <ol class="simple">
 <li><p>Parsing:<br>
 Eine solche Anfrage wird zunächst mit Blick auf die Syntax geparst. Anschließend werden die Elemente auf korrekte Semantik überprüft und ein Parsebaum erstellt. Es wird herausgefunden auf welche Operationselemente die Anfrage abgebildet wird. <br>
@@ -877,7 +877,7 @@ In einem Parsebaum werden folgende Elemente als Atome (Blätter) dargestellt:</p
 </section>
 <section id="eine-grammatik-fur-einen-teil-von-sql">
 <h3><span class="section-number">12.1.2. </span>Eine Grammatik für einen Teil von SQL<a class="headerlink" href="#eine-grammatik-fur-einen-teil-von-sql" title="Permalink to this headline">#</a></h3>
-<p>Die Anfragen unterliegen einer Grammatik (wie man sie aus der theoretischen Informatik kennt). Sie bestehen aus einer Struktur der Form “SELECT FROM WHERE”, kurz SFW. Es können keine Anfragen formuliert werden, die nicht der Grammatik entsprechen.<br></p>
+<p>Die Anfragen unterliegen einer Grammatik (wie man sie aus der theoretischen Informatik kennt). Sie bestehen aus einer Struktur der Form “<code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">FROM</span> <span class="pre">WHERE</span></code>”, kurz SFW. Es können keine Anfragen formuliert werden, die nicht der Grammatik entsprechen.<br></p>
 <ul>
 <li><p>Anfragen:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  - &lt;Anfrage&gt; :: = &lt;SFW&gt;
@@ -905,7 +905,7 @@ Dabei ergibt sich eine SelListe(SelectListe) aus einem Attribut und einer andere
 </div>
 </li>
 <li><p>Bedingungen (Beispiele):<br>
-Bedingungen können Verknüpfungen bzw. Kombinationen von anderen Bedingungen sein. Verknüpft werden können sie beispielsweise mit AND oder auch mit OR:</p>
+Bedingungen können Verknüpfungen bzw. Kombinationen von anderen Bedingungen sein. Verknüpft werden können sie beispielsweise mit <code class="docutils literal notranslate"><span class="pre">AND</span></code> oder auch mit <code class="docutils literal notranslate"><span class="pre">OR</span></code>:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  - &lt;Bedingung&gt; ::= &lt;Bedingung&gt; AND &lt;Bedingung&gt;
 </pre></div>
 </div>
@@ -926,14 +926,14 @@ Die vollständige Grammatik kann man z.B. unter <a class="reference external" hr
 <section id="parse-baum">
 <h3><span class="section-number">12.1.3. </span>Parse-Baum<a class="headerlink" href="#parse-baum" title="Permalink to this headline">#</a></h3>
 <p><img alt="" src="../_images/parsebaum.jpg" /></p>
-<p>In diesem Bild ist der Aufbau eines Parsebaums dargestellt, der anhand der vorherigen SQL-Anfrage erstellt wurde. Dabei besteht die Anfrage aus einem SFW. Das SFW kann wiederrum unterteilt werden in SELECT, SelListe, … <br>
+<p>In diesem Bild ist der Aufbau eines Parsebaums dargestellt, der anhand der vorherigen SQL-Anfrage erstellt wurde. Dabei besteht die Anfrage aus einem SFW. Das SFW kann wiederrum unterteilt werden in <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>, SelListe, … <br>
 Alle Konstanten und Relationen lassen sich in den Blattstrukturen wiederfinden.</p>
 </section>
 <section id="prufung-der-semantik">
 <h3><span class="section-number">12.1.4. </span>Prüfung der Semantik<a class="headerlink" href="#prufung-der-semantik" title="Permalink to this headline">#</a></h3>
 <p>Die Prüfung der Semantik auf Korrektheit erfolgt während der Übersetzung. Dabei werden auf verschiedene Punkte geachtet, unter Anderem:</p>
 <ul class="simple">
-<li><p>Existieren die Relationen und Sichten der FROM Klausel?</p></li>
+<li><p>Existieren die Relationen und Sichten der <code class="docutils literal notranslate"><span class="pre">FROM</span></code> Klausel?</p></li>
 <li><p>Existieren die Attribute in den genannten Relationen?</p></li>
 <li><p>Sind sie eindeutig?</p></li>
 <li><p>Sind korrekte Typen für Vergleiche gegeben? (Bsp.: Vergleicht man einen Integer mit einem String)</p></li>
@@ -944,7 +944,7 @@ Alle Konstanten und Relationen lassen sich in den Blattstrukturen wiederfinden.<
 <section id="vom-parse-baum-zum-operatorbaum">
 <h3><span class="section-number">12.1.5. </span>Vom Parse-Baum zum Operatorbaum<a class="headerlink" href="#vom-parse-baum-zum-operatorbaum" title="Permalink to this headline">#</a></h3>
 <p><img alt="" src="../_images/operatorbaum.jpg" /></p>
-<p>Der vorherige Schritt hat einen Parsebaum generiert. Dieser wird jetzt in einen Operatorbaum umgewandelt. Dargestellt werden kann der Operatorbaum mittels Relationaler Algebra. Dabei entspricht das SELECT einer Projektion und das WHERE einer Selektion. Aus den Schlüsselwörtern werden konkrete Operatoren. Es ist nun auch bekannt, dass spielt_in und Schauspieler durch ein Kreuzprodukt kombiniert werden. Diese beiden Relationen sind also der Input des Kreuzprodukts. Auf dem Output des Kreuzproduktes findet dananch eine Selektion statt und auf dessen Output letztendlich eine Projektion.</p>
+<p>Der vorherige Schritt hat einen Parsebaum generiert. Dieser wird jetzt in einen Operatorbaum umgewandelt. Dargestellt werden kann der Operatorbaum mittels Relationaler Algebra. Dabei entspricht das <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> einer Projektion und das <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> einer Selektion. Aus den Schlüsselwörtern werden konkrete Operatoren. Es ist nun auch bekannt, dass spielt_in und Schauspieler durch ein Kreuzprodukt kombiniert werden. Diese beiden Relationen sind also der Input des Kreuzprodukts. Auf dem Output des Kreuzproduktes findet dananch eine Selektion statt und auf dessen Output letztendlich eine Projektion.</p>
 </section>
 </section>
 <section id="transformationsregeln-der-ra">
@@ -962,10 +962,10 @@ Zwei Ausdrücke der relationalen Algebra gelten als äquivalent, falls sie gleic
 </section>
 <section id="anfragebearbeitung-beispiel">
 <h3><span class="section-number">12.2.2. </span>Anfragebearbeitung – Beispiel<a class="headerlink" href="#anfragebearbeitung-beispiel" title="Permalink to this headline">#</a></h3>
-<p>In diesem Beispiel soll der Nachname projiziert werden. Dafür wird das Kreuzprodukt zwischen den Relationen ‘Mitarbeiter’ und ‘Projekte’ erstellt. Darauf werden alle Paare, bei denen die Mitarbeiter-ID gleich der Projekt-ID ist, selektiert. Die Projekte, die ein gleiches oder größeres Budget als 40000 haben, werden aussortiert.</p>
+<p>In diesem Beispiel soll der Nachname projiziert werden. Dafür wird das Kreuzprodukt zwischen den Relationen <code class="docutils literal notranslate"><span class="pre">Mitarbeiter</span></code> und <code class="docutils literal notranslate"><span class="pre">Projekte</span></code> erstellt. Darauf werden alle Paare, bei denen die <code class="docutils literal notranslate"><span class="pre">Mitarbeiter-ID</span></code> gleich der <code class="docutils literal notranslate"><span class="pre">Projekt-ID</span></code> ist, selektiert. Die Projekte, die ein gleiches oder größeres Budget als 40000 haben, werden aussortiert.</p>
 <p><img alt="" src="../_images/anfragebearbeitung_bsp1.jpg" /></p>
 <p>Es kann nun überlegt werden, wo man noch früher Tupel herausfiltern kann. Eine Möglichkeit wäre es die Selektion mit dem Kreuzprodukt zu einem Join zu kombinieren.
-Eine Andere wäre es, die übrig gebliebene Selektion früher durchzuführen. Noch bevor das Kreuzprodukt der beiden Relationen gebildet wird, kann man die Selektion ‘p.Budget &lt; 40000’ auf der ‘projekt’-Relation ausführen. Die Erwartung ist, dass der nachfolgende Join auf einer kleineren Tupelmenge ausgeführt wird.</p>
+Eine Andere wäre es, die übrig gebliebene Selektion früher durchzuführen. Noch bevor das Kreuzprodukt der beiden Relationen gebildet wird, kann man die Selektion <code class="docutils literal notranslate"><span class="pre">p.Budget</span> <span class="pre">&lt;</span> <span class="pre">40000</span></code> auf der <code class="docutils literal notranslate"><span class="pre">projekt</span></code>-Relation ausführen. Die Erwartung ist, dass der nachfolgende Join auf einer kleineren Tupelmenge ausgeführt wird.</p>
 <p><img alt="" src="../_images/anfragebearbeitung_bsp2.jpg" /></p>
 </section>
 <section id="kommutativitat-und-assoziativitat">
@@ -1003,7 +1003,7 @@ R ⋈ S = S ⋈ R
 <p>Wenn es eine Selektion mit zwei Bedingungen ist, kann sie in zwei Selektionen, die aufeinander aufbauen, kaskadiert werden.</p>
 </li>
 <li><p><span class="math notranslate nohighlight">\(\sigma_{c1 OR c2}(R ) = \sigma_{c1}(R) \cup \sigma_{c2} (R)\)</span></p>
-<p>Wenn es eine Selektion mit einem OR ist, kann davon die Vereinigung gebildet werden.
+<p>Wenn es eine Selektion mit einem <code class="docutils literal notranslate"><span class="pre">OR</span></code> ist, kann davon die Vereinigung gebildet werden.
 <br>Dabei kommt es zu einem Problem bei Multimengen:<br>
 c1 or c2 bedeutet, gebe jedes Tupel zurück, egal ob Bedingung c1, c2 oder beide gelten. Man würde bei der Vereinigung eine andere Anzahl an Tupeln bekommen. Bei den Fällen bei denen beide Bedingungen gelten, würde es das Tupel doppelt geben.</p>
 </li>
@@ -1068,7 +1068,7 @@ Beispielsweise kann es sein, dass ein bestimmter Plan besser funktioniert, wenn 
 <p>Die Grundsätze der logischen Optimierung lauten wie folgt:</p>
 <ul class="simple">
 <li><p>Selektionen sollen so weit wie möglich im Baum nach unten geschoben werden.</p></li>
-<li><p>Selektionen mit AND können aufgeteilt und separat verschoben werden.</p></li>
+<li><p>Selektionen mit <code class="docutils literal notranslate"><span class="pre">AND</span></code> können aufgeteilt und separat verschoben werden.</p></li>
 <li><p>Projektionen sollen so weit wie möglich im Baum nach unten geschoben werden,</p></li>
 <li><p>bzw. neue Projektionen können eingefügt werden.
 <br>Bei dem nach unten Verschieben von Selektionen und Projektionen gibt es einen Unterschied: <br>Bei dem Verschieben von Selektionen geht es darum die Menge an Tupeln zu verringern. Bei Projektionen wird versucht die Anzahl der Spalten zu verringern. <br>
@@ -1084,14 +1084,14 @@ Beides ist sinnvoll, da bei riesigen Datensätzen eine Spalte mehrere Gigabyte g
 Bei der Anfrage werden eindeutig alle Semester gesucht, in denen für Studenten, hören, Vorlesungen und Professoren folgende Bedingungen gelten:
 Der Professor heißt mit Namen ‘Sokrates’. Dieser Professor soll Vorlesungen halten und die Vorlesungen sollen von Studierenden gehört werden.
 Es soll also in Erfahrung gebracht werden: In welchen Semestern sind die Studierenden, die Vorlesungen bei Sokrates hören?</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>select distinct s.Semester
-from Studiernden s, hören h
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT DISTINCT s.Semester
+FROM Studiernde s, hören h
 Vorlesungen v,
 Professorinnen p
-where p.Name = ´Sokrates´
-and v.gelesenVon = p.PersNr
-and v.VorlNr = h.VorlNr
-and h.MatrNr = s.MatrNr
+WHERE p.Name = ´Sokrates´
+AND v.gelesenVon = p.PersNr
+AND v.VorlNr = h.VorlNr
+AND h.MatrNr = s.MatrNr
 </pre></div>
 </div>
 <p>Zunächst ist eine Darstellung gegeben, bei der es ein Kreuzprodukt aller Relationen gibt. Dann kommen die aneinandergereihten Selektionsoperatoren. Es ist nicht die logisch effizienteste Variante.</p>
@@ -1105,7 +1105,7 @@ and h.MatrNr = s.MatrNr
 <section id="verschieben-der-selektionspradikate-pushing-selections">
 <h3><span class="section-number">12.3.7. </span>Verschieben der Selektionsprädikate „Pushing Selections“<a class="headerlink" href="#verschieben-der-selektionspradikate-pushing-selections" title="Permalink to this headline">#</a></h3>
 <p>Um die Anzahl der Tupel zu verringern, werden die Selektionen weiter nach unten geschoben.
-Das ist der Fall bei den Studierenden, die eine Vorlesung hören. Um deren Anzahl zu verringern, wird nach dem Kreuzprodukt zwischen den beiden Relationen ‘studierende’ und ‘hören’ die Selektion platziert.
+Das ist der Fall bei den Studierenden, die eine Vorlesung hören. Um deren Anzahl zu verringern, wird nach dem Kreuzprodukt zwischen den beiden Relationen <code class="docutils literal notranslate"><span class="pre">Studierende</span></code> und <code class="docutils literal notranslate"><span class="pre">hören</span></code> die Selektion platziert.
 Die kleinere Menge an Tupeln als Output wird dann wie zuvor über das Kreuzprodukt mit ‘Vorlesungen’ kombiniert. Mit einer Selektion wird die Anzahl der Tupel reduziert, bevor ein weiteres Kreuzprodukt gebildet wird.
 Ansonsten ist direkt vor die Professorentabelle die Selektion mit der Bedingung, dass der Name des Professors Sokrates sein soll, geschoben worden. Somit ist der Ouptut nach der Selektion nur ein Tupel und es müssen nicht mehr alle Professorentupel mitgeführt werden.</p>
 <p><img alt="" src="../_images/verschieben_selektionspraedikate.jpg" /></p>
@@ -1135,9 +1135,9 @@ Ohne diese Optimierung wird mit der gesamten Menge an Studierenden, die diese Vo
 </section>
 <section id="sqlite-explain">
 <h3><span class="section-number">12.3.12. </span>SQLite Explain<a class="headerlink" href="#sqlite-explain" title="Permalink to this headline">#</a></h3>
-<p>Anfragepläne können auch in SQLite ausprobiert werden. Dafür muss vor der Anfrage mit ‘.eqp on’ eingegeben werden. Für jede Anfrage wird jetzt der Plan direkt gezeigt.
-Es kann auch explizit mit ‘EXPLAIN QUERY PLAN’ eingestellt werden. Danach wird wie gewohnt die SQL-Anfrage eingegeben.
-Nun kann die tatsächliche Implementierung angesehen werden. Zunächst wird die ‘producer’ Tabelle gescannt. Dann wird ein Autoindex für ‘movie’ verwendet, weil der Primärschlüssel ‘mid’ verwendet wird. Dieser Index wird für den IN-OPERATOR verwendet und es wird ein B-TREE verwendet, um die doppelten Werte zu vermeiden.</p>
+<p>Anfragepläne können auch in SQLite ausprobiert werden. Dafür muss vor der Anfrage mit <code class="docutils literal notranslate"><span class="pre">.eqp</span> <span class="pre">on</span></code> eingegeben werden. Für jede Anfrage wird jetzt der Plan direkt gezeigt.
+Es kann auch explizit mit <code class="docutils literal notranslate"><span class="pre">EXPLAIN</span> <span class="pre">QUERY</span> <span class="pre">PLAN</span></code> eingestellt werden. Danach wird wie gewohnt die SQL-Anfrage eingegeben.
+Nun kann die tatsächliche Implementierung angesehen werden. Zunächst wird die <code class="docutils literal notranslate"><span class="pre">producer</span></code> Tabelle gescannt. Dann wird ein Autoindex für <code class="docutils literal notranslate"><span class="pre">movie</span></code> verwendet, weil der Primärschlüssel <code class="docutils literal notranslate"><span class="pre">mid</span></code> verwendet wird. Dieser Index wird für den <code class="docutils literal notranslate"><span class="pre">IN</span></code>-OPERATOR verwendet und es wird ein B-TREE verwendet, um die doppelten Werte zu vermeiden.</p>
 <p><img alt="" src="../_images/sqlite.jpg" /></p>
 </section>
 </section>
@@ -1290,13 +1290,13 @@ Da man einen Equijoin über Fremdschlüssel durchführt, ist die Anzahl der Ausg
 <p><img alt="" src="../_images/selinger_style3.jpg" /></p>
 <p>Der Fokus liegt jetzt besonders auf der Join Selektivität. Dazu folgende Anfrage als Beispiel:</p>
 <ul class="simple">
-<li><p>SELECT * FROM cust, order WHERE <a class="reference external" href="http://cust.ID">cust.ID</a> = order.custID</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span> <span class="pre">FROM</span> <span class="pre">cust,</span> <span class="pre">order</span> <span class="pre">WHERE</span> <span class="pre">cust.ID</span> <span class="pre">=</span> <span class="pre">order.custID</span></code></p></li>
 </ul>
-<p>Die Kardinalität von customerID (<a class="reference external" href="http://cust.ID">cust.ID</a>) ist die Anzahl von customer (|cust|), weil es ein Schlüssel ist.</p>
+<p>Die Kardinalität von customerID (<code class="docutils literal notranslate"><span class="pre">cust.ID</span></code>) ist die Anzahl von customer (|cust|), weil es ein Schlüssel ist.</p>
 <ul class="simple">
-<li><p>DISTINCT <a class="reference external" href="http://cust.ID">cust.ID</a> = |cust|</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DISTINCT</span> <span class="pre">cust.ID</span></code> = |cust|</p></li>
 </ul>
-<p>Die order-customer-ID (oder.custID) ist kleiner gleich der Anzahl der customer (cust), weil es weniger Bestellungen (orders) als Kunden (cust) sind.</p>
+<p>Die order-customer-ID (<code class="docutils literal notranslate"><span class="pre">oder.custID</span></code>) ist kleiner gleich der Anzahl der customer (<code class="docutils literal notranslate"><span class="pre">cust</span></code>), weil es weniger Bestellungen (<code class="docutils literal notranslate"><span class="pre">orders</span></code>) als Kunden (<code class="docutils literal notranslate"><span class="pre">cust</span></code>) sind.</p>
 <ul class="simple">
 <li><p>DISTINCT order.custID ≤ |cust|</p></li>
 </ul>
@@ -1304,7 +1304,7 @@ Da man einen Equijoin über Fremdschlüssel durchführt, ist die Anzahl der Ausg
 <ul class="simple">
 <li><p>sf = 1/|cust|</p></li>
 </ul>
-<p>Der Join von customer (cust) und order gibt somit die gleiche Anzahl an Tupeln zurück wie die Anzahl an Tupeln in order.</p>
+<p>Der Join von customer (<code class="docutils literal notranslate"><span class="pre">cust</span></code>) und <code class="docutils literal notranslate"><span class="pre">order</span></code> gibt somit die gleiche Anzahl an Tupeln zurück wie die Anzahl an Tupeln in <code class="docutils literal notranslate"><span class="pre">order</span></code>.</p>
 <ul class="simple">
 <li><p>|cust ⋈ order| = 1/|cust| * |cust| * |order| = |order|</p></li>
 </ul>
@@ -1325,9 +1325,9 @@ Eine weitere Möglichkeit ist das Sampling. Dabei wird eine repräsentative Teil
 <span class="n">p</span><span class="o">.</span><span class="n">price</span> <span class="o">&gt;</span> <span class="mi">100</span> 
 </pre></div>
 </div>
-<p>Gegeben ist ein Histogramm mit 3300 Produkten und einer Preisspanne von 0 bis 1000. Zu jedem Bucket in der Preisspanne wird angegeben wie viele Produkte darin enthalten sind. Zudem ist eine ‘sales’ Relation mit einer Millionen Einträgen gegeben. <br>
+<p>Gegeben ist ein Histogramm mit 3300 Produkten und einer Preisspanne von 0 bis 1000. Zu jedem Bucket in der Preisspanne wird angegeben wie viele Produkte darin enthalten sind. Zudem ist eine <code class="docutils literal notranslate"><span class="pre">sales</span></code> Relation mit einer Millionen Einträgen gegeben. <br>
 <br>
-Angenommen es findet eine Gleichverteilung statt. Dann ist der Preis gleichverteilt zwischen 0 und 1000. Aufgrund der Selektionsbedingung (p.price &gt; 100) wird nach allen Produkten, die mehr als 100 Kosten, gesucht. Es bleiben genau 900 Produkte übrig. Also kommen 900 von 1000 Einträgen weiter. Es ergibt sich eine Selektivität von 900/1000 = 9/10. Am Ende werden somit 9/10 * 3300 ≈ 3000 Produkte erwartet, die noch zusätzlich mit der sales Relation gejoint wird. <br>
+Angenommen es findet eine Gleichverteilung statt. Dann ist der Preis gleichverteilt zwischen 0 und 1000. Aufgrund der Selektionsbedingung (<code class="docutils literal notranslate"><span class="pre">p.price</span> <span class="pre">&gt;</span> <span class="pre">100</span></code>) wird nach allen Produkten, die mehr als 100 Kosten, gesucht. Es bleiben genau 900 Produkte übrig. Also kommen 900 von 1000 Einträgen weiter. Es ergibt sich eine Selektivität von 900/1000 = 9/10. Am Ende werden somit 9/10 * 3300 ≈ 3000 Produkte erwartet, die noch zusätzlich mit der <code class="docutils literal notranslate"><span class="pre">sales</span></code> Relation gejoint wird. <br>
 <br>
 Durch das Kennen des Aussehens des Histogramms, ist bekannt, dass es insgesamt nur 5 Produkte gibt, die über 100 kosten. Die Selektivität der Bedingung ist dann 5/3000 ≈ 0.0015. Somit deutlich geringer als zuvor.</p>
 </section>

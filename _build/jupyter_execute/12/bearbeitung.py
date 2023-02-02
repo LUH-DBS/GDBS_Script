@@ -15,7 +15,7 @@
 # 
 # **Ablauf der Anfragebearbeitung**<br><br>
 # Gegeben ist zunächst eine Anfrage der Form: <br>
-# SELECT * FROM x WHERE ...;
+# ```SELECT * FROM x WHERE ...;```
 # 1. Parsing:<br>
 # Eine solche Anfrage wird zunächst mit Blick auf die Syntax geparst. Anschließend werden die Elemente auf korrekte Semantik überprüft und ein Parsebaum erstellt. Es wird herausgefunden auf welche Operationselemente die Anfrage abgebildet wird. <br>
 # <br>
@@ -50,7 +50,7 @@
 # Bei Syntaktischen Kategorien können Teilausdrücke einer Anfrage Namen gegeben werden. Die Teilausdrücke können also zu Kategorien zusammengefasst werden, beispielsweise bei einer VIEW.  
 # <br>
 # ### Eine Grammatik für einen Teil von SQL
-# Die Anfragen unterliegen einer Grammatik (wie man sie aus der theoretischen Informatik kennt). Sie bestehen aus einer Struktur der Form "SELECT FROM WHERE", kurz SFW. Es können keine Anfragen formuliert werden, die nicht der Grammatik entsprechen.<br>
+# Die Anfragen unterliegen einer Grammatik (wie man sie aus der theoretischen Informatik kennt). Sie bestehen aus einer Struktur der Form "```SELECT FROM WHERE```", kurz SFW. Es können keine Anfragen formuliert werden, die nicht der Grammatik entsprechen.<br>
 # - Anfragen:
 # 
 #         - <Anfrage> :: = <SFW>
@@ -77,7 +77,7 @@
 # 
 # 
 # - Bedingungen (Beispiele):<br>
-#     Bedingungen können Verknüpfungen bzw. Kombinationen von anderen Bedingungen sein. Verknüpft werden können sie beispielsweise mit AND oder auch mit OR:
+#     Bedingungen können Verknüpfungen bzw. Kombinationen von anderen Bedingungen sein. Verknüpft werden können sie beispielsweise mit ```AND``` oder auch mit ```OR```:
 #     
 #         - <Bedingung> ::= <Bedingung> AND <Bedingung>
 #  
@@ -98,13 +98,13 @@
 # 
 # ![](parsebaum.jpg)
 #     
-# In diesem Bild ist der Aufbau eines Parsebaums dargestellt, der anhand der vorherigen SQL-Anfrage erstellt wurde. Dabei besteht die Anfrage aus einem SFW. Das SFW kann wiederrum unterteilt werden in SELECT, SelListe, ... <br>
+# In diesem Bild ist der Aufbau eines Parsebaums dargestellt, der anhand der vorherigen SQL-Anfrage erstellt wurde. Dabei besteht die Anfrage aus einem SFW. Das SFW kann wiederrum unterteilt werden in ```SELECT```, SelListe, ... <br>
 # Alle Konstanten und Relationen lassen sich in den Blattstrukturen wiederfinden.
 # 
 # 
 # ### Prüfung der Semantik
 # Die Prüfung der Semantik auf Korrektheit erfolgt während der Übersetzung. Dabei werden auf verschiedene Punkte geachtet, unter Anderem:
-# - Existieren die Relationen und Sichten der FROM Klausel?
+# - Existieren die Relationen und Sichten der ```FROM``` Klausel?
 # - Existieren die Attribute in den genannten Relationen?
 # - Sind sie eindeutig?
 # - Sind korrekte Typen für Vergleiche gegeben? (Bsp.: Vergleicht man einen Integer mit einem String)
@@ -115,7 +115,7 @@
 #                                                                 
 # ![](operatorbaum.jpg)
 # 
-# Der vorherige Schritt hat einen Parsebaum generiert. Dieser wird jetzt in einen Operatorbaum umgewandelt. Dargestellt werden kann der Operatorbaum mittels Relationaler Algebra. Dabei entspricht das SELECT einer Projektion und das WHERE einer Selektion. Aus den Schlüsselwörtern werden konkrete Operatoren. Es ist nun auch bekannt, dass spielt_in und Schauspieler durch ein Kreuzprodukt kombiniert werden. Diese beiden Relationen sind also der Input des Kreuzprodukts. Auf dem Output des Kreuzproduktes findet dananch eine Selektion statt und auf dessen Output letztendlich eine Projektion. 
+# Der vorherige Schritt hat einen Parsebaum generiert. Dieser wird jetzt in einen Operatorbaum umgewandelt. Dargestellt werden kann der Operatorbaum mittels Relationaler Algebra. Dabei entspricht das ```SELECT``` einer Projektion und das ```WHERE``` einer Selektion. Aus den Schlüsselwörtern werden konkrete Operatoren. Es ist nun auch bekannt, dass spielt_in und Schauspieler durch ein Kreuzprodukt kombiniert werden. Diese beiden Relationen sind also der Input des Kreuzprodukts. Auf dem Output des Kreuzproduktes findet dananch eine Selektion statt und auf dessen Output letztendlich eine Projektion. 
 
 # ## Transformationsregeln der RA
 # Für jede Anfrage gibt es verschiedene Pläne. Das bedeutet also auch, dass es verschiedene Operatorenbäume gibt. Somit kann man  verschiedene Anfragen ineinander transformieren. Dies wird anhand der Transformationseregeln der Relationalen Algebra dargestellt. 
@@ -132,12 +132,12 @@
 # 
 # ### Anfragebearbeitung – Beispiel
 # 
-# In diesem Beispiel soll der Nachname projiziert werden. Dafür wird das Kreuzprodukt zwischen den Relationen 'Mitarbeiter' und 'Projekte' erstellt. Darauf werden alle Paare, bei denen die Mitarbeiter-ID gleich der Projekt-ID ist, selektiert. Die Projekte, die ein gleiches oder größeres Budget als 40000 haben, werden aussortiert.  
+# In diesem Beispiel soll der Nachname projiziert werden. Dafür wird das Kreuzprodukt zwischen den Relationen ```Mitarbeiter``` und ```Projekte``` erstellt. Darauf werden alle Paare, bei denen die ```Mitarbeiter-ID``` gleich der ```Projekt-ID``` ist, selektiert. Die Projekte, die ein gleiches oder größeres Budget als 40000 haben, werden aussortiert.  
 # 
 # ![](anfragebearbeitung_bsp1.jpg)
 # 
 # Es kann nun überlegt werden, wo man noch früher Tupel herausfiltern kann. Eine Möglichkeit wäre es die Selektion mit dem Kreuzprodukt zu einem Join zu kombinieren. 
-# Eine Andere wäre es, die übrig gebliebene Selektion früher durchzuführen. Noch bevor das Kreuzprodukt der beiden Relationen gebildet wird, kann man die Selektion 'p.Budget < 40000' auf der 'projekt'-Relation ausführen. Die Erwartung ist, dass der nachfolgende Join auf einer kleineren Tupelmenge ausgeführt wird. 
+# Eine Andere wäre es, die übrig gebliebene Selektion früher durchzuführen. Noch bevor das Kreuzprodukt der beiden Relationen gebildet wird, kann man die Selektion ```p.Budget < 40000``` auf der ```projekt```-Relation ausführen. Die Erwartung ist, dass der nachfolgende Join auf einer kleineren Tupelmenge ausgeführt wird. 
 # 
 # ![](anfragebearbeitung_bsp2.jpg)
 # 
@@ -174,7 +174,7 @@
 #     
 #     - $\sigma_{c1 OR c2}(R ) = \sigma_{c1}(R) \cup \sigma_{c2} (R)$
 #     
-#         Wenn es eine Selektion mit einem OR ist, kann davon die Vereinigung gebildet werden. 
+#         Wenn es eine Selektion mit einem ```OR``` ist, kann davon die Vereinigung gebildet werden. 
 #         <br>Dabei kommt es zu einem Problem bei Multimengen:<br> 
 #         c1 or c2 bedeutet, gebe jedes Tupel zurück, egal ob Bedingung c1, c2 oder beide gelten. Man würde bei der Vereinigung eine andere Anzahl an Tupeln bekommen. Bei den Fällen bei denen beide Bedingungen gelten, würde es das Tupel doppelt geben. 
 # 
@@ -229,7 +229,7 @@
 # ### Logische Optimierung – regelbasiert
 # Die Grundsätze der logischen Optimierung lauten wie folgt:
 # - Selektionen sollen so weit wie möglich im Baum nach unten geschoben werden.
-# - Selektionen mit AND können aufgeteilt und separat verschoben werden.
+# - Selektionen mit ```AND``` können aufgeteilt und separat verschoben werden.
 # - Projektionen sollen so weit wie möglich im Baum nach unten geschoben werden,
 # - bzw. neue Projektionen können eingefügt werden.
 #     <br>Bei dem nach unten Verschieben von Selektionen und Projektionen gibt es einen Unterschied: <br>Bei dem Verschieben von Selektionen geht es darum die Menge an Tupeln zu verringern. Bei Projektionen wird versucht die Anzahl der Spalten zu verringern. <br>
@@ -248,14 +248,14 @@
 # Es soll also in Erfahrung gebracht werden: In welchen Semestern sind die Studierenden, die Vorlesungen bei Sokrates hören?
 # 
 # ```
-# select distinct s.Semester
-# from Studiernden s, hören h
+# SELECT DISTINCT s.Semester
+# FROM Studiernde s, hören h
 # Vorlesungen v,
 # Professorinnen p
-# where p.Name = ´Sokrates´
-# and v.gelesenVon = p.PersNr
-# and v.VorlNr = h.VorlNr
-# and h.MatrNr = s.MatrNr
+# WHERE p.Name = ´Sokrates´
+# AND v.gelesenVon = p.PersNr
+# AND v.VorlNr = h.VorlNr
+# AND h.MatrNr = s.MatrNr
 # ```
 # 
 # Zunächst ist eine Darstellung gegeben, bei der es ein Kreuzprodukt aller Relationen gibt. Dann kommen die aneinandergereihten Selektionsoperatoren. Es ist nicht die logisch effizienteste Variante. 
@@ -271,7 +271,7 @@
 # ### Verschieben der Selektionsprädikate „Pushing Selections“
 # 
 # Um die Anzahl der Tupel zu verringern, werden die Selektionen weiter nach unten geschoben.
-# Das ist der Fall bei den Studierenden, die eine Vorlesung hören. Um deren Anzahl zu verringern, wird nach dem Kreuzprodukt zwischen den beiden Relationen 'studierende' und 'hören' die Selektion platziert.
+# Das ist der Fall bei den Studierenden, die eine Vorlesung hören. Um deren Anzahl zu verringern, wird nach dem Kreuzprodukt zwischen den beiden Relationen ```Studierende``` und ```hören``` die Selektion platziert.
 # Die kleinere Menge an Tupeln als Output wird dann wie zuvor über das Kreuzprodukt mit 'Vorlesungen' kombiniert. Mit einer Selektion wird die Anzahl der Tupel reduziert, bevor ein weiteres Kreuzprodukt gebildet wird. 
 # Ansonsten ist direkt vor die Professorentabelle die Selektion mit der Bedingung, dass der Name des Professors Sokrates sein soll, geschoben worden. Somit ist der Ouptut nach der Selektion nur ein Tupel und es müssen nicht mehr alle Professorentupel mitgeführt werden. 
 # 
@@ -307,9 +307,9 @@
 # 
 # ### SQLite Explain
 # 
-# Anfragepläne können auch in SQLite ausprobiert werden. Dafür muss vor der Anfrage mit '.eqp on' eingegeben werden. Für jede Anfrage wird jetzt der Plan direkt gezeigt. 
-# Es kann auch explizit mit 'EXPLAIN QUERY PLAN' eingestellt werden. Danach wird wie gewohnt die SQL-Anfrage eingegeben. 
-# Nun kann die tatsächliche Implementierung angesehen werden. Zunächst wird die 'producer' Tabelle gescannt. Dann wird ein Autoindex für 'movie' verwendet, weil der Primärschlüssel 'mid' verwendet wird. Dieser Index wird für den IN-OPERATOR verwendet und es wird ein B-TREE verwendet, um die doppelten Werte zu vermeiden. 
+# Anfragepläne können auch in SQLite ausprobiert werden. Dafür muss vor der Anfrage mit ```.eqp on``` eingegeben werden. Für jede Anfrage wird jetzt der Plan direkt gezeigt. 
+# Es kann auch explizit mit ```EXPLAIN QUERY PLAN``` eingestellt werden. Danach wird wie gewohnt die SQL-Anfrage eingegeben. 
+# Nun kann die tatsächliche Implementierung angesehen werden. Zunächst wird die ```producer``` Tabelle gescannt. Dann wird ein Autoindex für ```movie``` verwendet, weil der Primärschlüssel ```mid``` verwendet wird. Dieser Index wird für den ```IN```-OPERATOR verwendet und es wird ein B-TREE verwendet, um die doppelten Werte zu vermeiden. 
 # 
 # ![](sqlite.jpg)
 
@@ -459,13 +459,13 @@
 # 
 # Der Fokus liegt jetzt besonders auf der Join Selektivität. Dazu folgende Anfrage als Beispiel:
 # 
-# - SELECT * FROM cust, order WHERE cust.ID = order.custID
+# - ```SELECT * FROM cust, order WHERE cust.ID = order.custID```
 # 
-# Die Kardinalität von customerID (cust.ID) ist die Anzahl von customer (|cust|), weil es ein Schlüssel ist. 
+# Die Kardinalität von customerID (```cust.ID```) ist die Anzahl von customer (|cust|), weil es ein Schlüssel ist. 
 # 
-# - DISTINCT cust.ID = |cust|
+# - ```DISTINCT cust.ID``` = |cust|
 # 
-# Die order-customer-ID (oder.custID) ist kleiner gleich der Anzahl der customer (cust), weil es weniger Bestellungen (orders) als Kunden (cust) sind. 
+# Die order-customer-ID (```oder.custID```) ist kleiner gleich der Anzahl der customer (```cust```), weil es weniger Bestellungen (```orders```) als Kunden (```cust```) sind. 
 # 
 # - DISTINCT order.custID ≤ |cust|
 # 
@@ -473,7 +473,7 @@
 # 
 # - sf = 1/|cust|
 # 
-# Der Join von customer (cust) und order gibt somit die gleiche Anzahl an Tupeln zurück wie die Anzahl an Tupeln in order. 
+# Der Join von customer (```cust```) und ```order``` gibt somit die gleiche Anzahl an Tupeln zurück wie die Anzahl an Tupeln in ```order```. 
 # 
 # - |cust ⋈ order| = 1/|cust| * |cust| * |order| = |order|
 # 
@@ -499,9 +499,9 @@
 # p.price > 100 
 # ```
 # 
-# Gegeben ist ein Histogramm mit 3300 Produkten und einer Preisspanne von 0 bis 1000. Zu jedem Bucket in der Preisspanne wird angegeben wie viele Produkte darin enthalten sind. Zudem ist eine 'sales' Relation mit einer Millionen Einträgen gegeben. <br>
+# Gegeben ist ein Histogramm mit 3300 Produkten und einer Preisspanne von 0 bis 1000. Zu jedem Bucket in der Preisspanne wird angegeben wie viele Produkte darin enthalten sind. Zudem ist eine ```sales``` Relation mit einer Millionen Einträgen gegeben. <br>
 # <br>
-# Angenommen es findet eine Gleichverteilung statt. Dann ist der Preis gleichverteilt zwischen 0 und 1000. Aufgrund der Selektionsbedingung (p.price > 100) wird nach allen Produkten, die mehr als 100 Kosten, gesucht. Es bleiben genau 900 Produkte übrig. Also kommen 900 von 1000 Einträgen weiter. Es ergibt sich eine Selektivität von 900/1000 = 9/10. Am Ende werden somit 9/10 * 3300 ≈ 3000 Produkte erwartet, die noch zusätzlich mit der sales Relation gejoint wird. <br>
+# Angenommen es findet eine Gleichverteilung statt. Dann ist der Preis gleichverteilt zwischen 0 und 1000. Aufgrund der Selektionsbedingung (```p.price > 100```) wird nach allen Produkten, die mehr als 100 Kosten, gesucht. Es bleiben genau 900 Produkte übrig. Also kommen 900 von 1000 Einträgen weiter. Es ergibt sich eine Selektivität von 900/1000 = 9/10. Am Ende werden somit 9/10 * 3300 ≈ 3000 Produkte erwartet, die noch zusätzlich mit der ```sales``` Relation gejoint wird. <br>
 # <br>
 # Durch das Kennen des Aussehens des Histogramms, ist bekannt, dass es insgesamt nur 5 Produkte gibt, die über 100 kosten. Die Selektivität der Bedingung ist dann 5/3000 ≈ 0.0015. Somit deutlich geringer als zuvor.  
 
