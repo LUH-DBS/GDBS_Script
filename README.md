@@ -9,7 +9,7 @@ pip install -U jupyter-book
 ```
 Build book:
 ```
-jupyter-book build DBSII_Script
+jupyter-book build GDBS_Script
 ```
 Add to GitHub Pages:
 ```
