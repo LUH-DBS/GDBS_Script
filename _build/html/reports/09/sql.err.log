@@ -1,88 +1,74 @@
 Traceback (most recent call last):
   File "/home/julian/.local/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
-  File "/home/julian/.local/lib/python3.10/site-packages/nbclient/client.py", line 1263, in execute
+  File "/usr/lib/python3/dist-packages/nbclient/client.py", line 1093, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "/home/julian/.local/lib/python3.10/site-packages/nbclient/util.py", line 85, in wrapped
+  File "/usr/lib/python3/dist-packages/nbclient/util.py", line 84, in wrapped
     return just_run(coro(*args, **kwargs))
-  File "/home/julian/.local/lib/python3.10/site-packages/nbclient/util.py", line 60, in just_run
+  File "/usr/lib/python3/dist-packages/nbclient/util.py", line 62, in just_run
     return loop.run_until_complete(coro)
   File "/usr/lib/python3.10/asyncio/base_events.py", line 646, in run_until_complete
     return future.result()
-  File "/home/julian/.local/lib/python3.10/site-packages/nbclient/client.py", line 701, in async_execute
+  File "/usr/lib/python3/dist-packages/nbclient/client.py", line 559, in async_execute
     await self.async_execute_cell(
-  File "/home/julian/.local/lib/python3.10/site-packages/nbclient/client.py", line 1019, in async_execute_cell
-    await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/home/julian/.local/lib/python3.10/site-packages/nbclient/client.py", line 913, in _check_raise_for_error
+  File "/usr/lib/python3/dist-packages/nbclient/client.py", line 854, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/usr/lib/python3/dist-packages/nbclient/client.py", line 756, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import sqlite3
-import pandas as pd
-%load_ext sql
-%sql sqlite:///filme/filme.db
-%sql sqlite:///abteilung/abteilung.db
-%sql sqlite:///buecher/buecher.db
-%sql sqlite:///lehre/lehre.db
-%sql sqlite:///rst/rst.db
-%sql sqlite:///salesDB/salesDB.db
+#SELECT Note
+#FROM Prüft
+#WHERE Matrikel = ‘123456‘
+#AND Note >= ALL (SELECT Note
+#                 FROM Prüft
+#                 WHERE Matrikel = ‘123456‘)
+
+__SQL__ = "SELECT Note FROM Prueft WHERE Matrikel = ‘123456‘ AND Note >= ALL (SELECT Note FROM Prueft WHERE Matrikel = ‘123456‘)"
+conn = sqlite3.connect("lehre/lehre.db")
+df = pd.read_sql_query(__SQL__, conn)
+df
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Input [0;32mIn [1][0m, in [0;36m<cell line: 3>[0;34m()[0m
-[1;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01msqlite3[39;00m
-[1;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mpandas[39;00m [38;5;28;01mas[39;00m [38;5;21;01mpd[39;00m
-[0;32m----> 3[0m [43mget_ipython[49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[43mrun_line_magic[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mload_ext[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43msql[39;49m[38;5;124;43m'[39;49m[43m)[49m
-[1;32m      4[0m get_ipython()[38;5;241m.[39mrun_line_magic([38;5;124m'[39m[38;5;124msql[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124msqlite:///filme/filme.db[39m[38;5;124m'[39m)
-[1;32m      5[0m get_ipython()[38;5;241m.[39mrun_line_magic([38;5;124m'[39m[38;5;124msql[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124msqlite:///abteilung/abteilung.db[39m[38;5;124m'[39m)
+[0;31mOperationalError[0m                          Traceback (most recent call last)
+[0;32m~/.local/lib/python3.10/site-packages/pandas/io/sql.py[0m in [0;36mexecute[0;34m(self, sql, params)[0m
+[1;32m   2201[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 2202[0;31m             [0mcur[0m[0;34m.[0m[0mexecute[0m[0;34m([0m[0msql[0m[0;34m,[0m [0;34m*[0m[0margs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   2203[0m             [0;32mreturn[0m [0mcur[0m[0;34m[0m[0;34m[0m[0m
 
-File [0;32m/usr/local/lib/python3.10/dist-packages/IPython/core/interactiveshell.py:2294[0m, in [0;36mInteractiveShell.run_line_magic[0;34m(self, magic_name, line, _stack_depth)[0m
-[1;32m   2292[0m     kwargs[[38;5;124m'[39m[38;5;124mlocal_ns[39m[38;5;124m'[39m] [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mget_local_scope(stack_depth)
-[1;32m   2293[0m [38;5;28;01mwith[39;00m [38;5;28mself[39m[38;5;241m.[39mbuiltin_trap:
-[0;32m-> 2294[0m     result [38;5;241m=[39m [43mfn[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
-[1;32m   2295[0m [38;5;28;01mreturn[39;00m result
+[0;31mOperationalError[0m: near "ALL": syntax error
 
-File [0;32m/usr/local/lib/python3.10/dist-packages/IPython/core/magics/extension.py:33[0m, in [0;36mExtensionMagics.load_ext[0;34m(self, module_str)[0m
-[1;32m     31[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m module_str:
-[1;32m     32[0m     [38;5;28;01mraise[39;00m UsageError([38;5;124m'[39m[38;5;124mMissing module name.[39m[38;5;124m'[39m)
-[0;32m---> 33[0m res [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mshell[49m[38;5;241;43m.[39;49m[43mextension_manager[49m[38;5;241;43m.[39;49m[43mload_extension[49m[43m([49m[43mmodule_str[49m[43m)[49m
-[1;32m     35[0m [38;5;28;01mif[39;00m res [38;5;241m==[39m [38;5;124m'[39m[38;5;124malready loaded[39m[38;5;124m'[39m:
-[1;32m     36[0m     [38;5;28mprint[39m([38;5;124m"[39m[38;5;124mThe [39m[38;5;132;01m%s[39;00m[38;5;124m extension is already loaded. To reload it, use:[39m[38;5;124m"[39m [38;5;241m%[39m module_str)
+The above exception was the direct cause of the following exception:
 
-File [0;32m/usr/local/lib/python3.10/dist-packages/IPython/core/extensions.py:76[0m, in [0;36mExtensionManager.load_extension[0;34m(self, module_str)[0m
-[1;32m     69[0m [38;5;124;03m"""Load an IPython extension by its module name.[39;00m
-[1;32m     70[0m 
-[1;32m     71[0m [38;5;124;03mReturns the string "already loaded" if the extension is already loaded,[39;00m
-[1;32m     72[0m [38;5;124;03m"no load function" if the module doesn't have a load_ipython_extension[39;00m
-[1;32m     73[0m [38;5;124;03mfunction, or None if it succeeded.[39;00m
-[1;32m     74[0m [38;5;124;03m"""[39;00m
-[1;32m     75[0m [38;5;28;01mtry[39;00m:
-[0;32m---> 76[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_load_extension[49m[43m([49m[43mmodule_str[49m[43m)[49m
-[1;32m     77[0m [38;5;28;01mexcept[39;00m [38;5;167;01mModuleNotFoundError[39;00m:
-[1;32m     78[0m     [38;5;28;01mif[39;00m module_str [38;5;129;01min[39;00m BUILTINS_EXTS:
+[0;31mDatabaseError[0m                             Traceback (most recent call last)
+[0;32m/tmp/ipykernel_11992/220724098.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      8[0m [0m__SQL__[0m [0;34m=[0m [0;34m"SELECT Note FROM Prueft WHERE Matrikel = ‘123456‘ AND Note >= ALL (SELECT Note FROM Prueft WHERE Matrikel = ‘123456‘)"[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      9[0m [0mconn[0m [0;34m=[0m [0msqlite3[0m[0;34m.[0m[0mconnect[0m[0;34m([0m[0;34m"lehre/lehre.db"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 10[0;31m [0mdf[0m [0;34m=[0m [0mpd[0m[0;34m.[0m[0mread_sql_query[0m[0;34m([0m[0m__SQL__[0m[0;34m,[0m [0mconn[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     11[0m [0mdf[0m[0;34m[0m[0;34m[0m[0m
 
-File [0;32m/usr/local/lib/python3.10/dist-packages/IPython/core/extensions.py:92[0m, in [0;36mExtensionManager._load_extension[0;34m(self, module_str)[0m
-[1;32m     90[0m [38;5;28;01mif[39;00m module_str [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m sys[38;5;241m.[39mmodules:
-[1;32m     91[0m     [38;5;28;01mwith[39;00m prepended_to_syspath([38;5;28mself[39m[38;5;241m.[39mipython_extension_dir):
-[0;32m---> 92[0m         mod [38;5;241m=[39m [43mimport_module[49m[43m([49m[43mmodule_str[49m[43m)[49m
-[1;32m     93[0m         [38;5;28;01mif[39;00m mod[38;5;241m.[39m[38;5;18m__file__[39m[38;5;241m.[39mstartswith([38;5;28mself[39m[38;5;241m.[39mipython_extension_dir):
-[1;32m     94[0m             [38;5;28mprint[39m(([38;5;124m"[39m[38;5;124mLoading extensions from [39m[38;5;132;01m{dir}[39;00m[38;5;124m is deprecated. [39m[38;5;124m"[39m
-[1;32m     95[0m                    [38;5;124m"[39m[38;5;124mWe recommend managing extensions like any [39m[38;5;124m"[39m
-[1;32m     96[0m                    [38;5;124m"[39m[38;5;124mother Python packages, in site-packages.[39m[38;5;124m"[39m)[38;5;241m.[39mformat(
-[1;32m     97[0m                   [38;5;28mdir[39m[38;5;241m=[39mcompress_user([38;5;28mself[39m[38;5;241m.[39mipython_extension_dir)))
+[0;32m~/.local/lib/python3.10/site-packages/pandas/io/sql.py[0m in [0;36mread_sql_query[0;34m(sql, con, index_col, coerce_float, params, parse_dates, chunksize, dtype, dtype_backend)[0m
+[1;32m    467[0m [0;34m[0m[0m
+[1;32m    468[0m     [0;32mwith[0m [0mpandasSQL_builder[0m[0;34m([0m[0mcon[0m[0;34m)[0m [0;32mas[0m [0mpandas_sql[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 469[0;31m         return pandas_sql.read_query(
+[0m[1;32m    470[0m             [0msql[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    471[0m             [0mindex_col[0m[0;34m=[0m[0mindex_col[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
 
-File [0;32m/usr/lib/python3.10/importlib/__init__.py:126[0m, in [0;36mimport_module[0;34m(name, package)[0m
-[1;32m    124[0m             [38;5;28;01mbreak[39;00m
-[1;32m    125[0m         level [38;5;241m+[39m[38;5;241m=[39m [38;5;241m1[39m
-[0;32m--> 126[0m [38;5;28;01mreturn[39;00m [43m_bootstrap[49m[38;5;241;43m.[39;49m[43m_gcd_import[49m[43m([49m[43mname[49m[43m[[49m[43mlevel[49m[43m:[49m[43m][49m[43m,[49m[43m [49m[43mpackage[49m[43m,[49m[43m [49m[43mlevel[49m[43m)[49m
+[0;32m~/.local/lib/python3.10/site-packages/pandas/io/sql.py[0m in [0;36mread_query[0;34m(self, sql, index_col, coerce_float, parse_dates, params, chunksize, dtype, dtype_backend)[0m
+[1;32m   2264[0m         [0mdtype_backend[0m[0;34m:[0m [0mDtypeBackend[0m [0;34m|[0m [0mLiteral[0m[0;34m[[0m[0;34m"numpy"[0m[0;34m][0m [0;34m=[0m [0;34m"numpy"[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2265[0m     ) -> DataFrame | Iterator[DataFrame]:
+[0;32m-> 2266[0;31m         [0mcursor[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mexecute[0m[0;34m([0m[0msql[0m[0;34m,[0m [0mparams[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   2267[0m         [0mcolumns[0m [0;34m=[0m [0;34m[[0m[0mcol_desc[0m[0;34m[[0m[0;36m0[0m[0;34m][0m [0;32mfor[0m [0mcol_desc[0m [0;32min[0m [0mcursor[0m[0;34m.[0m[0mdescription[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2268[0m [0;34m[0m[0m
 
-File [0;32m<frozen importlib._bootstrap>:1050[0m, in [0;36m_gcd_import[0;34m(name, package, level)[0m
+[0;32m~/.local/lib/python3.10/site-packages/pandas/io/sql.py[0m in [0;36mexecute[0;34m(self, sql, params)[0m
+[1;32m   2212[0m [0;34m[0m[0m
+[1;32m   2213[0m             [0mex[0m [0;34m=[0m [0mDatabaseError[0m[0;34m([0m[0;34mf"Execution failed on sql '{sql}': {exc}"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 2214[0;31m             [0;32mraise[0m [0mex[0m [0;32mfrom[0m [0mexc[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   2215[0m [0;34m[0m[0m
+[1;32m   2216[0m     [0;34m@[0m[0mstaticmethod[0m[0;34m[0m[0;34m[0m[0m
 
-File [0;32m<frozen importlib._bootstrap>:1027[0m, in [0;36m_find_and_load[0;34m(name, import_)[0m
-
-File [0;32m<frozen importlib._bootstrap>:1004[0m, in [0;36m_find_and_load_unlocked[0;34m(name, import_)[0m
-
-[0;31mModuleNotFoundError[0m: No module named 'sql'
-ModuleNotFoundError: No module named 'sql'
+[0;31mDatabaseError[0m: Execution failed on sql 'SELECT Note FROM Prueft WHERE Matrikel = ‘123456‘ AND Note >= ALL (SELECT Note FROM Prueft WHERE Matrikel = ‘123456‘)': near "ALL": syntax error
+DatabaseError: Execution failed on sql 'SELECT Note FROM Prueft WHERE Matrikel = ‘123456‘ AND Note >= ALL (SELECT Note FROM Prueft WHERE Matrikel = ‘123456‘)': near "ALL": syntax error
 
