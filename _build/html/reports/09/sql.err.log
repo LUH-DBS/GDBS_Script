@@ -42,7 +42,7 @@ df
 The above exception was the direct cause of the following exception:
 
 [0;31mDatabaseError[0m                             Traceback (most recent call last)
-[0;32m/tmp/ipykernel_11992/220724098.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/tmp/ipykernel_12653/220724098.py[0m in [0;36m<module>[0;34m[0m
 [1;32m      8[0m [0m__SQL__[0m [0;34m=[0m [0;34m"SELECT Note FROM Prueft WHERE Matrikel = ‘123456‘ AND Note >= ALL (SELECT Note FROM Prueft WHERE Matrikel = ‘123456‘)"[0m[0;34m[0m[0;34m[0m[0m
 [1;32m      9[0m [0mconn[0m [0;34m=[0m [0msqlite3[0m[0;34m.[0m[0mconnect[0m[0;34m([0m[0;34m"lehre/lehre.db"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0;32m---> 10[0;31m [0mdf[0m [0;34m=[0m [0mpd[0m[0;34m.[0m[0mread_sql_query[0m[0;34m([0m[0m__SQL__[0m[0;34m,[0m [0mconn[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m

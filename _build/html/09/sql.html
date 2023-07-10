@@ -541,7 +541,7 @@ document.write(`
 </div>
 <section id="einfuhrung">
 <h2><span class="section-number">9.1. </span>Einführung<a class="headerlink" href="#einfuhrung" title="Permalink to this heading">#</a></h2>
-<p>Aus den vorherigen Kapiteln haben wir gelernt wie wir eine Datenbank auf Papier entwerfen, nun schauen wir uns die in der Realität benutzten technischen Mitteln an, insbesondere die Datenbankanfragesprache SQL.</p>
+<p>Aus den vorherigen Kapiteln haben wir gelernt, wie wir eine Datenbank auf Papier entwerfen. Nun schauen wir uns die in der Realität benutzten technischen Mittel an, insbesondere die Datenbankanfragesprache SQL.</p>
 <section id="motivation-fur-sql">
 <h3><span class="section-number">9.1.1. </span>Motivation für SQL<a class="headerlink" href="#motivation-fur-sql" title="Permalink to this heading">#</a></h3>
 <p>SQL ist die meist-verbreiteste Datenbankanfragesprache. Es handelt sich hierbei um eine Very-High-Level Language, die Ad-hoc, deklarativ und nicht prozedural / imperativ ist. SQL-Anfragen sich an die relationale Algebra angelehnt. Zusätzlich sind Data definition(DDL) und Data manipulation(DML) mit SQL möglich. Wichtig zu beachten ist noch, dass sowohl Syntax, als auch Funktionalität sich von System zu System leicht unterscheiden können.</p>
@@ -5426,7 +5426,7 @@ Die Negation mit <code class="docutils literal notranslate"><span class="pre">NO
 <span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
 
 <span class="ne">DatabaseError</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_11992</span><span class="o">/</span><span class="mf">220724098.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_12653</span><span class="o">/</span><span class="mf">220724098.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">__SQL__</span> <span class="o">=</span> <span class="s2">&quot;SELECT Note FROM Prueft WHERE Matrikel = ‘123456‘ AND Note &gt;= ALL (SELECT Note FROM Prueft WHERE Matrikel = ‘123456‘)&quot;</span>
 <span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;lehre/lehre.db&quot;</span><span class="p">)</span>
 <span class="ne">---&gt; </span><span class="mi">10</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">__SQL__</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
