@@ -1041,7 +1041,7 @@ if(!occ) {
 </section>
 <section id="dirty-read">
 <h3><span class="section-number">11.2.7. </span>Dirty Read<a class="headerlink" href="#dirty-read" title="Permalink to this headline">#</a></h3>
-<p>Wir haben zwei Transaktionen T1 und T2 gegeben. Zuerst wird in T1 aus der Tabelle A der Wert ausgelesen und in x gespeichert. Auf x wird dann 100 addiert und der Wert von x wird in die Tabelle A geschrieben. Die Transaktion T1 ist jedoch noch nicht commitet. Währenddessen werd in T2 die Werte aus den Tabellen A und B gelesen und in die Variablen x und y gespeichert. Es wird die Summe aus x und y gebildet, wobei der Wert in x aus T2 den Wert x:=x+100 aus T1 hat. Die Summe wird in T2 in die Tabelle B geschrieben und es wird commitet. Zuletzt findet ein abort in T1 statt, welches den Effekt hat, dass die vorherigen Transaktionsschritte aus T1 verworfen werden. Das Problem ist, dass T2  den veränderten A-Wert liest, diese Änderung aber nicht endgültig ist, sondern sogar ungültig.</p>
+<p>Wir haben zwei Transaktionen T1 und T2 gegeben. Zuerst wird in T1 aus der Tabelle A der Wert ausgelesen und in x gespeichert. Auf x wird dann 100 addiert und der Wert von x wird in die Tabelle A geschrieben. Die Transaktion T1 ist jedoch noch nicht commitet. Währenddessen werden in T2 die Werte aus den Tabellen A und B gelesen und in die Variablen x und y gespeichert. Es wird die Summe aus x und y gebildet, wobei der Wert in x aus T2 den Wert x:=x+100 aus T1 hat. Die Summe wird in T2 in die Tabelle B geschrieben und es wird commitet. Zuletzt findet ein abort in T1 statt, welches den Effekt hat, dass die vorherigen Transaktionsschritte aus T1 verworfen werden. Das Problem ist, dass T2  den veränderten A-Wert liest, diese Änderung aber nicht endgültig ist, sondern sogar ungültig.</p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>T1</p></th>
@@ -1076,11 +1076,9 @@ if(!occ) {
 <tr class="row-even"><td><p>abort</p></td>
 <td><p>﻿</p></td>
 </tr>
-<tr class="row-odd"><td><p>Folie nach Kai-Uwe Sattler (TU Ilmenau)</p></td>
-<td><p></p></td>
-</tr>
 </tbody>
 </table>
+<p>Folie nach Kai-Uwe Sattler (TU Ilmenau)</p>
 </section>
 <section id="nonrepeatable-read">
 <h3><span class="section-number">11.2.8. </span>Nonrepeatable Read<a class="headerlink" href="#nonrepeatable-read" title="Permalink to this headline">#</a></h3>
@@ -1133,11 +1131,9 @@ Zuerst wird in T1 der Wert aus A gelesen und in x gespeichert. Danach wird in T2
 <tr class="row-even"><td><p>commit</p></td>
 <td><p>﻿</p></td>
 </tr>
-<tr class="row-odd"><td><p>Beispiel nach Kai-Uwe Sattler (TU Ilmenau)</p></td>
-<td><p></p></td>
-</tr>
 </tbody>
 </table>
+<p>Beispiel nach Kai-Uwe Sattler (TU Ilmenau)</p>
 </section>
 <section id="das-phantom-problem">
 <h3><span class="section-number">11.2.9. </span>Das Phantom-Problem<a class="headerlink" href="#das-phantom-problem" title="Permalink to this headline">#</a></h3>
@@ -1164,11 +1160,9 @@ Zuerst wird in T1 der Wert aus A gelesen und in x gespeichert. Danach wird in T2
 <tr class="row-even"><td><p>commit</p></td>
 <td><p>﻿</p></td>
 </tr>
-<tr class="row-odd"><td><p>Beispiel nach Kai-Uwe Sattler (TU Ilmenau)</p></td>
-<td><p></p></td>
-</tr>
 </tbody>
 </table>
+<p>Beispiel nach Kai-Uwe Sattler (TU Ilmenau)</p>
 <p><img alt="title" src="../_images/phantom.jpg" />
 <br></p>
 </section>
@@ -1207,16 +1201,9 @@ Zuerst wird in T1 der Wert aus A gelesen und in x gespeichert. Danach wird in T2
 <td><p>write(x,A)</p></td>
 <td><p>11</p></td>
 </tr>
-<tr class="row-even"><td><p><br></p></td>
-<td><p></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p>Folie nach Kai-Uwe Sattler (TU Ilmenau)</p></td>
-<td><p></p></td>
-<td><p></p></td>
-</tr>
 </tbody>
 </table>
+<p>Folie nach Kai-Uwe Sattler (TU Ilmenau)</p>
 </section>
 <section id="transaktionen-in-sql">
 <h3><span class="section-number">11.2.11. </span>Transaktionen in SQL<a class="headerlink" href="#transaktionen-in-sql" title="Permalink to this headline">#</a></h3>
@@ -1713,7 +1700,7 @@ Tatsächlich ist dieser Schedule theoretisch serialisierbar, da die Operationen 
 </tbody>
 </table>
 </table>
-<p>-&gt;Beide Schedules haben den Effekt: A = A − 150, B = B + 150</p>
+<p>Beide Schedules haben den folgenden Effekt: A = A − 150, B = B + 150.</p>
 <br> 
 Beispiel: Alfons Kemper(TU München)<p><strong>Beispiel 2.2</strong>
 <br><br>
