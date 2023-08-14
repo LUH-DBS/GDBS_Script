@@ -1,74 +1,83 @@
 Traceback (most recent call last):
-  File "/Users/abedjan/opt/anaconda3/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+  File "/home/jennywu/.local/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
     executenb(
-  File "/Users/abedjan/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 1112, in execute
+  File "/home/jennywu/.local/lib/python3.8/site-packages/nbclient/client.py", line 1204, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "/Users/abedjan/opt/anaconda3/lib/python3.9/site-packages/nbclient/util.py", line 74, in wrapped
+  File "/home/jennywu/.local/lib/python3.8/site-packages/nbclient/util.py", line 84, in wrapped
     return just_run(coro(*args, **kwargs))
-  File "/Users/abedjan/opt/anaconda3/lib/python3.9/site-packages/nbclient/util.py", line 53, in just_run
+  File "/home/jennywu/.local/lib/python3.8/site-packages/nbclient/util.py", line 62, in just_run
     return loop.run_until_complete(coro)
-  File "/Users/abedjan/opt/anaconda3/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
     return future.result()
-  File "/Users/abedjan/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 553, in async_execute
+  File "/home/jennywu/.local/lib/python3.8/site-packages/nbclient/client.py", line 663, in async_execute
     await self.async_execute_cell(
-  File "/Users/abedjan/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 857, in async_execute_cell
-    self._check_raise_for_error(cell, exec_reply)
-  File "/Users/abedjan/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 760, in _check_raise_for_error
+  File "/home/jennywu/.local/lib/python3.8/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/jennywu/.local/lib/python3.8/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-#SELECT Note
-#FROM Prüft
-#WHERE Matrikel = ‘123456‘
-#AND Note >= ALL (SELECT Note
-#                 FROM Prüft
-#                 WHERE Matrikel = ‘123456‘)
+#…FROM SchauspielerIn NATURAL RIGHT OUTER JOIN ManagerIn
 
-__SQL__ = "SELECT Note FROM Prueft WHERE Matrikel = ‘123456‘ AND Note >= ALL (SELECT Note FROM Prueft WHERE Matrikel = ‘123456‘)"
-conn = sqlite3.connect("lehre/lehre.db")
+__SQL__ = "SELECT Name, Adresse, Geburtstag, Gehalt FROM ManagerIn NATURAL RIGHT OUTER JOIN SchauspielerIn"
+conn = sqlite3.connect("filme/filme.db")
 df = pd.read_sql_query(__SQL__, conn)
 df
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mOperationalError[0m                          Traceback (most recent call last)
-[0;32m~/opt/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py[0m in [0;36mexecute[0;34m(self, *args, **kwargs)[0m
-[1;32m   2055[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 2056[0;31m             [0mcur[0m[0;34m.[0m[0mexecute[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m   2057[0m             [0;32mreturn[0m [0mcur[0m[0;34m[0m[0;34m[0m[0m
+File [0;32m~/.local/lib/python3.8/site-packages/pandas/io/sql.py:2018[0m, in [0;36mSQLiteDatabase.execute[0;34m(self, *args, **kwargs)[0m
+[1;32m   2017[0m [38;5;28;01mtry[39;00m:
+[0;32m-> 2018[0m     [43mcur[49m[38;5;241;43m.[39;49m[43mexecute[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m   2019[0m     [38;5;28;01mreturn[39;00m cur
 
-[0;31mOperationalError[0m: near "ALL": syntax error
+[0;31mOperationalError[0m: RIGHT and FULL OUTER JOINs are not currently supported
 
 The above exception was the direct cause of the following exception:
 
 [0;31mDatabaseError[0m                             Traceback (most recent call last)
-[0;32m/var/folders/0l/c_g762xn62j70jfzwrym3g740000gn/T/ipykernel_52807/66575328.py[0m in [0;36m<module>[0;34m[0m
-[1;32m      8[0m [0m__SQL__[0m [0;34m=[0m [0;34m"SELECT Note FROM Prueft WHERE Matrikel = ‘123456‘ AND Note >= ALL (SELECT Note FROM Prueft WHERE Matrikel = ‘123456‘)"[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      9[0m [0mconn[0m [0;34m=[0m [0msqlite3[0m[0;34m.[0m[0mconnect[0m[0;34m([0m[0;34m"lehre/lehre.db"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0;32m---> 10[0;31m [0mdf[0m [0;34m=[0m [0mpd[0m[0;34m.[0m[0mread_sql_query[0m[0;34m([0m[0m__SQL__[0m[0;34m,[0m [0mconn[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m     11[0m [0mdf[0m[0;34m[0m[0;34m[0m[0m
+Input [0;32mIn [33][0m, in [0;36m<cell line: 5>[0;34m()[0m
+[1;32m      3[0m __SQL__ [38;5;241m=[39m [38;5;124m"[39m[38;5;124mSELECT Name, Adresse, Geburtstag, Gehalt FROM ManagerIn NATURAL RIGHT OUTER JOIN SchauspielerIn[39m[38;5;124m"[39m
+[1;32m      4[0m conn [38;5;241m=[39m sqlite3[38;5;241m.[39mconnect([38;5;124m"[39m[38;5;124mfilme/filme.db[39m[38;5;124m"[39m)
+[0;32m----> 5[0m df [38;5;241m=[39m [43mpd[49m[38;5;241;43m.[39;49m[43mread_sql_query[49m[43m([49m[43m__SQL__[49m[43m,[49m[43m [49m[43mconn[49m[43m)[49m
+[1;32m      6[0m df
 
-[0;32m~/opt/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py[0m in [0;36mread_sql_query[0;34m(sql, con, index_col, coerce_float, params, parse_dates, chunksize, dtype)[0m
-[1;32m    434[0m     """
-[1;32m    435[0m     [0mpandas_sql[0m [0;34m=[0m [0mpandasSQL_builder[0m[0;34m([0m[0mcon[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 436[0;31m     return pandas_sql.read_query(
-[0m[1;32m    437[0m         [0msql[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    438[0m         [0mindex_col[0m[0;34m=[0m[0mindex_col[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+File [0;32m~/.local/lib/python3.8/site-packages/pandas/io/sql.py:397[0m, in [0;36mread_sql_query[0;34m(sql, con, index_col, coerce_float, params, parse_dates, chunksize, dtype)[0m
+[1;32m    339[0m [38;5;124;03m"""[39;00m
+[1;32m    340[0m [38;5;124;03mRead SQL query into a DataFrame.[39;00m
+[1;32m    341[0m 
+[0;32m   (...)[0m
+[1;32m    394[0m [38;5;124;03mparameter will be converted to UTC.[39;00m
+[1;32m    395[0m [38;5;124;03m"""[39;00m
+[1;32m    396[0m pandas_sql [38;5;241m=[39m pandasSQL_builder(con)
+[0;32m--> 397[0m [38;5;28;01mreturn[39;00m [43mpandas_sql[49m[38;5;241;43m.[39;49m[43mread_query[49m[43m([49m
+[1;32m    398[0m [43m    [49m[43msql[49m[43m,[49m
+[1;32m    399[0m [43m    [49m[43mindex_col[49m[38;5;241;43m=[39;49m[43mindex_col[49m[43m,[49m
+[1;32m    400[0m [43m    [49m[43mparams[49m[38;5;241;43m=[39;49m[43mparams[49m[43m,[49m
+[1;32m    401[0m [43m    [49m[43mcoerce_float[49m[38;5;241;43m=[39;49m[43mcoerce_float[49m[43m,[49m
+[1;32m    402[0m [43m    [49m[43mparse_dates[49m[38;5;241;43m=[39;49m[43mparse_dates[49m[43m,[49m
+[1;32m    403[0m [43m    [49m[43mchunksize[49m[38;5;241;43m=[39;49m[43mchunksize[49m[43m,[49m
+[1;32m    404[0m [43m    [49m[43mdtype[49m[38;5;241;43m=[39;49m[43mdtype[49m[43m,[49m
+[1;32m    405[0m [43m[49m[43m)[49m
 
-[0;32m~/opt/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py[0m in [0;36mread_query[0;34m(self, sql, index_col, coerce_float, params, parse_dates, chunksize, dtype)[0m
-[1;32m   2114[0m [0;34m[0m[0m
-[1;32m   2115[0m         [0margs[0m [0;34m=[0m [0m_convert_params[0m[0;34m([0m[0msql[0m[0;34m,[0m [0mparams[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 2116[0;31m         [0mcursor[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mexecute[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m   2117[0m         [0mcolumns[0m [0;34m=[0m [0;34m[[0m[0mcol_desc[0m[0;34m[[0m[0;36m0[0m[0;34m][0m [0;32mfor[0m [0mcol_desc[0m [0;32min[0m [0mcursor[0m[0;34m.[0m[0mdescription[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
-[1;32m   2118[0m [0;34m[0m[0m
+File [0;32m~/.local/lib/python3.8/site-packages/pandas/io/sql.py:2078[0m, in [0;36mSQLiteDatabase.read_query[0;34m(self, sql, index_col, coerce_float, params, parse_dates, chunksize, dtype)[0m
+[1;32m   2066[0m [38;5;28;01mdef[39;00m [38;5;21mread_query[39m(
+[1;32m   2067[0m     [38;5;28mself[39m,
+[1;32m   2068[0m     sql,
+[0;32m   (...)[0m
+[1;32m   2074[0m     dtype: DtypeArg [38;5;241m|[39m [38;5;28;01mNone[39;00m [38;5;241m=[39m [38;5;28;01mNone[39;00m,
+[1;32m   2075[0m ) [38;5;241m-[39m[38;5;241m>[39m DataFrame [38;5;241m|[39m Iterator[DataFrame]:
+[1;32m   2077[0m     args [38;5;241m=[39m _convert_params(sql, params)
+[0;32m-> 2078[0m     cursor [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mexecute[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m)[49m
+[1;32m   2079[0m     columns [38;5;241m=[39m [col_desc[[38;5;241m0[39m] [38;5;28;01mfor[39;00m col_desc [38;5;129;01min[39;00m cursor[38;5;241m.[39mdescription]
+[1;32m   2081[0m     [38;5;28;01mif[39;00m chunksize [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
 
-[0;32m~/opt/anaconda3/lib/python3.9/site-packages/pandas/io/sql.py[0m in [0;36mexecute[0;34m(self, *args, **kwargs)[0m
-[1;32m   2066[0m [0;34m[0m[0m
-[1;32m   2067[0m             [0mex[0m [0;34m=[0m [0mDatabaseError[0m[0;34m([0m[0;34mf"Execution failed on sql '{args[0]}': {exc}"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 2068[0;31m             [0;32mraise[0m [0mex[0m [0;32mfrom[0m [0mexc[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m   2069[0m [0;34m[0m[0m
-[1;32m   2070[0m     [0;34m@[0m[0mstaticmethod[0m[0;34m[0m[0;34m[0m[0m
+File [0;32m~/.local/lib/python3.8/site-packages/pandas/io/sql.py:2030[0m, in [0;36mSQLiteDatabase.execute[0;34m(self, *args, **kwargs)[0m
+[1;32m   2027[0m     [38;5;28;01mraise[39;00m ex [38;5;28;01mfrom[39;00m [38;5;21;01minner_exc[39;00m
+[1;32m   2029[0m ex [38;5;241m=[39m DatabaseError([38;5;124mf[39m[38;5;124m"[39m[38;5;124mExecution failed on sql [39m[38;5;124m'[39m[38;5;132;01m{[39;00margs[[38;5;241m0[39m][38;5;132;01m}[39;00m[38;5;124m'[39m[38;5;124m: [39m[38;5;132;01m{[39;00mexc[38;5;132;01m}[39;00m[38;5;124m"[39m)
+[0;32m-> 2030[0m [38;5;28;01mraise[39;00m ex [38;5;28;01mfrom[39;00m [38;5;21;01mexc[39;00m
 
-[0;31mDatabaseError[0m: Execution failed on sql 'SELECT Note FROM Prueft WHERE Matrikel = ‘123456‘ AND Note >= ALL (SELECT Note FROM Prueft WHERE Matrikel = ‘123456‘)': near "ALL": syntax error
-DatabaseError: Execution failed on sql 'SELECT Note FROM Prueft WHERE Matrikel = ‘123456‘ AND Note >= ALL (SELECT Note FROM Prueft WHERE Matrikel = ‘123456‘)': near "ALL": syntax error
+[0;31mDatabaseError[0m: Execution failed on sql 'SELECT Name, Adresse, Geburtstag, Gehalt FROM ManagerIn NATURAL RIGHT OUTER JOIN SchauspielerIn': RIGHT and FULL OUTER JOINs are not currently supported
+DatabaseError: Execution failed on sql 'SELECT Name, Adresse, Geburtstag, Gehalt FROM ManagerIn NATURAL RIGHT OUTER JOIN SchauspielerIn': RIGHT and FULL OUTER JOINs are not currently supported
 
