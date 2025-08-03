@@ -1,17 +1,45 @@
 # GDBS_Script
 
-View current script on [GitHub Pages](https://luh-dbs.github.io/GDBS_Script/intro.html).
+
+[![GitHub Pages](https://img.shields.io/badge/GDBS--Script-View%20Online-blue)](https://luh-dbs.github.io/GDBS_Script/intro.html)
+
+This repository provides lecture materials and interactive scripts for the course "Grundlagen der Datenbanksysteme." All content is structured as Jupyter Book for convenient learning and exploration. View current script on [GitHub Pages](https://luh-dbs.github.io/GDBS_Script/intro.html).
 
 ## Quickstart 
-Install Jupyter Book:
+
+### Prerequisites
+
+- Python 3.8+
+- Jupyter Book
+
+### Installation
+
 ```
 pip install -U jupyter-book
 ```
-Build book:
+
+### Build the Book
+
 ```
 jupyter-book build GDBS_Script
 ```
-Add to GitHub Pages:
+
+### Deploy to GitHub Pages:
+
 ```
 ghp-import -n -p -f _build/html
 ```
+
+## Contributing
+
+Contributions are welcome! Please open an issue to discuss major changes before submitting a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (git checkout -b feature/AmazingFeature)
+3. Commit your changes (git commit -m 'Add some AmazingFeature')
+4. Push to the branch (git push origin feature/AmazingFeature)
+5. Open a Pull Request
+
+## Support 
+
+- **Issues**: [GitHub Issues](https://github.com/LUH-DBS/GDBS_Script/issues)
